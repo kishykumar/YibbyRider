@@ -1,0 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.1'
+pod 'GoogleMaps'
+pod 'Google/CloudMessaging'
+pod 'BaasBoxSDK', '~> 0.9.0'
+xcodeproj '/Users/kishykumar/test/Example/Example.xcodeproj'
