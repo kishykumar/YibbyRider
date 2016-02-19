@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import MMDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
@@ -24,15 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     let registrationKey = "onRegistrationCompleted"
     let messageKey = "onMessageReceived"
     let subscriptionTopic = "/topics/global"
-    static let APP_FIRST_RUN = "FIRST_RUN"
+    let APP_FIRST_RUN = "FIRST_RUN"
 
+    let GOOGLE_API_KEY_IOS = "AIzaSyCo2ryq0fm7T_mWevfT26vMyNtwJLc1jFA"
+    
+    var centerContainer: MMDrawerController?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Configure Baasbox
         BaasBox.setBaseURL("http://sandbox1-env.us-west-1.elasticbeanstalk.com", appCode: "1234567890")
         
         // Override point for customization after application launch.
-        GMSServices.provideAPIKey("AIzaSyCo2ryq0fm7T_mWevfT26vMyNtwJLc1jFA")
+        GMSServices.provideAPIKey(GOOGLE_API_KEY_IOS)
         
         // [START_EXCLUDE]
         // Configure the Google context: parses the GoogleService-Info.plist, and initializes
@@ -42,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
         // [END_EXCLUDE]
+        
         // Register for remote notifications
         if #available(iOS 8.0, *) {
             let settings: UIUserNotificationSettings =
@@ -53,8 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
             application.registerForRemoteNotificationTypes(types)
         }
-        
         // [END register_for_remote_notifications]
+        
         // [START start_gcm_service]
         let gcmConfig = GCMConfig.defaultConfig()
         gcmConfig.receiverDelegate = self
@@ -63,11 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         //Clear keychain on first run in case of reinstallation
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        if userDefaults.objectForKey(AppDelegate.APP_FIRST_RUN) == nil {
+        if userDefaults.objectForKey(APP_FIRST_RUN) == nil {
             // Delete values from keychain here
-            userDefaults.setValue(AppDelegate.APP_FIRST_RUN, forKey: AppDelegate.APP_FIRST_RUN)
-            KeychainWrapper.removeObjectForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
-            KeychainWrapper.removeObjectForKey(LoginViewController.PASSWORD_KEY_NAME)
+            userDefaults.setValue(APP_FIRST_RUN, forKey: APP_FIRST_RUN)
+            LoginViewController.removeKeyChainKeys()
         }
         
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -75,11 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         let client: BAAClient = BAAClient.sharedClient()
         if client.isAuthenticated() {
             // no need to do anything if user is already authenticated
-            
+            print("KKDBG_already autneticated")
+            initializeMainViewController()
+            window!.rootViewController = centerContainer
         } else {
             //not logged in
-            let retrievedEmailAddress = KeychainWrapper.stringForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
-            let retrievedPassword = KeychainWrapper.stringForKey(LoginViewController.PASSWORD_KEY_NAME)
+            let (retrievedEmailAddress, retrievedPassword) = LoginViewController.getKeyChainKeys()
             
             // Check if user entered credentials once
             if (retrievedEmailAddress != nil && retrievedPassword != nil) {
@@ -88,18 +94,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             } else {
                 // Show the LoginViewController View
 
-                // get window object
-                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                self.window!.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as! LoginViewController;
-                
-                // Present the window
-                self.window!.makeKeyAndVisible()
+//                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                window!.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as! LoginViewController;
             }
         }
         
+        // Present the window
+        window!.makeKeyAndVisible()
+        
         return true
     }
+    
+    func initializeMainViewController () {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
+        let centerController = mainStoryboard.instantiateViewControllerWithIdentifier("MainViewControllerIdentifier") as! MainViewController;
+        
+        let centerNav = UINavigationController(rootViewController: centerController)
+        
+        let leftController = mainStoryboard.instantiateViewControllerWithIdentifier("LeftNavDrawerViewControllerIdentifier") as! LeftNavDrawerViewController;
+        
+        centerContainer = MMDrawerController(centerViewController: centerNav, leftDrawerViewController: leftController)
+        
+        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+        centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+    }
+    
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
         let client: BAAClient = BAAClient.sharedClient()

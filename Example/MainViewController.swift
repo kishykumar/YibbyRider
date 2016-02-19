@@ -9,24 +9,38 @@
 import UIKit
 import MapKit
 import GoogleMaps
+import MMDrawerController
 
-class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate {
+class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate {
 
     // MARK: Properties
     @IBOutlet weak var pickupFieldOutlet: UITextField!
     @IBOutlet weak var dropoffFieldOutlet: UITextField!
-    @IBOutlet weak var mapViewOutlet: MKMapView!
-
-    // Instantiate a pair of UILabels in Interface Builder
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     
+
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
     var pickupFieldSelected: Bool?
     var dropoffFieldSelected: Bool?
     
+    var currentPlaceLatLng: CLLocation?
+    var currentPlaceName: String?
+    
+    var pickupLatLng: CLLocation?
+    var pickupPlaceName: String?
+
+    var dropoffLatLng: CLLocation?
+    var dropoffPlaceName: String?
+    
+    var locationManager:CLLocationManager!
+
     // MARK: Functions
+    @IBAction func leftSlideButtonTapped(sender: AnyObject) {
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
+    
     func setupUI () {
         let imageView = UIImageView();
         
@@ -48,40 +62,90 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         dropoffFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
     }
     
+    func setupLocationManager () {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        gmsMapViewOutlet.myLocationEnabled = true
+        gmsMapViewOutlet.settings.myLocationButton = true
+        
+        // Very Important: disable consume all gestures, needed for nav drawer
+        gmsMapViewOutlet.settings.consumesGesturesInView = false
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        if let userLocation:CLLocation = locations.first {
+            
+            gmsMapViewOutlet.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+
+            
+            CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
+                
+                if (error != nil) {
+                    print(error)
+                } else {
+                    if let validPlacemark = placemarks?[0] {
+                        if let placemark = validPlacemark as? CLPlacemark {
+                            var addressString : String = ""
+
+                            if placemark.subThoroughfare != nil {
+                                addressString = placemark.subThoroughfare! + " "
+                            }
+                            if placemark.thoroughfare != nil {
+                                addressString = addressString + placemark.thoroughfare! + ", "
+                            }
+                            if placemark.locality != nil {
+                                addressString = addressString + placemark.locality! + ", "
+                            }
+                            if placemark.administrativeArea != nil {
+                                addressString = addressString + placemark.administrativeArea! + " "
+                            }
+                            if placemark.postalCode != nil {
+                                addressString = addressString + placemark.postalCode! + ", "
+                            }
+                            if placemark.country != nil {
+                                addressString = addressString + placemark.country!
+                            }
+
+                            self.setCurrentLocationDetails(addressString, lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
+                            self.setPickupDetails(addressString, lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
+                            
+                            print (addressString)
+                        }
+                    }
+                }
+            })
+            
+            // we just need the user's location one time
+            locationManager.stopUpdatingLocation()
+        }
+    }
     
     func setupMap () {
-        // set initial location in Honolulu
-        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
-        centerMapOnLocation(initialLocation)
+        setupLocationManager()
     }
-    
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-            regionRadius * 2.0, regionRadius * 2.0)
-        mapViewOutlet.setRegion(coordinateRegion, animated: true)
-    }
-    
+
     func setupMapClient () {
         placesClient = GMSPlacesClient()
     }
     
     // BaasBox create user
-    func createUser() {
-        let client: BAAClient = BAAClient.sharedClient()
-        client.createUserWithUsername("cesare", password: "password", completion: {(success, error) -> Void in
-            if (success) {
-                NSLog("created user %@", client)
-            }
-            else {
-                NSLog("error creating user %@", error)
-            }
-        })
-    }
-    
-    func retrieveUserCredentials() {
-//        let retrievedLoginToken:String = KeychainWrapper.stringForKey(LoginViewController.LOGIN_TOKEN_KEY_NAME)!
-    }
-    
+//    func createUser() {
+//        let client: BAAClient = BAAClient.sharedClient()
+//        client.createUserWithUsername("cesare", password: "password", completion: {(success, error) -> Void in
+//            if (success) {
+//                NSLog("created user %@", client)
+//            }
+//            else {
+//                NSLog("error creating user %@", error)
+//            }
+//        })
+//    }
+  
 //    func uploadFile() {
 //        var imgPath: NSURL = NSBundle.mainBundle()(URLForResource: "baasbox", withExtension: "png")
 //        var stringPath: String = imgPath.absoluteString()
@@ -104,11 +168,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         setupUI()
         setupMap()
         setupMapClient()
-        
-        retrieveUserCredentials()
-        
-        // Baasbox related initialization
-//        createUser()
 
         pickupFieldOutlet.delegate = self
         dropoffFieldOutlet.delegate = self
@@ -140,7 +199,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
                 }
             })
         }
-        
     }
     
     // The pickup and dropoff textfields should not pop up a keyboard
@@ -172,11 +230,28 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
     }
 
     func choseDestination(location: String) {
-        self.nameLabel.text = "Where Ya At"
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func setPickupDetails (address: String, lat: CLLocationDegrees, lng: CLLocationDegrees) {
+        self.pickupFieldOutlet.text = address
+        self.pickupPlaceName = address
+        self.pickupLatLng = CLLocation(latitude: lat, longitude: lng)
+    }
+
+    func setDropoffDetails (address: String, lat: CLLocationDegrees, lng: CLLocationDegrees) {
+        self.dropoffFieldOutlet.text = address
+        self.dropoffPlaceName = address
+        self.dropoffLatLng = CLLocation(latitude: lat, longitude: lng)
+    }
+    
+    func setCurrentLocationDetails (address: String, lat: CLLocationDegrees, lng: CLLocationDegrees) {
+        self.currentPlaceName = address
+        self.currentPlaceLatLng = CLLocation(latitude: lat, longitude: lng)
+    }
+    
     // MARK: Actions
+    /*
     @IBAction func getCurrentPlace(sender: UIButton) {
         
         placesClient?.currentPlaceWithCallback({
@@ -200,6 +275,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
             }
         })
     }
+    */
 }
 
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
@@ -212,9 +288,9 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         print("Place attributions: ", place.attributions)
         
         if (pickupFieldSelected == true) {
-            self.pickupFieldOutlet.text = place.formattedAddress
+            self.setPickupDetails(place.formattedAddress, lat: place.coordinate.latitude, lng: place.coordinate.longitude)
         } else if (dropoffFieldSelected == true) {
-            self.dropoffFieldOutlet.text = place.formattedAddress
+            self.setDropoffDetails(place.formattedAddress, lat: place.coordinate.latitude, lng: place.coordinate.longitude)
         }
         
         cleanup()
@@ -230,7 +306,6 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     
     // User canceled the operation.
     func wasCancelled(viewController: GMSAutocompleteViewController!) {
-        print("KISHYKUM_DBG_cancelled")
         cleanup()
         self.dismissViewControllerAnimated(true, completion: nil)
     }

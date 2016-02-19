@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    // MARK: Functions
+    // MARK: functions
     @IBAction func loginAction(sender: AnyObject) {
         
         
@@ -55,6 +55,23 @@ class LoginViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // MARK: KeyChain functions
+    static func setKeyChainKeys (username: String, password: String) {
+        KeychainWrapper.setString(username, forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
+        KeychainWrapper.setString(password, forKey: LoginViewController.PASSWORD_KEY_NAME)
+    }
+    
+    static func removeKeyChainKeys () {
+        KeychainWrapper.removeObjectForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
+        KeychainWrapper.removeObjectForKey(LoginViewController.PASSWORD_KEY_NAME)
+    }
+    
+    static func getKeyChainKeys () -> (String?, String?) {
+        let retrievedEmailAddress = KeychainWrapper.stringForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
+        let retrievedPassword = KeychainWrapper.stringForKey(LoginViewController.PASSWORD_KEY_NAME)
+        return (retrievedEmailAddress, retrievedPassword)
+    }
+    
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
         let client: BAAClient = BAAClient.sharedClient()
@@ -67,10 +84,11 @@ class LoginViewController: UIViewController {
                 print("user logged in successfully \(success)")
                 
                 // if login is successful, save username, password, token in keychain
-                KeychainWrapper.setString(usernamei, forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
-                KeychainWrapper.setString(passwordi, forKey: LoginViewController.PASSWORD_KEY_NAME)
+                LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
                 
-                self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
+                var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.initializeMainViewController()
+                self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
             }
             else {
                 self.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")

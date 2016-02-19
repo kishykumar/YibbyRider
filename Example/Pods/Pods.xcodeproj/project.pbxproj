@@ -1,0 +1,1055 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00AB9667C6E85C84AA87F4055C95475D /* MMDrawerController+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 96169B147884BA267CF740611045CAC5 /* MMDrawerController+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1036B1CDDAC020E8A7DA2C637FD43C36 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */; };
+		193190BF180694C30FD6DE5E4CD20F43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B0C8029B3982F03A30ED9FB271283 /* Foundation.framework */; };
+		1BE6CF55F21915FE9194F67B7AFBFE4F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6028A895AF2AED6CFC1312F6226E4C /* MMDrawerBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		20E6477BA5A3FEFDD2D7D68665B5DB2F /* BAAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BBFF1E9CBA474CB19AE322953DCC8E /* BAAClient.m */; };
+		2550DF6FF42DCDC754EA66884350A548 /* MMDrawerBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = A2B79289E036F3806C4776E2E525F757 /* MMDrawerBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C0E7B14F4D9D011CDD02BE012EA02A5 /* MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 631E88B5D13258F7DA4F8895430D3604 /* MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		36D3F85B35B071981D92E1F6B42F49D6 /* BaasBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 0938D55ADAA73C188871B164550F4A87 /* BaasBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		382A975078B42EBAD6DCE846FF619666 /* BAAFile.h in Headers */ = {isa = PBXBuildFile; fileRef = B32BCFA036A38666E8347BED01CAEBBB /* BAAFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B8CBBEB4F30D9CBAF21AA0E4A724C67 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 739EEB9C35C5971023121AE09767DB20 /* MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3F2FC34AFCB8992B64883C917A1C7366 /* BAAGlobals.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A072DBDF8F62A8C3D173C4D52F43E4 /* BAAGlobals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4A6B67FBD446549DC0364E250EE3B781 /* MMDrawerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD812D7ECF7649A102D0B690521F98E /* MMDrawerController-dummy.m */; };
+		528EAE59B770CC6286B0C850787FF25B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B0C8029B3982F03A30ED9FB271283 /* Foundation.framework */; };
+		57F9A324232DEF310910048E9E794FEE /* BAAObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA10EA736CE2F86AB73C90243B873BE /* BAAObject.m */; };
+		5B5C7DD5EF5F7AF4D03C3FF403E6F50C /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63AFE0ED1CBD542FEF26CFE3053F100C /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C807201DAAB5823181CCC9351C6C69A /* UIViewController+MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		746D4833DEA669AF58E0561BDD5A7C5B /* BaasBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB804BE070EF1974CDE2E9D38D4DCC /* BaasBox.m */; };
+		7803679C9203D7442981ECA2C8FEA8A8 /* BAAObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B921D98174BBBFB35F4557667CBE57E /* BAAObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F5F911A1133F3E3EC21B0D60AAE3C8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B0C8029B3982F03A30ED9FB271283 /* Foundation.framework */; };
+		84B4F420B84717596F434A2CF09697F5 /* BAAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEAF7EEBCD8C7C32DB03AC0A643BD9C /* BAAMutableURLRequest.m */; };
+		878964379847845C074E1363516A7532 /* BAAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C14B2003528D3FFCF5D8C137F61E90C1 /* BAAUser.m */; };
+		87E9DF92EC59F187381F74D34ECC797D /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D480C72275CAB14E1FA22385F7E082 /* MMDrawerVisualState.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8D852E0CD3CAFDC640A36ED3E6D43CCA /* BAAUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECD77D796D861FF107E95E65A9F7940 /* BAAUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A071D0EC0B86BECDB1F5D44511AB4E1A /* MMDrawerVisualState.h in Headers */ = {isa = PBXBuildFile; fileRef = B8945FE199BDBF508968A677A94FCC4D /* MMDrawerVisualState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A12D78FE42E94326DCE6B05222D11624 /* BaasBoxSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C17F51A4201C2D670D9FCFF2806911F2 /* BaasBoxSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A839EBBBCA86D330FC9C0638452877F0 /* MMDrawerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FF4F12F24D63364A61FBDB32C4813F4C /* MMDrawerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B265F8C8458159EEE655A3A0116B0AF7 /* BAAGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = A24309668917E2BAA6EBF8E1666FCD18 /* BAAGlobals.m */; };
+		B495D0CC598F211A30E789204CE5BBD6 /* BaasBoxSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9077FBE4A036184674FF9C9ED82F5500 /* BaasBoxSDK-dummy.m */; };
+		B4B786ADD0FCEA895EB5E2EF1D62C03A /* BAAFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91C8690F76BBC49CE7E8545B1328AC /* BAAFile.m */; };
+		BA8B58BD8C0D06680BA81693D7454F9D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18F24645AA4D651DFC7B69A3A0833DB /* QuartzCore.framework */; };
+		CAE2EF6171328E8B33AE6E7A2E96597B /* UIViewController+MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E548A38293BDD6F2638FA1207CBCAA4 /* UIViewController+MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D9207BFA6B0D59C931815C17A6645E20 /* BAAMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DC8283F89BB9DEC533AC87030B5CCA /* BAAMutableURLRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE055FD64549F651BA10823A00411B9E /* BAAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B0C36DA102FF6705BF969664F7AF5F06 /* BAAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37FB3EEE22E1EA3AC084011CDFE62348 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECD3D6459209FCB6B9C23734199A374D;
+			remoteInfo = BaasBoxSDK;
+		};
+		FD65D63E2A1D93251AC8F31149C51752 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96D3562E47E4792B0A6093A0323EB398;
+			remoteInfo = MMDrawerController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02748061E776139918622DAE0C8758EC /* MMDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		035E58131EF060B29A1D30012846D48A /* Core-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Core-Module.h"; path = "Headers/ModuleHeaders/Core-Module.h"; sourceTree = "<group>"; };
+		0938D55ADAA73C188871B164550F4A87 /* BaasBox.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BaasBox.h; path = "BaasBox-iOS-SDK/BaasBox.h"; sourceTree = "<group>"; };
+		0A63D9EB98738F542AC19C9647CD319D /* libGTM_DebugUtils.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_DebugUtils.a; path = Libraries/libGTM_DebugUtils.a; sourceTree = "<group>"; };
+		1084642D8031FC2C82C3F53A43EE5915 /* libGIP_Locale.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGIP_Locale.a; path = Libraries/libGIP_Locale.a; sourceTree = "<group>"; };
+		190F1E34BE9DD75F518E1CB46AE24015 /* CloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CloudMessaging.h; path = Headers/GGLCloudMessaging/Public/CloudMessaging.h; sourceTree = "<group>"; };
+		1AE184F9340AB5A687ECFAC0CA381157 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CE0E7EDB9C1C8D61BEC6B26C3BCA526 /* CloudMessaging-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CloudMessaging-Module.h"; path = "Headers/ModuleHeaders/CloudMessaging-Module.h"; sourceTree = "<group>"; };
+		24E1C310757ABF87320A33135311F6BD /* AdMob-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AdMob-Module.h"; path = "Headers/ModuleHeaders/AdMob-Module.h"; sourceTree = "<group>"; };
+		24E7901FF16618C2FF61F4EBC288EC5D /* BaasBoxSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BaasBoxSDK.modulemap; sourceTree = "<group>"; };
+		258B0C8029B3982F03A30ED9FB271283 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		26A459DE4D84A64D082D5E63C7B9CB2E /* libGGLCore.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCore.a; path = Libraries/libGGLCore.a; sourceTree = "<group>"; };
+		2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		2CC60D0CE6A292576F8102A17976D706 /* BaasBoxSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BaasBoxSDK-prefix.pch"; sourceTree = "<group>"; };
+		2FA9AC98A0DD885B9311B824222AAC20 /* libGTM_KVO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_KVO.a; path = Libraries/libGTM_KVO.a; sourceTree = "<group>"; };
+		3043DE9C33A84652F7BE0AFA9535316A /* libGTM_StringEncoding.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_StringEncoding.a; path = Libraries/libGTM_StringEncoding.a; sourceTree = "<group>"; };
+		30E77B1E848641DFA9915D0108473260 /* GCMPubSub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMPubSub.h; path = Headers/Public/GCMPubSub.h; sourceTree = "<group>"; };
+		37348A7CE5CA3B304BB5CD0492FF3930 /* libGGLCloudMessaging.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCloudMessaging.a; path = Libraries/libGGLCloudMessaging.a; sourceTree = "<group>"; };
+		3B64251666425EDBD3628B5C98AE28C5 /* BaasBoxSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BaasBoxSDK.xcconfig; sourceTree = "<group>"; };
+		42A7D63503D01497670B6F9FAAF6C660 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42F72683FA739DFEC3B97638194F5052 /* GGLInstanceIDDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDDelegate.h; path = Headers/Public/GGLInstanceIDDelegate.h; sourceTree = "<group>"; };
+		4486263EECE0CAC669CDB1BBCA9DB16D /* libGTM_SystemVersion.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_SystemVersion.a; path = Libraries/libGTM_SystemVersion.a; sourceTree = "<group>"; };
+		51B0D7571B7953048C2B1FC2CF8521DB /* AppInvite-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AppInvite-Module.h"; path = "Headers/ModuleHeaders/AppInvite-Module.h"; sourceTree = "<group>"; };
+		58D98ACAAB1582C63C121533E11ABD1F /* libProtocolBuffers.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libProtocolBuffers.a; path = Libraries/libProtocolBuffers.a; sourceTree = "<group>"; };
+		5B981853EEA65C98BA7E0930A43ECC8B /* GMRConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GMRConfiguration.h; path = Headers/GGLCore/Public/GMRConfiguration.h; sourceTree = "<group>"; };
+		5C807201DAAB5823181CCC9351C6C69A /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MMDrawerController.m"; path = "MMDrawerController/UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		5F6028A895AF2AED6CFC1312F6226E4C /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerBarButtonItem.m; path = MMDrawerController/MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		60DC8283F89BB9DEC533AC87030B5CCA /* BAAMutableURLRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAMutableURLRequest.h; path = "BaasBox-iOS-SDK/BAAMutableURLRequest.h"; sourceTree = "<group>"; };
+		62B160C900753C9B3615E9FCC5AA3193 /* GGLInstanceIDConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDConfig.h; path = Headers/Public/GGLInstanceIDConfig.h; sourceTree = "<group>"; };
+		631E88B5D13258F7DA4F8895430D3604 /* MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerController.h; path = MMDrawerController/MMDrawerController.h; sourceTree = "<group>"; };
+		6B6CF91FB7BD1F000319D668942AA894 /* GGLErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLErrorCode.h; path = Headers/GGLCore/Public/GGLErrorCode.h; sourceTree = "<group>"; };
+		6ECD77D796D861FF107E95E65A9F7940 /* BAAUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAUser.h; path = "BaasBox-iOS-SDK/BAAUser.h"; sourceTree = "<group>"; };
+		7083FA0A06DB72F7DD1246DBC3405D9C /* GCMConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMConfig.h; path = Headers/Public/GCMConfig.h; sourceTree = "<group>"; };
+		7253CEAA87A9D76DD41C879166F4BF82 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		739EEB9C35C5971023121AE09767DB20 /* MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerController.m; path = MMDrawerController/MMDrawerController.m; sourceTree = "<group>"; };
+		74D911E6D24EFBC09BA63B98EAFA39DC /* GGLInstanceIDHeaders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDHeaders.h; path = Headers/Public/GGLInstanceIDHeaders.h; sourceTree = "<group>"; };
+		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		7A91C8690F76BBC49CE7E8545B1328AC /* BAAFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAFile.m; path = "BaasBox-iOS-SDK/BAAFile.m"; sourceTree = "<group>"; };
+		7DC3099EE3B489B3071164F6FD60C99E /* MMDrawerController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MMDrawerController.xcconfig; sourceTree = "<group>"; };
+		7E3142B9132F5980ECF06F4B6D9892DB /* libGTMSessionFetcher_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_core.a; path = Libraries/libGTMSessionFetcher_core.a; sourceTree = "<group>"; };
+		7E548A38293BDD6F2638FA1207CBCAA4 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MMDrawerController.h"; path = "MMDrawerController/UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		8935725C1D853C9CA502FDDF6FD077CF /* GCMService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMService.h; path = Headers/Public/GCMService.h; sourceTree = "<group>"; };
+		894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		8CC82FDD72C2FCC7FA6A806144D8EEA5 /* BaasBoxSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BaasBoxSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9077FBE4A036184674FF9C9ED82F5500 /* BaasBoxSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BaasBoxSDK-dummy.m"; sourceTree = "<group>"; };
+		92C0139CC366AA0C0AE1BD6B82EF652D /* libGTM_NSStringXML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringXML.a; path = Libraries/libGTM_NSStringXML.a; sourceTree = "<group>"; };
+		94D45E3764F257DF27519C3065EC90D2 /* libGTM_NSData+zlib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSData+zlib.a"; path = "Libraries/libGTM_NSData+zlib.a"; sourceTree = "<group>"; };
+		9530B250AC94648987A6A62AA7F95ED3 /* MMDrawerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-prefix.pch"; sourceTree = "<group>"; };
+		96169B147884BA267CF740611045CAC5 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMDrawerController+Subclass.h"; path = "MMDrawerController/MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		9B8F6CEBD60AF83493C0518608A539D8 /* libGTM_iPhone.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_iPhone.a; path = Libraries/libGTM_iPhone.a; sourceTree = "<group>"; };
+		9B921D98174BBBFB35F4557667CBE57E /* BAAObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAObject.h; path = "BaasBox-iOS-SDK/BAAObject.h"; sourceTree = "<group>"; };
+		9BE6A1F237157D8C6BF28B24E20E2178 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		9BE92B2D824CA9BB9F2EEAC609B9948E /* libGTM_NSStringHTML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringHTML.a; path = Libraries/libGTM_NSStringHTML.a; sourceTree = "<group>"; };
+		9D4245A9994D0EF945C35D7B2C12E81D /* libGcmLib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGcmLib.a; path = Libraries/libGcmLib.a; sourceTree = "<group>"; };
+		9DF72F858B6F258EB63934812C383A4B /* GGLContext+CloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GGLContext+CloudMessaging.h"; path = "Headers/GGLCloudMessaging/Public/GGLContext+CloudMessaging.h"; sourceTree = "<group>"; };
+		A12350F8677E693021FD86BD6774EF9C /* libGGLInstanceIDLib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLInstanceIDLib.a; path = Libraries/libGGLInstanceIDLib.a; sourceTree = "<group>"; };
+		A24309668917E2BAA6EBF8E1666FCD18 /* BAAGlobals.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAGlobals.m; path = "BaasBox-iOS-SDK/BAAGlobals.m"; sourceTree = "<group>"; };
+		A29365397F0BD104550CC68F1537C57B /* GGLContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLContext.h; path = Headers/GGLCore/Public/GGLContext.h; sourceTree = "<group>"; };
+		A2B79289E036F3806C4776E2E525F757 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerBarButtonItem.h; path = MMDrawerController/MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		A43324215BB09444FF9C583653B81AB8 /* libGTM_Regex.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_Regex.a; path = Libraries/libGTM_Regex.a; sourceTree = "<group>"; };
+		A84500EDFA7395E90E272BFE147E386F /* libGTM_AddressBook.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_AddressBook.a; path = Libraries/libGTM_AddressBook.a; sourceTree = "<group>"; };
+		AB9AF45DBDD20F3312807CE1363F1AB2 /* libGTM_RoundedRectPath.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_RoundedRectPath.a; path = Libraries/libGTM_RoundedRectPath.a; sourceTree = "<group>"; };
+		ACA10EA736CE2F86AB73C90243B873BE /* BAAObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAObject.m; path = "BaasBox-iOS-SDK/BAAObject.m"; sourceTree = "<group>"; };
+		ACBD2932EDE16A5C9B3080DC2300B70A /* GCMReceiverDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMReceiverDelegate.h; path = Headers/Public/GCMReceiverDelegate.h; sourceTree = "<group>"; };
+		AD1DCF87E4EFE496AF564BFC09BC313A /* GGLInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceID.h; path = Headers/Public/GGLInstanceID.h; sourceTree = "<group>"; };
+		AD6BC976EB08021459932E4E26BA5F85 /* libGTM_NSScannerJSON.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSScannerJSON.a; path = Libraries/libGTM_NSScannerJSON.a; sourceTree = "<group>"; };
+		B0C36DA102FF6705BF969664F7AF5F06 /* BAAClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAClient.h; path = "BaasBox-iOS-SDK/BAAClient.h"; sourceTree = "<group>"; };
+		B18F24645AA4D651DFC7B69A3A0833DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		B32BCFA036A38666E8347BED01CAEBBB /* BAAFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAFile.h; path = "BaasBox-iOS-SDK/BAAFile.h"; sourceTree = "<group>"; };
+		B4A072DBDF8F62A8C3D173C4D52F43E4 /* BAAGlobals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAGlobals.h; path = "BaasBox-iOS-SDK/BAAGlobals.h"; sourceTree = "<group>"; };
+		B8945FE199BDBF508968A677A94FCC4D /* MMDrawerVisualState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerVisualState.h; path = MMDrawerController/MMDrawerVisualState.h; sourceTree = "<group>"; };
+		B9207C2462E370E4C9E227C79CB9093B /* MMDrawerController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MMDrawerController.modulemap; sourceTree = "<group>"; };
+		B9411BBEBE680E6092F1DAEB47899C63 /* libGTM_UIFont+LineHeight.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_UIFont+LineHeight.a"; path = "Libraries/libGTM_UIFont+LineHeight.a"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C14B2003528D3FFCF5D8C137F61E90C1 /* BAAUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAUser.m; path = "BaasBox-iOS-SDK/BAAUser.m"; sourceTree = "<group>"; };
+		C17F51A4201C2D670D9FCFF2806911F2 /* BaasBoxSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BaasBoxSDK-umbrella.h"; sourceTree = "<group>"; };
+		C2FB804BE070EF1974CDE2E9D38D4DCC /* BaasBox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BaasBox.m; path = "BaasBox-iOS-SDK/BaasBox.m"; sourceTree = "<group>"; };
+		C3188CE55280C58903BD121D421629D1 /* GGLConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLConfiguration.h; path = Headers/GGLCore/Public/GGLConfiguration.h; sourceTree = "<group>"; };
+		C684A99C5C9E8E90961BEDB77E363D57 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB6730F330886EF19B6000528C2E161F /* GoogleCloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GoogleCloudMessaging.h; path = Headers/Public/GoogleCloudMessaging.h; sourceTree = "<group>"; };
+		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D0C4BA4E1163A1DF3B97F7E0A45156AC /* libGTM_GTMURLBuilder.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_GTMURLBuilder.a; path = Libraries/libGTM_GTMURLBuilder.a; sourceTree = "<group>"; };
+		D7BBFF1E9CBA474CB19AE322953DCC8E /* BAAClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAClient.m; path = "BaasBox-iOS-SDK/BAAClient.m"; sourceTree = "<group>"; };
+		D8D480C72275CAB14E1FA22385F7E082 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerVisualState.m; path = MMDrawerController/MMDrawerVisualState.m; sourceTree = "<group>"; };
+		DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		DBDDBA6059FEBD4B60770E95FE27197F /* libGTMStackTrace.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMStackTrace.a; path = Libraries/libGTMStackTrace.a; sourceTree = "<group>"; };
+		E3835445587792354D52D215113DC1B8 /* libGTMSessionFetcher_full.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_full.a; path = Libraries/libGTMSessionFetcher_full.a; sourceTree = "<group>"; };
+		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E89A3CC6034F3D6A7F29767B9856025F /* libGTM_NSDictionary+URLArguments.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSDictionary+URLArguments.a"; path = "Libraries/libGTM_NSDictionary+URLArguments.a"; sourceTree = "<group>"; };
+		E8F0AE65CDD4BACB78647B655FE03085 /* libGIP_Reachability.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGIP_Reachability.a; path = Libraries/libGIP_Reachability.a; sourceTree = "<group>"; };
+		EF422FC55FEAD7CC732305E61BDC9C42 /* Core.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Headers/GGLCore/Public/Core.h; sourceTree = "<group>"; };
+		EFAA63831F49AAFABD89E729C70B42FD /* Analytics-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Analytics-Module.h"; path = "Headers/ModuleHeaders/Analytics-Module.h"; sourceTree = "<group>"; };
+		F0969DF90F698AA4364E4BFD46C53C8F /* libGTM_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_core.a; path = Libraries/libGTM_core.a; sourceTree = "<group>"; };
+		F3D0FDB6C4714DD216D887583BB5A66A /* SignIn-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SignIn-Module.h"; path = "Headers/ModuleHeaders/SignIn-Module.h"; sourceTree = "<group>"; };
+		F7D1DDAF23584D09650B4A1E056E7239 /* libGSDK_Overload.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGSDK_Overload.a; path = Libraries/libGSDK_Overload.a; sourceTree = "<group>"; };
+		FAEAF7EEBCD8C7C32DB03AC0A643BD9C /* BAAMutableURLRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAMutableURLRequest.m; path = "BaasBox-iOS-SDK/BAAMutableURLRequest.m"; sourceTree = "<group>"; };
+		FDD812D7ECF7649A102D0B690521F98E /* MMDrawerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController-dummy.m"; sourceTree = "<group>"; };
+		FF4F12F24D63364A61FBDB32C4813F4C /* MMDrawerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87CF3E2591224A03EB93F6966ACEEFC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				193190BF180694C30FD6DE5E4CD20F43 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE46F03F680D2CA1FFC849F4A1D92B53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F5F911A1133F3E3EC21B0D60AAE3C8B /* Foundation.framework in Frameworks */,
+				BA8B58BD8C0D06680BA81693D7454F9D /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCD5B80EAAABF467D9D6D9C998CEDADD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528EAE59B770CC6286B0C850787FF25B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04311C5DFE501B08699AD599D297982F /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				C1C4E8D91138629924CC92377CD7FA77 /* CloudMessaging */,
+				247598D57B4AE0470C691A1E2EC5C10C /* Core */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
+		1458D89B90647D2AC4AA5F96E8D973C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7D1DDAF23584D09650B4A1E056E7239 /* libGSDK_Overload.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20ED47399CB9EAF085253B9C03FD5B88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				58D98ACAAB1582C63C121533E11ABD1F /* libProtocolBuffers.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		247598D57B4AE0470C691A1E2EC5C10C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				24E1C310757ABF87320A33135311F6BD /* AdMob-Module.h */,
+				EFAA63831F49AAFABD89E729C70B42FD /* Analytics-Module.h */,
+				51B0D7571B7953048C2B1FC2CF8521DB /* AppInvite-Module.h */,
+				1CE0E7EDB9C1C8D61BEC6B26C3BCA526 /* CloudMessaging-Module.h */,
+				EF422FC55FEAD7CC732305E61BDC9C42 /* Core.h */,
+				035E58131EF060B29A1D30012846D48A /* Core-Module.h */,
+				C3188CE55280C58903BD121D421629D1 /* GGLConfiguration.h */,
+				A29365397F0BD104550CC68F1537C57B /* GGLContext.h */,
+				6B6CF91FB7BD1F000319D668942AA894 /* GGLErrorCode.h */,
+				5B981853EEA65C98BA7E0930A43ECC8B /* GMRConfiguration.h */,
+				F3D0FDB6C4714DD216D887583BB5A66A /* SignIn-Module.h */,
+				E3BA9C8FAE4872007C60DD5809670232 /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		26AFEC115F8804BA1CE9D6AF59C8DDC7 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				DD52C8FDCA89A3094B3270B038BD7286 /* Frameworks */,
+				D17A10F870E16A5D5EE275978A1648D8 /* Resources */,
+			);
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		37F19889695711EE6F79CB007570C645 /* BaasBoxSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B0C36DA102FF6705BF969664F7AF5F06 /* BAAClient.h */,
+				D7BBFF1E9CBA474CB19AE322953DCC8E /* BAAClient.m */,
+				B32BCFA036A38666E8347BED01CAEBBB /* BAAFile.h */,
+				7A91C8690F76BBC49CE7E8545B1328AC /* BAAFile.m */,
+				B4A072DBDF8F62A8C3D173C4D52F43E4 /* BAAGlobals.h */,
+				A24309668917E2BAA6EBF8E1666FCD18 /* BAAGlobals.m */,
+				60DC8283F89BB9DEC533AC87030B5CCA /* BAAMutableURLRequest.h */,
+				FAEAF7EEBCD8C7C32DB03AC0A643BD9C /* BAAMutableURLRequest.m */,
+				9B921D98174BBBFB35F4557667CBE57E /* BAAObject.h */,
+				ACA10EA736CE2F86AB73C90243B873BE /* BAAObject.m */,
+				0938D55ADAA73C188871B164550F4A87 /* BaasBox.h */,
+				C2FB804BE070EF1974CDE2E9D38D4DCC /* BaasBox.m */,
+				6ECD77D796D861FF107E95E65A9F7940 /* BAAUser.h */,
+				C14B2003528D3FFCF5D8C137F61E90C1 /* BAAUser.m */,
+				63EC9E2BD4343D967E82ED4262A54911 /* Support Files */,
+			);
+			path = BaasBoxSDK;
+			sourceTree = "<group>";
+		};
+		3926C638AD0708942C88C2BC89261735 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				258B0C8029B3982F03A30ED9FB271283 /* Foundation.framework */,
+				B18F24645AA4D651DFC7B69A3A0833DB /* QuartzCore.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		3EAE1BC14453D474D6A26447F89ACA66 /* MMDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				9A3F09B2AD0989E7F1F32DC7CD183127 /* Core */,
+				A7DCF2F5E4C0B11BB0C2F87C9D2C1FD6 /* MMDrawerBarButtonItem */,
+				C84CB686843E50CC7CFF23D41DA1632D /* MMDrawerVisualStates */,
+				4BB921EADED6524A1417A7FEFDE8F100 /* Subclass */,
+				B314656CF052F904766AA35475C575C0 /* Support Files */,
+			);
+			path = MMDrawerController;
+			sourceTree = "<group>";
+		};
+		4157FE5ADE794D4C53A3E472685BCA7F /* GoogleCloudMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				7083FA0A06DB72F7DD1246DBC3405D9C /* GCMConfig.h */,
+				30E77B1E848641DFA9915D0108473260 /* GCMPubSub.h */,
+				ACBD2932EDE16A5C9B3080DC2300B70A /* GCMReceiverDelegate.h */,
+				8935725C1D853C9CA502FDDF6FD077CF /* GCMService.h */,
+				CB6730F330886EF19B6000528C2E161F /* GoogleCloudMessaging.h */,
+				C444411598118325A5362A07BC482FA6 /* Frameworks */,
+			);
+			path = GoogleCloudMessaging;
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3926C638AD0708942C88C2BC89261735 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4BB921EADED6524A1417A7FEFDE8F100 /* Subclass */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Subclass;
+			sourceTree = "<group>";
+		};
+		63EC9E2BD4343D967E82ED4262A54911 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				24E7901FF16618C2FF61F4EBC288EC5D /* BaasBoxSDK.modulemap */,
+				3B64251666425EDBD3628B5C98AE28C5 /* BaasBoxSDK.xcconfig */,
+				9077FBE4A036184674FF9C9ED82F5500 /* BaasBoxSDK-dummy.m */,
+				2CC60D0CE6A292576F8102A17976D706 /* BaasBoxSDK-prefix.pch */,
+				C17F51A4201C2D670D9FCFF2806911F2 /* BaasBoxSDK-umbrella.h */,
+				1AE184F9340AB5A687ECFAC0CA381157 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BaasBoxSDK";
+			sourceTree = "<group>";
+		};
+		6A70758755363532BC1095B8C17AA893 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37348A7CE5CA3B304BB5CD0492FF3930 /* libGGLCloudMessaging.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C108DA762FC6823103DCC9959A3BC6D /* GGLInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				AD1DCF87E4EFE496AF564BFC09BC313A /* GGLInstanceID.h */,
+				62B160C900753C9B3615E9FCC5AA3193 /* GGLInstanceIDConfig.h */,
+				42F72683FA739DFEC3B97638194F5052 /* GGLInstanceIDDelegate.h */,
+				74D911E6D24EFBC09BA63B98EAFA39DC /* GGLInstanceIDHeaders.h */,
+				BECE07CBA34B709E0FE56B87C8D612DB /* Frameworks */,
+			);
+			path = GGLInstanceID;
+			sourceTree = "<group>";
+		};
+		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */,
+				79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */,
+				D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */,
+				87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */,
+				894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */,
+				E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */,
+				CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */,
+				2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */,
+				977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */,
+				DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		763B10709C1F2ED489667CF0B17751D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37F19889695711EE6F79CB007570C645 /* BaasBoxSDK */,
+				6C108DA762FC6823103DCC9959A3BC6D /* GGLInstanceID */,
+				04311C5DFE501B08699AD599D297982F /* Google */,
+				4157FE5ADE794D4C53A3E472685BCA7F /* GoogleCloudMessaging */,
+				E94209178E391669663CDADD135C775A /* GoogleInterchangeUtilities */,
+				C946556FCABC9BD4C783216472BD19D3 /* GoogleIPhoneUtilities */,
+				26AFEC115F8804BA1CE9D6AF59C8DDC7 /* GoogleMaps */,
+				BAFB40CEB1BB015728A2311433CB8BF0 /* GoogleNetworkingUtilities */,
+				CF78514FBC78213A081A2F0EF99CFAE0 /* GoogleSymbolUtilities */,
+				DD3FAD099B1062348042CEA7FFB45A1A /* GoogleUtilities */,
+				3EAE1BC14453D474D6A26447F89ACA66 /* MMDrawerController */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				763B10709C1F2ED489667CF0B17751D3 /* Pods */,
+				FF431991E2197910A5693327A6E2DBF9 /* Products */,
+				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9A3F09B2AD0989E7F1F32DC7CD183127 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				631E88B5D13258F7DA4F8895430D3604 /* MMDrawerController.h */,
+				739EEB9C35C5971023121AE09767DB20 /* MMDrawerController.m */,
+				96169B147884BA267CF740611045CAC5 /* MMDrawerController+Subclass.h */,
+				7E548A38293BDD6F2638FA1207CBCAA4 /* UIViewController+MMDrawerController.h */,
+				5C807201DAAB5823181CCC9351C6C69A /* UIViewController+MMDrawerController.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		A450E7B943C82B811007403041E55FD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1084642D8031FC2C82C3F53A43EE5915 /* libGIP_Locale.a */,
+				E8F0AE65CDD4BACB78647B655FE03085 /* libGIP_Reachability.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7DCF2F5E4C0B11BB0C2F87C9D2C1FD6 /* MMDrawerBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				A2B79289E036F3806C4776E2E525F757 /* MMDrawerBarButtonItem.h */,
+				5F6028A895AF2AED6CFC1312F6226E4C /* MMDrawerBarButtonItem.m */,
+			);
+			name = MMDrawerBarButtonItem;
+			sourceTree = "<group>";
+		};
+		B314656CF052F904766AA35475C575C0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C684A99C5C9E8E90961BEDB77E363D57 /* Info.plist */,
+				B9207C2462E370E4C9E227C79CB9093B /* MMDrawerController.modulemap */,
+				7DC3099EE3B489B3071164F6FD60C99E /* MMDrawerController.xcconfig */,
+				FDD812D7ECF7649A102D0B690521F98E /* MMDrawerController-dummy.m */,
+				9530B250AC94648987A6A62AA7F95ED3 /* MMDrawerController-prefix.pch */,
+				FF4F12F24D63364A61FBDB32C4813F4C /* MMDrawerController-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MMDrawerController";
+			sourceTree = "<group>";
+		};
+		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				75D98FF52E597A11900E131B6C4E1ADA /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		BAFB40CEB1BB015728A2311433CB8BF0 /* GoogleNetworkingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				E24F56D97EC6CC87DC54FE9ACBB4CE01 /* Frameworks */,
+			);
+			path = GoogleNetworkingUtilities;
+			sourceTree = "<group>";
+		};
+		BECE07CBA34B709E0FE56B87C8D612DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A12350F8677E693021FD86BD6774EF9C /* libGGLInstanceIDLib.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1C4E8D91138629924CC92377CD7FA77 /* CloudMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				190F1E34BE9DD75F518E1CB46AE24015 /* CloudMessaging.h */,
+				9DF72F858B6F258EB63934812C383A4B /* GGLContext+CloudMessaging.h */,
+				6A70758755363532BC1095B8C17AA893 /* Frameworks */,
+			);
+			name = CloudMessaging;
+			sourceTree = "<group>";
+		};
+		C444411598118325A5362A07BC482FA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D4245A9994D0EF945C35D7B2C12E81D /* libGcmLib.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C84CB686843E50CC7CFF23D41DA1632D /* MMDrawerVisualStates */ = {
+			isa = PBXGroup;
+			children = (
+				B8945FE199BDBF508968A677A94FCC4D /* MMDrawerVisualState.h */,
+				D8D480C72275CAB14E1FA22385F7E082 /* MMDrawerVisualState.m */,
+			);
+			name = MMDrawerVisualStates;
+			sourceTree = "<group>";
+		};
+		C946556FCABC9BD4C783216472BD19D3 /* GoogleIPhoneUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				A450E7B943C82B811007403041E55FD4 /* Frameworks */,
+			);
+			path = GoogleIPhoneUtilities;
+			sourceTree = "<group>";
+		};
+		CF78514FBC78213A081A2F0EF99CFAE0 /* GoogleSymbolUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				1458D89B90647D2AC4AA5F96E8D973C0 /* Frameworks */,
+			);
+			path = GoogleSymbolUtilities;
+			sourceTree = "<group>";
+		};
+		D17A10F870E16A5D5EE275978A1648D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9BE6A1F237157D8C6BF28B24E20E2178 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DD3FAD099B1062348042CEA7FFB45A1A /* GoogleUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				E8F62BFC0DCB4B4ACDA1F6DAB2DDC063 /* Frameworks */,
+			);
+			path = GoogleUtilities;
+			sourceTree = "<group>";
+		};
+		DD52C8FDCA89A3094B3270B038BD7286 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7253CEAA87A9D76DD41C879166F4BF82 /* GoogleMaps.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E24F56D97EC6CC87DC54FE9ACBB4CE01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E3142B9132F5980ECF06F4B6D9892DB /* libGTMSessionFetcher_core.a */,
+				E3835445587792354D52D215113DC1B8 /* libGTMSessionFetcher_full.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3BA9C8FAE4872007C60DD5809670232 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26A459DE4D84A64D082D5E63C7B9CB2E /* libGGLCore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8F62BFC0DCB4B4ACDA1F6DAB2DDC063 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A84500EDFA7395E90E272BFE147E386F /* libGTM_AddressBook.a */,
+				F0969DF90F698AA4364E4BFD46C53C8F /* libGTM_core.a */,
+				0A63D9EB98738F542AC19C9647CD319D /* libGTM_DebugUtils.a */,
+				D0C4BA4E1163A1DF3B97F7E0A45156AC /* libGTM_GTMURLBuilder.a */,
+				9B8F6CEBD60AF83493C0518608A539D8 /* libGTM_iPhone.a */,
+				2FA9AC98A0DD885B9311B824222AAC20 /* libGTM_KVO.a */,
+				94D45E3764F257DF27519C3065EC90D2 /* libGTM_NSData+zlib.a */,
+				E89A3CC6034F3D6A7F29767B9856025F /* libGTM_NSDictionary+URLArguments.a */,
+				AD6BC976EB08021459932E4E26BA5F85 /* libGTM_NSScannerJSON.a */,
+				9BE92B2D824CA9BB9F2EEAC609B9948E /* libGTM_NSStringHTML.a */,
+				92C0139CC366AA0C0AE1BD6B82EF652D /* libGTM_NSStringXML.a */,
+				A43324215BB09444FF9C583653B81AB8 /* libGTM_Regex.a */,
+				AB9AF45DBDD20F3312807CE1363F1AB2 /* libGTM_RoundedRectPath.a */,
+				3043DE9C33A84652F7BE0AFA9535316A /* libGTM_StringEncoding.a */,
+				4486263EECE0CAC669CDB1BBCA9DB16D /* libGTM_SystemVersion.a */,
+				B9411BBEBE680E6092F1DAEB47899C63 /* libGTM_UIFont+LineHeight.a */,
+				DBDDBA6059FEBD4B60770E95FE27197F /* libGTMStackTrace.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E94209178E391669663CDADD135C775A /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				20ED47399CB9EAF085253B9C03FD5B88 /* Frameworks */,
+			);
+			path = GoogleInterchangeUtilities;
+			sourceTree = "<group>";
+		};
+		FF431991E2197910A5693327A6E2DBF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CC82FDD72C2FCC7FA6A806144D8EEA5 /* BaasBoxSDK.framework */,
+				02748061E776139918622DAE0C8758EC /* MMDrawerController.framework */,
+				42A7D63503D01497670B6F9FAAF6C660 /* Pods.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		079E9ACE8A655D5FED855E204442BDBD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2550DF6FF42DCDC754EA66884350A548 /* MMDrawerBarButtonItem.h in Headers */,
+				00AB9667C6E85C84AA87F4055C95475D /* MMDrawerController+Subclass.h in Headers */,
+				A839EBBBCA86D330FC9C0638452877F0 /* MMDrawerController-umbrella.h in Headers */,
+				2C0E7B14F4D9D011CDD02BE012EA02A5 /* MMDrawerController.h in Headers */,
+				A071D0EC0B86BECDB1F5D44511AB4E1A /* MMDrawerVisualState.h in Headers */,
+				CAE2EF6171328E8B33AE6E7A2E96597B /* UIViewController+MMDrawerController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		853E4513E8FD123324B303A5E4B4A665 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE055FD64549F651BA10823A00411B9E /* BAAClient.h in Headers */,
+				382A975078B42EBAD6DCE846FF619666 /* BAAFile.h in Headers */,
+				3F2FC34AFCB8992B64883C917A1C7366 /* BAAGlobals.h in Headers */,
+				D9207BFA6B0D59C931815C17A6645E20 /* BAAMutableURLRequest.h in Headers */,
+				7803679C9203D7442981ECA2C8FEA8A8 /* BAAObject.h in Headers */,
+				36D3F85B35B071981D92E1F6B42F49D6 /* BaasBox.h in Headers */,
+				A12D78FE42E94326DCE6B05222D11624 /* BaasBoxSDK-umbrella.h in Headers */,
+				8D852E0CD3CAFDC640A36ED3E6D43CCA /* BAAUser.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867D73483F8C126BEAED99D0AA5E7DD1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B5C7DD5EF5F7AF4D03C3FF403E6F50C /* Pods-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 410F9B5264E3B131C74C0402F62B1BFE /* Build configuration list for PBXNativeTarget "MMDrawerController" */;
+			buildPhases = (
+				1AC8283747C7D044F7E6743D804C3D89 /* Sources */,
+				AE46F03F680D2CA1FFC849F4A1D92B53 /* Frameworks */,
+				079E9ACE8A655D5FED855E204442BDBD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMDrawerController;
+			productName = MMDrawerController;
+			productReference = 02748061E776139918622DAE0C8758EC /* MMDrawerController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ECA5741A10D065BB5CF6B6B7DC80E9B5 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92AFDA020917B602987E7969D4B10121 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				FD0322B21CD4AC680EF8C45959E19C71 /* Sources */,
+				87CF3E2591224A03EB93F6966ACEEFC1 /* Frameworks */,
+				867D73483F8C126BEAED99D0AA5E7DD1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC859C1F180BA133BC85DED60972F60F /* PBXTargetDependency */,
+				22B18948F53C4010B65CC3443B3D3EAF /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 42A7D63503D01497670B6F9FAAF6C660 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1126D48907839477DC4FEAD8692AED0D /* Build configuration list for PBXNativeTarget "BaasBoxSDK" */;
+			buildPhases = (
+				4040CF11B14E18CF18C7FDA8CE784C1F /* Sources */,
+				BCD5B80EAAABF467D9D6D9C998CEDADD /* Frameworks */,
+				853E4513E8FD123324B303A5E4B4A665 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BaasBoxSDK;
+			productName = BaasBoxSDK;
+			productReference = 8CC82FDD72C2FCC7FA6A806144D8EEA5 /* BaasBoxSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = FF431991E2197910A5693327A6E2DBF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */,
+				96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */,
+				ECA5741A10D065BB5CF6B6B7DC80E9B5 /* Pods */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AC8283747C7D044F7E6743D804C3D89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE6CF55F21915FE9194F67B7AFBFE4F /* MMDrawerBarButtonItem.m in Sources */,
+				4A6B67FBD446549DC0364E250EE3B781 /* MMDrawerController-dummy.m in Sources */,
+				3B8CBBEB4F30D9CBAF21AA0E4A724C67 /* MMDrawerController.m in Sources */,
+				87E9DF92EC59F187381F74D34ECC797D /* MMDrawerVisualState.m in Sources */,
+				63AFE0ED1CBD542FEF26CFE3053F100C /* UIViewController+MMDrawerController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4040CF11B14E18CF18C7FDA8CE784C1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20E6477BA5A3FEFDD2D7D68665B5DB2F /* BAAClient.m in Sources */,
+				B4B786ADD0FCEA895EB5E2EF1D62C03A /* BAAFile.m in Sources */,
+				B265F8C8458159EEE655A3A0116B0AF7 /* BAAGlobals.m in Sources */,
+				84B4F420B84717596F434A2CF09697F5 /* BAAMutableURLRequest.m in Sources */,
+				57F9A324232DEF310910048E9E794FEE /* BAAObject.m in Sources */,
+				746D4833DEA669AF58E0561BDD5A7C5B /* BaasBox.m in Sources */,
+				B495D0CC598F211A30E789204CE5BBD6 /* BaasBoxSDK-dummy.m in Sources */,
+				878964379847845C074E1363516A7532 /* BAAUser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0322B21CD4AC680EF8C45959E19C71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1036B1CDDAC020E8A7DA2C637FD43C36 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		22B18948F53C4010B65CC3443B3D3EAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MMDrawerController;
+			target = 96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */;
+			targetProxy = FD65D63E2A1D93251AC8F31149C51752 /* PBXContainerItemProxy */;
+		};
+		EC859C1F180BA133BC85DED60972F60F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BaasBoxSDK;
+			target = ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */;
+			targetProxy = 37FB3EEE22E1EA3AC084011CDFE62348 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15781F0A4D00AC6694360BAD1A545795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DC3099EE3B489B3071164F6FD60C99E /* MMDrawerController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MMDrawerController/MMDrawerController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MMDrawerController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MMDrawerController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		315F86D6D5D40224C3B2DD620512B18D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		686C5D966C9F30A9B3130129BDE054F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B64251666425EDBD3628B5C98AE28C5 /* BaasBoxSDK.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BaasBoxSDK/BaasBoxSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BaasBoxSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BaasBoxSDK/BaasBoxSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BaasBoxSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9EB645C612834738B99727720210C23E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		A61A56A73143D6C0831A16001836F8F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DC3099EE3B489B3071164F6FD60C99E /* MMDrawerController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MMDrawerController/MMDrawerController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MMDrawerController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MMDrawerController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ACD367B7126B29AFB13B1ECBDD364DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DB546346C40ADD104DC06C4F0EBD84A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B64251666425EDBD3628B5C98AE28C5 /* BaasBoxSDK.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BaasBoxSDK/BaasBoxSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BaasBoxSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BaasBoxSDK/BaasBoxSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = BaasBoxSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E39CD1E764776175CB82EEC82A6C9948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1126D48907839477DC4FEAD8692AED0D /* Build configuration list for PBXNativeTarget "BaasBoxSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB546346C40ADD104DC06C4F0EBD84A8 /* Debug */,
+				686C5D966C9F30A9B3130129BDE054F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EB645C612834738B99727720210C23E /* Debug */,
+				E39CD1E764776175CB82EEC82A6C9948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		410F9B5264E3B131C74C0402F62B1BFE /* Build configuration list for PBXNativeTarget "MMDrawerController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15781F0A4D00AC6694360BAD1A545795 /* Debug */,
+				A61A56A73143D6C0831A16001836F8F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92AFDA020917B602987E7969D4B10121 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				315F86D6D5D40224C3B2DD620512B18D /* Debug */,
+				ACD367B7126B29AFB13B1ECBDD364DE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

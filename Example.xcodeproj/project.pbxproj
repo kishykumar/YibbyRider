@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031010B2CD05E9A65F655B04 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF0F8A29620D810751B13B7 /* Pods.framework */; };
 		12AABBFB1C5A0416005B1FCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12AABBFA1C5A0416005B1FCB /* GoogleService-Info.plist */; };
 		12AABBFC1C5A0416005B1FCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12AABBFA1C5A0416005B1FCB /* GoogleService-Info.plist */; };
 		12F1E8651C70424E0008E79D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8641C70424E0008E79D /* LoginViewController.swift */; };
 		12F1E8661C70424E0008E79D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8641C70424E0008E79D /* LoginViewController.swift */; };
 		12F1E8681C717ED30008E79D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8671C717ED30008E79D /* KeychainWrapper.swift */; };
 		12F1E8691C717ED30008E79D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8671C717ED30008E79D /* KeychainWrapper.swift */; };
+		12F1E86B1C76E83E0008E79D /* LeftNavDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */; };
+		12F1E86C1C76E83E0008E79D /* LeftNavDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */; };
+		12F1E86E1C7712190008E79D /* LeftNavDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E86D1C7712190008E79D /* LeftNavDrawerTableViewCell.swift */; };
+		12F1E86F1C7712190008E79D /* LeftNavDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E86D1C7712190008E79D /* LeftNavDrawerTableViewCell.swift */; };
+		12F1E8711C7716070008E79D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8701C7716070008E79D /* SettingsViewController.swift */; };
+		12F1E8721C7716070008E79D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8701C7716070008E79D /* SettingsViewController.swift */; };
 		12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */; };
 		12F3CCD81C41EFC700F79A26 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCD71C41EFC700F79A26 /* MainViewController.swift */; };
 		12F3CCDB1C41EFC700F79A26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCD91C41EFC700F79A26 /* Main.storyboard */; };
@@ -22,7 +29,6 @@
 		12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCF51C4B9C0B00F79A26 /* Podfile */; };
 		12F3CCF81C4CF16D00F79A26 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F3CCF71C4CF16D00F79A26 /* CoreLocation.framework */; };
 		12F3CCFA1C4DDD6C00F79A26 /* DestinationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCF91C4DDD6C00F79A26 /* DestinationPickerViewController.swift */; };
-		C4DEE986559B8D19A8F8C30F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB4B949BD3100A5C036F447 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,9 @@
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		12F1E8641C70424E0008E79D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		12F1E8671C717ED30008E79D /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftNavDrawerViewController.swift; sourceTree = "<group>"; };
+		12F1E86D1C7712190008E79D /* LeftNavDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftNavDrawerTableViewCell.swift; sourceTree = "<group>"; };
+		12F1E8701C7716070008E79D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		12F3CCD21C41EFC700F79A26 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12F3CCD71C41EFC700F79A26 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +64,7 @@
 		12F3CCF91C4DDD6C00F79A26 /* DestinationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationPickerViewController.swift; sourceTree = "<group>"; };
 		3C666022AA9B796A1F7D9370 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Example/Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4E9B87E4D6A5CBD99DAC49E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Example/Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		4EB4B949BD3100A5C036F447 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF0F8A29620D810751B13B7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12F3CCF81C4CF16D00F79A26 /* CoreLocation.framework in Frameworks */,
-				C4DEE986559B8D19A8F8C30F /* libPods.a in Frameworks */,
+				031010B2CD05E9A65F655B04 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,10 +129,13 @@
 				12F3CCD71C41EFC700F79A26 /* MainViewController.swift */,
 				12F3CCF91C4DDD6C00F79A26 /* DestinationPickerViewController.swift */,
 				12F3CCD91C41EFC700F79A26 /* Main.storyboard */,
+				12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */,
 				12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */,
 				12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */,
 				12F3CCE11C41EFC800F79A26 /* Info.plist */,
 				12F1E8641C70424E0008E79D /* LoginViewController.swift */,
+				12F1E86D1C7712190008E79D /* LeftNavDrawerTableViewCell.swift */,
+				12F1E8701C7716070008E79D /* SettingsViewController.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -150,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				12F3CCF71C4CF16D00F79A26 /* CoreLocation.framework */,
-				4EB4B949BD3100A5C036F447 /* libPods.a */,
+				DAF0F8A29620D810751B13B7 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -311,11 +323,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12F1E86B1C76E83E0008E79D /* LeftNavDrawerViewController.swift in Sources */,
+				12F1E86E1C7712190008E79D /* LeftNavDrawerTableViewCell.swift in Sources */,
 				12F1E8651C70424E0008E79D /* LoginViewController.swift in Sources */,
 				12F3CCFA1C4DDD6C00F79A26 /* DestinationPickerViewController.swift in Sources */,
 				12F3CCD81C41EFC700F79A26 /* MainViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
 				12F1E8681C717ED30008E79D /* KeychainWrapper.swift in Sources */,
+				12F1E8711C7716070008E79D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,9 +338,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12F1E86F1C7712190008E79D /* LeftNavDrawerTableViewCell.swift in Sources */,
+				12F1E86C1C76E83E0008E79D /* LeftNavDrawerViewController.swift in Sources */,
 				12F1E8691C717ED30008E79D /* KeychainWrapper.swift in Sources */,
 				12F1E8661C70424E0008E79D /* LoginViewController.swift in Sources */,
 				12F3CCEB1C41EFC800F79A26 /* ExampleTests.swift in Sources */,
+				12F1E8721C7716070008E79D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
