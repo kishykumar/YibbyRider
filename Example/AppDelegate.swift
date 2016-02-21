@@ -116,8 +116,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         centerContainer = MMDrawerController(centerViewController: centerNav, leftDrawerViewController: leftController)
         
-        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
-        centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.None
+        centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.All
     }
     
     // BaasBox login user

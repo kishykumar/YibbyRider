@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '63D272A508F1F55ADC05894B'
-               BlueprintName = 'BaasBoxSDK'
+               BlueprintIdentifier = '01807108ABB98998DC39830C'
+               BlueprintName = 'BButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'BaasBoxSDK.framework'>
+               BuildableName = 'BButton.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

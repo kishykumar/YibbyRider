@@ -1,5 +1,6 @@
 PODS:
   - BaasBoxSDK (0.9.0)
+  - BButton (4.0.2)
   - GGLInstanceID (1.1.5):
     - GoogleIPhoneUtilities (~> 1.0)
     - GoogleNetworkingUtilities (~> 1.0)
@@ -43,15 +44,19 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
+  - TTRangeSlider (1.0.3)
 
 DEPENDENCIES:
   - BaasBoxSDK (~> 0.9.0)
+  - BButton
   - Google/CloudMessaging
   - GoogleMaps
   - MMDrawerController (~> 0.5.7)
+  - TTRangeSlider
 
 SPEC CHECKSUMS:
   BaasBoxSDK: 56dc8b1a0b38adb404e64a32e1ed34037a3e9aa2
+  BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   GGLInstanceID: 4be9a86f27e87f8cedc9694f521f12949813a7ba
   Google: 97618e118111b998cce1d8dd1bd98b82301d72db
   GoogleCloudMessaging: faa057e30845e7300da31de3777060420b2f6579
@@ -62,5 +67,6 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
+  TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
 
 COCOAPODS: 0.39.0

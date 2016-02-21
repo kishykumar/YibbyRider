@@ -10,35 +10,50 @@ import UIKit
 import MapKit
 import GoogleMaps
 import MMDrawerController
+import TTRangeSlider
 
-class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate {
+class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate, TTRangeSliderDelegate {
 
     // MARK: Properties
     @IBOutlet weak var pickupFieldOutlet: UITextField!
     @IBOutlet weak var dropoffFieldOutlet: UITextField!
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     
+    @IBOutlet weak var rangeSlider: TTRangeSlider!
 
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
     var pickupFieldSelected: Bool?
     var dropoffFieldSelected: Bool?
     
-    var currentPlaceLatLng: CLLocation?
+    var currentPlaceLatLng: CLLocationCoordinate2D?
     var currentPlaceName: String?
     
-    var pickupLatLng: CLLocation?
+    var pickupLatLng: CLLocationCoordinate2D?
     var pickupPlaceName: String?
-
-    var dropoffLatLng: CLLocation?
+    var pickupMarker: GMSMarker?
+    
+    var dropoffLatLng: CLLocationCoordinate2D?
     var dropoffPlaceName: String?
+    var dropoffMarker: GMSMarker?
     
     var locationManager:CLLocationManager!
-
+    let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
+    
     // MARK: Functions
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
+    
+    @IBAction func onBidButtonClick(sender: AnyObject) {
+        
+    }
+    
+    func rangeSlider(sender: TTRangeSlider, didChangeSelectedMinimumValue selectedMinimum: Float, andMaximumValue selectedMaximum: Float) {
+        if sender == self.rangeSlider {
+            NSLog("Standard slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum)
+        }
     }
     
     func setupUI () {
@@ -60,6 +75,12 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         imageView1.image = image1;
         dropoffFieldOutlet.leftView = imageView1;
         dropoffFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
+        
+        //currency range slider
+        self.rangeSlider.delegate = self
+        let formatter: NSNumberFormatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        self.rangeSlider.numberFormatterOverride = formatter
     }
     
     func setupLocationManager () {
@@ -72,16 +93,16 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         gmsMapViewOutlet.myLocationEnabled = true
         gmsMapViewOutlet.settings.myLocationButton = true
         
-        // Very Important: disable consume all gestures, needed for nav drawer
-        gmsMapViewOutlet.settings.consumesGesturesInView = false
+        // Very Important: DONT disable consume all gestures, needed for nav drawer with a map
+        gmsMapViewOutlet.settings.consumesGesturesInView = true
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         if let userLocation:CLLocation = locations.first {
             
-            gmsMapViewOutlet.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-
+            // adjust the camera focus
+//            gmsMapViewOutlet.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             
             CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
                 
@@ -111,15 +132,15 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
                                 addressString = addressString + placemark.country!
                             }
 
-                            self.setCurrentLocationDetails(addressString, lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
-                            self.setPickupDetails(addressString, lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
+                            self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
+                            self.setPickupDetails(addressString, loc: userLocation.coordinate)
                             
-                            print (addressString)
+                            print ("Address form location manager came out: \(addressString)")
                         }
                     }
                 }
             })
-            
+
             // we just need the user's location one time
             locationManager.stopUpdatingLocation()
         }
@@ -233,21 +254,57 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func setPickupDetails (address: String, lat: CLLocationDegrees, lng: CLLocationDegrees) {
+    func setPickupDetails (address: String, loc: CLLocationCoordinate2D) {
+        
+        pickupMarker?.map = nil
+        
         self.pickupFieldOutlet.text = address
         self.pickupPlaceName = address
-        self.pickupLatLng = CLLocation(latitude: lat, longitude: lng)
+        self.pickupLatLng = loc
+        
+        let pumarker = GMSMarker(position: loc)
+        pumarker.map = gmsMapViewOutlet
+        pickupMarker = pumarker
+        adjustGMSCameraFocus()
     }
 
-    func setDropoffDetails (address: String, lat: CLLocationDegrees, lng: CLLocationDegrees) {
+    func setDropoffDetails (address: String, loc: CLLocationCoordinate2D) {
+
+        dropoffMarker?.map = nil
+        
         self.dropoffFieldOutlet.text = address
         self.dropoffPlaceName = address
-        self.dropoffLatLng = CLLocation(latitude: lat, longitude: lng)
+        self.dropoffLatLng = loc
+        
+        let domarker = GMSMarker(position: loc)
+        domarker.map = gmsMapViewOutlet
+        dropoffMarker = domarker
+        adjustGMSCameraFocus()
     }
     
-    func setCurrentLocationDetails (address: String, lat: CLLocationDegrees, lng: CLLocationDegrees) {
+    func adjustGMSCameraFocus () {
+        
+        if (pickupMarker == nil) {
+            let update = GMSCameraUpdate.setTarget((dropoffMarker?.position)!)
+            gmsMapViewOutlet.moveCamera(update)
+            return
+        }
+        
+        if (dropoffMarker == nil) {
+            let update = GMSCameraUpdate.setTarget((pickupMarker?.position)!, zoom: GMS_DEFAULT_CAMERA_ZOOM)
+            gmsMapViewOutlet.moveCamera(update)
+            return
+        }
+        
+        let bounds = GMSCoordinateBounds(coordinate: (pickupMarker?.position)!, coordinate: (dropoffMarker?.position)!)
+        let insets = UIEdgeInsets(top: 140.0, left: 64.0, bottom: 140.0, right: 64.0)
+        let update = GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: insets)
+        gmsMapViewOutlet.moveCamera(update)
+    }
+    
+    func setCurrentLocationDetails (address: String, loc: CLLocationCoordinate2D) {
         self.currentPlaceName = address
-        self.currentPlaceLatLng = CLLocation(latitude: lat, longitude: lng)
+        self.currentPlaceLatLng = loc
     }
     
     // MARK: Actions
@@ -288,9 +345,9 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         print("Place attributions: ", place.attributions)
         
         if (pickupFieldSelected == true) {
-            self.setPickupDetails(place.formattedAddress, lat: place.coordinate.latitude, lng: place.coordinate.longitude)
+            self.setPickupDetails(place.formattedAddress, loc: place.coordinate)
         } else if (dropoffFieldSelected == true) {
-            self.setDropoffDetails(place.formattedAddress, lat: place.coordinate.latitude, lng: place.coordinate.longitude)
+            self.setDropoffDetails(place.formattedAddress, loc: place.coordinate)
         }
         
         cleanup()

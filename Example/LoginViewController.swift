@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
                 
-                var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.initializeMainViewController()
                 self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
             }

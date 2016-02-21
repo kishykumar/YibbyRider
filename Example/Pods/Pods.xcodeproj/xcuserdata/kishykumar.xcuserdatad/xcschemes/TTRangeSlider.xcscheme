@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '63D272A508F1F55ADC05894B'
-               BlueprintName = 'BaasBoxSDK'
+               BlueprintIdentifier = '3B55ED0FC6FF6FE3C17D80D2'
+               BlueprintName = 'TTRangeSlider'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'BaasBoxSDK.framework'>
+               BuildableName = 'TTRangeSlider.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
