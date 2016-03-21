@@ -7,21 +7,23 @@
 //
 
 import UIKit
-import MapKit
 import GoogleMaps
 import MMDrawerController
 import TTRangeSlider
 import BaasBoxSDK
+import BButton
 
-class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate, TTRangeSliderDelegate {
+public class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate, TTRangeSliderDelegate {
 
     // MARK: Properties
     @IBOutlet weak var pickupFieldOutlet: UITextField!
     @IBOutlet weak var dropoffFieldOutlet: UITextField!
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
-    
     @IBOutlet weak var rangeSlider: TTRangeSlider!
+    @IBOutlet weak var bidButton: BButton!
 
+    let ACTIVITY_INDICATOR_TAG: Int = 1
+    
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
     var pickupFieldSelected: Bool?
@@ -44,6 +46,10 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
     var bidLow: Float?
     var bidHigh: Float?
     
+    var responseHasArrived: Bool = false
+    
+    let NO_DRIVERS_FOUND_ERROR_CODE = 20099
+    
     // MARK: Functions
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -56,25 +62,38 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
             dropoffLatLng != nil && dropoffPlaceName  != nil &&
             bidLow != nil && bidHigh != nil) {
                 
+            Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
+                
             let client: BAAClient = BAAClient.sharedClient()
+                
+            print("BBox client is: \(client)")
             client.createBid(bidHigh, bidLow: bidLow, etaHigh: 0, etaLow: 0, pickupLat: pickupLatLng!.latitude, pickupLong: pickupLatLng!.longitude, pickupLoc: pickupPlaceName, dropoffLat: dropoffLatLng!.latitude, dropoffLong: dropoffLatLng!.longitude, dropoffLoc: dropoffPlaceName, completion: {(success, error) -> Void in
-                if (success) {
-                    NSLog("created bid %@", client)
+
+                Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
+                if (error == nil) {
+                    print("created bid \(success["bb_code"])")
                     
-                    // save the current bid id and show the confirmation page
-                    
+                    // check the error codes
+                    if ((Int(success["bb_code"] as! String)) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
+                        print("return code bbox")
+                        
+                        // TODO: display alert that no drivers are online
+                        Util.displayAlert(self, title: "No drivers online.", message: "")
+                    } else {
+                        self.performSegueWithIdentifier("findOffersSegue", sender: nil)
+                    }
                 }
                 else {
-                    NSLog("error creating bid %@", error)
-                    
+                    print("error creating bid \(error)")
                     // check if error is 401 (authentication) and re-authenticate
                     
                 }
+                self.responseHasArrived = true
             })
         }
     }
     
-    func rangeSlider(sender: TTRangeSlider, didChangeSelectedMinimumValue selectedMinimum: Float, andMaximumValue selectedMaximum: Float) {
+    public func rangeSlider(sender: TTRangeSlider, didChangeSelectedMinimumValue selectedMinimum: Float, andMaximumValue selectedMaximum: Float) {
         if sender == self.rangeSlider {
             self.bidLow = selectedMinimum
             self.bidHigh = selectedMaximum
@@ -123,7 +142,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         gmsMapViewOutlet.settings.consumesGesturesInView = true
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         if let userLocation:CLLocation = locations.first {
             
@@ -196,18 +215,34 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
 //        })
 //    }
     
-    override func viewDidLoad() {
+    func initProperties() {
+        bidLow = 1
+        bidHigh = 100
+        let lat: CLLocationDegrees = -23.527096772791133
+        let long: CLLocationDegrees = -46.48964569157911
+        
+        let latLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
+        
+        pickupLatLng = latLng
+        pickupPlaceName = "pickup"
+        dropoffLatLng = latLng
+        dropoffPlaceName = "dropoff"
+    }
+    
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupUI()
         setupMap()
         setupMapClient()
-
+        initProperties()
+        
         pickupFieldOutlet.delegate = self
         dropoffFieldOutlet.delegate = self
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override public func viewDidAppear(animated: Bool) {
 //        performSegueWithIdentifier("loginSegue", sender: self)
         
 //        let loginViewControllerObejct = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
@@ -215,28 +250,12 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
 //        self.navigationController?.pushViewController(loginViewControllerObejct!, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // check login
-        
-        let client: BAAClient = BAAClient.sharedClient()
-        if client.isAuthenticated() {
-            print("User already logged in")
-        } else {
-            print("User NOT logged in. Going to login now.")
-            client.authenticateUser("cesare", password: "password", completion: {( success, error) -> Void in
-                
-                if (success) {
-                    print("Success logging in.")
-                } else {
-                    print("Error logging in - \(error)")
-                }
-            })
-        }
     }
     
-    // The pickup and dropoff textfields should not pop up a keyboard
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    // The pickup and dropoff textfields should not pop up a keyboapublic rd
+    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         
         if (textField == pickupFieldOutlet) {
             pickupFieldSelected = true
@@ -258,7 +277,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
         return false
     }
     
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -350,8 +369,8 @@ class MainViewController: UIViewController, UITextFieldDelegate, DestinationDele
 
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
     
-    // Handle the user's selection.
-    func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
+    // Handle the user's selectiopublic public public n.
+    public func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
 
         print("Place name: ", place.name)
         print("Place address: ", place.formattedAddress)
@@ -368,14 +387,14 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
+    public func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
         // TODO: handle the error.
         print("Error: ", error.description)
         cleanup()
     }
     
-    // User canceled the operation.
-    func wasCancelled(viewController: GMSAutocompleteViewController!) {
+    // User canceled the operatiopublic public n.
+    public func wasCancelled(viewController: GMSAutocompleteViewController!) {
         cleanup()
         self.dismissViewControllerAnimated(true, completion: nil)
     }

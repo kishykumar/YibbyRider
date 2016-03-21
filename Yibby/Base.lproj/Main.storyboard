@@ -9,7 +9,7 @@
         <!--YibbY-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MainViewController" customModule="Yibby_Partner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MainViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -129,20 +129,110 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="bidButton" destination="6pH-U2-oZp" id="vxk-oB-tP2"/>
                         <outlet property="dropoffFieldOutlet" destination="xVt-A6-0xz" id="rlE-cC-FGY"/>
                         <outlet property="gmsMapViewOutlet" destination="MUC-c9-zdZ" id="4bw-jc-0fZ"/>
                         <outlet property="pickupFieldOutlet" destination="ItT-uc-wI2" id="Hy6-dm-BhF"/>
                         <outlet property="rangeSlider" destination="Zeb-Xb-ktt" id="roe-Z7-xYu"/>
+                        <segue destination="0pT-y6-1nI" kind="show" identifier="findOffersSegue" id="oki-22-gCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="930" y="313"/>
         </scene>
+        <!--Find Offers View Controller-->
+        <scene sceneID="0ld-GX-rfp">
+            <objects>
+                <viewController storyboardIdentifier="FindOffersViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0pT-y6-1nI" customClass="FindOffersViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8D3-mw-Ye4"/>
+                        <viewControllerLayoutGuide type="bottom" id="W9o-l7-LWb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cTT-JY-D9f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Please wait while we find you the offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdC-Es-8Dl">
+                                <rect key="frame" x="11" y="120" width="300" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2ib-bb-3nd"/>
+                                    <constraint firstAttribute="width" constant="300" id="3HN-nv-ZUm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kdC-Es-8Dl" firstAttribute="centerX" secondItem="cTT-JY-D9f" secondAttribute="centerX" id="sb3-dK-8Va"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jMD-cB-JnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1294" y="313"/>
+        </scene>
+        <!--Confirm Ride View Controller-->
+        <scene sceneID="OsN-W9-u7M">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmRideViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IU8-zK-Mrr" customClass="ConfirmRideViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IXs-8F-6su"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qvb-id-v0n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zoF-0j-0Li">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSt-KH-h3L">
+                                <rect key="frame" x="81" y="147" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhV-Bs-Mcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1663" y="313"/>
+        </scene>
+        <!--Ride Start View Controller-->
+        <scene sceneID="Q7u-iU-DaH">
+            <objects>
+                <viewController storyboardIdentifier="RideStartViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ff-sZ-eBe" customClass="RideStartViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wAb-b7-oZk"/>
+                        <viewControllerLayoutGuide type="bottom" id="p8H-SO-768"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="20b-Nb-pzR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Z-LA-Tf9">
+                                <rect key="frame" x="105" y="148" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkp-kY-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2007" y="313"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="sUJ-8k-1Ou">
             <objects>
-                <viewController storyboardIdentifier="LoginViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JUq-dg-2vG" customClass="LoginViewController" customModule="Yibby_Partner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JUq-dg-2vG" customClass="LoginViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d1g-gr-Qgr"/>
                         <viewControllerLayoutGuide type="bottom" id="vMh-1t-R4f"/>
@@ -151,7 +241,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to Yibby Partner!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-iZ-Nc9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Yibby!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-iZ-Nc9">
                                 <rect key="frame" x="88" y="77" width="144" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -236,7 +326,7 @@
         <!--Signup View Controller-->
         <scene sceneID="8EH-CZ-dWn">
             <objects>
-                <viewController id="HCu-Oe-ib8" customClass="SignupViewController" customModule="Yibby_Partner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HCu-Oe-ib8" customClass="SignupViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVv-jd-tlc"/>
                         <viewControllerLayoutGuide type="bottom" id="H2F-08-WdR"/>
@@ -285,7 +375,7 @@
                                     <segue destination="JUq-dg-2vG" kind="presentation" modalTransitionStyle="crossDissolve" id="XvK-Ci-SIO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Yibby Partner Signup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6Y-T9-aQe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Yibby Signup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6Y-T9-aQe">
                                 <rect key="frame" x="107" y="67" width="106" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -339,7 +429,7 @@
         <!--Destination Picker View Controller-->
         <scene sceneID="IVe-Y2-Ttz">
             <objects>
-                <viewController storyboardIdentifier="DestinationPickerViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TgQ-yT-0Nb" customClass="DestinationPickerViewController" customModule="Yibby_Partner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DestinationPickerViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TgQ-yT-0Nb" customClass="DestinationPickerViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yLU-98-1wp"/>
                         <viewControllerLayoutGuide type="bottom" id="ixC-hL-MDB"/>
@@ -388,6 +478,7 @@
                             <constraint firstItem="ODr-N3-EID" firstAttribute="leading" secondItem="FJu-kK-vEW" secondAttribute="leading" id="1Zd-p2-K1c"/>
                             <constraint firstItem="UiC-Ae-y4r" firstAttribute="trailing" secondItem="FJu-kK-vEW" secondAttribute="trailing" id="3T3-DJ-dUw"/>
                             <constraint firstItem="UiC-Ae-y4r" firstAttribute="top" secondItem="ODr-N3-EID" secondAttribute="top" id="7xL-x7-YYW"/>
+                            <constraint firstItem="FJu-kK-vEW" firstAttribute="centerX" secondItem="XIb-yE-dao" secondAttribute="centerX" id="8gd-fa-l4q"/>
                             <constraint firstItem="ODr-N3-EID" firstAttribute="top" secondItem="yLU-98-1wp" secondAttribute="bottom" constant="13" id="E9t-nj-v1M"/>
                             <constraint firstItem="UiC-Ae-y4r" firstAttribute="leading" secondItem="ODr-N3-EID" secondAttribute="trailing" id="MSC-do-XnM"/>
                             <constraint firstItem="FJu-kK-vEW" firstAttribute="top" secondItem="ODr-N3-EID" secondAttribute="bottom" constant="44" id="WHb-Ea-yZB"/>
@@ -403,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1D-ta-lQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="353"/>
+            <point key="canvasLocation" x="1532" y="-305"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ot5-vX-wjR">
@@ -427,7 +518,7 @@
         <!--Left Nav Drawer View Controller-->
         <scene sceneID="1eo-hg-yY1">
             <objects>
-                <viewController storyboardIdentifier="LeftNavDrawerViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7sx-5o-6K7" customClass="LeftNavDrawerViewController" customModule="Yibby_Partner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftNavDrawerViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7sx-5o-6K7" customClass="LeftNavDrawerViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mLV-Nc-Xka"/>
                         <viewControllerLayoutGuide type="bottom" id="58B-eY-9WO"/>
@@ -455,7 +546,7 @@
                                 <rect key="frame" x="0.0" y="123" width="320" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeftNavDrawerCellIdentifier" id="0v1-0O-vJw" customClass="LeftNavDrawerTableViewCell" customModule="Yibby_Partner" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeftNavDrawerCellIdentifier" id="0v1-0O-vJw" customClass="LeftNavDrawerTableViewCell" customModule="Yibby" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0v1-0O-vJw" id="wNI-3a-CYJ">
@@ -505,7 +596,7 @@
         <!--Settings View Controller-->
         <scene sceneID="CFr-J2-tkz">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4jl-pD-lbc" customClass="SettingsViewController" customModule="Yibby_Partner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4jl-pD-lbc" customClass="SettingsViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Kn-ec-bYQ"/>
                         <viewControllerLayoutGuide type="bottom" id="M5m-zw-dCd"/>

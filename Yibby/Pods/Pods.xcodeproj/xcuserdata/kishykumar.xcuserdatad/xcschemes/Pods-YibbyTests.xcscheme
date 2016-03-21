@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CA9E8AEC6B5BB1AD65658863'
-               BlueprintName = 'MMDrawerController'
+               BlueprintIdentifier = '9FD881547BC603F580156C89'
+               BlueprintName = 'Pods-YibbyTests'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'MMDrawerController.framework'>
+               BuildableName = 'Pods_YibbyTests.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

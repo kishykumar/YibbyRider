@@ -84,14 +84,16 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods/BButton.framework"
-  install_framework "Pods/BaasBoxSDK.framework"
-  install_framework "Pods/MMDrawerController.framework"
-  install_framework "Pods/TTRangeSlider.framework"
+  install_framework "Pods-YibbyTests/BButton.framework"
+  install_framework "Pods-YibbyTests/BaasBoxSDK.framework"
+  install_framework "Pods-YibbyTests/MMDrawerController.framework"
+  install_framework "Pods-YibbyTests/SwiftyJSON.framework"
+  install_framework "Pods-YibbyTests/TTRangeSlider.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods/BButton.framework"
-  install_framework "Pods/BaasBoxSDK.framework"
-  install_framework "Pods/MMDrawerController.framework"
-  install_framework "Pods/TTRangeSlider.framework"
+  install_framework "Pods-YibbyTests/BButton.framework"
+  install_framework "Pods-YibbyTests/BaasBoxSDK.framework"
+  install_framework "Pods-YibbyTests/MMDrawerController.framework"
+  install_framework "Pods-YibbyTests/SwiftyJSON.framework"
+  install_framework "Pods-YibbyTests/TTRangeSlider.framework"
 fi

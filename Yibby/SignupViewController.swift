@@ -17,35 +17,18 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var phoneNumberOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    let ACTIVITY_INDICATOR_TAG: Int = 1
 
     // MARK: Actions
     @IBAction func submitFormButton(sender: UIButton) {
         if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
-            self.displayAlert("error in form", message: "Please enter email and password")
+            Util.displayAlert(self, title: "error in form", message: "Please enter email and password")
         } else {
             
-            // Initiate the activity Indicator
-            activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-            activityIndicator.center = self.view.center
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-            view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            
-            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
             
             createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
         }
-    }
-    
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -83,11 +66,13 @@ class SignupViewController: UIViewController {
                 
                 let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.initializeMainViewController()
+                appDelegate.sendGCMTokenToServer()
                 self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
             }
             else {
-                self.displayAlert("Signup failed.", message: "Please try again or wait for some time before signing up again.")
+                Util.displayAlert(self, title: "Signup failed.", message: "Please try again or wait for some time before signing up again.")
             }
+            Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
         })
     }
     

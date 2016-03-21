@@ -298,7 +298,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
        dropoffLat:(NSNumber *)dropoffLat
       dropoffLong:(NSNumber *)dropoffLong
        dropoffLoc:(NSString *)dropoffLoc
-       completion:(BAABooleanResultBlock)completionBlock {
+       completion:(BAAObjectResultBlock)completionBlock {
     
     [self postPath:@"bid"
         parameters:@{
@@ -316,10 +316,9 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                      @"X-BB-SESSION": self.currentUser.authenticationToken
                      }
            success:^(NSDictionary *responseObject) {
-               completionBlock(YES, nil);
+               completionBlock(responseObject, nil);
            } failure:^(NSError *error) {
-               completionBlock(NO, error);
-               
+               completionBlock(nil, error);
            }];
 }
 

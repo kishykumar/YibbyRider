@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E504047BF3364E25CE93EC39'
+               BlueprintIdentifier = 'A739A98386EDF3D0C88E947E'
                BlueprintName = 'BaasBoxSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BaasBoxSDK.framework'>

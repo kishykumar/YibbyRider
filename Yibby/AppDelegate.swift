@@ -7,14 +7,15 @@
 //
 
 import UIKit
-import GoogleMaps
 import MMDrawerController
+import GoogleMaps
 import BaasBoxSDK
  
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
  //-- we have removed this because we are not sending upstream messages via GCM
 
+    // MARK: Properties
     var window: UIWindow?
 
     var connectedToGCM = false
@@ -28,12 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     let subscriptionTopic = "/topics/global"
     let APP_FIRST_RUN = "FIRST_RUN"
 
-    let GOOGLE_API_KEY_IOS = "AIzaSyCo2ryq0fm7T_mWevfT26vMyNtwJLc1jFA"
+    let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
     let BAASBOX_APPCODE = "1234567890"
     let BAASBOX_URL = "http://sandbox1-env.us-west-1.elasticbeanstalk.com"
     
     var centerContainer: MMDrawerController?
     
+    var pushController: PushController =  PushController()
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Configure Baasbox
@@ -52,17 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // [END_EXCLUDE]
         
         // Register for remote notifications
-        if #available(iOS 8.0, *) {
-            let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            // Fallback
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
-        // [END register_for_remote_notifications]
+        PushController.registerForPushNotifications()
         
         // [START start_gcm_service]
         let gcmConfig = GCMConfig.defaultConfig()
@@ -195,9 +188,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // [START receive_apns_token]
     func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
         deviceToken: NSData ) {
-            // [END receive_apns_token]
-            // [START get_gcm_reg_token]
-            
+
+            self.pushController.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken)
+
 //            let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
 //            var tokenString = ""
 //            
@@ -267,14 +260,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         }
     }
     
-    // [START on_token_refresh]
     func onTokenRefresh() {
         // A rotation of the registration tokens is happening, so the app needs to request a new token.
         print("The GCM registration token needs to be changed.")
         GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
             scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
     }
-    // [END on_token_refresh]
+    
+    func sendGCMTokenToServer() {
+        GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
+            scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
+    }
     
     func displayAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -286,38 +282,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
-    // [START ack_message_reception]
     func application( application: UIApplication,
         didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+            
             print("Notification received1: \(userInfo)")
+            
             // This works only if the app started the GCM service
             GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+            
             // Handle the received message
-            // [START_EXCLUDE]
             NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
                 userInfo: userInfo)
-            print (userInfo.first)
-            displayAlert("Hello", message: userInfo.first.debugDescription)
-            // [END_EXCLUDE]
+
+            self.pushController.receiveRemoteNotification(userInfo)
     }
     
     func application( application: UIApplication,
         didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
         fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
+            
             print("Notification received2: \(userInfo)")
+            
             // This works only if the app started the GCM service
             GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+            
             // Handle the received message
-            // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
-            // [START_EXCLUDE]
+
             NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
                 userInfo: userInfo)
-            handler(UIBackgroundFetchResult.NoData);
-            // [END_EXCLUDE]
-    }
-    // [END ack_message_reception]
 
-    // [START upstream_callbacks]
+            self.pushController.receiveRemoteNotification(userInfo)
+
+            // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
+            handler(UIBackgroundFetchResult.NoData);
+    }
+
     func willSendDataMessageWithID(messageID: String!, error: NSError!) {
         if (error != nil) {
             // Failed to send the message.
@@ -329,7 +328,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func didSendDataMessageWithID(messageID: String!) {
         // Did successfully send message identified by messageID
     }
-    // [END upstream_callbacks]
 
 
     func didDeleteMessagesOnServer() {

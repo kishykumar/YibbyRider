@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "12F3CCE51C41EFC800F79A26"
-               BuildableName = "Yibby.xctest"
+               BuildableName = "YibbyTests.xctest"
                BlueprintName = "YibbyTests"
                ReferencedContainer = "container:Yibby.xcodeproj">
             </BuildableReference>

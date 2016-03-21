@@ -94,7 +94,7 @@
                     dropoffLat:(NSNumber *)dropoffLat
                     dropoffLong:(NSNumber *)dropoffLong
                     dropoffLoc:(NSString *)dropoffLoc
-                    completion:(BAABooleanResultBlock)completionBlock;
+                    completion:(BAAObjectResultBlock)completionBlock;
 
 // User
 - (void) loadCurrentUserWithCompletion:(BAAObjectResultBlock)completionBlock;

@@ -19,7 +19,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-Yibby.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-YibbyTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +42,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0271E5408BFAA61E1043DE319AD4950F</key>
+		<key>0B2668A7C606111FF33C31091D2AAB1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,12 +52,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1713F05ABDDAA52A2CE1E05940C2BEE</key>
+		<key>B40583EA144A108396BCA9CE33C311CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DD37F2B068500A7FBC6BB11666D0BE33</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E130CF53EF63B7C12121B58C27AFF36A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA8C726D21AFD8BBCE68F202D56EFAB9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

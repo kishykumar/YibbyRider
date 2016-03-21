@@ -1,0 +1,6 @@
+framework module Pods_Yibby {
+  umbrella header "Pods-Yibby-umbrella.h"
+
+  export *
+  module * { export * }
+}
