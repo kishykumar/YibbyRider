@@ -10,11 +10,18 @@ import UIKit
 
 class FindOffersViewController: UIViewController {
 
+    
+    func setupUI () {
+        
+        // hide the back button
+        self.navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: false)
 
         // Do any additional setup after loading the view.
+        setupUI()
     }
 
     override func didReceiveMemoryWarning() {

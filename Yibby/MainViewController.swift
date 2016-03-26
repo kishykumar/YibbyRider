@@ -66,19 +66,20 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                 
             let client: BAAClient = BAAClient.sharedClient()
                 
-            print("BBox client is: \(client)")
             client.createBid(bidHigh, bidLow: bidLow, etaHigh: 0, etaLow: 0, pickupLat: pickupLatLng!.latitude, pickupLong: pickupLatLng!.longitude, pickupLoc: pickupPlaceName, dropoffLat: dropoffLatLng!.latitude, dropoffLong: dropoffLatLng!.longitude, dropoffLoc: dropoffPlaceName, completion: {(success, error) -> Void in
 
                 Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
                 if (error == nil) {
-                    print("created bid \(success["bb_code"])")
                     
                     // check the error codes
-                    if ((Int(success["bb_code"] as! String)) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
-                        print("return code bbox")
-                        
-                        // TODO: display alert that no drivers are online
-                        Util.displayAlert(self, title: "No drivers online.", message: "")
+                    if let bbCode = success["bb_code"] as? String {
+                        if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
+                            
+                            // TODO: display alert that no drivers are online
+                            Util.displayAlert(self, title: "No drivers online.", message: "")
+                        } else {
+                            Util.displayAlert(self, title: "Unexpected error. Please be patient.", message: "")
+                        }
                     } else {
                         self.performSegueWithIdentifier("findOffersSegue", sender: nil)
                     }
@@ -86,7 +87,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                 else {
                     print("error creating bid \(error)")
                     // check if error is 401 (authentication) and re-authenticate
-                    
                 }
                 self.responseHasArrived = true
             })

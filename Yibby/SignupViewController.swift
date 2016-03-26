@@ -24,9 +24,6 @@ class SignupViewController: UIViewController {
         if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
             Util.displayAlert(self, title: "error in form", message: "Please enter email and password")
         } else {
-            
-            Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
-            
             createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
         }
     }
@@ -58,6 +55,8 @@ class SignupViewController: UIViewController {
     
     // BaasBox create user
     func createUser(usernamei: String, passwordi: String) {
+        Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
+
         let client: BAAClient = BAAClient.sharedClient()
         client.createUserWithUsername(usernamei, password: passwordi, completion: {(success, error) -> Void in
             if (success) {

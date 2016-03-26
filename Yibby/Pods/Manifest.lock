@@ -58,7 +58,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BaasBoxSDK:
-    :commit: 53060cb871be0169ee40da848488c9acbf7bd541
+    :commit: 43691371a4402e59bfa7efec123686a6f55d9e41
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
 
 SPEC CHECKSUMS:

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import MMDrawerController
 
 @objc public protocol PushControllerProtocol {
     func receiveRemoteNotification(notification:[NSObject:AnyObject])
@@ -16,7 +17,10 @@ import SwiftyJSON
 public class PushController: NSObject, PushControllerProtocol {
     
     let OFFER_MESSAGE_TYPE = "OFFER"
+    let NO_OFFERS_MESSAGE_TYPE = "NO_OFFERS"
     let RIDE_START_MESSAGE_TYPE = "RIDE_START"
+    let DRIVER_EN_ROUTE_MESSAGE_TYPE = "DRIVER_EN_ROUTE"
+
     let MESSAGE_FIELD_NAME = "message"
     let CUSTOM_FIELD_NAME = "custom"
     
@@ -26,20 +30,24 @@ public class PushController: NSObject, PushControllerProtocol {
 
     //MARK: Receiving remote notification
     public func receiveRemoteNotification(notification: [NSObject : AnyObject]) {
+        
+        print(notification)
+        
+        // handle offer
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let mmdc : MMDrawerController = appDelegate.window?.rootViewController as! MMDrawerController
 
-        if (notification[MESSAGE_FIELD_NAME] as! String == OFFER_MESSAGE_TYPE) {
+        switch notification[MESSAGE_FIELD_NAME] as! String {
             
-            print(notification)
-            
-            // handle offer
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
+        case OFFER_MESSAGE_TYPE:
+            print("OFFER RCVD")
             // present the view controller and pass the data
-            let currentVC = appDelegate.window?.rootViewController
-            
-            if (currentVC != nil) {
-                let mainstoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            if let mmnvc = mmdc.centerViewController as? UINavigationController {
 
+                // get the storyboard to instantiate the viewcontroller
+                let mainstoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                // parse the notification to get the bid data
                 let jsonCustom = notification[CUSTOM_FIELD_NAME]
                 if let data = jsonCustom!.dataUsingEncoding(NSUTF8StringEncoding) {
                     let topJson = JSON(data: data)
@@ -48,9 +56,22 @@ public class PushController: NSObject, PushControllerProtocol {
                     print("my offer json \(offerJson)")
                     
                     let confirmRideViewController = mainstoryboard.instantiateViewControllerWithIdentifier("ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
-                    currentVC!.presentViewController(confirmRideViewController, animated: true, completion: nil)
+                    mmnvc.pushViewController(confirmRideViewController, animated: true)
+//                        rootVC.presentViewController(confirmRideViewController, animated: true, completion: nil)
                 }
             }
+        
+        case NO_OFFERS_MESSAGE_TYPE:
+            print("NOOFFERS RCVD")
+            
+            
+            if let mmnvc = mmdc.centerViewController as? UINavigationController {
+                mmnvc.popViewControllerAnimated(true)
+                Util.displayAlert(mmnvc.visibleViewController!, title: "No offers from drivers.", message: "Your bid was not accepted by any driver")
+            }
+
+        default: break
+            
         }
     }
     

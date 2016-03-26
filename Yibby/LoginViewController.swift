@@ -27,9 +27,6 @@ class LoginViewController: UIViewController {
         if (emailAddress.text == "" || password.text == "") {
             Util.displayAlert(self, title: "error in form", message: "Please enter email and password")
         } else {
-            
-            Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
-            
             loginUser(emailAddress.text!, passwordi: password.text!)
         }
     }
@@ -53,6 +50,8 @@ class LoginViewController: UIViewController {
     
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
+        Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
+
         let client: BAAClient = BAAClient.sharedClient()
         client.authenticateUser(usernamei, password: passwordi, completion: {(success, error) -> Void in
             

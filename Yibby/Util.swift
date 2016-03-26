@@ -33,7 +33,7 @@ class Util {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            controller.dismissViewControllerAnimated(true, completion: nil)
+            alert.dismissViewControllerAnimated(true, completion: nil)
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
     }
