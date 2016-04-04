@@ -7,285 +7,329 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00AB9667C6E85C84AA87F4055C95475D /* MMDrawerController+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BD2D1B628EB9B39583A8ACA20C09DCC /* MMDrawerController+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0DD1898952564D3963B2FE7CCD72A095 /* TTRangeSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EE675E539ED25CF23038C8EEAF807E /* TTRangeSlider-dummy.m */; };
-		0EEBEE15B6806F5D8B7B904B565CC8A2 /* NSString+FontAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E23F152D6D83F85116743F3FE43CFC /* NSString+FontAwesome.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BE6CF55F21915FE9194F67B7AFBFE4F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AF6111B9147ADE10ACD2F5C4D87553 /* MMDrawerBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		20E6477BA5A3FEFDD2D7D68665B5DB2F /* BAAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA241501DB0786252ED9B25389CCB32 /* BAAClient.m */; };
-		2550DF6FF42DCDC754EA66884350A548 /* MMDrawerBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCB9F3FD5F77280A872776A8D2F92AF /* MMDrawerBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C0E7B14F4D9D011CDD02BE012EA02A5 /* MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7A10859C7786B7C427422510C4B0E42 /* MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		31A1FCC949A1C144508D17F21B7CFDAD /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 55670D1A5509BF69210CFC6E76E12A55 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36D3F85B35B071981D92E1F6B42F49D6 /* BaasBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 36093A586102AA2689FBAE51E9F406F0 /* BaasBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		382A975078B42EBAD6DCE846FF619666 /* BAAFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 97B7C72804898E54F65AEA6D39823C5C /* BAAFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A8E9F5ACE52401DC3F6F15E571752E8 /* Pods-Yibby-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D6EC2B894E2B73F52ABF65F6B4EA41 /* Pods-Yibby-dummy.m */; };
-		3B8CBBEB4F30D9CBAF21AA0E4A724C67 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3585A48E98D641FAD84F21B0B43B8F /* MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		3F2FC34AFCB8992B64883C917A1C7366 /* BAAGlobals.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CD80F0E59976A1DFFEE55EBAAA91FC5 /* BAAGlobals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		44A8B421119D3E52B53AF48A8696861D /* BButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 299A1701A2964FAA5B2D6BB7EA929E22 /* BButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4946694FFD2FE6AC8FD123FFC24EEB9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		4A6B67FBD446549DC0364E250EE3B781 /* MMDrawerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A343668D7A1E7B8D3A557048C794C /* MMDrawerController-dummy.m */; };
+		0077281FB91A403BFB98F72C2E9AEB25 /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D999CD88ECA1C749E8A6FD4AEFD2A1C0 /* SwiftyJSON-dummy.m */; };
+		00AB9667C6E85C84AA87F4055C95475D /* MMDrawerController+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 264D47E33631418057AE26A080A135CE /* MMDrawerController+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0AB569E69C5A2E3BE4BC3D98435F53AE /* TTRangeSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 17FDDEA46018B62FC59C0835B18640AF /* TTRangeSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0E837FFBCFC8DE23235F5698F5AF8959 /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B120DEDDA36A119BC94AC8991EE7E2 /* IsaoTextField.swift */; };
+		0EEBEE15B6806F5D8B7B904B565CC8A2 /* NSString+FontAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCC5CC782353B88EBA92772B7C429F6 /* NSString+FontAwesome.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1711B19872B606FAA3E2BB26881A313F /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB50265980DC590A87CA6296FB3592 /* MinoruTextField.swift */; };
+		1987BF7E50C376857C730A80F090D4D8 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42F76AFB981B9CD84B92C5F2D90100E /* HoshiTextField.swift */; };
+		1A0AE11521395FE069C6DA2CD49FFEC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
+		1BE6CF55F21915FE9194F67B7AFBFE4F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D3B15FD07076C6B07171F86218404 /* MMDrawerBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1D1592C965E83E92E6C10AE1A56F8837 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367EBBE5F2B36CFE36C3FE6055D0708D /* YokoTextField.swift */; };
+		20E6477BA5A3FEFDD2D7D68665B5DB2F /* BAAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 086F4FB4BB4B153AD62839CB6137B0CC /* BAAClient.m */; };
+		2550DF6FF42DCDC754EA66884350A548 /* MMDrawerBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 43BB2D547E1A999A780DFA2321B4F77A /* MMDrawerBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27695AC7951A9404900D4744EE6DB25E /* TTRangeSliderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 00AFC4D43FBC640019F654595A25C6BA /* TTRangeSliderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2AE6371CC6579887FE2842BC93CB2570 /* TTRangeSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ED257B078EDAFE968BE5935061FD7D0C /* TTRangeSlider-dummy.m */; };
+		2B10A77167EBE0A21E767CEBFE6B706E /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C9931EAD90B1021815000C36491FC /* AkiraTextField.swift */; };
+		2C0E7B14F4D9D011CDD02BE012EA02A5 /* MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = CF588D0B26E92DD244E306BBFACC9D60 /* MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2EDA2E64658001233FC708E9079E3E16 /* TTRangeSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A556102AF8781508F924438A1B5D257 /* TTRangeSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		36D3F85B35B071981D92E1F6B42F49D6 /* BaasBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E503EE86358775C7709269404853FE /* BaasBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37BF0601AA8270754DE912A3D595E71D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
+		382A975078B42EBAD6DCE846FF619666 /* BAAFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 113CA67A12CFB66A91A4525635397209 /* BAAFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B8CBBEB4F30D9CBAF21AA0E4A724C67 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56923E29313DF7643AF9F86B6B0CF51 /* MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3F2FC34AFCB8992B64883C917A1C7366 /* BAAGlobals.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C275759F82F4AF09FA7249EF7A6676 /* BAAGlobals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41CD204667833242EF93323070440872 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606E79619D3CBF656DEB596C77E2BC /* YoshikoTextField.swift */; };
+		44A8B421119D3E52B53AF48A8696861D /* BButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F9C62D18C74B84DE2EF76EC86048EE4D /* BButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		464FEB4C884770226A3CB4260EDEF3B2 /* Pods-Yibby-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D6EC2B894E2B73F52ABF65F6B4EA41 /* Pods-Yibby-dummy.m */; };
+		4A6B67FBD446549DC0364E250EE3B781 /* MMDrawerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A49344F453AD1FA34F60352A7C04E20A /* MMDrawerController-dummy.m */; };
 		528EAE59B770CC6286B0C850787FF25B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		57F9A324232DEF310910048E9E794FEE /* BAAObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C86B06FC78FF4998EE3BCF926DCC9726 /* BAAObject.m */; };
-		63AFE0ED1CBD542FEF26CFE3053F100C /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B828951DC3C36BE9E895A891A54156 /* UIViewController+MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		66A3267E5B25180C13CF61793619CE03 /* BButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 286A58A216740A9F2F70202E7089557B /* BButton-dummy.m */; };
-		69E4C206A9B60517BB4BC9A03CA5F0A5 /* TTRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8801C4EEEC0A7FE438D108C9DFD7325C /* TTRangeSlider.m */; };
-		746D4833DEA669AF58E0561BDD5A7C5B /* BaasBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 157BB8DAB0F33CCF261361667A833471 /* BaasBox.m */; };
-		7803679C9203D7442981ECA2C8FEA8A8 /* BAAObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F20ACDE64DFA7714B3908872D786D4 /* BAAObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		57F9A324232DEF310910048E9E794FEE /* BAAObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 642F4BEBDA00DD84BD894A6895C16CD8 /* BAAObject.m */; };
+		5C5543E10D4D04FE98B3AC65F603FA51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
+		63AFE0ED1CBD542FEF26CFE3053F100C /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6870C3D3622B646A53237BDC325A179 /* UIViewController+MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		66A3267E5B25180C13CF61793619CE03 /* BButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD32D5C7795AC7770FD7A7666702AF1 /* BButton-dummy.m */; };
+		6BE1903AFA8819B4D58DC16686DCCA75 /* Pods-YibbyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917026D18E6AD7056A9A0D7B5F58A53 /* Pods-YibbyTests-dummy.m */; };
+		6F11A26AAF94DB7836493404331C3055 /* TTRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296DD31D205C97FF155C4C265D8E32C /* TTRangeSlider.m */; };
+		7260A68C38EC301C5AEDD8912D2D7F2D /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9363FB1478C8AF77682DA1ABC9B1484 /* KaedeTextField.swift */; };
+		746D4833DEA669AF58E0561BDD5A7C5B /* BaasBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1086E4869F40858DC47327C6E69A4A /* BaasBox.m */; };
+		7803679C9203D7442981ECA2C8FEA8A8 /* BAAObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 96153A8391EA9A600A186B6380068364 /* BAAObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F5F911A1133F3E3EC21B0D60AAE3C8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		83F6F9EC3B1EBC4019E0A6061B364C84 /* TTRangeSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = AA3E49E9AE15B665BFD92CE94EFE0940 /* TTRangeSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84B4F420B84717596F434A2CF09697F5 /* BAAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E217F89537DC75945BB0FD137BFF0F9 /* BAAMutableURLRequest.m */; };
-		878964379847845C074E1363516A7532 /* BAAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C83C3A540D9A2F3E2045A69D7E8207EB /* BAAUser.m */; };
-		87E9DF92EC59F187381F74D34ECC797D /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C441F8CA95A35C53F2A23BCB8897AD /* MMDrawerVisualState.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		892AC083DECBE017EDE33C43C2CB6364 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		8D852E0CD3CAFDC640A36ED3E6D43CCA /* BAAUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 053034E037CAB2A381CEE155055572A4 /* BAAUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9AEB36BDD0FC0A84629133CF00226519 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 771A8E6EEFA50A08C3738D8411C85183 /* FontAwesome.ttf */; };
-		9D0B74B129216EF513B47B7896C89309 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		A071D0EC0B86BECDB1F5D44511AB4E1A /* MMDrawerVisualState.h in Headers */ = {isa = PBXBuildFile; fileRef = E55B1947F00F023CC1F0FFCF5FA742AD /* MMDrawerVisualState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A12D78FE42E94326DCE6B05222D11624 /* BaasBoxSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 70585D45118C67E4A27C9C9EB5936992 /* BaasBoxSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A839EBBBCA86D330FC9C0638452877F0 /* MMDrawerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F2C5E06B6FFC165C5795C7057001FE5 /* MMDrawerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AA88E4CB523758671521FCE2E4C97343 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA04387F7A452067D9DD7D9845A71B8 /* SwiftyJSON.swift */; };
-		B265F8C8458159EEE655A3A0116B0AF7 /* BAAGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = C6739DC0E087BA9715CC178390D57942 /* BAAGlobals.m */; };
-		B353FE87011FEE8E2BE1A6B7F077BE06 /* Pods-YibbyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917026D18E6AD7056A9A0D7B5F58A53 /* Pods-YibbyTests-dummy.m */; };
-		B495D0CC598F211A30E789204CE5BBD6 /* BaasBoxSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C167D53314F487D1E8F9CF35CFA899F6 /* BaasBoxSDK-dummy.m */; };
-		B4B786ADD0FCEA895EB5E2EF1D62C03A /* BAAFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3239B7EDFFD58588E86D193691466C75 /* BAAFile.m */; };
+		7F906C70C06F59ACC789AB57F31DEDF1 /* Pods-Yibby-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1B2C67265F59632BDEF510604E8E12 /* Pods-Yibby-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84B4F420B84717596F434A2CF09697F5 /* BAAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DADA421A790432711FD9EA107200A000 /* BAAMutableURLRequest.m */; };
+		86030F60571858C414B31ECE4AEC4BDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
+		878964379847845C074E1363516A7532 /* BAAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 586D67933F799BC6E122B2110A462998 /* BAAUser.m */; };
+		87E9DF92EC59F187381F74D34ECC797D /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = A1013C7584182897CC7828F2A13E7174 /* MMDrawerVisualState.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8D852E0CD3CAFDC640A36ED3E6D43CCA /* BAAUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 214F5D0A415F9F64DD0EA6CB72978A2C /* BAAUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AEB36BDD0FC0A84629133CF00226519 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC1476B402A173D9B3237E97C348F979 /* FontAwesome.ttf */; };
+		A071D0EC0B86BECDB1F5D44511AB4E1A /* MMDrawerVisualState.h in Headers */ = {isa = PBXBuildFile; fileRef = 4375002B0872DF158943025E50D02CF8 /* MMDrawerVisualState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A12D78FE42E94326DCE6B05222D11624 /* BaasBoxSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4964DF2A926CA6E1BB064250D2D386EB /* BaasBoxSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A839EBBBCA86D330FC9C0638452877F0 /* MMDrawerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 19660ACB31ED5D79C2EDB423E467610B /* MMDrawerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC28E8FE6903EC66445D7A27A4F1A7A9 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAE530080751387518C9EF4363C743F /* SwiftyJSON.swift */; };
+		B265F8C8458159EEE655A3A0116B0AF7 /* BAAGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0C221EFAC2B834A128756BABD0F7 /* BAAGlobals.m */; };
+		B495D0CC598F211A30E789204CE5BBD6 /* BaasBoxSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DCE21AA805458BA892AF64ADC467DF /* BaasBoxSDK-dummy.m */; };
+		B4B786ADD0FCEA895EB5E2EF1D62C03A /* BAAFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F735E1CBF61B37E56B4DCB41616CDE40 /* BAAFile.m */; };
 		BA8B58BD8C0D06680BA81693D7454F9D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D64AB8C0A1E815C07C6F968F76F7E559 /* QuartzCore.framework */; };
-		C85B30436679269E4A77ADC84C2292A7 /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E3BC12E5B6D9955F8628976E2F5943 /* UIColor+BButton.m */; };
+		C1AA154AB881390AE07D5870287ECC8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
+		C85B30436679269E4A77ADC84C2292A7 /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE80D63A13F94586DF89D9766FC2B57 /* UIColor+BButton.m */; };
+		C8B09C9073255B0DEE1E3E81F3A56CF3 /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8B966C9C16C2707EA8089CFFAEBB36 /* MadokaTextField.swift */; };
 		C9B73AC5CC21AFBCFCC37B4EFACAE3EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		CAE2EF6171328E8B33AE6E7A2E96597B /* UIViewController+MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = F42E386B14910A400F239394479867DC /* UIViewController+MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE2C1018C01641CB6CFBD55C26E3B1C6 /* BButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 183A734F2B2C763C3514C25224231AA9 /* BButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CEB91FB610ACC6CA25CAB836444060D8 /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4201E0F986C54BF6A7241E6817B2DA23 /* BButton.m */; };
-		CF1FB150FD1C0F6C9EF564AD723E3293 /* Pods-Yibby-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1B2C67265F59632BDEF510604E8E12 /* Pods-Yibby-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CFAB6583D02EBB40BA720064461C7450 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFD66E59F4040C30A0B0837A175E5F /* NSString+FontAwesome.m */; };
-		D0C5CC7B3A7F8E04FBEB6260D19A8BBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */; };
-		D4870703F49AAE6CF0111A617C8E4462 /* UIColor+BButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CE5A5FFA5005B298893655B09EE1107 /* UIColor+BButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CAE2EF6171328E8B33AE6E7A2E96597B /* UIViewController+MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F03D8012DD4ACA4733EB8DCDC62A233 /* UIViewController+MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE2C1018C01641CB6CFBD55C26E3B1C6 /* BButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F2976452B873F21938C240BCF1F9989 /* BButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEB91FB610ACC6CA25CAB836444060D8 /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FE03E4C7A0B476B050D06313A78961 /* BButton.m */; };
+		CFAB6583D02EBB40BA720064461C7450 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D10F33D3BC4ED4D631F0DEF28BE640 /* NSString+FontAwesome.m */; };
+		D4870703F49AAE6CF0111A617C8E4462 /* UIColor+BButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 931B629B82A1D16DE05BC15D75711F0F /* UIColor+BButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D5CFD2D42FF7F2D0FA2C5725346FA7DB /* TextFieldEffects-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA19182918393D7AF066FD902526B5B /* TextFieldEffects-dummy.m */; };
 		D6DD56265A5511F05F2656AE794ABC32 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB254A0FF9C0E1ECCCC3CA36E6AC016 /* CoreGraphics.framework */; };
-		D9207BFA6B0D59C931815C17A6645E20 /* BAAMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = D7FFA88E66438F24D98E014FF674FE6C /* BAAMutableURLRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE055FD64549F651BA10823A00411B9E /* BAAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 043904F126AFB41EB887F2D71D4B5BBE /* BAAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F173DB7A5677ADCD6A0F25CCDF17688D /* TTRangeSliderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5E3A8C49F121CBAEFF0CCCD5CC84E3 /* TTRangeSliderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F4387E6B3DB3E6CED59473963EB95390 /* Pods-YibbyTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F827592D79FE993F67A149AF5E0AE /* Pods-YibbyTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FD6FAC179948FE867BFB9E34CE053333 /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6FB519781C689A0CF4E417393A8B /* SwiftyJSON-dummy.m */; };
-		FE3C92FCF396B657022519FF437241F2 /* TTRangeSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 38A47AF1F319C88660A9A92A521351BC /* TTRangeSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8BC56700766491BAFC892F6616C4128 /* Pods-YibbyTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F827592D79FE993F67A149AF5E0AE /* Pods-YibbyTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D9207BFA6B0D59C931815C17A6645E20 /* BAAMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C007E53A030A3AD8B02DA279872E1D /* BAAMutableURLRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE055FD64549F651BA10823A00411B9E /* BAAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E552B64DEBB5325B3D8EAF34FB464FF /* BAAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E777A8E574431FFA81DDD2619122F12E /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C107CDA5F8176F8A204F86243293FF /* JiroTextField.swift */; };
+		ED369A6CAE41C6FE8174B1A6C5566D41 /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43C7212E2B928207FC0368C27D248FB /* TextFieldsEffects.swift */; };
+		FAF06A91351B48628E7F47BCAAC4D185 /* TextFieldEffects-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C3677D1A44F5A9C0753235BB75712197 /* TextFieldEffects-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FCA2812572D8598D95AE5F06FAD89994 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DC950A35CD2555C3E61E75165C674E09 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1D546CCA1F6536E7F6352031045C8146 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ECD3D6459209FCB6B9C23734199A374D;
-			remoteInfo = BaasBoxSDK;
-		};
-		2E8512CB67B896D2992331FF70BA8B68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA8C726D21AFD8BBCE68F202D56EFAB9;
-			remoteInfo = TTRangeSlider;
-		};
-		34ED44A4B99C280BA029F4466DCD5C4A /* PBXContainerItemProxy */ = {
+		07A170A1C8A37A3525A276E90B606F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E130CF53EF63B7C12121B58C27AFF36A;
 			remoteInfo = BButton;
 		};
-		3C318ABDC2D70459FEE7FD53FEBAA048 /* PBXContainerItemProxy */ = {
+		259F55604043A1587A297B2CBF6A82FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 96D3562E47E4792B0A6093A0323EB398;
-			remoteInfo = MMDrawerController;
+			remoteGlobalIDString = 42A5EED8E77A0E72DBFD584C3CE278F7;
+			remoteInfo = TextFieldEffects;
 		};
-		3D1722EFE7B8C1BF401330011EF7BFEF /* PBXContainerItemProxy */ = {
+		4D0CC5D32256A68DB590A21663085F25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B40583EA144A108396BCA9CE33C311CA;
-			remoteInfo = SwiftyJSON;
-		};
-		74A45467136D08020B01380AF27B62B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96D3562E47E4792B0A6093A0323EB398;
-			remoteInfo = MMDrawerController;
-		};
-		897FD24641C229A8803EF1D85FB5F786 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA8C726D21AFD8BBCE68F202D56EFAB9;
+			remoteGlobalIDString = 090DC612CA0980C83D441BFAA46C4964;
 			remoteInfo = TTRangeSlider;
 		};
-		89C8D6C32F6327FE32996069D8C18ECC /* PBXContainerItemProxy */ = {
+		4F787772A9AC525D67B39603C7D184C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E130CF53EF63B7C12121B58C27AFF36A;
-			remoteInfo = BButton;
+			remoteGlobalIDString = 96D3562E47E4792B0A6093A0323EB398;
+			remoteInfo = MMDrawerController;
 		};
-		BF3CAC3AEBB4E2A6BF54D4E60CD34E9E /* PBXContainerItemProxy */ = {
+		543EFFC202DACDAAD7D5AF955BC7AA6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96D3562E47E4792B0A6093A0323EB398;
+			remoteInfo = MMDrawerController;
+		};
+		7183CF6482B656BF8B0FE6C501059FBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A5EED8E77A0E72DBFD584C3CE278F7;
+			remoteInfo = TextFieldEffects;
+		};
+		765E7847A03175F2027A34A71576C845 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = ECD3D6459209FCB6B9C23734199A374D;
 			remoteInfo = BaasBoxSDK;
 		};
-		E7D29639CA03F84D8B512E8754FC644B /* PBXContainerItemProxy */ = {
+		A5FC8AD0899118D91896FE904482969F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B40583EA144A108396BCA9CE33C311CA;
+			remoteGlobalIDString = 36959F835493D8C0B42475C1559BE90F;
 			remoteInfo = SwiftyJSON;
+		};
+		A667BF11729F77ED7588CEA4E848D9BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 090DC612CA0980C83D441BFAA46C4964;
+			remoteInfo = TTRangeSlider;
+		};
+		BEEA2D7D56EEACF9FEC65196D01937DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECD3D6459209FCB6B9C23734199A374D;
+			remoteInfo = BaasBoxSDK;
+		};
+		DA05D13FBC6BD902653070384BFAA74C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36959F835493D8C0B42475C1559BE90F;
+			remoteInfo = SwiftyJSON;
+		};
+		FD25F922A103F54CF226032E6A5A7053 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E130CF53EF63B7C12121B58C27AFF36A;
+			remoteInfo = BButton;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		021232032D3A71ACBCAFAE3176112082 /* Analytics-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Analytics-Module.h"; path = "Headers/ModuleHeaders/Analytics-Module.h"; sourceTree = "<group>"; };
-		043904F126AFB41EB887F2D71D4B5BBE /* BAAClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAClient.h; path = "BaasBox-iOS-SDK/BAAClient.h"; sourceTree = "<group>"; };
-		0471731CD18F67847CEF7D13073E05A1 /* TTRangeSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TTRangeSlider.modulemap; sourceTree = "<group>"; };
-		053034E037CAB2A381CEE155055572A4 /* BAAUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAUser.h; path = "BaasBox-iOS-SDK/BAAUser.h"; sourceTree = "<group>"; };
-		0557D8908E06AD82D7817F471AE34389 /* libGTM_StringEncoding.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_StringEncoding.a; path = Libraries/libGTM_StringEncoding.a; sourceTree = "<group>"; };
-		05D53264D308E1667510BA3F625FC16A /* MMDrawerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-prefix.pch"; sourceTree = "<group>"; };
-		080876B241124F2C45D0DFB8D46CFA14 /* Pods_Yibby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yibby.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CFDBCDCDC075ED133FE6096545C7999 /* TTRangeSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTRangeSlider-prefix.pch"; sourceTree = "<group>"; };
-		0E15FCBAD543A2FB2CD238030C9C020E /* libGTM_UIFont+LineHeight.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_UIFont+LineHeight.a"; path = "Libraries/libGTM_UIFont+LineHeight.a"; sourceTree = "<group>"; };
-		0F00C9AF8BEFCF2AC06FDE7A94A44D6B /* GGLInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceID.h; path = Headers/Public/GGLInstanceID.h; sourceTree = "<group>"; };
-		10D77D093E4804687E59A9D1147D254F /* libGTM_Regex.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_Regex.a; path = Libraries/libGTM_Regex.a; sourceTree = "<group>"; };
+		00AFC4D43FBC640019F654595A25C6BA /* TTRangeSliderDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTRangeSliderDelegate.h; path = Pod/Classes/TTRangeSliderDelegate.h; sourceTree = "<group>"; };
+		00BB243F5912FB7936777FC6D6F71B28 /* Pods_Yibby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yibby.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01F696FCA3BA2EFEB64C44B212A948AE /* libGIP_Locale.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGIP_Locale.a; path = Libraries/libGIP_Locale.a; sourceTree = "<group>"; };
+		054F83FADEA7B0DC895924101CE27D99 /* MMDrawerController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MMDrawerController.modulemap; sourceTree = "<group>"; };
+		0613E050FF9410E7584D7C8C58621C7A /* libGTM_iPhone.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_iPhone.a; path = Libraries/libGTM_iPhone.a; sourceTree = "<group>"; };
+		086F4FB4BB4B153AD62839CB6137B0CC /* BAAClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAClient.m; path = "BaasBox-iOS-SDK/BAAClient.m"; sourceTree = "<group>"; };
+		0F33305AFFB16E79E40A4EFB2EE6D7FE /* TTRangeSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TTRangeSlider.xcconfig; sourceTree = "<group>"; };
+		105E66D22742450F0AAE0BC53078EDD3 /* libGTMSessionFetcher_full.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_full.a; path = Libraries/libGTMSessionFetcher_full.a; sourceTree = "<group>"; };
 		1100D0C501E8F4A91E843A2EF1DB82B8 /* Pods-YibbyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YibbyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		111AE2151F03FA2906D189AB5317BEC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		12D42B9F6DA3698C4853B376A76D99AE /* GGLConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLConfiguration.h; path = Headers/GGLCore/Public/GGLConfiguration.h; sourceTree = "<group>"; };
-		13E3BC12E5B6D9955F8628976E2F5943 /* UIColor+BButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+BButton.m"; path = "BButton/Classes/UIColor+BButton.m"; sourceTree = "<group>"; };
-		157BB8DAB0F33CCF261361667A833471 /* BaasBox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BaasBox.m; path = "BaasBox-iOS-SDK/BaasBox.m"; sourceTree = "<group>"; };
-		159CC1228EA251863397922FC46D5A87 /* AdMob-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AdMob-Module.h"; path = "Headers/ModuleHeaders/AdMob-Module.h"; sourceTree = "<group>"; };
-		183A734F2B2C763C3514C25224231AA9 /* BButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BButton.h; path = BButton/Classes/BButton.h; sourceTree = "<group>"; };
-		18F20ACDE64DFA7714B3908872D786D4 /* BAAObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAObject.h; path = "BaasBox-iOS-SDK/BAAObject.h"; sourceTree = "<group>"; };
+		113CA67A12CFB66A91A4525635397209 /* BAAFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAFile.h; path = "BaasBox-iOS-SDK/BAAFile.h"; sourceTree = "<group>"; };
+		1324918B3ECE5EDEF8178116F160C28B /* TTRangeSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TTRangeSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		17FDDEA46018B62FC59C0835B18640AF /* TTRangeSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTRangeSlider-umbrella.h"; sourceTree = "<group>"; };
+		185524B226F6656BD8FF9E609CCC57E8 /* AdMob-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AdMob-Module.h"; path = "Headers/ModuleHeaders/AdMob-Module.h"; sourceTree = "<group>"; };
+		19660ACB31ED5D79C2EDB423E467610B /* MMDrawerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-umbrella.h"; sourceTree = "<group>"; };
 		1A6A8E4461CC384424AC921836D70347 /* Pods-Yibby.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Yibby.release.xcconfig"; sourceTree = "<group>"; };
-		1CA8619382E95A0D1D3CBD83558321F0 /* libGSDK_Overload.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGSDK_Overload.a; path = Libraries/libGSDK_Overload.a; sourceTree = "<group>"; };
-		1DDBB0586D70EECB89442F5FBAB43A5A /* libGIP_Reachability.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGIP_Reachability.a; path = Libraries/libGIP_Reachability.a; sourceTree = "<group>"; };
-		1E217F89537DC75945BB0FD137BFF0F9 /* BAAMutableURLRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAMutableURLRequest.m; path = "BaasBox-iOS-SDK/BAAMutableURLRequest.m"; sourceTree = "<group>"; };
 		1E99FDA7583FBC71943D1433C6B4C93B /* Pods-Yibby-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Yibby-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1F7ACBA3923AE5E52F87F9092CCA94AD /* libGTMSessionFetcher_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_core.a; path = Libraries/libGTMSessionFetcher_core.a; sourceTree = "<group>"; };
-		23FE00B4D3116BED10EFC87D1B1E9AD5 /* GCMReceiverDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMReceiverDelegate.h; path = Headers/Public/GCMReceiverDelegate.h; sourceTree = "<group>"; };
-		258E35A66B9CB3D7B73137CB408598A9 /* BButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BButton.modulemap; sourceTree = "<group>"; };
-		281DC4D6011ED6AE57389BFC428F7FA2 /* libGTMStackTrace.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMStackTrace.a; path = Libraries/libGTMStackTrace.a; sourceTree = "<group>"; };
-		286A58A216740A9F2F70202E7089557B /* BButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BButton-dummy.m"; sourceTree = "<group>"; };
-		299A1701A2964FAA5B2D6BB7EA929E22 /* BButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BButton-umbrella.h"; sourceTree = "<group>"; };
-		2B1A343668D7A1E7B8D3A557048C794C /* MMDrawerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController-dummy.m"; sourceTree = "<group>"; };
+		20BB9C59A9BB9F88AEBABC4EED1A407D /* AppInvite-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AppInvite-Module.h"; path = "Headers/ModuleHeaders/AppInvite-Module.h"; sourceTree = "<group>"; };
+		20C107CDA5F8176F8A204F86243293FF /* JiroTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JiroTextField.swift; path = TextFieldEffects/TextFieldEffects/JiroTextField.swift; sourceTree = "<group>"; };
+		214F5D0A415F9F64DD0EA6CB72978A2C /* BAAUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAUser.h; path = "BaasBox-iOS-SDK/BAAUser.h"; sourceTree = "<group>"; };
+		239BAFBCDEF9C1E64E56EA17F2B2BF56 /* GGLErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLErrorCode.h; path = Headers/GGLCore/Public/GGLErrorCode.h; sourceTree = "<group>"; };
+		25DAB9B98FF01F878A24DD33B0A2A0BB /* GCMService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMService.h; path = Headers/Public/GCMService.h; sourceTree = "<group>"; };
+		264D47E33631418057AE26A080A135CE /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMDrawerController+Subclass.h"; path = "MMDrawerController/MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		269648EEC977FE3DA52B4FD01DFE9F73 /* libGTM_GTMURLBuilder.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_GTMURLBuilder.a; path = Libraries/libGTM_GTMURLBuilder.a; sourceTree = "<group>"; };
+		27E503EE86358775C7709269404853FE /* BaasBox.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BaasBox.h; path = "BaasBox-iOS-SDK/BaasBox.h"; sourceTree = "<group>"; };
+		289EEFE185AB124E1A45659E47E6D315 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
+		2965C464C88CFC610FC7851C402A9C64 /* libGTM_NSStringXML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringXML.a; path = Libraries/libGTM_NSStringXML.a; sourceTree = "<group>"; };
+		2B405E0354662E6E83AF363CFAFD8F86 /* GGLInstanceIDConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDConfig.h; path = Headers/Public/GGLInstanceIDConfig.h; sourceTree = "<group>"; };
 		2B6A18AABC69FE4B7F26E65C816BB338 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BD9020181CF2678525F7622CDD61E0E /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
-		2DCB9F3FD5F77280A872776A8D2F92AF /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerBarButtonItem.h; path = MMDrawerController/MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
-		3239B7EDFFD58588E86D193691466C75 /* BAAFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAFile.m; path = "BaasBox-iOS-SDK/BAAFile.m"; sourceTree = "<group>"; };
-		324A13314F73D26BEE8562C1CAE1A62E /* GGLContext+CloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GGLContext+CloudMessaging.h"; path = "Headers/GGLCloudMessaging/Public/GGLContext+CloudMessaging.h"; sourceTree = "<group>"; };
-		32B7C6831A723FD5C934B4C898F9E87F /* MMDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		344C9F7525CC082CB3B76D33201948ED /* libGTM_NSData+zlib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSData+zlib.a"; path = "Libraries/libGTM_NSData+zlib.a"; sourceTree = "<group>"; };
+		2DCC5CC782353B88EBA92772B7C429F6 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+FontAwesome.h"; path = "BButton/Classes/NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		2E47B2970153CBB3C3DE013D2233FD9B /* GCMConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMConfig.h; path = Headers/Public/GCMConfig.h; sourceTree = "<group>"; };
 		359F9932DF7630442BB4FB2A2C3FF3C5 /* Pods-Yibby-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Yibby-acknowledgements.plist"; sourceTree = "<group>"; };
-		36093A586102AA2689FBAE51E9F406F0 /* BaasBox.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BaasBox.h; path = "BaasBox-iOS-SDK/BaasBox.h"; sourceTree = "<group>"; };
+		3636ABEF0A87E16A43B6A88FCE6E2BCC /* BButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		367EBBE5F2B36CFE36C3FE6055D0708D /* YokoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YokoTextField.swift; path = TextFieldEffects/TextFieldEffects/YokoTextField.swift; sourceTree = "<group>"; };
+		36B120DEDDA36A119BC94AC8991EE7E2 /* IsaoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IsaoTextField.swift; path = TextFieldEffects/TextFieldEffects/IsaoTextField.swift; sourceTree = "<group>"; };
+		37801B3010035AA1FD079C3B1E19F42A /* GGLContext+CloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GGLContext+CloudMessaging.h"; path = "Headers/GGLCloudMessaging/Public/GGLContext+CloudMessaging.h"; sourceTree = "<group>"; };
 		37ECA5F82C19F792E4F5146A01C56514 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		38A47AF1F319C88660A9A92A521351BC /* TTRangeSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTRangeSlider-umbrella.h"; sourceTree = "<group>"; };
-		3CA241501DB0786252ED9B25389CCB32 /* BAAClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAClient.m; path = "BaasBox-iOS-SDK/BAAClient.m"; sourceTree = "<group>"; };
-		3CE5A5FFA5005B298893655B09EE1107 /* UIColor+BButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+BButton.h"; path = "BButton/Classes/UIColor+BButton.h"; sourceTree = "<group>"; };
-		3D4E9D464BFC9095A714CFA413B3E571 /* libGTM_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_core.a; path = Libraries/libGTM_core.a; sourceTree = "<group>"; };
+		39AA09320A41E3F41EF7089B97E669DC /* libGTM_NSDictionary+URLArguments.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSDictionary+URLArguments.a"; path = "Libraries/libGTM_NSDictionary+URLArguments.a"; sourceTree = "<group>"; };
+		3AAE530080751387518C9EF4363C743F /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		3C10FA71BD49F4736D3023EA97D9A914 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3E7F827592D79FE993F67A149AF5E0AE /* Pods-YibbyTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YibbyTests-umbrella.h"; sourceTree = "<group>"; };
-		40CE6FB519781C689A0CF4E417393A8B /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		4201E0F986C54BF6A7241E6817B2DA23 /* BButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BButton.m; path = BButton/Classes/BButton.m; sourceTree = "<group>"; };
-		43B2A7EEF8A1C4FF0AFD7DA61B8E47F6 /* TTRangeSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TTRangeSlider.xcconfig; sourceTree = "<group>"; };
+		3E94DFA0CAEC4B4FCA403AC9779BA24F /* GGLContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLContext.h; path = Headers/GGLCore/Public/GGLContext.h; sourceTree = "<group>"; };
+		3FCA6335403473D8CECC20F6C5EE4EE0 /* libGTM_Regex.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_Regex.a; path = Libraries/libGTM_Regex.a; sourceTree = "<group>"; };
+		4375002B0872DF158943025E50D02CF8 /* MMDrawerVisualState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerVisualState.h; path = MMDrawerController/MMDrawerVisualState.h; sourceTree = "<group>"; };
+		43BB2D547E1A999A780DFA2321B4F77A /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerBarButtonItem.h; path = MMDrawerController/MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		467B4C09C535EEED0D6E535D4CA67EC3 /* TTRangeSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTRangeSlider-prefix.pch"; sourceTree = "<group>"; };
+		468EA2CB650678173D1B9755547711B9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46EE66E44AEC02DDE58A8F01A8795A6E /* Analytics-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Analytics-Module.h"; path = "Headers/ModuleHeaders/Analytics-Module.h"; sourceTree = "<group>"; };
 		4917026D18E6AD7056A9A0D7B5F58A53 /* Pods-YibbyTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YibbyTests-dummy.m"; sourceTree = "<group>"; };
-		4AA04387F7A452067D9DD7D9845A71B8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
-		4AD2153ECA98EC16D6AE8B9A66B15660 /* libGTM_DebugUtils.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_DebugUtils.a; path = Libraries/libGTM_DebugUtils.a; sourceTree = "<group>"; };
-		4E5E3A8C49F121CBAEFF0CCCD5CC84E3 /* TTRangeSliderDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTRangeSliderDelegate.h; path = Pod/Classes/TTRangeSliderDelegate.h; sourceTree = "<group>"; };
-		4EDFBB1ED317E387E1087C6ACB8D42A8 /* libGTM_RoundedRectPath.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_RoundedRectPath.a; path = Libraries/libGTM_RoundedRectPath.a; sourceTree = "<group>"; };
-		518D20EA4C5137A45625CBB375F3B8AD /* BaasBoxSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BaasBoxSDK.modulemap; sourceTree = "<group>"; };
-		55670D1A5509BF69210CFC6E76E12A55 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		56D819A35EC6B9CBCEA48D1BCA9B8E5B /* GCMService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMService.h; path = Headers/Public/GCMService.h; sourceTree = "<group>"; };
-		58C441F8CA95A35C53F2A23BCB8897AD /* MMDrawerVisualState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerVisualState.m; path = MMDrawerController/MMDrawerVisualState.m; sourceTree = "<group>"; };
-		5C2D05329C7738981A38AC2F8270ADBE /* libGTM_NSDictionary+URLArguments.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSDictionary+URLArguments.a"; path = "Libraries/libGTM_NSDictionary+URLArguments.a"; sourceTree = "<group>"; };
-		5DF353F900F27430FCAC33629A8A879C /* libGTM_GTMURLBuilder.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_GTMURLBuilder.a; path = Libraries/libGTM_GTMURLBuilder.a; sourceTree = "<group>"; };
-		62490593C3DB1394B04B79A7E9E58DB8 /* TTRangeSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TTRangeSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		632181100CAB46704422122DC2985045 /* CloudMessaging-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CloudMessaging-Module.h"; path = "Headers/ModuleHeaders/CloudMessaging-Module.h"; sourceTree = "<group>"; };
-		63BDE4C69003650E3796EE8B7FC62AB7 /* MMDrawerController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MMDrawerController.xcconfig; sourceTree = "<group>"; };
-		64ECAF0B089BFFBEA4DF5FA36C511D08 /* AppInvite-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AppInvite-Module.h"; path = "Headers/ModuleHeaders/AppInvite-Module.h"; sourceTree = "<group>"; };
-		67A07712B67D75980BC0682E0A8FEB7C /* libGTMSessionFetcher_full.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_full.a; path = Libraries/libGTMSessionFetcher_full.a; sourceTree = "<group>"; };
-		6CD80F0E59976A1DFFEE55EBAAA91FC5 /* BAAGlobals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAGlobals.h; path = "BaasBox-iOS-SDK/BAAGlobals.h"; sourceTree = "<group>"; };
+		4964DF2A926CA6E1BB064250D2D386EB /* BaasBoxSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BaasBoxSDK-umbrella.h"; sourceTree = "<group>"; };
+		4BFA2F61A7E7496FC63129D0F809E7CC /* TextFieldEffects-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-prefix.pch"; sourceTree = "<group>"; };
+		4D1086E4869F40858DC47327C6E69A4A /* BaasBox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BaasBox.m; path = "BaasBox-iOS-SDK/BaasBox.m"; sourceTree = "<group>"; };
+		4DF7BE39DFF37128BE0155B5157ECC54 /* GCMReceiverDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMReceiverDelegate.h; path = Headers/Public/GCMReceiverDelegate.h; sourceTree = "<group>"; };
+		4E1BB71FFEDB29A0659C6D353B5FE462 /* libGSDK_Overload.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGSDK_Overload.a; path = Libraries/libGSDK_Overload.a; sourceTree = "<group>"; };
+		4F2976452B873F21938C240BCF1F9989 /* BButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BButton.h; path = BButton/Classes/BButton.h; sourceTree = "<group>"; };
+		501D3B15FD07076C6B07171F86218404 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerBarButtonItem.m; path = MMDrawerController/MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		524BBA504138EABEF7688D93C4EB908F /* BaasBoxSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BaasBoxSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54B0AE6BC3FB9827C6CDC8A2E79CB87F /* MMDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		586D67933F799BC6E122B2110A462998 /* BAAUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAUser.m; path = "BaasBox-iOS-SDK/BAAUser.m"; sourceTree = "<group>"; };
+		593CC0D98B960EC9F77D0DD2C230CAC6 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D206B9310661E43A8CD2372AFC4B115 /* libGcmLib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGcmLib.a; path = Libraries/libGcmLib.a; sourceTree = "<group>"; };
+		5D8B966C9C16C2707EA8089CFFAEBB36 /* MadokaTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MadokaTextField.swift; path = TextFieldEffects/TextFieldEffects/MadokaTextField.swift; sourceTree = "<group>"; };
+		62561E9CA3D461FB8657812CDA76FFA0 /* libGTM_NSStringHTML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringHTML.a; path = Libraries/libGTM_NSStringHTML.a; sourceTree = "<group>"; };
+		642F4BEBDA00DD84BD894A6895C16CD8 /* BAAObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAObject.m; path = "BaasBox-iOS-SDK/BAAObject.m"; sourceTree = "<group>"; };
+		664D0358183F0567D1A1E36BDB0186A3 /* libGTM_KVO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_KVO.a; path = Libraries/libGTM_KVO.a; sourceTree = "<group>"; };
+		67E2B530B15DF0D3B69CF6F2DBC0D234 /* TTRangeSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TTRangeSlider.modulemap; sourceTree = "<group>"; };
+		6A556102AF8781508F924438A1B5D257 /* TTRangeSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTRangeSlider.h; path = Pod/Classes/TTRangeSlider.h; sourceTree = "<group>"; };
+		6C7E39F283991F7FEE074A10A3F4B694 /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TextFieldEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D35C5B3E307AC9EC2E99A7935D2B633 /* Pods-YibbyTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-YibbyTests.modulemap"; sourceTree = "<group>"; };
-		6F2C5E06B6FFC165C5795C7057001FE5 /* MMDrawerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-umbrella.h"; sourceTree = "<group>"; };
-		70585D45118C67E4A27C9C9EB5936992 /* BaasBoxSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BaasBoxSDK-umbrella.h"; sourceTree = "<group>"; };
-		714D911F51AF6D959C05009EFA2A1A76 /* libGTM_iPhone.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_iPhone.a; path = Libraries/libGTM_iPhone.a; sourceTree = "<group>"; };
-		71ACFE397E79CFE37BE9800E6D85E322 /* GoogleCloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GoogleCloudMessaging.h; path = Headers/Public/GoogleCloudMessaging.h; sourceTree = "<group>"; };
-		742A96158A435A4615FABB9E96C31B51 /* BButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BButton.xcconfig; sourceTree = "<group>"; };
-		746F87BD64221937E9A89F3D78CED58F /* CloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CloudMessaging.h; path = Headers/GGLCloudMessaging/Public/CloudMessaging.h; sourceTree = "<group>"; };
-		771A8E6EEFA50A08C3738D8411C85183 /* FontAwesome.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.ttf; path = BButton/resources/FontAwesome.ttf; sourceTree = "<group>"; };
-		777CCFE5B5FC36ABFC0D64244FCD2E5A /* GGLInstanceIDDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDDelegate.h; path = Headers/Public/GGLInstanceIDDelegate.h; sourceTree = "<group>"; };
-		7BD2D1B628EB9B39583A8ACA20C09DCC /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMDrawerController+Subclass.h"; path = "MMDrawerController/MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
-		80AF6111B9147ADE10ACD2F5C4D87553 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerBarButtonItem.m; path = MMDrawerController/MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
-		81655AA6F51BE21295F536984F2090C6 /* GGLInstanceIDHeaders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDHeaders.h; path = Headers/Public/GGLInstanceIDHeaders.h; sourceTree = "<group>"; };
-		85C52F5DFE22B52E74E34242999D5AFF /* libGGLCloudMessaging.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCloudMessaging.a; path = Libraries/libGGLCloudMessaging.a; sourceTree = "<group>"; };
+		6F03D8012DD4ACA4733EB8DCDC62A233 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MMDrawerController.h"; path = "MMDrawerController/UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		72FE03E4C7A0B476B050D06313A78961 /* BButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BButton.m; path = BButton/Classes/BButton.m; sourceTree = "<group>"; };
+		73DCE21AA805458BA892AF64ADC467DF /* BaasBoxSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BaasBoxSDK-dummy.m"; sourceTree = "<group>"; };
+		74D322A50FEE6A06E7A3277CD0C37114 /* TextFieldEffects.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TextFieldEffects.xcconfig; sourceTree = "<group>"; };
+		75E3D7B1F46E7AAE491347D96FEFB826 /* libGTM_SystemVersion.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_SystemVersion.a; path = Libraries/libGTM_SystemVersion.a; sourceTree = "<group>"; };
+		773C4B976330F8543AA7C569CD64ED40 /* libGTM_NSData+zlib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSData+zlib.a"; path = "Libraries/libGTM_NSData+zlib.a"; sourceTree = "<group>"; };
+		7A11B9BCC52F07D77BF753B5208E4A49 /* GGLInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceID.h; path = Headers/Public/GGLInstanceID.h; sourceTree = "<group>"; };
+		7D28CD1E3A317986E56E18A06B9ABC55 /* CloudMessaging-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CloudMessaging-Module.h"; path = "Headers/ModuleHeaders/CloudMessaging-Module.h"; sourceTree = "<group>"; };
+		7E2DE33C6B0B325740551B126C2A144E /* BButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BButton.xcconfig; sourceTree = "<group>"; };
+		7E2FF0BD0ACDF005754CBE60BFB66960 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E552B64DEBB5325B3D8EAF34FB464FF /* BAAClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAClient.h; path = "BaasBox-iOS-SDK/BAAClient.h"; sourceTree = "<group>"; };
+		7F3D089E4A69295D6D4BA5AC3B73471D /* TextFieldEffects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TextFieldEffects.modulemap; sourceTree = "<group>"; };
 		85D6EC2B894E2B73F52ABF65F6B4EA41 /* Pods-Yibby-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Yibby-dummy.m"; sourceTree = "<group>"; };
-		8801C4EEEC0A7FE438D108C9DFD7325C /* TTRangeSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TTRangeSlider.m; path = Pod/Classes/TTRangeSlider.m; sourceTree = "<group>"; };
-		8851AB3A4FF148507E3DBB899BA37C8E /* SignIn-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SignIn-Module.h"; path = "Headers/ModuleHeaders/SignIn-Module.h"; sourceTree = "<group>"; };
-		8883DAA86A4518C93620A6A1CEEF0755 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AF7557F72EE0376ABCF2CF0C23297D2 /* Pods-YibbyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YibbyTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B2A0C221EFAC2B834A128756BABD0F7 /* BAAGlobals.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAGlobals.m; path = "BaasBox-iOS-SDK/BAAGlobals.m"; sourceTree = "<group>"; };
+		8B86CBDA3EF099779CEC482E788C1651 /* GCMPubSub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMPubSub.h; path = Headers/Public/GCMPubSub.h; sourceTree = "<group>"; };
+		8CF927E2BA17A154382B6F1A5A05C970 /* GGLInstanceIDDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDDelegate.h; path = Headers/Public/GGLInstanceIDDelegate.h; sourceTree = "<group>"; };
 		8E1B2C67265F59632BDEF510604E8E12 /* Pods-Yibby-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Yibby-umbrella.h"; sourceTree = "<group>"; };
-		8E521702091869CC6C926F6FDF0EAB70 /* GMRConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GMRConfiguration.h; path = Headers/GGLCore/Public/GMRConfiguration.h; sourceTree = "<group>"; };
-		92B538E911EF29147BB6FF8624E77B20 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		9397622FA6A9822EA94895531238F42F /* GCMPubSub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMPubSub.h; path = Headers/Public/GCMPubSub.h; sourceTree = "<group>"; };
-		97B7C72804898E54F65AEA6D39823C5C /* BAAFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAFile.h; path = "BaasBox-iOS-SDK/BAAFile.h"; sourceTree = "<group>"; };
-		98EC3390D16C922CE0556F1AABC212CE /* BaasBoxSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BaasBoxSDK.xcconfig; sourceTree = "<group>"; };
+		9296DD31D205C97FF155C4C265D8E32C /* TTRangeSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TTRangeSlider.m; path = Pod/Classes/TTRangeSlider.m; sourceTree = "<group>"; };
+		931B629B82A1D16DE05BC15D75711F0F /* UIColor+BButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+BButton.h"; path = "BButton/Classes/UIColor+BButton.h"; sourceTree = "<group>"; };
+		96153A8391EA9A600A186B6380068364 /* BAAObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAObject.h; path = "BaasBox-iOS-SDK/BAAObject.h"; sourceTree = "<group>"; };
+		97C007E53A030A3AD8B02DA279872E1D /* BAAMutableURLRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAMutableURLRequest.h; path = "BaasBox-iOS-SDK/BAAMutableURLRequest.h"; sourceTree = "<group>"; };
+		988899DDCF6D9FD1EAD888715660A55F /* libGTM_RoundedRectPath.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_RoundedRectPath.a; path = Libraries/libGTM_RoundedRectPath.a; sourceTree = "<group>"; };
 		9AB254A0FF9C0E1ECCCC3CA36E6AC016 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		9BCC50EC1C73DDA86397429CA1B08C8B /* BaasBoxSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BaasBoxSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BD21F0F46602DEC45DA2B0908F3C8E2 /* MMDrawerController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MMDrawerController.modulemap; sourceTree = "<group>"; };
-		A21C49F1056FC6C6A28A6E00771B8519 /* libGGLCore.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCore.a; path = Libraries/libGGLCore.a; sourceTree = "<group>"; };
-		A3B828951DC3C36BE9E895A891A54156 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MMDrawerController.m"; path = "MMDrawerController/UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
-		A539A8EC0CCD2B2FD02B2187CCC3B563 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A73976FA2DE302C56B516FA1DEF0BF22 /* libGGLInstanceIDLib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLInstanceIDLib.a; path = Libraries/libGGLInstanceIDLib.a; sourceTree = "<group>"; };
-		A8ABBEDC7DC889107729EFB8D0EEBDBA /* libGTM_NSStringXML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringXML.a; path = Libraries/libGTM_NSStringXML.a; sourceTree = "<group>"; };
-		A8AF6448D978C139F82ACE937063F879 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A97E2694CC17C565BA0EF968646489F3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA3E49E9AE15B665BFD92CE94EFE0940 /* TTRangeSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTRangeSlider.h; path = Pod/Classes/TTRangeSlider.h; sourceTree = "<group>"; };
+		9ED87FD64058D8BD61645A91EF0825A7 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		9FF8C57AC972F4D8687141AF1A5B481A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1013C7584182897CC7828F2A13E7174 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerVisualState.m; path = MMDrawerController/MMDrawerVisualState.m; sourceTree = "<group>"; };
+		A3A3F5DCAB5F1B77D018B850F973188C /* MMDrawerController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MMDrawerController.xcconfig; sourceTree = "<group>"; };
+		A49344F453AD1FA34F60352A7C04E20A /* MMDrawerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController-dummy.m"; sourceTree = "<group>"; };
+		A510ED4BC0CAD65742FF4967B57DAE9C /* libGTM_UIFont+LineHeight.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_UIFont+LineHeight.a"; path = "Libraries/libGTM_UIFont+LineHeight.a"; sourceTree = "<group>"; };
+		A7606E79619D3CBF656DEB596C77E2BC /* YoshikoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YoshikoTextField.swift; path = TextFieldEffects/TextFieldEffects/YoshikoTextField.swift; sourceTree = "<group>"; };
+		A9C739CF00D7738D38E90D65A392BECC /* libGTM_StringEncoding.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_StringEncoding.a; path = Libraries/libGTM_StringEncoding.a; sourceTree = "<group>"; };
+		A9E1F9BC4C57D540482EEC11D9235F7F /* MMDrawerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-prefix.pch"; sourceTree = "<group>"; };
+		AB1752A8489797F3523ED7621549BBFB /* GoogleCloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GoogleCloudMessaging.h; path = Headers/Public/GoogleCloudMessaging.h; sourceTree = "<group>"; };
+		AC1476B402A173D9B3237E97C348F979 /* FontAwesome.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.ttf; path = BButton/resources/FontAwesome.ttf; sourceTree = "<group>"; };
 		AF4F71EEE1C9E9068C552E682B6B792F /* Pods-Yibby.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Yibby.debug.xcconfig"; sourceTree = "<group>"; };
-		B1703B4661F02E8BABDBACE9674B422D /* GGLInstanceIDConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDConfig.h; path = Headers/Public/GGLInstanceIDConfig.h; sourceTree = "<group>"; };
-		B24531BEB4D393FBBC9BD45FCAFAE6E1 /* BButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BButton-prefix.pch"; sourceTree = "<group>"; };
-		B44CEA0B6576DB76B583B7787273F741 /* BaasBoxSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BaasBoxSDK-prefix.pch"; sourceTree = "<group>"; };
-		B4E23F152D6D83F85116743F3FE43CFC /* NSString+FontAwesome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+FontAwesome.h"; path = "BButton/Classes/NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		AFEFA342BEF16C1EB42249099A8D84C3 /* libGGLInstanceIDLib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLInstanceIDLib.a; path = Libraries/libGGLInstanceIDLib.a; sourceTree = "<group>"; };
+		B12FD5FB784067650FB8C3210606FC81 /* libGTMSessionFetcher_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_core.a; path = Libraries/libGTMSessionFetcher_core.a; sourceTree = "<group>"; };
+		B25C9931EAD90B1021815000C36491FC /* AkiraTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AkiraTextField.swift; path = TextFieldEffects/TextFieldEffects/AkiraTextField.swift; sourceTree = "<group>"; };
+		B42F76AFB981B9CD84B92C5F2D90100E /* HoshiTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HoshiTextField.swift; path = TextFieldEffects/TextFieldEffects/HoshiTextField.swift; sourceTree = "<group>"; };
+		B52ED926D03DDFC96C719F6DE209D58F /* GGLInstanceIDHeaders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLInstanceIDHeaders.h; path = Headers/Public/GGLInstanceIDHeaders.h; sourceTree = "<group>"; };
+		B5A5168FA13DB2DFBEDDDC97A251EBF9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8E822D8BD53E7EDDCD7D504C9524D8F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BAF60B04E027032F80E9FFE4C1C1FEE3 /* libGTM_AddressBook.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_AddressBook.a; path = Libraries/libGTM_AddressBook.a; sourceTree = "<group>"; };
+		BC5C90A21AAC98F37DD43787369BEE2E /* SignIn-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SignIn-Module.h"; path = "Headers/ModuleHeaders/SignIn-Module.h"; sourceTree = "<group>"; };
+		BCE9AA2476F083F55A21AD4532095A59 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD48D87E9928646A5E73854624D15ACF /* libGTM_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_core.a; path = Libraries/libGTM_core.a; sourceTree = "<group>"; };
+		BDD32D5C7795AC7770FD7A7666702AF1 /* BButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BButton-dummy.m"; sourceTree = "<group>"; };
 		BE8B03226B3BE5E27FCE55A126971647 /* Pods-YibbyTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YibbyTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		C0BFE4AB27636EE3BAF0D8A49549558A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C167D53314F487D1E8F9CF35CFA899F6 /* BaasBoxSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BaasBoxSDK-dummy.m"; sourceTree = "<group>"; };
+		C1C0C3D63E060D609D0CF4228EDC6821 /* BaasBoxSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BaasBoxSDK.xcconfig; sourceTree = "<group>"; };
+		C3677D1A44F5A9C0753235BB75712197 /* TextFieldEffects-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-umbrella.h"; sourceTree = "<group>"; };
 		C3982802FF0216B2F035E9BF37446DD6 /* Pods-YibbyTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YibbyTests-resources.sh"; sourceTree = "<group>"; };
-		C4885303CC35529584D906BCC95F6A5C /* BButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5C17FBA876BF48F99416F5A4A6E6E86 /* GGLErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLErrorCode.h; path = Headers/GGLCore/Public/GGLErrorCode.h; sourceTree = "<group>"; };
-		C6739DC0E087BA9715CC178390D57942 /* BAAGlobals.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAGlobals.m; path = "BaasBox-iOS-SDK/BAAGlobals.m"; sourceTree = "<group>"; };
-		C7C7741CEEFD47EDDA909EF919D12BBE /* GGLContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLContext.h; path = Headers/GGLCore/Public/GGLContext.h; sourceTree = "<group>"; };
-		C7F0CD7C206DCA1F0518CF08D281DD97 /* libProtocolBuffers.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libProtocolBuffers.a; path = Libraries/libProtocolBuffers.a; sourceTree = "<group>"; };
-		C83C3A540D9A2F3E2045A69D7E8207EB /* BAAUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAUser.m; path = "BaasBox-iOS-SDK/BAAUser.m"; sourceTree = "<group>"; };
-		C86B06FC78FF4998EE3BCF926DCC9726 /* BAAObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAObject.m; path = "BaasBox-iOS-SDK/BAAObject.m"; sourceTree = "<group>"; };
-		C8D7F395FE6F4621C19B7D3E3FF61E8B /* GCMConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCMConfig.h; path = Headers/Public/GCMConfig.h; sourceTree = "<group>"; };
-		C92AED7FD1384400E20C75C8B99F2CE8 /* libGTM_SystemVersion.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_SystemVersion.a; path = Libraries/libGTM_SystemVersion.a; sourceTree = "<group>"; };
-		CA12ABE3BD46E5B1411373612DA14950 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
-		CB1B8260E972AD7E1C1AE7DD164E6598 /* libGTM_NSStringHTML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringHTML.a; path = Libraries/libGTM_NSStringHTML.a; sourceTree = "<group>"; };
-		CB3585A48E98D641FAD84F21B0B43B8F /* MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerController.m; path = MMDrawerController/MMDrawerController.m; sourceTree = "<group>"; };
-		D0B0E8E71923013D58328F5778F90277 /* Core.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Headers/GGLCore/Public/Core.h; sourceTree = "<group>"; };
-		D3DFD66E59F4040C30A0B0837A175E5F /* NSString+FontAwesome.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+FontAwesome.m"; path = "BButton/Classes/NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		C402E38672A98DB06A3B61C11E790F35 /* libGTMStackTrace.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMStackTrace.a; path = Libraries/libGTMStackTrace.a; sourceTree = "<group>"; };
+		C6870C3D3622B646A53237BDC325A179 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MMDrawerController.m"; path = "MMDrawerController/UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		C6F3FDE9B5D68EFB749C518ED0F67456 /* BButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BButton.modulemap; sourceTree = "<group>"; };
+		C70183A448DB38259334737C258F39B4 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
+		C8D8E2974E8D82EC34ABF304CA52607F /* libGGLCore.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCore.a; path = Libraries/libGGLCore.a; sourceTree = "<group>"; };
+		CADD217524B46D1947113E40C505E501 /* CloudMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CloudMessaging.h; path = Headers/GGLCloudMessaging/Public/CloudMessaging.h; sourceTree = "<group>"; };
+		CC1587BA6C6E1EC80722B8F88512664F /* BButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BButton-prefix.pch"; sourceTree = "<group>"; };
+		CEB034EC67CE564D318C601EB632C28B /* libGTM_DebugUtils.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_DebugUtils.a; path = Libraries/libGTM_DebugUtils.a; sourceTree = "<group>"; };
+		CF588D0B26E92DD244E306BBFACC9D60 /* MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerController.h; path = MMDrawerController/MMDrawerController.h; sourceTree = "<group>"; };
+		D1433C058BD82A89F88E41CD92F2E1D6 /* libGIP_Reachability.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGIP_Reachability.a; path = Libraries/libGIP_Reachability.a; sourceTree = "<group>"; };
+		D56923E29313DF7643AF9F86B6B0CF51 /* MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerController.m; path = MMDrawerController/MMDrawerController.m; sourceTree = "<group>"; };
 		D5E95185849F976FDDCE809D1FEA09DF /* Pods-Yibby-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Yibby-frameworks.sh"; sourceTree = "<group>"; };
 		D64AB8C0A1E815C07C6F968F76F7E559 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		D7FFA88E66438F24D98E014FF674FE6C /* BAAMutableURLRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAMutableURLRequest.h; path = "BaasBox-iOS-SDK/BAAMutableURLRequest.h"; sourceTree = "<group>"; };
+		D8C275759F82F4AF09FA7249EF7A6676 /* BAAGlobals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAGlobals.h; path = "BaasBox-iOS-SDK/BAAGlobals.h"; sourceTree = "<group>"; };
+		D94D0520EEB4BE431EFF95D50CA7B0A9 /* BaasBoxSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BaasBoxSDK-prefix.pch"; sourceTree = "<group>"; };
+		D999CD88ECA1C749E8A6FD4AEFD2A1C0 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
 		DA3C6BDB5FE18A14E175D3CF25A58745 /* Pods-YibbyTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YibbyTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DB58E6E3BE77B8210CC881578FC7D5F2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
-		DC4B8CB051D7C7D41830D8B39F3B62C4 /* Core-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Core-Module.h"; path = "Headers/ModuleHeaders/Core-Module.h"; sourceTree = "<group>"; };
+		DADA421A790432711FD9EA107200A000 /* BAAMutableURLRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAMutableURLRequest.m; path = "BaasBox-iOS-SDK/BAAMutableURLRequest.m"; sourceTree = "<group>"; };
+		DC950A35CD2555C3E61E75165C674E09 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
 		E135D7DA49F9DDE527AEE6F073E2CD10 /* Pods-YibbyTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YibbyTests-frameworks.sh"; sourceTree = "<group>"; };
-		E1625E103BB09783DEAD138F592FAFA5 /* libGIP_Locale.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGIP_Locale.a; path = Libraries/libGIP_Locale.a; sourceTree = "<group>"; };
-		E3EE675E539ED25CF23038C8EEAF807E /* TTRangeSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTRangeSlider-dummy.m"; sourceTree = "<group>"; };
-		E4FE4C3D25A29E14F3D5F5838E40C411 /* libGTM_AddressBook.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_AddressBook.a; path = Libraries/libGTM_AddressBook.a; sourceTree = "<group>"; };
-		E55B1947F00F023CC1F0FFCF5FA742AD /* MMDrawerVisualState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerVisualState.h; path = MMDrawerController/MMDrawerVisualState.h; sourceTree = "<group>"; };
-		E5C7BDA3ECE2EBB226A5F0B2064BDCFD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43C7212E2B928207FC0368C27D248FB /* TextFieldsEffects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldsEffects.swift; path = TextFieldEffects/TextFieldEffects/TextFieldsEffects.swift; sourceTree = "<group>"; };
 		E7A5270E7A511DCD38E0D79088730070 /* Pods-Yibby-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Yibby-resources.sh"; sourceTree = "<group>"; };
-		E83D33D9B413A757C988899BD4760B37 /* libGcmLib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGcmLib.a; path = Libraries/libGcmLib.a; sourceTree = "<group>"; };
+		E8289DA67BE3C96C1D61DEE9BD762088 /* Pods_YibbyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YibbyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E848A564C552B7C956A737A8FB570B8A /* Pods-Yibby.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Yibby.modulemap"; sourceTree = "<group>"; };
-		E988B262FB119ACD3BE97DE3F63B98AE /* libGTM_KVO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_KVO.a; path = Libraries/libGTM_KVO.a; sourceTree = "<group>"; };
-		EA63594794B5D4AB85D28E76D7A0F01A /* libGTM_NSScannerJSON.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSScannerJSON.a; path = Libraries/libGTM_NSScannerJSON.a; sourceTree = "<group>"; };
-		F42E386B14910A400F239394479867DC /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MMDrawerController.h"; path = "MMDrawerController/UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
-		F7A10859C7786B7C427422510C4B0E42 /* MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerController.h; path = MMDrawerController/MMDrawerController.h; sourceTree = "<group>"; };
-		F837A8D66ADFB657B77472FF93AC3F7C /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
-		FA759FEC47506E6F58D85DD74A08F1A1 /* Pods_YibbyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YibbyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB708BF74646022A2B7C6DC7E9D83399 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED257B078EDAFE968BE5935061FD7D0C /* TTRangeSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTRangeSlider-dummy.m"; sourceTree = "<group>"; };
+		EDBAA4D64BA469E47C5496EB2B873069 /* BaasBoxSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BaasBoxSDK.modulemap; sourceTree = "<group>"; };
+		EDE80D63A13F94586DF89D9766FC2B57 /* UIColor+BButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+BButton.m"; path = "BButton/Classes/UIColor+BButton.m"; sourceTree = "<group>"; };
+		EE3A2239694CB2910444083803433B5D /* GGLConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLConfiguration.h; path = Headers/GGLCore/Public/GGLConfiguration.h; sourceTree = "<group>"; };
+		EEA19182918393D7AF066FD902526B5B /* TextFieldEffects-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldEffects-dummy.m"; sourceTree = "<group>"; };
+		EF52C76EC444CAB9CB22F1AB310AFA76 /* Core.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Headers/GGLCore/Public/Core.h; sourceTree = "<group>"; };
+		F45B80D414A7F3B04B06AA81AB4503AE /* libProtocolBuffers.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libProtocolBuffers.a; path = Libraries/libProtocolBuffers.a; sourceTree = "<group>"; };
+		F462C98D68A08A3EDE5D389114320EAF /* GMRConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GMRConfiguration.h; path = Headers/GGLCore/Public/GMRConfiguration.h; sourceTree = "<group>"; };
+		F5A577A4AF624564DDB5D85BC0FF3974 /* libGGLCloudMessaging.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCloudMessaging.a; path = Libraries/libGGLCloudMessaging.a; sourceTree = "<group>"; };
+		F5DB50265980DC590A87CA6296FB3592 /* MinoruTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinoruTextField.swift; path = TextFieldEffects/TextFieldEffects/MinoruTextField.swift; sourceTree = "<group>"; };
+		F735E1CBF61B37E56B4DCB41616CDE40 /* BAAFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAFile.m; path = "BaasBox-iOS-SDK/BAAFile.m"; sourceTree = "<group>"; };
+		F7D10F33D3BC4ED4D631F0DEF28BE640 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+FontAwesome.m"; path = "BButton/Classes/NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		F9363FB1478C8AF77682DA1ABC9B1484 /* KaedeTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KaedeTextField.swift; path = TextFieldEffects/TextFieldEffects/KaedeTextField.swift; sourceTree = "<group>"; };
+		F94483B759A48E90EC1CAAA03A5BFB12 /* Core-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Core-Module.h"; path = "Headers/ModuleHeaders/Core-Module.h"; sourceTree = "<group>"; };
+		F9C62D18C74B84DE2EF76EC86048EE4D /* BButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BButton-umbrella.h"; sourceTree = "<group>"; };
+		FB4BF6A36D317FC0405E82F018341083 /* libGTM_NSScannerJSON.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSScannerJSON.a; path = Libraries/libGTM_NSScannerJSON.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,19 +342,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A3079D0B26C55C1C8A06C9B919F4F6E /* Frameworks */ = {
+		5E8E1CD1FE6F3EB6D5B2D793771C2644 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				892AC083DECBE017EDE33C43C2CB6364 /* Foundation.framework in Frameworks */,
+				5C5543E10D4D04FE98B3AC65F603FA51 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90928B7CB2D8817B69B3D29AD26E8DA8 /* Frameworks */ = {
+		91C1B21F89325E27C7B54FDAC2798403 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D0B74B129216EF513B47B7896C89309 /* Foundation.framework in Frameworks */,
+				C1AA154AB881390AE07D5870287ECC8D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A44408C48E520D2E3DBD35877525267F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0AE11521395FE069C6DA2CD49FFEC4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,30 +383,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BCDCD539ABC7D32E5DACB6B174C8ECB9 /* Frameworks */ = {
+		D5C411FD7F8F1CC5E2DCE50248716AA7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4946694FFD2FE6AC8FD123FFC24EEB9F /* Foundation.framework in Frameworks */,
+				86030F60571858C414B31ECE4AEC4BDE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E6481FB29C2157AB5A73C16CBBA15AA8 /* Frameworks */ = {
+		EC27594F23736DEE3D1F8AB0B5CAD6D9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0C5CC7B3A7F8E04FBEB6260D19A8BBA /* Foundation.framework in Frameworks */,
+				37BF0601AA8270754DE912A3D595E71D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1224C043CAF3DF02DD5877F19AEA6189 /* Frameworks */ = {
+		0BC079EC7FB40CC79B082E49563D0039 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E1625E103BB09783DEAD138F592FAFA5 /* libGIP_Locale.a */,
-				1DDBB0586D70EECB89442F5FBAB43A5A /* libGIP_Reachability.a */,
+				4E1BB71FFEDB29A0659C6D353B5FE462 /* libGSDK_Overload.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,169 +418,236 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1719DBD75D180B15B4244C40A49B49BC /* BaasBoxSDK */ = {
+		15A0D5CAB91E0C64E8D5706E8CD8C152 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				043904F126AFB41EB887F2D71D4B5BBE /* BAAClient.h */,
-				3CA241501DB0786252ED9B25389CCB32 /* BAAClient.m */,
-				97B7C72804898E54F65AEA6D39823C5C /* BAAFile.h */,
-				3239B7EDFFD58588E86D193691466C75 /* BAAFile.m */,
-				6CD80F0E59976A1DFFEE55EBAAA91FC5 /* BAAGlobals.h */,
-				C6739DC0E087BA9715CC178390D57942 /* BAAGlobals.m */,
-				D7FFA88E66438F24D98E014FF674FE6C /* BAAMutableURLRequest.h */,
-				1E217F89537DC75945BB0FD137BFF0F9 /* BAAMutableURLRequest.m */,
-				18F20ACDE64DFA7714B3908872D786D4 /* BAAObject.h */,
-				C86B06FC78FF4998EE3BCF926DCC9726 /* BAAObject.m */,
-				36093A586102AA2689FBAE51E9F406F0 /* BaasBox.h */,
-				157BB8DAB0F33CCF261361667A833471 /* BaasBox.m */,
-				053034E037CAB2A381CEE155055572A4 /* BAAUser.h */,
-				C83C3A540D9A2F3E2045A69D7E8207EB /* BAAUser.m */,
-				380A4DC20664B6B6315678D5BB887C5C /* Support Files */,
-			);
-			path = BaasBoxSDK;
-			sourceTree = "<group>";
-		};
-		1EC6CBDD28178058DFDF508D40BC2829 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9BCC50EC1C73DDA86397429CA1B08C8B /* BaasBoxSDK.framework */,
-				C4885303CC35529584D906BCC95F6A5C /* BButton.framework */,
-				32B7C6831A723FD5C934B4C898F9E87F /* MMDrawerController.framework */,
-				080876B241124F2C45D0DFB8D46CFA14 /* Pods_Yibby.framework */,
-				FA759FEC47506E6F58D85DD74A08F1A1 /* Pods_YibbyTests.framework */,
-				8883DAA86A4518C93620A6A1CEEF0755 /* SwiftyJSON.framework */,
-				62490593C3DB1394B04B79A7E9E58DB8 /* TTRangeSlider.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		259618640D8E09C7AFF664854FA69585 /* GoogleSymbolUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				7844F63C8C6CA2A253421D423F90822B /* Frameworks */,
-			);
-			path = GoogleSymbolUtilities;
-			sourceTree = "<group>";
-		};
-		27170B9B72A0352F1D58ADB7EACD4E2D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1F7ACBA3923AE5E52F87F9092CCA94AD /* libGTMSessionFetcher_core.a */,
-				67A07712B67D75980BC0682E0A8FEB7C /* libGTMSessionFetcher_full.a */,
+				AFEFA342BEF16C1EB42249099A8D84C3 /* libGGLInstanceIDLib.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2BEF76BE81066AAE6919073F966406F8 /* Support Files */ = {
+		160E7D5FFA9675905740F24AA8EFE389 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A8AF6448D978C139F82ACE937063F879 /* Info.plist */,
-				0471731CD18F67847CEF7D13073E05A1 /* TTRangeSlider.modulemap */,
-				43B2A7EEF8A1C4FF0AFD7DA61B8E47F6 /* TTRangeSlider.xcconfig */,
-				E3EE675E539ED25CF23038C8EEAF807E /* TTRangeSlider-dummy.m */,
-				0CFDBCDCDC075ED133FE6096545C7999 /* TTRangeSlider-prefix.pch */,
-				38A47AF1F319C88660A9A92A521351BC /* TTRangeSlider-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TTRangeSlider";
-			sourceTree = "<group>";
-		};
-		2DC616774CDA521B9232FAFDCE1AF7AA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E83D33D9B413A757C988899BD4760B37 /* libGcmLib.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		30E4FC38E9921D3FD919610487D83C84 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A73976FA2DE302C56B516FA1DEF0BF22 /* libGGLInstanceIDLib.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		380A4DC20664B6B6315678D5BB887C5C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				518D20EA4C5137A45625CBB375F3B8AD /* BaasBoxSDK.modulemap */,
-				98EC3390D16C922CE0556F1AABC212CE /* BaasBoxSDK.xcconfig */,
-				C167D53314F487D1E8F9CF35CFA899F6 /* BaasBoxSDK-dummy.m */,
-				B44CEA0B6576DB76B583B7787273F741 /* BaasBoxSDK-prefix.pch */,
-				70585D45118C67E4A27C9C9EB5936992 /* BaasBoxSDK-umbrella.h */,
-				E5C7BDA3ECE2EBB226A5F0B2064BDCFD /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/BaasBoxSDK";
-			sourceTree = "<group>";
-		};
-		4DC84138D711A126BC78953C4320B478 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DB58E6E3BE77B8210CC881578FC7D5F2 /* GoogleMaps.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		51CDBACC5690359E8A820C3D1F8A95EA /* GoogleUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				D00E789128AB64C2888338506D292598 /* Frameworks */,
-			);
-			path = GoogleUtilities;
-			sourceTree = "<group>";
-		};
-		5B27C90A69E427ADB8F1029C7EFF0704 /* MMDrawerBarButtonItem */ = {
-			isa = PBXGroup;
-			children = (
-				2DCB9F3FD5F77280A872776A8D2F92AF /* MMDrawerBarButtonItem.h */,
-				80AF6111B9147ADE10ACD2F5C4D87553 /* MMDrawerBarButtonItem.m */,
-			);
-			name = MMDrawerBarButtonItem;
-			sourceTree = "<group>";
-		};
-		5CEE5300F6222A8B102EA591C8B36CBB /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				F7A10859C7786B7C427422510C4B0E42 /* MMDrawerController.h */,
-				CB3585A48E98D641FAD84F21B0B43B8F /* MMDrawerController.m */,
-				7BD2D1B628EB9B39583A8ACA20C09DCC /* MMDrawerController+Subclass.h */,
-				F42E386B14910A400F239394479867DC /* UIViewController+MMDrawerController.h */,
-				A3B828951DC3C36BE9E895A891A54156 /* UIViewController+MMDrawerController.m */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		61B6986055D1EC1535861BDA09C2961D /* GoogleInterchangeUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				B21EE98678713632A9994C6D1FFE2E5D /* Frameworks */,
-			);
-			path = GoogleInterchangeUtilities;
-			sourceTree = "<group>";
-		};
-		6F0F0A4FF2929278B1512E8102D120C1 /* SwiftyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				4AA04387F7A452067D9DD7D9845A71B8 /* SwiftyJSON.swift */,
-				DC1BB59AFC71D0107BEDDD63F28859DE /* Support Files */,
-			);
-			path = SwiftyJSON;
-			sourceTree = "<group>";
-		};
-		70C95379CC37B0900EA246058E8BDE68 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				92B538E911EF29147BB6FF8624E77B20 /* GoogleMaps.bundle */,
+				AC1476B402A173D9B3237E97C348F979 /* FontAwesome.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		7844F63C8C6CA2A253421D423F90822B /* Frameworks */ = {
+		16A64CF7955DE70B1703ED71F6D8EDE6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				1CA8619382E95A0D1D3CBD83558321F0 /* libGSDK_Overload.a */,
+				C6F3FDE9B5D68EFB749C518ED0F67456 /* BButton.modulemap */,
+				7E2DE33C6B0B325740551B126C2A144E /* BButton.xcconfig */,
+				BDD32D5C7795AC7770FD7A7666702AF1 /* BButton-dummy.m */,
+				CC1587BA6C6E1EC80722B8F88512664F /* BButton-prefix.pch */,
+				F9C62D18C74B84DE2EF76EC86048EE4D /* BButton-umbrella.h */,
+				7E2FF0BD0ACDF005754CBE60BFB66960 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BButton";
+			sourceTree = "<group>";
+		};
+		1998E8A1C69FAE058932C7997D1EB51D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9FF8C57AC972F4D8687141AF1A5B481A /* Info.plist */,
+				289EEFE185AB124E1A45659E47E6D315 /* SwiftyJSON.modulemap */,
+				C70183A448DB38259334737C258F39B4 /* SwiftyJSON.xcconfig */,
+				D999CD88ECA1C749E8A6FD4AEFD2A1C0 /* SwiftyJSON-dummy.m */,
+				9ED87FD64058D8BD61645A91EF0825A7 /* SwiftyJSON-prefix.pch */,
+				DC950A35CD2555C3E61E75165C674E09 /* SwiftyJSON-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		1C9A467FBBE9B0E8C766FCF858DE385E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C8D8E2974E8D82EC34ABF304CA52607F /* libGGLCore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1FDFF7CCBE8BFAF89CCF5A0FB972C69F /* GoogleSymbolUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				0BC079EC7FB40CC79B082E49563D0039 /* Frameworks */,
+			);
+			path = GoogleSymbolUtilities;
+			sourceTree = "<group>";
+		};
+		21B9F393FFA63A6685A185F659CBBE42 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCE9AA2476F083F55A21AD4532095A59 /* Info.plist */,
+				7F3D089E4A69295D6D4BA5AC3B73471D /* TextFieldEffects.modulemap */,
+				74D322A50FEE6A06E7A3277CD0C37114 /* TextFieldEffects.xcconfig */,
+				EEA19182918393D7AF066FD902526B5B /* TextFieldEffects-dummy.m */,
+				4BFA2F61A7E7496FC63129D0F809E7CC /* TextFieldEffects-prefix.pch */,
+				C3677D1A44F5A9C0753235BB75712197 /* TextFieldEffects-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TextFieldEffects";
+			sourceTree = "<group>";
+		};
+		238BD7D1EC6231A3065B57BF1E27D15B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E844BA085EC878D701EB272D63D500C1 /* BaasBoxSDK */,
+				928C42CBFFAA079E8B5A5F4948845DAD /* BButton */,
+				AE408BBF28FC13F77F7D2C5F622C94FF /* GGLInstanceID */,
+				619BC6B3B12B20D3F2E73F324419B3B3 /* Google */,
+				FC5D25A0BD2F2298A2991AC6D9E26A88 /* GoogleCloudMessaging */,
+				DC16EE749EF763D5B06E787AE3918D42 /* GoogleInterchangeUtilities */,
+				7A2DA529D657E2C1C4B2F2C3C48B5128 /* GoogleIPhoneUtilities */,
+				FB2D96BFEA9CCAD87DD8E157E12D70A9 /* GoogleMaps */,
+				9E4D61DF24CDED730A1339405356823A /* GoogleNetworkingUtilities */,
+				1FDFF7CCBE8BFAF89CCF5A0FB972C69F /* GoogleSymbolUtilities */,
+				5DE3F2721822A6028C956A68C24D5424 /* GoogleUtilities */,
+				D1BE4D8AFF3C8CE09F5A1BC88B08FB13 /* MMDrawerController */,
+				8E57B8A70779D2F46D0E95809742E691 /* SwiftyJSON */,
+				49CC901ADF897C83BE6CC5FB0A6CBA77 /* TextFieldEffects */,
+				489F7497C9353BC0D65B69B7FE6FBD26 /* TTRangeSlider */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3D612A03C1E86C60ED1F4C949302FB27 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01F696FCA3BA2EFEB64C44B212A948AE /* libGIP_Locale.a */,
+				D1433C058BD82A89F88E41CD92F2E1D6 /* libGIP_Reachability.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		489F7497C9353BC0D65B69B7FE6FBD26 /* TTRangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				6A556102AF8781508F924438A1B5D257 /* TTRangeSlider.h */,
+				9296DD31D205C97FF155C4C265D8E32C /* TTRangeSlider.m */,
+				00AFC4D43FBC640019F654595A25C6BA /* TTRangeSliderDelegate.h */,
+				89A2CD944944D5C8B49D0A2BDA4A7D2C /* Support Files */,
+			);
+			path = TTRangeSlider;
+			sourceTree = "<group>";
+		};
+		49CC901ADF897C83BE6CC5FB0A6CBA77 /* TextFieldEffects */ = {
+			isa = PBXGroup;
+			children = (
+				B25C9931EAD90B1021815000C36491FC /* AkiraTextField.swift */,
+				B42F76AFB981B9CD84B92C5F2D90100E /* HoshiTextField.swift */,
+				36B120DEDDA36A119BC94AC8991EE7E2 /* IsaoTextField.swift */,
+				20C107CDA5F8176F8A204F86243293FF /* JiroTextField.swift */,
+				F9363FB1478C8AF77682DA1ABC9B1484 /* KaedeTextField.swift */,
+				5D8B966C9C16C2707EA8089CFFAEBB36 /* MadokaTextField.swift */,
+				F5DB50265980DC590A87CA6296FB3592 /* MinoruTextField.swift */,
+				E43C7212E2B928207FC0368C27D248FB /* TextFieldsEffects.swift */,
+				367EBBE5F2B36CFE36C3FE6055D0708D /* YokoTextField.swift */,
+				A7606E79619D3CBF656DEB596C77E2BC /* YoshikoTextField.swift */,
+				21B9F393FFA63A6685A185F659CBBE42 /* Support Files */,
+			);
+			path = TextFieldEffects;
+			sourceTree = "<group>";
+		};
+		5756CFBB6D3AC8A2BC5B4D64CD607592 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D206B9310661E43A8CD2372AFC4B115 /* libGcmLib.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59381F27F14333C6B907EA54B64E0ECE /* CloudMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				CADD217524B46D1947113E40C505E501 /* CloudMessaging.h */,
+				37801B3010035AA1FD079C3B1E19F42A /* GGLContext+CloudMessaging.h */,
+				B08DF74F82865035AF8E98C46BC528F2 /* Frameworks */,
+			);
+			name = CloudMessaging;
+			sourceTree = "<group>";
+		};
+		5DE3F2721822A6028C956A68C24D5424 /* GoogleUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				685CA6E33C36FBC87DA13C11F3E1C708 /* Frameworks */,
+			);
+			path = GoogleUtilities;
+			sourceTree = "<group>";
+		};
+		619BC6B3B12B20D3F2E73F324419B3B3 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				59381F27F14333C6B907EA54B64E0ECE /* CloudMessaging */,
+				BFD6CFF1E8931BF8BF2EFA93CD2E338E /* Core */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
+		62E6FF20537B3A88CD1B6DE90117413F /* MMDrawerBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				43BB2D547E1A999A780DFA2321B4F77A /* MMDrawerBarButtonItem.h */,
+				501D3B15FD07076C6B07171F86218404 /* MMDrawerBarButtonItem.m */,
+			);
+			name = MMDrawerBarButtonItem;
+			sourceTree = "<group>";
+		};
+		685CA6E33C36FBC87DA13C11F3E1C708 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAF60B04E027032F80E9FFE4C1C1FEE3 /* libGTM_AddressBook.a */,
+				BD48D87E9928646A5E73854624D15ACF /* libGTM_core.a */,
+				CEB034EC67CE564D318C601EB632C28B /* libGTM_DebugUtils.a */,
+				269648EEC977FE3DA52B4FD01DFE9F73 /* libGTM_GTMURLBuilder.a */,
+				0613E050FF9410E7584D7C8C58621C7A /* libGTM_iPhone.a */,
+				664D0358183F0567D1A1E36BDB0186A3 /* libGTM_KVO.a */,
+				773C4B976330F8543AA7C569CD64ED40 /* libGTM_NSData+zlib.a */,
+				39AA09320A41E3F41EF7089B97E669DC /* libGTM_NSDictionary+URLArguments.a */,
+				FB4BF6A36D317FC0405E82F018341083 /* libGTM_NSScannerJSON.a */,
+				62561E9CA3D461FB8657812CDA76FFA0 /* libGTM_NSStringHTML.a */,
+				2965C464C88CFC610FC7851C402A9C64 /* libGTM_NSStringXML.a */,
+				3FCA6335403473D8CECC20F6C5EE4EE0 /* libGTM_Regex.a */,
+				988899DDCF6D9FD1EAD888715660A55F /* libGTM_RoundedRectPath.a */,
+				A9C739CF00D7738D38E90D65A392BECC /* libGTM_StringEncoding.a */,
+				75E3D7B1F46E7AAE491347D96FEFB826 /* libGTM_SystemVersion.a */,
+				A510ED4BC0CAD65742FF4967B57DAE9C /* libGTM_UIFont+LineHeight.a */,
+				C402E38672A98DB06A3B61C11E790F35 /* libGTMStackTrace.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A31F187F75E8921289957CED9FCBC13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				524BBA504138EABEF7688D93C4EB908F /* BaasBoxSDK.framework */,
+				3636ABEF0A87E16A43B6A88FCE6E2BCC /* BButton.framework */,
+				54B0AE6BC3FB9827C6CDC8A2E79CB87F /* MMDrawerController.framework */,
+				00BB243F5912FB7936777FC6D6F71B28 /* Pods_Yibby.framework */,
+				E8289DA67BE3C96C1D61DEE9BD762088 /* Pods_YibbyTests.framework */,
+				593CC0D98B960EC9F77D0DD2C230CAC6 /* SwiftyJSON.framework */,
+				6C7E39F283991F7FEE074A10A3F4B694 /* TextFieldEffects.framework */,
+				1324918B3ECE5EDEF8178116F160C28B /* TTRangeSlider.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BC99CBF6412316CEC1C91F702099E8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B12FD5FB784067650FB8C3210606FC81 /* libGTMSessionFetcher_core.a */,
+				105E66D22742450F0AAE0BC53078EDD3 /* libGTMSessionFetcher_full.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		796A299BA7076F9C0C53AA4FF29B68FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F45B80D414A7F3B04B06AA81AB4503AE /* libProtocolBuffers.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -552,94 +670,69 @@
 			path = "Target Support Files/Pods-YibbyTests";
 			sourceTree = "<group>";
 		};
+		7A2DA529D657E2C1C4B2F2C3C48B5128 /* GoogleIPhoneUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				3D612A03C1E86C60ED1F4C949302FB27 /* Frameworks */,
+			);
+			path = GoogleIPhoneUtilities;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				DDA90EF491F56848383FCD2EED47969A /* Pods */,
-				1EC6CBDD28178058DFDF508D40BC2829 /* Products */,
+				238BD7D1EC6231A3065B57BF1E27D15B /* Pods */,
+				6A31F187F75E8921289957CED9FCBC13 /* Products */,
 				9FE0CA427F690A60AFA9336A9200A3B9 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		848897862964182D61CF5E18FA506BA0 /* Frameworks */ = {
+		89A2CD944944D5C8B49D0A2BDA4A7D2C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A21C49F1056FC6C6A28A6E00771B8519 /* libGGLCore.a */,
+				468EA2CB650678173D1B9755547711B9 /* Info.plist */,
+				67E2B530B15DF0D3B69CF6F2DBC0D234 /* TTRangeSlider.modulemap */,
+				0F33305AFFB16E79E40A4EFB2EE6D7FE /* TTRangeSlider.xcconfig */,
+				ED257B078EDAFE968BE5935061FD7D0C /* TTRangeSlider-dummy.m */,
+				467B4C09C535EEED0D6E535D4CA67EC3 /* TTRangeSlider-prefix.pch */,
+				17FDDEA46018B62FC59C0835B18640AF /* TTRangeSlider-umbrella.h */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/TTRangeSlider";
 			sourceTree = "<group>";
 		};
-		8730B31E5BB2B6D00D593158CE7A4CC9 /* GoogleNetworkingUtilities */ = {
+		8E57B8A70779D2F46D0E95809742E691 /* SwiftyJSON */ = {
 			isa = PBXGroup;
 			children = (
-				27170B9B72A0352F1D58ADB7EACD4E2D /* Frameworks */,
+				3AAE530080751387518C9EF4363C743F /* SwiftyJSON.swift */,
+				1998E8A1C69FAE058932C7997D1EB51D /* Support Files */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		928C42CBFFAA079E8B5A5F4948845DAD /* BButton */ = {
+			isa = PBXGroup;
+			children = (
+				4F2976452B873F21938C240BCF1F9989 /* BButton.h */,
+				72FE03E4C7A0B476B050D06313A78961 /* BButton.m */,
+				2DCC5CC782353B88EBA92772B7C429F6 /* NSString+FontAwesome.h */,
+				F7D10F33D3BC4ED4D631F0DEF28BE640 /* NSString+FontAwesome.m */,
+				931B629B82A1D16DE05BC15D75711F0F /* UIColor+BButton.h */,
+				EDE80D63A13F94586DF89D9766FC2B57 /* UIColor+BButton.m */,
+				160E7D5FFA9675905740F24AA8EFE389 /* Resources */,
+				16A64CF7955DE70B1703ED71F6D8EDE6 /* Support Files */,
+			);
+			path = BButton;
+			sourceTree = "<group>";
+		};
+		9E4D61DF24CDED730A1339405356823A /* GoogleNetworkingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				6BC99CBF6412316CEC1C91F702099E8C /* Frameworks */,
 			);
 			path = GoogleNetworkingUtilities;
-			sourceTree = "<group>";
-		};
-		8A68724782C20D1D5E7CFAF8D41005CE /* GoogleMaps */ = {
-			isa = PBXGroup;
-			children = (
-				4DC84138D711A126BC78953C4320B478 /* Frameworks */,
-				70C95379CC37B0900EA246058E8BDE68 /* Resources */,
-			);
-			path = GoogleMaps;
-			sourceTree = "<group>";
-		};
-		8FFE159CD703AE83407BAAD272AA576D /* TTRangeSlider */ = {
-			isa = PBXGroup;
-			children = (
-				AA3E49E9AE15B665BFD92CE94EFE0940 /* TTRangeSlider.h */,
-				8801C4EEEC0A7FE438D108C9DFD7325C /* TTRangeSlider.m */,
-				4E5E3A8C49F121CBAEFF0CCCD5CC84E3 /* TTRangeSliderDelegate.h */,
-				2BEF76BE81066AAE6919073F966406F8 /* Support Files */,
-			);
-			path = TTRangeSlider;
-			sourceTree = "<group>";
-		};
-		9760ACB7979CA7781C7789A0B712DDC1 /* CloudMessaging */ = {
-			isa = PBXGroup;
-			children = (
-				746F87BD64221937E9A89F3D78CED58F /* CloudMessaging.h */,
-				324A13314F73D26BEE8562C1CAE1A62E /* GGLContext+CloudMessaging.h */,
-				FB4571BB762F64DD7910AA7B2D0C2913 /* Frameworks */,
-			);
-			name = CloudMessaging;
-			sourceTree = "<group>";
-		};
-		98A0643F26AEDD2BD9E0C1BC6F94A74E /* GoogleCloudMessaging */ = {
-			isa = PBXGroup;
-			children = (
-				C8D7F395FE6F4621C19B7D3E3FF61E8B /* GCMConfig.h */,
-				9397622FA6A9822EA94895531238F42F /* GCMPubSub.h */,
-				23FE00B4D3116BED10EFC87D1B1E9AD5 /* GCMReceiverDelegate.h */,
-				56D819A35EC6B9CBCEA48D1BCA9B8E5B /* GCMService.h */,
-				71ACFE397E79CFE37BE9800E6D85E322 /* GoogleCloudMessaging.h */,
-				2DC616774CDA521B9232FAFDCE1AF7AA /* Frameworks */,
-			);
-			path = GoogleCloudMessaging;
-			sourceTree = "<group>";
-		};
-		98D3A6C72B2711083C70A80E331B250B /* GoogleIPhoneUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				1224C043CAF3DF02DD5877F19AEA6189 /* Frameworks */,
-			);
-			path = GoogleIPhoneUtilities;
-			sourceTree = "<group>";
-		};
-		9FC364BC694C86515E9262ABD5C20234 /* MMDrawerController */ = {
-			isa = PBXGroup;
-			children = (
-				5CEE5300F6222A8B102EA591C8B36CBB /* Core */,
-				5B27C90A69E427ADB8F1029C7EFF0704 /* MMDrawerBarButtonItem */,
-				CB7BB7FF11C54505C24CDB8D39124E3C /* MMDrawerVisualStates */,
-				EFDC6B4BBEA6621F60E4DC3A091FC3C0 /* Subclass */,
-				D689C97264AB88E9E77F33C497928E7E /* Support Files */,
-			);
-			path = MMDrawerController;
 			sourceTree = "<group>";
 		};
 		9FE0CA427F690A60AFA9336A9200A3B9 /* Targets Support Files */ = {
@@ -651,29 +744,32 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B049FA1C7B6A0A0EED5CA92847A46407 /* Resources */ = {
+		AE408BBF28FC13F77F7D2C5F622C94FF /* GGLInstanceID */ = {
 			isa = PBXGroup;
 			children = (
-				771A8E6EEFA50A08C3738D8411C85183 /* FontAwesome.ttf */,
+				7A11B9BCC52F07D77BF753B5208E4A49 /* GGLInstanceID.h */,
+				2B405E0354662E6E83AF363CFAFD8F86 /* GGLInstanceIDConfig.h */,
+				8CF927E2BA17A154382B6F1A5A05C970 /* GGLInstanceIDDelegate.h */,
+				B52ED926D03DDFC96C719F6DE209D58F /* GGLInstanceIDHeaders.h */,
+				15A0D5CAB91E0C64E8D5706E8CD8C152 /* Frameworks */,
 			);
-			name = Resources;
+			path = GGLInstanceID;
 			sourceTree = "<group>";
 		};
-		B1D6942281556A82091BB1302A8028BE /* Google */ = {
+		B08DF74F82865035AF8E98C46BC528F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9760ACB7979CA7781C7789A0B712DDC1 /* CloudMessaging */,
-				F4F6A9CBED4835D3FA95EEFEF4D37E3C /* Core */,
-			);
-			path = Google;
-			sourceTree = "<group>";
-		};
-		B21EE98678713632A9994C6D1FFE2E5D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C7F0CD7C206DCA1F0518CF08D281DD97 /* libProtocolBuffers.a */,
+				F5A577A4AF624564DDB5D85BC0FF3974 /* libGGLCloudMessaging.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2F49CE22BE1055D9CBA4B79B2FF5EAE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3C10FA71BD49F4736D3023EA97D9A914 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		B4AF7F54D0F362041EA4C310F1893FD1 /* Pods-Yibby */ = {
@@ -694,62 +790,84 @@
 			path = "Target Support Files/Pods-Yibby";
 			sourceTree = "<group>";
 		};
-		C26E81A7C3881A62B72106500AF05874 /* Support Files */ = {
+		B719DDD1A61E47D09D37544A2B86112B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				258E35A66B9CB3D7B73137CB408598A9 /* BButton.modulemap */,
-				742A96158A435A4615FABB9E96C31B51 /* BButton.xcconfig */,
-				286A58A216740A9F2F70202E7089557B /* BButton-dummy.m */,
-				B24531BEB4D393FBBC9BD45FCAFAE6E1 /* BButton-prefix.pch */,
-				299A1701A2964FAA5B2D6BB7EA929E22 /* BButton-umbrella.h */,
-				C0BFE4AB27636EE3BAF0D8A49549558A /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/BButton";
-			sourceTree = "<group>";
-		};
-		CB7BB7FF11C54505C24CDB8D39124E3C /* MMDrawerVisualStates */ = {
-			isa = PBXGroup;
-			children = (
-				E55B1947F00F023CC1F0FFCF5FA742AD /* MMDrawerVisualState.h */,
-				58C441F8CA95A35C53F2A23BCB8897AD /* MMDrawerVisualState.m */,
-			);
-			name = MMDrawerVisualStates;
-			sourceTree = "<group>";
-		};
-		D00E789128AB64C2888338506D292598 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E4FE4C3D25A29E14F3D5F5838E40C411 /* libGTM_AddressBook.a */,
-				3D4E9D464BFC9095A714CFA413B3E571 /* libGTM_core.a */,
-				4AD2153ECA98EC16D6AE8B9A66B15660 /* libGTM_DebugUtils.a */,
-				5DF353F900F27430FCAC33629A8A879C /* libGTM_GTMURLBuilder.a */,
-				714D911F51AF6D959C05009EFA2A1A76 /* libGTM_iPhone.a */,
-				E988B262FB119ACD3BE97DE3F63B98AE /* libGTM_KVO.a */,
-				344C9F7525CC082CB3B76D33201948ED /* libGTM_NSData+zlib.a */,
-				5C2D05329C7738981A38AC2F8270ADBE /* libGTM_NSDictionary+URLArguments.a */,
-				EA63594794B5D4AB85D28E76D7A0F01A /* libGTM_NSScannerJSON.a */,
-				CB1B8260E972AD7E1C1AE7DD164E6598 /* libGTM_NSStringHTML.a */,
-				A8ABBEDC7DC889107729EFB8D0EEBDBA /* libGTM_NSStringXML.a */,
-				10D77D093E4804687E59A9D1147D254F /* libGTM_Regex.a */,
-				4EDFBB1ED317E387E1087C6ACB8D42A8 /* libGTM_RoundedRectPath.a */,
-				0557D8908E06AD82D7817F471AE34389 /* libGTM_StringEncoding.a */,
-				C92AED7FD1384400E20C75C8B99F2CE8 /* libGTM_SystemVersion.a */,
-				0E15FCBAD543A2FB2CD238030C9C020E /* libGTM_UIFont+LineHeight.a */,
-				281DC4D6011ED6AE57389BFC428F7FA2 /* libGTMStackTrace.a */,
+				B8E822D8BD53E7EDDCD7D504C9524D8F /* GoogleMaps.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D689C97264AB88E9E77F33C497928E7E /* Support Files */ = {
+		BCA19BD41469A7F8CC9C452F1B3D0BD0 /* MMDrawerVisualStates */ = {
 			isa = PBXGroup;
 			children = (
-				A97E2694CC17C565BA0EF968646489F3 /* Info.plist */,
-				9BD21F0F46602DEC45DA2B0908F3C8E2 /* MMDrawerController.modulemap */,
-				63BDE4C69003650E3796EE8B7FC62AB7 /* MMDrawerController.xcconfig */,
-				2B1A343668D7A1E7B8D3A557048C794C /* MMDrawerController-dummy.m */,
-				05D53264D308E1667510BA3F625FC16A /* MMDrawerController-prefix.pch */,
-				6F2C5E06B6FFC165C5795C7057001FE5 /* MMDrawerController-umbrella.h */,
+				4375002B0872DF158943025E50D02CF8 /* MMDrawerVisualState.h */,
+				A1013C7584182897CC7828F2A13E7174 /* MMDrawerVisualState.m */,
+			);
+			name = MMDrawerVisualStates;
+			sourceTree = "<group>";
+		};
+		BFD6CFF1E8931BF8BF2EFA93CD2E338E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				185524B226F6656BD8FF9E609CCC57E8 /* AdMob-Module.h */,
+				46EE66E44AEC02DDE58A8F01A8795A6E /* Analytics-Module.h */,
+				20BB9C59A9BB9F88AEBABC4EED1A407D /* AppInvite-Module.h */,
+				7D28CD1E3A317986E56E18A06B9ABC55 /* CloudMessaging-Module.h */,
+				EF52C76EC444CAB9CB22F1AB310AFA76 /* Core.h */,
+				F94483B759A48E90EC1CAAA03A5BFB12 /* Core-Module.h */,
+				EE3A2239694CB2910444083803433B5D /* GGLConfiguration.h */,
+				3E94DFA0CAEC4B4FCA403AC9779BA24F /* GGLContext.h */,
+				239BAFBCDEF9C1E64E56EA17F2B2BF56 /* GGLErrorCode.h */,
+				F462C98D68A08A3EDE5D389114320EAF /* GMRConfiguration.h */,
+				BC5C90A21AAC98F37DD43787369BEE2E /* SignIn-Module.h */,
+				1C9A467FBBE9B0E8C766FCF858DE385E /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		C0208B1BBD0DE0FDF4FB11BAED39EACB /* Subclass */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Subclass;
+			sourceTree = "<group>";
+		};
+		C4EBD2F638EE812287D8B9911574E741 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDBAA4D64BA469E47C5496EB2B873069 /* BaasBoxSDK.modulemap */,
+				C1C0C3D63E060D609D0CF4228EDC6821 /* BaasBoxSDK.xcconfig */,
+				73DCE21AA805458BA892AF64ADC467DF /* BaasBoxSDK-dummy.m */,
+				D94D0520EEB4BE431EFF95D50CA7B0A9 /* BaasBoxSDK-prefix.pch */,
+				4964DF2A926CA6E1BB064250D2D386EB /* BaasBoxSDK-umbrella.h */,
+				B5A5168FA13DB2DFBEDDDC97A251EBF9 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BaasBoxSDK";
+			sourceTree = "<group>";
+		};
+		D1BE4D8AFF3C8CE09F5A1BC88B08FB13 /* MMDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				E2704A65C0F099AC4CA3960927C5CF86 /* Core */,
+				62E6FF20537B3A88CD1B6DE90117413F /* MMDrawerBarButtonItem */,
+				BCA19BD41469A7F8CC9C452F1B3D0BD0 /* MMDrawerVisualStates */,
+				C0208B1BBD0DE0FDF4FB11BAED39EACB /* Subclass */,
+				D66707343DB7D9F2F0EA04F7DA73FAB8 /* Support Files */,
+			);
+			path = MMDrawerController;
+			sourceTree = "<group>";
+		};
+		D66707343DB7D9F2F0EA04F7DA73FAB8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EB708BF74646022A2B7C6DC7E9D83399 /* Info.plist */,
+				054F83FADEA7B0DC895924101CE27D99 /* MMDrawerController.modulemap */,
+				A3A3F5DCAB5F1B77D018B850F973188C /* MMDrawerController.xcconfig */,
+				A49344F453AD1FA34F60352A7C04E20A /* MMDrawerController-dummy.m */,
+				A9E1F9BC4C57D540482EEC11D9235F7F /* MMDrawerController-prefix.pch */,
+				19660ACB31ED5D79C2EDB423E467610B /* MMDrawerController-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MMDrawerController";
@@ -765,100 +883,68 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		DC1BB59AFC71D0107BEDDD63F28859DE /* Support Files */ = {
+		DC16EE749EF763D5B06E787AE3918D42 /* GoogleInterchangeUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				A539A8EC0CCD2B2FD02B2187CCC3B563 /* Info.plist */,
-				F837A8D66ADFB657B77472FF93AC3F7C /* SwiftyJSON.modulemap */,
-				CA12ABE3BD46E5B1411373612DA14950 /* SwiftyJSON.xcconfig */,
-				40CE6FB519781C689A0CF4E417393A8B /* SwiftyJSON-dummy.m */,
-				2BD9020181CF2678525F7622CDD61E0E /* SwiftyJSON-prefix.pch */,
-				55670D1A5509BF69210CFC6E76E12A55 /* SwiftyJSON-umbrella.h */,
+				796A299BA7076F9C0C53AA4FF29B68FF /* Frameworks */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SwiftyJSON";
+			path = GoogleInterchangeUtilities;
 			sourceTree = "<group>";
 		};
-		DDA90EF491F56848383FCD2EED47969A /* Pods */ = {
+		E2704A65C0F099AC4CA3960927C5CF86 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1719DBD75D180B15B4244C40A49B49BC /* BaasBoxSDK */,
-				E6E8071B79EEA7EC2BD32B81517C7CB0 /* BButton */,
-				E6B1B897F5AA0D9D6537ECDAC0C9DF45 /* GGLInstanceID */,
-				B1D6942281556A82091BB1302A8028BE /* Google */,
-				98A0643F26AEDD2BD9E0C1BC6F94A74E /* GoogleCloudMessaging */,
-				61B6986055D1EC1535861BDA09C2961D /* GoogleInterchangeUtilities */,
-				98D3A6C72B2711083C70A80E331B250B /* GoogleIPhoneUtilities */,
-				8A68724782C20D1D5E7CFAF8D41005CE /* GoogleMaps */,
-				8730B31E5BB2B6D00D593158CE7A4CC9 /* GoogleNetworkingUtilities */,
-				259618640D8E09C7AFF664854FA69585 /* GoogleSymbolUtilities */,
-				51CDBACC5690359E8A820C3D1F8A95EA /* GoogleUtilities */,
-				9FC364BC694C86515E9262ABD5C20234 /* MMDrawerController */,
-				6F0F0A4FF2929278B1512E8102D120C1 /* SwiftyJSON */,
-				8FFE159CD703AE83407BAAD272AA576D /* TTRangeSlider */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		E6B1B897F5AA0D9D6537ECDAC0C9DF45 /* GGLInstanceID */ = {
-			isa = PBXGroup;
-			children = (
-				0F00C9AF8BEFCF2AC06FDE7A94A44D6B /* GGLInstanceID.h */,
-				B1703B4661F02E8BABDBACE9674B422D /* GGLInstanceIDConfig.h */,
-				777CCFE5B5FC36ABFC0D64244FCD2E5A /* GGLInstanceIDDelegate.h */,
-				81655AA6F51BE21295F536984F2090C6 /* GGLInstanceIDHeaders.h */,
-				30E4FC38E9921D3FD919610487D83C84 /* Frameworks */,
-			);
-			path = GGLInstanceID;
-			sourceTree = "<group>";
-		};
-		E6E8071B79EEA7EC2BD32B81517C7CB0 /* BButton */ = {
-			isa = PBXGroup;
-			children = (
-				183A734F2B2C763C3514C25224231AA9 /* BButton.h */,
-				4201E0F986C54BF6A7241E6817B2DA23 /* BButton.m */,
-				B4E23F152D6D83F85116743F3FE43CFC /* NSString+FontAwesome.h */,
-				D3DFD66E59F4040C30A0B0837A175E5F /* NSString+FontAwesome.m */,
-				3CE5A5FFA5005B298893655B09EE1107 /* UIColor+BButton.h */,
-				13E3BC12E5B6D9955F8628976E2F5943 /* UIColor+BButton.m */,
-				B049FA1C7B6A0A0EED5CA92847A46407 /* Resources */,
-				C26E81A7C3881A62B72106500AF05874 /* Support Files */,
-			);
-			path = BButton;
-			sourceTree = "<group>";
-		};
-		EFDC6B4BBEA6621F60E4DC3A091FC3C0 /* Subclass */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Subclass;
-			sourceTree = "<group>";
-		};
-		F4F6A9CBED4835D3FA95EEFEF4D37E3C /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				159CC1228EA251863397922FC46D5A87 /* AdMob-Module.h */,
-				021232032D3A71ACBCAFAE3176112082 /* Analytics-Module.h */,
-				64ECAF0B089BFFBEA4DF5FA36C511D08 /* AppInvite-Module.h */,
-				632181100CAB46704422122DC2985045 /* CloudMessaging-Module.h */,
-				D0B0E8E71923013D58328F5778F90277 /* Core.h */,
-				DC4B8CB051D7C7D41830D8B39F3B62C4 /* Core-Module.h */,
-				12D42B9F6DA3698C4853B376A76D99AE /* GGLConfiguration.h */,
-				C7C7741CEEFD47EDDA909EF919D12BBE /* GGLContext.h */,
-				C5C17FBA876BF48F99416F5A4A6E6E86 /* GGLErrorCode.h */,
-				8E521702091869CC6C926F6FDF0EAB70 /* GMRConfiguration.h */,
-				8851AB3A4FF148507E3DBB899BA37C8E /* SignIn-Module.h */,
-				848897862964182D61CF5E18FA506BA0 /* Frameworks */,
+				CF588D0B26E92DD244E306BBFACC9D60 /* MMDrawerController.h */,
+				D56923E29313DF7643AF9F86B6B0CF51 /* MMDrawerController.m */,
+				264D47E33631418057AE26A080A135CE /* MMDrawerController+Subclass.h */,
+				6F03D8012DD4ACA4733EB8DCDC62A233 /* UIViewController+MMDrawerController.h */,
+				C6870C3D3622B646A53237BDC325A179 /* UIViewController+MMDrawerController.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		FB4571BB762F64DD7910AA7B2D0C2913 /* Frameworks */ = {
+		E844BA085EC878D701EB272D63D500C1 /* BaasBoxSDK */ = {
 			isa = PBXGroup;
 			children = (
-				85C52F5DFE22B52E74E34242999D5AFF /* libGGLCloudMessaging.a */,
+				7E552B64DEBB5325B3D8EAF34FB464FF /* BAAClient.h */,
+				086F4FB4BB4B153AD62839CB6137B0CC /* BAAClient.m */,
+				113CA67A12CFB66A91A4525635397209 /* BAAFile.h */,
+				F735E1CBF61B37E56B4DCB41616CDE40 /* BAAFile.m */,
+				D8C275759F82F4AF09FA7249EF7A6676 /* BAAGlobals.h */,
+				8B2A0C221EFAC2B834A128756BABD0F7 /* BAAGlobals.m */,
+				97C007E53A030A3AD8B02DA279872E1D /* BAAMutableURLRequest.h */,
+				DADA421A790432711FD9EA107200A000 /* BAAMutableURLRequest.m */,
+				96153A8391EA9A600A186B6380068364 /* BAAObject.h */,
+				642F4BEBDA00DD84BD894A6895C16CD8 /* BAAObject.m */,
+				27E503EE86358775C7709269404853FE /* BaasBox.h */,
+				4D1086E4869F40858DC47327C6E69A4A /* BaasBox.m */,
+				214F5D0A415F9F64DD0EA6CB72978A2C /* BAAUser.h */,
+				586D67933F799BC6E122B2110A462998 /* BAAUser.m */,
+				C4EBD2F638EE812287D8B9911574E741 /* Support Files */,
 			);
-			name = Frameworks;
+			path = BaasBoxSDK;
+			sourceTree = "<group>";
+		};
+		FB2D96BFEA9CCAD87DD8E157E12D70A9 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				B719DDD1A61E47D09D37544A2B86112B /* Frameworks */,
+				B2F49CE22BE1055D9CBA4B79B2FF5EAE /* Resources */,
+			);
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		FC5D25A0BD2F2298A2991AC6D9E26A88 /* GoogleCloudMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				2E47B2970153CBB3C3DE013D2233FD9B /* GCMConfig.h */,
+				8B86CBDA3EF099779CEC482E788C1651 /* GCMPubSub.h */,
+				4DF7BE39DFF37128BE0155B5157ECC54 /* GCMReceiverDelegate.h */,
+				25DAB9B98FF01F878A24DD33B0A2A0BB /* GCMService.h */,
+				AB1752A8489797F3523ED7621549BBFB /* GoogleCloudMessaging.h */,
+				5756CFBB6D3AC8A2BC5B4D64CD607592 /* Frameworks */,
+			);
+			path = GoogleCloudMessaging;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -877,11 +963,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607B5E1E7BD87917A0C145067537A4CF /* Headers */ = {
+		4F3C414FD72CB19E46A36CA607C4E4DB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF1FB150FD1C0F6C9EF564AD723E3293 /* Pods-Yibby-umbrella.h in Headers */,
+				FCA2812572D8598D95AE5F06FAD89994 /* SwiftyJSON-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58577640320FDA97FA1F7CE9F4216767 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAF06A91351B48628E7F47BCAAC4D185 /* TextFieldEffects-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,21 +994,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		914FA8B25219AB5B8F0B55FE935070DF /* Headers */ = {
+		8F31E5A0F5F5F7ECC5DD2521660DE7D8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE3C92FCF396B657022519FF437241F2 /* TTRangeSlider-umbrella.h in Headers */,
-				83F6F9EC3B1EBC4019E0A6061B364C84 /* TTRangeSlider.h in Headers */,
-				F173DB7A5677ADCD6A0F25CCDF17688D /* TTRangeSliderDelegate.h in Headers */,
+				7F906C70C06F59ACC789AB57F31DEDF1 /* Pods-Yibby-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDE26A1874D19910AB3E24B39F1322F4 /* Headers */ = {
+		958EA5BF0C4D13BCF1417E7C5D6AF8E2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4387E6B3DB3E6CED59473963EB95390 /* Pods-YibbyTests-umbrella.h in Headers */,
+				0AB569E69C5A2E3BE4BC3D98435F53AE /* TTRangeSlider-umbrella.h in Headers */,
+				2EDA2E64658001233FC708E9079E3E16 /* TTRangeSlider.h in Headers */,
+				27695AC7951A9404900D4744EE6DB25E /* TTRangeSliderDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABA9A69068266643688D42BA81F80F19 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8BC56700766491BAFC892F6616C4128 /* Pods-YibbyTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,37 +1031,81 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E135A2144EE3B2518895527D75B0EB97 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				31A1FCC949A1C144508D17F21B7CFDAD /* SwiftyJSON-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0B2668A7C606111FF33C31091D2AAB1C /* Pods-Yibby */ = {
+		090DC612CA0980C83D441BFAA46C4964 /* TTRangeSlider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A57303B01D279457BBA0413B0080669 /* Build configuration list for PBXNativeTarget "Pods-Yibby" */;
+			buildConfigurationList = 75DC571D12FDBC1F6129A6D790672AAB /* Build configuration list for PBXNativeTarget "TTRangeSlider" */;
 			buildPhases = (
-				429516237FB1D31838790955E38F4BD6 /* Sources */,
-				E6481FB29C2157AB5A73C16CBBA15AA8 /* Frameworks */,
-				607B5E1E7BD87917A0C145067537A4CF /* Headers */,
+				39DF9ADC63A812280C7C5B65F4C793E4 /* Sources */,
+				D5C411FD7F8F1CC5E2DCE50248716AA7 /* Frameworks */,
+				958EA5BF0C4D13BCF1417E7C5D6AF8E2 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B653CACAC7CD641B0DC64CAB2B73F03B /* PBXTargetDependency */,
-				64D3B1F0F3E0EC24B23CE3B7E9F198A9 /* PBXTargetDependency */,
-				F485F0E845A09CCA8927D0A150BB9B46 /* PBXTargetDependency */,
-				E319C10FA6048AF2E94234B021519E47 /* PBXTargetDependency */,
-				507AB69C81588D9E3816200FB0BC344C /* PBXTargetDependency */,
 			);
-			name = "Pods-Yibby";
-			productName = "Pods-Yibby";
-			productReference = 080876B241124F2C45D0DFB8D46CFA14 /* Pods_Yibby.framework */;
+			name = TTRangeSlider;
+			productName = TTRangeSlider;
+			productReference = 1324918B3ECE5EDEF8178116F160C28B /* TTRangeSlider.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		36959F835493D8C0B42475C1559BE90F /* SwiftyJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A02D55C0F0FCC8E1671F87206E5B8D8 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
+			buildPhases = (
+				A806600351D839C6F5B3FC35DA605B8C /* Sources */,
+				5E8E1CD1FE6F3EB6D5B2D793771C2644 /* Frameworks */,
+				4F3C414FD72CB19E46A36CA607C4E4DB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = 593CC0D98B960EC9F77D0DD2C230CAC6 /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3B326A4B83B968543347032F5C6999B7 /* Pods-YibbyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAD59B7056D6B857267BD8F1E92C9DB0 /* Build configuration list for PBXNativeTarget "Pods-YibbyTests" */;
+			buildPhases = (
+				7B2EF55D054D1556B134567536AE06E7 /* Sources */,
+				A44408C48E520D2E3DBD35877525267F /* Frameworks */,
+				ABA9A69068266643688D42BA81F80F19 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC30A7ED0D9EB5061F61CC5FAF964A91 /* PBXTargetDependency */,
+				9F71190582ED6FA20D25D1B813983844 /* PBXTargetDependency */,
+				C5FE63B1C70D09AB7555E48B40F9781D /* PBXTargetDependency */,
+				9C9732C6FFBD38F5B32C8B46CD0AD732 /* PBXTargetDependency */,
+				A0D2D35F8391E0FF4358771724BFFED6 /* PBXTargetDependency */,
+				F307DA688AD142844E5CD478A40F611C /* PBXTargetDependency */,
+			);
+			name = "Pods-YibbyTests";
+			productName = "Pods-YibbyTests";
+			productReference = E8289DA67BE3C96C1D61DEE9BD762088 /* Pods_YibbyTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		42A5EED8E77A0E72DBFD584C3CE278F7 /* TextFieldEffects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A94A2C96C784148AF86D0D1E3FA6E22 /* Build configuration list for PBXNativeTarget "TextFieldEffects" */;
+			buildPhases = (
+				AB132C29F37B0C2B3782B907736B0C6F /* Sources */,
+				EC27594F23736DEE3D1F8AB0B5CAD6D9 /* Frameworks */,
+				58577640320FDA97FA1F7CE9F4216767 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextFieldEffects;
+			productName = TextFieldEffects;
+			productReference = 6C7E39F283991F7FEE074A10A3F4B694 /* TextFieldEffects.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */ = {
@@ -976,46 +1122,7 @@
 			);
 			name = MMDrawerController;
 			productName = MMDrawerController;
-			productReference = 32B7C6831A723FD5C934B4C898F9E87F /* MMDrawerController.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B40583EA144A108396BCA9CE33C311CA /* SwiftyJSON */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1FDD3E689965C9C1150E8AB1FE29D85 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
-			buildPhases = (
-				71FEF80E7663E89237231458B78A17B5 /* Sources */,
-				90928B7CB2D8817B69B3D29AD26E8DA8 /* Frameworks */,
-				E135A2144EE3B2518895527D75B0EB97 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SwiftyJSON;
-			productName = SwiftyJSON;
-			productReference = 8883DAA86A4518C93620A6A1CEEF0755 /* SwiftyJSON.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		DD37F2B068500A7FBC6BB11666D0BE33 /* Pods-YibbyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8039F89EB0E585CE1534A419E5BE137F /* Build configuration list for PBXNativeTarget "Pods-YibbyTests" */;
-			buildPhases = (
-				45D3B54B1224172C8F64502749C77485 /* Sources */,
-				6A3079D0B26C55C1C8A06C9B919F4F6E /* Frameworks */,
-				DDE26A1874D19910AB3E24B39F1322F4 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				76FBD119B189130EDB7E7E90A36F36E7 /* PBXTargetDependency */,
-				1A7D0363A5D13AAAF6086B18E48B7320 /* PBXTargetDependency */,
-				05C62B27E1DBEC44C6519C7B1FA65FC5 /* PBXTargetDependency */,
-				EB9AC9F0D364F60835F7BF96E93DA0B8 /* PBXTargetDependency */,
-				0C6D94DE10A23E76AB12D2A4C60CB6AC /* PBXTargetDependency */,
-			);
-			name = "Pods-YibbyTests";
-			productName = "Pods-YibbyTests";
-			productReference = FA759FEC47506E6F58D85DD74A08F1A1 /* Pods_YibbyTests.framework */;
+			productReference = 54B0AE6BC3FB9827C6CDC8A2E79CB87F /* MMDrawerController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E130CF53EF63B7C12121B58C27AFF36A /* BButton */ = {
@@ -1033,24 +1140,7 @@
 			);
 			name = BButton;
 			productName = BButton;
-			productReference = C4885303CC35529584D906BCC95F6A5C /* BButton.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		EA8C726D21AFD8BBCE68F202D56EFAB9 /* TTRangeSlider */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A43C214A092CBA437353A3B73B3572DE /* Build configuration list for PBXNativeTarget "TTRangeSlider" */;
-			buildPhases = (
-				67FC323DAB13AD590955AAA5061E3418 /* Sources */,
-				BCDCD539ABC7D32E5DACB6B174C8ECB9 /* Frameworks */,
-				914FA8B25219AB5B8F0B55FE935070DF /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TTRangeSlider;
-			productName = TTRangeSlider;
-			productReference = 62490593C3DB1394B04B79A7E9E58DB8 /* TTRangeSlider.framework */;
+			productReference = 3636ABEF0A87E16A43B6A88FCE6E2BCC /* BButton.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */ = {
@@ -1067,7 +1157,30 @@
 			);
 			name = BaasBoxSDK;
 			productName = BaasBoxSDK;
-			productReference = 9BCC50EC1C73DDA86397429CA1B08C8B /* BaasBoxSDK.framework */;
+			productReference = 524BBA504138EABEF7688D93C4EB908F /* BaasBoxSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EE6CAD6E25062E791CD981832458E8B2 /* Pods-Yibby */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC2848DBE4E237BFFC3D6EEBF2E21CA1 /* Build configuration list for PBXNativeTarget "Pods-Yibby" */;
+			buildPhases = (
+				0FC10E34DA0AA812EECA10AEA6BCE8D3 /* Sources */,
+				91C1B21F89325E27C7B54FDAC2798403 /* Frameworks */,
+				8F31E5A0F5F5F7ECC5DD2521660DE7D8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D80042529E9D2CBF13F281FB6A511AC7 /* PBXTargetDependency */,
+				3069B4637E643EC6F894AD2C43211E3A /* PBXTargetDependency */,
+				9B152F14ED2530D92C7CCCEFB77006D5 /* PBXTargetDependency */,
+				0CDF41C26A1B75B91F13DBD80AFE5D06 /* PBXTargetDependency */,
+				8B0C557DDA2113D71DABFBC898688853 /* PBXTargetDependency */,
+				D51D4E5F1DEE408F0647F2290E5F0185 /* PBXTargetDependency */,
+			);
+			name = "Pods-Yibby";
+			productName = "Pods-Yibby";
+			productReference = 00BB243F5912FB7936777FC6D6F71B28 /* Pods_Yibby.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1087,17 +1200,18 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 1EC6CBDD28178058DFDF508D40BC2829 /* Products */;
+			productRefGroup = 6A31F187F75E8921289957CED9FCBC13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */,
 				E130CF53EF63B7C12121B58C27AFF36A /* BButton */,
 				96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */,
-				0B2668A7C606111FF33C31091D2AAB1C /* Pods-Yibby */,
-				DD37F2B068500A7FBC6BB11666D0BE33 /* Pods-YibbyTests */,
-				B40583EA144A108396BCA9CE33C311CA /* SwiftyJSON */,
-				EA8C726D21AFD8BBCE68F202D56EFAB9 /* TTRangeSlider */,
+				EE6CAD6E25062E791CD981832458E8B2 /* Pods-Yibby */,
+				3B326A4B83B968543347032F5C6999B7 /* Pods-YibbyTests */,
+				36959F835493D8C0B42475C1559BE90F /* SwiftyJSON */,
+				42A5EED8E77A0E72DBFD584C3CE278F7 /* TextFieldEffects */,
+				090DC612CA0980C83D441BFAA46C4964 /* TTRangeSlider */,
 			);
 		};
 /* End PBXProject section */
@@ -1114,6 +1228,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0FC10E34DA0AA812EECA10AEA6BCE8D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				464FEB4C884770226A3CB4260EDEF3B2 /* Pods-Yibby-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1AC8283747C7D044F7E6743D804C3D89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1123,6 +1245,15 @@
 				3B8CBBEB4F30D9CBAF21AA0E4A724C67 /* MMDrawerController.m in Sources */,
 				87E9DF92EC59F187381F74D34ECC797D /* MMDrawerVisualState.m in Sources */,
 				63AFE0ED1CBD542FEF26CFE3053F100C /* UIViewController+MMDrawerController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39DF9ADC63A812280C7C5B65F4C793E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE6371CC6579887FE2842BC93CB2570 /* TTRangeSlider-dummy.m in Sources */,
+				6F11A26AAF94DB7836493404331C3055 /* TTRangeSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,37 +1272,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		429516237FB1D31838790955E38F4BD6 /* Sources */ = {
+		7B2EF55D054D1556B134567536AE06E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A8E9F5ACE52401DC3F6F15E571752E8 /* Pods-Yibby-dummy.m in Sources */,
+				6BE1903AFA8819B4D58DC16686DCCA75 /* Pods-YibbyTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		45D3B54B1224172C8F64502749C77485 /* Sources */ = {
+		A806600351D839C6F5B3FC35DA605B8C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B353FE87011FEE8E2BE1A6B7F077BE06 /* Pods-YibbyTests-dummy.m in Sources */,
+				0077281FB91A403BFB98F72C2E9AEB25 /* SwiftyJSON-dummy.m in Sources */,
+				AC28E8FE6903EC66445D7A27A4F1A7A9 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		67FC323DAB13AD590955AAA5061E3418 /* Sources */ = {
+		AB132C29F37B0C2B3782B907736B0C6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DD1898952564D3963B2FE7CCD72A095 /* TTRangeSlider-dummy.m in Sources */,
-				69E4C206A9B60517BB4BC9A03CA5F0A5 /* TTRangeSlider.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71FEF80E7663E89237231458B78A17B5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FD6FAC179948FE867BFB9E34CE053333 /* SwiftyJSON-dummy.m in Sources */,
-				AA88E4CB523758671521FCE2E4C97343 /* SwiftyJSON.swift in Sources */,
+				2B10A77167EBE0A21E767CEBFE6B706E /* AkiraTextField.swift in Sources */,
+				1987BF7E50C376857C730A80F090D4D8 /* HoshiTextField.swift in Sources */,
+				0E837FFBCFC8DE23235F5698F5AF8959 /* IsaoTextField.swift in Sources */,
+				E777A8E574431FFA81DDD2619122F12E /* JiroTextField.swift in Sources */,
+				7260A68C38EC301C5AEDD8912D2D7F2D /* KaedeTextField.swift in Sources */,
+				C8B09C9073255B0DEE1E3E81F3A56CF3 /* MadokaTextField.swift in Sources */,
+				1711B19872B606FAA3E2BB26881A313F /* MinoruTextField.swift in Sources */,
+				D5CFD2D42FF7F2D0FA2C5725346FA7DB /* TextFieldEffects-dummy.m in Sources */,
+				ED369A6CAE41C6FE8174B1A6C5566D41 /* TextFieldsEffects.swift in Sources */,
+				1D1592C965E83E92E6C10AE1A56F8837 /* YokoTextField.swift in Sources */,
+				41CD204667833242EF93323070440872 /* YoshikoTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1189,70 +1321,302 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		05C62B27E1DBEC44C6519C7B1FA65FC5 /* PBXTargetDependency */ = {
+		0CDF41C26A1B75B91F13DBD80AFE5D06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = MMDrawerController;
-			target = 96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */;
-			targetProxy = 74A45467136D08020B01380AF27B62B6 /* PBXContainerItemProxy */;
+			name = SwiftyJSON;
+			target = 36959F835493D8C0B42475C1559BE90F /* SwiftyJSON */;
+			targetProxy = A5FC8AD0899118D91896FE904482969F /* PBXContainerItemProxy */;
 		};
-		0C6D94DE10A23E76AB12D2A4C60CB6AC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TTRangeSlider;
-			target = EA8C726D21AFD8BBCE68F202D56EFAB9 /* TTRangeSlider */;
-			targetProxy = 2E8512CB67B896D2992331FF70BA8B68 /* PBXContainerItemProxy */;
-		};
-		1A7D0363A5D13AAAF6086B18E48B7320 /* PBXTargetDependency */ = {
+		3069B4637E643EC6F894AD2C43211E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BaasBoxSDK;
 			target = ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */;
-			targetProxy = 1D546CCA1F6536E7F6352031045C8146 /* PBXContainerItemProxy */;
+			targetProxy = BEEA2D7D56EEACF9FEC65196D01937DA /* PBXContainerItemProxy */;
 		};
-		507AB69C81588D9E3816200FB0BC344C /* PBXTargetDependency */ = {
+		8B0C557DDA2113D71DABFBC898688853 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TTRangeSlider;
-			target = EA8C726D21AFD8BBCE68F202D56EFAB9 /* TTRangeSlider */;
-			targetProxy = 897FD24641C229A8803EF1D85FB5F786 /* PBXContainerItemProxy */;
+			target = 090DC612CA0980C83D441BFAA46C4964 /* TTRangeSlider */;
+			targetProxy = A667BF11729F77ED7588CEA4E848D9BF /* PBXContainerItemProxy */;
 		};
-		64D3B1F0F3E0EC24B23CE3B7E9F198A9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BaasBoxSDK;
-			target = ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */;
-			targetProxy = BF3CAC3AEBB4E2A6BF54D4E60CD34E9E /* PBXContainerItemProxy */;
-		};
-		76FBD119B189130EDB7E7E90A36F36E7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BButton;
-			target = E130CF53EF63B7C12121B58C27AFF36A /* BButton */;
-			targetProxy = 34ED44A4B99C280BA029F4466DCD5C4A /* PBXContainerItemProxy */;
-		};
-		B653CACAC7CD641B0DC64CAB2B73F03B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BButton;
-			target = E130CF53EF63B7C12121B58C27AFF36A /* BButton */;
-			targetProxy = 89C8D6C32F6327FE32996069D8C18ECC /* PBXContainerItemProxy */;
-		};
-		E319C10FA6048AF2E94234B021519E47 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftyJSON;
-			target = B40583EA144A108396BCA9CE33C311CA /* SwiftyJSON */;
-			targetProxy = 3D1722EFE7B8C1BF401330011EF7BFEF /* PBXContainerItemProxy */;
-		};
-		EB9AC9F0D364F60835F7BF96E93DA0B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftyJSON;
-			target = B40583EA144A108396BCA9CE33C311CA /* SwiftyJSON */;
-			targetProxy = E7D29639CA03F84D8B512E8754FC644B /* PBXContainerItemProxy */;
-		};
-		F485F0E845A09CCA8927D0A150BB9B46 /* PBXTargetDependency */ = {
+		9B152F14ED2530D92C7CCCEFB77006D5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MMDrawerController;
 			target = 96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */;
-			targetProxy = 3C318ABDC2D70459FEE7FD53FEBAA048 /* PBXContainerItemProxy */;
+			targetProxy = 4F787772A9AC525D67B39603C7D184C3 /* PBXContainerItemProxy */;
+		};
+		9C9732C6FFBD38F5B32C8B46CD0AD732 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			target = 36959F835493D8C0B42475C1559BE90F /* SwiftyJSON */;
+			targetProxy = DA05D13FBC6BD902653070384BFAA74C /* PBXContainerItemProxy */;
+		};
+		9F71190582ED6FA20D25D1B813983844 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BaasBoxSDK;
+			target = ECD3D6459209FCB6B9C23734199A374D /* BaasBoxSDK */;
+			targetProxy = 765E7847A03175F2027A34A71576C845 /* PBXContainerItemProxy */;
+		};
+		A0D2D35F8391E0FF4358771724BFFED6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TTRangeSlider;
+			target = 090DC612CA0980C83D441BFAA46C4964 /* TTRangeSlider */;
+			targetProxy = 4D0CC5D32256A68DB590A21663085F25 /* PBXContainerItemProxy */;
+		};
+		C5FE63B1C70D09AB7555E48B40F9781D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MMDrawerController;
+			target = 96D3562E47E4792B0A6093A0323EB398 /* MMDrawerController */;
+			targetProxy = 543EFFC202DACDAAD7D5AF955BC7AA6A /* PBXContainerItemProxy */;
+		};
+		D51D4E5F1DEE408F0647F2290E5F0185 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TextFieldEffects;
+			target = 42A5EED8E77A0E72DBFD584C3CE278F7 /* TextFieldEffects */;
+			targetProxy = 259F55604043A1587A297B2CBF6A82FB /* PBXContainerItemProxy */;
+		};
+		D80042529E9D2CBF13F281FB6A511AC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BButton;
+			target = E130CF53EF63B7C12121B58C27AFF36A /* BButton */;
+			targetProxy = FD25F922A103F54CF226032E6A5A7053 /* PBXContainerItemProxy */;
+		};
+		DC30A7ED0D9EB5061F61CC5FAF964A91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BButton;
+			target = E130CF53EF63B7C12121B58C27AFF36A /* BButton */;
+			targetProxy = 07A170A1C8A37A3525A276E90B606F18 /* PBXContainerItemProxy */;
+		};
+		F307DA688AD142844E5CD478A40F611C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TextFieldEffects;
+			target = 42A5EED8E77A0E72DBFD584C3CE278F7 /* TextFieldEffects */;
+			targetProxy = 7183CF6482B656BF8B0FE6C501059FBA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0763A3AEC3B7E3E34122A0614DFF93C5 /* Release */ = {
+		0C8B3DCAA140AD219F6EC3B9C9297D0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF4F71EEE1C9E9068C552E682B6B792F /* Pods-Yibby.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Yibby/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Yibby/Pods-Yibby.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Yibby;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		106C8BFEFD8AAB7F8F0B87E238B40A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C70183A448DB38259334737C258F39B4 /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		15781F0A4D00AC6694360BAD1A545795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3A3F5DCAB5F1B77D018B850F973188C /* MMDrawerController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MMDrawerController/MMDrawerController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MMDrawerController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MMDrawerController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		23537A8F5C41BC9CCF11B6C9FE08CF45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E2DE33C6B0B325740551B126C2A144E /* BButton.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BButton/BButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BButton/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BButton/BButton.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3E186456A8999383DE02A6D3A313C351 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74D322A50FEE6A06E7A3277CD0C37114 /* TextFieldEffects.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4D2FBE4C32E2C5ADE2048C22760C90CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F33305AFFB16E79E40A4EFB2EE6D7FE /* TTRangeSlider.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TTRangeSlider/TTRangeSlider-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TTRangeSlider/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TTRangeSlider/TTRangeSlider.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TTRangeSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		686C5D966C9F30A9B3130129BDE054F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1C0C3D63E060D609D0CF4228EDC6821 /* BaasBoxSDK.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BaasBoxSDK/BaasBoxSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BaasBoxSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BaasBoxSDK/BaasBoxSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BaasBoxSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		68A695D0C67C9029944EE237EF6CBD05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F33305AFFB16E79E40A4EFB2EE6D7FE /* TTRangeSlider.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TTRangeSlider/TTRangeSlider-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TTRangeSlider/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TTRangeSlider/TTRangeSlider.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TTRangeSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6E24F8A6A521ED9D64FAE510EFA83FC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8AF7557F72EE0376ABCF2CF0C23297D2 /* Pods-YibbyTests.release.xcconfig */;
 			buildSettings = {
@@ -1282,116 +1646,7 @@
 			};
 			name = Release;
 		};
-		15781F0A4D00AC6694360BAD1A545795 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63BDE4C69003650E3796EE8B7FC62AB7 /* MMDrawerController.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MMDrawerController/MMDrawerController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MMDrawerController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MMDrawerController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		178BF12358FFED4257597412189D6F22 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA12ABE3BD46E5B1411373612DA14950 /* SwiftyJSON.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		1A57D373D54DBAAAF01C730C67633595 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43B2A7EEF8A1C4FF0AFD7DA61B8E47F6 /* TTRangeSlider.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TTRangeSlider/TTRangeSlider-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TTRangeSlider/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TTRangeSlider/TTRangeSlider.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TTRangeSlider;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		23537A8F5C41BC9CCF11B6C9FE08CF45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 742A96158A435A4615FABB9E96C31B51 /* BButton.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BButton/BButton-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BButton/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BButton/BButton.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = BButton;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		2C52DFB590E117A400CDFF9ACCCE88F7 /* Debug */ = {
+		8062F15E0F5107EA97553ED2D9085B71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1100D0C501E8F4A91E843A2EF1DB82B8 /* Pods-YibbyTests.debug.xcconfig */;
 			buildSettings = {
@@ -1422,61 +1677,7 @@
 			};
 			name = Debug;
 		};
-		686C5D966C9F30A9B3130129BDE054F4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98EC3390D16C922CE0556F1AABC212CE /* BaasBoxSDK.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BaasBoxSDK/BaasBoxSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BaasBoxSDK/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BaasBoxSDK/BaasBoxSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = BaasBoxSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		86A576399FFD1FEC7DCA232469072DE9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43B2A7EEF8A1C4FF0AFD7DA61B8E47F6 /* TTRangeSlider.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TTRangeSlider/TTRangeSlider-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TTRangeSlider/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TTRangeSlider/TTRangeSlider.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TTRangeSlider;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		895B989D89A69D7D5987D7E85FB52048 /* Release */ = {
+		8843360F75F85938A6B8D663D3E42072 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1A6A8E4461CC384424AC921836D70347 /* Pods-Yibby.release.xcconfig */;
 			buildSettings = {
@@ -1547,7 +1748,7 @@
 		};
 		A61A56A73143D6C0831A16001836F8F1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63BDE4C69003650E3796EE8B7FC62AB7 /* MMDrawerController.xcconfig */;
+			baseConfigurationReference = A3A3F5DCAB5F1B77D018B850F973188C /* MMDrawerController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1574,7 +1775,7 @@
 		};
 		B5AC3C83935B2CDC92DBA9245B86CDD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 742A96158A435A4615FABB9E96C31B51 /* BButton.xcconfig */;
+			baseConfigurationReference = 7E2DE33C6B0B325740551B126C2A144E /* BButton.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1599,9 +1800,9 @@
 			};
 			name = Debug;
 		};
-		C36295E056D0EE3C86A73DDCAE33D738 /* Release */ = {
+		C524A2B2E1D1394DD2D43843CF4BB86A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA12ABE3BD46E5B1411373612DA14950 /* SwiftyJSON.xcconfig */;
+			baseConfigurationReference = 74D322A50FEE6A06E7A3277CD0C37114 /* TextFieldEffects.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1610,44 +1811,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D91CC7840FAA382906BC1E4C40F0A8CD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF4F71EEE1C9E9068C552E682B6B792F /* Pods-Yibby.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Yibby/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Yibby/Pods-Yibby.modulemap";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_Yibby;
+				PRODUCT_NAME = TextFieldEffects;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1659,7 +1830,7 @@
 		};
 		DB546346C40ADD104DC06C4F0EBD84A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98EC3390D16C922CE0556F1AABC212CE /* BaasBoxSDK.xcconfig */;
+			baseConfigurationReference = C1C0C3D63E060D609D0CF4228EDC6821 /* BaasBoxSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1718,6 +1889,34 @@
 			};
 			name = Release;
 		};
+		FAA46A0B9F30132B3390DE815EF7C9C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C70183A448DB38259334737C258F39B4 /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1748,29 +1947,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A57303B01D279457BBA0413B0080669 /* Build configuration list for PBXNativeTarget "Pods-Yibby" */ = {
+		5A94A2C96C784148AF86D0D1E3FA6E22 /* Build configuration list for PBXNativeTarget "TextFieldEffects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D91CC7840FAA382906BC1E4C40F0A8CD /* Debug */,
-				895B989D89A69D7D5987D7E85FB52048 /* Release */,
+				C524A2B2E1D1394DD2D43843CF4BB86A /* Debug */,
+				3E186456A8999383DE02A6D3A313C351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8039F89EB0E585CE1534A419E5BE137F /* Build configuration list for PBXNativeTarget "Pods-YibbyTests" */ = {
+		75DC571D12FDBC1F6129A6D790672AAB /* Build configuration list for PBXNativeTarget "TTRangeSlider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C52DFB590E117A400CDFF9ACCCE88F7 /* Debug */,
-				0763A3AEC3B7E3E34122A0614DFF93C5 /* Release */,
+				68A695D0C67C9029944EE237EF6CBD05 /* Debug */,
+				4D2FBE4C32E2C5ADE2048C22760C90CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A43C214A092CBA437353A3B73B3572DE /* Build configuration list for PBXNativeTarget "TTRangeSlider" */ = {
+		8A02D55C0F0FCC8E1671F87206E5B8D8 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				86A576399FFD1FEC7DCA232469072DE9 /* Debug */,
-				1A57D373D54DBAAAF01C730C67633595 /* Release */,
+				FAA46A0B9F30132B3390DE815EF7C9C3 /* Debug */,
+				106C8BFEFD8AAB7F8F0B87E238B40A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1784,11 +1983,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1FDD3E689965C9C1150E8AB1FE29D85 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
+		CC2848DBE4E237BFFC3D6EEBF2E21CA1 /* Build configuration list for PBXNativeTarget "Pods-Yibby" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				178BF12358FFED4257597412189D6F22 /* Debug */,
-				C36295E056D0EE3C86A73DDCAE33D738 /* Release */,
+				0C8B3DCAA140AD219F6EC3B9C9297D0D /* Debug */,
+				8843360F75F85938A6B8D663D3E42072 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAD59B7056D6B857267BD8F1E92C9DB0 /* Build configuration list for PBXNativeTarget "Pods-YibbyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8062F15E0F5107EA97553ED2D9085B71 /* Debug */,
+				6E24F8A6A521ED9D64FAE510EFA83FC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

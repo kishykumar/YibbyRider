@@ -37,4 +37,19 @@ class Util {
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    static func displaySettingsAlert(controller: UIViewController, title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        // Add Settings
+        alert.addAction(UIAlertAction(title: "Settings", style: .Default, handler: { (action) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        }))
+        
+        // Add OK
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
 }

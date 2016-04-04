@@ -41,6 +41,7 @@ PODS:
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
   - SwiftyJSON (2.3.2)
+  - TextFieldEffects (1.2.0)
   - TTRangeSlider (1.0.3)
 
 DEPENDENCIES:
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - GoogleMaps
   - MMDrawerController (~> 0.5.7)
   - SwiftyJSON
+  - TextFieldEffects
   - TTRangeSlider
 
 EXTERNAL SOURCES:
@@ -75,6 +77,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
 
 COCOAPODS: 0.39.0

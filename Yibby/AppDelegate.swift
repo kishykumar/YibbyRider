@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     var centerContainer: MMDrawerController?
     
     var pushController: PushController =  PushController()
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Configure Baasbox
@@ -97,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         return true
     }
-    
+
     func initializeMainViewController () {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // topic
         if(registrationToken != nil && connectedToGCM) {
             GCMPubSub.sharedInstance().subscribeWithToken(self.registrationToken, topic: subscriptionTopic,
-                options: nil, handler: {(NSError error) -> Void in
+                options: nil, handler: {(error) -> Void in
                     if (error != nil) {
                         // Treat the "already subscribed" error more gently
                         if error.code == 3001 {
@@ -166,8 +166,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // [START connect_gcm_service]
     func applicationDidBecomeActive(application: UIApplication) {
         // Connect to the GCM server to receive non-APNS notifications
+        
         GCMService.sharedInstance().connectWithHandler({
-            (NSError error) -> Void in
+            (error) -> Void in
             if error != nil {
                 print("Could not connect to GCM: \(error.localizedDescription)")
             } else {
@@ -190,15 +191,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         deviceToken: NSData ) {
 
             self.pushController.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken)
-
-//            let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
-//            var tokenString = ""
-//            
-//            for i in 0..<deviceToken.length {
-//                tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
-//            }
-//            
-//            print("tokenString: \(tokenString)")
 
             // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
             let instanceIDConfig = GGLInstanceIDConfig.defaultConfig()
@@ -272,20 +264,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
     }
     
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     func application( application: UIApplication,
         didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-            
-            print("Notification received1: \(userInfo)")
             
             // This works only if the app started the GCM service
             GCMService.sharedInstance().appDidReceiveMessage(userInfo);
@@ -300,8 +280,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func application( application: UIApplication,
         didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
         fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
-            
-            print("Notification received2: \(userInfo)")
             
             // This works only if the app started the GCM service
             GCMService.sharedInstance().appDidReceiveMessage(userInfo);
@@ -336,4 +314,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // server can resend those messages.
     }
 }
-

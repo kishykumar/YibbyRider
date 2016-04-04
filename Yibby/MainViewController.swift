@@ -50,6 +50,9 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
     
+    // UI Elements
+    let NAV_BAR_COLOR_CODE = 0xc6433b
+    
     // MARK: Functions
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -102,30 +105,63 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     }
     
     func setupUI () {
-        let imageView = UIImageView();
+//        let imageView = UIImageView();
+//        
+//        // Set the size of the icon
+//        imageView.frame = CGRect(x: 5, y: 0, width: pickupFieldOutlet.frame.height - 1, height: pickupFieldOutlet.frame.height - 1);
+//        
+//        let image = UIImage(named: "destTextFieldIcon.png");
+//        imageView.image = image;
+//        pickupFieldOutlet.leftView = imageView;
+//        pickupFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
         
-        // Set the size of the icon
-        imageView.frame = CGRect(x: 5, y: 0, width: pickupFieldOutlet.frame.height - 1, height: pickupFieldOutlet.frame.height - 1);
         
-        let image = UIImage(named: "destTextFieldIcon.png");
-        imageView.image = image;
-        pickupFieldOutlet.leftView = imageView;
-        pickupFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
+//        let imageView1 = UIImageView();
+//        imageView1.frame = CGRect(x: 5, y: 0, width: dropoffFieldOutlet.frame.height - 1, height: dropoffFieldOutlet.frame.height - 1);
+//        
+//        let image1 = UIImage(named: "destTextFieldIcon.png");
+//        imageView1.image = image1;
+//        dropoffFieldOutlet.leftView = imageView1;
+//        dropoffFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
         
-        
-        let imageView1 = UIImageView();
-        imageView1.frame = CGRect(x: 5, y: 0, width: dropoffFieldOutlet.frame.height - 1, height: dropoffFieldOutlet.frame.height - 1);
-        
-        let image1 = UIImage(named: "destTextFieldIcon.png");
-        imageView1.image = image1;
-        dropoffFieldOutlet.leftView = imageView1;
-        dropoffFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
-        
-        //currency range slider
+        // currency range slider
         self.rangeSlider.delegate = self
         let formatter: NSNumberFormatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         self.rangeSlider.numberFormatterOverride = formatter
+
+        setNavigationBarColor()
+        setStatusBarColor()
+    }
+    
+    func setNavigationBarColor () {
+        // set nav bar color
+        self.navigationController!.navigationBar.barTintColor = UIColor(netHex: NAV_BAR_COLOR_CODE)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController!.navigationBar.translucent = false
+        
+        // Set Title Font, Font size, Font color
+        self.navigationController!.navigationBar.titleTextAttributes = [
+            NSFontAttributeName : UIFont.systemFontOfSize(18.0),
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+        ]
+
+//
+//        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.            whiteColor()]
+    }
+    
+    func setStatusBarColor () {
+        let app: UIApplication = UIApplication.sharedApplication()
+        
+        let statusBarView: UIView = UIView(frame:
+            CGRectMake(0, -app.statusBarFrame.size.height,
+                    self.view.bounds.size.width, app.statusBarFrame.size.height))
+        
+        statusBarView.backgroundColor = UIColor.yellowColor()
+        self.navigationController!.navigationBar.addSubview(statusBarView)
+        
+        // status bar text color
+//        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     func setupLocationManager () {
@@ -242,12 +278,32 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         dropoffFieldOutlet.delegate = self
     }
 
+    func showLocationAlert () {
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            
+                case .NotDetermined, .Restricted, .Denied:
+                print("KKDBG: No access")
+                Util.displaySettingsAlert(self, title: "Location services disabled", message: "Please provide Yibby access to location services in the Settings -> Privacy -> Location Services")
+            
+                case .AuthorizedAlways, .AuthorizedWhenInUse:
+                print("KKDBG: Access")
+            }
+        } else {
+            print("KKDBG: Location services are not enabled")
+            Util.displaySettingsAlert(self, title: "Location services disabled", message: "Please turn on location services in the Settings -> Privacy -> Location Services")
+        }
+    }
+    
     override public func viewDidAppear(animated: Bool) {
 //        performSegueWithIdentifier("loginSegue", sender: self)
         
 //        let loginViewControllerObejct = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
 //        
 //        self.navigationController?.pushViewController(loginViewControllerObejct!, animated: true)
+        
+        // check for location services
+        showLocationAlert()
     }
     
     override public func viewWillAppear(animated: Bool) {
@@ -402,5 +458,20 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     func cleanup () {
         pickupFieldSelected = false
         dropoffFieldSelected = false
+    }
+}
+
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
 }

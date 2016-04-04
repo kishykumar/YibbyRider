@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mfk-1V-gJq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mfk-1V-gJq">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -15,26 +15,81 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-c9-zdZ" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="408"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.89592279485992299" green="0.9607436272852421" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pickup" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ItT-uc-wI2">
-                                <rect key="frame" x="20" y="100" width="280" height="30"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" button="YES" staticText="YES"/>
-                                </accessibility>
+                            <view opaque="NO" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="C9S-Vk-aok" userLabel="Content View">
+                                <rect key="frame" x="20" y="40" width="279" height="123"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9a-JN-P64" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="8" y="8" width="263" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="5e1-Dc-2kB"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.41568627450980389" green="0.47450980392156861" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.10980392156862745" green="0.5725490196078431" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dropoff" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xVt-A6-0xz" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="8" y="65" width="263" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="GIJ-Yp-N7Z"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.41568627450980389" green="0.47450980392156861" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.792156862745098" green="0.38039215686274508" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.792156862745098" green="0.38039215686274508" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jqW-Y6-Tie"/>
+                                    <constraint firstItem="J9a-JN-P64" firstAttribute="top" secondItem="C9S-Vk-aok" secondAttribute="topMargin" id="KQf-rQ-e4S"/>
+                                    <constraint firstItem="J9a-JN-P64" firstAttribute="trailing" secondItem="C9S-Vk-aok" secondAttribute="trailingMargin" id="UUU-ed-hZR"/>
+                                    <constraint firstItem="xVt-A6-0xz" firstAttribute="trailing" secondItem="J9a-JN-P64" secondAttribute="trailing" id="fFI-ZL-jNY"/>
+                                    <constraint firstItem="J9a-JN-P64" firstAttribute="leading" secondItem="C9S-Vk-aok" secondAttribute="leadingMargin" id="myr-HX-kIm"/>
+                                    <constraint firstAttribute="bottom" secondItem="xVt-A6-0xz" secondAttribute="bottom" constant="9" id="pW0-b4-0o7"/>
+                                    <constraint firstItem="xVt-A6-0xz" firstAttribute="top" secondItem="J9a-JN-P64" secondAttribute="bottom" constant="8" symbolic="YES" id="tM5-7N-PiN"/>
+                                    <constraint firstItem="xVt-A6-0xz" firstAttribute="leading" secondItem="J9a-JN-P64" secondAttribute="leading" id="zUf-An-UmO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-Xb-ktt" customClass="TTRangeSlider">
-                                <rect key="frame" x="40" y="395" width="240" height="68"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.shadowOpacity" value="0.5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.shadowRadius" value="2"/>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-Xb-ktt" customClass="TTRangeSlider">
+                                <rect key="frame" x="40" y="345" width="240" height="68"/>
                                 <color key="tintColor" red="0.48060405020000002" green="0.1509024873" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="VMQ-DR-nkv"/>
@@ -70,19 +125,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dropoff" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xVt-A6-0xz">
-                                <rect key="frame" x="20" y="142" width="279" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="tl3-jI-wg9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pH-U2-oZp" customClass="BButton">
-                                <rect key="frame" x="11" y="471" width="299" height="53"/>
+                                <rect key="frame" x="11" y="433" width="299" height="53"/>
                                 <color key="backgroundColor" red="0.48060405015670127" green="0.1509024872624154" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="mh3-Tg-xBr"/>
+                                    <constraint firstAttribute="height" constant="53" id="mh3-Tg-xBr"/>
                                 </constraints>
                                 <state key="normal" title="Bid"/>
                                 <userDefinedRuntimeAttributes>
@@ -95,44 +142,37 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xVt-A6-0xz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3wA-yo-jXv"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6pH-U2-oZp" secondAttribute="bottom" constant="2" id="5Uq-1s-eHj"/>
-                            <constraint firstItem="xVt-A6-0xz" firstAttribute="top" secondItem="ItT-uc-wI2" secondAttribute="bottom" constant="12" id="5sb-vQ-Xq7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6pH-U2-oZp" secondAttribute="bottom" constant="18" id="5Uq-1s-eHj"/>
                             <constraint firstItem="6pH-U2-oZp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-9" id="5to-kn-SKd"/>
-                            <constraint firstItem="MUC-c9-zdZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7V5-dR-NpC"/>
-                            <constraint firstItem="6pH-U2-oZp" firstAttribute="top" secondItem="Zeb-Xb-ktt" secondAttribute="bottom" constant="8" id="7Y1-vz-hAa"/>
-                            <constraint firstItem="ItT-uc-wI2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BFq-zr-pZE"/>
-                            <constraint firstItem="xVt-A6-0xz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JGH-iT-Lyy"/>
-                            <constraint firstItem="xVt-A6-0xz" firstAttribute="top" secondItem="ItT-uc-wI2" secondAttribute="bottom" constant="12" id="JlW-DR-LIL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xVt-A6-0xz" secondAttribute="trailing" id="Lcg-92-v9w"/>
-                            <constraint firstItem="xVt-A6-0xz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pt7-nT-Yv3"/>
+                            <constraint firstItem="6pH-U2-oZp" firstAttribute="top" secondItem="Zeb-Xb-ktt" secondAttribute="bottom" constant="20" id="7Y1-vz-hAa"/>
+                            <constraint firstItem="C9S-Vk-aok" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="CMO-LM-vOD"/>
+                            <constraint firstItem="C9S-Vk-aok" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="Ib3-zJ-la2"/>
+                            <constraint firstItem="MUC-c9-zdZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="PbM-bQ-Y2X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6pH-U2-oZp" secondAttribute="trailing" constant="-10" id="Rf3-y9-Tr9"/>
-                            <constraint firstItem="ItT-uc-wI2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Sh2-CH-nid"/>
-                            <constraint firstItem="ItT-uc-wI2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="36" id="Vwh-6g-D9o"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MUC-c9-zdZ" secondAttribute="bottom" id="aMs-TV-JET"/>
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="cGg-Iq-VQn"/>
                             <constraint firstItem="Zeb-Xb-ktt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eob-Cs-gg6"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MUC-c9-zdZ" secondAttribute="bottom" constant="52" id="nE8-kl-Yfr"/>
-                            <constraint firstItem="ItT-uc-wI2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qVs-uP-iLK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MUC-c9-zdZ" secondAttribute="trailing" constant="-20" id="tBF-aE-aZL"/>
+                            <constraint firstItem="C9S-Vk-aok" firstAttribute="centerX" secondItem="Zeb-Xb-ktt" secondAttribute="centerX" id="zRW-UD-Wo0"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="YibbY" id="AaQ-aw-lab">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="azS-YQ-Zkf">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="azS-YQ-Zkf" customClass="MMDrawerBarButtonItem">
                             <connections>
                                 <action selector="leftSlideButtonTapped:" destination="BYZ-38-t0r" id="NCH-6K-WKn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bidButton" destination="6pH-U2-oZp" id="vxk-oB-tP2"/>
                         <outlet property="dropoffFieldOutlet" destination="xVt-A6-0xz" id="rlE-cC-FGY"/>
                         <outlet property="gmsMapViewOutlet" destination="MUC-c9-zdZ" id="4bw-jc-0fZ"/>
-                        <outlet property="pickupFieldOutlet" destination="ItT-uc-wI2" id="Hy6-dm-BhF"/>
+                        <outlet property="pickupFieldOutlet" destination="J9a-JN-P64" id="zGZ-w4-LHh"/>
                         <outlet property="rangeSlider" destination="Zeb-Xb-ktt" id="roe-Z7-xYu"/>
                         <segue destination="0pT-y6-1nI" kind="show" identifier="findOffersSegue" id="oki-22-gCX"/>
                     </connections>
@@ -150,7 +190,7 @@
                         <viewControllerLayoutGuide type="bottom" id="W9o-l7-LWb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cTT-JY-D9f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Please wait while we find you the offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdC-Es-8Dl">
@@ -160,7 +200,7 @@
                                     <constraint firstAttribute="width" constant="300" id="3HN-nv-ZUm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -190,7 +230,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSt-KH-h3L">
                                 <rect key="frame" x="81" y="147" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -201,6 +241,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GhV-Bs-Mcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1663" y="313"/>
+        </scene>
+        <!--Driver En Route View Controller-->
+        <scene sceneID="L19-1c-f0a">
+            <objects>
+                <viewController storyboardIdentifier="DriverEnRouteViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aYl-za-zqw" customClass="DriverEnRouteViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LZs-N6-eHe"/>
+                        <viewControllerLayoutGuide type="bottom" id="SEz-11-0BY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IBH-gf-1dv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En route" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HP7-bu-vEZ">
+                                <rect key="frame" x="128" y="273" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HP7-bu-vEZ" firstAttribute="centerY" secondItem="IBH-gf-1dv" secondAttribute="centerY" id="0ae-84-E71"/>
+                            <constraint firstItem="HP7-bu-vEZ" firstAttribute="centerX" secondItem="IBH-gf-1dv" secondAttribute="centerX" id="s67-8t-9we"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kww-eN-MUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2027" y="313"/>
         </scene>
         <!--Ride Start View Controller-->
         <scene sceneID="Q7u-iU-DaH">
@@ -217,7 +288,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Z-LA-Tf9">
                                 <rect key="frame" x="105" y="148" width="76" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -227,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkp-kY-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2007" y="313"/>
+            <point key="canvasLocation" x="2376" y="313"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="sUJ-8k-1Ou">
@@ -365,7 +436,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Already signed up? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGl-6r-mLg">
                                 <rect key="frame" x="86" y="421" width="149" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vh5-YS-Isf">
@@ -378,7 +449,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Yibby Signup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6Y-T9-aQe">
                                 <rect key="frame" x="107" y="67" width="106" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -502,7 +573,7 @@
                 <navigationController storyboardIdentifier="MainNavViewControllerIdentifier" automaticallyAdjustsScrollViewInsets="NO" id="mfk-1V-gJq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jTm-Gf-t7Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jTm-Gf-t7Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

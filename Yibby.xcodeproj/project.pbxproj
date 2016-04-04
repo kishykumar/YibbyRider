@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		123524931C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
+		124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
+		126601FE1CA684A500E12CFC /* DriverEnRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */; };
 		12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* Util.swift */; };
 		12A67DA11C94DC4B005E3F9F /* FindOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */; };
 		12A67DA41C951C5E005E3F9F /* PushController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67DA31C951C5E005E3F9F /* PushController.swift */; };
@@ -16,7 +17,6 @@
 		12A67DAD1C952265005E3F9F /* RideStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67DAC1C952265005E3F9F /* RideStartViewController.swift */; };
 		12E438651C8400AB0038F9A4 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E438641C8400AB0038F9A4 /* SignupViewController.swift */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
-		12EFE5E11C9E751D001A7B25 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCE11C41EFC800F79A26 /* Info.plist */; };
 		12F1E8651C70424E0008E79D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8641C70424E0008E79D /* LoginViewController.swift */; };
 		12F1E8681C717ED30008E79D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E8671C717ED30008E79D /* KeychainWrapper.swift */; };
 		12F1E86B1C76E83E0008E79D /* LeftNavDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */; };
@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewController.swift; sourceTree = "<group>"; };
 		12A67D9D1C94CE7F005E3F9F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindOffersViewController.swift; sourceTree = "<group>"; };
 		12A67DA31C951C5E005E3F9F /* PushController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushController.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 				12F3CCD71C41EFC700F79A26 /* MainViewController.swift */,
 				12F3CCF91C4DDD6C00F79A26 /* DestinationPickerViewController.swift */,
 				12F3CCD91C41EFC700F79A26 /* Main.storyboard */,
+				126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */,
 				12A67DA31C951C5E005E3F9F /* PushController.swift */,
 				12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */,
 				12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */,
@@ -295,9 +297,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */,
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
-				123524931C894661004307EE /* GoogleService-Info.plist in Resources */,
-				12EFE5E11C9E751D001A7B25 /* Info.plist in Resources */,
 				12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */,
 				12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */,
 				12F3CCDB1C41EFC700F79A26 /* Main.storyboard in Resources */,
@@ -423,6 +424,7 @@
 				12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
 				12F1E8681C717ED30008E79D /* KeychainWrapper.swift in Sources */,
+				126601FE1CA684A500E12CFC /* DriverEnRouteViewController.swift in Sources */,
 				12A67DA11C94DC4B005E3F9F /* FindOffersViewController.swift in Sources */,
 				12F1E8711C7716070008E79D /* SettingsViewController.swift in Sources */,
 				12A67DA41C951C5E005E3F9F /* PushController.swift in Sources */,
@@ -573,6 +575,7 @@
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -596,6 +599,7 @@
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

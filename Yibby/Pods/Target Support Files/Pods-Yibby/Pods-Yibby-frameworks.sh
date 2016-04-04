@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Yibby/MMDrawerController.framework"
   install_framework "Pods-Yibby/SwiftyJSON.framework"
   install_framework "Pods-Yibby/TTRangeSlider.framework"
+  install_framework "Pods-Yibby/TextFieldEffects.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Yibby/BButton.framework"
@@ -96,4 +97,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Yibby/MMDrawerController.framework"
   install_framework "Pods-Yibby/SwiftyJSON.framework"
   install_framework "Pods-Yibby/TTRangeSlider.framework"
+  install_framework "Pods-Yibby/TextFieldEffects.framework"
 fi
