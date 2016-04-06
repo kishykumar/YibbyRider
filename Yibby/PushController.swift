@@ -35,17 +35,17 @@ public class PushController: NSObject, PushControllerProtocol {
         
         // handle offer
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let mmdc : MMDrawerController = appDelegate.window?.rootViewController as! MMDrawerController
         
         // get the storyboard to instantiate the viewcontroller
         let mainstoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        switch notification[MESSAGE_JSON_FIELD_NAME] as! String {
-            
-        case OFFER_MESSAGE_TYPE:
-            print("OFFER RCVD")
-            // present the view controller and pass the data
-            if let mmnvc = mmdc.centerViewController as? UINavigationController {
+        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+        
+            switch notification[MESSAGE_JSON_FIELD_NAME] as! String {
+                
+            case OFFER_MESSAGE_TYPE:
+                print("OFFER RCVD")
+                // present the view controller and pass the data
                 
                 // parse the notification to get the bid data
                 let jsonCustom = notification[CUSTOM_JSON_FIELD_NAME]
@@ -58,19 +58,15 @@ public class PushController: NSObject, PushControllerProtocol {
                     let confirmRideViewController = mainstoryboard.instantiateViewControllerWithIdentifier("ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
                     mmnvc.pushViewController(confirmRideViewController, animated: true)
                 }
-            }
-        
-        case NO_OFFERS_MESSAGE_TYPE:
-            print("NOOFFERS RCVD")
             
-            if let mmnvc = mmdc.centerViewController as? UINavigationController {
+            case NO_OFFERS_MESSAGE_TYPE:
+                print("NOOFFERS RCVD")
+                
                 mmnvc.popViewControllerAnimated(true)
-                Util.displayAlert(mmnvc.visibleViewController!, title: "No offers from drivers.", message: "Your bid was not accepted by any driver")
-            }
-            
-        case DRIVER_EN_ROUTE_MESSAGE_TYPE:
-            print("DRIVER EN ROUTE")
-            if let mmnvc = mmdc.centerViewController as? UINavigationController {
+                Util.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
+                
+            case DRIVER_EN_ROUTE_MESSAGE_TYPE:
+                print("DRIVER EN ROUTE")
                 
                 // parse the notification to get the bid data
                 let jsonCustom = notification[CUSTOM_JSON_FIELD_NAME]
@@ -83,9 +79,9 @@ public class PushController: NSObject, PushControllerProtocol {
                     let driverEnRouteViewController = mainstoryboard.instantiateViewControllerWithIdentifier("DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
                     mmnvc.pushViewController(driverEnRouteViewController, animated: true)
                 }
+            default: break
+                
             }
-        default: break
-            
         }
     }
     

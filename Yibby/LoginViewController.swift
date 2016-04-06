@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
         
         
         if (emailAddress.text == "" || password.text == "") {
-            Util.displayAlert(self, title: "error in form", message: "Please enter email and password")
+            Util.displayAlert("error in form", message: "Please enter email and password")
         } else {
             loginUser(emailAddress.text!, passwordi: password.text!)
         }
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
                 self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
             }
             else {
-                Util.displayAlert(self, title: "Username/password incorrect", message: "Please reenter user credentials and try again.")
+                Util.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")
             }
         })
     }

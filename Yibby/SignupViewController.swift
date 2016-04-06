@@ -22,7 +22,7 @@ class SignupViewController: UIViewController {
     // MARK: Actions
     @IBAction func submitFormButton(sender: UIButton) {
         if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
-            Util.displayAlert(self, title: "error in form", message: "Please enter email and password")
+            Util.displayAlert("error in form", message: "Please enter email and password")
         } else {
             createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
         }
@@ -69,7 +69,7 @@ class SignupViewController: UIViewController {
                 self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
             }
             else {
-                Util.displayAlert(self, title: "Signup failed.", message: "Please try again or wait for some time before signing up again.")
+                Util.displayAlert("Signup failed.", message: "Please try again or wait for some time before signing up again.")
             }
             Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
         })

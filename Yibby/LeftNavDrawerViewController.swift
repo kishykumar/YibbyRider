@@ -7,10 +7,23 @@
 //
 
 import UIKit
+import MMDrawerController
 
 class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var menuItems: [String] = ["Settings", "Payment"]
+    // MARK: Properties
+    @IBOutlet weak var tableView: UITableView!
+    
+    var menuItems: [String] = ["Payment", "History", "Settings", "Promotions", "Help", "About"]
+    
+    enum TableIndex: Int {
+        case Payment = 0
+        case History
+        case Settings
+        case Promotions
+        case Help
+        case About
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +48,57 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var selectedViewController: UIViewController = UIViewController()
+        
+        switch (indexPath.row) {
+        case TableIndex.Payment.rawValue:
+            
+            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+            
+            break
+        case TableIndex.History.rawValue:
+            
+            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryViewControllerIdentifier") as! HistoryViewController
+
+            break
+        case TableIndex.Settings.rawValue:
+            
+            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewControllerIdentifier") as! SettingsViewController
+            
+            break
+        case TableIndex.Promotions.rawValue:
+            
+            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PromotionsViewControllerIdentifier") as! PromotionsViewController
+            
+            break
+        case TableIndex.Help.rawValue:
+            
+            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HelpViewControllerIdentifier") as! HelpViewController
+            
+            break
+        case TableIndex.About.rawValue:
+            
+            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewControllerIdentifier") as! AboutViewController
+            
+            break
+        default: break
+        }
+
+        // Push the selected view controller to the main navigation controller
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+            
+            mmnvc.pushViewController(selectedViewController, animated: true)
+            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            
+        } else {
+            assert(false)
+        }
     }
     
     /*

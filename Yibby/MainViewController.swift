@@ -79,9 +79,9 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                         if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
                             
                             // TODO: display alert that no drivers are online
-                            Util.displayAlert(self, title: "No drivers online.", message: "")
+                            Util.displayAlert("No drivers online.", message: "")
                         } else {
-                            Util.displayAlert(self, title: "Unexpected error. Please be patient.", message: "")
+                            Util.displayAlert("Unexpected error. Please be patient.", message: "")
                         }
                     } else {
                         self.performSegueWithIdentifier("findOffersSegue", sender: nil)
@@ -276,23 +276,9 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         
         pickupFieldOutlet.delegate = self
         dropoffFieldOutlet.delegate = self
-    }
-
-    func showLocationAlert () {
-        if CLLocationManager.locationServicesEnabled() {
-            switch(CLLocationManager.authorizationStatus()) {
-            
-                case .NotDetermined, .Restricted, .Denied:
-                print("KKDBG: No access")
-                Util.displaySettingsAlert(self, title: "Location services disabled", message: "Please provide Yibby access to location services in the Settings -> Privacy -> Location Services")
-            
-                case .AuthorizedAlways, .AuthorizedWhenInUse:
-                print("KKDBG: Access")
-            }
-        } else {
-            print("KKDBG: Location services are not enabled")
-            Util.displaySettingsAlert(self, title: "Location services disabled", message: "Please turn on location services in the Settings -> Privacy -> Location Services")
-        }
+        
+        // check for location services
+        Util.displayLocationAlert()
     }
     
     override public func viewDidAppear(animated: Bool) {
@@ -301,9 +287,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
 //        let loginViewControllerObejct = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
 //        
 //        self.navigationController?.pushViewController(loginViewControllerObejct!, animated: true)
-        
-        // check for location services
-        showLocationAlert()
+
     }
     
     override public func viewWillAppear(animated: Bool) {

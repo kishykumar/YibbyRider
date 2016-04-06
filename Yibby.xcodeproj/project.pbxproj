@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1206822F1CB3A961004A34BB /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1206822E1CB3A961004A34BB /* PaymentViewController.swift */; };
+		120682311CB4E189004A34BB /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682301CB4E189004A34BB /* HistoryViewController.swift */; };
+		120682331CB4E19B004A34BB /* PromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682321CB4E19B004A34BB /* PromotionsViewController.swift */; };
+		120682351CB4E1AA004A34BB /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682341CB4E1AA004A34BB /* HelpViewController.swift */; };
+		120682371CB4E1B4004A34BB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682361CB4E1B4004A34BB /* AboutViewController.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		126601FE1CA684A500E12CFC /* DriverEnRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */; };
@@ -46,6 +51,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1206822E1CB3A961004A34BB /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		120682301CB4E189004A34BB /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		120682321CB4E19B004A34BB /* PromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionsViewController.swift; sourceTree = "<group>"; };
+		120682341CB4E1AA004A34BB /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		120682361CB4E1B4004A34BB /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewController.swift; sourceTree = "<group>"; };
 		12A67D9D1C94CE7F005E3F9F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -150,10 +160,15 @@
 				12F3CCD71C41EFC700F79A26 /* MainViewController.swift */,
 				12F3CCF91C4DDD6C00F79A26 /* DestinationPickerViewController.swift */,
 				12F3CCD91C41EFC700F79A26 /* Main.storyboard */,
+				1206822E1CB3A961004A34BB /* PaymentViewController.swift */,
 				126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */,
 				12A67DA31C951C5E005E3F9F /* PushController.swift */,
 				12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */,
 				12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */,
+				120682341CB4E1AA004A34BB /* HelpViewController.swift */,
+				120682361CB4E1B4004A34BB /* AboutViewController.swift */,
+				120682321CB4E19B004A34BB /* PromotionsViewController.swift */,
+				120682301CB4E189004A34BB /* HistoryViewController.swift */,
 				12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */,
 				12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */,
 				12F3CCE11C41EFC800F79A26 /* Info.plist */,
@@ -416,10 +431,12 @@
 				12E438651C8400AB0038F9A4 /* SignupViewController.swift in Sources */,
 				12F1E86B1C76E83E0008E79D /* LeftNavDrawerViewController.swift in Sources */,
 				12F1E86E1C7712190008E79D /* LeftNavDrawerTableViewCell.swift in Sources */,
+				120682371CB4E1B4004A34BB /* AboutViewController.swift in Sources */,
 				12F1E8651C70424E0008E79D /* LoginViewController.swift in Sources */,
 				12F3CCFA1C4DDD6C00F79A26 /* DestinationPickerViewController.swift in Sources */,
 				12F3CCD81C41EFC700F79A26 /* MainViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
+				1206822F1CB3A961004A34BB /* PaymentViewController.swift in Sources */,
 				12A67DAA1C952233005E3F9F /* ConfirmRideViewController.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
@@ -427,8 +444,11 @@
 				126601FE1CA684A500E12CFC /* DriverEnRouteViewController.swift in Sources */,
 				12A67DA11C94DC4B005E3F9F /* FindOffersViewController.swift in Sources */,
 				12F1E8711C7716070008E79D /* SettingsViewController.swift in Sources */,
+				120682311CB4E189004A34BB /* HistoryViewController.swift in Sources */,
+				120682331CB4E19B004A34BB /* PromotionsViewController.swift in Sources */,
 				12A67DA41C951C5E005E3F9F /* PushController.swift in Sources */,
 				12A67DAD1C952265005E3F9F /* RideStartViewController.swift in Sources */,
+				120682351CB4E1AA004A34BB /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
