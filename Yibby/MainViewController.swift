@@ -53,6 +53,11 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     // UI Elements
     let NAV_BAR_COLOR_CODE = 0xc6433b
     
+    var totalLocationUpdates = 0
+    let DESIRED_HORIZONTAL_ACCURACY = 200.0
+    let UPDATES_AGE_TIME: NSTimeInterval = 120
+    
+    
     // MARK: Functions
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -60,38 +65,41 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     }
     
     @IBAction func onBidButtonClick(sender: AnyObject) {
-        
+       
         if (pickupLatLng != nil && pickupPlaceName != nil &&
             dropoffLatLng != nil && dropoffPlaceName  != nil &&
             bidLow != nil && bidHigh != nil) {
+            
+            WebInterface.makeWebRequestAndHandleError(
+                self,
+                webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
                 
-            Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
-                
-            let client: BAAClient = BAAClient.sharedClient()
-                
-            client.createBid(bidHigh, bidLow: bidLow, etaHigh: 0, etaLow: 0, pickupLat: pickupLatLng!.latitude, pickupLong: pickupLatLng!.longitude, pickupLoc: pickupPlaceName, dropoffLat: dropoffLatLng!.latitude, dropoffLong: dropoffLatLng!.longitude, dropoffLoc: dropoffPlaceName, completion: {(success, error) -> Void in
-
-                Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
-                if (error == nil) {
+                    Util.enableActivityIndicator(self.view, tag: 0)
                     
-                    // check the error codes
-                    if let bbCode = success["bb_code"] as? String {
-                        if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
-                            
-                            // TODO: display alert that no drivers are online
-                            Util.displayAlert("No drivers online.", message: "")
-                        } else {
-                            Util.displayAlert("Unexpected error. Please be patient.", message: "")
+                    let client: BAAClient = BAAClient.sharedClient()
+                    
+                    client.createBid(self.bidHigh, bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude, pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName, dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude, dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
+                        
+                        Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
+                        if (error == nil) {
+                            // check the error codes
+                            if let bbCode = success["bb_code"] as? String {
+                                if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
+                                    
+                                    // TODO: display alert that no drivers are online
+                                    Util.displayAlert("No drivers online.", message: "")
+                                } else {
+                                    Util.displayAlert("Unexpected error. Please be patient.", message: "")
+                                }
+                            } else {
+                                self.performSegueWithIdentifier("findOffersSegue", sender: nil)
+                            }
                         }
-                    } else {
-                        self.performSegueWithIdentifier("findOffersSegue", sender: nil)
-                    }
-                }
-                else {
-                    print("error creating bid \(error)")
-                    // check if error is 401 (authentication) and re-authenticate
-                }
-                self.responseHasArrived = true
+                        else {
+                            errorBlock(success, error)
+                        }
+                        self.responseHasArrived = true
+                    })
             })
         }
     }
@@ -105,25 +113,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     }
     
     func setupUI () {
-//        let imageView = UIImageView();
-//        
-//        // Set the size of the icon
-//        imageView.frame = CGRect(x: 5, y: 0, width: pickupFieldOutlet.frame.height - 1, height: pickupFieldOutlet.frame.height - 1);
-//        
-//        let image = UIImage(named: "destTextFieldIcon.png");
-//        imageView.image = image;
-//        pickupFieldOutlet.leftView = imageView;
-//        pickupFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
-        
-        
-//        let imageView1 = UIImageView();
-//        imageView1.frame = CGRect(x: 5, y: 0, width: dropoffFieldOutlet.frame.height - 1, height: dropoffFieldOutlet.frame.height - 1);
-//        
-//        let image1 = UIImage(named: "destTextFieldIcon.png");
-//        imageView1.image = image1;
-//        dropoffFieldOutlet.leftView = imageView1;
-//        dropoffFieldOutlet.leftViewMode = UITextFieldViewMode.Always;
-        
+
         // currency range slider
         self.rangeSlider.delegate = self
         let formatter: NSNumberFormatter = NSNumberFormatter()
@@ -170,6 +160,12 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+//        locationManager.pausesLocationUpdatesAutomatically = false;
+//        if #available(iOS 9.0, *) {
+//            locationManager.allowsBackgroundLocationUpdates = true
+//        } else {
+//            // Fallback on earlier versions
+//        }
         
         gmsMapViewOutlet.myLocationEnabled = true
         gmsMapViewOutlet.settings.myLocationButton = true
@@ -178,9 +174,24 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         gmsMapViewOutlet.settings.consumesGesturesInView = true
     }
     
-    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        if let userLocation:CLLocation = locations.first {
+    public func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        
+        totalLocationUpdates += 1;
+        
+        let age: NSTimeInterval = -newLocation.timestamp.timeIntervalSinceNow
+        
+        if (age > UPDATES_AGE_TIME) {
+            return
+        }
+        
+        // ignore old (cached) and less accurate updates
+        if (newLocation.horizontalAccuracy < 0 ||
+            (newLocation.horizontalAccuracy > DESIRED_HORIZONTAL_ACCURACY && totalLocationUpdates <= 10)) {
+            
+            return
+        }
+        
+        if let userLocation:CLLocation = newLocation {
             
             // adjust the camera focus
 //            gmsMapViewOutlet.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
@@ -224,6 +235,8 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
 
             // we just need the user's location one time
             locationManager.stopUpdatingLocation()
+            
+            totalLocationUpdates = 0
         }
     }
     

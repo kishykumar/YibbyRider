@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     
     let ACTIVITY_INDICATOR_TAG: Int = 1
     
+    var onStartup = true
+    
     // MARK: functions
     @IBAction func loginAction(sender: AnyObject) {
         
@@ -59,14 +61,20 @@ class LoginViewController: UIViewController {
             
             if (success) {
                 print("user logged in successfully \(success)")
+                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
                 
-                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.initializeMainViewController()
                 appDelegate.sendGCMTokenToServer()
-                self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
+                
+                if (self.onStartup) {
+                    // switch to Main View Controller
+                    appDelegate.initializeMainViewController()
+                    self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
+                } else {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
             else {
                 Util.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")

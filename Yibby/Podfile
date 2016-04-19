@@ -12,9 +12,10 @@ def shared_pods
     pod 'TTRangeSlider'
     pod 'BButton'
     pod 'TextFieldEffects'
-#    pod 'TextFieldEffects', :git => 'https://github.com/raulriera/TextFieldEffects.git', :branch => 'swift-1.2'
+    pod 'SVProgressHUD'
+    pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
 
-#    pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
+    #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
     #pod 'ECSlidingViewController', '~> 2.0.3'
     #pod 'PKRevealController'
 end
