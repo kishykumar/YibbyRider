@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120188141CDE7FB0005EF075 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120188131CDE7FAF005EF075 /* LogFormatter.swift */; };
 		1206822F1CB3A961004A34BB /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1206822E1CB3A961004A34BB /* PaymentViewController.swift */; };
 		120682311CB4E189004A34BB /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682301CB4E189004A34BB /* HistoryViewController.swift */; };
 		120682331CB4E19B004A34BB /* PromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682321CB4E19B004A34BB /* PromotionsViewController.swift */; };
@@ -17,6 +18,7 @@
 		124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		126601FE1CA684A500E12CFC /* DriverEnRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */; };
 		12720AA71CC5DD26002581CF /* WebInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12720AA61CC5DD26002581CF /* WebInterface.swift */; };
+		12720AAB1CD1EBF4002581CF /* BidState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12720AAA1CD1EBF4002581CF /* BidState.swift */; };
 		12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* Util.swift */; };
 		12A67DA11C94DC4B005E3F9F /* FindOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */; };
 		12A67DA41C951C5E005E3F9F /* PushController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67DA31C951C5E005E3F9F /* PushController.swift */; };
@@ -53,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120188131CDE7FAF005EF075 /* LogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		1206822E1CB3A961004A34BB /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		120682301CB4E189004A34BB /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		120682321CB4E19B004A34BB /* PromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionsViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewController.swift; sourceTree = "<group>"; };
 		12720AA61CC5DD26002581CF /* WebInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebInterface.swift; sourceTree = "<group>"; };
+		12720AAA1CD1EBF4002581CF /* BidState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidState.swift; sourceTree = "<group>"; };
 		12A67D9D1C94CE7F005E3F9F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindOffersViewController.swift; sourceTree = "<group>"; };
 		12A67DA31C951C5E005E3F9F /* PushController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			children = (
 				12EB18131C59FA980037EB86 /* Supporting Files */,
 				12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */,
+				120188131CDE7FAF005EF075 /* LogFormatter.swift */,
 				12F3CCF51C4B9C0B00F79A26 /* Podfile */,
 				12F1E8671C717ED30008E79D /* KeychainWrapper.swift */,
 				12F3CCD71C41EFC700F79A26 /* MainViewController.swift */,
@@ -169,6 +174,7 @@
 				126601FD1CA684A500E12CFC /* DriverEnRouteViewController.swift */,
 				12A67DA31C951C5E005E3F9F /* PushController.swift */,
 				12A67DA01C94DC4B005E3F9F /* FindOffersViewController.swift */,
+				12720AAA1CD1EBF4002581CF /* BidState.swift */,
 				12F1E86A1C76E83E0008E79D /* LeftNavDrawerViewController.swift */,
 				120682341CB4E1AA004A34BB /* HelpViewController.swift */,
 				120682361CB4E1B4004A34BB /* AboutViewController.swift */,
@@ -446,8 +452,10 @@
 				1206822F1CB3A961004A34BB /* PaymentViewController.swift in Sources */,
 				12A67DAA1C952233005E3F9F /* ConfirmRideViewController.swift in Sources */,
 				12720AA71CC5DD26002581CF /* WebInterface.swift in Sources */,
+				120188141CDE7FB0005EF075 /* LogFormatter.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
+				12720AAB1CD1EBF4002581CF /* BidState.swift in Sources */,
 				12F1E8681C717ED30008E79D /* KeychainWrapper.swift in Sources */,
 				126601FE1CA684A500E12CFC /* DriverEnRouteViewController.swift in Sources */,
 				12A67DA11C94DC4B005E3F9F /* FindOffersViewController.swift in Sources */,
@@ -596,7 +604,7 @@
 					"$(PROJECT_DIR)/Yibby/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Yibby/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yibby.app.user;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -620,7 +628,7 @@
 					"$(PROJECT_DIR)/Yibby/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Yibby/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yibby.app.user;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";

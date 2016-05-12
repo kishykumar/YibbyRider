@@ -88,7 +88,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-Xb-ktt" customClass="TTRangeSlider">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-Xb-ktt" customClass="TTRangeSlider">
                                 <rect key="frame" x="40" y="345" width="240" height="68"/>
                                 <color key="tintColor" red="0.48060405020000002" green="0.1509024873" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -867,23 +867,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3f-bJ-B0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2629" y="-307"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ja5-zn-6nZ">
-            <objects>
-                <viewController id="La1-gk-WTf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iak-aM-XRf"/>
-                        <viewControllerLayoutGuide type="bottom" id="JQ9-la-TmD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ybR-va-Mui">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U9V-nE-lUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

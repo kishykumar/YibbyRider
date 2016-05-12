@@ -10,7 +10,8 @@ import UIKit
 import MMDrawerController
 import GoogleMaps
 import BaasBoxSDK
- 
+import CocoaLumberjack
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
  //-- we have removed this because we are not sending upstream messages via GCM
@@ -43,6 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
         
+        // setup logger
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: DDLogLevel.All) // TTY = Xcode console
+        DDLog.addLogger(DDASLLogger.sharedInstance(), withLevel: DDLogLevel.All) // ASL = Apple System Logs
+        DDTTYLogger.sharedInstance().logFormatter = LogFormatter() // print filename, line#
+        DDASLLogger.sharedInstance().logFormatter = LogFormatter() // print filename, line#
+        
+        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
+        fileLogger.logFormatter = LogFormatter() // print filename, line#
+        fileLogger.rollingFrequency = 60*60*24  // 24 hours
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.addLogger(fileLogger)
+        
+        DDLogDebug("LaunchOptions \(launchOptions)");
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(GOOGLE_API_KEY_IOS)
         
@@ -76,21 +90,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         let client: BAAClient = BAAClient.sharedClient()
         if client.isAuthenticated() {
+            DDLogVerbose("User already authenticated");
+
             // no need to do anything if user is already authenticated
             initializeMainViewController()
             window!.rootViewController = centerContainer
         } else {
+            DDLogVerbose("User NOT authenticated");
+
             //not logged in
-            let (retrievedEmailAddress, retrievedPassword) = LoginViewController.getKeyChainKeys()
-            
+//            let (retrievedEmailAddress, retrievedPassword) = LoginViewController.getKeyChainKeys()
+//            
             // Check if user entered credentials once
-            if (retrievedEmailAddress != nil && retrievedPassword != nil) {
+//            if (retrievedEmailAddress != nil && retrievedPassword != nil) {
                 // try to login
-                loginUser(retrievedEmailAddress!, passwordi: retrievedPassword!)
-            } else {
+//                loginUser(retrievedEmailAddress!, passwordi: retrievedPassword!)
+//            } else {
                 // Show the LoginViewController View
                 window!.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as! LoginViewController;
-            }
+//            }
         }
         
         // Present the window
@@ -100,6 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     }
 
     func initializeMainViewController () {
+        DDLogVerbose("Initializing MainViewController");
+
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         let centerController = mainStoryboard.instantiateViewControllerWithIdentifier("MainViewControllerIdentifier") as! MainViewController;
@@ -117,12 +137,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
         let client: BAAClient = BAAClient.sharedClient()
+        DDLogVerbose("Logging in user with username \(usernamei)")
+
         client.authenticateUser(usernamei, password: passwordi, completion: {(success, error) -> Void in
             if (success) {
-                print("logged in automatically in else case: \(success)")
+                DDLogVerbose("logged in automatically in else case: \(success)")
             }
             else {
-                print("error in logging in user automatically\(error)")
+                DDLogVerbose("error in logging in user automatically\(error)")
             }
         })
     }
@@ -136,24 +158,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                     if (error != nil) {
                         // Treat the "already subscribed" error more gently
                         if error.code == 3001 {
-                            print("Already subscribed to \(self.subscriptionTopic)")
+                            DDLogVerbose("Already subscribed to \(self.subscriptionTopic)")
                         } else {
-                            print("Subscription failed: \(error.localizedDescription)");
+                            DDLogVerbose("Subscription failed: \(error.localizedDescription)");
                         }
                     } else {
                         self.subscribedToTopic = true;
-                        NSLog("Subscribed to \(self.subscriptionTopic)");
+                        DDLogVerbose("Subscribed to \(self.subscriptionTopic)");
                     }
             })
         }
     }
     
     func applicationWillResignActive(application: UIApplication) {
+        DDLogDebug("Called");
+
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        DDLogDebug("Called");
+
         GCMService.sharedInstance().disconnect()
         // [START_EXCLUDE]
         self.connectedToGCM = false
@@ -161,25 +187,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        DDLogDebug("Called");
+
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
     // [START connect_gcm_service]
     func applicationDidBecomeActive(application: UIApplication) {
+        DDLogDebug("Called");
+        
         // Connect to the GCM server to receive non-APNS notifications
         
         GCMService.sharedInstance().connectWithHandler({
             (error) -> Void in
             if error != nil {
-                print("Could not connect to GCM: \(error.localizedDescription)")
+                DDLogWarn("Could not connect to GCM: \(error.localizedDescription)")
             } else {
                 self.connectedToGCM = true
-                print("Connected to GCM")
+                DDLogDebug("Connected to GCM")
                 // [START_EXCLUDE]
                 self.subscribeToTopic()
                 // [END_EXCLUDE]
             }
         })
+        
+        // process a saved notification, if any
+        pushController.processSavedNotification()
     }
     // [END connect_gcm_service]
 
@@ -190,6 +223,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // [START receive_apns_token]
     func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
         deviceToken: NSData ) {
+            DDLogDebug("Application device token \(deviceToken)");
 
             self.pushController.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken)
 
@@ -213,10 +247,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         client.enablePushNotificationsForGCM(gcmToken, completion: { (success, error) -> Void in
             if (success) {
-                print("enabled push notifications for this user")
+                DDLogVerbose("enabled push notifications for this user")
             }
             else {
-                print("error enabling push notifications + \(error)")
+                DDLogWarn("error enabling push notifications + \(error)")
             }
         })
     }
@@ -224,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // [START receive_apns_token_error]
     func application( application: UIApplication, didFailToRegisterForRemoteNotificationsWithError
         error: NSError ) {
-            print("Registration for remote notification failed with error: \(error.localizedDescription)")
+            DDLogWarn("Registration for remote notification failed with error: \(error.localizedDescription)")
             // [END receive_apns_token_error]
             let userInfo = ["error": error.localizedDescription]
             NSNotificationCenter.defaultCenter().postNotificationName(
@@ -240,13 +274,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             // enable push notification
             enablePushNotificationsFromServer(registrationToken)
 
-            print("Registration Token: \(registrationToken)")
+            DDLogDebug("Registration Token: \(registrationToken)")
             //            self.subscribeToTopic()
             let userInfo = ["registrationToken": registrationToken]
             NSNotificationCenter.defaultCenter().postNotificationName(
                 self.registrationKey, object: nil, userInfo: userInfo)
         } else {
-            print("Registration to GCM failed with error: \(error.localizedDescription)")
+            DDLogWarn("Registration to GCM failed with error: \(error.localizedDescription)")
             let userInfo = ["error": error.localizedDescription]
             NSNotificationCenter.defaultCenter().postNotificationName(
                 self.registrationKey, object: nil, userInfo: userInfo)
@@ -255,7 +289,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     func onTokenRefresh() {
         // A rotation of the registration tokens is happening, so the app needs to request a new token.
-        print("The GCM registration token needs to be changed.")
+        DDLogInfo("The GCM registration token needs to be changed.")
         GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
             scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
     }
@@ -267,30 +301,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     func application( application: UIApplication,
         didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-            
-            // This works only if the app started the GCM service
-            GCMService.sharedInstance().appDidReceiveMessage(userInfo);
-            
-            // Handle the received message
-            NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
-                userInfo: userInfo)
+        DDLogDebug("Remote push received1: \(userInfo)")
 
-            self.pushController.receiveRemoteNotification(userInfo)
+        // This works only if the app started the GCM service
+        GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+        
+        // Handle the received message
+        NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
+            userInfo: userInfo)
+
+        self.pushController.receiveRemoteNotification(application, notification: userInfo)
     }
     
     func application( application: UIApplication,
         didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
         fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
-            
-            // This works only if the app started the GCM service
-            GCMService.sharedInstance().appDidReceiveMessage(userInfo);
-            
-            // Handle the received message
+        DDLogDebug("Remote push received2: \(userInfo)")
 
-            NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
-                userInfo: userInfo)
+        // This works only if the app started the GCM service
+        GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+        
+        // Handle the received message
 
-            self.pushController.receiveRemoteNotification(userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
+            userInfo: userInfo)
+
+        self.pushController.receiveRemoteNotification(application, notification: userInfo)
 
             // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
             handler(UIBackgroundFetchResult.NoData);
@@ -315,3 +351,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // server can resend those messages.
     }
 }
+ 
+public extension UIWindow {
+   public var visibleViewController: UIViewController? {
+       return UIWindow.getVisibleViewControllerFrom(self.rootViewController)
+   }
+    
+   public static func getVisibleViewControllerFrom(vc: UIViewController?) -> UIViewController? {
+       if let nc = vc as? UINavigationController {
+           return UIWindow.getVisibleViewControllerFrom(nc.visibleViewController)
+       } else if let tc = vc as? UITabBarController {
+           return UIWindow.getVisibleViewControllerFrom(tc.selectedViewController)
+       } else {
+           if let pvc = vc?.presentedViewController {
+               return UIWindow.getVisibleViewControllerFrom(pvc)
+           } else {
+               return vc
+           }
+       }
+   }
+}
+ 
+extension UIViewController {
+   func hideKeyboardWhenTappedAround() {
+       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                action: #selector(UIViewController.dismissKeyboard))
+       view.addGestureRecognizer(tap)
+   }
+   
+   func dismissKeyboard() {
+       view.endEditing(true)
+   }
+}
+ 
+ 

@@ -8,13 +8,15 @@
 
 import UIKit
 import MMDrawerController
+import BaasBoxSDK
+import CocoaLumberjack
 
 class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     
-    var menuItems: [String] = ["Payment", "History", "Settings", "Promotions", "Help", "About"]
+    var menuItems: [String] = ["Payment", "History", "Settings", "Promotions", "Help", "About", "Logout"]
     
     enum TableIndex: Int {
         case Payment = 0
@@ -23,6 +25,7 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
         case Promotions
         case Help
         case About
+        case Logout
     }
     
     override func viewDidLoad() {
@@ -85,6 +88,10 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
             selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewControllerIdentifier") as! AboutViewController
             
             break
+        case TableIndex.Logout.rawValue:
+            
+            logoutUser()
+            return;
         default: break
         }
 
@@ -99,6 +106,47 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
         } else {
             assert(false)
         }
+    }
+    
+    
+    // BaasBox logout user
+    func logoutUser() {
+        Util.enableActivityIndicator(self.view, tag: 0)
+        
+        let client: BAAClient = BAAClient.sharedClient()
+        client.logoutWithCompletion({(success, error) -> Void in
+            
+            Util.disableActivityIndicator(self.view, tag: 0)
+            
+            if (success) {
+                
+                // pop all the view controllers so that user starts fresh :)
+                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+                    mmnvc.popToRootViewControllerAnimated(false)
+                }
+                
+                print("user logged out successfully \(success)")
+                // if logout is successful, remove username, password from keychain
+                LoginViewController.removeKeyChainKeys()
+                
+                // Show the LoginViewController View
+                if let loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
+                {
+                    loginViewController.onStartup = true
+                    self.presentViewController(loginViewController, animated: true, completion: nil)
+                }
+            }
+            else {
+                // We continue the user session if Logout hits an error
+                if (error.domain == BaasBox.errorDomain()) {
+                    Util.displayAlert("Error Logging out. ", message: "This is...weird.")
+                }
+                else {
+                    Util.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            }
+        })
     }
     
     /*

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MMDrawerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>45468673BD610045B5B30A0163431F02</key>
+		<key>0EA8476B628D69EC1A7160956C404971</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7AF5F7CACA76015E776C23484F4E41F3</key>
+		<key>153D13F4497C70EF2E70B9BF402E2507</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E005EB71F4185BAEC1AD178FB24A24B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>897EB6483C0DA9A209F13437B8763A35</key>
+		<key>8BA26FD11D596009447FC28FBD7CF9E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF11892CA0173B4449E168123C166BD6</key>
+		<key>B81FCCEB1834706F14825DD64246D20F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD8E7143ABC0A285B98A43905175605B</key>
+		<key>D082FD9722F53B9C3A1229257D4008F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D8BD4A3967819C762A931D9BE99A4532</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DB029DB02649D80F0336F2E14AF25461</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2C0E19037CE53E5BAAC4823F01CC45A</key>
+		<key>F1266E99D1255A77DA00CE9206C7F392</key>
 		<dict>
 			<key>primary</key>
 			<true/>

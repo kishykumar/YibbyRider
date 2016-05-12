@@ -12,6 +12,13 @@ import MMDrawerController
 import TTRangeSlider
 import BaasBoxSDK
 import BButton
+import CocoaLumberjack
+
+// TODO:
+// 1. Create bid state that we save on the app
+// 2.
+// 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message. 
+// 4. 
 
 public class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate, TTRangeSliderDelegate {
 
@@ -56,8 +63,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     var totalLocationUpdates = 0
     let DESIRED_HORIZONTAL_ACCURACY = 200.0
     let UPDATES_AGE_TIME: NSTimeInterval = 120
-    
-    
+        
     // MARK: Functions
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -69,6 +75,8 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         if (pickupLatLng != nil && pickupPlaceName != nil &&
             dropoffLatLng != nil && dropoffPlaceName  != nil &&
             bidLow != nil && bidHigh != nil) {
+            
+            DDLogVerbose("Made the bid: pickupLatLng: \(pickupLatLng), pickupPlaceName: \(pickupPlaceName), dropoffLatLng: \(dropoffLatLng), dropoffPlaceName: \(dropoffPlaceName),  bidLow: \(bidLow), bidHigh: \(bidHigh)")
             
             WebInterface.makeWebRequestAndHandleError(
                 self,
@@ -92,7 +100,16 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                                     Util.displayAlert("Unexpected error. Please be patient.", message: "")
                                 }
                             } else {
-                                self.performSegueWithIdentifier("findOffersSegue", sender: nil)
+                                
+                                if let successData = success["data"] as? [String: NSObject] {
+                                    
+                                    // set the bid state
+                                    BidState.sharedInstance().setOngoingBid(successData)
+                                    
+                                    self.performSegueWithIdentifier("findOffersSegue", sender: nil)
+                                } else {
+                                    Util.displayAlert("Unexpected error. Please be patient.", message: "")
+                                }
                             }
                         }
                         else {
@@ -108,7 +125,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         if sender == self.rangeSlider {
             self.bidLow = selectedMinimum
             self.bidHigh = selectedMaximum
-            NSLog("Standard slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum)
+            DDLogVerbose("Standard slider updated. Min Value: %.0f Max Value: %.0f \(selectedMinimum), \(selectedMaximum)")
         }
     }
     
@@ -199,7 +216,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
             CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
                 
                 if (error != nil) {
-                    print(error)
+                    DDLogWarn("Error is: \(error)")
                 } else {
                     if let validPlacemark = placemarks?[0] {
                         if let placemark = validPlacemark as? CLPlacemark {
@@ -227,7 +244,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                             self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
                             self.setPickupDetails(addressString, loc: userLocation.coordinate)
                             
-                            print ("Address form location manager came out: \(addressString)")
+                            DDLogVerbose("Address from location manager came out: \(addressString)")
                         }
                     }
                 }
@@ -425,9 +442,9 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     // Handle the user's selectiopublic public public n.
     public func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
 
-        print("Place name: ", place.name)
-        print("Place address: ", place.formattedAddress)
-        print("Place attributions: ", place.attributions)
+        DDLogVerbose("Place name: \(place.name)")
+        DDLogVerbose("Place address: \(place.formattedAddress)")
+        DDLogVerbose("Place attributions: (place.attributions)")
         
         if (pickupFieldSelected == true) {
             self.setPickupDetails(place.formattedAddress, loc: place.coordinate)
@@ -442,7 +459,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     
     public func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
         // TODO: handle the error.
-        print("Error: ", error.description)
+        DDLogWarn("Error: \(error.description)")
         cleanup()
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import BaasBoxSDK
+import CocoaLumberjack
 
 class LoginViewController: UIViewController {
 
@@ -60,7 +61,7 @@ class LoginViewController: UIViewController {
             Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
             
             if (success) {
-                print("user logged in successfully \(success)")
+                DDLogVerbose("user logged in successfully \(success)")
                 let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 // if login is successful, save username, password, token in keychain
@@ -77,7 +78,17 @@ class LoginViewController: UIViewController {
                 }
             }
             else {
-                Util.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")
+                DDLogVerbose("Error logging in: \(error)")
+
+                if (error.domain == BaasBox.errorDomain() && error.code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+
+                    // check for authentication error and redirect the user to Login page
+                    Util.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")
+                }
+                else {
+                    Util.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
             }
         })
     }
@@ -90,6 +101,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {

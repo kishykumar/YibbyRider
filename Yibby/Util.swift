@@ -10,18 +10,10 @@ import UIKit
 import GoogleMaps
 import SVProgressHUD
 import BaasBoxSDK
+import CocoaLumberjack
 
 public class Util {
     static func enableActivityIndicator (view: UIView, tag: Int) {
-        // Initiate the activity Indicator
-//        let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
-//        activityIndicator.center = view.center
-//        activityIndicator.hidesWhenStopped = true
-//        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-//        activityIndicator.tag = tag
-//        view.addSubview(activityIndicator)
-//        activityIndicator.startAnimating()
-        
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
         SVProgressHUD.show();
@@ -29,10 +21,6 @@ public class Util {
     }
     
     static func disableActivityIndicator (view: UIView, tag: Int) {
-//        let activityIndicator: UIActivityIndicatorView = view.viewWithTag(tag) as! UIActivityIndicatorView
-//        activityIndicator.stopAnimating()
-//        activityIndicator.removeFromSuperview()
-        
         SVProgressHUD.dismiss();
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
@@ -45,8 +33,8 @@ public class Util {
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
         
-        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.visibleViewController!.presentViewController(alert, animated: true, completion: nil)
+        if let vvc = appDelegate.window?.visibleViewController {
+            vvc.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -64,10 +52,9 @@ public class Util {
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
         
-        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.visibleViewController!.presentViewController(alert, animated: true, completion: nil)
+        if let vvc = appDelegate.window?.visibleViewController {
+            vvc.presentViewController(alert, animated: true, completion: nil)
         }
-//        appDelegate.window!.rootViewController!.presentViewController(alert, animated: true, completion: nil)
     }
     
     static func displayLocationAlert () {
@@ -83,23 +70,5 @@ public class Util {
         } else {
             Util.displaySettingsAlert("Location services disabled", message: "Please turn on location services in the Settings -> Privacy -> Location Services")
         }
-    }
-    
-    static func makeWebRequestAndHandleError (vc: UIViewController, webRequest:(errorBlock: (BAAObjectResultBlock)) -> Void) {
-        
-        webRequest(errorBlock: { (success, error) -> Void in
-                        if (error.domain == BaasBox.errorDomain() && error.code == MainViewController.BAASBOX_AUTHENTICATION_ERROR) {
-                            // check for authentication error and redirect the user to Login page
-                            
-                            if let loginViewController = vc.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
-                            {
-                                loginViewController.onStartup = false
-                                vc.presentViewController(loginViewController, animated: true, completion: nil)
-                            }
-                        }
-                        else {
-                            Util.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                        }
-                   })
     }
 }

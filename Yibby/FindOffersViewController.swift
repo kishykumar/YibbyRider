@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 class FindOffersViewController: UIViewController {
 
+    // MARK: Properties
+
+    var offerTimer = NSTimer()
+    var timerCount = 0.0
     
+    let OFFER_TIMER_INTERVAL = 35.0 // TODO: Change this to 30 seconds
+    let OFFER_TIMER_EXPIRE_MSG_TITLE = "No offers received."
+    let OFFER_TIMER_EXPIRE_MSG_CONTENT = "Reason: Drivers didn't respond."
+
+    // MARK: Setup Functions
+
     func setupUI () {
         
         // hide the back button
@@ -22,6 +33,9 @@ class FindOffersViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
+        
+        // start the timer
+        startOfferTimer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +43,38 @@ class FindOffersViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Helper
+    
+    func startOfferTimer() {
+        offerTimer = NSTimer.scheduledTimerWithTimeInterval(OFFER_TIMER_INTERVAL,
+                                                            target: self,
+                                                            selector: #selector(FindOffersViewController.bidWaitTimeoutCb),
+                                                            userInfo: nil,
+                                                            repeats: false)
+    }
+    
+    func bidWaitTimeoutCb() {
+        DDLogVerbose("Called")
 
+        if (!BidState.sharedInstance().didGetReponse()) {
+            
+            // TODO: Rather than aborting the bid, query the webserver for bidDetails and show the result
+            
+            DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
+            // delete the saved state bid
+            BidState.sharedInstance().resetOngoingBid()
+            
+            // pop the view controller
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+                mmnvc.popViewControllerAnimated(true)
+                Util.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
+            }
+        }
+    }
+
+    
     /*
     // MARK: - Navigation
 

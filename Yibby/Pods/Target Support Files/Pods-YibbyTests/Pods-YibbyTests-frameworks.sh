@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-YibbyTests/BButton.framework"
   install_framework "Pods-YibbyTests/BaasBoxSDK.framework"
+  install_framework "Pods-YibbyTests/CocoaLumberjack.framework"
   install_framework "Pods-YibbyTests/MMDrawerController.framework"
   install_framework "Pods-YibbyTests/ReachabilitySwift.framework"
   install_framework "Pods-YibbyTests/SVProgressHUD.framework"
@@ -96,6 +97,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-YibbyTests/BButton.framework"
   install_framework "Pods-YibbyTests/BaasBoxSDK.framework"
+  install_framework "Pods-YibbyTests/CocoaLumberjack.framework"
   install_framework "Pods-YibbyTests/MMDrawerController.framework"
   install_framework "Pods-YibbyTests/ReachabilitySwift.framework"
   install_framework "Pods-YibbyTests/SVProgressHUD.framework"

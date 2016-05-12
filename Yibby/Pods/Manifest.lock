@@ -1,6 +1,13 @@
 PODS:
   - BaasBoxSDK (0.9.0)
   - BButton (4.0.2)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.3.0):
+    - CocoaLumberjack/Default
+  - CocoaLumberjack/Swift (2.3.0):
+    - CocoaLumberjack/Extensions
   - GGLInstanceID (1.1.6)
   - Google/CloudMessaging (1.3.2):
     - GGLInstanceID (~> 1.0)
@@ -49,6 +56,7 @@ PODS:
 DEPENDENCIES:
   - BaasBoxSDK (from `https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git`)
   - BButton
+  - CocoaLumberjack/Swift
   - Google/CloudMessaging
   - GoogleMaps
   - MMDrawerController (~> 0.5.7)
@@ -75,6 +83,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   BaasBoxSDK: 8a68396af4eb48137da238109d114eccac04739d
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
   Google: 97618e118111b998cce1d8dd1bd98b82301d72db
   GoogleCloudMessaging: d1f06cd70691b8c53b3eefd66a0b42b34daeedcc

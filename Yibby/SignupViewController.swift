@@ -8,6 +8,7 @@
 
 import UIKit
 import BaasBoxSDK
+import CocoaLumberjack
 
 class SignupViewController: UIViewController {
 
@@ -32,6 +33,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +62,8 @@ class SignupViewController: UIViewController {
         let client: BAAClient = BAAClient.sharedClient()
         client.createUserWithUsername(usernamei, password: passwordi, completion: {(success, error) -> Void in
             if (success) {
+                DDLogVerbose("Success signing up: \(success)")
+
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
                 
@@ -69,7 +73,8 @@ class SignupViewController: UIViewController {
                 self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
             }
             else {
-                Util.displayAlert("Signup failed.", message: "Please try again or wait for some time before signing up again.")
+                DDLogVerbose("Signup failed: \(error)")
+                Util.displayAlert("Signup failed.", message: "Please try again.")
             }
             Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
         })

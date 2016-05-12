@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import SVProgressHUD
 import BaasBoxSDK
+import CocoaLumberjack
 
 public class WebInterface {
     
@@ -22,6 +23,8 @@ public class WebInterface {
                 WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
                 // check for authentication error and redirect the user to Login page
                 
+                DDLogVerbose("Error in webRequest: \(error)")
+
                 if let loginViewController = vc.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
                 {
                     loginViewController.onStartup = false
