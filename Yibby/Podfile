@@ -15,6 +15,8 @@ def shared_pods
     pod 'SVProgressHUD'
     pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     pod 'CocoaLumberjack/Swift'
+    pod 'ASProgressPopUpView'
+    pod 'LaunchScreen'
 
     #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
     #pod 'ECSlidingViewController', '~> 2.0.3'

@@ -53,24 +53,25 @@ class FindOffersViewController: UIViewController {
                                                             repeats: false)
     }
     
+    func stopOfferTimer() {
+        offerTimer.invalidate()
+    }
+    
     func bidWaitTimeoutCb() {
         DDLogVerbose("Called")
 
-        if (!BidState.sharedInstance().didGetReponse()) {
-            
-            // TODO: Rather than aborting the bid, query the webserver for bidDetails and show the result
-            
-            DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
-            // delete the saved state bid
-            BidState.sharedInstance().resetOngoingBid()
-            
-            // pop the view controller
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-                mmnvc.popViewControllerAnimated(true)
-                Util.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
-            }
+        // TODO: Rather than aborting the bid, query the webserver for bidDetails and show the result
+        
+        DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
+        // delete the saved state bid
+        BidState.sharedInstance().resetOngoingBid()
+        
+        // pop the view controller
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+            mmnvc.popViewControllerAnimated(true)
+            Util.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
         }
     }
 

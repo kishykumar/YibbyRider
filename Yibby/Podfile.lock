@@ -1,4 +1,5 @@
 PODS:
+  - ASProgressPopUpView (0.8)
   - BaasBoxSDK (0.9.0)
   - BButton (4.0.2)
   - CocoaLumberjack/Core (2.3.0)
@@ -35,6 +36,7 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
+  - LaunchScreen (1.0.0)
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
@@ -54,11 +56,13 @@ PODS:
   - TTRangeSlider (1.0.3)
 
 DEPENDENCIES:
+  - ASProgressPopUpView
   - BaasBoxSDK (from `https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git`)
   - BButton
   - CocoaLumberjack/Swift
   - Google/CloudMessaging
   - GoogleMaps
+  - LaunchScreen
   - MMDrawerController (~> 0.5.7)
   - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
   - SVProgressHUD
@@ -81,6 +85,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ashleymills/Reachability.swift
 
 SPEC CHECKSUMS:
+  ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   BaasBoxSDK: 8a68396af4eb48137da238109d114eccac04739d
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
@@ -93,6 +98,7 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  LaunchScreen: 964c1b844d4190be813a0dee0ee791069325f277
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4

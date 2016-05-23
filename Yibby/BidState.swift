@@ -14,11 +14,9 @@ public class BidState {
     
     private static let myInstance = BidState()
     private var ongoingBid: [String: NSObject]?
-    private var gotResponse: Bool
     
     init() {
         ongoingBid = nil
-        gotResponse = false
     }
     
     static func sharedInstance () -> BidState {
@@ -49,13 +47,5 @@ public class BidState {
         }
         
         return ((ongoingBid!["id"] as! String) == bidId)
-    }
-
-    func setGotResponse () {
-        gotResponse = true
-    }
-    
-    func didGetReponse () -> Bool {
-        return gotResponse
     }
 }

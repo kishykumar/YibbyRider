@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ASProgressPopUpView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>BButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -15,6 +20,16 @@
 			<false/>
 		</dict>
 		<key>CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LaunchScreen-LaunchScreen.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LaunchScreen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,17 +77,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0EA8476B628D69EC1A7160956C404971</key>
+		<key>09868F90B5BA01C9D917B02FA55C4087</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>153D13F4497C70EF2E70B9BF402E2507</key>
+		<key>2782233023B05FCBCA649F6D5E0B5A30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BA26FD11D596009447FC28FBD7CF9E3</key>
+		<key>5381548E9595A82FFF5A2FEFAA146046</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DE0F24B789A641625FBC83C41A587F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8BA031E36E18088F4FB5482F8DA8AD4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B81FCCEB1834706F14825DD64246D20F</key>
+		<key>988313A5694467D0E9443AD952B0DAE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F0EB22DB4DE8ED5C8B199A1877CC146</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A33BD8622B11C28AD2868D320A10296B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +127,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D8BD4A3967819C762A931D9BE99A4532</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DB029DB02649D80F0336F2E14AF25461</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>E130CF53EF63B7C12121B58C27AFF36A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC6EBA29C2C6BE86ED3215DC24AC7098</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1266E99D1255A77DA00CE9206C7F392</key>
+		<key>FFC60C150868ADC324A301A5CBAD01F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

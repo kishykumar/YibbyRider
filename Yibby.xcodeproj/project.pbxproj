@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		120188141CDE7FB0005EF075 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120188131CDE7FAF005EF075 /* LogFormatter.swift */; };
+		120188201CF2A3F7005EF075 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201881F1CF2A3F6005EF075 /* SplashViewController.swift */; };
+		120188221CF2A677005EF075 /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120188211CF2A677005EF075 /* SplashScreen.xib */; };
 		1206822F1CB3A961004A34BB /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1206822E1CB3A961004A34BB /* PaymentViewController.swift */; };
 		120682311CB4E189004A34BB /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682301CB4E189004A34BB /* HistoryViewController.swift */; };
 		120682331CB4E19B004A34BB /* PromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120682321CB4E19B004A34BB /* PromotionsViewController.swift */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		120188131CDE7FAF005EF075 /* LogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		1201881F1CF2A3F6005EF075 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		120188211CF2A677005EF075 /* SplashScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen.xib; sourceTree = "<group>"; };
 		1206822E1CB3A961004A34BB /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		120682301CB4E189004A34BB /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		120682321CB4E19B004A34BB /* PromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionsViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 				120188131CDE7FAF005EF075 /* LogFormatter.swift */,
 				12F3CCF51C4B9C0B00F79A26 /* Podfile */,
 				12F1E8671C717ED30008E79D /* KeychainWrapper.swift */,
+				1201881F1CF2A3F6005EF075 /* SplashViewController.swift */,
 				12F3CCD71C41EFC700F79A26 /* MainViewController.swift */,
 				12F3CCF91C4DDD6C00F79A26 /* DestinationPickerViewController.swift */,
 				12F3CCD91C41EFC700F79A26 /* Main.storyboard */,
@@ -181,6 +186,7 @@
 				120682321CB4E19B004A34BB /* PromotionsViewController.swift */,
 				120682301CB4E189004A34BB /* HistoryViewController.swift */,
 				12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */,
+				120188211CF2A677005EF075 /* SplashScreen.xib */,
 				12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */,
 				12F3CCE11C41EFC800F79A26 /* Info.plist */,
 				12F1E8641C70424E0008E79D /* LoginViewController.swift */,
@@ -329,6 +335,7 @@
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
 				12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */,
 				12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */,
+				120188221CF2A677005EF075 /* SplashScreen.xib in Resources */,
 				12F3CCDB1C41EFC700F79A26 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +457,7 @@
 				12F3CCD81C41EFC700F79A26 /* MainViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
 				1206822F1CB3A961004A34BB /* PaymentViewController.swift in Sources */,
+				120188201CF2A3F7005EF075 /* SplashViewController.swift in Sources */,
 				12A67DAA1C952233005E3F9F /* ConfirmRideViewController.swift in Sources */,
 				12720AA71CC5DD26002581CF /* WebInterface.swift in Sources */,
 				120188141CDE7FB0005EF075 /* LogFormatter.swift in Sources */,

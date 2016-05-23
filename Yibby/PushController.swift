@@ -69,7 +69,8 @@ public class PushController: NSObject, PushControllerProtocol {
         if (BidState.sharedInstance().isOngoingBid()) {
             
             DDLogDebug("Setting got response")
-            BidState.sharedInstance().setGotResponse()
+            
+            disableTimeoutCode()
             
             // save the most recent push message
             userDefaults.setValue(notification, forKey: SAVED_PUSH_NOTIFICATION_KEY)
@@ -152,6 +153,11 @@ public class PushController: NSObject, PushControllerProtocol {
                             
                         case NO_OFFERS_MESSAGE_TYPE:
                             DDLogDebug("NOOFFERS RCVD")
+
+                            // delete the saved state bid
+                            BidState.sharedInstance().resetOngoingBid()
+
+                            disableTimeoutCode()
                             
                             mmnvc.popViewControllerAnimated(true)
                             Util.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
@@ -159,8 +165,6 @@ public class PushController: NSObject, PushControllerProtocol {
                         default: break
                             
                         }
-                        
-                        BidState.sharedInstance().setGotResponse()
                     }
                 }
                 else if let topRideJson = topJson[RIDE_JSON_FIELD_NAME].string {
@@ -179,6 +183,7 @@ public class PushController: NSObject, PushControllerProtocol {
                             
                         case DRIVER_EN_ROUTE_MESSAGE_TYPE:
                             DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
+                            disableTimeoutCode()
                             
                             let driverEnRouteViewController = mainstoryboard.instantiateViewControllerWithIdentifier("DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
                             mmnvc.pushViewController(driverEnRouteViewController, animated: true)
@@ -186,10 +191,17 @@ public class PushController: NSObject, PushControllerProtocol {
                         default: break
                         }
                     }
-                    
-                    BidState.sharedInstance().setGotResponse()
                 }
             }
+        }
+    }
+
+    func disableTimeoutCode () {
+        // stop the timer if findOffersVC is up
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if let vvc = appDelegate.window!.visibleViewController as? FindOffersViewController {
+            DDLogVerbose("Stopping the timer")
+            vvc.stopOfferTimer()
         }
     }
     
