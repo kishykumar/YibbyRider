@@ -132,7 +132,8 @@ class SplashViewController: UIViewController {
         
         var syncSuccess = false
         let client: BAAClient = BAAClient.sharedClient()
-        client.activateDriver({(success, error) -> Void in
+        client.authenticateUser("k", password: "k", completion: {(success, error) -> Void in
+
             if (error == nil) {
                 DDLogDebug("Sync successful: \(success))")
                 syncSuccess = true
