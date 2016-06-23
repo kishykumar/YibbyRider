@@ -28,8 +28,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     @IBOutlet weak var rangeSlider: TTRangeSlider!
     @IBOutlet weak var bidButton: BButton!
-
-    let ACTIVITY_INDICATOR_TAG: Int = 1
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
@@ -60,10 +58,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     // UI Elements
     let NAV_BAR_COLOR_CODE = 0xc6433b
     
-    var totalLocationUpdates = 0
-    let DESIRED_HORIZONTAL_ACCURACY = 200.0
-    let UPDATES_AGE_TIME: NSTimeInterval = 120
-        
     // MARK: Functions
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -82,13 +76,13 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                 self,
                 webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
                 
-                    Util.enableActivityIndicator(self.view, tag: 0)
+                    Util.enableActivityIndicator(self.view)
                     
                     let client: BAAClient = BAAClient.sharedClient()
                     
                     client.createBid(self.bidHigh, bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude, pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName, dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude, dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
                         
-                        Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
+                        Util.disableActivityIndicator(self.view)
                         if (error == nil) {
                             // check the error codes
                             if let bbCode = success["bb_code"] as? String {
@@ -170,95 +164,61 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         // status bar text color
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
-    
-    func setupLocationManager () {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-//        locationManager.pausesLocationUpdatesAutomatically = false;
-//        if #available(iOS 9.0, *) {
-//            locationManager.allowsBackgroundLocationUpdates = true
-//        } else {
-//            // Fallback on earlier versions
-//        }
-        
-        gmsMapViewOutlet.myLocationEnabled = true
-        gmsMapViewOutlet.settings.myLocationButton = true
-        
-        // Very Important: DONT disable consume all gestures, needed for nav drawer with a map
-        gmsMapViewOutlet.settings.consumesGesturesInView = true
-    }
-    
-    public func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        
-        totalLocationUpdates += 1;
-        
-        let age: NSTimeInterval = -newLocation.timestamp.timeIntervalSinceNow
-        
-        if (age > UPDATES_AGE_TIME) {
-            return
-        }
-        
-        // ignore old (cached) and less accurate updates
-        if (newLocation.horizontalAccuracy < 0 ||
-            (newLocation.horizontalAccuracy > DESIRED_HORIZONTAL_ACCURACY && totalLocationUpdates <= 10)) {
-            
-            return
-        }
-        
-        if let userLocation:CLLocation = newLocation {
-            
-            // adjust the camera focus
-//            gmsMapViewOutlet.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            
-            CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
-                
-                if (error != nil) {
-                    DDLogWarn("Error is: \(error)")
-                } else {
-                    if let validPlacemark = placemarks?[0] {
-                        if let placemark = validPlacemark as? CLPlacemark {
-                            var addressString : String = ""
 
-                            if placemark.subThoroughfare != nil {
-                                addressString = placemark.subThoroughfare! + " "
-                            }
-                            if placemark.thoroughfare != nil {
-                                addressString = addressString + placemark.thoroughfare! + ", "
-                            }
-                            if placemark.locality != nil {
-                                addressString = addressString + placemark.locality! + ", "
-                            }
-                            if placemark.administrativeArea != nil {
-                                addressString = addressString + placemark.administrativeArea! + " "
-                            }
-                            if placemark.postalCode != nil {
-                                addressString = addressString + placemark.postalCode! + ", "
-                            }
-                            if placemark.country != nil {
-                                addressString = addressString + placemark.country!
-                            }
+    func updateCurrentLocation (userLocation: CLLocation) {
+        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
+            
+            if (error != nil) {
+                DDLogWarn("Error is: \(error)")
+            } else {
+                if let validPlacemark = placemarks?[0] {
+                    if let placemark = validPlacemark as? CLPlacemark {
+                        var addressString : String = ""
 
-                            self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
-                            self.setPickupDetails(addressString, loc: userLocation.coordinate)
-                            
-                            DDLogVerbose("Address from location manager came out: \(addressString)")
+                        if placemark.subThoroughfare != nil {
+                            addressString = placemark.subThoroughfare! + " "
                         }
+                        if placemark.thoroughfare != nil {
+                            addressString = addressString + placemark.thoroughfare! + ", "
+                        }
+                        if placemark.locality != nil {
+                            addressString = addressString + placemark.locality! + ", "
+                        }
+                        if placemark.administrativeArea != nil {
+                            addressString = addressString + placemark.administrativeArea! + " "
+                        }
+                        if placemark.postalCode != nil {
+                            addressString = addressString + placemark.postalCode! + ", "
+                        }
+                        if placemark.country != nil {
+                            addressString = addressString + placemark.country!
+                        }
+
+                        self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
+                        
+                        self.setPickupDetails(addressString, loc: userLocation.coordinate)
+                        
+                        DDLogVerbose("Address from location manager came out: \(addressString)")
                     }
                 }
-            })
-
-            // we just need the user's location one time
-            locationManager.stopUpdatingLocation()
-            
-            totalLocationUpdates = 0
-        }
+            }
+        })
     }
     
     func setupMap () {
-        setupLocationManager()
+        gmsMapViewOutlet.myLocationEnabled = true
+        
+        // Very Important: DONT disable consume all gestures, needed for nav drawer with a map
+        gmsMapViewOutlet.settings.consumesGesturesInView = true
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
+            
+            if let curLocation = LocationService.sharedInstance().provideCurrentLocation() {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.updateCurrentLocation(curLocation)
+                }
+            }
+        }
     }
 
     func setupMapClient () {
@@ -284,17 +244,19 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     func initProperties() {
         bidLow = 1
         bidHigh = 100
-        let lat: CLLocationDegrees = -23.527096772791133
-        let long: CLLocationDegrees = -46.48964569157911
+        let lat: CLLocationDegrees = 37.531631
+        let long: CLLocationDegrees = -122.263606
         
         let latLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
         
-        pickupLatLng = latLng
-        pickupPlaceName = "pickup"
-        dropoffLatLng = latLng
-        dropoffPlaceName = "dropoff"
+        self.setPickupDetails("420 Oracle Pkwy, Redwood City, CA 94065", loc: latLng)
+        
+        let dlat: CLLocationDegrees = 37.348209
+        let dlong: CLLocationDegrees = -121.993756
+        
+        let dlatLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(dlat,dlong)
+        self.setDropoffDetails("3500 Granada Ave, Santa Clara, CA 95051", loc: dlatLng)
     }
-    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -309,19 +271,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         
         // check for location services
         Util.displayLocationAlert()
-    }
-    
-    override public func viewDidAppear(animated: Bool) {
-//        performSegueWithIdentifier("loginSegue", sender: self)
-        
-//        let loginViewControllerObejct = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
-//        
-//        self.navigationController?.pushViewController(loginViewControllerObejct!, animated: true)
-
-    }
-    
-    override public func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     // The pickup and dropoff textfields should not pop up a keyboapublic rd

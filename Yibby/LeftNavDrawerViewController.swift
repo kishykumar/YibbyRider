@@ -16,15 +16,16 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     
-    var menuItems: [String] = ["Payment", "History", "Settings", "Promotions", "Help", "About", "Logout"]
+    var menuItems: [String] = ["Trips", "Payment", "Settings", "Notifications", "Support", "Promotions", "Drive", "Logout"]
     
     enum TableIndex: Int {
-        case Payment = 0
-        case History
+        case Trips = 0
+        case Payment
         case Settings
+        case Notifications
+        case Support
         case Promotions
-        case Help
-        case About
+        case Drive
         case Logout
     }
     
@@ -63,7 +64,7 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
             selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
             
             break
-        case TableIndex.History.rawValue:
+        case TableIndex.Trips.rawValue:
             
             selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryViewControllerIdentifier") as! HistoryViewController
 
@@ -78,14 +79,9 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
             selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PromotionsViewControllerIdentifier") as! PromotionsViewController
             
             break
-        case TableIndex.Help.rawValue:
+        case TableIndex.Support.rawValue:
             
             selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HelpViewControllerIdentifier") as! HelpViewController
-            
-            break
-        case TableIndex.About.rawValue:
-            
-            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewControllerIdentifier") as! AboutViewController
             
             break
         case TableIndex.Logout.rawValue:
@@ -111,14 +107,15 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
     
     // BaasBox logout user
     func logoutUser() {
-        Util.enableActivityIndicator(self.view, tag: 0)
+        Util.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.sharedClient()
-        client.logoutWithCompletion({(success, error) -> Void in
+        client.logoutCaberWithCompletion(BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
             
-            Util.disableActivityIndicator(self.view, tag: 0)
+            Util.disableActivityIndicator(self.view)
             
-            if (success) {
+            if (success || (error.domain == BaasBox.errorDomain() && error.code ==
+                            WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
                 
                 // pop all the view controllers so that user starts fresh :)
                 let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -140,6 +137,7 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
             else {
                 // We continue the user session if Logout hits an error
                 if (error.domain == BaasBox.errorDomain()) {
+                    DDLogVerbose("Error in logout: \(error)")
                     Util.displayAlert("Error Logging out. ", message: "This is...weird.")
                 }
                 else {

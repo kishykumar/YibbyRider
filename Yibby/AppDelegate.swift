@@ -11,7 +11,13 @@ import MMDrawerController
 import GoogleMaps
 import BaasBoxSDK
 import CocoaLumberjack
-
+import Fabric
+import Crashlytics
+ 
+// TODO:
+// 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
+// 2. 
+ 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
  //-- we have removed this because we are not sending upstream messages via GCM
@@ -38,8 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     var pushController: PushController =  PushController()
 
+    var initialized: Bool = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // setup Crashlytics
+        Fabric.with([Crashlytics.self])
         
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
@@ -56,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.addLogger(fileLogger)
         
+        // setup LocationService
+        LocationService.sharedInstance().setupLocationManager()
+
         DDLogDebug("LaunchOptions \(launchOptions)");
         
         // Override point for customization after application launch.
@@ -133,12 +146,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             })
         }
     }
-    
+
     func applicationWillResignActive(application: UIApplication) {
         DDLogDebug("Called");
 
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        
+        if let vvc = window!.visibleViewController as? FindOffersViewController {
+            DDLogDebug("Saving the timer")
+            vvc.saveProgressTimer()
+        }
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -174,6 +192,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                 // [END_EXCLUDE]
             }
         })
+        
+        if let vvc = window!.visibleViewController as? FindOffersViewController {
+            DDLogVerbose("Restoring the timer")
+            vvc.restoreProgressTimer()
+        }
         
         // process a saved notification, if any
         pushController.processSavedNotification()

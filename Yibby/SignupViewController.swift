@@ -57,10 +57,10 @@ class SignupViewController: UIViewController {
     
     // BaasBox create user
     func createUser(usernamei: String, passwordi: String) {
-        Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
+        Util.enableActivityIndicator(self.view)
 
         let client: BAAClient = BAAClient.sharedClient()
-        client.createUserWithUsername(usernamei, password: passwordi, completion: {(success, error) -> Void in
+        client.createCaberWithUsername(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
             if (success) {
                 DDLogVerbose("Success signing up: \(success)")
 
@@ -76,7 +76,7 @@ class SignupViewController: UIViewController {
                 DDLogVerbose("Signup failed: \(error)")
                 Util.displayAlert("Signup failed.", message: "Please try again.")
             }
-            Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
+            Util.disableActivityIndicator(self.view)
         })
     }
     

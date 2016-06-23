@@ -13,16 +13,37 @@ import BaasBoxSDK
 import CocoaLumberjack
 
 public class Util {
-    static func enableActivityIndicator (view: UIView, tag: Int) {
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
-        SVProgressHUD.show();
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    
+    static func enableActivityIndicator (view: UIView) {
+        Util.enableActivityIndicator(view, status: nil, mask: SVProgressHUDMaskType.Black,
+                                     maskColor: nil, style: SVProgressHUDStyle.Dark)
+    }
+
+    static func enableActivityIndicator (view: UIView, status: String?,
+                                         mask: SVProgressHUDMaskType?, maskColor: UIColor?,
+                                         style: SVProgressHUDStyle?) {
+        
+        if let mask = mask {
+            SVProgressHUD.setDefaultMaskType(mask)
+        }
+        
+        if let maskColor = maskColor {
+            SVProgressHUD.setBackgroundLayerColor(maskColor)
+        }
+        
+        if let style = style {
+            SVProgressHUD.setDefaultStyle(style)
+        }
+        
+        if let status = status {
+            SVProgressHUD.showWithStatus(status);
+        } else {
+            SVProgressHUD.show()
+        }
     }
     
-    static func disableActivityIndicator (view: UIView, tag: Int) {
+    static func disableActivityIndicator (view: UIView) {
         SVProgressHUD.dismiss();
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
     static func displayAlert(title: String, message: String) {
@@ -70,5 +91,30 @@ public class Util {
         } else {
             Util.displaySettingsAlert("Location services disabled", message: "Please turn on location services in the Settings -> Privacy -> Location Services")
         }
+    }
+    
+    static func diffFromCurTimeISO (fromIsoTime: String) -> NSTimeInterval {
+        
+        let formatter = NSDateFormatter()
+        formatter.timeZone = NSTimeZone.localTimeZone()
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"
+        
+        let isoNSDate: NSDate = formatter.dateFromString(fromIsoTime)!
+        
+        // Get the current time
+        let curTime = NSDate()
+        
+        let secondsBetween: NSTimeInterval = curTime.timeIntervalSinceDate(isoNSDate)
+        return secondsBetween
+    }
+    
+    static func diffFromCurTime (fromTime: NSDate) -> NSTimeInterval {
+        
+        // Get the current time
+        let curTime = NSDate()
+        
+        let secondsBetween: NSTimeInterval = curTime.timeIntervalSinceDate(fromTime)
+        return secondsBetween
     }
 }

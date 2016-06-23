@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '83F1FFA84873C2F886549FD8'
+               BlueprintIdentifier = 'FBFD4FA66B53E631B1BA0891'
                BlueprintName = 'ASProgressPopUpView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'ASProgressPopUpView.framework'>

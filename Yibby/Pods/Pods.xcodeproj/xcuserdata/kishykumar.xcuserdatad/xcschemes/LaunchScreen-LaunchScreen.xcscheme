@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5F9A987B1194AAC7D0F38777'
+               BlueprintIdentifier = '2C02AAD25BE4BB902A31E2ED'
                BlueprintName = 'LaunchScreen-LaunchScreen'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'LaunchScreen.bundle'>

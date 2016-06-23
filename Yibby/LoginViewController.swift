@@ -19,8 +19,6 @@ class LoginViewController: UIViewController {
     static let PASSWORD_KEY_NAME = "PASSWORD"
     static let EMAIL_ADDRESS_KEY_NAME = "EMAIL_ADDRESS"
     
-    let ACTIVITY_INDICATOR_TAG: Int = 1
-    
     var onStartup = true
     
     // MARK: functions
@@ -53,12 +51,12 @@ class LoginViewController: UIViewController {
     
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
-        Util.enableActivityIndicator(self.view, tag: ACTIVITY_INDICATOR_TAG)
+        Util.enableActivityIndicator(self.view)
 
         let client: BAAClient = BAAClient.sharedClient()
-        client.authenticateUser(usernamei, password: passwordi, completion: {(success, error) -> Void in
+        client.authenticateCaber(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
             
-            Util.disableActivityIndicator(self.view, tag: self.ACTIVITY_INDICATOR_TAG)
+            Util.disableActivityIndicator(self.view)
             
             if (success) {
                 DDLogVerbose("user logged in successfully \(success)")

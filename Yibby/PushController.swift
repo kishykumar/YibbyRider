@@ -29,7 +29,7 @@ public class PushController: NSObject, PushControllerProtocol {
     let ID_JSON_FIELD_NAME = "id"
     let GCM_MSG_ID_JSON_FIELD_NAME = "gcm.message_id"
     
-    let SAVED_PUSH_NOTIFICATION_KEY = "SAVED_PUSH_NOTIFICATION_KEY"
+    var savedNotification: [NSObject : AnyObject]?
     var mLastGCMMsgId: String?
 
     public override init() {
@@ -38,11 +38,11 @@ public class PushController: NSObject, PushControllerProtocol {
 
     //MARK: Receiving remote notification
     public func receiveRemoteNotification(application: UIApplication, notification: [NSObject : AnyObject]) {
-                
-        // TODO: Add this code
-        //        if (DRIVER IS OFFLINE) {
-        //          return;
-        //        }
+
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if (!appDelegate.initialized) {
+          return;
+        }
         
         if application.applicationState == .Background {
             //opened from a push notification when the app was on background
@@ -62,9 +62,7 @@ public class PushController: NSObject, PushControllerProtocol {
     
     
     func handleBgNotification (notification: [NSObject : AnyObject]) {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-
-        DDLogDebug("Setting recent push msg from \(userDefaults.objectForKey(SAVED_PUSH_NOTIFICATION_KEY)) to \(notification)")
+        DDLogDebug("Setting recent push msg from \(savedNotification) to \(notification)")
 
         if (BidState.sharedInstance().isOngoingBid()) {
             
@@ -73,7 +71,8 @@ public class PushController: NSObject, PushControllerProtocol {
             disableTimeoutCode()
             
             // save the most recent push message
-            userDefaults.setValue(notification, forKey: SAVED_PUSH_NOTIFICATION_KEY)
+            savedNotification = [NSObject : AnyObject]()
+            savedNotification = notification // copies over the dictionary
         }
     }
     
@@ -85,16 +84,14 @@ public class PushController: NSObject, PushControllerProtocol {
     
     func processSavedNotification() {
         DDLogDebug("Called")
-
-        let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        if let notification = userDefaults.objectForKey(SAVED_PUSH_NOTIFICATION_KEY) {
+        if let notification = savedNotification {
             DDLogDebug("Processing saved notification: \(notification)")
 
-            processNotification(notification as! [NSObject : AnyObject])
+            processNotification(notification)
             
-            // remove the key as we have processed the notification
-            userDefaults.removeObjectForKey(SAVED_PUSH_NOTIFICATION_KEY)
+            // remove the savedNotification
+            savedNotification = nil
         } else {
             DDLogDebug("No saved notification found")
         }
@@ -122,6 +119,12 @@ public class PushController: NSObject, PushControllerProtocol {
         }
         mLastGCMMsgId = notification[GCM_MSG_ID_JSON_FIELD_NAME] as? String
 
+        if (appDelegate.centerContainer == nil) {
+            // this might happen during startup
+            DDLogDebug("Discarded the notification because centerContainer nil")
+            return;
+        }
+        
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
             if (!BidState.sharedInstance().isOngoingBid()) {
@@ -187,6 +190,11 @@ public class PushController: NSObject, PushControllerProtocol {
                             
                             let driverEnRouteViewController = mainstoryboard.instantiateViewControllerWithIdentifier("DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
                             mmnvc.pushViewController(driverEnRouteViewController, animated: true)
+                            
+                        case RIDE_START_MESSAGE_TYPE:
+                            DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
+                            
+                            
                             
                         default: break
                         }

@@ -103,7 +103,8 @@ class SplashViewController: UIViewController {
 
     
     func doSetup () {
-        
+        DDLogVerbose("Called");
+
         ///////////////////////////////////////////////////////////////////////////
         // We do the app's initialization in viewDidAppear().
         // 1. Setup Splash Screen
@@ -132,7 +133,7 @@ class SplashViewController: UIViewController {
         
         var syncSuccess = false
         let client: BAAClient = BAAClient.sharedClient()
-        client.authenticateUser("k", password: "k", completion: {(success, error) -> Void in
+        client.dummyCall( {(success, error) -> Void in
 
             if (error == nil) {
                 DDLogDebug("Sync successful: \(success))")
@@ -181,6 +182,9 @@ class SplashViewController: UIViewController {
             self.performSegueWithIdentifier("loginFromSplashSegue", sender: nil)
             removeSplash()
         }
+        
+        // this is important to mark that the application has been initialized
+        appDelegate.initialized = true
     }
     
     /*
