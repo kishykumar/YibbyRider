@@ -9,7 +9,6 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 #import <Google/CloudMessaging.h>
-#import "UITableViewController+ENFooterActivityIndicatorView.h"
-#import "ENFooterActivityIndicatorView.h"
-//#import <BaasBoxSDK/BAAClient.h>
+#import "Views/ENFooterActivityIndicatorView/UITableViewController+ENFooterActivityIndicatorView.h"
+#import "Views/ENFooterActivityIndicatorView/ENFooterActivityIndicatorView.h"
 #endif /* BridgingHeader_h */

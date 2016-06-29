@@ -51,9 +51,9 @@ class Ride: NSObject, NSCopying {
     
     func copyWithZone(zone: NSZone) -> AnyObject {
         let copy = Ride(id: id, bidHigh: bidHigh, bidLow: bidLow,
-                       etaHigh: etaHigh, etaLow: etaLow, pickupLat: pickupLat,
-                       pickupLong: pickupLong, pickupLoc: pickupLoc, dropoffLat: dropoffLat,
-                       dropoffLong: dropoffLong, dropoffLoc: dropoffLoc)
+                        etaHigh: etaHigh, etaLow: etaLow, pickupLat: pickupLat,
+                        pickupLong: pickupLong, pickupLoc: pickupLoc, dropoffLat: dropoffLat,
+                        dropoffLong: dropoffLong, dropoffLoc: dropoffLoc)
         
         return copy
     }
