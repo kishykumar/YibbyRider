@@ -16,7 +16,8 @@ import Crashlytics
  
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
-// 2. 
+// 2. Bug: Fix the SVProgressHUD (singleton) issue where pressing back button and then Trips again pops off the HUD early. 
+// 3. Segue freezing in iOS9. Test using static data instead of dynamic.
  
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {

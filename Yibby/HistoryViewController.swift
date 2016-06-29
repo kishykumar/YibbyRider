@@ -81,11 +81,12 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
                                 if self.totalRides == 0 {
                                     
                                     // The DNZ Empty container view will be shown automatically
-                                    
+                                    DDLogVerbose("Removed loadingActivityIndicator1")
                                     Util.disableActivityIndicator(self.view)
                                     self.removeFooterActivityIndicator()
                                     
                                     self.isLoading = false
+                                    self.tableView.reloadData()
                                     return;
                                 }
                                 
@@ -142,8 +143,8 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
                                     self.shownRides = (self.shownRides + numRidesToShow)
                                     self.nextPageToLoad = self.nextPageToLoad + 1
 
-                                    Util.disableActivityIndicator(self.view)
                                     self.tableView.reloadData()
+                                    Util.disableActivityIndicator(self.view)
                                 }
                             }
                         }
@@ -169,8 +170,7 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         let cell: HistoryTableCell = tableView.dequeueReusableCellWithIdentifier(identifier) as! HistoryTableCell
 //        cell.configure(rides[indexPath.row])
         
-        let myfile: BAAFile = rides[indexPath.row]
-        DDLogVerbose("myfile is: \(myfile)")
+        //let myfile: BAAFile = rides[indexPath.row]
         
         // convert myfile to Ride
         let myride:Ride = Ride(id: "", bidHigh: 10, bidLow: 5,
@@ -187,9 +187,9 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     }
     
     //MARK: - UITableView Delegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
@@ -197,30 +197,45 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "rideDetail" {
-            let indexPath = self.tableView!.indexPathForSelectedRow
-            let destinationViewController: RideDetailViewController = segue.destinationViewController as! RideDetailViewController
-            
-//            destinationViewController.ride = rides[indexPath!.row]
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "rideDetail" {
+//            let indexPath = self.tableView!.indexPathForSelectedRow
+//            let destinationViewController: RideDetailViewController = segue.destinationViewController as! RideDetailViewController
+//            
+////            destinationViewController.ride = rides[indexPath!.row]
+//        }
+//    }
     
     // MARK: DZNEmptyDataSet Delegate-Datasource
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        
+        if (self.isLoading) {
+            return nil;
+        }
+        
         let str = "Bummer! You haven't ridden with us yet. "
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        
+        if (self.isLoading) {
+            return nil;
+        }
+        
         let str = "Bid, take the ride, save some money, and check back later. "
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        
+        if (self.isLoading) {
+            return nil;
+        }
+        
         return UIImage(named: "destTextFieldIcon")
     }
 
