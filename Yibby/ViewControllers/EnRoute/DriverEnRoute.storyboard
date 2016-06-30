@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Driver En Route View Controller-->
+        <scene sceneID="L19-1c-f0a">
+            <objects>
+                <viewController storyboardIdentifier="DriverEnRouteViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aYl-za-zqw" customClass="DriverEnRouteViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aU0-IO-oiu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Th2-7A-8a7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IBH-gf-1dv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-zm-cB4" userLabel="GMS Map View" customClass="GMSMapView">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="274"/>
+                                <color key="backgroundColor" red="0.42455285787582397" green="0.9723849892616272" blue="0.98325306177139282" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXT-zh-0Ue">
+                                <rect key="frame" x="216" y="416" width="84" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Fare Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJi-EC-Lqf">
+                                <rect key="frame" x="210" y="393" width="90" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KF-29-MRT">
+                                <rect key="frame" x="227" y="439" width="73" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver Rating Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-Im-ewW">
+                                <rect key="frame" x="192" y="462" width="108" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver's Car Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiL-fQ-cY2">
+                                <rect key="frame" x="199" y="485" width="101" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipy-je-UkB">
+                                <rect key="frame" x="20" y="416" width="49" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Fare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyf-2M-Ihb">
+                                <rect key="frame" x="20" y="393" width="56" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xny-EL-h7g">
+                                <rect key="frame" x="20" y="439" width="39" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUq-rl-2QS">
+                                <rect key="frame" x="20" y="462" width="74" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver's Car" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz9-qN-82J">
+                                <rect key="frame" x="20" y="485" width="67" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver's Car Plate Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6M-KF-WmC">
+                                <rect key="frame" x="20" y="508" width="147" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plate Number Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMf-hh-Pxk">
+                                <rect key="frame" x="188" y="508" width="112" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haY-ua-6hq">
+                                <rect key="frame" x="20" y="282" width="110" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="BKE-Cq-55B"/>
+                                    <constraint firstAttribute="height" constant="90" id="m72-D3-FYI"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iyo-KK-cXZ">
+                                <rect key="frame" x="178" y="282" width="122" height="90"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Nd-zm-cB4" firstAttribute="top" secondItem="IBH-gf-1dv" secondAttribute="top" id="1We-2S-agg"/>
+                            <constraint firstItem="5KF-29-MRT" firstAttribute="trailing" secondItem="nDf-Im-ewW" secondAttribute="trailing" id="1pq-Yn-4x7"/>
+                            <constraint firstItem="haY-ua-6hq" firstAttribute="bottom" secondItem="Iyo-KK-cXZ" secondAttribute="bottom" id="2fi-zC-8Zn"/>
+                            <constraint firstItem="nDf-Im-ewW" firstAttribute="trailing" secondItem="uiL-fQ-cY2" secondAttribute="trailing" id="2rL-gH-K5X"/>
+                            <constraint firstItem="xyf-2M-Ihb" firstAttribute="leading" secondItem="Ipy-je-UkB" secondAttribute="leading" id="6OY-3Y-dhZ"/>
+                            <constraint firstItem="xny-EL-h7g" firstAttribute="top" secondItem="Ipy-je-UkB" secondAttribute="bottom" constant="8" symbolic="YES" id="6c3-be-GsC"/>
+                            <constraint firstItem="Sz9-qN-82J" firstAttribute="leading" secondItem="D6M-KF-WmC" secondAttribute="leading" id="6hu-Ci-bLL"/>
+                            <constraint firstItem="5Nd-zm-cB4" firstAttribute="centerX" secondItem="IBH-gf-1dv" secondAttribute="centerX" id="9pI-Ad-c5V"/>
+                            <constraint firstItem="LUq-rl-2QS" firstAttribute="top" secondItem="xny-EL-h7g" secondAttribute="bottom" constant="8" symbolic="YES" id="B4d-ky-1ts"/>
+                            <constraint firstItem="xyf-2M-Ihb" firstAttribute="baseline" secondItem="AJi-EC-Lqf" secondAttribute="baseline" id="BhK-ed-9eA"/>
+                            <constraint firstItem="haY-ua-6hq" firstAttribute="top" secondItem="5Nd-zm-cB4" secondAttribute="bottom" constant="8" symbolic="YES" id="Dvt-vo-JaO"/>
+                            <constraint firstItem="Ipy-je-UkB" firstAttribute="top" secondItem="xyf-2M-Ihb" secondAttribute="bottom" constant="8" symbolic="YES" id="FzS-Zu-ti4"/>
+                            <constraint firstItem="5Nd-zm-cB4" firstAttribute="leading" secondItem="IBH-gf-1dv" secondAttribute="leadingMargin" constant="-20" id="HLh-fi-FZR"/>
+                            <constraint firstItem="D6M-KF-WmC" firstAttribute="top" secondItem="Sz9-qN-82J" secondAttribute="bottom" constant="8" symbolic="YES" id="HyK-w7-11r"/>
+                            <constraint firstItem="Sz9-qN-82J" firstAttribute="top" secondItem="LUq-rl-2QS" secondAttribute="bottom" constant="8" symbolic="YES" id="Jfh-9e-2SD"/>
+                            <constraint firstItem="LUq-rl-2QS" firstAttribute="baseline" secondItem="nDf-Im-ewW" secondAttribute="baseline" id="MSc-uB-6fI"/>
+                            <constraint firstItem="gXT-zh-0Ue" firstAttribute="trailing" secondItem="5KF-29-MRT" secondAttribute="trailing" id="Mbd-jC-avf"/>
+                            <constraint firstItem="Th2-7A-8a7" firstAttribute="top" secondItem="D6M-KF-WmC" secondAttribute="bottom" constant="45" id="NBA-m5-i58"/>
+                            <constraint firstItem="uMf-hh-Pxk" firstAttribute="leading" secondItem="D6M-KF-WmC" secondAttribute="trailing" constant="21" id="P6j-sZ-h8b"/>
+                            <constraint firstItem="haY-ua-6hq" firstAttribute="top" secondItem="Iyo-KK-cXZ" secondAttribute="top" id="R8A-hy-n19"/>
+                            <constraint firstItem="D6M-KF-WmC" firstAttribute="baseline" secondItem="uMf-hh-Pxk" secondAttribute="baseline" id="RdL-Lp-sdj"/>
+                            <constraint firstItem="AJi-EC-Lqf" firstAttribute="trailing" secondItem="gXT-zh-0Ue" secondAttribute="trailing" id="RpS-62-qB8"/>
+                            <constraint firstItem="Iyo-KK-cXZ" firstAttribute="trailing" secondItem="AJi-EC-Lqf" secondAttribute="trailing" id="TKf-Tc-1vH"/>
+                            <constraint firstItem="Ipy-je-UkB" firstAttribute="leading" secondItem="xny-EL-h7g" secondAttribute="leading" id="U5W-aE-Mkx"/>
+                            <constraint firstItem="uiL-fQ-cY2" firstAttribute="trailing" secondItem="uMf-hh-Pxk" secondAttribute="trailing" id="XWR-nX-8Kv"/>
+                            <constraint firstItem="xyf-2M-Ihb" firstAttribute="top" secondItem="haY-ua-6hq" secondAttribute="bottom" constant="21" id="aPl-8a-bD0"/>
+                            <constraint firstItem="haY-ua-6hq" firstAttribute="leading" secondItem="xyf-2M-Ihb" secondAttribute="leading" id="cy0-gj-SWZ"/>
+                            <constraint firstItem="haY-ua-6hq" firstAttribute="leading" secondItem="IBH-gf-1dv" secondAttribute="leadingMargin" constant="4" id="e2J-9L-2ge"/>
+                            <constraint firstItem="Iyo-KK-cXZ" firstAttribute="leading" secondItem="haY-ua-6hq" secondAttribute="trailing" constant="48" id="eMO-y6-I4e"/>
+                            <constraint firstItem="xny-EL-h7g" firstAttribute="baseline" secondItem="5KF-29-MRT" secondAttribute="baseline" id="fIB-tX-lPH"/>
+                            <constraint firstItem="LUq-rl-2QS" firstAttribute="leading" secondItem="Sz9-qN-82J" secondAttribute="leading" id="oZh-LM-TnV"/>
+                            <constraint firstItem="Ipy-je-UkB" firstAttribute="baseline" secondItem="gXT-zh-0Ue" secondAttribute="baseline" id="wAE-q0-NC2"/>
+                            <constraint firstItem="xny-EL-h7g" firstAttribute="leading" secondItem="LUq-rl-2QS" secondAttribute="leading" id="wgB-LX-6MK"/>
+                            <constraint firstItem="Sz9-qN-82J" firstAttribute="baseline" secondItem="uiL-fQ-cY2" secondAttribute="baseline" id="zxs-jX-Qxe"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="driverCarValueOutlet" destination="uiL-fQ-cY2" id="AN0-9A-WGy"/>
+                        <outlet property="driverLocMapViewOutlet" destination="5Nd-zm-cB4" id="pRy-U4-T4X"/>
+                        <outlet property="driverRatingValueOutlet" destination="nDf-Im-ewW" id="gnO-AJ-umI"/>
+                        <outlet property="fareValueOutlet" destination="AJi-EC-Lqf" id="HI7-qE-zT9"/>
+                        <outlet property="numPeopleValueOutlet" destination="5KF-29-MRT" id="d36-Sy-LXl"/>
+                        <outlet property="paymentValueOutlet" destination="gXT-zh-0Ue" id="UPd-Zo-eHl"/>
+                        <outlet property="plateNumValueOutlet" destination="uMf-hh-Pxk" id="R3B-rt-Wb4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kww-eN-MUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2869" y="396"/>
+        </scene>
+    </scenes>
+</document>

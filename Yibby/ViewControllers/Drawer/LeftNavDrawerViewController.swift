@@ -61,27 +61,32 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
         switch (indexPath.row) {
         case TableIndex.Payment.rawValue:
             
-            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+            let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+            selectedViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
             
             break
         case TableIndex.Trips.rawValue:
             
-            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryViewControllerIdentifier") as! HistoryViewController
+            let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+            selectedViewController = historyStoryboard.instantiateViewControllerWithIdentifier("HistoryViewControllerIdentifier") as! HistoryViewController
 
             break
         case TableIndex.Settings.rawValue:
             
-            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewControllerIdentifier") as! SettingsViewController
+            let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
+            selectedViewController = settingsStoryboard.instantiateViewControllerWithIdentifier("SettingsViewControllerIdentifier") as! SettingsViewController
             
             break
         case TableIndex.Promotions.rawValue:
             
-            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PromotionsViewControllerIdentifier") as! PromotionsViewController
+            let promotionsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Promotions, bundle: nil)
+            selectedViewController = promotionsStoryboard.instantiateViewControllerWithIdentifier("PromotionsViewControllerIdentifier") as! PromotionsViewController
             
             break
         case TableIndex.Support.rawValue:
             
-            selectedViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HelpViewControllerIdentifier") as! HelpViewController
+            let helpStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Help, bundle: nil)
+            selectedViewController = helpStoryboard.instantiateViewControllerWithIdentifier("HelpViewControllerIdentifier") as! HelpViewController
             
             break
         case TableIndex.Logout.rawValue:
@@ -128,7 +133,9 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
                 LoginViewController.removeKeyChainKeys()
                 
                 // Show the LoginViewController View
-                if let loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
+                let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
+
+                if let loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
                 {
                     loginViewController.onStartup = true
                     self.presentViewController(loginViewController, animated: true, completion: nil)

@@ -21,8 +21,6 @@
 		1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7541D23A85F00A7EEAF /* PaymentViewController.swift */; };
 		1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7571D23A85F00A7EEAF /* PromotionsViewController.swift */; };
 		1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7591D23A85F00A7EEAF /* PushController.swift */; };
-		1201B76D1D23A85F00A7EEAF /* DriverEnRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B75B1D23A85F00A7EEAF /* DriverEnRouteViewController.swift */; };
-		1201B76E1D23A85F00A7EEAF /* RideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B75C1D23A85F00A7EEAF /* RideDetailViewController.swift */; };
 		1201B76F1D23A85F00A7EEAF /* RideEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B75D1D23A85F00A7EEAF /* RideEndViewController.swift */; };
 		1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B75E1D23A85F00A7EEAF /* TripViewController.swift */; };
 		1201B7711D23A85F00A7EEAF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7601D23A85F00A7EEAF /* SettingsViewController.swift */; };
@@ -37,6 +35,22 @@
 		1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7851D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift */; };
 		1201B7881D23AF0100A7EEAF /* BidState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7871D23AF0100A7EEAF /* BidState.swift */; };
 		1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B78B1D23B0B900A7EEAF /* Main.storyboard */; };
+		1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */; };
+		1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7DC1D24EE8F00A7EEAF /* SignUp.storyboard */; };
+		1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */; };
+		1201B7E21D24F65B00A7EEAF /* Bidding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E11D24F65B00A7EEAF /* Bidding.storyboard */; };
+		1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */; };
+		1201B7E61D24FFAA00A7EEAF /* Ride.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E51D24FFAA00A7EEAF /* Ride.storyboard */; };
+		1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E71D24FFF100A7EEAF /* Drawer.storyboard */; };
+		1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E91D25002700A7EEAF /* About.storyboard */; };
+		1201B7EC1D25005300A7EEAF /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7EB1D25005300A7EEAF /* Help.storyboard */; };
+		1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7ED1D25008700A7EEAF /* Promotions.storyboard */; };
+		1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7EF1D2500AD00A7EEAF /* Settings.storyboard */; };
+		1201B7F21D2500D200A7EEAF /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7F11D2500D200A7EEAF /* History.storyboard */; };
+		1201B7F41D2500EA00A7EEAF /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7F31D2500EA00A7EEAF /* Payment.storyboard */; };
+		1201B7F61D25010500A7EEAF /* Destination.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7F51D25010500A7EEAF /* Destination.storyboard */; };
+		1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */; };
+		1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7FB1D250D8400A7EEAF /* Login.storyboard */; };
 		120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120682381CBE277C004A34BB /* SystemConfiguration.framework */; };
 		121096931D1142E000D7174F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096921D1142E000D7174F /* LocationService.swift */; };
 		1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096951D13CA6300D7174F /* HistoryTableCell.swift */; };
@@ -79,8 +93,6 @@
 		1201B7541D23A85F00A7EEAF /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		1201B7571D23A85F00A7EEAF /* PromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionsViewController.swift; sourceTree = "<group>"; };
 		1201B7591D23A85F00A7EEAF /* PushController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushController.swift; sourceTree = "<group>"; };
-		1201B75B1D23A85F00A7EEAF /* DriverEnRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewController.swift; sourceTree = "<group>"; };
-		1201B75C1D23A85F00A7EEAF /* RideDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailViewController.swift; sourceTree = "<group>"; };
 		1201B75D1D23A85F00A7EEAF /* RideEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideEndViewController.swift; sourceTree = "<group>"; };
 		1201B75E1D23A85F00A7EEAF /* TripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1201B7601D23A85F00A7EEAF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +109,22 @@
 		1201B7851D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftNavDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		1201B7871D23AF0100A7EEAF /* BidState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidState.swift; sourceTree = "<group>"; };
 		1201B78C1D23B0B900A7EEAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceString.swift; sourceTree = "<group>"; };
+		1201B7DC1D24EE8F00A7EEAF /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewController.swift; sourceTree = "<group>"; };
+		1201B7E11D24F65B00A7EEAF /* Bidding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bidding.storyboard; sourceTree = "<group>"; };
+		1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DriverEnRoute.storyboard; sourceTree = "<group>"; };
+		1201B7E51D24FFAA00A7EEAF /* Ride.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ride.storyboard; sourceTree = "<group>"; };
+		1201B7E71D24FFF100A7EEAF /* Drawer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Drawer.storyboard; sourceTree = "<group>"; };
+		1201B7E91D25002700A7EEAF /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		1201B7EB1D25005300A7EEAF /* Help.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		1201B7ED1D25008700A7EEAF /* Promotions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Promotions.storyboard; sourceTree = "<group>"; };
+		1201B7EF1D2500AD00A7EEAF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		1201B7F11D2500D200A7EEAF /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		1201B7F31D2500EA00A7EEAF /* Payment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		1201B7F51D25010500A7EEAF /* Destination.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Destination.storyboard; sourceTree = "<group>"; };
+		1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailViewController.swift; sourceTree = "<group>"; };
+		1201B7FB1D250D8400A7EEAF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		120682381CBE277C004A34BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		121096921D1142E000D7174F /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		121096951D13CA6300D7174F /* HistoryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableCell.swift; sourceTree = "<group>"; };
@@ -166,6 +194,7 @@
 				1201B7401D23A84500A7EEAF /* Bidding */,
 				1201B7481D23A85F00A7EEAF /* Destination */,
 				1201B74A1D23A85F00A7EEAF /* Drawer */,
+				1201B7DE1D24F62500A7EEAF /* EnRoute */,
 				1201B74C1D23A85F00A7EEAF /* Help */,
 				1201B74E1D23A85F00A7EEAF /* History */,
 				1201B7501D23A85F00A7EEAF /* Intro */,
@@ -211,6 +240,7 @@
 				1201B77B1D23ACDD00A7EEAF /* KeychainWrapper.swift */,
 				1201B77C1D23ACDD00A7EEAF /* LogFormatter.swift */,
 				12A67D9D1C94CE7F005E3F9F /* Util.swift */,
+				1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -218,6 +248,7 @@
 		1201B73E1D23A84500A7EEAF /* About */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7E91D25002700A7EEAF /* About.storyboard */,
 				1201B73F1D23A84500A7EEAF /* AboutViewController.swift */,
 			);
 			path = About;
@@ -226,6 +257,7 @@
 		1201B7401D23A84500A7EEAF /* Bidding */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7E11D24F65B00A7EEAF /* Bidding.storyboard */,
 				1201B7411D23A84500A7EEAF /* ConfirmRideViewController.swift */,
 				1201B7421D23A84500A7EEAF /* FindOffersViewController.swift */,
 				1201B7431D23A84500A7EEAF /* MainViewController.swift */,
@@ -236,6 +268,7 @@
 		1201B7481D23A85F00A7EEAF /* Destination */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7F51D25010500A7EEAF /* Destination.storyboard */,
 				1201B7491D23A85F00A7EEAF /* DestinationPickerViewController.swift */,
 			);
 			path = Destination;
@@ -244,6 +277,7 @@
 		1201B74A1D23A85F00A7EEAF /* Drawer */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7E71D24FFF100A7EEAF /* Drawer.storyboard */,
 				1201B7851D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift */,
 				1201B74B1D23A85F00A7EEAF /* LeftNavDrawerViewController.swift */,
 			);
@@ -253,6 +287,7 @@
 		1201B74C1D23A85F00A7EEAF /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7EB1D25005300A7EEAF /* Help.storyboard */,
 				1201B74D1D23A85F00A7EEAF /* HelpViewController.swift */,
 			);
 			path = Help;
@@ -261,8 +296,10 @@
 		1201B74E1D23A85F00A7EEAF /* History */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7F11D2500D200A7EEAF /* History.storyboard */,
 				121096951D13CA6300D7174F /* HistoryTableCell.swift */,
 				1201B74F1D23A85F00A7EEAF /* HistoryViewController.swift */,
+				1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -277,6 +314,7 @@
 		1201B7511D23A85F00A7EEAF /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7FB1D250D8400A7EEAF /* Login.storyboard */,
 				1201B7521D23A85F00A7EEAF /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -285,6 +323,7 @@
 		1201B7531D23A85F00A7EEAF /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7F31D2500EA00A7EEAF /* Payment.storyboard */,
 				1201B7541D23A85F00A7EEAF /* PaymentViewController.swift */,
 			);
 			path = Payment;
@@ -300,6 +339,7 @@
 		1201B7561D23A85F00A7EEAF /* Promotions */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7ED1D25008700A7EEAF /* Promotions.storyboard */,
 				1201B7571D23A85F00A7EEAF /* PromotionsViewController.swift */,
 			);
 			path = Promotions;
@@ -316,8 +356,7 @@
 		1201B75A1D23A85F00A7EEAF /* Ride */ = {
 			isa = PBXGroup;
 			children = (
-				1201B75B1D23A85F00A7EEAF /* DriverEnRouteViewController.swift */,
-				1201B75C1D23A85F00A7EEAF /* RideDetailViewController.swift */,
+				1201B7E51D24FFAA00A7EEAF /* Ride.storyboard */,
 				1201B75D1D23A85F00A7EEAF /* RideEndViewController.swift */,
 				1201B75E1D23A85F00A7EEAF /* TripViewController.swift */,
 			);
@@ -327,6 +366,7 @@
 		1201B75F1D23A85F00A7EEAF /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7EF1D2500AD00A7EEAF /* Settings.storyboard */,
 				1201B7601D23A85F00A7EEAF /* SettingsViewController.swift */,
 			);
 			path = Settings;
@@ -335,6 +375,7 @@
 		1201B7611D23A85F00A7EEAF /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				1201B7DC1D24EE8F00A7EEAF /* SignUp.storyboard */,
 				1201B7621D23A85F00A7EEAF /* SignupViewController.swift */,
 			);
 			path = SignUp;
@@ -374,6 +415,15 @@
 				1201B7831D23ADD700A7EEAF /* StoryboardIdentifiers.swift */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		1201B7DE1D24F62500A7EEAF /* EnRoute */ = {
+			isa = PBXGroup;
+			children = (
+				1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */,
+				1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */,
+			);
+			path = EnRoute;
 			sourceTree = "<group>";
 		};
 		12EB18131C59FA980037EB86 /* Supporting Files */ = {
@@ -560,12 +610,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */,
+				1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */,
+				1201B7F61D25010500A7EEAF /* Destination.storyboard in Resources */,
+				1201B7F41D2500EA00A7EEAF /* Payment.storyboard in Resources */,
 				1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */,
+				1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */,
+				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
+				1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */,
 				124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */,
+				1201B7E21D24F65B00A7EEAF /* Bidding.storyboard in Resources */,
+				1201B7E61D24FFAA00A7EEAF /* Ride.storyboard in Resources */,
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
+				1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */,
+				1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */,
+				1201B7F21D2500D200A7EEAF /* History.storyboard in Resources */,
 				12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */,
 				12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */,
 				120188221CF2A677005EF075 /* SplashScreen.xib in Resources */,
+				1201B7EC1D25005300A7EEAF /* Help.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,7 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
-				1201B76D1D23A85F00A7EEAF /* DriverEnRouteViewController.swift in Sources */,
+				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
 				1201B77D1D23ACDD00A7EEAF /* KeychainWrapper.swift in Sources */,
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
@@ -704,10 +767,10 @@
 				1201B7721D23A85F00A7EEAF /* SignupViewController.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				1201B7881D23AF0100A7EEAF /* BidState.swift in Sources */,
-				1201B76E1D23A85F00A7EEAF /* RideDetailViewController.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */,
+				1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */,
 				1201B7651D23A85F00A7EEAF /* DestinationPickerViewController.swift in Sources */,
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
@@ -715,6 +778,7 @@
 				1201B7711D23A85F00A7EEAF /* SettingsViewController.swift in Sources */,
 				1201B76F1D23A85F00A7EEAF /* RideEndViewController.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
+				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
 				1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,

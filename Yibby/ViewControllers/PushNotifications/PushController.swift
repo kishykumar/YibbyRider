@@ -102,10 +102,7 @@ public class PushController: NSObject, PushControllerProtocol {
 
         // handle offer
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // get the storyboard to instantiate the viewcontroller
-        let mainstoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
+
         if notification[MESSAGE_JSON_FIELD_NAME] == nil {
             DDLogDebug("No notification message found")
             return;
@@ -151,7 +148,9 @@ public class PushController: NSObject, PushControllerProtocol {
                         case OFFER_MESSAGE_TYPE:
                             DDLogDebug("OFFER RCVD")
                             
-                            let confirmRideViewController = mainstoryboard.instantiateViewControllerWithIdentifier("ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
+                            let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
+
+                            let confirmRideViewController = biddingStoryboard.instantiateViewControllerWithIdentifier("ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
                             mmnvc.pushViewController(confirmRideViewController, animated: true)
                             
                         case NO_OFFERS_MESSAGE_TYPE:
@@ -188,13 +187,13 @@ public class PushController: NSObject, PushControllerProtocol {
                             DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
                             disableTimeoutCode()
                             
-                            let driverEnRouteViewController = mainstoryboard.instantiateViewControllerWithIdentifier("DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
+                            let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
+
+                            let driverEnRouteViewController = driverEnRouteStoryboard.instantiateViewControllerWithIdentifier("DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
                             mmnvc.pushViewController(driverEnRouteViewController, animated: true)
                             
                         case RIDE_START_MESSAGE_TYPE:
                             DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
-                            
-                            
                             
                         default: break
                         }
