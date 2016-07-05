@@ -82,6 +82,9 @@
 // dummy endpoint
 - (void)dummyCall:(BAAObjectResultBlock)completionBlock;
 
+// get the complete url including app token and appcode. Used to fetch files from url today.
+- (NSURL *)getCompleteURLWithToken:(NSURL *)url;
+
 // Loading
 - (void) loadObject:(BAAObject *)object completion:(BAAObjectResultBlock)completionBlock;
 - (void) loadCollection:(BAAObject *)object completion:(BAAArrayResultBlock)completionBlock;

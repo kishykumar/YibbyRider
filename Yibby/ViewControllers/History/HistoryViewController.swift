@@ -92,7 +92,7 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
                                 
                                 // TODO: Remove the delay later
                                 self.performSelector(#selector(HistoryViewController.loadNewRides),
-                                    withObject:nil, afterDelay:5.0)
+                                    withObject:nil, afterDelay:2.0)
                             }
                             else {
                                 errorBlock(success, error)
@@ -197,14 +197,14 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     }
     
     // MARK: - Navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "rideDetail" {
-//            let indexPath = self.tableView!.indexPathForSelectedRow
-//            let destinationViewController: RideDetailViewController = segue.destinationViewController as! RideDetailViewController
-//            
-////            destinationViewController.ride = rides[indexPath!.row]
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "rideDetail" {
+            let indexPath = self.tableView!.indexPathForSelectedRow
+            let destinationViewController: RideDetailViewController = segue.destinationViewController as! RideDetailViewController
+            
+            destinationViewController.ride = rides[indexPath!.row]
+        }
+    }
     
     // MARK: DZNEmptyDataSet Delegate-Datasource
     

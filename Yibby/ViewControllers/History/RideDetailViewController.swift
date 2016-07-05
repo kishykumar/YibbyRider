@@ -6,14 +6,23 @@
 //  Copyright © 2016 MyComp. All rights reserved.
 //
 
+// TODO: Remove 'import BaasBoxSDK' and BAAFile references
+
 import UIKit
+import BaasBoxSDK
 
 class RideDetailViewController: UIViewController {
 
+    // MARK: Properties
+    var ride: BAAFile!             // we need a strong reference as the ride should not be nil
+    
+    // MARK: Setup functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +30,11 @@ class RideDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func fetchRideFromServer() {
+        
+    }
+    
+    // MARK: Helper functions
 
     /*
     // MARK: - Navigation

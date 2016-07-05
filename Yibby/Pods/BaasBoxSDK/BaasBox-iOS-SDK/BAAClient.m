@@ -2192,4 +2192,24 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
           }];
 }
 
+- (NSURL *)getCompleteURLWithToken:(NSURL *)url {
+    
+    if (!self.currentUser) {
+        return nil;
+    }
+    
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO];
+    
+    NSURLQueryItem * queryItemAppCode = [[NSURLQueryItem alloc] initWithName:@"X-BAASBOX-APPCODE" value:self.appCode];
+    NSURLQueryItem * queryItemAuthToken = [[NSURLQueryItem alloc] initWithName:@"X-BB-SESSION" value:self.currentUser.authenticationToken];
+    
+    NSMutableArray *newQueryItems = [[NSMutableArray alloc] initWithArray:components.queryItems copyItems:YES];
+    
+    [newQueryItems addObject:queryItemAppCode];
+    [newQueryItems addObject:queryItemAuthToken];
+    [components setQueryItems:newQueryItems];
+    
+    return [components URL];
+}
+
 @end

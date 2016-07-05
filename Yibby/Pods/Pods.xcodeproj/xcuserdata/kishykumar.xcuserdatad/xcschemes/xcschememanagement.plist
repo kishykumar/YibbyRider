@@ -29,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ElloOSSUIFonts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FLAnimatedImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>LaunchScreen-LaunchScreen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,6 +54,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PINCache.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PINRemoteImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Yibby.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -55,6 +75,11 @@
 			<false/>
 		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SVGKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -87,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>25EDEEB71FDFD8E46C9AFB4028D1194E</key>
+		<key>19F9EEDDE22763F42634B096E71EC4D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>22CB5D1B5366B8782EBBBC25BB8E0635</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,17 +127,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5446E99A534BA1DCF97B73F419F54F2B</key>
+		<key>398B67EFBCA8D2C1E5B1F50130BFC579</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>63ED8A3647454CD8C5CD04CF2A18342B</key>
+		<key>4F159B05C3628047620E917122C0E5C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AACBAD2C089E94B611D5C185C081AFA</key>
+		<key>53EAE53F2D3038F1B47D7FA74913E8FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6113DBA792585C9CA95C2720F156587F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7441B783A594BA48A645F9357C4C0834</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +157,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93EB4E11403BF7B2E3234CFF9029D8DF</key>
+		<key>9555A4CF1095D7635096C7B3DB2802F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +167,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D082FD9722F53B9C3A1229257D4008F7</key>
+		<key>9AB92A2AE7314091D107EAC8561B8977</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E04A68A8815B3FB65D0DC96E79520E40</key>
+		<key>C638B5655D4E6DA19AB8E5C341ACB277</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDB08C07D47BCDB5C433A0880B4EE4C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D082FD9722F53B9C3A1229257D4008F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,7 +197,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FBCB10B061B00E2EEDB3007492A63330</key>
+		<key>FE113CEF81C16AA59EC049ACE130BCB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,14 +10,20 @@ import UIKit
 import MMDrawerController
 import BaasBoxSDK
 import CocoaLumberjack
+import PINRemoteImage
 
-class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+public class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var profilePictureOutlet: UIImageView!
     
+    var photoSaveCallback: (UIImage -> Void)?
+
     var menuItems: [String] = ["Trips", "Payment", "Settings", "Notifications", "Support", "Promotions", "Drive", "Logout"]
     
+    let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
+
     enum TableIndex: Int {
         case Trips = 0
         case Payment
@@ -29,32 +35,57 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
         case Logout
     }
     
-    override func viewDidLoad() {
+    // MARK: Setup Functions
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupViews()
     }
 
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    private func setupViews () {
+        setupDefaultValues()
+    }
+    
+    private func setupDefaultValues() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let cachedImage = TemporaryCache.load(.CoverImage) {
+            profilePictureOutlet.image = cachedImage
+        }
+        else if let imageURL = userDefaults.URLForKey(self.PROFILE_PICTURE_URL_KEY) {
+            
+            let client: BAAClient = BAAClient.sharedClient()
+            
+            if let newUrl = client.getCompleteURLWithToken(imageURL) {
+                profilePictureOutlet.pin_setImageFromURL(newUrl)
+            }
+        }
+    }
+    
+    // MARK: Tableview Delegate/DataSource
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let mycell = tableView.dequeueReusableCellWithIdentifier("LeftNavDrawerCellIdentifier", forIndexPath: indexPath) as! LeftNavDrawerTableViewCell
         mycell.menuItemLabel.text = menuItems[indexPath.row]
         return mycell
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         var selectedViewController: UIViewController = UIViewController()
         
@@ -128,7 +159,7 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
                     mmnvc.popToRootViewControllerAnimated(false)
                 }
                 
-                print("user logged out successfully \(success)")
+                DDLogInfo("user logged out successfully \(success)")
                 // if logout is successful, remove username, password from keychain
                 LoginViewController.removeKeyChainKeys()
                 
@@ -144,7 +175,7 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
             else {
                 // We continue the user session if Logout hits an error
                 if (error.domain == BaasBox.errorDomain()) {
-                    DDLogVerbose("Error in logout: \(error)")
+                    DDLogError("Error in logout: \(error)")
                     Util.displayAlert("Error Logging out. ", message: "This is...weird.")
                 }
                 else {
@@ -152,6 +183,42 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
                 }
             }
         })
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
+        photoSaveCallback = { image in
+            Util.enableActivityIndicator(self.view)
+            ProfileService().updateUserProfilePicture(image,
+                success: { url in
+                    DDLogVerbose("Success")
+                    Util.disableActivityIndicator(self.view)
+                    
+                    let userDefaults = NSUserDefaults.standardUserDefaults()
+                    userDefaults.setURL(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+
+                    self.profilePictureOutlet.image = image
+                },
+                failure: { _, _ in
+                    DDLogVerbose("Failure")
+                    Util.disableActivityIndicator(self.view)
+            })
+        }
+        openImagePicker()
+    }
+    
+    // MARK: Helpers
+    
+    private func openImagePicker() {
+        let alertViewController = UIImagePickerController.alertControllerForImagePicker { imagePicker in
+            imagePicker.delegate = self
+            self.presentViewController(imagePicker, animated: true, completion: .None)
+        }
+        
+        if let alertViewController = alertViewController {
+            presentViewController(alertViewController, animated: true, completion: .None)
+        }
     }
     
     /*
@@ -164,4 +231,30 @@ class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITa
     }
     */
 
+}
+
+extension LeftNavDrawerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            DDLogVerbose("Success")
+
+            image.copyWithCorrectOrientationAndSize() { image in
+                
+                self.photoSaveCallback?(image.roundCorners()!)
+                self.dismissViewControllerAnimated(true, completion: .None)
+            }
+        }
+        else {
+            DDLogVerbose("Failure")
+
+            self.dismissViewControllerAnimated(true, completion: .None)
+        }
+    }
+    
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: .None)
+    }
 }
