@@ -134,6 +134,16 @@ public struct InterfaceString {
         static let PasswordInvalid = NSLocalizedString("Password must be at least 8\ncharacters long.", comment: "password length error message")
     }
     
+    public struct ActivityIndicator {
+        static let Loading = NSLocalizedString("Loading...", comment: "Loading...")
+    }
+    
+    public struct EmptyDataMsg {
+        static let NotRiddenYetTitle = NSLocalizedString("Bummer! You haven't ridden with us yet. ", comment: "NotRiddenYet Title")
+        static let NotRiddenYetDescription = NSLocalizedString("Bid, take the ride, save some money, and check back later. ", comment: "NotRiddenYet Description")
+        
+    }
+    
     static let GenericError = NSLocalizedString("Something went wrong. Thank you for your patience with Yibby Beta!", comment: "Generic error message")
     static let UnknownError = NSLocalizedString("Unknown error", comment: "Unknown error message")
     

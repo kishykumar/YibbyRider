@@ -27,6 +27,7 @@ public class PushController: NSObject, PushControllerProtocol {
     let BID_JSON_FIELD_NAME = "bid"
     let RIDE_JSON_FIELD_NAME = "ride"
     let ID_JSON_FIELD_NAME = "id"
+    let BID_ID_JSON_FIELD_NAME = "bidId"
     let GCM_MSG_ID_JSON_FIELD_NAME = "gcm.message_id"
     
     var savedNotification: [NSObject : AnyObject]?
@@ -162,7 +163,7 @@ public class PushController: NSObject, PushControllerProtocol {
                             disableTimeoutCode()
                             
                             mmnvc.popViewControllerAnimated(true)
-                            Util.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
+                            AlertUtil.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
 
                         default: break
                             
@@ -173,10 +174,13 @@ public class PushController: NSObject, PushControllerProtocol {
                     if let rideData = topRideJson.dataUsingEncoding(NSUTF8StringEncoding) {
 
                         let rideJson = JSON(data: rideData)
-                        if (!BidState.sharedInstance().isSameAsOngoingBid(rideJson[BID_JSON_FIELD_NAME][ID_JSON_FIELD_NAME].string)) {
+                        if (!BidState.sharedInstance().isSameAsOngoingBid(rideJson[BID_ID_JSON_FIELD_NAME].string)) {
                             
-                            DDLogDebug("Not same as ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
-                            DDLogDebug("Ongoingbid is: \(BidState.sharedInstance().getOngoingBid())")
+                            if let ongoingBid = BidState.sharedInstance().getOngoingBid() {
+                                DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(rideJson[BID_ID_JSON_FIELD_NAME].string)")
+                            } else {
+                                DDLogDebug("Ongoingbid is: nil. Incoming is \(rideJson[BID_ID_JSON_FIELD_NAME].string)")
+                            }
                             
                             return;
                         }

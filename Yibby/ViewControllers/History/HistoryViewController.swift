@@ -32,7 +32,7 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         self.tableView.emptyDataSetSource = self;
         self.tableView.emptyDataSetDelegate = self;
         
-        Util.enableActivityIndicator(view, status: "Loading...", mask: SVProgressHUDMaskType.Custom,
+        ActivityIndicatorUtil.enableActivityIndicator(view, status: InterfaceString.ActivityIndicator.Loading, mask: SVProgressHUDMaskType.Custom,
                                      maskColor: UIColor.whiteColor(), style: SVProgressHUDStyle.Dark)
         
         //This block runs when the table view scrolled to the bottom
@@ -40,9 +40,12 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
 
         //Don't forget to make weak pointer to self
         self.tableScrolledDownBlock = { () -> Void in
-            //Put here your data loading logic
-            if !weakSelf!.isLoading {
-                weakSelf!.loadNextPage()
+            
+            // data loading logic
+            if let strongSelf = weakSelf {
+                if !strongSelf.isLoading {
+                    strongSelf.loadNextPage()
+                }
             }
         }
         
@@ -51,7 +54,8 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         self.nextPageToLoad = 0
         self.totalPages = 0
         
-        self.loadNextPage()
+        self.performSelector(#selector(HistoryViewController.loadNextPage),
+                             withObject:nil, afterDelay:0.0)
     }
     
     func loadNextPage() {
@@ -82,7 +86,7 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
                                     
                                     // The DNZ Empty container view will be shown automatically
                                     DDLogVerbose("Removed loadingActivityIndicator1")
-                                    Util.disableActivityIndicator(self.view)
+                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
                                     self.removeFooterActivityIndicator()
                                     
                                     self.isLoading = false
@@ -92,7 +96,7 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
                                 
                                 // TODO: Remove the delay later
                                 self.performSelector(#selector(HistoryViewController.loadNewRides),
-                                    withObject:nil, afterDelay:2.0)
+                                    withObject:nil, afterDelay:5.0)
                             }
                             else {
                                 errorBlock(success, error)
@@ -144,7 +148,7 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
                                     self.nextPageToLoad = self.nextPageToLoad + 1
 
                                     self.tableView.reloadData()
-                                    Util.disableActivityIndicator(self.view)
+                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
                                 }
                             }
                         }
@@ -214,9 +218,8 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
             return nil;
         }
         
-        let str = "Bummer! You haven't ridden with us yet. "
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: InterfaceString.EmptyDataMsg.NotRiddenYetTitle, attributes: attrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -225,9 +228,8 @@ class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
             return nil;
         }
         
-        let str = "Bid, take the ride, save some money, and check back later. "
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: InterfaceString.EmptyDataMsg.NotRiddenYetDescription, attributes: attrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {

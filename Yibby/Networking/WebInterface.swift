@@ -33,7 +33,7 @@ public class WebInterface {
                 }
             }
             else {
-                Util.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
             }
         })
     }

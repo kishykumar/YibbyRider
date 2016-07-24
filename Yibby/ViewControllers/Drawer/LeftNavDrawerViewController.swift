@@ -11,6 +11,7 @@ import MMDrawerController
 import BaasBoxSDK
 import CocoaLumberjack
 import PINRemoteImage
+import Crashlytics
 
 public class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -86,6 +87,7 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
     }
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         var selectedViewController: UIViewController = UIViewController()
         
@@ -143,12 +145,12 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
     
     // BaasBox logout user
     func logoutUser() {
-        Util.enableActivityIndicator(self.view)
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.sharedClient()
         client.logoutCaberWithCompletion(BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
             
-            Util.disableActivityIndicator(self.view)
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
             
             if (success || (error.domain == BaasBox.errorDomain() && error.code ==
                             WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
@@ -176,10 +178,10 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
                 // We continue the user session if Logout hits an error
                 if (error.domain == BaasBox.errorDomain()) {
                     DDLogError("Error in logout: \(error)")
-                    Util.displayAlert("Error Logging out. ", message: "This is...weird.")
+                    AlertUtil.displayAlert("Error Logging out. ", message: "This is...weird.")
                 }
                 else {
-                    Util.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
                 }
             }
         })
@@ -189,11 +191,11 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
     
     @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
         photoSaveCallback = { image in
-            Util.enableActivityIndicator(self.view)
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
             ProfileService().updateUserProfilePicture(image,
                 success: { url in
                     DDLogVerbose("Success")
-                    Util.disableActivityIndicator(self.view)
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
                     
                     let userDefaults = NSUserDefaults.standardUserDefaults()
                     userDefaults.setURL(url, forKey: self.PROFILE_PICTURE_URL_KEY)
@@ -202,7 +204,7 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
                 },
                 failure: { _, _ in
                     DDLogVerbose("Failure")
-                    Util.disableActivityIndicator(self.view)
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })
         }
         openImagePicker()

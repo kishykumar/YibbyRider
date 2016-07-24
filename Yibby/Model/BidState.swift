@@ -13,7 +13,7 @@ import CocoaLumberjack
 public class BidState {
     
     private static let myInstance = BidState()
-    private var ongoingBid: [String: NSObject]?
+    private var ongoingBid: Bid?
     
     init() {
         ongoingBid = nil
@@ -23,12 +23,11 @@ public class BidState {
         return myInstance
     }
 
-    func setOngoingBid (inBid: [String: NSObject]) {
-        ongoingBid = [String: NSObject]()
-        ongoingBid = inBid // copies over the dictionary
+    func setOngoingBid (inBid: Bid) {
+        ongoingBid = inBid.copy() as? Bid // copies over the dictionary
     }
 
-    func getOngoingBid () -> [String: NSObject]? {
+    func getOngoingBid () -> Bid? {
         return ongoingBid
     }
 
@@ -46,6 +45,6 @@ public class BidState {
             return false
         }
         
-        return ((ongoingBid!["id"] as! String) == bidId)
+        return ((ongoingBid!.id as! String) == bidId)
     }
 }

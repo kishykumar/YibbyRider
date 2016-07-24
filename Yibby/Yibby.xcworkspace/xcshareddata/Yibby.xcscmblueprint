@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "50893BBC3091EC19D5C6AC033244E472FE76AD28",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FE6385C56C9F528BA09F891EBB32A6B40C7811E7" : 0,
+    "50893BBC3091EC19D5C6AC033244E472FE76AD28" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "21CF60EB-791D-4AED-881B-6B3B1F51BA52",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FE6385C56C9F528BA09F891EBB32A6B40C7811E7" : "YibbyPartner\/",
+    "50893BBC3091EC19D5C6AC033244E472FE76AD28" : "Yibby\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Yibby",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Yibby\/Yibby.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/kishykumar\/yibbyriderapp1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "50893BBC3091EC19D5C6AC033244E472FE76AD28"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/kishykumar\/yibbypartner.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FE6385C56C9F528BA09F891EBB32A6B40C7811E7"
+    }
+  ]
+}

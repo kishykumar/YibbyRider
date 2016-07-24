@@ -76,33 +76,46 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
                 self,
                 webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
                 
-                    Util.enableActivityIndicator(self.view)
+                    ActivityIndicatorUtil.enableActivityIndicator(self.view)
                     
                     let client: BAAClient = BAAClient.sharedClient()
                     
                     client.createBid(self.bidHigh, bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude, pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName, dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude, dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
                         
-                        Util.disableActivityIndicator(self.view)
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
                             // check the error codes
                             if let bbCode = success["bb_code"] as? String {
                                 if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
                                     
                                     // TODO: display alert that no drivers are online
-                                    Util.displayAlert("No drivers online.", message: "")
+                                    AlertUtil.displayAlert("No drivers online.", message: "")
                                 } else {
-                                    Util.displayAlert("Unexpected error. Please be patient.", message: "")
+                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
                                 }
                             } else {
                                 
                                 if let successData = success["data"] as? [String: NSObject] {
                                     
                                     // set the bid state
-                                    BidState.sharedInstance().setOngoingBid(successData)
+                                    
+                                    let userBid: Bid = Bid(id: successData["id"] as! String,
+                                        bidHigh: successData["bidHigh"] as! Int,
+                                        bidLow: successData["bidLow"] as! Int,
+                                        etaHigh: successData["etaHigh"] as! Int,
+                                        etaLow: successData["etaLow"] as! Int,
+                                        pickupLat: successData["pickupLat"] as! Double,
+                                        pickupLong: successData["pickupLong"] as! Double,
+                                        pickupLoc: successData["pickupLoc"] as! String,
+                                        dropoffLat: successData["dropoffLat"] as! Double,
+                                        dropoffLong: successData["dropoffLong"] as! Double,
+                                        dropoffLoc: successData["dropoffLoc"] as! String)!
+                                    
+                                    BidState.sharedInstance().setOngoingBid(userBid)
                                     
                                     self.performSegueWithIdentifier("findOffersSegue", sender: nil)
                                 } else {
-                                    Util.displayAlert("Unexpected error. Please be patient.", message: "")
+                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
                                 }
                             }
                         }
@@ -270,7 +283,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         dropoffFieldOutlet.delegate = self
         
         // check for location services
-        Util.displayLocationAlert()
+        AlertUtil.displayLocationAlert()
     }
     
     // The pickup and dropoff textfields should not pop up a keyboapublic rd

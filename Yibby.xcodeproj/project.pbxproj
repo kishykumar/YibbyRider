@@ -81,13 +81,24 @@
 		1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B84D1D29125300A7EEAF /* TemporaryCache.swift */; };
 		1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */; };
 		1201B8521D2B471800A7EEAF /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8511D2B471800A7EEAF /* RideService.swift */; };
+		1201B8541D32445E00A7EEAF /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8531D32445E00A7EEAF /* Bid.swift */; };
+		1201B8561D34E52C00A7EEAF /* PaymentMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8551D34E52C00A7EEAF /* PaymentMethodsViewController.swift */; };
 		120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120682381CBE277C004A34BB /* SystemConfiguration.framework */; };
 		121096931D1142E000D7174F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096921D1142E000D7174F /* LocationService.swift */; };
 		1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096951D13CA6300D7174F /* HistoryTableCell.swift */; };
+		1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */; };
+		1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */; };
+		1215316E1D3F623900C28C73 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316D1D3F623900C28C73 /* EditCardViewController.swift */; };
+		121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */; };
+		121531721D441E3100C28C73 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531711D441E3100C28C73 /* TimeUtil.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
-		12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* Util.swift */; };
+		124FD5CF1D362CFD002A4AB2 /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124FD5CE1D362CFD002A4AB2 /* StripeAPIClient.swift */; };
+		12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
+		12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A21D378A7B00F158BB /* CardTableCell.swift */; };
+		12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */; };
+		12F092AB1D3E156700F158BB /* StripePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092AA1D3E156700F158BB /* StripePaymentService.swift */; };
 		12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */; };
 		12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */; };
 		12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */; };
@@ -185,13 +196,24 @@
 		1201B84D1D29125300A7EEAF /* TemporaryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemporaryCache.swift; path = "../../../../../Downloads/ello-ios-master/Sources/Utilities/TemporaryCache.swift"; sourceTree = "<group>"; };
 		1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGSizeExtensions.swift; path = "../../../../../Downloads/ello-ios-master/Sources/Extensions/CGSizeExtensions.swift"; sourceTree = "<group>"; };
 		1201B8511D2B471800A7EEAF /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
+		1201B8531D32445E00A7EEAF /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bid.swift; path = ../../../YibbyPartner/YibbyPartner/Model/Bid.swift; sourceTree = "<group>"; };
+		1201B8551D34E52C00A7EEAF /* PaymentMethodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewController.swift; sourceTree = "<group>"; };
 		120682381CBE277C004A34BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		121096921D1142E000D7174F /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		121096951D13CA6300D7174F /* HistoryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableCell.swift; sourceTree = "<group>"; };
+		121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPaymentTableCell.swift; sourceTree = "<group>"; };
+		1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
+		1215316D1D3F623900C28C73 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
+		1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorUtil.swift; sourceTree = "<group>"; };
+		121531711D441E3100C28C73 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		12A67D9D1C94CE7F005E3F9F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		124FD5CE1D362CFD002A4AB2 /* StripeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
+		12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		12EF49711C95276800C07FAE /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		12F092A21D378A7B00F158BB /* CardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableCell.swift; sourceTree = "<group>"; };
+		12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardTableCell.swift; sourceTree = "<group>"; };
+		12F092AA1D3E156700F158BB /* StripePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripePaymentService.swift; sourceTree = "<group>"; };
 		12F3CCD21C41EFC700F79A26 /* Yibby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yibby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -241,6 +263,7 @@
 		1201B7331D239D7F00A7EEAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1201B8531D32445E00A7EEAF /* Bid.swift */,
 				1201B7871D23AF0100A7EEAF /* BidState.swift */,
 				12EF49711C95276800C07FAE /* Offer.swift */,
 				1201B7351D239E4A00A7EEAF /* Ride.swift */,
@@ -289,6 +312,7 @@
 				121096921D1142E000D7174F /* LocationService.swift */,
 				1201B84B1D290AF800A7EEAF /* ProfileService.swift */,
 				1201B8511D2B471800A7EEAF /* RideService.swift */,
+				12F092AA1D3E156700F158BB /* StripePaymentService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -305,6 +329,7 @@
 				1201B8371D28E47B00A7EEAF /* CGRectExtensions.swift */,
 				1201B8131D289D6700A7EEAF /* UIImagePickerController.swift */,
 				1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */,
+				1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -319,7 +344,9 @@
 				1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */,
 				1201B77B1D23ACDD00A7EEAF /* KeychainWrapper.swift */,
 				1201B77C1D23ACDD00A7EEAF /* LogFormatter.swift */,
-				12A67D9D1C94CE7F005E3F9F /* Util.swift */,
+				12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */,
+				121531711D441E3100C28C73 /* TimeUtil.swift */,
+				1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -403,7 +430,12 @@
 			isa = PBXGroup;
 			children = (
 				1201B7F31D2500EA00A7EEAF /* Payment.storyboard */,
+				1215316D1D3F623900C28C73 /* EditCardViewController.swift */,
 				1201B7541D23A85F00A7EEAF /* PaymentViewController.swift */,
+				1201B8551D34E52C00A7EEAF /* PaymentMethodsViewController.swift */,
+				121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */,
+				12F092A21D378A7B00F158BB /* CardTableCell.swift */,
+				12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -484,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				1201B7801D23AD0300A7EEAF /* WebInterface.swift */,
+				124FD5CE1D362CFD002A4AB2 /* StripeAPIClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -878,17 +911,20 @@
 				121096931D1142E000D7174F /* LocationService.swift in Sources */,
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
+				1201B8541D32445E00A7EEAF /* Bid.swift in Sources */,
 				1201B84C1D290AF800A7EEAF /* ProfileService.swift in Sources */,
 				1201B7721D23A85F00A7EEAF /* SignupViewController.swift in Sources */,
+				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				1201B7881D23AF0100A7EEAF /* BidState.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
+				1215316E1D3F623900C28C73 /* EditCardViewController.swift in Sources */,
 				1201B8401D28E93900A7EEAF /* FreeMethods.swift in Sources */,
 				1201B8441D28EA7200A7EEAF /* NSObjectClassName.swift in Sources */,
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
 				1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */,
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
-				12A67D9E1C94CE7F005E3F9F /* Util.swift in Sources */,
+				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
 				1201B8521D2B471800A7EEAF /* RideService.swift in Sources */,
 				1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */,
 				1201B8251D28ADC800A7EEAF /* AlertAction.swift in Sources */,
@@ -897,31 +933,39 @@
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
 				1201B83A1D28E58300A7EEAF /* InterfaceImage.swift in Sources */,
+				1201B8561D34E52C00A7EEAF /* PaymentMethodsViewController.swift in Sources */,
+				12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */,
+				121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */,
 				1201B8381D28E47B00A7EEAF /* CGRectExtensions.swift in Sources */,
 				1201B7731D23A85F00A7EEAF /* SplashViewController.swift in Sources */,
 				1201B8161D289D6700A7EEAF /* UIImageViewExtensions.swift in Sources */,
 				1201B8421D28EA3700A7EEAF /* UIViewNibLoading.swift in Sources */,
 				1201B7711D23A85F00A7EEAF /* SettingsViewController.swift in Sources */,
 				1201B8461D28EB4200A7EEAF /* ImageExtensions.swift in Sources */,
+				1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */,
 				1201B76F1D23A85F00A7EEAF /* RideEndViewController.swift in Sources */,
 				1201B8481D28EC6900A7EEAF /* Array.swift in Sources */,
 				1201B8281D28ADC800A7EEAF /* AlertCellPresenter.swift in Sources */,
 				1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
 				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
+				121531721D441E3100C28C73 /* TimeUtil.swift in Sources */,
 				1201B8191D28AA0C00A7EEAF /* Colors.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
 				1201B8321D28E22B00A7EEAF /* ElloButton.swift in Sources */,
 				1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */,
 				1201B82B1D28ADC800A7EEAF /* AlertPresentationController.swift in Sources */,
 				1201B8331D28E22B00A7EEAF /* ElloLabel.swift in Sources */,
+				124FD5CF1D362CFD002A4AB2 /* StripeAPIClient.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
+				12F092AB1D3E156700F158BB /* StripePaymentService.swift in Sources */,
 				1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */,
 				1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
+				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
 			);

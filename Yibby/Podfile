@@ -25,6 +25,9 @@ def shared_pods
     pod 'ElloOSSUIFonts'
     pod 'SVGKit', git: 'https://github.com/SVGKit/SVGKit'
     pod 'PINRemoteImage'
+    pod 'Stripe'
+    pod 'CardIO'
+    pod 'Alamofire', '~> 3.4'
     
     #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
     #pod 'ECSlidingViewController', '~> 2.0.3'

@@ -12,4 +12,6 @@
 #import "Views/ENFooterActivityIndicatorView/UITableViewController+ENFooterActivityIndicatorView.h"
 #import "Views/ENFooterActivityIndicatorView/ENFooterActivityIndicatorView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "CardIO.h"
+
 #endif /* BridgingHeader_h */

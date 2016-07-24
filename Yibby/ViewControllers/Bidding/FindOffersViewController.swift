@@ -98,7 +98,7 @@ class FindOffersViewController: UIViewController, ASProgressPopUpViewDataSource 
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             mmnvc.popViewControllerAnimated(true)
-            Util.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
+            AlertUtil.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
         }
     }
 
@@ -134,7 +134,7 @@ class FindOffersViewController: UIViewController, ASProgressPopUpViewDataSource 
             
             if let appBackgroundedTime = savedBgTimestamp {
                 
-                let elapsedTime = NSTimeInterval(Int(Util.diffFromCurTime(appBackgroundedTime))) // seconds
+                let elapsedTime = NSTimeInterval(Int(TimeUtil.diffFromCurTime(appBackgroundedTime))) // seconds
                 
                 DDLogDebug("bgtime \(appBackgroundedTime) bumpUpTime \(elapsedTime))")
                 
