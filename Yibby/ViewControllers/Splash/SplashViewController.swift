@@ -25,8 +25,10 @@ class SplashViewController: UIViewController {
     var imageView: UIImageView?
     
     var syncAPIResponseArrived: Bool = false
+    var stripeCustomerLoadCompleted: Bool = false
     static var pushRegisterResponseArrived: Bool = false
     static var pushSuccessful: Bool = false
+    
     
     // MARK: view functions
     
@@ -146,12 +148,17 @@ class SplashViewController: UIViewController {
             self.syncAPIResponseArrived = true
         })
         
+        StripePaymentService.sharedInstance().loadCustomerDetails({
+            self.stripeCustomerLoadCompleted = true
+        })
+        
         // wait for requests to finish
         let timeoutDate: NSDate = NSDate(timeIntervalSinceNow: 10.0)
         
         while (self.syncAPIResponseArrived == false ||
-                SplashViewController.pushRegisterResponseArrived == false) &&
-                (timeoutDate.timeIntervalSinceNow > 0) {
+            self.stripeCustomerLoadCompleted == false ||
+            SplashViewController.pushRegisterResponseArrived == false) &&
+            (timeoutDate.timeIntervalSinceNow > 0) {
                     
             CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.1, false)
         }

@@ -9,70 +9,89 @@
 import UIKit
 import CocoaLumberjack
 import Stripe
-import BaasBoxSDK
 import Crashlytics
 
-class PaymentViewController: UITableViewController, PaymentMethodsViewControllerDelegate {
+protocol SelectPaymentViewControllerDelegate {
+    
+//    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController)
+    
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                    didSelectPaymentMethod method: STPPaymentMethod,
+                                    controllerType: PaymentViewControllerType)
+    
+    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController)
+}
+
+enum PaymentViewControllerType: Int {
+    case PickDefault = 0
+    case PickForRide
+    case ListPayment
+}
+
+class PaymentViewController: UITableViewController, AddPaymentViewControllerDelegate,
+                                                    EditPaymentViewControllerDelegate,
+                                                    SelectPaymentViewControllerDelegate {
 
     // MARK: Properties
+
+    var controllerType: PaymentViewControllerType = PaymentViewControllerType.ListPayment
+
+    var totalSections: Int {
+        get {
+            switch (controllerType) {
+            case .ListPayment:
+                return 3;
+            case .PickForRide:
+                return 2;
+            case .PickDefault:
+                return 1;
+            }
+        }
+    }
     
-    let totalSections: Int = 3
+    @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var cancelButtonOutlet: UIBarButtonItem!
+    
     let cardListSection: Int = 0
-    let addCardSection: Int = 1
+    let addPaymentSection: Int = 1
     let defaultPaymentSection: Int = 2
     
     let cardCellReuseIdentifier = "cardIdentifier"
     let defaultPaymentCellReuseIdentifier = "defaultPaymentIdentifier"
     let addCardCellReuseIdentifier = "addCardIdentifier"
+
+    var selectPaymentMethod: STPPaymentMethod?
+    var selectedIndexPath: NSIndexPath?
     
-    var paymentMethods = [STPPaymentMethod]()
-    var apiAdapter: StripeBackendAPIAdapter = StripeAPIClient.sharedClient
+    var delegate: SelectPaymentViewControllerDelegate?
     
-    var defaultPaymentMethod: STPPaymentMethod?
+    // MARK: Actions
+    
+    @IBAction func saveButtonAction(sender: AnyObject) {
+        let paymentMethod = StripePaymentService.sharedInstance().paymentMethods.safeValue(selectedIndexPath!.row)
+        self.delegate?.selectPaymentViewController(self, didSelectPaymentMethod: paymentMethod!,
+                                                   controllerType: PaymentViewControllerType.PickDefault)
+    }
+    
+    @IBAction func cancelButtonAction(sender: AnyObject) {
+        self.delegate?.selectPaymentViewControllerDidCancel(self)
+    }
     
     // MARK: Setup Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.performSelector(#selector(PaymentViewController.loadCustomerDetails),
-                             withObject:nil, afterDelay:0.0)
-
+        
+        setupUI()
     }
-
-    func loadCustomerDetails() {
-
-        apiAdapter.retrieveCustomer({(customer: STPCustomer?, error: NSError?) -> Void in
-            
-            if error != nil {
-                // TODO: handle error
-                AlertUtil.displayAlert(error!.localizedDescription, message: "")
-            }
-            else {
-                if let customer = customer {
-
-                    self.paymentMethods.removeAll()
-                    self.defaultPaymentMethod = nil
-                    
-                    for source: STPSource in customer.sources {
-                        if (source is STPCard) {
-                            let card: STPCard = (source as! STPCard)
-                            self.paymentMethods.append(card)
-                            
-                            if (card.stripeID == customer.defaultSource?.stripeID) {
-                                self.defaultPaymentMethod = card
-                            }
-                        }
-                    }
-                    
-                    // reload the tableview in case the table datasource methods already fired
-                    self.tableView.reloadData()
-                }
-            }
-        })
+    
+    func setupUI () {
+        if (controllerType == PaymentViewControllerType.ListPayment) {
+            self.navigationItem.rightBarButtonItems?.removeAll()
+            self.navigationItem.leftBarButtonItems?.removeAll()
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -85,16 +104,30 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
         if indexPath.section == cardListSection {
             let cell: CardTableCell = tableView.dequeueReusableCellWithIdentifier(cardCellReuseIdentifier, forIndexPath: indexPath) as! CardTableCell
             
-            if let paymentMethod: STPPaymentMethod = self.paymentMethods.safeValue(indexPath.row) {
+            if let paymentMethod: STPPaymentMethod = StripePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row) {
 
                 cell.cardBrandImageViewOutlet.image = paymentMethod.image
                 cell.cardTextLabelOutlet.text = paymentMethod.label
+                
+                // Configure the cell based on controller type
+                if (controllerType == PaymentViewControllerType.PickDefault ||
+                    controllerType == PaymentViewControllerType.PickForRide) {
+                    
+                    // put a check mark on the default or currently selected card
+                    let selected: Bool = paymentMethod.isEqual(StripePaymentService.sharedInstance().defaultPaymentMethod)
+                    cell.accessoryType = selected ? .Checkmark : .None
+                    
+                    if (selected) {
+                        self.selectedIndexPath = indexPath
+                    }
+                }
+                
             } else {
                 DDLogError("Nil payment method. This should not happen. Index: \(indexPath.row)")
             }
             return cell
         }
-        else if indexPath.section == addCardSection {
+        else if indexPath.section == addPaymentSection {
             
             let cell: AddCardTableCell = tableView.dequeueReusableCellWithIdentifier(addCardCellReuseIdentifier, forIndexPath: indexPath) as! AddCardTableCell
             return cell
@@ -102,7 +135,7 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
         } else if indexPath.section == defaultPaymentSection {
             let cell: DefaultPaymentTableCell = tableView.dequeueReusableCellWithIdentifier(defaultPaymentCellReuseIdentifier, forIndexPath: indexPath) as! DefaultPaymentTableCell
             
-            if let defaultPaymentMethod = defaultPaymentMethod {
+            if let defaultPaymentMethod = StripePaymentService.sharedInstance().defaultPaymentMethod {
                 if let card = defaultPaymentMethod as? STPCard {
                     cell.paymentImageOutlet.image = card.image
                     cell.paymentTextOutlet.text = String.stp_stringWithCardBrand(card.brand) + " Ending In " + card.last4()
@@ -117,15 +150,16 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
         
         return UITableViewCell()
     }
+
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if (section == cardListSection) {
-            return self.paymentMethods.count;
-        } else if (section == addCardSection) {
+            return StripePaymentService.sharedInstance().paymentMethods.count;
+        } else if (section == addPaymentSection) {
             return 1;
         } else if (section == defaultPaymentSection) {
-            return (defaultPaymentMethod != nil) ? 1 : 0;
+            return (StripePaymentService.sharedInstance().defaultPaymentMethod != nil) ? 1 : 0;
         }
         
         return 0;
@@ -134,7 +168,7 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == cardListSection) {
             return "Payment methods"
-        } else if (section == addCardSection) {
+        } else if (section == addPaymentSection) {
             return "Add payment method"
         } else if (section == defaultPaymentSection) {
             return "Payment defaults"
@@ -151,38 +185,58 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
     //MARK: - UITableView Delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
 
         if (indexPath.section == cardListSection) {
             
-            if let paymentMethod = self.paymentMethods.safeValue(indexPath.row) {
-                let editCardViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentMethodsViewControllerIdentifier") as! PaymentMethodsViewController
+            if let paymentMethod = StripePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row) {
                 
-                editCardViewController.delegate = self
+                if (controllerType == PaymentViewControllerType.ListPayment) {
                 
-                if let card = paymentMethod as? STPCard {
+                    let editCardViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("AddPaymentViewControllerIdentifier") as! AddPaymentViewController
                     
-                    editCardViewController.card = card
-                    editCardViewController.isEditCard = true
-                    self.navigationController!.pushViewController(editCardViewController, animated: true)
+                    editCardViewController.editDelegate = self
+                    self.selectedIndexPath = indexPath
+
+                    if let card = paymentMethod as? STPCard {
+                        
+                        editCardViewController.cardToBeEdited = card
+                        editCardViewController.isEditCard = true
+                        self.navigationController!.pushViewController(editCardViewController, animated: true)
+                    }
+                } else if (controllerType == PaymentViewControllerType.PickDefault) {
+                    
+                    let oldSelectedCell = tableView.cellForRowAtIndexPath(self.selectedIndexPath!)
+                    oldSelectedCell?.accessoryType = .None
+
+                    let newSelectedCell = tableView.cellForRowAtIndexPath(indexPath)
+                    newSelectedCell?.accessoryType = .Checkmark
+                    
+                    self.selectedIndexPath = indexPath
                 }
             }
+        } else if (indexPath.section == addPaymentSection) {
             
-        } else if (indexPath.section == addCardSection) {
+            let apViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("AddPaymentViewControllerIdentifier") as! AddPaymentViewController
             
-            let pmViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentMethodsViewControllerIdentifier") as! PaymentMethodsViewController
-            
-            pmViewController.delegate = self
-            self.navigationController!.pushViewController(pmViewController, animated: true)
+            apViewController.addDelegate = self
+            self.navigationController!.pushViewController(apViewController, animated: true)
             
         } else if (indexPath.section == defaultPaymentSection) {
+            let paymentViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
             
+            paymentViewController.controllerType = PaymentViewControllerType.PickDefault
+            paymentViewController.delegate = self
+            
+            self.navigationController!.pushViewController(paymentViewController, animated: true)
         }
     }
     
     // MARK: - Navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "rideDetail" {
 //            let indexPath = self.tableView!.indexPathForSelectedRow
@@ -190,16 +244,16 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
         }
     }
     
-    // MARK: PaymentMethodsViewControllerDelegate
+    // MARK: AddPaymentViewControllerDelegate
     
-    func paymentMethodsViewControllerDidCancel(paymentMethodsViewController: PaymentMethodsViewController) {
+    func addPaymentViewControllerDidCancel(addPaymentViewController: AddPaymentViewController) {
         self.navigationController!.popViewControllerAnimated(true)
     }
 
-    func paymentMethodsViewController(paymentMethodsViewController: PaymentMethodsViewController,
+    func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
                                       didCreateToken token: STPToken, completion: STPErrorBlock) {
 
-        self.apiAdapter.attachSourceToCustomer(token, completion: {(error: NSError?) -> Void in
+        StripePaymentService.sharedInstance().attachSourceToCustomer(token, completionBlock: {(error: NSError?) -> Void in
             
             // execute the completion block first
             completion(error)
@@ -208,18 +262,21 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
                 self.navigationController!.popViewControllerAnimated(true)
 
                 // Completely reload the view as it may have changed the default payment
-                self.performSelector(#selector(PaymentViewController.loadCustomerDetails),
+                self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
                     withObject:nil, afterDelay:0.0)
             }
         })
     }
 
-    func paymentMethodsViewController(paymentMethodsViewController: PaymentMethodsViewController,
+    // MARK: EditPaymentViewControllerDelegate
+    
+    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
                                       didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock) {
         
         if paymentMethod is STPSource {
             let source = paymentMethod as! STPSource
-            self.apiAdapter.deleteSourceFromCustomer(source, completion: {(error: NSError?) -> Void in
+            
+            StripePaymentService.sharedInstance().deleteSourceFromCustomer(source, completionBlock: {(error: NSError?) -> Void in
                 
                 // execute the completion block first
                 completion(error)
@@ -228,11 +285,80 @@ class PaymentViewController: UITableViewController, PaymentMethodsViewController
                     self.navigationController!.popViewControllerAnimated(true)
 
                     // Completely reload the view as it may have changed the default payment
-                    self.performSelector(#selector(PaymentViewController.loadCustomerDetails),
+                    self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
                         withObject:nil, afterDelay:0.0)
                 }
             })
         }
+    }
+    
+    func editPaymentViewControllerDidCancel(editPaymentViewController: AddPaymentViewController) {
+        self.navigationController!.popViewControllerAnimated(true)
+    }
+    
+    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                  didCreateNewToken token: STPToken, completion: STPErrorBlock) {
+        
+        let oldSource = StripePaymentService.sharedInstance().paymentMethods.safeValue(selectedIndexPath!.row)
+
+        StripePaymentService.sharedInstance().updateSourceForCustomer(token,
+                                                                      oldSource: oldSource as! STPSource,
+                                                                      completionBlock: {(error: NSError?) -> Void in
+
+            // execute the completion block first
+            completion(error)
+            
+            if (error == nil) {
+                self.navigationController!.popViewControllerAnimated(true)
+                
+                // Completely reload the view as it may have changed the default payment
+                self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
+                    withObject:nil, afterDelay:0.0)
+            }
+        })
+    }
+    
+    // MARK: SelectPaymentViewControllerDelegate
+    
+    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
+        self.navigationController!.popViewControllerAnimated(true)
+    }
+    
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                    didSelectPaymentMethod method: STPPaymentMethod,
+                                    controllerType: PaymentViewControllerType) {
+        
+        if (controllerType == PaymentViewControllerType.PickDefault) {
+            
+            if method is STPSource {
+                let source = method as! STPSource
+                
+                StripePaymentService.sharedInstance().selectDefaultCustomerSource(source, completionBlock: {(error: NSError?) -> Void in
+                    
+                    if (error == nil) {
+                        self.navigationController!.popViewControllerAnimated(true)
+
+                        // Completely reload the view as it may have changed the default payment
+                        self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
+                            withObject:nil, afterDelay:0.0)
+                    } else {
+                        AlertUtil.displayAlert(error!.localizedDescription,
+                            message: error!.localizedFailureReason ?? "Default could not be changed.")
+                    }
+                })
+            }
+        } else if (controllerType == PaymentViewControllerType.PickForRide) {
+            
+        }
+    }
+    
+    func reloadCustomerDetails() {
+        
+        StripePaymentService.sharedInstance().loadCustomerDetails({
+            // reload the tableview in case the table datasource methods already fired
+            self.tableView.reloadData()
+        })
+        
     }
 }
 

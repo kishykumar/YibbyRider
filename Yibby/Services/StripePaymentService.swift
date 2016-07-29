@@ -8,6 +8,13 @@
 
 import Stripe
 
+public typealias CustomerLoadCompletionBlock = () -> Void
+public typealias AttachSourceCompletionBlock = STPErrorBlock
+public typealias DeleteSourceCompletionBlock = STPErrorBlock
+public typealias DefaultSourceCompletionBlock = STPErrorBlock
+public typealias UpdateSourceCompletionBlock = STPErrorBlock
+
+
 
 // StripePaymentService singleton
 public class StripePaymentService: NSObject {
@@ -40,6 +47,10 @@ public class StripePaymentService: NSObject {
 
     var configuration: STPPaymentConfiguration?
     
+    var paymentMethods = [STPPaymentMethod]()
+    var apiAdapter: StripeBackendAPIAdapter = StripeAPIClient.sharedClient
+    var defaultPaymentMethod: STPPaymentMethod?
+    
     override init() {
         
     }
@@ -58,4 +69,62 @@ public class StripePaymentService: NSObject {
     func getConfiguration () -> STPPaymentConfiguration {
         return configuration!
     }
+
+    func loadCustomerDetails(completionBlock: CustomerLoadCompletionBlock) {
+        
+        apiAdapter.retrieveCustomer({(customer: STPCustomer?, error: NSError?) -> Void in
+            
+            if error != nil {
+                // TODO: handle error
+                AlertUtil.displayAlert(error!.localizedDescription, message: "")
+            }
+            else {
+                if let customer = customer {
+                    
+                    self.paymentMethods.removeAll()
+                    self.defaultPaymentMethod = nil
+                    
+                    for source: STPSource in customer.sources {
+                        if (source is STPCard) {
+                            let card: STPCard = (source as! STPCard)
+                            self.paymentMethods.append(card)
+                            
+                            if (card.stripeID == customer.defaultSource?.stripeID) {
+                                self.defaultPaymentMethod = card
+                            }
+                        }
+                    }
+                    
+                    completionBlock()
+                }
+            }
+        })
+    }
+    
+    func attachSourceToCustomer(source: STPSource, completionBlock: AttachSourceCompletionBlock) {
+        apiAdapter.attachSourceToCustomer(source, completion: {(error: NSError?) -> Void in
+            completionBlock(error)
+        })
+    }
+    
+    func updateSourceForCustomer(source: STPSource, oldSource: STPSource, completionBlock: UpdateSourceCompletionBlock) {
+        apiAdapter.updateSourceForCustomer(source, oldSource: oldSource, completion: {(error: NSError?) -> Void in
+            completionBlock(error)
+        })
+    }
+    
+    func deleteSourceFromCustomer(source: STPSource, completionBlock: DeleteSourceCompletionBlock) {
+        apiAdapter.deleteSourceFromCustomer(source, completion: {(error: NSError?) -> Void in
+            completionBlock(error)
+        })
+    }
+    
+    func selectDefaultCustomerSource(source: STPSource, completionBlock: DefaultSourceCompletionBlock) {
+        apiAdapter.selectDefaultCustomerSource(source, completion: {(error: NSError?) -> Void in
+            completionBlock(error)
+        })
+    }
+    
 }
+
+

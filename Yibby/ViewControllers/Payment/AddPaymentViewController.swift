@@ -1,9 +1,9 @@
 //
-//  PaymentMethodsViewController.swift
+//  AddPaymentViewController.swift
 //  Yibby
 //
 //  Created by Kishy Kumar on 7/12/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -11,38 +11,51 @@ import Stripe
 import Crashlytics
 import BButton
 
-protocol PaymentMethodsViewControllerDelegate {
+protocol AddPaymentViewControllerDelegate {
+    
     /**
      *  Called when the user cancels adding a card. You should dismiss (or pop) the view controller at this point.
      *
-     *  @param paymentMethodsViewController the view controller that has been cancelled
+     *  @param addPaymentViewController the view controller that has been cancelled
      */
 
-    func paymentMethodsViewControllerDidCancel(paymentMethodsViewController: PaymentMethodsViewController)
+    func addPaymentViewControllerDidCancel(addPaymentViewController: AddPaymentViewController)
     
     /**
      *  This is called when the user successfully adds a card and tokenizes it with Stripe. You should send the token to your backend to store it on a customer, and then call the provided `completion` block when that call is finished. If an error occurred while talking to your backend, call `completion(error)`, otherwise, call `completion(nil)` and then dismiss (or pop) the view controller.
      *
-     *  @param paymentMethodsViewController the view controller that successfully created a token
+     *  @param addPaymentViewController the view controller that successfully created a token
      *  @param token                 the Stripe token that was created. @see STPToken
      *  @param completion            call this callback when you're done sending the token to your backend
      */
 
-    func paymentMethodsViewController(paymentMethodsViewController: PaymentMethodsViewController,
+    func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
                                       didCreateToken token: STPToken, completion: STPErrorBlock)
     
-    func paymentMethodsViewController(paymentMethodsViewController: PaymentMethodsViewController,
-                                      didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock)
-
 }
 
-class PaymentMethodsViewController: UIViewController, CardIOPaymentViewControllerDelegate {
+protocol EditPaymentViewControllerDelegate {
+
+    func editPaymentViewControllerDidCancel(editPaymentViewController: AddPaymentViewController)
+
+    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                  didCreateNewToken token: STPToken, completion: STPErrorBlock)
+    
+    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                  didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock)
+    
+}
+
+class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDelegate {
 
     // MARK: Properties
     
     @IBOutlet weak var paymentTextFieldOutlet: STPPaymentCardTextField?
     
     @IBOutlet weak var deleteCardButtonOutlet: BButton!
+    
+    
+    
     
     // The STPAPIClient talks directly to Stripe to get the Token 
     // given a payment card.
@@ -52,9 +65,10 @@ class PaymentMethodsViewController: UIViewController, CardIOPaymentViewControlle
     var apiClient: STPAPIClient?
     var apiAdapter: StripeBackendAPIAdapter = StripeAPIClient.sharedClient
 
-    var delegate : PaymentMethodsViewControllerDelegate?
-
-    var card: STPCard?
+    var addDelegate : AddPaymentViewControllerDelegate?
+    var editDelegate : EditPaymentViewControllerDelegate?
+    
+    var cardToBeEdited: STPCard?
     
     var isEditCard: Bool! = false   // implicitly unwrapped optional
     
@@ -63,9 +77,8 @@ class PaymentMethodsViewController: UIViewController, CardIOPaymentViewControlle
         
         // Raise an alert to confirm if the user actually wants to perform the action
         
-        
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        self.delegate?.paymentMethodsViewController(self, didRemovePaymentMethod: card!, completion: {(error: NSError?) -> Void in
+        self.editDelegate?.editPaymentViewController(self, didRemovePaymentMethod: cardToBeEdited!, completion: {(error: NSError?) -> Void in
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             if let error = error {
                 self.handleCardTokenError(error)
@@ -89,19 +102,32 @@ class PaymentMethodsViewController: UIViewController, CardIOPaymentViewControlle
 //                var email: String = self.emailCell.contents
                 
                 // TODO: We save the zipcode
-                
-                self.delegate?.paymentMethodsViewController(self, didCreateToken: token!, completion: {(error: NSError?) -> Void in
-                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                    if let error = error {
-                        self.handleCardTokenError(error)
-                    }
-                })
+                if self.isEditCard == true {
+
+                    self.editDelegate?.editPaymentViewController(self, didCreateNewToken: token!, completion: {(error: NSError?) -> Void in
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        if let error = error {
+                            self.handleCardTokenError(error)
+                        }
+                    })
+                } else {
+                    self.addDelegate?.addPaymentViewController(self, didCreateToken: token!, completion: {(error: NSError?) -> Void in
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        if let error = error {
+                            self.handleCardTokenError(error)
+                        }
+                    })
+                }
             }
         })
     }
     
     @IBAction func cancelButtonAction(sender: AnyObject) {
-        self.delegate?.paymentMethodsViewControllerDidCancel(self)
+        if (isEditCard == true) {
+            self.editDelegate?.editPaymentViewControllerDidCancel(self)
+        } else {
+            self.addDelegate?.addPaymentViewControllerDidCancel(self)
+        }
     }
     
     @IBAction func scanCardAction(sender: AnyObject) {
@@ -150,16 +176,16 @@ class PaymentMethodsViewController: UIViewController, CardIOPaymentViewControlle
         CardIOUtilities.preload()
         apiClient = STPAPIClient(configuration: StripePaymentService.sharedInstance().getConfiguration())
         
-        if let card = card {
+        if let card = cardToBeEdited {
             
             // cardParams.number will have the last 4 of the card
             paymentTextFieldOutlet!.numberPlaceholder = "************" + card.last4()
         }
         
-        if isEditCard == false {
-            deleteCardButtonOutlet.hidden = true
-        } else {
+        if (isEditCard == true) {
             deleteCardButtonOutlet.hidden = false
+        } else {
+            deleteCardButtonOutlet.hidden = true
         }
     }
 
@@ -183,7 +209,6 @@ class PaymentMethodsViewController: UIViewController, CardIOPaymentViewControlle
     
     
     func handleCardTokenError(error: NSError) {
-        
         AlertUtil.displayAlert(error.localizedDescription, message: error.localizedFailureReason ?? "")
     }
     

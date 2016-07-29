@@ -82,13 +82,12 @@
 		1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */; };
 		1201B8521D2B471800A7EEAF /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8511D2B471800A7EEAF /* RideService.swift */; };
 		1201B8541D32445E00A7EEAF /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8531D32445E00A7EEAF /* Bid.swift */; };
-		1201B8561D34E52C00A7EEAF /* PaymentMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8551D34E52C00A7EEAF /* PaymentMethodsViewController.swift */; };
+		1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8551D34E52C00A7EEAF /* AddPaymentViewController.swift */; };
 		120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120682381CBE277C004A34BB /* SystemConfiguration.framework */; };
 		121096931D1142E000D7174F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096921D1142E000D7174F /* LocationService.swift */; };
 		1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096951D13CA6300D7174F /* HistoryTableCell.swift */; };
 		1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */; };
 		1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */; };
-		1215316E1D3F623900C28C73 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316D1D3F623900C28C73 /* EditCardViewController.swift */; };
 		121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */; };
 		121531721D441E3100C28C73 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531711D441E3100C28C73 /* TimeUtil.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
@@ -197,13 +196,12 @@
 		1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGSizeExtensions.swift; path = "../../../../../Downloads/ello-ios-master/Sources/Extensions/CGSizeExtensions.swift"; sourceTree = "<group>"; };
 		1201B8511D2B471800A7EEAF /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
 		1201B8531D32445E00A7EEAF /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bid.swift; path = ../../../YibbyPartner/YibbyPartner/Model/Bid.swift; sourceTree = "<group>"; };
-		1201B8551D34E52C00A7EEAF /* PaymentMethodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewController.swift; sourceTree = "<group>"; };
+		1201B8551D34E52C00A7EEAF /* AddPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
 		120682381CBE277C004A34BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		121096921D1142E000D7174F /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		121096951D13CA6300D7174F /* HistoryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableCell.swift; sourceTree = "<group>"; };
 		121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPaymentTableCell.swift; sourceTree = "<group>"; };
 		1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
-		1215316D1D3F623900C28C73 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
 		1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorUtil.swift; sourceTree = "<group>"; };
 		121531711D441E3100C28C73 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -430,9 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				1201B7F31D2500EA00A7EEAF /* Payment.storyboard */,
-				1215316D1D3F623900C28C73 /* EditCardViewController.swift */,
 				1201B7541D23A85F00A7EEAF /* PaymentViewController.swift */,
-				1201B8551D34E52C00A7EEAF /* PaymentMethodsViewController.swift */,
+				1201B8551D34E52C00A7EEAF /* AddPaymentViewController.swift */,
 				121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */,
 				12F092A21D378A7B00F158BB /* CardTableCell.swift */,
 				12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */,
@@ -918,7 +915,6 @@
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				1201B7881D23AF0100A7EEAF /* BidState.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
-				1215316E1D3F623900C28C73 /* EditCardViewController.swift in Sources */,
 				1201B8401D28E93900A7EEAF /* FreeMethods.swift in Sources */,
 				1201B8441D28EA7200A7EEAF /* NSObjectClassName.swift in Sources */,
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
@@ -933,7 +929,7 @@
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
 				1201B83A1D28E58300A7EEAF /* InterfaceImage.swift in Sources */,
-				1201B8561D34E52C00A7EEAF /* PaymentMethodsViewController.swift in Sources */,
+				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,
 				12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */,
 				121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */,
 				1201B8381D28E47B00A7EEAF /* CGRectExtensions.swift in Sources */,

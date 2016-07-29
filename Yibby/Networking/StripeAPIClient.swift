@@ -14,6 +14,7 @@ import Alamofire
 
 public protocol StripeBackendAPIAdapter : STPBackendAPIAdapter {
     func deleteSourceFromCustomer(source: STPSource, completion: STPErrorBlock)
+    func updateSourceForCustomer(source: STPSource, oldSource: STPSource, completion: STPErrorBlock)
 }
 
 class StripeAPIClient: NSObject, StripeBackendAPIAdapter {
@@ -41,13 +42,13 @@ class StripeAPIClient: NSObject, StripeBackendAPIAdapter {
             let card1 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOx", brand: STPCardBrand.Visa,
             last4: "4242", expMonth:2, expYear: 2018, funding: STPCardFundingType.Credit)
             
-            let card2 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOx", brand: STPCardBrand.MasterCard,
+            let card2 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOy", brand: STPCardBrand.MasterCard,
             last4: "5658", expMonth:3, expYear: 2019, funding: STPCardFundingType.Credit)
             
-            let card3 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOx", brand: STPCardBrand.JCB,
+            let card3 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOz", brand: STPCardBrand.JCB,
             last4: "3632", expMonth:4, expYear: 2020, funding: STPCardFundingType.Credit)
             
-            let card4 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOx", brand: STPCardBrand.Visa,
+            let card4 = STPCard(ID: "card_185iQx4JYtv6MPZKfcuXwkOw", brand: STPCardBrand.Visa,
             last4: "9868", expMonth:5, expYear: 2021, funding: STPCardFundingType.Credit)
             
             self.sources.append(card1)
@@ -117,9 +118,9 @@ class StripeAPIClient: NSObject, StripeBackendAPIAdapter {
     
     @objc func selectDefaultCustomerSource(source: STPSource, completion: STPErrorBlock) {
         guard let customerID = customerID else {
-            
-            if let token = source as? STPToken {
-                self.defaultSource = token.card
+
+            if let card = source as? STPCard {
+                self.defaultSource = card
             }
             completion(nil)
             
@@ -181,6 +182,50 @@ class StripeAPIClient: NSObject, StripeBackendAPIAdapter {
             
             failure: {(error: (NSError)!) -> Void in
                 completion(error)
+            }
+        )
+    }
+    
+    @objc func updateSourceForCustomer(source: STPSource, oldSource: STPSource, completion: STPErrorBlock) {
+        
+        guard let customerID = customerID else {
+            
+            if let card = oldSource as? STPCard, token = source as? STPToken, newCard = token.card {
+                
+                let idx = self.sources.indexOf(card)
+                if (idx != nil) {
+                    
+                    self.sources.removeAtIndex(idx!)
+                    self.sources.append(newCard)
+                    
+                    // check if we removed the default card
+                    if (self.defaultSource == card) {
+                        self.defaultSource = newCard
+                    }
+                }
+            }
+            completion(nil)
+            
+            DDLogError("Customer ID nil for Stripe Client.")
+            return;
+        }
+        
+        let path = "/customers/\(customerID)/sources"
+        
+        let params = [
+            "customer": customerID,
+            "source":   source.stripeID,
+            ]
+        
+        let client: BAAClient = BAAClient.sharedClient()
+        client.postPath(path, parameters: params,
+                        
+                        success: {(responseObject: (AnyObject)!) -> Void in
+                            completion(nil)
+            },
+                        
+                        failure: {(error: (NSError)!) -> Void in
+                            completion(error)
             }
         )
     }
