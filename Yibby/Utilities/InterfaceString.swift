@@ -158,4 +158,5 @@ public struct InterfaceString {
     static let Next = NSLocalizedString("Next", comment: "Next button")
     static let Done = NSLocalizedString("Done", comment: "Done button title")
     static let Skip = NSLocalizedString("Skip", comment: "Skip action")
+    static let SettingsAction = NSLocalizedString("Settings", comment: "Settings")
 }

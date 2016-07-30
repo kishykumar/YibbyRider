@@ -55,8 +55,6 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
     @IBOutlet weak var deleteCardButtonOutlet: BButton!
     
     
-    
-    
     // The STPAPIClient talks directly to Stripe to get the Token 
     // given a payment card.
     //
@@ -76,13 +74,22 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
     @IBAction func deleteCardAction(sender: AnyObject) {
         
         // Raise an alert to confirm if the user actually wants to perform the action
-        
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        self.editDelegate?.editPaymentViewController(self, didRemovePaymentMethod: cardToBeEdited!, completion: {(error: NSError?) -> Void in
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            if let error = error {
-                self.handleCardTokenError(error)
-            }
+        AlertUtil.displayChoiceAlert("Are you sure you want to delete the card?",
+                                     message: "",
+                                     completionActionString: InterfaceString.OK,
+                                     completionBlock: { () -> Void in
+            
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+                                        
+            self.editDelegate?.editPaymentViewController(self, didRemovePaymentMethod: self.cardToBeEdited!, completion: {(error: NSError?) -> Void in
+                
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                if let error = error {
+                    self.handleCardTokenError(error)
+                }
+            })
+            
         })
     }
     
