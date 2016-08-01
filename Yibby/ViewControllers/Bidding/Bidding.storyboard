@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.89592279485992299" green="0.9607436272852421" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view opaque="NO" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="C9S-Vk-aok" userLabel="Content View">
+                            <view opaque="NO" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="C9S-Vk-aok" userLabel="rideEndpoints">
                                 <rect key="frame" x="20" y="40" width="279" height="123"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9a-JN-P64" customClass="HoshiTextField" customModule="TextFieldEffects">
@@ -121,6 +121,43 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGF-43-amU" customClass="BButton">
+                                <rect key="frame" x="40" y="270" width="118" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oZV-jw-G4e">
+                                        <rect key="frame" x="8" y="14" width="43" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="43" id="DTW-fj-Vnb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0418" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jf-Rw-KiS">
+                                        <rect key="frame" x="59" y="19" width="39" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="oZV-jw-G4e" firstAttribute="centerY" secondItem="4jf-Rw-KiS" secondAttribute="centerY" id="Mes-FU-Yyn"/>
+                                    <constraint firstItem="4jf-Rw-KiS" firstAttribute="leading" secondItem="oZV-jw-G4e" secondAttribute="trailing" constant="8" symbolic="YES" id="ZzA-GJ-xEH"/>
+                                    <constraint firstItem="oZV-jw-G4e" firstAttribute="centerY" secondItem="zGF-43-amU" secondAttribute="centerY" id="nTj-lt-JRp"/>
+                                    <constraint firstItem="oZV-jw-G4e" firstAttribute="top" secondItem="zGF-43-amU" secondAttribute="top" constant="14" id="oCw-uB-TRh"/>
+                                    <constraint firstItem="oZV-jw-G4e" firstAttribute="leading" secondItem="zGF-43-amU" secondAttribute="leadingMargin" id="ubf-fH-DM8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.shadowOpacity" value="0.5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.shadowRadius" value="2"/>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hCR-CH-ygo" appends="YES" id="MGI-5C-KXe"/>
+                                </connections>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pH-U2-oZp" customClass="BButton">
                                 <rect key="frame" x="11" y="433" width="299" height="53"/>
                                 <color key="backgroundColor" red="0.48060405015670127" green="0.1509024872624154" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,11 +184,15 @@
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="top" secondItem="VS0-cT-rpZ" secondAttribute="bottom" id="Ht0-Yt-aDB"/>
                             <constraint firstItem="C9S-Vk-aok" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="KWU-nD-b1v"/>
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="bottom" secondItem="Y2E-n1-aGI" secondAttribute="top" id="OPD-9u-wfL"/>
+                            <constraint firstItem="Zeb-Xb-ktt" firstAttribute="top" secondItem="zGF-43-amU" secondAttribute="bottom" constant="15" id="QbY-YE-sXH"/>
                             <constraint firstItem="C9S-Vk-aok" firstAttribute="top" secondItem="VS0-cT-rpZ" secondAttribute="bottom" constant="40" id="Wq2-bf-jgW"/>
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xqf-pe-Mwn"/>
                             <constraint firstAttribute="bottom" secondItem="C9S-Vk-aok" secondAttribute="bottom" constant="341" id="bAV-UI-0zw"/>
                             <constraint firstItem="Zeb-Xb-ktt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="345" id="bUA-fI-zjk"/>
+                            <constraint firstItem="zGF-43-amU" firstAttribute="leading" secondItem="Zeb-Xb-ktt" secondAttribute="leading" id="dIe-Se-WhU"/>
                             <constraint firstItem="6pH-U2-oZp" firstAttribute="top" secondItem="Zeb-Xb-ktt" secondAttribute="bottom" constant="20" id="iBw-vE-1uk"/>
+                            <constraint firstItem="zGF-43-amU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="270" id="lxu-0H-Wsx"/>
+                            <constraint firstAttribute="trailing" secondItem="zGF-43-amU" secondAttribute="trailing" constant="162" id="m8Y-Fe-4Bt"/>
                             <constraint firstItem="Zeb-Xb-ktt" firstAttribute="centerX" secondItem="6pH-U2-oZp" secondAttribute="centerX" id="sRu-X7-NyF"/>
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="centerX" secondItem="C9S-Vk-aok" secondAttribute="centerX" id="wWD-Bt-2pk"/>
                             <constraint firstItem="C9S-Vk-aok" firstAttribute="centerX" secondItem="Zeb-Xb-ktt" secondAttribute="centerX" id="zbb-58-cSR"/>
@@ -169,6 +210,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bidButton" destination="6pH-U2-oZp" id="vxk-oB-tP2"/>
+                        <outlet property="cardImageOutlet" destination="oZV-jw-G4e" id="OB5-xf-qyf"/>
+                        <outlet property="cardLabelOutlet" destination="4jf-Rw-KiS" id="TU6-Aw-s9z"/>
                         <outlet property="dropoffFieldOutlet" destination="xVt-A6-0xz" id="rlE-cC-FGY"/>
                         <outlet property="gmsMapViewOutlet" destination="MUC-c9-zdZ" id="4bw-jc-0fZ"/>
                         <outlet property="pickupFieldOutlet" destination="J9a-JN-P64" id="zGZ-w4-LHh"/>
@@ -177,8 +220,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hCR-CH-ygo">
+                    <connections>
+                        <action selector="onPaymentSelectAction:" destination="BYZ-38-t0r" id="GBj-zC-lJc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1694" y="396.99999999999994"/>
+            <point key="canvasLocation" x="-2018" y="60"/>
         </scene>
         <!--Find Offers View Controller-->
         <scene sceneID="0ld-GX-rfp">
@@ -223,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMD-cB-JnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2058" y="396.99999999999994"/>
+            <point key="canvasLocation" x="-1654" y="60"/>
         </scene>
         <!--Confirm Ride View Controller-->
         <scene sceneID="OsN-W9-u7M">
@@ -337,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GhV-Bs-Mcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2427" y="396.99999999999994"/>
+            <point key="canvasLocation" x="-1285" y="60"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ot5-vX-wjR">
@@ -356,7 +404,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrR-kf-FDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="396.99999999999994"/>
+            <point key="canvasLocation" x="-2414" y="60"/>
         </scene>
     </scenes>
 </document>

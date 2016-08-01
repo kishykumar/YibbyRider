@@ -13,6 +13,7 @@ import TTRangeSlider
 import BaasBoxSDK
 import BButton
 import CocoaLumberjack
+import Stripe
 
 // TODO:
 // 1. Create bid state that we save on the app
@@ -20,7 +21,12 @@ import CocoaLumberjack
 // 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message. 
 // 4. 
 
-public class MainViewController: UIViewController, UITextFieldDelegate, DestinationDelegate, CLLocationManagerDelegate, TTRangeSliderDelegate {
+public class MainViewController: UIViewController,
+                                UITextFieldDelegate,
+                                DestinationDelegate,
+                                CLLocationManagerDelegate,
+                                TTRangeSliderDelegate,
+                                SelectPaymentViewControllerDelegate {
 
     // MARK: Properties
     @IBOutlet weak var pickupFieldOutlet: UITextField!
@@ -28,6 +34,8 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     @IBOutlet weak var rangeSlider: TTRangeSlider!
     @IBOutlet weak var bidButton: BButton!
+    @IBOutlet weak var cardImageOutlet: UIImageView!
+    @IBOutlet weak var cardLabelOutlet: UILabel!
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
@@ -51,6 +59,8 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     var bidLow: Float?
     var bidHigh: Float?
     
+    var selectedPaymentMethod: STPPaymentMethod?
+    
     var responseHasArrived: Bool = false
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
@@ -58,14 +68,25 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     // UI Elements
     let NAV_BAR_COLOR_CODE = 0xc6433b
     
-    // MARK: Functions
+    // MARK: Actions
+    
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
     
+    @IBAction func onPaymentSelectAction(sender: UITapGestureRecognizer) {
+        displaySelectCardView()
+    }
+    
     @IBAction func onBidButtonClick(sender: AnyObject) {
-       
+
+        // Make sure user has a payment method selected
+        if (self.selectedPaymentMethod == nil) {
+            displaySelectCardView()
+            return;
+        }
+        
         if (pickupLatLng != nil && pickupPlaceName != nil &&
             dropoffLatLng != nil && dropoffPlaceName  != nil &&
             bidLow != nil && bidHigh != nil) {
@@ -136,6 +157,7 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         }
     }
     
+    // MARK: Setup
     func setupUI () {
 
         // currency range slider
@@ -146,6 +168,11 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
 
         setNavigationBarColor()
         setStatusBarColor()
+        
+        // update card UI
+        if let method = self.selectedPaymentMethod {
+            updateSelectCardUI(method)
+        }
     }
     
     func setNavigationBarColor () {
@@ -177,46 +204,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         // status bar text color
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
-
-    func updateCurrentLocation (userLocation: CLLocation) {
-        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
-            
-            if (error != nil) {
-                DDLogWarn("Error is: \(error)")
-            } else {
-                if let validPlacemark = placemarks?[0] {
-                    if let placemark = validPlacemark as? CLPlacemark {
-                        var addressString : String = ""
-
-                        if placemark.subThoroughfare != nil {
-                            addressString = placemark.subThoroughfare! + " "
-                        }
-                        if placemark.thoroughfare != nil {
-                            addressString = addressString + placemark.thoroughfare! + ", "
-                        }
-                        if placemark.locality != nil {
-                            addressString = addressString + placemark.locality! + ", "
-                        }
-                        if placemark.administrativeArea != nil {
-                            addressString = addressString + placemark.administrativeArea! + " "
-                        }
-                        if placemark.postalCode != nil {
-                            addressString = addressString + placemark.postalCode! + ", "
-                        }
-                        if placemark.country != nil {
-                            addressString = addressString + placemark.country!
-                        }
-
-                        self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
-                        
-                        self.setPickupDetails(addressString, loc: userLocation.coordinate)
-                        
-                        DDLogVerbose("Address from location manager came out: \(addressString)")
-                    }
-                }
-            }
-        })
-    }
     
     func setupMap () {
         gmsMapViewOutlet.myLocationEnabled = true
@@ -237,22 +224,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
     func setupMapClient () {
         placesClient = GMSPlacesClient()
     }
-  
-//    func uploadFile() {
-//        var imgPath: NSURL = NSBundle.mainBundle()(URLForResource: "baasbox", withExtension: "png")
-//        var stringPath: String = imgPath.absoluteString()
-//        var data: NSData = NSData.dataWithContentsOfURL(NSURL(string: stringPath)!)
-//        var myLocalFile: BAAFile = BAAFile(data: data)
-//        myLocalFile.contentType = "image/png"
-//        myLocalFile.uploadFileWithPermissions(nil, completion: {(file: BAAFile, error: NSError) -> Void in
-//            if error == nil {
-//                NSLog("file uploaded %@", file)
-//            }
-//            else {
-//                NSLog("error in uploading file %@", error)
-//            }
-//        })
-//    }
     
     func initProperties() {
         bidLow = 1
@@ -269,15 +240,21 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         
         let dlatLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(dlat,dlong)
         self.setDropoffDetails("3500 Granada Ave, Santa Clara, CA 95051", loc: dlatLng)
+        
+        self.selectedPaymentMethod = self.selectedPaymentMethod ??
+                                    StripePaymentService.sharedInstance().defaultPaymentMethod
     }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // init properties *should* be called before any setup function
+        initProperties()
+
         setupUI()
         setupMap()
         setupMapClient()
-        initProperties()
         
         pickupFieldOutlet.delegate = self
         dropoffFieldOutlet.delegate = self
@@ -285,6 +262,13 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         // check for location services
         AlertUtil.displayLocationAlert()
     }
+    
+    override public func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: UITextFieldDelegate
     
     // The pickup and dropoff textfields should not pop up a keyboapublic rd
     public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -308,12 +292,99 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         
         return false
     }
-    
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+    // MARK: SelectPaymentViewControllerDelegate
+    
+    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
+        self.navigationController!.popViewControllerAnimated(true)
+    }
+    
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                     didSelectPaymentMethod method: STPPaymentMethod,
+                                                            controllerType: PaymentViewControllerType) {
+        
+        if (controllerType == PaymentViewControllerType.PickForRide) {
+            
+            // modify the selected payment method
+            self.selectedPaymentMethod = method
+            
+            // remove the view controller
+            self.navigationController!.popViewControllerAnimated(true)
+            
+            // update the card UI
+            updateSelectCardUI(method)
+        }
+    }
+    
+    
+    // MARK: Helpers
+    
+    func displaySelectCardView () {
+        
+        // Display the select card view
+        let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+        
+        let selectPaymentViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+        
+        selectPaymentViewController.controllerType = PaymentViewControllerType.PickForRide
+        selectPaymentViewController.delegate = self
+        
+        selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
+        
+        self.navigationController!.pushViewController(selectPaymentViewController, animated: true)
+    }
+    
+    func updateSelectCardUI (paymentMethod: STPPaymentMethod) {
+        
+        self.cardImageOutlet.image = paymentMethod.image
+
+        if let card = paymentMethod as? STPCard {
+            self.cardLabelOutlet.text = card.last4()
+        } else {
+            self.cardLabelOutlet.text = paymentMethod.label
+        }
+    }
+    
+    func updateCurrentLocation (userLocation: CLLocation) {
+        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
+            
+            if (error != nil) {
+                DDLogWarn("Error is: \(error)")
+            } else {
+                if let validPlacemark = placemarks?[0] {
+                    if let placemark = validPlacemark as? CLPlacemark {
+                        var addressString : String = ""
+                        
+                        if placemark.subThoroughfare != nil {
+                            addressString = placemark.subThoroughfare! + " "
+                        }
+                        if placemark.thoroughfare != nil {
+                            addressString = addressString + placemark.thoroughfare! + ", "
+                        }
+                        if placemark.locality != nil {
+                            addressString = addressString + placemark.locality! + ", "
+                        }
+                        if placemark.administrativeArea != nil {
+                            addressString = addressString + placemark.administrativeArea! + " "
+                        }
+                        if placemark.postalCode != nil {
+                            addressString = addressString + placemark.postalCode! + ", "
+                        }
+                        if placemark.country != nil {
+                            addressString = addressString + placemark.country!
+                        }
+                        
+                        self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
+                        
+                        self.setPickupDetails(addressString, loc: userLocation.coordinate)
+                        
+                        DDLogVerbose("Address from location manager came out: \(addressString)")
+                    }
+                }
+            }
+        })
+    }
+    
     func choseDestination(location: String) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -331,9 +402,9 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         pickupMarker = pumarker
         adjustGMSCameraFocus()
     }
-
+    
     func setDropoffDetails (address: String, loc: CLLocationCoordinate2D) {
-
+        
         dropoffMarker?.map = nil
         
         self.dropoffFieldOutlet.text = address
@@ -371,7 +442,6 @@ public class MainViewController: UIViewController, UITextFieldDelegate, Destinat
         self.currentPlaceLatLng = loc
     }
     
-    // MARK: Actions
     /*
     @IBAction func getCurrentPlace(sender: UIButton) {
         

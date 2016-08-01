@@ -13,8 +13,6 @@ import Crashlytics
 
 protocol SelectPaymentViewControllerDelegate {
     
-//    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController)
-    
     func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
                                     didSelectPaymentMethod method: STPPaymentMethod,
                                     controllerType: PaymentViewControllerType)
@@ -60,8 +58,8 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
     let defaultPaymentCellReuseIdentifier = "defaultPaymentIdentifier"
     let addCardCellReuseIdentifier = "addCardIdentifier"
 
-    var selectPaymentMethod: STPPaymentMethod?
     var selectedIndexPath: NSIndexPath?
+    var selectedPaymentMethod: STPPaymentMethod?
     
     var delegate: SelectPaymentViewControllerDelegate?
     
@@ -87,8 +85,18 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
     
     func setupUI () {
         if (controllerType == PaymentViewControllerType.ListPayment) {
+            
+            // remove the save button
             self.navigationItem.rightBarButtonItems?.removeAll()
+            
+            // remove the cancel button
             self.navigationItem.leftBarButtonItems?.removeAll()
+            
+        } else if (controllerType == PaymentViewControllerType.PickForRide) {
+            
+            // remove the save button
+            self.navigationItem.rightBarButtonItems?.removeAll()
+            
         }
     }
     
@@ -110,18 +118,26 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
                 cell.cardTextLabelOutlet.text = paymentMethod.label
                 
                 // Configure the cell based on controller type
-                if (controllerType == PaymentViewControllerType.PickDefault ||
-                    controllerType == PaymentViewControllerType.PickForRide) {
+                if (controllerType == PaymentViewControllerType.PickDefault) {
                     
-                    // put a check mark on the default or currently selected card
+                    // put a check mark on the default card
                     let selected: Bool = paymentMethod.isEqual(StripePaymentService.sharedInstance().defaultPaymentMethod)
                     cell.accessoryType = selected ? .Checkmark : .None
                     
                     if (selected) {
                         self.selectedIndexPath = indexPath
                     }
+                    
+                } else if (controllerType == PaymentViewControllerType.PickForRide) {
+                    
+                    // put a check mark on the currently selected card
+                    let selected: Bool = paymentMethod.isEqual(self.selectedPaymentMethod)
+                    cell.accessoryType = selected ? .Checkmark : .None
+                    
+                    if (selected) {
+                        self.selectedIndexPath = indexPath
+                    }
                 }
-                
             } else {
                 DDLogError("Nil payment method. This should not happen. Index: \(indexPath.row)")
             }
@@ -207,6 +223,7 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
                         editCardViewController.isEditCard = true
                         self.navigationController!.pushViewController(editCardViewController, animated: true)
                     }
+                    
                 } else if (controllerType == PaymentViewControllerType.PickDefault) {
                     
                     let oldSelectedCell = tableView.cellForRowAtIndexPath(self.selectedIndexPath!)
@@ -216,6 +233,13 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
                     newSelectedCell?.accessoryType = .Checkmark
                     
                     self.selectedIndexPath = indexPath
+                    
+                } else if (controllerType == PaymentViewControllerType.PickForRide) {
+                    
+                    let paymentMethod = StripePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)
+                    self.delegate?.selectPaymentViewController(self, didSelectPaymentMethod: paymentMethod!,
+                                                               controllerType: PaymentViewControllerType.PickForRide)
+                    
                 }
             }
         } else if (indexPath.section == addPaymentSection) {
