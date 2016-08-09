@@ -10,6 +10,14 @@ import Foundation
 
 public struct InterfaceString {
     
+    public struct App {
+        static let AppName = NSLocalizedString("Yibby", comment: "Yibby app name")
+    }
+    
+    public struct Payment {
+        static let PaymentCurrency = NSLocalizedString("USD", comment: "USD")
+    }
+    
     public struct StoryboardName {
         static let Main = NSLocalizedString("Main", comment: "Main Storyboard")
         static let About = NSLocalizedString("About", comment: "About Storyboard")

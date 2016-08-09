@@ -25,7 +25,7 @@ class SplashViewController: UIViewController {
     var imageView: UIImageView?
     
     var syncAPIResponseArrived: Bool = false
-    var stripeCustomerLoadCompleted: Bool = false
+    var paymentsSetupCompleted: Bool = false
     static var pushRegisterResponseArrived: Bool = false
     static var pushSuccessful: Bool = false
     
@@ -148,15 +148,25 @@ class SplashViewController: UIViewController {
             self.syncAPIResponseArrived = true
         })
         
-        StripePaymentService.sharedInstance().loadCustomerDetails({
-            self.stripeCustomerLoadCompleted = true
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+            
+        StripePaymentService.sharedInstance().setupConfiguration({
+            self.paymentsSetupCompleted = true
         })
-        
+    
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+
+        BraintreePaymentService.sharedInstance().setupConfiguration({
+            self.paymentsSetupCompleted = true
+        })
+    
+#endif
+
         // wait for requests to finish
         let timeoutDate: NSDate = NSDate(timeIntervalSinceNow: 10.0)
         
         while (self.syncAPIResponseArrived == false ||
-            self.stripeCustomerLoadCompleted == false ||
+            self.paymentsSetupCompleted == false ||
             SplashViewController.pushRegisterResponseArrived == false) &&
             (timeoutDate.timeIntervalSinceNow > 0) {
                     

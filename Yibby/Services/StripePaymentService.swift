@@ -15,7 +15,6 @@ public typealias DefaultSourceCompletionBlock = STPErrorBlock
 public typealias UpdateSourceCompletionBlock = STPErrorBlock
 
 
-
 // StripePaymentService singleton
 public class StripePaymentService: NSObject {
     
@@ -42,14 +41,16 @@ public class StripePaymentService: NSObject {
     let appleMerchantID: String? = nil
     
     // These values will be shown to the user when they purchase with Apple Pay.
-    let companyName = "Emoji Apparel"
-    let paymentCurrency = "usd"
+    let companyName = InterfaceString.App.AppName
+    let paymentCurrency = InterfaceString.Payment.PaymentCurrency
 
     var configuration: STPPaymentConfiguration?
     
     var paymentMethods = [STPPaymentMethod]()
-    var apiAdapter: StripeBackendAPIAdapter = StripeAPIClient.sharedClient
     var defaultPaymentMethod: STPPaymentMethod?
+    
+    var apiAdapter: StripeBackendAPIAdapter = StripeBackendAPI.sharedClient
+    var apiClient: STPAPIClient?
     
     override init() {
         
@@ -64,10 +65,8 @@ public class StripePaymentService: NSObject {
         configuration!.publishableKey = self.stripePublishableKey
         configuration!.appleMerchantIdentifier = self.appleMerchantID
         configuration!.companyName = self.companyName
-    }
-    
-    func getConfiguration () -> STPPaymentConfiguration {
-        return configuration!
+        
+        self.apiClient = STPAPIClient(configuration: configuration!)
     }
 
     func loadCustomerDetails(completionBlock: CustomerLoadCompletionBlock) {

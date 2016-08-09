@@ -70,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // setup LocationService
         LocationService.sharedInstance().setupLocationManager()
-        StripePaymentService.sharedInstance().setupConfiguration()
         
         DDLogDebug("LaunchOptions \(launchOptions)");
         

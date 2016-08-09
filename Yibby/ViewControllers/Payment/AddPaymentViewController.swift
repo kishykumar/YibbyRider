@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Stripe
 import Crashlytics
 import BButton
+import Braintree
+import Stripe
 
 protocol AddPaymentViewControllerDelegate {
     
@@ -29,8 +30,13 @@ protocol AddPaymentViewControllerDelegate {
      *  @param completion            call this callback when you're done sending the token to your backend
      */
 
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
                                       didCreateToken token: STPToken, completion: STPErrorBlock)
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
+                                  didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock)
+#endif
     
 }
 
@@ -38,12 +44,22 @@ protocol EditPaymentViewControllerDelegate {
 
     func editPaymentViewControllerDidCancel(editPaymentViewController: AddPaymentViewController)
 
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
                                   didCreateNewToken token: STPToken, completion: STPErrorBlock)
-    
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                  didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock)
-    
+                                    didCreateNewToken token: BTPaymentMethodNonce, completion: BTErrorBlock)
+#endif
+
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                   didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock)
+
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                    didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock)
+#endif
 }
 
 class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDelegate {
@@ -60,14 +76,22 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
     //
     // Whereas, the StripeBackendAdapter is a protocol to talk to 
     // our backend (baasbox) to handle payments.
-    var apiClient: STPAPIClient?
-    var apiAdapter: StripeBackendAPIAdapter = StripeAPIClient.sharedClient
+    
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
 
+    var apiAdapter: StripeBackendAPIAdapter = StripeBackendAPI.sharedClient
+    var cardToBeEdited: STPCard?
+
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+
+    var apiAdapter: BraintreeBackendAPIAdapter = BraintreeBackendAPI.sharedClient
+    var cardToBeEdited: BTPaymentMethodNonce?
+    
+#endif
+    
     var addDelegate : AddPaymentViewControllerDelegate?
     var editDelegate : EditPaymentViewControllerDelegate?
-    
-    var cardToBeEdited: STPCard?
-    
+
     var isEditCard: Bool! = false   // implicitly unwrapped optional
     
     // MARK: Actions
@@ -80,7 +104,9 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
                                      completionBlock: { () -> Void in
             
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
-                                        
+            
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+
             self.editDelegate?.editPaymentViewController(self, didRemovePaymentMethod: self.cardToBeEdited!, completion: {(error: NSError?) -> Void in
                 
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -89,6 +115,19 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
                     self.handleCardTokenError(error)
                 }
             })
+    
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    
+            self.editDelegate?.editPaymentViewController(self, didRemovePaymentMethod: self.cardToBeEdited!, completion: {(error: NSError?) -> Void in
+                
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                if let error = error {
+                    self.handleCardTokenError(error)
+                }
+            })
+    
+#endif
             
         })
     }
@@ -98,7 +137,12 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let cardParams = paymentTextFieldOutlet!.cardParams
-        self.apiClient!.createTokenWithCard(cardParams, completion: {(token: STPToken?, tokenError: NSError?) -> Void in
+        
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+
+        let apiClient = StripePaymentService.sharedInstance().apiClient!
+    
+        apiClient.createTokenWithCard(cardParams, completion: {(token: STPToken?, tokenError: NSError?) -> Void in
 
             if let tokenError = tokenError {
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -127,6 +171,46 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
                 }
             }
         })
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    
+        let cardClient: BTCardClient = BTCardClient(APIClient: BraintreePaymentService.sharedInstance().apiClient!)
+    
+        let card: BTCard = BTCard(number: cardParams.number!,
+                                  expirationMonth: String(cardParams.expMonth),
+                                  expirationYear: String(cardParams.expYear),
+                                  cvv: cardParams.cvc!)
+    
+        cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: NSError?) -> Void in
+            
+            if let error = error {
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                self.handleCardTokenError(error)
+            }
+            else {
+                //                var phone: String = self.rememberMePhoneCell.contents
+                //                var email: String = self.emailCell.contents
+                
+                // TODO: We save the zipcode
+                if self.isEditCard == true {
+                    
+                    self.editDelegate?.editPaymentViewController(self, didCreateNewToken: tokenized!, completion: {(error: NSError?) -> Void in
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        if let error = error {
+                            self.handleCardTokenError(error)
+                        }
+                    })
+                } else {
+                    self.addDelegate?.addPaymentViewController(self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        if let error = error {
+                            self.handleCardTokenError(error)
+                        }
+                    })
+                }
+            }
+        })
+
+#endif
     }
     
     @IBAction func cancelButtonAction(sender: AnyObject) {
@@ -181,12 +265,16 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
         
         // Do any additional setup after loading the view.
         CardIOUtilities.preload()
-        apiClient = STPAPIClient(configuration: StripePaymentService.sharedInstance().getConfiguration())
         
         if let card = cardToBeEdited {
             
             // cardParams.number will have the last 4 of the card
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             paymentTextFieldOutlet!.numberPlaceholder = "************" + card.last4()
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+            paymentTextFieldOutlet!.numberPlaceholder = "************" + card.localizedDescription
+#endif
+
         }
         
         if (isEditCard == true) {

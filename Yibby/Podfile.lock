@@ -3,6 +3,28 @@ PODS:
   - ASProgressPopUpView (0.8)
   - BaasBoxSDK (0.9.0)
   - BButton (4.0.2)
+  - Braintree (4.4.1):
+    - Braintree/Card (= 4.4.1)
+    - Braintree/Core (= 4.4.1)
+    - Braintree/PayPal (= 4.4.1)
+    - Braintree/UI (= 4.4.1)
+  - Braintree/Card (4.4.1):
+    - Braintree/Core
+  - Braintree/Core (4.4.1)
+  - Braintree/PayPal (4.4.1):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.4.1):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.4.1):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.4.1)
+  - Braintree/UI (4.4.1):
+    - Braintree/Card
+    - Braintree/Core
   - CardIO (5.3.2)
   - CocoaLumberjack (2.3.0):
     - CocoaLumberjack/Default (= 2.3.0)
@@ -82,6 +104,7 @@ DEPENDENCIES:
   - ASProgressPopUpView
   - BaasBoxSDK (from `https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git`)
   - BButton
+  - Braintree
   - CardIO
   - CocoaLumberjack/Swift
   - Crashlytics
@@ -125,6 +148,7 @@ SPEC CHECKSUMS:
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   BaasBoxSDK: 8a68396af4eb48137da238109d114eccac04739d
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
+  Braintree: 772ab9104053cca5d8cc3b32d79e6b1272f46527
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
@@ -153,6 +177,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
 
-PODFILE CHECKSUM: af1661f17ef5cd8d0f6fc4a6f5a32b9b9c54677a
+PODFILE CHECKSUM: 0cafe0d397f4ff70ed4df50e583315c1a3b0fc41
 
 COCOAPODS: 1.0.1

@@ -13,7 +13,7 @@ import TTRangeSlider
 import BaasBoxSDK
 import BButton
 import CocoaLumberjack
-import Stripe
+import Braintree
 
 // TODO:
 // 1. Create bid state that we save on the app
@@ -59,7 +59,15 @@ public class MainViewController: UIViewController,
     var bidLow: Float?
     var bidHigh: Float?
     
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+    
     var selectedPaymentMethod: STPPaymentMethod?
+    
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    
+    var selectedPaymentMethod: BTPaymentMethodNonce?
+    
+#endif
     
     var responseHasArrived: Bool = false
     
@@ -241,8 +249,18 @@ public class MainViewController: UIViewController,
         let dlatLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(dlat,dlong)
         self.setDropoffDetails("3500 Granada Ave, Santa Clara, CA 95051", loc: dlatLng)
         
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+            
         self.selectedPaymentMethod = self.selectedPaymentMethod ??
                                     StripePaymentService.sharedInstance().defaultPaymentMethod
+    
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+
+        self.selectedPaymentMethod = self.selectedPaymentMethod ??
+            BraintreePaymentService.sharedInstance().defaultPaymentMethod
+    
+#endif
+
     }
     
     override public func viewDidLoad() {
@@ -299,6 +317,8 @@ public class MainViewController: UIViewController,
         self.navigationController!.popViewControllerAnimated(true)
     }
     
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+    
     func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
                                      didSelectPaymentMethod method: STPPaymentMethod,
                                                             controllerType: PaymentViewControllerType) {
@@ -316,7 +336,27 @@ public class MainViewController: UIViewController,
         }
     }
     
-    
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                     didSelectPaymentMethod method: BTPaymentMethodNonce,
+                                                            controllerType: PaymentViewControllerType) {
+        
+        if (controllerType == PaymentViewControllerType.PickForRide) {
+            
+            // modify the selected payment method
+            self.selectedPaymentMethod = method
+            
+            // remove the view controller
+            self.navigationController!.popViewControllerAnimated(true)
+            
+            // update the card UI
+            updateSelectCardUI(method)
+        }
+    }
+
+#endif
+
     // MARK: Helpers
     
     func displaySelectCardView () {
@@ -334,6 +374,8 @@ public class MainViewController: UIViewController,
         self.navigationController!.pushViewController(selectPaymentViewController, animated: true)
     }
     
+#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+    
     func updateSelectCardUI (paymentMethod: STPPaymentMethod) {
         
         self.cardImageOutlet.image = paymentMethod.image
@@ -345,6 +387,18 @@ public class MainViewController: UIViewController,
         }
     }
     
+#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+
+    func updateSelectCardUI (paymentMethod: BTPaymentMethodNonce) {
+        
+        self.cardImageOutlet.image =
+            BTUI.braintreeTheme().vectorArtViewForPaymentInfoType(paymentMethod.type).imageOfSize(CGSizeMake(42, 23))
+        
+        self.cardLabelOutlet.text = paymentMethod.localizedDescription
+    }
+
+#endif
+
     func updateCurrentLocation (userLocation: CLLocation) {
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
             

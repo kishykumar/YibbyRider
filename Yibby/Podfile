@@ -26,6 +26,7 @@ def shared_pods
     pod 'SVGKit', git: 'https://github.com/SVGKit/SVGKit'
     pod 'PINRemoteImage'
     pod 'Stripe'
+    pod 'Braintree'
     pod 'CardIO'
     pod 'Alamofire', '~> 3.4'
     

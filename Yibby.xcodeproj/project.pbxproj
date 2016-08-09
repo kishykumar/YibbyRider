@@ -92,8 +92,10 @@
 		121531721D441E3100C28C73 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531711D441E3100C28C73 /* TimeUtil.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
-		124FD5CF1D362CFD002A4AB2 /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124FD5CE1D362CFD002A4AB2 /* StripeAPIClient.swift */; };
+		124FD5CF1D362CFD002A4AB2 /* StripeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124FD5CE1D362CFD002A4AB2 /* StripeBackendAPI.swift */; };
 		12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */; };
+		12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */; };
+		12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B174801D54574100BD0B87 /* BraintreePaymentService.swift */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
 		12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A21D378A7B00F158BB /* CardTableCell.swift */; };
 		12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */; };
@@ -205,8 +207,10 @@
 		1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorUtil.swift; sourceTree = "<group>"; };
 		121531711D441E3100C28C73 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		124FD5CE1D362CFD002A4AB2 /* StripeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
+		124FD5CE1D362CFD002A4AB2 /* StripeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeBackendAPI.swift; sourceTree = "<group>"; };
 		12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
+		12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeBackendAPI.swift; sourceTree = "<group>"; };
+		12B174801D54574100BD0B87 /* BraintreePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreePaymentService.swift; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		12EF49711C95276800C07FAE /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		12F092A21D378A7B00F158BB /* CardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableCell.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				1201B84B1D290AF800A7EEAF /* ProfileService.swift */,
 				1201B8511D2B471800A7EEAF /* RideService.swift */,
 				12F092AA1D3E156700F158BB /* StripePaymentService.swift */,
+				12B174801D54574100BD0B87 /* BraintreePaymentService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -513,7 +518,8 @@
 			isa = PBXGroup;
 			children = (
 				1201B7801D23AD0300A7EEAF /* WebInterface.swift */,
-				124FD5CE1D362CFD002A4AB2 /* StripeAPIClient.swift */,
+				12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */,
+				124FD5CE1D362CFD002A4AB2 /* StripeBackendAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -913,6 +919,7 @@
 				1201B7721D23A85F00A7EEAF /* SignupViewController.swift in Sources */,
 				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
+				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
 				1201B7881D23AF0100A7EEAF /* BidState.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
 				1201B8401D28E93900A7EEAF /* FreeMethods.swift in Sources */,
@@ -952,7 +959,7 @@
 				1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */,
 				1201B82B1D28ADC800A7EEAF /* AlertPresentationController.swift in Sources */,
 				1201B8331D28E22B00A7EEAF /* ElloLabel.swift in Sources */,
-				124FD5CF1D362CFD002A4AB2 /* StripeAPIClient.swift in Sources */,
+				124FD5CF1D362CFD002A4AB2 /* StripeBackendAPI.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
@@ -962,6 +969,7 @@
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
 				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
+				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
 			);
@@ -1106,6 +1114,7 @@
 				INFOPLIST_FILE = Yibby/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-DYIBBY_USE_BRAINTREE_PAYMENT_SERVICE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yibby.app.user;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Yibby;
@@ -1130,6 +1139,7 @@
 				INFOPLIST_FILE = Yibby/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-DYIBBY_USE_BRAINTREE_PAYMENT_SERVICE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yibby.app.user;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Yibby;
