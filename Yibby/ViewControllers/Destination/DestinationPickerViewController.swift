@@ -13,9 +13,9 @@ protocol DestinationDelegate {
     func choseDestination(location: String)
 }
 
-class DestinationPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DestinationPickerViewController: BaseYibbyViewController, UITableViewDelegate, UITableViewDataSource {
 
-    // MARK: Properties
+    // MARK: - Properties
     var delegate : DestinationDelegate?
     
     @IBOutlet weak var tableView: UITableView!

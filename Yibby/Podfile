@@ -15,7 +15,6 @@ def shared_pods
     pod 'BButton'
     pod 'TextFieldEffects'
     pod 'SVProgressHUD'
-    pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     pod 'CocoaLumberjack/Swift'
     pod 'ASProgressPopUpView'
     pod 'LaunchScreen'
@@ -29,7 +28,10 @@ def shared_pods
     pod 'Braintree'
     pod 'CardIO'
     pod 'Alamofire', '~> 3.4'
-    
+    pod 'XLPagerTabStrip', '~> 5.0'
+    pod 'FDStackView', '~> 1.0'
+
+    #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
     #pod 'ECSlidingViewController', '~> 2.0.3'
     #pod 'PKRevealController'

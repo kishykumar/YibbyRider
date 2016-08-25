@@ -21,14 +21,14 @@ import Braintree
 // 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message. 
 // 4. 
 
-public class MainViewController: UIViewController,
+public class MainViewController: BaseYibbyViewController,
                                 UITextFieldDelegate,
                                 DestinationDelegate,
                                 CLLocationManagerDelegate,
                                 TTRangeSliderDelegate,
                                 SelectPaymentViewControllerDelegate {
 
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet weak var pickupFieldOutlet: UITextField!
     @IBOutlet weak var dropoffFieldOutlet: UITextField!
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
@@ -76,7 +76,7 @@ public class MainViewController: UIViewController,
     // UI Elements
     let NAV_BAR_COLOR_CODE = 0xc6433b
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -165,7 +165,7 @@ public class MainViewController: UIViewController,
         }
     }
     
-    // MARK: Setup
+    // MARK: - Setup
     func setupUI () {
 
         // currency range slider
@@ -357,7 +357,7 @@ public class MainViewController: UIViewController,
 
 #endif
 
-    // MARK: Helpers
+    // MARK: - Helpers
     
     func displaySelectCardView () {
         

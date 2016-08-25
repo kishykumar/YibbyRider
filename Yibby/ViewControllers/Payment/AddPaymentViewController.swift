@@ -62,9 +62,9 @@ protocol EditPaymentViewControllerDelegate {
 #endif
 }
 
-class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDelegate {
+class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewControllerDelegate {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var paymentTextFieldOutlet: STPPaymentCardTextField?
     
@@ -94,7 +94,7 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
 
     var isEditCard: Bool! = false   // implicitly unwrapped optional
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func deleteCardAction(sender: AnyObject) {
         
         // Raise an alert to confirm if the user actually wants to perform the action
@@ -258,7 +258,7 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
         paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: Setup Functions 
+    // MARK: - Setup Functions 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -300,7 +300,7 @@ class AddPaymentViewController: UIViewController, CardIOPaymentViewControllerDel
     }
     */
 
-    // MARK: Helpers
+    // MARK: - Helpers
     
     
     func handleCardTokenError(error: NSError) {

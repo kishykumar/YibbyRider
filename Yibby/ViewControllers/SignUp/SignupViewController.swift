@@ -9,10 +9,11 @@
 import UIKit
 import BaasBoxSDK
 import CocoaLumberjack
+import XLPagerTabStrip
 
-class SignupViewController: UIViewController {
+class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet weak var nameOutlet: UITextField!
     @IBOutlet weak var emailAddressOutlet: UITextField!
     @IBOutlet weak var phoneNumberOutlet: UITextField!
@@ -20,7 +21,7 @@ class SignupViewController: UIViewController {
     
     let ACTIVITY_INDICATOR_TAG: Int = 1
 
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func submitFormButton(sender: UIButton) {
         if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
             AlertUtil.displayAlert("error in form", message: "Please enter email and password")
@@ -36,6 +37,10 @@ class SignupViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,4 +85,9 @@ class SignupViewController: UIViewController {
         })
     }
     
+    // MARK: - IndicatorInfoProvider
+    
+    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Sign up")
+    }
 }

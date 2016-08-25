@@ -412,6 +412,74 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
            }];
 }
 
+- (void)cancelRiderRide:(NSString *)bidId
+             completion:(BAAObjectResultBlock)completionBlock {
+    
+    NSString *path = [NSString stringWithFormat:@"ride/%@/r/cancel", bidId];
+
+    [self postPath:path
+        parameters:@{
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               completionBlock(responseObject, nil);
+           } failure:^(NSError *error) {
+               completionBlock(nil, error);
+           }];
+}
+
+- (void)cancelDriverRide:(NSString *)bidId
+              completion:(BAAObjectResultBlock)completionBlock {
+    
+    NSString *path = [NSString stringWithFormat:@"ride/%@/d/cancel", bidId];
+    
+    [self postPath:path
+        parameters:@{
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               completionBlock(responseObject, nil);
+           } failure:^(NSError *error) {
+               completionBlock(nil, error);
+           }];
+}
+
+- (void)startRide:(NSString *)bidId
+       completion:(BAAObjectResultBlock)completionBlock {
+    
+    NSString *path = [NSString stringWithFormat:@"ride/%@/start", bidId];
+    
+    [self postPath:path
+        parameters:@{
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               completionBlock(responseObject, nil);
+           } failure:^(NSError *error) {
+               completionBlock(nil, error);
+           }];
+}
+
+- (void)endRide:(NSString *)bidId
+     completion:(BAAObjectResultBlock)completionBlock {
+    NSString *path = [NSString stringWithFormat:@"ride/%@/end", bidId];
+    
+    [self postPath:path
+        parameters:@{
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               completionBlock(responseObject, nil);
+           } failure:^(NSError *error) {
+               completionBlock(nil, error);
+           }];
+}
+
+
 // Offer
 - (void)createOffer:(NSString *)bidId
          offerPrice:(NSNumber *)offerPrice
@@ -2189,6 +2257,53 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                   completionBlock(nil, error);
               }
               
+          }];
+}
+
+- (void)getDriverLocation: (NSString *)bidId
+               completion: (BAAObjectResultBlock)completionBlock {
+    
+    NSString *path = [NSString stringWithFormat:@"/location/d/%@", bidId];
+
+    [self getPath:path
+       parameters:@{
+                    @"appcode" : self.appCode,
+                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    }
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+              
+          } failure:^(NSError *error) {
+              
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
+          }];
+}
+
+- (void)getRiderLocation: (NSString *)bidId
+              completion: (BAAObjectResultBlock)completionBlock {
+    NSString *path = [NSString stringWithFormat:@"/location/r/%@", bidId];
+    
+    [self getPath:path
+       parameters:@{
+                    @"appcode" : self.appCode,
+                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    }
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+              
+          } failure:^(NSError *error) {
+              
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
           }];
 }
 

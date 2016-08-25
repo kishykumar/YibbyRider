@@ -39,11 +39,11 @@ enum PaymentViewControllerType: Int {
     case ListPayment
 }
 
-class PaymentViewController: UITableViewController, AddPaymentViewControllerDelegate,
+class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControllerDelegate,
                                                     EditPaymentViewControllerDelegate,
                                                     SelectPaymentViewControllerDelegate {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     var controllerType: PaymentViewControllerType = PaymentViewControllerType.ListPayment
 
@@ -85,7 +85,7 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
     
     var delegate: SelectPaymentViewControllerDelegate?
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func saveButtonAction(sender: AnyObject) {
         
@@ -107,7 +107,7 @@ class PaymentViewController: UITableViewController, AddPaymentViewControllerDele
         self.delegate?.selectPaymentViewControllerDidCancel(self)
     }
     
-    // MARK: Setup Functions
+    // MARK: - Setup Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()

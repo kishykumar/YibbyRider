@@ -11,7 +11,7 @@ import CocoaLumberjack
 
 class Offer {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var offerPrice: Int
     var eta: Int

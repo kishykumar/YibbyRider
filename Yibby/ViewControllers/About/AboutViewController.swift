@@ -9,7 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-class AboutViewController: UIViewController {
+class AboutViewController: BaseYibbyViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

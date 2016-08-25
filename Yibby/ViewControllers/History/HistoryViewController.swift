@@ -12,7 +12,7 @@ import BaasBoxSDK
 import DZNEmptyDataSet
 import SVProgressHUD
 
-class HistoryViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
+class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
 
     var rides = [BAAFile]()
     let identifier: String = "historyTableCell"

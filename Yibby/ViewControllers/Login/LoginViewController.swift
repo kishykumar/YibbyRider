@@ -9,10 +9,11 @@
 import UIKit
 import BaasBoxSDK
 import CocoaLumberjack
+import XLPagerTabStrip
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -21,7 +22,31 @@ class LoginViewController: UIViewController {
     
     var onStartup = true
     
-    // MARK: functions
+    // MARK: - Setup functions
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - IndicatorInfoProvider
+    
+    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Login")
+    }
+    
+    // MARK: - Actions
     @IBAction func loginAction(sender: AnyObject) {
         
         
@@ -32,7 +57,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK: KeyChain functions
+    // MARK: - KeyChain functions
     static func setKeyChainKeys (username: String, password: String) {
         KeychainWrapper.setString(username, forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
         KeychainWrapper.setString(password, forKey: LoginViewController.PASSWORD_KEY_NAME)
@@ -48,6 +73,8 @@ class LoginViewController: UIViewController {
         let retrievedPassword = KeychainWrapper.stringForKey(LoginViewController.PASSWORD_KEY_NAME)
         return (retrievedEmailAddress, retrievedPassword)
     }
+    
+    // MARK: - Helper functions
     
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
@@ -91,23 +118,6 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @IBAction func signUpAction(sender: AnyObject) {
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.hideKeyboardWhenTappedAround()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     /*
     // MARK: - Navigation
 

@@ -11,8 +11,14 @@ import GoogleMaps
 import BaasBoxSDK
 import CocoaLumberjack
 
+public struct DriverLocationNotifications {
+    static let newDriverLocation = TypedNotification<CLLocationCoordinate2D>(name: "com.Yibby.LocationService.NewDriverLocation")
+}
+
 // LocationService singleton
 public class LocationService: NSObject, CLLocationManagerDelegate {
+    
+    // MARK: - Properties
     
     private static let myInstance = LocationService()
     private var locationManager:CLLocationManager!
@@ -26,6 +32,9 @@ public class LocationService: NSObject, CLLocationManagerDelegate {
     private var totalLocationUpdates = 0
     private var currentLocation: CLLocation?
     
+    var driverLocationFetchTimer: NSTimer?
+    let DRIVER_LOC_FETCH_TIMER_INTERVAL = 5.0
+
     override init() {
         
     }
@@ -34,12 +43,16 @@ public class LocationService: NSObject, CLLocationManagerDelegate {
         return myInstance
     }
     
+    // MARK: - Setup functions
+    
     func setupLocationManager () {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
     }
+    
+    // MARK: Rider Location Fetch
     
     func startLocationUpdates () {
         locationManager.startUpdatingLocation()
@@ -92,4 +105,46 @@ public class LocationService: NSObject, CLLocationManagerDelegate {
             totalLocationUpdates = 0
         }
     }
+    
+    // MARK: Driver Location Fetch
+    
+    func startFetchingDriverLocation() {
+        startDriverLocationFetchTimer()
+    }
+    
+    func stopFetchingDriverLocation() {
+        stopDriverLocationFetchTimer()
+    }
+    
+    private func startDriverLocationFetchTimer () {
+        driverLocationFetchTimer =
+            NSTimer.scheduledTimerWithTimeInterval(DRIVER_LOC_FETCH_TIMER_INTERVAL,
+                                                   target: self,
+                                                   selector: #selector(LocationService.fetchDriverLocation),
+                                                   userInfo: nil, repeats: true)
+    }
+    
+    @objc private func fetchDriverLocation() {
+        
+        // Refresh the location marker for the map
+        let client: BAAClient = BAAClient.sharedClient()
+        client.getDriverLocation("", completion: {(success, error) -> Void in
+            
+            if ((success) != nil) {
+                // Post a notification to the View Controllers
+                postNotification(DriverLocationNotifications.newDriverLocation,
+                    value: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
+            }
+            else {
+                DDLogVerbose("Error logging in: \(error)")
+            }
+        })
+    }
+    
+    private func stopDriverLocationFetchTimer() {
+        if let driverLocationFetchTimer = self.driverLocationFetchTimer {
+            driverLocationFetchTimer.invalidate()
+        }
+    }
+
 }

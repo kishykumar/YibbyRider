@@ -10,13 +10,13 @@ import UIKit
 
 class CardTableCell : UITableViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var cardBrandImageViewOutlet: UIImageView!
 
     @IBOutlet weak var cardTextLabelOutlet: UILabel!
     
-    // MARK: Setup functions
+    // MARK: - Setup functions
     
 //    func configure(ride: Ride) {
 //        

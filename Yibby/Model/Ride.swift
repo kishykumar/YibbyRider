@@ -11,7 +11,7 @@ import GoogleMaps
 
 class Ride: NSObject, NSCopying {
     
-    // MARK: Properties
+    // MARK: - Properties
     var id: String
     var bidHigh: Int
     var bidLow: Int

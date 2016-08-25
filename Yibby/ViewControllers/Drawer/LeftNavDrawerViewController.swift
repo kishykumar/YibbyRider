@@ -13,9 +13,9 @@ import CocoaLumberjack
 import PINRemoteImage
 import Crashlytics
 
-public class LeftNavDrawerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDataSource, UITableViewDelegate {
 
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     
@@ -36,7 +36,7 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
         case Logout
     }
     
-    // MARK: Setup Functions
+    // MARK: - Setup Functions
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,7 +187,7 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
         })
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
         photoSaveCallback = { image in
@@ -210,7 +210,7 @@ public class LeftNavDrawerViewController: UIViewController, UITableViewDataSourc
         openImagePicker()
     }
     
-    // MARK: Helpers
+    // MARK: - Helpers
     
     private func openImagePicker() {
         let alertViewController = UIImagePickerController.alertControllerForImagePicker { imagePicker in

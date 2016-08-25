@@ -10,11 +10,11 @@ import UIKit
 
 class AddCardTableCell : UITableViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     
     
-    // MARK: Setup functions
+    // MARK: - Setup functions
     
     //    func configure(ride: Ride) {
     //

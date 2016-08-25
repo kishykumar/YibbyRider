@@ -9,7 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-class ConfirmRideViewController: UIViewController {
+class ConfirmRideViewController: BaseYibbyViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

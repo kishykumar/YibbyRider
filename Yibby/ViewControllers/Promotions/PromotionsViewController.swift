@@ -9,7 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-class PromotionsViewController: UIViewController {
+class PromotionsViewController: BaseYibbyViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

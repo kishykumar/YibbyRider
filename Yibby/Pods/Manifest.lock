@@ -41,6 +41,7 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - ElloOSSUIFonts (1.0.1)
   - Fabric (1.6.7)
+  - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
   - GGLInstanceID (1.1.6)
   - Google/CloudMessaging (1.3.2):
@@ -90,7 +91,6 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
-  - ReachabilitySwift (2.3.3)
   - Stripe (8.0.1)
   - SVGKit (2.0.1):
     - CocoaLumberjack (~> 2.x)
@@ -98,6 +98,7 @@ PODS:
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - TTRangeSlider (1.0.3)
+  - XLPagerTabStrip (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
@@ -111,34 +112,30 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - ElloOSSUIFonts
   - Fabric
+  - FDStackView (~> 1.0)
   - Google/CloudMessaging
   - GoogleMaps
   - LaunchScreen
   - MMDrawerController (~> 0.5.7)
   - PINRemoteImage
-  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
   - Stripe
   - SVGKit (from `https://github.com/SVGKit/SVGKit`)
   - SVProgressHUD
   - SwiftyJSON
   - TextFieldEffects
   - TTRangeSlider
+  - XLPagerTabStrip (~> 5.0)
 
 EXTERNAL SOURCES:
   BaasBoxSDK:
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
-  ReachabilitySwift:
-    :git: https://github.com/ashleymills/Reachability.swift
   SVGKit:
     :git: https://github.com/SVGKit/SVGKit
 
 CHECKOUT OPTIONS:
   BaasBoxSDK:
-    :commit: 0c884bdd3954a073566977774085eff7399f42df
+    :commit: 1bb726be3e22b637dc25d40c382f9203d05bfff9
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
-  ReachabilitySwift:
-    :commit: fa90df50c04f5743fbdf643cbe8d10562d75673d
-    :git: https://github.com/ashleymills/Reachability.swift
   SVGKit:
     :commit: 87b6c5c2ee4c69e582424b04742301387022339f
     :git: https://github.com/SVGKit/SVGKit
@@ -155,6 +152,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   ElloOSSUIFonts: 4bc41bfb20baa34ce07215ad924254e514f65458
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
   Google: 97618e118111b998cce1d8dd1bd98b82301d72db
@@ -169,14 +167,14 @@ SPEC CHECKSUMS:
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   PINCache: '078426d356ab95ef875e9e62e5c35a2ea3333c28'
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
-  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   Stripe: ebb81bf4377dd7fa733f82ff29548cface9225e3
   SVGKit: 2afbeaf2c2be4615476951284750c3ddb790d0c7
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
+  XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
-PODFILE CHECKSUM: 0cafe0d397f4ff70ed4df50e583315c1a3b0fc41
+PODFILE CHECKSUM: 656a4121afeb2b5987fb9e0bfc259e513c69e245
 
 COCOAPODS: 1.0.1

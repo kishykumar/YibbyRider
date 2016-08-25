@@ -10,9 +10,9 @@ import UIKit
 import CocoaLumberjack
 import ASProgressPopUpView
 
-class FindOffersViewController: UIViewController, ASProgressPopUpViewDataSource {
+class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewDataSource {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @IBOutlet weak var progressView: ASProgressPopUpView!
     
@@ -29,7 +29,7 @@ class FindOffersViewController: UIViewController, ASProgressPopUpViewDataSource 
     
     var savedBgTimestamp: NSDate?
 
-    // MARK: Setup Functions
+    // MARK: - Setup Functions
 
     func setupUI () {
         
@@ -65,7 +65,7 @@ class FindOffersViewController: UIViewController, ASProgressPopUpViewDataSource 
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Helper
+    // MARK: - Helper
     
     func startOfferTimer() {
         offerTimer = NSTimer.scheduledTimerWithTimeInterval(OFFER_TIMER_INTERVAL,

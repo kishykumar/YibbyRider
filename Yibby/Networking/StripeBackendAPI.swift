@@ -19,7 +19,7 @@ public protocol StripeBackendAPIAdapter : STPBackendAPIAdapter {
 
 class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
     
-    // MARK: Properties 
+    // MARK: - Properties 
     
     let customerID: String?
     var defaultSource: STPCard? = nil

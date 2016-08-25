@@ -20,6 +20,7 @@ public class PushController: NSObject, PushControllerProtocol {
     let OFFER_MESSAGE_TYPE = "OFFER"
     let NO_OFFERS_MESSAGE_TYPE = "NO_OFFERS"
     let RIDE_START_MESSAGE_TYPE = "RIDE_START"
+    let RIDE_END_MESSAGE_TYPE = "RIDE_END"
     let DRIVER_EN_ROUTE_MESSAGE_TYPE = "DRIVER_EN_ROUTE"
 
     let MESSAGE_JSON_FIELD_NAME = "message"
@@ -165,7 +166,9 @@ public class PushController: NSObject, PushControllerProtocol {
                             mmnvc.popViewControllerAnimated(true)
                             AlertUtil.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
 
-                        default: break
+                        default:
+                            DDLogError("Weird message received during Bid: \(notification[MESSAGE_JSON_FIELD_NAME])")
+                            break
                             
                         }
                     }
@@ -197,9 +200,24 @@ public class PushController: NSObject, PushControllerProtocol {
                             mmnvc.pushViewController(driverEnRouteViewController, animated: true)
                             
                         case RIDE_START_MESSAGE_TYPE:
-                            DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
+                            DDLogDebug("RIDE_START_MESSAGE_TYPE")
+
+                            let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
                             
-                        default: break
+                            let tripViewController = rideStoryboard.instantiateViewControllerWithIdentifier("TripViewControllerIdentifier") as! TripViewController
+                            mmnvc.pushViewController(tripViewController, animated: true)
+                            
+                        case RIDE_END_MESSAGE_TYPE:
+                            DDLogDebug("RIDE_END_MESSAGE_TYPE")
+
+                            let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                            
+                            let rideEndViewController = rideStoryboard.instantiateViewControllerWithIdentifier("RideEndViewControllerIdentifier") as! RideEndViewController
+                            mmnvc.pushViewController(rideEndViewController, animated: true)
+                            
+                        default:
+                            DDLogError("Weird message received during Ride: \(notification[MESSAGE_JSON_FIELD_NAME])")
+                            break
                         }
                     }
                 }

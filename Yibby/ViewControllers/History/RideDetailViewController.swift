@@ -11,12 +11,12 @@
 import UIKit
 import BaasBoxSDK
 
-class RideDetailViewController: UIViewController {
+class RideDetailViewController: BaseYibbyViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var ride: BAAFile!             // we need a strong reference as the ride should not be nil
     
-    // MARK: Setup functions
+    // MARK: - Setup functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class RideDetailViewController: UIViewController {
         
     }
     
-    // MARK: Helper functions
+    // MARK: - Helper functions
 
     /*
     // MARK: - Navigation

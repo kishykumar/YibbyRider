@@ -14,7 +14,7 @@ import MMDrawerController
 
 class SplashViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     static let SPLASH_SCREEN_TAG = 10
     
@@ -51,7 +51,7 @@ class SplashViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Helpers
+    // MARK: - Helpers
 
     func showLaunchScreen() {
         let v: UIView = self.launchScreenVC!.view!
@@ -135,7 +135,7 @@ class SplashViewController: UIViewController {
         
         var syncSuccess = false
         let client: BAAClient = BAAClient.sharedClient()
-        client.dummyCall( {(success, error) -> Void in
+        client.syncClient(BAASBOX_RIDER_STRING, completion: { (success, error) -> Void in
 
             if (error == nil) {
                 DDLogDebug("Sync successful: \(success))")
@@ -196,7 +196,17 @@ class SplashViewController: UIViewController {
         } else {
             DDLogVerbose("User NOT authenticated");
             
-            self.performSegueWithIdentifier("loginFromSplashSegue", sender: nil)
+//            self.performSegueWithIdentifier("loginFromSplashSegue", sender: nil)
+            let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                                                              bundle: nil)
+            
+            
+            
+//            let joinVC = signupStoryboard.instantiateViewControllerWithIdentifier("JoinViewControllerIdentifier") as! JoinViewController
+//            let joinNav = UINavigationController(rootViewController: joinVC)
+//            self.presentViewController(joinVC, animated: false, completion: nil)
+            self.presentViewController(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+
             removeSplash()
         }
         

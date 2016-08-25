@@ -24,7 +24,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
  //-- we have removed this because we are not sending upstream messages via GCM
 
-    // MARK: Properties
+    // MARK: - Properties
     var window: UIWindow?
 
     var connectedToGCM = false

@@ -8,12 +8,12 @@
 
 class DefaultPaymentTableCell : UITableViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var paymentTextOutlet: UILabel!
     @IBOutlet weak var paymentImageOutlet: UIImageView!
     
-    // MARK: Setup functions
+    // MARK: - Setup functions
     
 
 }

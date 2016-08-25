@@ -85,9 +85,7 @@ public class BraintreePaymentService: NSObject {
                     self.paymentMethods = paymentMethods
                     
                     for method in paymentMethods {
-                        DDLogVerbose("Looping through pm: \(method)")
                         if method.isDefault {
-                            DDLogVerbose("Default found: \(method)")
                             self.defaultPaymentMethod = method
                         }
                     }

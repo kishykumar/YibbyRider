@@ -40,7 +40,7 @@ public protocol BraintreeBackendAPIAdapter {
 
 class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     let customerID: String?
     

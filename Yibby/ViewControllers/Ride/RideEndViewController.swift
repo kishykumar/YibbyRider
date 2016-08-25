@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RideEndViewController: UIViewController {
+class RideEndViewController: BaseYibbyViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

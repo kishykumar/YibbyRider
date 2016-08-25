@@ -11,7 +11,7 @@ import GoogleMaps
 
 class HistoryTableCell : UITableViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var tripGMSMapViewOutlet: GMSMapView!
     @IBOutlet weak var driveImageViewOutlet: UIImageView!
@@ -19,7 +19,7 @@ class HistoryTableCell : UITableViewCell {
     @IBOutlet weak var driverNameLabelOutlet: UILabel!
     @IBOutlet weak var ridePriceLabelOutlet: UILabel!
     
-    // MARK: Setup functions
+    // MARK: - Setup functions
     func configure(ride: Ride) {
         self.dateTimeLabelOutlet?.text = "02/09/16 at 2:09 PM"
         self.driverNameLabelOutlet?.text = "Jayson Gru"

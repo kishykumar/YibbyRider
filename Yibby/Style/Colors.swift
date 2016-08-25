@@ -3,7 +3,7 @@
 //  Yibby
 //
 //  Created by Kishy Kumar on 7/2/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -23,6 +23,12 @@ private struct YibbyColors {
     static let yellowFFFFCC: UIColor = UIColor(netHex: 0xFFFFCC)
     static let redFFCCCC: UIColor = UIColor(netHex: 0xFFCCCC)
     static let modalBackground: UIColor = UIColor(white: 0x000000, alpha: 0.7)
+    
+    static let themeColor1: UIColor = UIColor(netHex: 0x006400)
+    static let appBackgroundColor1: UIColor = UIColor(netHex: 0xF1F1F1)
+    
+    static let textFieldTextColor1: UIColor = UIColor.blackColor()
+    static let textFieldBackgroundColor1: UIColor = UIColor.whiteColor()
 }
 
 public extension UIColor {
@@ -69,4 +75,11 @@ public extension UIColor {
     
     // explains itself
     class func modalBackground() -> UIColor { return YibbyColors.modalBackground }
+    
+    class func themeColor1() -> UIColor { return YibbyColors.themeColor1 }
+    
+    class func appBackgroundColor1() -> UIColor { return YibbyColors.appBackgroundColor1 }
+    
+    class func textFieldTextColor1() -> UIColor { return YibbyColors.textFieldTextColor1 }
+    class func textFieldBackgroundColor1() -> UIColor { return YibbyColors.textFieldBackgroundColor1 }
 }

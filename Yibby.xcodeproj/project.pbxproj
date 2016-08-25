@@ -91,8 +91,18 @@
 		121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */; };
 		121531721D441E3100C28C73 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531711D441E3100C28C73 /* TimeUtil.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
+		123D41751D63011500475614 /* TypedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41741D63011500475614 /* TypedNotifications.swift */; };
+		123D417C1D6302BF00475614 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41781D6302BF00475614 /* Box.swift */; };
+		123D417D1D6302BF00475614 /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41791D6302BF00475614 /* BoxType.swift */; };
+		123D417E1D6302BF00475614 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 123D417A1D6302BF00475614 /* LICENSE.txt */; };
+		123D417F1D6302BF00475614 /* MutableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D417B1D6302BF00475614 /* MutableBox.swift */; };
 		124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		124FD5CF1D362CFD002A4AB2 /* StripeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124FD5CE1D362CFD002A4AB2 /* StripeBackendAPI.swift */; };
+		1254E13A1D66DB77007067BC /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1391D66DB77007067BC /* JoinViewController.swift */; };
+		1254E13D1D693063007067BC /* YibbyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E13C1D693063007067BC /* YibbyTextField.swift */; };
+		1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */; };
+		1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */; };
+		1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */; };
 		12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */; };
 		12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */; };
 		12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B174801D54574100BD0B87 /* BraintreePaymentService.swift */; };
@@ -207,7 +217,17 @@
 		1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorUtil.swift; sourceTree = "<group>"; };
 		121531711D441E3100C28C73 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		123D41741D63011500475614 /* TypedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedNotifications.swift; sourceTree = "<group>"; };
+		123D41781D6302BF00475614 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		123D41791D6302BF00475614 /* BoxType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxType.swift; sourceTree = "<group>"; };
+		123D417A1D6302BF00475614 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		123D417B1D6302BF00475614 /* MutableBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableBox.swift; sourceTree = "<group>"; };
 		124FD5CE1D362CFD002A4AB2 /* StripeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeBackendAPI.swift; sourceTree = "<group>"; };
+		1254E1391D66DB77007067BC /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		1254E13C1D693063007067BC /* YibbyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyTextField.swift; sourceTree = "<group>"; };
+		1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyViewController.swift; sourceTree = SOURCE_ROOT; };
+		1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTabViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTabViewController.swift; sourceTree = SOURCE_ROOT; };
+		1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTableViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeBackendAPI.swift; sourceTree = "<group>"; };
 		12B174801D54574100BD0B87 /* BraintreePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreePaymentService.swift; sourceTree = "<group>"; };
@@ -276,6 +296,7 @@
 		1201B7391D23A23D00A7EEAF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1254E1441D6A6B02007067BC /* Base */,
 				1201B73E1D23A84500A7EEAF /* About */,
 				1201B7401D23A84500A7EEAF /* Bidding */,
 				1201B7481D23A85F00A7EEAF /* Destination */,
@@ -304,6 +325,7 @@
 				1201B8301D28E22B00A7EEAF /* ElloLabel.swift */,
 				1201B8311D28E22B00A7EEAF /* ElloTextField.swift */,
 				1201B7741D23AB6700A7EEAF /* ENFooterActivityIndicatorView */,
+				1254E13C1D693063007067BC /* YibbyTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,6 +372,7 @@
 				12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */,
 				121531711D441E3100C28C73 /* TimeUtil.swift */,
 				1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */,
+				123D41741D63011500475614 /* TypedNotifications.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -490,6 +513,7 @@
 			children = (
 				1201B7DC1D24EE8F00A7EEAF /* SignUp.storyboard */,
 				1201B7621D23A85F00A7EEAF /* SignupViewController.swift */,
+				1254E1391D66DB77007067BC /* JoinViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -567,6 +591,36 @@
 			path = ViewControllers/Alerts;
 			sourceTree = "<group>";
 		};
+		123D41761D6302BF00475614 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				123D41771D6302BF00475614 /* Box */,
+			);
+			name = ThirdParty;
+			path = ViewControllers/Alerts/ThirdParty;
+			sourceTree = "<group>";
+		};
+		123D41771D6302BF00475614 /* Box */ = {
+			isa = PBXGroup;
+			children = (
+				123D41781D6302BF00475614 /* Box.swift */,
+				123D41791D6302BF00475614 /* BoxType.swift */,
+				123D417A1D6302BF00475614 /* LICENSE.txt */,
+				123D417B1D6302BF00475614 /* MutableBox.swift */,
+			);
+			path = Box;
+			sourceTree = "<group>";
+		};
+		1254E1441D6A6B02007067BC /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */,
+				1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */,
+				1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		12EB18131C59FA980037EB86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +656,7 @@
 		12F3CCD41C41EFC700F79A26 /* Yibby */ = {
 			isa = PBXGroup;
 			children = (
+				123D41761D6302BF00475614 /* ThirdParty */,
 				12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */,
 				12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */,
 				1201B73C1D23A3AD00A7EEAF /* Extensions */,
@@ -770,6 +825,7 @@
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
 				1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */,
 				1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */,
+				123D417E1D6302BF00475614 /* LICENSE.txt in Resources */,
 				1201B8271D28ADC800A7EEAF /* AlertCell.xib in Resources */,
 				1201B7F21D2500D200A7EEAF /* History.storyboard in Resources */,
 				12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */,
@@ -906,12 +962,15 @@
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
 				1201B77D1D23ACDD00A7EEAF /* KeychainWrapper.swift in Sources */,
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
+				1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */,
 				1201B7691D23A85F00A7EEAF /* LoginViewController.swift in Sources */,
 				1201B83E1D28E90000A7EEAF /* ScreenExtensions.swift in Sources */,
 				1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */,
+				123D417D1D6302BF00475614 /* BoxType.swift in Sources */,
 				1201B77A1D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m in Sources */,
 				1201B8341D28E22B00A7EEAF /* ElloTextField.swift in Sources */,
 				121096931D1142E000D7174F /* LocationService.swift in Sources */,
+				1254E13A1D66DB77007067BC /* JoinViewController.swift in Sources */,
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
 				1201B8541D32445E00A7EEAF /* Bid.swift in Sources */,
@@ -927,6 +986,7 @@
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
 				1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */,
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
+				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
 				1201B8521D2B471800A7EEAF /* RideService.swift in Sources */,
 				1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */,
@@ -954,6 +1014,7 @@
 				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
 				121531721D441E3100C28C73 /* TimeUtil.swift in Sources */,
 				1201B8191D28AA0C00A7EEAF /* Colors.swift in Sources */,
+				123D417C1D6302BF00475614 /* Box.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
 				1201B8321D28E22B00A7EEAF /* ElloButton.swift in Sources */,
 				1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */,
@@ -963,15 +1024,19 @@
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
+				1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */,
+				123D417F1D6302BF00475614 /* MutableBox.swift in Sources */,
 				12F092AB1D3E156700F158BB /* StripePaymentService.swift in Sources */,
 				1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */,
 				1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
+				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
 				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
+				1254E13D1D693063007067BC /* YibbyTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,12 +1170,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yibby/build/Debug-iphoneos",
 				);
+				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = Yibby/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1131,6 +1197,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

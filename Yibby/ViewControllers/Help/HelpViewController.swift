@@ -9,7 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-class HelpViewController: UIViewController {
+class HelpViewController: BaseYibbyViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

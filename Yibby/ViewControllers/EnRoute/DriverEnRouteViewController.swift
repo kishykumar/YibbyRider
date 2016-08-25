@@ -11,33 +11,36 @@ import BaasBoxSDK
 import CocoaLumberjack
 import GoogleMaps
 
-class DriverEnRouteViewController: UIViewController {
+class DriverEnRouteViewController: BaseYibbyViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var driverLocMapViewOutlet: GMSMapView!
-    
     @IBOutlet weak var fareValueOutlet: UILabel!
-    
     @IBOutlet weak var paymentValueOutlet: UILabel!
-    
     @IBOutlet weak var numPeopleValueOutlet: UILabel!
-    
     @IBOutlet weak var driverRatingValueOutlet: UILabel!
-    
     @IBOutlet weak var driverCarValueOutlet: UILabel!
-    
     @IBOutlet weak var plateNumValueOutlet: UILabel!
     
-    var driverLocationFetchTimer: NSTimer?
-    let DRIVER_LOC_FETCH_TIMER_INTERVAL = 3.0
-
     var driverLocLatLng: CLLocationCoordinate2D?
     var driverLocMarker: GMSMarker?
     
+    var bid: Bid!
+
+    private var driverLocationObserver: NotificationObserver?
+
     let DRIVER_EN_ROUTE_MARKER_TITLE = "Driver En Route"
     
-    // MARK: Setup functions
+    // MARK: - Setup functions
+    
+    func initProperties() {
+        self.bid = (BidState.sharedInstance().getOngoingBid())!
+    }
+    
+    func rideBeginSetup() {
+        LocationService.sharedInstance().startFetchingDriverLocation()
+    }
     
     func setupUI () {
         
@@ -49,48 +52,21 @@ class DriverEnRouteViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        initProperties()
         setupUI()
-        startDriverLocationFetchTimer()
+        rideBeginSetup()
+        setupNotificationObservers()
     }
 
+    deinit {
+        removeNotificationObservers()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
-    // MARK: Location Poll Timer Functions
-    
-    func startDriverLocationFetchTimer () {
-        driverLocationFetchTimer =
-            NSTimer.scheduledTimerWithTimeInterval(DRIVER_LOC_FETCH_TIMER_INTERVAL,
-                                                   target: self,
-                                                   selector: #selector(DriverEnRouteViewController.fetchDriverLocation),
-                                                   userInfo: nil, repeats: true)
-    }
-    
-    func fetchDriverLocation() {
-        
-        // Refresh the location marker for the map
-        let client: BAAClient = BAAClient.sharedClient()
-        client.dummyCall( {(success, error) -> Void in
-            
-            if ((success) != nil) {
-                // Update the UI from here.
-//                setDriverLocation()
-            }
-            else {
-                DDLogVerbose("Error logging in: \(error)")
-            }
-        })
-    }
-    
-    func stopDriverLocationFetchTimer() {
-        if let driverLocationFetchTimer = self.driverLocationFetchTimer {
-            driverLocationFetchTimer.invalidate()
-        }
-    }
-
     // MARK: GoogleMap functions
     
     func adjustGMSCameraFocus () {
@@ -112,6 +88,23 @@ class DriverEnRouteViewController: UIViewController {
         
         adjustGMSCameraFocus()
     }
+    
+    // MARK: Notifications
+    
+    private func setupNotificationObservers() {
+        
+        driverLocationObserver = NotificationObserver(notification: DriverLocationNotifications.newDriverLocation) { [unowned self] loc in
+            DDLogVerbose("NotificationObserver newDriverLoc: \(loc)")
+            
+            self.setDriverLocation(loc)
+        }
+    }
+    
+    private func removeNotificationObservers() {
+        driverLocationObserver?.removeObserver()
+    }
+    
+    // MARK: - Helper functions
     
     /*
     // MARK: - Navigation

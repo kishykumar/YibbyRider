@@ -8,26 +8,69 @@
 
 import UIKit
 import CocoaLumberjack
+import BaasBoxSDK
+import GoogleMaps
 
-class TripViewController: UIViewController {
+class TripViewController: BaseYibbyViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var tripProgressLabelOutlet: UILabel!
     @IBOutlet weak var etaLabelOutlet: UILabel!
-    
-    // MARK: Actions
+    @IBOutlet weak var driverLocMapViewOutlet: GMSMapView!
+
+    var bid: Bid!
+
+    // MARK: - Actions
     
     @IBAction func cancelRideAction(sender: AnyObject) {
         
+        
+        return;
+        
+        // show a selection box for cancellation reasons
+        
+        
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
+                
+                // enable the loading activity indicator
+                ActivityIndicatorUtil.enableActivityIndicator(self.view)
+                
+                let client: BAAClient = BAAClient.sharedClient()
+                
+                client.cancelRiderRide(self.bid.id, completion: {(success, error) -> Void in
+                    
+                    // diable the loading activity indicator
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                    if (error == nil) {
+
+//                        let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+//                        
+//                        let rideEndViewController = rideStoryboard.instantiateViewControllerWithIdentifier("RideEndViewControllerIdentifier") as! RideEndViewController
+//                        
+//                        // get the navigation VC and push the new VC
+//                        self.navigationController!.pushViewController(rideEndViewController, animated: true)
+                    }
+                    else {
+                        errorBlock(success, error)
+                    }
+                })
+        })
     }
     
-    // MARK: Setup functions 
+    // MARK: - Setup functions 
+    
+    func initProperties() {
+        self.bid = (BidState.sharedInstance().getOngoingBid())!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        initProperties()
     }
 
     override func didReceiveMemoryWarning() {
