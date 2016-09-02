@@ -91,6 +91,11 @@
 		121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */; };
 		121531721D441E3100C28C73 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531711D441E3100C28C73 /* TimeUtil.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
+		1236AA4E1D72DC0100A36AC0 /* CardFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */; };
+		1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236AA501D72DD4900A36AC0 /* CardFieldsView.xib */; };
+		1236AA531D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA521D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift */; };
+		1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */; };
+		1236AA5F1D76A5C500A36AC0 /* CardHolderNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */; };
 		123D41751D63011500475614 /* TypedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41741D63011500475614 /* TypedNotifications.swift */; };
 		123D417C1D6302BF00475614 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41781D6302BF00475614 /* Box.swift */; };
 		123D417D1D6302BF00475614 /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41791D6302BF00475614 /* BoxType.swift */; };
@@ -103,6 +108,49 @@
 		1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */; };
 		1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */; };
 		1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */; };
+		126C4AD21D796276005EC5FF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 126C4A9A1D796276005EC5FF /* Media.xcassets */; };
+		126C4AD31D796276005EC5FF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9D1D796276005EC5FF /* Card.swift */; };
+		126C4AD41D796276005EC5FF /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9E1D796276005EC5FF /* CardType.swift */; };
+		126C4AD51D796276005EC5FF /* CardTypeRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9F1D796276005EC5FF /* CardTypeRegister.swift */; };
+		126C4AD61D796276005EC5FF /* CVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA01D796276005EC5FF /* CVC.swift */; };
+		126C4AD71D796276005EC5FF /* AmericanExpress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA21D796276005EC5FF /* AmericanExpress.swift */; };
+		126C4AD81D796276005EC5FF /* ChinaUnionPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA31D796276005EC5FF /* ChinaUnionPay.swift */; };
+		126C4AD91D796276005EC5FF /* DinersClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA41D796276005EC5FF /* DinersClub.swift */; };
+		126C4ADA1D796276005EC5FF /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA51D796276005EC5FF /* Discover.swift */; };
+		126C4ADB1D796276005EC5FF /* JCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA61D796276005EC5FF /* JCB.swift */; };
+		126C4ADC1D796276005EC5FF /* MasterCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA71D796276005EC5FF /* MasterCard.swift */; };
+		126C4ADD1D796276005EC5FF /* UnknownCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA81D796276005EC5FF /* UnknownCardType.swift */; };
+		126C4ADE1D796276005EC5FF /* Visa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AA91D796276005EC5FF /* Visa.swift */; };
+		126C4ADF1D796276005EC5FF /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AAA1D796276005EC5FF /* Expiry.swift */; };
+		126C4AE01D796276005EC5FF /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AAB1D796276005EC5FF /* Number.swift */; };
+		126C4AE11D796276005EC5FF /* CharacterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AAC1D796276005EC5FF /* CharacterExtension.swift */; };
+		126C4AE21D796276005EC5FF /* CardNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AAE1D796276005EC5FF /* CardNumberFormatter.swift */; };
+		126C4AE31D796276005EC5FF /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AAF1D796276005EC5FF /* Localization.swift */; };
+		126C4AE41D796276005EC5FF /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB01D796276005EC5FF /* StringExtension.swift */; };
+		126C4AE51D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB21D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift */; };
+		126C4AE61D796276005EC5FF /* CardTextField+InterfaceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB31D796276005EC5FF /* CardTextField+InterfaceBuilder.swift */; };
+		126C4AE71D796276005EC5FF /* CardTextField+PrefillInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB41D796276005EC5FF /* CardTextField+PrefillInformation.swift */; };
+		126C4AE81D796276005EC5FF /* CardTextField+ViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB51D796276005EC5FF /* CardTextField+ViewAnimations.swift */; };
+		126C4AE91D796276005EC5FF /* CardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB61D796276005EC5FF /* CardTextField.swift */; };
+		126C4AEA1D796276005EC5FF /* CardTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB71D796276005EC5FF /* CardTextFieldDelegate.swift */; };
+		126C4AEB1D796276005EC5FF /* CardTypeImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AB81D796276005EC5FF /* CardTypeImageStore.swift */; };
+		126C4AEC1D796276005EC5FF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 126C4AB91D796276005EC5FF /* CardView.xib */; };
+		126C4AED1D796276005EC5FF /* NumberInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4ABA1D796276005EC5FF /* NumberInputTextField.swift */; };
+		126C4AEE1D796276005EC5FF /* NumberInputTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4ABB1D796276005EC5FF /* NumberInputTextFieldDelegate.swift */; };
+		126C4AEF1D796276005EC5FF /* StylizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4ABC1D796276005EC5FF /* StylizedTextField.swift */; };
+		126C4AF01D796276005EC5FF /* CVCInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4ABE1D796276005EC5FF /* CVCInputTextField.swift */; };
+		126C4AF11D796276005EC5FF /* CardInfoTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC01D796276005EC5FF /* CardInfoTextFieldDelegate.swift */; };
+		126C4AF21D796276005EC5FF /* DetailInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC11D796276005EC5FF /* DetailInputTextField.swift */; };
+		126C4AF31D796276005EC5FF /* MonthInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC21D796276005EC5FF /* MonthInputTextField.swift */; };
+		126C4AF41D796276005EC5FF /* AutoCompletingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC41D796276005EC5FF /* AutoCompletingTextField.swift */; };
+		126C4AF51D796276005EC5FF /* TextFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC51D796276005EC5FF /* TextFieldValidation.swift */; };
+		126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC61D796276005EC5FF /* YearInputTextField.swift */; };
+		126C4AF71D796276005EC5FF /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC71D796276005EC5FF /* UITextField+Extensions.swift */; };
+		126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AC91D796276005EC5FF /* CardValidationResult.swift */; };
+		126C4AF91D796276005EC5FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 126C4ACB1D796276005EC5FF /* Localizable.strings */; };
+		126C4AFB1D796276005EC5FF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 126C4AD11D796276005EC5FF /* Info.plist */; };
+		126C4AFC1D796580005EC5FF /* CaishenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AD01D796276005EC5FF /* CaishenTests.swift */; };
+		126C4AFE1D796607005EC5FF /* CardFieldsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4AFD1D796607005EC5FF /* CardFieldsViewDelegate.swift */; };
 		12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */; };
 		12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */; };
 		12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B174801D54574100BD0B87 /* BraintreePaymentService.swift */; };
@@ -217,6 +265,11 @@
 		1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorUtil.swift; sourceTree = "<group>"; };
 		121531711D441E3100C28C73 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFieldsView.swift; path = Yibby/Views/CardFieldsView/CardFieldsView.swift; sourceTree = SOURCE_ROOT; };
+		1236AA501D72DD4900A36AC0 /* CardFieldsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardFieldsView.xib; path = ../../../CardFieldsView/CardFieldsView.xib; sourceTree = "<group>"; };
+		1236AA521D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CardFieldsView+CardInfoTextFieldDelegate.swift"; path = "../../../CardFieldsView/CardFieldsView+CardInfoTextFieldDelegate.swift"; sourceTree = "<group>"; };
+		1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostalCodeTextField.swift; path = ../../../../CardFieldsView/PostalCodeTextField.swift; sourceTree = "<group>"; };
+		1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardHolderNameTextField.swift; path = ../../../../CardFieldsView/CardHolderNameTextField.swift; sourceTree = "<group>"; };
 		123D41741D63011500475614 /* TypedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedNotifications.swift; sourceTree = "<group>"; };
 		123D41781D6302BF00475614 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		123D41791D6302BF00475614 /* BoxType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxType.swift; sourceTree = "<group>"; };
@@ -228,6 +281,51 @@
 		1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyViewController.swift; sourceTree = SOURCE_ROOT; };
 		1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTabViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTabViewController.swift; sourceTree = SOURCE_ROOT; };
 		1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTableViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		126C4A9A1D796276005EC5FF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		126C4A9D1D796276005EC5FF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		126C4A9E1D796276005EC5FF /* CardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		126C4A9F1D796276005EC5FF /* CardTypeRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTypeRegister.swift; sourceTree = "<group>"; };
+		126C4AA01D796276005EC5FF /* CVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVC.swift; sourceTree = "<group>"; };
+		126C4AA21D796276005EC5FF /* AmericanExpress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericanExpress.swift; sourceTree = "<group>"; };
+		126C4AA31D796276005EC5FF /* ChinaUnionPay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChinaUnionPay.swift; sourceTree = "<group>"; };
+		126C4AA41D796276005EC5FF /* DinersClub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinersClub.swift; sourceTree = "<group>"; };
+		126C4AA51D796276005EC5FF /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
+		126C4AA61D796276005EC5FF /* JCB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCB.swift; sourceTree = "<group>"; };
+		126C4AA71D796276005EC5FF /* MasterCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterCard.swift; sourceTree = "<group>"; };
+		126C4AA81D796276005EC5FF /* UnknownCardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownCardType.swift; sourceTree = "<group>"; };
+		126C4AA91D796276005EC5FF /* Visa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visa.swift; sourceTree = "<group>"; };
+		126C4AAA1D796276005EC5FF /* Expiry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expiry.swift; sourceTree = "<group>"; };
+		126C4AAB1D796276005EC5FF /* Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
+		126C4AAC1D796276005EC5FF /* CharacterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterExtension.swift; sourceTree = "<group>"; };
+		126C4AAE1D796276005EC5FF /* CardNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumberFormatter.swift; sourceTree = "<group>"; };
+		126C4AAF1D796276005EC5FF /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		126C4AB01D796276005EC5FF /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		126C4AB21D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardTextField+CardInfoTextFieldDelegate.swift"; sourceTree = "<group>"; };
+		126C4AB31D796276005EC5FF /* CardTextField+InterfaceBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardTextField+InterfaceBuilder.swift"; sourceTree = "<group>"; };
+		126C4AB41D796276005EC5FF /* CardTextField+PrefillInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardTextField+PrefillInformation.swift"; sourceTree = "<group>"; };
+		126C4AB51D796276005EC5FF /* CardTextField+ViewAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardTextField+ViewAnimations.swift"; sourceTree = "<group>"; };
+		126C4AB61D796276005EC5FF /* CardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTextField.swift; sourceTree = "<group>"; };
+		126C4AB71D796276005EC5FF /* CardTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTextFieldDelegate.swift; sourceTree = "<group>"; };
+		126C4AB81D796276005EC5FF /* CardTypeImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTypeImageStore.swift; sourceTree = "<group>"; };
+		126C4AB91D796276005EC5FF /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		126C4ABA1D796276005EC5FF /* NumberInputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberInputTextField.swift; sourceTree = "<group>"; };
+		126C4ABB1D796276005EC5FF /* NumberInputTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberInputTextFieldDelegate.swift; sourceTree = "<group>"; };
+		126C4ABC1D796276005EC5FF /* StylizedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylizedTextField.swift; sourceTree = "<group>"; };
+		126C4ABE1D796276005EC5FF /* CVCInputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCInputTextField.swift; sourceTree = "<group>"; };
+		126C4AC01D796276005EC5FF /* CardInfoTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoTextFieldDelegate.swift; sourceTree = "<group>"; };
+		126C4AC11D796276005EC5FF /* DetailInputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInputTextField.swift; sourceTree = "<group>"; };
+		126C4AC21D796276005EC5FF /* MonthInputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthInputTextField.swift; sourceTree = "<group>"; };
+		126C4AC41D796276005EC5FF /* AutoCompletingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompletingTextField.swift; sourceTree = "<group>"; };
+		126C4AC51D796276005EC5FF /* TextFieldValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldValidation.swift; sourceTree = "<group>"; };
+		126C4AC61D796276005EC5FF /* YearInputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearInputTextField.swift; sourceTree = "<group>"; };
+		126C4AC71D796276005EC5FF /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		126C4AC91D796276005EC5FF /* CardValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardValidationResult.swift; sourceTree = "<group>"; };
+		126C4ACC1D796276005EC5FF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		126C4ACD1D796276005EC5FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		126C4ACE1D796276005EC5FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		126C4AD01D796276005EC5FF /* CaishenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaishenTests.swift; sourceTree = "<group>"; };
+		126C4AD11D796276005EC5FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		126C4AFD1D796607005EC5FF /* CardFieldsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFieldsViewDelegate.swift; sourceTree = "<group>"; };
 		12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeBackendAPI.swift; sourceTree = "<group>"; };
 		12B174801D54574100BD0B87 /* BraintreePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreePaymentService.swift; sourceTree = "<group>"; };
@@ -321,6 +419,7 @@
 		1201B73A1D23A24500A7EEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				126C4A981D796276005EC5FF /* CaishenPaymentView */,
 				1201B82F1D28E22B00A7EEAF /* ElloButton.swift */,
 				1201B8301D28E22B00A7EEAF /* ElloLabel.swift */,
 				1201B8311D28E22B00A7EEAF /* ElloTextField.swift */,
@@ -621,6 +720,157 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		126C4A981D796276005EC5FF /* CaishenPaymentView */ = {
+			isa = PBXGroup;
+			children = (
+				126C4A991D796276005EC5FF /* Assets */,
+				126C4A9B1D796276005EC5FF /* Classes */,
+				126C4ACA1D796276005EC5FF /* Resources */,
+				126C4ACF1D796276005EC5FF /* Tests */,
+			);
+			path = CaishenPaymentView;
+			sourceTree = "<group>";
+		};
+		126C4A991D796276005EC5FF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				126C4A9A1D796276005EC5FF /* Media.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		126C4A9B1D796276005EC5FF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				126C4A9C1D796276005EC5FF /* Cards */,
+				126C4AAC1D796276005EC5FF /* CharacterExtension.swift */,
+				126C4AAD1D796276005EC5FF /* Format */,
+				126C4AAF1D796276005EC5FF /* Localization.swift */,
+				126C4AB01D796276005EC5FF /* StringExtension.swift */,
+				126C4AB11D796276005EC5FF /* UI */,
+				126C4AC71D796276005EC5FF /* UITextField+Extensions.swift */,
+				126C4AC81D796276005EC5FF /* Validation */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		126C4A9C1D796276005EC5FF /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				126C4A9D1D796276005EC5FF /* Card.swift */,
+				126C4A9E1D796276005EC5FF /* CardType.swift */,
+				126C4A9F1D796276005EC5FF /* CardTypeRegister.swift */,
+				126C4AA01D796276005EC5FF /* CVC.swift */,
+				126C4AA11D796276005EC5FF /* Default Card Types */,
+				126C4AAA1D796276005EC5FF /* Expiry.swift */,
+				126C4AAB1D796276005EC5FF /* Number.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		126C4AA11D796276005EC5FF /* Default Card Types */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AA21D796276005EC5FF /* AmericanExpress.swift */,
+				126C4AA31D796276005EC5FF /* ChinaUnionPay.swift */,
+				126C4AA41D796276005EC5FF /* DinersClub.swift */,
+				126C4AA51D796276005EC5FF /* Discover.swift */,
+				126C4AA61D796276005EC5FF /* JCB.swift */,
+				126C4AA71D796276005EC5FF /* MasterCard.swift */,
+				126C4AA81D796276005EC5FF /* UnknownCardType.swift */,
+				126C4AA91D796276005EC5FF /* Visa.swift */,
+			);
+			path = "Default Card Types";
+			sourceTree = "<group>";
+		};
+		126C4AAD1D796276005EC5FF /* Format */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AAE1D796276005EC5FF /* CardNumberFormatter.swift */,
+			);
+			path = Format;
+			sourceTree = "<group>";
+		};
+		126C4AB11D796276005EC5FF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AFD1D796607005EC5FF /* CardFieldsViewDelegate.swift */,
+				1236AA521D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift */,
+				1236AA501D72DD4900A36AC0 /* CardFieldsView.xib */,
+				1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */,
+				126C4AB21D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift */,
+				126C4AB31D796276005EC5FF /* CardTextField+InterfaceBuilder.swift */,
+				126C4AB41D796276005EC5FF /* CardTextField+PrefillInformation.swift */,
+				126C4AB51D796276005EC5FF /* CardTextField+ViewAnimations.swift */,
+				126C4AB61D796276005EC5FF /* CardTextField.swift */,
+				126C4AB71D796276005EC5FF /* CardTextFieldDelegate.swift */,
+				126C4AB81D796276005EC5FF /* CardTypeImageStore.swift */,
+				126C4AB91D796276005EC5FF /* CardView.xib */,
+				126C4ABA1D796276005EC5FF /* NumberInputTextField.swift */,
+				126C4ABB1D796276005EC5FF /* NumberInputTextFieldDelegate.swift */,
+				126C4ABC1D796276005EC5FF /* StylizedTextField.swift */,
+				126C4ABD1D796276005EC5FF /* Text Fields */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		126C4ABD1D796276005EC5FF /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */,
+				1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */,
+				126C4ABE1D796276005EC5FF /* CVCInputTextField.swift */,
+				126C4ABF1D796276005EC5FF /* Delegates */,
+				126C4AC11D796276005EC5FF /* DetailInputTextField.swift */,
+				126C4AC21D796276005EC5FF /* MonthInputTextField.swift */,
+				126C4AC31D796276005EC5FF /* Protocols */,
+				126C4AC61D796276005EC5FF /* YearInputTextField.swift */,
+			);
+			path = "Text Fields";
+			sourceTree = "<group>";
+		};
+		126C4ABF1D796276005EC5FF /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AC01D796276005EC5FF /* CardInfoTextFieldDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		126C4AC31D796276005EC5FF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AC41D796276005EC5FF /* AutoCompletingTextField.swift */,
+				126C4AC51D796276005EC5FF /* TextFieldValidation.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		126C4AC81D796276005EC5FF /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AC91D796276005EC5FF /* CardValidationResult.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		126C4ACA1D796276005EC5FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				126C4ACB1D796276005EC5FF /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		126C4ACF1D796276005EC5FF /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				126C4AD01D796276005EC5FF /* CaishenTests.swift */,
+				126C4AD11D796276005EC5FF /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		12EB18131C59FA980037EB86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,6 +1042,8 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				"zh-Hans",
 			);
 			mainGroup = 12F3CCC91C41EFC700F79A26;
 			productRefGroup = 12F3CCD31C41EFC700F79A26 /* Products */;
@@ -811,10 +1063,14 @@
 			files = (
 				1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */,
 				1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */,
+				126C4AEC1D796276005EC5FF /* CardView.xib in Resources */,
 				1201B7F61D25010500A7EEAF /* Destination.storyboard in Resources */,
+				126C4AF91D796276005EC5FF /* Localizable.strings in Resources */,
 				1201B7F41D2500EA00A7EEAF /* Payment.storyboard in Resources */,
 				1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */,
+				126C4AD21D796276005EC5FF /* Media.xcassets in Resources */,
 				1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */,
+				1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */,
 				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
 				1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */,
 				1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */,
@@ -825,6 +1081,7 @@
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
 				1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */,
 				1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */,
+				126C4AFB1D796276005EC5FF /* Info.plist in Resources */,
 				123D417E1D6302BF00475614 /* LICENSE.txt in Resources */,
 				1201B8271D28ADC800A7EEAF /* AlertCell.xib in Resources */,
 				1201B7F21D2500D200A7EEAF /* History.storyboard in Resources */,
@@ -956,6 +1213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				126C4AF11D796276005EC5FF /* CardInfoTextFieldDelegate.swift in Sources */,
 				1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */,
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
@@ -965,62 +1223,101 @@
 				1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */,
 				1201B7691D23A85F00A7EEAF /* LoginViewController.swift in Sources */,
 				1201B83E1D28E90000A7EEAF /* ScreenExtensions.swift in Sources */,
+				1236AA4E1D72DC0100A36AC0 /* CardFieldsView.swift in Sources */,
 				1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */,
 				123D417D1D6302BF00475614 /* BoxType.swift in Sources */,
 				1201B77A1D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m in Sources */,
+				126C4AE11D796276005EC5FF /* CharacterExtension.swift in Sources */,
+				126C4AE21D796276005EC5FF /* CardNumberFormatter.swift in Sources */,
 				1201B8341D28E22B00A7EEAF /* ElloTextField.swift in Sources */,
 				121096931D1142E000D7174F /* LocationService.swift in Sources */,
 				1254E13A1D66DB77007067BC /* JoinViewController.swift in Sources */,
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
+				126C4AD71D796276005EC5FF /* AmericanExpress.swift in Sources */,
 				1201B8541D32445E00A7EEAF /* Bid.swift in Sources */,
 				1201B84C1D290AF800A7EEAF /* ProfileService.swift in Sources */,
+				126C4ADB1D796276005EC5FF /* JCB.swift in Sources */,
+				126C4AF01D796276005EC5FF /* CVCInputTextField.swift in Sources */,
+				126C4ADE1D796276005EC5FF /* Visa.swift in Sources */,
+				126C4AF71D796276005EC5FF /* UITextField+Extensions.swift in Sources */,
+				126C4ADC1D796276005EC5FF /* MasterCard.swift in Sources */,
+				126C4AD91D796276005EC5FF /* DinersClub.swift in Sources */,
 				1201B7721D23A85F00A7EEAF /* SignupViewController.swift in Sources */,
 				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
+				126C4AE91D796276005EC5FF /* CardTextField.swift in Sources */,
+				1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */,
+				126C4ADF1D796276005EC5FF /* Expiry.swift in Sources */,
 				1201B7881D23AF0100A7EEAF /* BidState.swift in Sources */,
+				126C4ADA1D796276005EC5FF /* Discover.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
 				1201B8401D28E93900A7EEAF /* FreeMethods.swift in Sources */,
 				1201B8441D28EA7200A7EEAF /* NSObjectClassName.swift in Sources */,
+				126C4AEF1D796276005EC5FF /* StylizedTextField.swift in Sources */,
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
 				1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */,
+				126C4AEB1D796276005EC5FF /* CardTypeImageStore.swift in Sources */,
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
 				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
+				126C4AE61D796276005EC5FF /* CardTextField+InterfaceBuilder.swift in Sources */,
+				126C4AF31D796276005EC5FF /* MonthInputTextField.swift in Sources */,
+				126C4AD31D796276005EC5FF /* Card.swift in Sources */,
+				126C4AD41D796276005EC5FF /* CardType.swift in Sources */,
 				1201B8521D2B471800A7EEAF /* RideService.swift in Sources */,
 				1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */,
 				1201B8251D28ADC800A7EEAF /* AlertAction.swift in Sources */,
+				126C4AE41D796276005EC5FF /* StringExtension.swift in Sources */,
 				1201B83C1D28E8AE00A7EEAF /* Keyboard.swift in Sources */,
 				1201B7651D23A85F00A7EEAF /* DestinationPickerViewController.swift in Sources */,
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
+				126C4AE71D796276005EC5FF /* CardTextField+PrefillInformation.swift in Sources */,
 				1201B83A1D28E58300A7EEAF /* InterfaceImage.swift in Sources */,
 				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,
 				12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */,
 				121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */,
 				1201B8381D28E47B00A7EEAF /* CGRectExtensions.swift in Sources */,
+				126C4AE31D796276005EC5FF /* Localization.swift in Sources */,
+				126C4AFE1D796607005EC5FF /* CardFieldsViewDelegate.swift in Sources */,
+				126C4AEE1D796276005EC5FF /* NumberInputTextFieldDelegate.swift in Sources */,
+				1236AA5F1D76A5C500A36AC0 /* CardHolderNameTextField.swift in Sources */,
 				1201B7731D23A85F00A7EEAF /* SplashViewController.swift in Sources */,
 				1201B8161D289D6700A7EEAF /* UIImageViewExtensions.swift in Sources */,
+				126C4AF21D796276005EC5FF /* DetailInputTextField.swift in Sources */,
+				126C4AD51D796276005EC5FF /* CardTypeRegister.swift in Sources */,
+				126C4ADD1D796276005EC5FF /* UnknownCardType.swift in Sources */,
 				1201B8421D28EA3700A7EEAF /* UIViewNibLoading.swift in Sources */,
 				1201B7711D23A85F00A7EEAF /* SettingsViewController.swift in Sources */,
 				1201B8461D28EB4200A7EEAF /* ImageExtensions.swift in Sources */,
 				1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */,
 				1201B76F1D23A85F00A7EEAF /* RideEndViewController.swift in Sources */,
+				126C4AE01D796276005EC5FF /* Number.swift in Sources */,
 				1201B8481D28EC6900A7EEAF /* Array.swift in Sources */,
 				1201B8281D28ADC800A7EEAF /* AlertCellPresenter.swift in Sources */,
+				126C4AD61D796276005EC5FF /* CVC.swift in Sources */,
+				1236AA531D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */,
 				1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */,
+				126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */,
+				126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
 				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
+				126C4AEA1D796276005EC5FF /* CardTextFieldDelegate.swift in Sources */,
+				126C4AF41D796276005EC5FF /* AutoCompletingTextField.swift in Sources */,
 				121531721D441E3100C28C73 /* TimeUtil.swift in Sources */,
 				1201B8191D28AA0C00A7EEAF /* Colors.swift in Sources */,
 				123D417C1D6302BF00475614 /* Box.swift in Sources */,
+				126C4AE81D796276005EC5FF /* CardTextField+ViewAnimations.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
 				1201B8321D28E22B00A7EEAF /* ElloButton.swift in Sources */,
 				1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */,
 				1201B82B1D28ADC800A7EEAF /* AlertPresentationController.swift in Sources */,
 				1201B8331D28E22B00A7EEAF /* ElloLabel.swift in Sources */,
+				126C4AED1D796276005EC5FF /* NumberInputTextField.swift in Sources */,
 				124FD5CF1D362CFD002A4AB2 /* StripeBackendAPI.swift in Sources */,
+				126C4AD81D796276005EC5FF /* ChinaUnionPay.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
@@ -1029,11 +1326,13 @@
 				12F092AB1D3E156700F158BB /* StripePaymentService.swift in Sources */,
 				1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */,
 				1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */,
+				126C4AF51D796276005EC5FF /* TextFieldValidation.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
 				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
+				126C4AE51D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
 				1254E13D1D693063007067BC /* YibbyTextField.swift in Sources */,
@@ -1045,6 +1344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12F3CCEB1C41EFC800F79A26 /* YibbyTests.swift in Sources */,
+				126C4AFC1D796580005EC5FF /* CaishenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,6 +1365,16 @@
 				1201B78C1D23B0B900A7EEAF /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		126C4ACB1D796276005EC5FF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				126C4ACC1D796276005EC5FF /* de */,
+				126C4ACD1D796276005EC5FF /* en */,
+				126C4ACE1D796276005EC5FF /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */ = {
@@ -1170,7 +1480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

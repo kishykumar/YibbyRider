@@ -3,6 +3,7 @@
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -138,38 +139,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L31-po-wPO" customClass="STPPaymentCardTextField">
-                                <rect key="frame" x="42" y="108" width="237" height="39"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbC-mZ-IC0" customClass="CardFieldsView" customModule="Yibby" customModuleProvider="target">
+                                <rect key="frame" x="16" y="104" width="288" height="237"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CbC-mZ-IC0" secondAttribute="height" multiplier="96:79" id="Q8o-OT-jgI"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-0x-YDS">
-                                <rect key="frame" x="102" y="177" width="117" height="30"/>
-                                <state key="normal" title="Scan Credit Card"/>
-                                <connections>
-                                    <action selector="scanCardAction:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="Ycc-oj-LLH"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hY-ah-QFP" customClass="BButton">
-                                <rect key="frame" x="42" y="244" width="237" height="30"/>
+                                <rect key="frame" x="16" y="490" width="288" height="48"/>
                                 <color key="backgroundColor" red="0.93059724569320679" green="0.27452105283737183" blue="0.18561512231826782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3hY-ah-QFP" secondAttribute="height" multiplier="6" id="S6N-F2-pQM"/>
+                                </constraints>
                                 <color key="tintColor" red="0.9333532452583313" green="0.97651690244674683" blue="0.91809099912643433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Delete"/>
                                 <connections>
                                     <action selector="deleteCardAction:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="bpV-ig-zCy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-0x-YDS">
+                                <rect key="frame" x="16" y="361" width="288" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZJJ-0x-YDS" secondAttribute="height" multiplier="6" id="c27-d4-ITp"/>
+                                </constraints>
+                                <state key="normal" title="Scan Credit Card"/>
+                                <connections>
+                                    <action selector="scanCardAction:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="Ycc-oj-LLH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="L31-po-wPO" firstAttribute="top" secondItem="VIK-rb-uT8" secondAttribute="bottom" constant="44" id="TWm-WM-Mo6"/>
-                            <constraint firstItem="L31-po-wPO" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" constant="26" id="XYW-7S-4ZY"/>
-                            <constraint firstItem="ZJJ-0x-YDS" firstAttribute="centerX" secondItem="3hY-ah-QFP" secondAttribute="centerX" id="YXQ-ZM-NRm"/>
-                            <constraint firstItem="3hY-ah-QFP" firstAttribute="top" secondItem="ZJJ-0x-YDS" secondAttribute="bottom" constant="37" id="m1f-eR-Qxn"/>
-                            <constraint firstItem="LQB-2Q-EQa" firstAttribute="top" secondItem="3hY-ah-QFP" secondAttribute="bottom" constant="294" id="nuE-5i-ehg"/>
-                            <constraint firstItem="L31-po-wPO" firstAttribute="centerX" secondItem="3YO-Rg-t82" secondAttribute="centerX" id="olY-T5-4s2"/>
-                            <constraint firstItem="ZJJ-0x-YDS" firstAttribute="top" secondItem="L31-po-wPO" secondAttribute="bottom" constant="30" id="qW9-wA-t7k"/>
-                            <constraint firstItem="L31-po-wPO" firstAttribute="leading" secondItem="3hY-ah-QFP" secondAttribute="leading" id="r4t-P1-TSg"/>
-                            <constraint firstItem="L31-po-wPO" firstAttribute="trailing" secondItem="3hY-ah-QFP" secondAttribute="trailing" id="woe-W9-6dl"/>
+                            <constraint firstItem="ZJJ-0x-YDS" firstAttribute="top" secondItem="CbC-mZ-IC0" secondAttribute="bottom" constant="20" id="5A8-Di-Ncz"/>
+                            <constraint firstItem="CbC-mZ-IC0" firstAttribute="trailing" secondItem="3YO-Rg-t82" secondAttribute="trailingMargin" id="NSq-1Q-Stn"/>
+                            <constraint firstItem="3hY-ah-QFP" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="ZRJ-iI-ApU"/>
+                            <constraint firstItem="CbC-mZ-IC0" firstAttribute="top" secondItem="VIK-rb-uT8" secondAttribute="bottom" constant="40" id="cuz-O4-E3w"/>
+                            <constraint firstItem="LQB-2Q-EQa" firstAttribute="top" secondItem="3hY-ah-QFP" secondAttribute="bottom" constant="30" id="eeX-cu-mjP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZJJ-0x-YDS" secondAttribute="trailing" id="hX2-SX-lZk"/>
+                            <constraint firstItem="3hY-ah-QFP" firstAttribute="trailing" secondItem="3YO-Rg-t82" secondAttribute="trailingMargin" id="leP-vx-eWX"/>
+                            <constraint firstItem="ZJJ-0x-YDS" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="mNH-fw-Hvu"/>
+                            <constraint firstItem="CbC-mZ-IC0" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="yP1-BB-7zv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zS9-Xc-F0J">
@@ -186,8 +195,8 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="cardFieldsViewOutlet" destination="CbC-mZ-IC0" id="R0F-af-RKO"/>
                         <outlet property="deleteCardButtonOutlet" destination="3hY-ah-QFP" id="coA-6D-llf"/>
-                        <outlet property="paymentTextFieldOutlet" destination="L31-po-wPO" id="4Rt-As-qeu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8P-jn-AoH" userLabel="First Responder" sceneMemberID="firstResponder"/>

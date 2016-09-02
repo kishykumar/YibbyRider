@@ -66,10 +66,12 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
 
     // MARK: - Properties
     
-    @IBOutlet weak var paymentTextFieldOutlet: STPPaymentCardTextField?
-    
+    @IBOutlet weak var cardFieldsViewOutlet: CardFieldsView!
     @IBOutlet weak var deleteCardButtonOutlet: BButton!
     
+    
+    // TODO: Payment Type Icon
+//    var cardNumberField: BTUICardHint?
     
     // The STPAPIClient talks directly to Stripe to get the Token 
     // given a payment card.
@@ -136,7 +138,12 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
-        let cardParams = paymentTextFieldOutlet!.cardParams
+        let cardParams = STPCardParams()
+        
+        cardParams.number = cardFieldsViewOutlet.numberInputTextField.text
+        cardParams.expMonth = UInt(cardFieldsViewOutlet.monthTextField.text!)!
+        cardParams.expYear = UInt(cardFieldsViewOutlet.yearTextField.text!)!
+        cardParams.cvc = cardFieldsViewOutlet.cvcTextField.text
         
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
 
@@ -236,7 +243,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         presentViewController(cardIOVC, animated: true, completion: nil)
     }
     
-    // MARK: CardIO Delegate Functions
+    // MARK: - CardIO Delegate Functions
     
     func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController!) {
         paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -252,7 +259,10 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             cardParams.expYear = info.expiryYear
             cardParams.cvc = info.cvv
             
-            paymentTextFieldOutlet!.cardParams = cardParams
+            self.cardFieldsViewOutlet.numberInputTextField.placeholder = cardParams.number
+            self.cardFieldsViewOutlet.monthTextField.placeholder = String(cardParams.expMonth)
+            self.cardFieldsViewOutlet.yearTextField.placeholder = String(cardParams.expYear)
+            self.cardFieldsViewOutlet.cvcTextField.placeholder = cardParams.cvc
         }
         
         paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -270,9 +280,9 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             
             // cardParams.number will have the last 4 of the card
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-            paymentTextFieldOutlet!.numberPlaceholder = "************" + card.last4()
+            self.cardFieldsViewOutlet.numberInputTextField.placeholder = "************" + card.last4()
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-            paymentTextFieldOutlet!.numberPlaceholder = "************" + card.localizedDescription
+            self.cardFieldsViewOutlet.numberInputTextField.placeholder = "************" + card.localizedDescription
 #endif
 
         }
