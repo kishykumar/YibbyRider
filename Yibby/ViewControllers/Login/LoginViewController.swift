@@ -16,6 +16,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     // MARK: - Properties
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var loginButtonOutlet: YibbyButton1!
     
     static let PASSWORD_KEY_NAME = "PASSWORD"
     static let EMAIL_ADDRESS_KEY_NAME = "EMAIL_ADDRESS"
@@ -24,10 +25,21 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     // MARK: - Setup functions
     
+    func setupDelegates() {
+        emailAddress.delegate = self
+        password.delegate = self
+    }
+    
+    func setupUI() {
+        loginButtonOutlet.color = UIColor.appDarkGreen1()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        setupDelegates()
+        setupUI()
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -48,13 +60,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     // MARK: - Actions
     @IBAction func loginAction(sender: AnyObject) {
-        
-        
-        if (emailAddress.text == "" || password.text == "") {
-            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
-        } else {
-            loginUser(emailAddress.text!, passwordi: password.text!)
-        }
+        submitLoginForm()
     }
     
     // MARK: - KeyChain functions
@@ -76,6 +82,14 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     // MARK: - Helper functions
     
+    func submitLoginForm() {
+        if (emailAddress.text == "" || password.text == "") {
+            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
+        } else {
+            loginUser(emailAddress.text!, passwordi: password.text!)
+        }
+    }
+    
     // BaasBox login user
     func loginUser(usernamei: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
@@ -96,8 +110,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
                 
                 if (self.onStartup) {
                     // switch to Main View Controller
-                    appDelegate.initializeMainViewController()
-                    self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
+                    MainViewController.initMainViewController(self, animated: true)
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
@@ -128,4 +141,26 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     }
     */
 
+}
+
+// MARK: - UITextFieldDelegate
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField == emailAddress {
+            
+            password.becomeFirstResponder()
+            return false
+            
+        } else if textField == password {
+            
+            password.resignFirstResponder()
+            return false
+            
+        }
+        
+        return true
+    }
 }

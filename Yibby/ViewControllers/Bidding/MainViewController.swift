@@ -73,9 +73,6 @@ public class MainViewController: BaseYibbyViewController,
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
     
-    // UI Elements
-    let NAV_BAR_COLOR_CODE = 0xc6433b
-    
     // MARK: - Actions
     
     @IBAction func leftSlideButtonTapped(sender: AnyObject) {
@@ -166,6 +163,16 @@ public class MainViewController: BaseYibbyViewController,
     }
     
     // MARK: - Setup
+    
+    static func initMainViewController(vc: UIViewController, animated anim: Bool) {
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        appDelegate.sendGCMTokenToServer()
+
+        appDelegate.initializeMainViewController()
+        vc.presentViewController(appDelegate.centerContainer!, animated: anim, completion: nil)
+    }
+    
     func setupUI () {
 
         // currency range slider
@@ -175,7 +182,7 @@ public class MainViewController: BaseYibbyViewController,
         self.rangeSlider.numberFormatterOverride = formatter
 
         setNavigationBarColor()
-        setStatusBarColor()
+//        setStatusBarColor()
         
         // update card UI
         if let method = self.selectedPaymentMethod {
@@ -185,15 +192,15 @@ public class MainViewController: BaseYibbyViewController,
     
     func setNavigationBarColor () {
         // set nav bar color
-        self.navigationController!.navigationBar.barTintColor = UIColor(netHex: NAV_BAR_COLOR_CODE)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController!.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+//        self.navigationController!.navigationBar.translucent = false
         
         // Set Title Font, Font size, Font color
-        self.navigationController!.navigationBar.titleTextAttributes = [
-            NSFontAttributeName : UIFont.systemFontOfSize(18.0),
-            NSForegroundColorAttributeName : UIColor.whiteColor()
-        ]
+//        self.navigationController!.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName : UIFont.systemFontOfSize(18.0),
+//            NSForegroundColorAttributeName : UIColor.whiteColor()
+//        ]
 
 //
 //        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.            whiteColor()]
@@ -286,7 +293,7 @@ public class MainViewController: BaseYibbyViewController,
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     
     // The pickup and dropoff textfields should not pop up a keyboapublic rd
     public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -311,7 +318,7 @@ public class MainViewController: BaseYibbyViewController,
         return false
     }
 
-    // MARK: SelectPaymentViewControllerDelegate
+    // MARK: - SelectPaymentViewControllerDelegate
     
     func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
         self.navigationController!.popViewControllerAnimated(true)

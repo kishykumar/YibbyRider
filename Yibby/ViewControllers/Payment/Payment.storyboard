@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Payment View Controller-->
+        <!--Payment-->
         <scene sceneID="czS-gS-qvj">
             <objects>
                 <tableViewController storyboardIdentifier="PaymentViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EXy-jx-s53" customClass="PaymentViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
@@ -105,7 +105,7 @@
                             <outlet property="delegate" destination="EXy-jx-s53" id="d28-oN-ZUG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ZgU-8M-74e">
+                    <navigationItem key="navigationItem" title="Payment" id="ZgU-8M-74e">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eyb-AQ-VAQ">
                             <connections>
                                 <action selector="cancelButtonAction:" destination="EXy-jx-s53" id="Dch-sY-Idn"/>
@@ -127,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="-13194" y="-855"/>
         </scene>
-        <!--Add Payment View Controller-->
+        <!--Add Payment-->
         <scene sceneID="OhF-fa-WYq">
             <objects>
                 <viewController storyboardIdentifier="AddPaymentViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vg4-FY-bXK" customClass="AddPaymentViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
@@ -145,7 +145,7 @@
                                     <constraint firstAttribute="width" secondItem="CbC-mZ-IC0" secondAttribute="height" multiplier="96:79" id="Q8o-OT-jgI"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hY-ah-QFP" customClass="BButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hY-ah-QFP" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                 <rect key="frame" x="16" y="490" width="288" height="48"/>
                                 <color key="backgroundColor" red="0.93059724569320679" green="0.27452105283737183" blue="0.18561512231826782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -158,10 +158,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-0x-YDS">
-                                <rect key="frame" x="16" y="361" width="288" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ZJJ-0x-YDS" secondAttribute="height" multiplier="6" id="c27-d4-ITp"/>
-                                </constraints>
+                                <rect key="frame" x="102" y="361" width="117" height="30"/>
                                 <state key="normal" title="Scan Credit Card"/>
                                 <connections>
                                     <action selector="scanCardAction:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="Ycc-oj-LLH"/>
@@ -172,22 +169,23 @@
                         <constraints>
                             <constraint firstItem="ZJJ-0x-YDS" firstAttribute="top" secondItem="CbC-mZ-IC0" secondAttribute="bottom" constant="20" id="5A8-Di-Ncz"/>
                             <constraint firstItem="CbC-mZ-IC0" firstAttribute="trailing" secondItem="3YO-Rg-t82" secondAttribute="trailingMargin" id="NSq-1Q-Stn"/>
+                            <constraint firstItem="ZJJ-0x-YDS" firstAttribute="centerX" secondItem="3YO-Rg-t82" secondAttribute="centerX" id="QIL-gk-nMj"/>
                             <constraint firstItem="3hY-ah-QFP" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="ZRJ-iI-ApU"/>
                             <constraint firstItem="CbC-mZ-IC0" firstAttribute="top" secondItem="VIK-rb-uT8" secondAttribute="bottom" constant="40" id="cuz-O4-E3w"/>
                             <constraint firstItem="LQB-2Q-EQa" firstAttribute="top" secondItem="3hY-ah-QFP" secondAttribute="bottom" constant="30" id="eeX-cu-mjP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZJJ-0x-YDS" secondAttribute="trailing" id="hX2-SX-lZk"/>
                             <constraint firstItem="3hY-ah-QFP" firstAttribute="trailing" secondItem="3YO-Rg-t82" secondAttribute="trailingMargin" id="leP-vx-eWX"/>
-                            <constraint firstItem="ZJJ-0x-YDS" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="mNH-fw-Hvu"/>
                             <constraint firstItem="CbC-mZ-IC0" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="yP1-BB-7zv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zS9-Xc-F0J">
+                    <navigationItem key="navigationItem" title="Add Payment" id="zS9-Xc-F0J">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xju-6P-eZO">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonAction:" destination="Vg4-FY-bXK" id="OXJ-H6-Ikl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="K4D-Oo-WNE">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="K4D-Oo-WNE">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveButtonAction:" destination="Vg4-FY-bXK" id="Mjr-Po-wD1"/>
                             </connections>
@@ -195,8 +193,10 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="cancelButtonOutlet" destination="xju-6P-eZO" id="jN6-yn-jkD"/>
                         <outlet property="cardFieldsViewOutlet" destination="CbC-mZ-IC0" id="R0F-af-RKO"/>
                         <outlet property="deleteCardButtonOutlet" destination="3hY-ah-QFP" id="coA-6D-llf"/>
+                        <outlet property="saveCardButtonOutlet" destination="K4D-Oo-WNE" id="wC9-c7-bqd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8P-jn-AoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -228,8 +228,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4OR-ui-BuD" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="66T-ac-Kut">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="66T-ac-Kut">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

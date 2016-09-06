@@ -10,6 +10,7 @@ import UIKit
 import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
+import Braintree
 
 class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
@@ -18,22 +19,36 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     @IBOutlet weak var emailAddressOutlet: UITextField!
     @IBOutlet weak var phoneNumberOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
+    @IBOutlet weak var signupButtonOutlet: YibbyButton1!
     
-    let ACTIVITY_INDICATOR_TAG: Int = 1
-
+    // flag to test creating the same user without calling the webserver.
+    let testMode = true
+    
     // MARK: - Actions
+    
     @IBAction func submitFormButton(sender: UIButton) {
-        if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
-            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
-        } else {
-            createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
-        }
+        submitForm()
+    }
+    
+    // MARK: - Setup functions
+    
+    func setupUI() {
+        signupButtonOutlet.color = UIColor.appDarkGreen1()
+    }
+    
+    func setupDelegates() {
+        nameOutlet.delegate = self
+        emailAddressOutlet.delegate = self
+        phoneNumberOutlet.delegate = self
+        passwordOutlet.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupDelegates()
+        setupUI()
         self.hideKeyboardWhenTappedAround()
     }
 
@@ -58,7 +73,15 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     */
 
     
-    // MARK: BaasBox Functions
+    // MARK: - Helper Functions
+    
+    func submitForm() {
+        if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
+            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
+        } else {
+            createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
+        }
+    }
     
     // BaasBox create user
     func createUser(usernamei: String, passwordi: String) {
@@ -66,16 +89,21 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
         let client: BAAClient = BAAClient.sharedClient()
         client.createCaberWithUsername(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
-            if (success) {
+            if (success || self.testMode) {
                 DDLogVerbose("Success signing up: \(success)")
 
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
                 
-                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.initializeMainViewController()
-                appDelegate.sendGCMTokenToServer()
-                self.presentViewController(appDelegate.centerContainer!, animated: true, completion: nil)
+                // TODO: Show the payment view controller
+                
+                let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+                let apViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+                
+                apViewController.signupDelegate = self
+                apViewController.isSignup = true
+                
+                self.navigationController!.pushViewController(apViewController, animated: true)
             }
             else {
                 DDLogVerbose("Signup failed: \(error)")
@@ -90,4 +118,60 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Sign up")
     }
+}
+
+// MARK: - SignupPaymentViewControllerDelegate
+
+extension SignupViewController: SignupPaymentViewControllerDelegate {
+    
+    func signupPaymentViewControllerDidSkip(addPaymentViewController: AddPaymentViewController) {
+        MainViewController.initMainViewController(self, animated: true)
+    }
+    
+    func signupPaymentViewController(addPaymentViewController: AddPaymentViewController,
+                                     didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock) {
+        
+        BraintreePaymentService.sharedInstance().attachSourceToCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
+            
+            // execute the completion block first
+            completion(error)
+            
+            if (error == nil) {
+                MainViewController.initMainViewController(self, animated: true)
+            }
+        })
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension SignupViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField == nameOutlet {
+            
+            phoneNumberOutlet.becomeFirstResponder()
+            return false
+            
+        } else if textField == phoneNumberOutlet {
+            
+            emailAddressOutlet.becomeFirstResponder()
+            return false
+            
+        } else if textField == emailAddressOutlet {
+            
+            passwordOutlet.becomeFirstResponder()
+            return false
+
+        } else if textField == passwordOutlet {
+            
+            passwordOutlet.resignFirstResponder()
+            return false
+            
+        }
+        
+        return true
+    }
+    
 }

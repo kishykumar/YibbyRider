@@ -36,7 +36,7 @@ PODS:
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (2.3.0):
     - CocoaLumberjack/Extensions
-  - Crashlytics (3.7.2):
+  - Crashlytics (3.8.0):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
   - ElloOSSUIFonts (1.0.1)
@@ -70,6 +70,7 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
+  - IQKeyboardManagerSwift (4.0.5)
   - LaunchScreen (1.0.0)
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
@@ -115,6 +116,7 @@ DEPENDENCIES:
   - FDStackView (~> 1.0)
   - Google/CloudMessaging
   - GoogleMaps
+  - IQKeyboardManagerSwift
   - LaunchScreen
   - MMDrawerController (~> 0.5.7)
   - PINRemoteImage
@@ -148,7 +150,7 @@ SPEC CHECKSUMS:
   Braintree: 772ab9104053cca5d8cc3b32d79e6b1272f46527
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   ElloOSSUIFonts: 4bc41bfb20baa34ce07215ad924254e514f65458
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
@@ -163,6 +165,7 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   LaunchScreen: 964c1b844d4190be813a0dee0ee791069325f277
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   PINCache: '078426d356ab95ef875e9e62e5c35a2ea3333c28'
@@ -175,6 +178,6 @@ SPEC CHECKSUMS:
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
-PODFILE CHECKSUM: 656a4121afeb2b5987fb9e0bfc259e513c69e245
+PODFILE CHECKSUM: 7f6250a5d697b656c8d12ba3e2bbd8817023a6e9
 
 COCOAPODS: 1.0.1

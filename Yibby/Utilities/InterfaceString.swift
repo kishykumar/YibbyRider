@@ -167,4 +167,5 @@ public struct InterfaceString {
     static let Done = NSLocalizedString("Done", comment: "Done button title")
     static let Skip = NSLocalizedString("Skip", comment: "Skip action")
     static let SettingsAction = NSLocalizedString("Settings", comment: "Settings")
+    static let Add = NSLocalizedString("Add", comment: "Add")
 }

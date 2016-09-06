@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-HI-x7V" customClass="BButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-HI-x7V" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                 <rect key="frame" x="16" y="254" width="288" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fFa-HI-x7V" secondAttribute="height" multiplier="6" id="nT7-m1-QjM"/>
@@ -28,11 +28,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginAction:" destination="JUq-dg-2vG" eventType="touchUpInside" id="Mu2-7s-cYY"/>
                                 </connections>
@@ -46,12 +41,12 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="john.smith@gmail.com" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Odw-c0-M2g">
                                                 <rect key="frame" x="0.0" y="0.0" width="268" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-sn-LvO">
                                                 <rect key="frame" x="0.0" y="58" width="268" height="47"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -124,6 +119,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="emailAddress" destination="Odw-c0-M2g" id="O88-7L-yD8"/>
+                        <outlet property="loginButtonOutlet" destination="fFa-HI-x7V" id="dSC-jk-zwT"/>
                         <outlet property="password" destination="6MP-sn-LvO" id="jv7-Ce-2Jt"/>
                     </connections>
                 </viewController>

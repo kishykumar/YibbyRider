@@ -121,7 +121,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
             // remove the save button
             self.navigationItem.rightBarButtonItems?.removeAll()
             
-            // remove the cancel button
+            // remove the cancel button and show the back button
             self.navigationItem.leftBarButtonItems?.removeAll()
             
         } else if (controllerType == PaymentViewControllerType.PickForRide) {
@@ -364,7 +364,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         }
     }
     
-    // MARK: AddPaymentViewControllerDelegate
+    // MARK: - AddPaymentViewControllerDelegate
     
     func addPaymentViewControllerDidCancel(addPaymentViewController: AddPaymentViewController) {
         self.navigationController!.popViewControllerAnimated(true)
@@ -398,7 +398,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         })
     }
     
-    // MARK: EditPaymentViewControllerDelegate
+    // MARK: - EditPaymentViewControllerDelegate
     
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
                                       didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock) {
@@ -486,7 +486,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         })
     }
     
-    // MARK: SelectPaymentViewControllerDelegate
+    // MARK: - SelectPaymentViewControllerDelegate
     
     func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
                                     didSelectPaymentMethod method: STPPaymentMethod,
@@ -548,7 +548,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         })
     }
     
-    // MARK: SelectPaymentViewControllerDelegate
+    // MARK: - SelectPaymentViewControllerDelegate
     
     func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
                                      didSelectPaymentMethod paymentMethod: BTPaymentMethodNonce,

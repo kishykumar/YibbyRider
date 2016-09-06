@@ -187,9 +187,9 @@ class SplashViewController: UIViewController {
         // Setup is complete, we should move on and show our first screen
         if client.isAuthenticated() {
             DDLogVerbose("User already authenticated");
+            
             // no need to do anything if user is already authenticated
-            appDelegate.initializeMainViewController()
-            self.presentViewController(appDelegate.centerContainer!, animated: false, completion: nil)
+            MainViewController.initMainViewController(self, animated: false)
 
 //            self.performSegueWithIdentifier("mainFromSplashSegue", sender: nil)
             removeSplash()

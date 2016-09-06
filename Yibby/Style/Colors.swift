@@ -29,6 +29,8 @@ private struct YibbyColors {
     
     static let textFieldTextColor1: UIColor = UIColor.blackColor()
     static let textFieldBackgroundColor1: UIColor = UIColor.whiteColor()
+    
+    static let appDarkGreen1: UIColor = UIColor(netHex: 0x2ECC71)
 }
 
 public extension UIColor {
@@ -82,4 +84,7 @@ public extension UIColor {
     
     class func textFieldTextColor1() -> UIColor { return YibbyColors.textFieldTextColor1 }
     class func textFieldBackgroundColor1() -> UIColor { return YibbyColors.textFieldBackgroundColor1 }
+    
+    class func appDarkGreen1() -> UIColor { return YibbyColors.appDarkGreen1 }
+
 }

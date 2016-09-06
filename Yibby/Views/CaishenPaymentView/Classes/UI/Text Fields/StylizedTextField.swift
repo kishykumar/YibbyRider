@@ -55,6 +55,8 @@ public class StylizedTextField: UITextField, UITextFieldDelegate {
      */
     public var deleteBackwardCallback: ((UITextField) -> Void)?
     
+    public var textFieldReturnCallback: (() -> Void)?
+    
     public override var text: String? {
         didSet {
             if (text ?? "").isEmpty {

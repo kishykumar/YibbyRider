@@ -25,18 +25,13 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-XT-wAP" customClass="BButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-XT-wAP" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                 <rect key="frame" x="16" y="271" width="288" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9cH-XT-wAP" secondAttribute="height" multiplier="6" id="Gby-Rl-c9z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <state key="normal" title="Sign up"/>
                                 <connections>
                                     <action selector="submitFormButton:" destination="HCu-Oe-ib8" eventType="touchUpInside" id="3fK-7r-hze"/>
                                 </connections>
@@ -69,7 +64,7 @@
                                                 <rect key="frame" x="0.0" y="147" width="268" height="39"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,6 +126,7 @@
                         <outlet property="nameOutlet" destination="Rky-lM-Pjf" id="a9p-qn-w3G"/>
                         <outlet property="passwordOutlet" destination="CMV-q2-Lbd" id="cys-f0-yLp"/>
                         <outlet property="phoneNumberOutlet" destination="AwM-xB-sas" id="Ztp-87-ZFz"/>
+                        <outlet property="signupButtonOutlet" destination="9cH-XT-wAP" id="SA3-Fo-NoH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJS-3b-2i2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +199,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="YQd-KU-HZz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>

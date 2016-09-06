@@ -165,14 +165,20 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
                 // if logout is successful, remove username, password from keychain
                 LoginViewController.removeKeyChainKeys()
                 
-                // Show the LoginViewController View
-                let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
-
-                if let loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
-                {
-                    loginViewController.onStartup = true
-                    self.presentViewController(loginViewController, animated: true, completion: nil)
-                }
+                // Show the Signup/LoginViewController View
+                
+                let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                    bundle: nil)
+                
+                self.presentViewController(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+                
+//                let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
+//
+//                if let loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
+//                {
+//                    loginViewController.onStartup = true
+//                    self.presentViewController(loginViewController, animated: true, completion: nil)
+//                }
             }
             else {
                 // We continue the user session if Logout hits an error

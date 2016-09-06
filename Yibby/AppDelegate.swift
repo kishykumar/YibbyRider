@@ -13,12 +13,16 @@ import BaasBoxSDK
 import CocoaLumberjack
 import Fabric
 import Crashlytics
+import IQKeyboardManagerSwift
+
  
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
 // 2. Bug: Fix the SVProgressHUD (singleton) issue where pressing back button and then Trips again pops off the HUD early. 
 // 3. Segue freezing in iOS9. Test using static data instead of dynamic.
 // 4: Check for "TODO:" in the entire projet
+// 5: Need to rethink the Initial Setup. For eg. when to send push token to webserver. Why to enable push if user is not authenticated?
+// 6: Add the swipe down code using IQKeyboardManagerSwift
  
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
@@ -70,6 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // setup LocationService
         LocationService.sharedInstance().setupLocationManager()
+        
+        // Setup IQKeyboardManager
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         
         DDLogDebug("LaunchOptions \(launchOptions)");
         
@@ -228,12 +237,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             GGLInstanceID.sharedInstance().startWithConfig(instanceIDConfig)
             registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken,
                 kGGLInstanceIDAPNSServerTypeSandboxOption:true]
-            GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
-                scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
+        
+            sendGCMTokenToServer()
+
             // [END get_gcm_reg_token]
     }
     
-    func enablePushNotificationsFromServer (gcmToken: String) {
+    private func enablePushNotificationsFromServer (gcmToken: String) {
         let client: BAAClient = BAAClient.sharedClient();
 
         client.enablePushNotificationsForGCM(gcmToken, completion: { (success, error) -> Void in
@@ -293,8 +303,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func onTokenRefresh() {
         // A rotation of the registration tokens is happening, so the app needs to request a new token.
         DDLogInfo("The GCM registration token needs to be changed.")
-        GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
-            scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
+        sendGCMTokenToServer()
     }
     
     func sendGCMTokenToServer() {
@@ -380,9 +389,14 @@ public extension UIWindow {
  
 extension UIViewController {
    func hideKeyboardWhenTappedAround() {
-       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                action: #selector(UIViewController.dismissKeyboard))
-       view.addGestureRecognizer(tap)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+//                                                                action: #selector(UIViewController.dismissKeyboard))
+    
+//        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+//        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+    
+//        view.addGestureRecognizer(tap)
+//        view.addGestureRecognizer(swipeDown)
    }
    
    func dismissKeyboard() {

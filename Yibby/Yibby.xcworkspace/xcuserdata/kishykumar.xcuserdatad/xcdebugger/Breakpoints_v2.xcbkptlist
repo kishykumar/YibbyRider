@@ -37,5 +37,69 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/Bidding/MainViewController.swift"
+            timestampString = "494835505.405111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "onBidButtonClick(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.MainViewController.onBidButtonClick (Swift.AnyObject) -&gt; ()"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kishykumar/Installs/xcodeworkspace/Yibby/Yibby/ViewControllers/Bidding/MainViewController.swift"
+                  timestampString = "494835551.580304"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "1532">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.MainViewController.(onBidButtonClick (Swift.AnyObject) -&gt; ()).(implicit closure #6)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kishykumar/Installs/xcodeworkspace/Yibby/Yibby/ViewControllers/Bidding/MainViewController.swift"
+                  timestampString = "494835551.587752"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/Bidding/MainViewController.swift"
+            timestampString = "494835648.380083"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "onBidButtonClick(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

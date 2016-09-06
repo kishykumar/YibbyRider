@@ -24,13 +24,10 @@ public class WebInterface {
                 // check for authentication error and redirect the user to Login page
                 
                 DDLogVerbose("Error in webRequest: \(error)")
-                let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
-
-                if let loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
-                {
-                    loginViewController.onStartup = false
-                    vc.presentViewController(loginViewController, animated: true, completion: nil)
-                }
+                let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                    bundle: nil)
+                
+                vc.presentViewController(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
             }
             else {
                 AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")

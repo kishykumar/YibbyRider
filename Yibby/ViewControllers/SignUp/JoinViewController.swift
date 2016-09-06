@@ -19,6 +19,10 @@ class JoinViewController: BaseYibbyTabViewController {
     
     // MARK: - Setup functions 
     
+    func setupUI() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
+    }
+    
     override func viewDidLoad() {
 
         // ALERT: this super viewDidLoad should be called after settings are set.
@@ -27,6 +31,7 @@ class JoinViewController: BaseYibbyTabViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupUI()
     }
 
     func setupTabBarUI() {

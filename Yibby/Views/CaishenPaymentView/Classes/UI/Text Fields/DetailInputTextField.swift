@@ -19,7 +19,9 @@ public class DetailInputTextField: StylizedTextField {
     
     public func textFieldDidBeginEditing(textField: UITextField) {
         if (textField.text ?? "").isEmpty {
-            textField.text = UITextField.emptyTextFieldCharacter
+            
+            // NOTE: The following line has been commented out because it messes up
+//            textField.text = UITextField.emptyTextFieldCharacter
         }
     }
     
@@ -28,7 +30,8 @@ public class DetailInputTextField: StylizedTextField {
         
         let deletingLastCharacter = !(textField.text ?? "").isEmpty && textField.text != UITextField.emptyTextFieldCharacter && newText.isEmpty
         if deletingLastCharacter {
-            textField.text = UITextField.emptyTextFieldCharacter
+//            textField.text = UITextField.emptyTextFieldCharacter
+            textField.text = ""
             cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: newText)
             return false
         }
