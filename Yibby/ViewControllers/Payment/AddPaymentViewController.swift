@@ -212,7 +212,18 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         AlertUtil.displayAlert(error.localizedDescription, message: error.localizedFailureReason ?? "")
     }
     
+    func isInputCardValid() -> Bool {
+//        cardFieldsViewOutlet.numberInputTextField.
+//        cardFieldsViewOutlet.monthTextField.isInputValid(cardFieldsViewOutlet.monthTextField.text!, partiallyValid: <#T##Bool#>)
+        return true;
+    }
+    
     func saveCard() {
+        
+        if !isInputCardValid() {
+            return;
+        }
+        
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let number = cardFieldsViewOutlet.numberInputTextField.text

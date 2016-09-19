@@ -152,6 +152,15 @@ public struct InterfaceString {
         
     }
     
+    public struct Button {
+        static let TANDC = NSLocalizedString("TERMS OF SERVICE AND PRIVACY POLICY", comment: "TANDC")
+    }
+    
+    public struct Ride {
+        static let Pickup = NSLocalizedString("Pickup", comment: "Pickup")
+        static let Dropoff = NSLocalizedString("Dropoff", comment: "Dropoff")
+    }
+    
     static let GenericError = NSLocalizedString("Something went wrong. Thank you for your patience with Yibby Beta!", comment: "Generic error message")
     static let UnknownError = NSLocalizedString("Unknown error", comment: "Unknown error message")
     

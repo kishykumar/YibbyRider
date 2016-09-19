@@ -31,7 +31,8 @@ def shared_pods
     pod 'XLPagerTabStrip', '~> 5.0'
     pod 'FDStackView', '~> 1.0'
     pod 'IQKeyboardManagerSwift'
-    
+    pod 'FontAwesomeIconFactory'
+
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
     #pod 'ECSlidingViewController', '~> 2.0.3'

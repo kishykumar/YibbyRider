@@ -157,6 +157,14 @@
 		12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */; };
 		12A6BF461D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF451D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift */; };
 		12A6BF481D7E8C6F008BEFC1 /* YibbyButton1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */; };
+		12A6BF4A1D7FFACD008BEFC1 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF491D7FFACD008BEFC1 /* UIColorExtensions.swift */; };
+		12A6BF4D1D8001B6008BEFC1 /* YibbyMapMarker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12A6BF4C1D8001B6008BEFC1 /* YibbyMapMarker.xib */; };
+		12A6BF4F1D800384008BEFC1 /* YibbyMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF4E1D800384008BEFC1 /* YibbyMapMarker.swift */; };
+		12A6BF581D894452008BEFC1 /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF571D894451008BEFC1 /* FloatLabelTextField.swift */; };
+		12A6BF5A1D894476008BEFC1 /* YibbyFloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF591D894476008BEFC1 /* YibbyFloatLabelTextField.swift */; };
+		12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF5D1D8A831F008BEFC1 /* ASValuePopUpView.m */; };
+		12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF5F1D8A831F008BEFC1 /* ASValueTrackingSlider.m */; };
+		12A6BF631D8E700A008BEFC1 /* YibbyBorderedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */; };
 		12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */; };
 		12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B174801D54574100BD0B87 /* BraintreePaymentService.swift */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
@@ -337,6 +345,16 @@
 		12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		12A6BF451D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardFieldsView+PrefillInformation.swift"; sourceTree = "<group>"; };
 		12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyButton1.swift; sourceTree = "<group>"; };
+		12A6BF491D7FFACD008BEFC1 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		12A6BF4C1D8001B6008BEFC1 /* YibbyMapMarker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YibbyMapMarker.xib; sourceTree = "<group>"; };
+		12A6BF4E1D800384008BEFC1 /* YibbyMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyMapMarker.swift; sourceTree = "<group>"; };
+		12A6BF571D894451008BEFC1 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
+		12A6BF591D894476008BEFC1 /* YibbyFloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyFloatLabelTextField.swift; sourceTree = "<group>"; };
+		12A6BF5C1D8A831F008BEFC1 /* ASValuePopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValuePopUpView.h; sourceTree = "<group>"; };
+		12A6BF5D1D8A831F008BEFC1 /* ASValuePopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValuePopUpView.m; sourceTree = "<group>"; };
+		12A6BF5E1D8A831F008BEFC1 /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
+		12A6BF5F1D8A831F008BEFC1 /* ASValueTrackingSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValueTrackingSlider.m; sourceTree = "<group>"; };
+		12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedUIView.swift; sourceTree = "<group>"; };
 		12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeBackendAPI.swift; sourceTree = "<group>"; };
 		12B174801D54574100BD0B87 /* BraintreePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreePaymentService.swift; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
@@ -429,9 +447,14 @@
 		1201B73A1D23A24500A7EEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				12A6BF4B1D800190008BEFC1 /* MapMarker */,
+				12A6BF5B1D8A831F008BEFC1 /* ASValueTrackingSlider */,
 				126C4A981D796276005EC5FF /* CaishenPaymentView */,
 				1201B82F1D28E22B00A7EEAF /* ElloButton.swift */,
 				12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */,
+				12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */,
+				12A6BF571D894451008BEFC1 /* FloatLabelTextField.swift */,
+				12A6BF591D894476008BEFC1 /* YibbyFloatLabelTextField.swift */,
 				1201B8301D28E22B00A7EEAF /* ElloLabel.swift */,
 				1201B8311D28E22B00A7EEAF /* ElloTextField.swift */,
 				1201B7741D23AB6700A7EEAF /* ENFooterActivityIndicatorView */,
@@ -456,6 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				1201B8451D28EB4200A7EEAF /* ImageExtensions.swift */,
+				12A6BF491D7FFACD008BEFC1 /* UIColorExtensions.swift */,
 				1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */,
 				1201B83D1D28E90000A7EEAF /* ScreenExtensions.swift */,
 				1201B8471D28EC6900A7EEAF /* Array.swift */,
@@ -886,6 +910,26 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		12A6BF4B1D800190008BEFC1 /* MapMarker */ = {
+			isa = PBXGroup;
+			children = (
+				12A6BF4C1D8001B6008BEFC1 /* YibbyMapMarker.xib */,
+				12A6BF4E1D800384008BEFC1 /* YibbyMapMarker.swift */,
+			);
+			path = MapMarker;
+			sourceTree = "<group>";
+		};
+		12A6BF5B1D8A831F008BEFC1 /* ASValueTrackingSlider */ = {
+			isa = PBXGroup;
+			children = (
+				12A6BF5C1D8A831F008BEFC1 /* ASValuePopUpView.h */,
+				12A6BF5D1D8A831F008BEFC1 /* ASValuePopUpView.m */,
+				12A6BF5E1D8A831F008BEFC1 /* ASValueTrackingSlider.h */,
+				12A6BF5F1D8A831F008BEFC1 /* ASValueTrackingSlider.m */,
+			);
+			path = ASValueTrackingSlider;
+			sourceTree = "<group>";
+		};
 		12EB18131C59FA980037EB86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1103,6 +1147,7 @@
 				12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */,
 				12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */,
 				120188221CF2A677005EF075 /* SplashScreen.xib in Resources */,
+				12A6BF4D1D8001B6008BEFC1 /* YibbyMapMarker.xib in Resources */,
 				1201B7EC1D25005300A7EEAF /* Help.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1229,9 +1274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				126C4AF11D796276005EC5FF /* CardInfoTextFieldDelegate.swift in Sources */,
+				12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */,
 				1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */,
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
+				12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
 				1201B77D1D23ACDD00A7EEAF /* KeychainWrapper.swift in Sources */,
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
@@ -1259,11 +1306,13 @@
 				126C4AF71D796276005EC5FF /* UITextField+Extensions.swift in Sources */,
 				126C4ADC1D796276005EC5FF /* MasterCard.swift in Sources */,
 				126C4AD91D796276005EC5FF /* DinersClub.swift in Sources */,
+				12A6BF5A1D894476008BEFC1 /* YibbyFloatLabelTextField.swift in Sources */,
 				1201B7721D23A85F00A7EEAF /* SignupViewController.swift in Sources */,
 				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
 				126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */,
+				12A6BF4A1D7FFACD008BEFC1 /* UIColorExtensions.swift in Sources */,
 				126C4AE91D796276005EC5FF /* CardTextField.swift in Sources */,
 				1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */,
 				126C4ADF1D796276005EC5FF /* Expiry.swift in Sources */,
@@ -1276,6 +1325,7 @@
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
 				1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */,
 				126C4AEB1D796276005EC5FF /* CardTypeImageStore.swift in Sources */,
+				12A6BF581D894452008BEFC1 /* FloatLabelTextField.swift in Sources */,
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
 				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
@@ -1291,6 +1341,7 @@
 				1201B7651D23A85F00A7EEAF /* DestinationPickerViewController.swift in Sources */,
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
+				12A6BF4F1D800384008BEFC1 /* YibbyMapMarker.swift in Sources */,
 				126C4AE71D796276005EC5FF /* CardTextField+PrefillInformation.swift in Sources */,
 				1201B83A1D28E58300A7EEAF /* InterfaceImage.swift in Sources */,
 				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,
@@ -1350,6 +1401,7 @@
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
+				12A6BF631D8E700A008BEFC1 /* YibbyBorderedUIView.swift in Sources */,
 				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				126C4AE51D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */,

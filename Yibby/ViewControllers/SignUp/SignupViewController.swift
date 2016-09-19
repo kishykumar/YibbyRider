@@ -20,6 +20,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     @IBOutlet weak var phoneNumberOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     @IBOutlet weak var signupButtonOutlet: YibbyButton1!
+    @IBOutlet weak var tandcButtonOutlet: UIButton!
     
     // flag to test creating the same user without calling the webserver.
     let testMode = true
@@ -30,10 +31,21 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         submitForm()
     }
     
+    @IBAction func tncButtonAction(sender: AnyObject) {
+        let url = NSURL(string: "https://google.com")!
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
     // MARK: - Setup functions
     
     func setupUI() {
         signupButtonOutlet.color = UIColor.appDarkGreen1()
+        
+        let attrTitle = NSAttributedString(string: InterfaceString.Button.TANDC,
+                            attributes: [NSForegroundColorAttributeName : UIColor.appDarkGreen1(),
+                            NSFontAttributeName : UIFont.regularBoldFont(12.0),
+                            NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue])
+        tandcButtonOutlet.setAttributedTitle(attrTitle, forState: .Normal)
     }
     
     func setupDelegates() {

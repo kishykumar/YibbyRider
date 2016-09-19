@@ -9,7 +9,6 @@
 import UIKit
 import GoogleMaps
 import MMDrawerController
-import TTRangeSlider
 import BaasBoxSDK
 import BButton
 import CocoaLumberjack
@@ -24,18 +23,18 @@ import Braintree
 public class MainViewController: BaseYibbyViewController,
                                 UITextFieldDelegate,
                                 DestinationDelegate,
-                                CLLocationManagerDelegate,
-                                TTRangeSliderDelegate,
-                                SelectPaymentViewControllerDelegate {
+                                CLLocationManagerDelegate {
 
     // MARK: - Properties
-    @IBOutlet weak var pickupFieldOutlet: UITextField!
-    @IBOutlet weak var dropoffFieldOutlet: UITextField!
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
-    @IBOutlet weak var rangeSlider: TTRangeSlider!
-    @IBOutlet weak var bidButton: BButton!
+    
+    @IBOutlet weak var rangeSliderOutlet: ASValueTrackingSlider!
+    
+    @IBOutlet weak var bidButton: YibbyButton1!
     @IBOutlet weak var cardImageOutlet: UIImageView!
     @IBOutlet weak var cardLabelOutlet: UILabel!
+    
+    @IBOutlet weak var maxBidLabelOutlet: UILabel!
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
@@ -92,6 +91,9 @@ public class MainViewController: BaseYibbyViewController,
             return;
         }
         
+        bidHigh = self.rangeSliderOutlet.value
+        DDLogVerbose("bidHigh value is: \(bidHigh)")
+        
         if (pickupLatLng != nil && pickupPlaceName != nil &&
             dropoffLatLng != nil && dropoffPlaceName  != nil &&
             bidLow != nil && bidHigh != nil) {
@@ -106,7 +108,11 @@ public class MainViewController: BaseYibbyViewController,
                     
                     let client: BAAClient = BAAClient.sharedClient()
                     
-                    client.createBid(self.bidHigh, bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude, pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName, dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude, dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
+                    client.createBid(self.bidHigh,
+                        bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude,
+                        pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName,
+                        dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude,
+                        dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
                         
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
@@ -154,14 +160,6 @@ public class MainViewController: BaseYibbyViewController,
         }
     }
     
-    public func rangeSlider(sender: TTRangeSlider, didChangeSelectedMinimumValue selectedMinimum: Float, andMaximumValue selectedMaximum: Float) {
-        if sender == self.rangeSlider {
-            self.bidLow = selectedMinimum
-            self.bidHigh = selectedMaximum
-            DDLogVerbose("Standard slider updated. Min Value: %.0f Max Value: %.0f \(selectedMinimum), \(selectedMaximum)")
-        }
-    }
-    
     // MARK: - Setup
     
     static func initMainViewController(vc: UIViewController, animated anim: Bool) {
@@ -173,14 +171,37 @@ public class MainViewController: BaseYibbyViewController,
         vc.presentViewController(appDelegate.centerContainer!, animated: anim, completion: nil)
     }
     
-    func setupUI () {
+    func setupDelegates() {
+        gmsMapViewOutlet.delegate = self
+    }
+    
+    func setupUI() {
 
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        
+        // bidButton
+        bidButton.color = UIColor.appDarkGreen1()
+        
         // currency range slider
-        self.rangeSlider.delegate = self
         let formatter: NSNumberFormatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        self.rangeSlider.numberFormatterOverride = formatter
+        
+        self.rangeSliderOutlet.showPopUpViewAnimated(false)
 
+        self.rangeSliderOutlet.maximumValue = 100
+        self.rangeSliderOutlet.numberFormatter = formatter
+        self.rangeSliderOutlet.setMaxFractionDigitsDisplayed(0)
+        
+        self.rangeSliderOutlet.font = UIFont.boldSystemFontOfSize(screenSize.size.height * 0.026)
+        
+        self.rangeSliderOutlet.popUpViewArrowLength = screenSize.size.height * 0.010
+        
+        self.rangeSliderOutlet.popUpViewAnimatedColors = [UIColor.redColor(),
+                                                          UIColor.appDarkGreen1()]
+        
+        let thumbImage = UIImage(named: "defaultSlider")
+        self.rangeSliderOutlet.setThumbImage(thumbImage, forState: UIControlState.Normal)
+        
         setNavigationBarColor()
 //        setStatusBarColor()
         
@@ -190,7 +211,7 @@ public class MainViewController: BaseYibbyViewController,
         }
     }
     
-    func setNavigationBarColor () {
+    func setNavigationBarColor() {
         // set nav bar color
         self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -276,13 +297,11 @@ public class MainViewController: BaseYibbyViewController,
         
         // init properties *should* be called before any setup function
         initProperties()
-
+        
+        setupDelegates()
         setupUI()
         setupMap()
         setupMapClient()
-        
-        pickupFieldOutlet.delegate = self
-        dropoffFieldOutlet.delegate = self
         
         // check for location services
         AlertUtil.displayLocationAlert()
@@ -294,117 +313,6 @@ public class MainViewController: BaseYibbyViewController,
     }
     
     // MARK: - UITextFieldDelegate
-    
-    // The pickup and dropoff textfields should not pop up a keyboapublic rd
-    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        
-        if (textField == pickupFieldOutlet) {
-            pickupFieldSelected = true
-        }
-        else {
-            dropoffFieldSelected = true
-        }
-        
-        // This view controller lets a user pick address
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.presentViewController(autocompleteController, animated: true, completion: nil)
-        
-        
-//        let destinationPickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("destinationPickerViewControllerId") as! DestinationPickerViewController
-//        destinationPickerViewController.delegate = self
-//        presentViewController(destinationPickerViewController, animated: true, completion: nil)
-        
-        return false
-    }
-
-    // MARK: - SelectPaymentViewControllerDelegate
-    
-    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
-        self.navigationController!.popViewControllerAnimated(true)
-    }
-    
-#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    
-    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
-                                     didSelectPaymentMethod method: STPPaymentMethod,
-                                                            controllerType: PaymentViewControllerType) {
-        
-        if (controllerType == PaymentViewControllerType.PickForRide) {
-            
-            // modify the selected payment method
-            self.selectedPaymentMethod = method
-            
-            // remove the view controller
-            self.navigationController!.popViewControllerAnimated(true)
-            
-            // update the card UI
-            updateSelectCardUI(method)
-        }
-    }
-    
-#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-
-    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
-                                     didSelectPaymentMethod method: BTPaymentMethodNonce,
-                                                            controllerType: PaymentViewControllerType) {
-        
-        if (controllerType == PaymentViewControllerType.PickForRide) {
-            
-            // modify the selected payment method
-            self.selectedPaymentMethod = method
-            
-            // remove the view controller
-            self.navigationController!.popViewControllerAnimated(true)
-            
-            // update the card UI
-            updateSelectCardUI(method)
-        }
-    }
-
-#endif
-
-    // MARK: - Helpers
-    
-    func displaySelectCardView () {
-        
-        // Display the select card view
-        let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-        
-        let selectPaymentViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
-        
-        selectPaymentViewController.controllerType = PaymentViewControllerType.PickForRide
-        selectPaymentViewController.delegate = self
-        
-        selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
-        
-        self.navigationController!.pushViewController(selectPaymentViewController, animated: true)
-    }
-    
-#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    
-    func updateSelectCardUI (paymentMethod: STPPaymentMethod) {
-        
-        self.cardImageOutlet.image = paymentMethod.image
-
-        if let card = paymentMethod as? STPCard {
-            self.cardLabelOutlet.text = card.last4()
-        } else {
-            self.cardLabelOutlet.text = paymentMethod.label
-        }
-    }
-    
-#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-
-    func updateSelectCardUI (paymentMethod: BTPaymentMethodNonce) {
-        
-        self.cardImageOutlet.image =
-            BTUI.braintreeTheme().vectorArtViewForPaymentInfoType(paymentMethod.type).imageOfSize(CGSizeMake(42, 23))
-        
-        self.cardLabelOutlet.text = paymentMethod.localizedDescription
-    }
-
-#endif
 
     func updateCurrentLocation (userLocation: CLLocation) {
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
@@ -454,12 +362,17 @@ public class MainViewController: BaseYibbyViewController,
         
         pickupMarker?.map = nil
         
-        self.pickupFieldOutlet.text = address
         self.pickupPlaceName = address
         self.pickupLatLng = loc
         
         let pumarker = GMSMarker(position: loc)
         pumarker.map = gmsMapViewOutlet
+
+        pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
+                                                                 title: address,
+                                                                 andPinIcon: UIImage(named: "greenMarker")!,
+                                                                 pickup: true)
+
         pickupMarker = pumarker
         adjustGMSCameraFocus()
     }
@@ -468,12 +381,18 @@ public class MainViewController: BaseYibbyViewController,
         
         dropoffMarker?.map = nil
         
-        self.dropoffFieldOutlet.text = address
         self.dropoffPlaceName = address
         self.dropoffLatLng = loc
         
         let domarker = GMSMarker(position: loc)
         domarker.map = gmsMapViewOutlet
+        
+        domarker.icon = UIImage(named: "defaultMarker")
+//        domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
+//                                                                 title: address,
+//                                                                 andPinIcon: UIImage(named: "defaultMarker")!,
+//                                                                 pickup: false)
+
         dropoffMarker = domarker
         adjustGMSCameraFocus()
     }
@@ -530,6 +449,96 @@ public class MainViewController: BaseYibbyViewController,
     */
 }
 
+extension MainViewController: SelectPaymentViewControllerDelegate {
+    // MARK: - SelectPaymentViewControllerDelegate
+    
+    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
+        self.navigationController!.popViewControllerAnimated(true)
+    }
+    
+    #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+    
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                    didSelectPaymentMethod method: STPPaymentMethod,
+                                    controllerType: PaymentViewControllerType) {
+        
+        if (controllerType == PaymentViewControllerType.PickForRide) {
+        
+            // modify the selected payment method
+            self.selectedPaymentMethod = method
+            
+            // remove the view controller
+            self.navigationController!.popViewControllerAnimated(true)
+            
+            // update the card UI
+            updateSelectCardUI(method)
+        }
+    }
+    
+    #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                     didSelectPaymentMethod method: BTPaymentMethodNonce,
+                                                            controllerType: PaymentViewControllerType) {
+        
+        if (controllerType == PaymentViewControllerType.PickForRide) {
+            
+            // modify the selected payment method
+            self.selectedPaymentMethod = method
+            
+            // remove the view controller
+            self.navigationController!.popViewControllerAnimated(true)
+            
+            // update the card UI
+            updateSelectCardUI(method)
+        }
+    }
+    
+    #endif
+    
+    // MARK: - Helpers
+    
+    func displaySelectCardView () {
+        
+        // Display the select card view
+        let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+        
+        let selectPaymentViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+        
+        selectPaymentViewController.controllerType = PaymentViewControllerType.PickForRide
+        selectPaymentViewController.delegate = self
+        
+        selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
+        
+        self.navigationController!.pushViewController(selectPaymentViewController, animated: true)
+    }
+    
+    #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+    
+    func updateSelectCardUI (paymentMethod: STPPaymentMethod) {
+    
+        self.cardImageOutlet.image = paymentMethod.image
+        
+        if let card = paymentMethod as? STPCard {
+            self.cardLabelOutlet.text = card.last4()
+        } else {
+            self.cardLabelOutlet.text = paymentMethod.label
+        }
+    }
+    
+    #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+    
+    func updateSelectCardUI (paymentMethod: BTPaymentMethodNonce) {
+        
+        self.cardImageOutlet.image =
+            BTUI.braintreeTheme().vectorArtViewForPaymentInfoType(paymentMethod.type).imageOfSize(CGSizeMake(42, 23))
+        
+        self.cardLabelOutlet.text = paymentMethod.localizedDescription
+    }
+    
+    #endif
+}
+
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selectiopublic public public n.
@@ -556,7 +565,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         cleanup()
     }
     
-    // User canceled the operatiopublic public n.
+    // User canceled the operation.
     public func wasCancelled(viewController: GMSAutocompleteViewController!) {
         cleanup()
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -568,17 +577,25 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     }
 }
 
-
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
+extension MainViewController: GMSMapViewDelegate {
     
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    // MARK: - GMSMapViewDelegate
+    public func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+        DDLogVerbose("Tapped marker!")
+        
+        if (marker == pickupMarker) {
+            pickupFieldSelected = true
+        }
+        else if (marker == dropoffMarker) {
+            dropoffFieldSelected = true
+        }
+        
+        // This view controller lets a user pick address
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.presentViewController(autocompleteController, animated: true, completion: nil)
+        
+        // default marker action is false, but we don't want that.
+        return true
     }
 }

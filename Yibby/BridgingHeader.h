@@ -8,10 +8,17 @@
 
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
+
 #import <Google/CloudMessaging.h>
+
 #import "Views/ENFooterActivityIndicatorView/UITableViewController+ENFooterActivityIndicatorView.h"
+
 #import "Views/ENFooterActivityIndicatorView/ENFooterActivityIndicatorView.h"
+
+#import "Views/ASValueTrackingSlider/ASValueTrackingSlider.h"
+
 #import <MobileCoreServices/MobileCoreServices.h>
+
 #import "CardIO.h"
 
 #endif /* BridgingHeader_h */

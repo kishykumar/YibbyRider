@@ -19,12 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or sign up with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbW-Z4-CeA" userLabel="Signup Label">
-                                <rect key="frame" x="16" y="439" width="288" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-XT-wAP" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                 <rect key="frame" x="16" y="271" width="288" height="48"/>
                                 <constraints>
@@ -79,40 +73,29 @@
                                     <constraint firstAttribute="bottom" secondItem="cce-Xu-IKG" secondAttribute="bottom" constant="10" id="wos-CA-AFN"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="o9c-9x-Jv4" userLabel="OtherLoginSV">
-                                <rect key="frame" x="16" y="490" width="288" height="48"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFK-zb-f5c">
-                                        <rect key="frame" x="0.0" y="0.0" width="134" height="48"/>
-                                        <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Facebook">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIF-9V-mbW">
-                                        <rect key="frame" x="154" y="0.0" width="134" height="48"/>
-                                        <color key="backgroundColor" red="0.83529411764705885" green="0.058823529411764705" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Google">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="o9c-9x-Jv4" secondAttribute="height" multiplier="6" id="fS0-m3-RFC" userLabel="aspect = 6"/>
-                                </constraints>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWa-GR-brA">
+                                <rect key="frame" x="35" y="502" width="251" height="26"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                <state key="normal" title="TERMS OF SERVICE AND PRIVACY POLICY"/>
+                                <connections>
+                                    <action selector="tncButtonAction:" destination="HCu-Oe-ib8" eventType="touchUpInside" id="duV-Yy-rxv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BY CONTINUING, YOU AGREE TO OUR " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbW-Z4-CeA" userLabel="Signup Label">
+                                <rect key="frame" x="16" y="488" width="288" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="o9c-9x-Jv4" secondAttribute="bottom" constant="30" id="2dC-PT-Mbf"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="trailing" secondItem="JGF-1f-FtY" secondAttribute="trailingMargin" id="4Ij-fA-SJB"/>
-                            <constraint firstItem="o9c-9x-Jv4" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="DCu-yN-aZE"/>
+                            <constraint firstItem="pWa-GR-brA" firstAttribute="top" secondItem="mbW-Z4-CeA" secondAttribute="bottom" id="CUY-Nz-r0H"/>
                             <constraint firstItem="mbW-Z4-CeA" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="H4U-Q0-2du"/>
+                            <constraint firstItem="pWa-GR-brA" firstAttribute="centerX" secondItem="JGF-1f-FtY" secondAttribute="centerX" id="KO8-f4-Qwk"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="top" secondItem="iFW-zz-HxR" secondAttribute="bottom" constant="20" id="KYU-J1-QoM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="o9c-9x-Jv4" secondAttribute="trailing" id="R0Z-aX-4NY"/>
-                            <constraint firstItem="o9c-9x-Jv4" firstAttribute="top" secondItem="mbW-Z4-CeA" secondAttribute="bottom" constant="30" id="ZK7-Jw-azZ"/>
+                            <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="pWa-GR-brA" secondAttribute="bottom" constant="40" id="bxi-Cw-VQ3"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="top" secondItem="Uyt-Pk-j7d" secondAttribute="bottom" constant="25" id="cx3-rf-Dav"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="trailing" secondItem="JGF-1f-FtY" secondAttribute="trailingMargin" id="knr-I4-n3D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mbW-Z4-CeA" secondAttribute="trailing" id="mrd-3k-bRp"/>
@@ -127,6 +110,7 @@
                         <outlet property="passwordOutlet" destination="CMV-q2-Lbd" id="cys-f0-yLp"/>
                         <outlet property="phoneNumberOutlet" destination="AwM-xB-sas" id="Ztp-87-ZFz"/>
                         <outlet property="signupButtonOutlet" destination="9cH-XT-wAP" id="SA3-Fo-NoH"/>
+                        <outlet property="tandcButtonOutlet" destination="pWa-GR-brA" id="6IJ-WE-Oju"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJS-3b-2i2" userLabel="First Responder" sceneMemberID="firstResponder"/>
