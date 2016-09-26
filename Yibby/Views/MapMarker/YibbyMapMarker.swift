@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import TextFieldEffects
+import BButton
 
 @IBDesignable
 public class YibbyMapMarker: UIView {
@@ -57,9 +58,10 @@ public class YibbyMapMarker: UIView {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
 
         let infoWindowHeight = iconImage.size.height * 1.1
+        let infoWindowWidth = screenSize.width * 0.50
         
         let infoWindow = YibbyFloatLabelTextField(frame: CGRectMake(0, 0,
-                                                                    screenSize.width * 0.50,
+                                                                    infoWindowWidth,
                                                                     infoWindowHeight))
         
         infoWindow.font = UIFont.systemFontOfSize(12.5)
@@ -70,43 +72,60 @@ public class YibbyMapMarker: UIView {
         infoWindow.textAlignment = NSTextAlignment.Center
         infoWindow.titleYPadding = 5.0
         
+        // Create container view
+        let containerView = UIView(frame: CGRectMake(0, 0,
+                                                     (infoWindowWidth > iconImage.size.width) ?
+                                                        infoWindowWidth : iconImage.size.width,
+                                                     iconImage.size.height + infoWindowHeight))
+        
+        // Create icon image, and center it below the view
+//        let iconImageView = UIImageView(image: iconImage)
+//        iconImageView.backgroundColor = UIColor.clearColor()
+//        
+//        iconImageView.frame = CGRectMake((infoWindow.frame.size.width - iconImage.size.width) / 2,
+//                                         infoWindow.frame.size.height,
+//                                         iconImage.size.width,
+//                                         iconImage.size.height)
+        
+        let label = UILabel(frame: CGRectMake((infoWindow.frame.size.width - iconImage.size.width) / 2,
+                                                infoWindow.frame.size.height,
+                                                infoWindowWidth,
+                                                iconImage.size.height))
+        
+        label.font = UIFont(name: "FontAwesome", size: 12.0)
+        label.text = String.fa_stringForFontAwesomeIcon(FAIcon.FAMapMarker)
+        
+        
+        let labelFontSize = String.getFontSizeFromCGSize(label.text!,
+                                                         font: label.font,
+                                                         rect: CGSize(width: infoWindowWidth, height: iconImage.size.height))
+        
+        label.font = UIFont(name: "FontAwesome", size: labelFontSize)
+        
         if (pickup) {
             infoWindow.placeholder = InterfaceString.Ride.Pickup
             infoWindow.borderColor = UIColor.redColor()
             infoWindow.titleTextColour = UIColor.redColor()
+            
+            label.textColor = UIColor.redColor()
         } else {
             infoWindow.placeholder = InterfaceString.Ride.Dropoff
             infoWindow.borderColor = UIColor.appDarkGreen1()
             infoWindow.titleTextColour = UIColor.appDarkGreen1()
+            
+            label.textColor = UIColor.appDarkGreen1()
         }
-
-        // Create container view
-        let containerView = UIView(frame: CGRectMake(0, 0,
-                                                    screenSize.width * 0.75,
-                                                    infoWindow.frame.size.height + infoWindowHeight))
-
-        infoWindow.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-
-        containerView.autoresizesSubviews = true
+        
         containerView.addSubview(infoWindow)
-        
-        // Create icon image, and center it below the view
-        let iconImageView = UIImageView(image: iconImage)
-        iconImageView.backgroundColor = UIColor.clearColor()
-        iconImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        
-        iconImageView.frame = CGRectMake((infoWindow.frame.size.width - iconImage.size.width) / 2,
-                                         infoWindow.frame.size.height,
-                                         iconImage.size.width,
-                                         iconImage.size.height)
-        
-        containerView.addSubview(iconImageView)
+        containerView.addSubview(label)
+//        containerView.addSubview(iconImageView)
         
         // Render image
         UIGraphicsBeginImageContextWithOptions(containerView.frame.size, false, UIScreen.mainScreen().scale)
         containerView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         
         return image
     }

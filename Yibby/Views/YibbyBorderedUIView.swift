@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Spring
+
 @IBDesignable
-public class YibbyBorderedUIView: UIView {
+public class YibbyBorderedUIView: SpringView {
     
     required override public init(frame: CGRect) {
         super.init(frame: frame)

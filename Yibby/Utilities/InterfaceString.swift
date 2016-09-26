@@ -18,6 +18,17 @@ public struct InterfaceString {
         static let PaymentCurrency = NSLocalizedString("USD", comment: "USD")
     }
     
+    public struct Card {
+        static let AmericanExpress = NSLocalizedString("American Express", comment: "American Express")
+        static let Visa = NSLocalizedString("Visa", comment: "Visa")
+        static let DinersClub = NSLocalizedString("Diners Club", comment: "Diners Club")
+        static let Discover = NSLocalizedString("Discover", comment: "Discover")
+        static let MasterCard = NSLocalizedString("MasterCard", comment: "MasterCard")
+        static let JCB = NSLocalizedString("JCB", comment: "JCB")
+        static let Maestro = NSLocalizedString("Maestro", comment: "Maestro")
+        static let UnionPay = NSLocalizedString("UnionPay", comment: "UnionPay")
+    }
+    
     public struct StoryboardName {
         static let Main = NSLocalizedString("Main", comment: "Main Storyboard")
         static let About = NSLocalizedString("About", comment: "About Storyboard")

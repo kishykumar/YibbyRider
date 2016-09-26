@@ -17,7 +17,7 @@ import Braintree
 // TODO:
 // 1. Create bid state that we save on the app
 // 2.
-// 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message. 
+// 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message.
 // 4. 
 
 public class MainViewController: BaseYibbyViewController,
@@ -27,14 +27,16 @@ public class MainViewController: BaseYibbyViewController,
 
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
-    
     @IBOutlet weak var rangeSliderOutlet: ASValueTrackingSlider!
-    
     @IBOutlet weak var bidButton: YibbyButton1!
-    @IBOutlet weak var cardImageOutlet: UIImageView!
     @IBOutlet weak var cardLabelOutlet: UILabel!
-    
     @IBOutlet weak var maxBidLabelOutlet: UILabel!
+    @IBOutlet weak var priceSliderViewOutlet: YibbyBorderedUIView!
+    @IBOutlet weak var miscPickerViewOutlet: YibbyBorderedUIView!
+    @IBOutlet weak var peopleButtonOutlet: JOButtonMenu!
+    @IBOutlet weak var peopleLabelOutlet: UILabel!
+    @IBOutlet weak var cardHintOutlet: BTUICardHint!
+    @IBOutlet weak var centerMarkersViewOutlet: YibbyBorderedUIView!
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
@@ -57,6 +59,9 @@ public class MainViewController: BaseYibbyViewController,
     
     var bidLow: Float?
     var bidHigh: Float?
+    
+    var priceSliderViewHidden = false
+    var miscPickerViewHidden = false
     
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     
@@ -81,6 +86,36 @@ public class MainViewController: BaseYibbyViewController,
     
     @IBAction func onPaymentSelectAction(sender: UITapGestureRecognizer) {
         displaySelectCardView()
+    }
+    
+    @IBAction func onDollarImageClickAction(sender: AnyObject) {
+        
+        if (priceSliderViewHidden) {
+            priceSliderViewOutlet.animation = "fadeIn"
+            priceSliderViewOutlet.animate()
+            priceSliderViewHidden = false
+        } else {
+            priceSliderViewOutlet.animation = "fadeOut"
+            priceSliderViewOutlet.animate()
+            priceSliderViewHidden = true
+        }
+    }
+    
+    @IBAction func onMiscPickerImageClickAction(sender: AnyObject) {
+        
+        if (miscPickerViewHidden) {
+            miscPickerViewOutlet.animation = "fadeIn"
+            miscPickerViewOutlet.animate()
+            miscPickerViewHidden = false
+        } else {
+            miscPickerViewOutlet.animation = "fadeOut"
+            miscPickerViewOutlet.animate()
+            miscPickerViewHidden = true
+        }
+    }
+    
+    @IBAction func onCenterMarkersButtonClick(sender: AnyObject) {
+        adjustGMSCameraFocus()
     }
     
     @IBAction func onBidButtonClick(sender: AnyObject) {
@@ -124,6 +159,7 @@ public class MainViewController: BaseYibbyViewController,
                                     AlertUtil.displayAlert("No drivers online.", message: "")
                                 } else {
                                     AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
+                                    DDLogVerbose("Unexpected Error: success var: \(success)")
                                 }
                             } else {
                                 
@@ -173,21 +209,36 @@ public class MainViewController: BaseYibbyViewController,
     
     func setupDelegates() {
         gmsMapViewOutlet.delegate = self
+        peopleButtonOutlet.delegate = self
     }
     
     func setupUI() {
-
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        
         // bidButton
         bidButton.color = UIColor.appDarkGreen1()
+        bidButton.addAwesomeIcon(FAIcon.FAGavel, beforeTitle: true)
         
         // currency range slider
+        setupRangeSliderUI()
+        
+        setupPersonsButtonMenuUI()
+        
+        setupNavigationBar()
+        setStatusBarColor()
+
+        // update card UI
+        if let method = self.selectedPaymentMethod {
+            updateSelectCardUI(method)
+        }
+    }
+    
+    func setupRangeSliderUI() {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+
         let formatter: NSNumberFormatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         
         self.rangeSliderOutlet.showPopUpViewAnimated(false)
-
+        
         self.rangeSliderOutlet.maximumValue = 100
         self.rangeSliderOutlet.numberFormatter = formatter
         self.rangeSliderOutlet.setMaxFractionDigitsDisplayed(0)
@@ -201,21 +252,52 @@ public class MainViewController: BaseYibbyViewController,
         
         let thumbImage = UIImage(named: "defaultSlider")
         self.rangeSliderOutlet.setThumbImage(thumbImage, forState: UIControlState.Normal)
-        
-        setNavigationBarColor()
-//        setStatusBarColor()
-        
-        // update card UI
-        if let method = self.selectedPaymentMethod {
-            updateSelectCardUI(method)
-        }
     }
     
-    func setNavigationBarColor() {
+    func setupPersonsButtonMenuUI() {
+        
+        peopleButtonOutlet.dataset = [
+            JOButtonMenuOption(labelText: "1"),
+            JOButtonMenuOption(labelText: "2"),
+            JOButtonMenuOption(labelText: "3"),
+            JOButtonMenuOption(labelText: "4")
+        ]
+    }
+    
+    func setupNavigationBar() {
         // set nav bar color
-        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-//        self.navigationController!.navigationBar.translucent = false
+//        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
+//        self.navigationController?.navigationBar.tintColor = UIColor.appDarkGreen1()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        
+        //MMDrawerBarButtonItem
+        
+        // RIGHT Bar Button Item
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
+            NSForegroundColorAttributeName: UIColor.blueColor()],
+            forState: .Normal)
+        
+        self.navigationItem.rightBarButtonItem?.title =
+            String.fa_stringForFontAwesomeIcon(FAIcon.FALightbulbO)
+        
+        self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
+                                                                           forBarMetrics: UIBarMetrics.Default)
+        
+        // LEFT Bar Button Item
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
+            NSForegroundColorAttributeName: UIColor.yellowColor()],
+            forState: .Normal)
+        
+        self.navigationItem.leftBarButtonItem?.title =
+            String.fa_stringForFontAwesomeIcon(FAIcon.FABars)
+        
+        self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
+                                                                          forBarMetrics: UIBarMetrics.Default)
         
         // Set Title Font, Font size, Font color
 //        self.navigationController!.navigationBar.titleTextAttributes = [
@@ -224,7 +306,7 @@ public class MainViewController: BaseYibbyViewController,
 //        ]
 
 //
-//        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.            whiteColor()]
+//        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
     
     func setStatusBarColor () {
@@ -234,11 +316,11 @@ public class MainViewController: BaseYibbyViewController,
             CGRectMake(0, -app.statusBarFrame.size.height,
                     self.view.bounds.size.width, app.statusBarFrame.size.height))
         
-        statusBarView.backgroundColor = UIColor.yellowColor()
+        statusBarView.backgroundColor = UIColor.appDarkGreen1()
         self.navigationController!.navigationBar.addSubview(statusBarView)
         
         // status bar text color
-//        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     func setupMap () {
@@ -312,8 +394,34 @@ public class MainViewController: BaseYibbyViewController,
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITextFieldDelegate
-
+    /*
+    @IBAction func getCurrentPlace(sender: UIButton) {
+        
+        placesClient?.currentPlaceWithCallback({
+        (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+            
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            self.nameLabel.text = "No current place"
+            self.addressLabel.text = ""
+            
+            if let placeLikelihoodList = placeLikelihoodList {
+                let place = placeLikelihoodList.likelihoods.first?.place
+                if let place = place {
+                    self.nameLabel.text = place.name
+                    self.addressLabel.text = place.formattedAddress.componentsSeparatedByString(", ")
+                        .joinWithSeparator("\n")
+                }
+            }
+        })
+    }
+    */
+    
+    // MARK: - Helpers
+    
     func updateCurrentLocation (userLocation: CLLocation) {
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
             
@@ -367,12 +475,12 @@ public class MainViewController: BaseYibbyViewController,
         
         let pumarker = GMSMarker(position: loc)
         pumarker.map = gmsMapViewOutlet
-
+        
         pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
                                                                  title: address,
-                                                                 andPinIcon: UIImage(named: "greenMarker")!,
+                                                                 andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: true)
-
+        
         pickupMarker = pumarker
         adjustGMSCameraFocus()
     }
@@ -387,32 +495,48 @@ public class MainViewController: BaseYibbyViewController,
         let domarker = GMSMarker(position: loc)
         domarker.map = gmsMapViewOutlet
         
-        domarker.icon = UIImage(named: "defaultMarker")
-//        domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
-//                                                                 title: address,
-//                                                                 andPinIcon: UIImage(named: "defaultMarker")!,
-//                                                                 pickup: false)
-
+        //        domarker.icon = UIImage(named: "Visa")
+        domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
+                                                                 title: address,
+                                                                 andPinIcon: UIImage(named: "defaultMarker")!,
+                                                                 pickup: false)
+        
         dropoffMarker = domarker
         adjustGMSCameraFocus()
     }
     
-    func adjustGMSCameraFocus () {
+    func adjustGMSCameraFocus() {
         
-        if (pickupMarker == nil) {
-            let update = GMSCameraUpdate.setTarget((dropoffMarker?.position)!)
+        guard let pickupMarker = pickupMarker else {
+            
+            if let dropoffMarker = dropoffMarker {
+                let update = GMSCameraUpdate.setTarget((dropoffMarker.position),
+                                                       zoom: GMS_DEFAULT_CAMERA_ZOOM)
+                gmsMapViewOutlet.moveCamera(update)
+            }
+            return
+        }
+        
+        guard let dropoffMarker = dropoffMarker else {
+            
+            let update = GMSCameraUpdate.setTarget((pickupMarker.position),
+                                                   zoom: GMS_DEFAULT_CAMERA_ZOOM)
             gmsMapViewOutlet.moveCamera(update)
             return
         }
         
-        if (dropoffMarker == nil) {
-            let update = GMSCameraUpdate.setTarget((pickupMarker?.position)!, zoom: GMS_DEFAULT_CAMERA_ZOOM)
-            gmsMapViewOutlet.moveCamera(update)
-            return
-        }
+        let bounds = GMSCoordinateBounds(coordinate: (pickupMarker.position),
+                                         coordinate: (dropoffMarker.position))
         
-        let bounds = GMSCoordinateBounds(coordinate: (pickupMarker?.position)!, coordinate: (dropoffMarker?.position)!)
-        let insets = UIEdgeInsets(top: 140.0, left: 64.0, bottom: 140.0, right: 64.0)
+        let centerMarkersRelativeOrigin: CGPoint =
+            (centerMarkersViewOutlet.superview?.convertPoint(centerMarkersViewOutlet.frame.origin,
+                toView: gmsMapViewOutlet))!
+        
+        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + pickupMarker.icon.size.height,
+                                  left: (pickupMarker.icon.size.width / 2) + 10.0,
+                                  bottom: gmsMapViewOutlet.frame.height - centerMarkersRelativeOrigin.y,
+                                  right: (pickupMarker.icon.size.width / 2) + 10.0)
+        
         let update = GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: insets)
         gmsMapViewOutlet.moveCamera(update)
     }
@@ -421,38 +545,13 @@ public class MainViewController: BaseYibbyViewController,
         self.currentPlaceName = address
         self.currentPlaceLatLng = loc
     }
-    
-    /*
-    @IBAction func getCurrentPlace(sender: UIButton) {
-        
-        placesClient?.currentPlaceWithCallback({
-        (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
-            
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
-            }
-            
-            self.nameLabel.text = "No current place"
-            self.addressLabel.text = ""
-            
-            if let placeLikelihoodList = placeLikelihoodList {
-                let place = placeLikelihoodList.likelihoods.first?.place
-                if let place = place {
-                    self.nameLabel.text = place.name
-                    self.addressLabel.text = place.formattedAddress.componentsSeparatedByString(", ")
-                        .joinWithSeparator("\n")
-                }
-            }
-        })
-    }
-    */
 }
 
 extension MainViewController: SelectPaymentViewControllerDelegate {
     // MARK: - SelectPaymentViewControllerDelegate
     
     func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
+//        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController!.popViewControllerAnimated(true)
     }
     
@@ -469,7 +568,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
             
             // remove the view controller
             self.navigationController!.popViewControllerAnimated(true)
-            
+    
             // update the card UI
             updateSelectCardUI(method)
         }
@@ -496,8 +595,6 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     
     #endif
     
-    // MARK: - Helpers
-    
     func displaySelectCardView () {
         
         // Display the select card view
@@ -510,6 +607,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
         
         selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
         
+//        self.navigationController!.presentViewController(selectPaymentViewController, animated: true, completion: nil)
         self.navigationController!.pushViewController(selectPaymentViewController, animated: true)
     }
     
@@ -517,8 +615,6 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     
     func updateSelectCardUI (paymentMethod: STPPaymentMethod) {
     
-        self.cardImageOutlet.image = paymentMethod.image
-        
         if let card = paymentMethod as? STPCard {
             self.cardLabelOutlet.text = card.last4()
         } else {
@@ -530,10 +626,14 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     
     func updateSelectCardUI (paymentMethod: BTPaymentMethodNonce) {
         
-        self.cardImageOutlet.image =
-            BTUI.braintreeTheme().vectorArtViewForPaymentInfoType(paymentMethod.type).imageOfSize(CGSizeMake(42, 23))
         
+        let paymentMethodType: BTUIPaymentOptionType =
+            BraintreeCardUtil.paymentMethodTypeFromBrand(paymentMethod.type)
+        self.cardHintOutlet.setCardType(paymentMethodType, animated: false)
         self.cardLabelOutlet.text = paymentMethod.localizedDescription
+        
+        //        self.cardLabelOutlet.font = UIFont(name: "FontAwesome", size: 17)
+        //        self.cardLabelOutlet.text = String(format: "%C", 0xf042)
     }
     
     #endif
@@ -581,7 +681,6 @@ extension MainViewController: GMSMapViewDelegate {
     
     // MARK: - GMSMapViewDelegate
     public func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-        DDLogVerbose("Tapped marker!")
         
         if (marker == pickupMarker) {
             pickupFieldSelected = true
@@ -597,5 +696,18 @@ extension MainViewController: GMSMapViewDelegate {
         
         // default marker action is false, but we don't want that.
         return true
+    }
+}
+
+extension MainViewController: JOButtonMenuDelegate {
+    
+    // MARK: - JOButtonMenuDelegate
+    
+    public func selectedOption(sender: JOButtonMenu, index: Int) {
+        peopleLabelOutlet.text = peopleButtonOutlet.dataset[index].labelText
+    }
+    
+    public func canceledAction(sender: JOButtonMenu) {
+        print("User cancelled selection")
     }
 }

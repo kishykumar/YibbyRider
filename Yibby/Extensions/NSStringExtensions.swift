@@ -26,6 +26,21 @@ extension NSString {
             return "Visa"
         }
     }
+    
+    class func getFontSizeFromCGSize(text: String, font: UIFont, rect: CGSize) -> CGFloat {
+        
+        // Size required to render string
+        let size = text.sizeWithAttributes([NSFontAttributeName: font])
+        
+        // For current font point size, calculate points per pixel
+        let pointsPerPixel: CGFloat =  font.pointSize / size.height;
+
+        // Scale up point size for the height of the label
+        let desiredPointSize: CGFloat = rect.height * pointsPerPixel
+        
+        return desiredPointSize
+    }
+    
 }
 func linkNSStringCardBrandsCategory() {
 }

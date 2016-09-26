@@ -83,6 +83,8 @@
 		1201B8521D2B471800A7EEAF /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8511D2B471800A7EEAF /* RideService.swift */; };
 		1201B8541D32445E00A7EEAF /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8531D32445E00A7EEAF /* Bid.swift */; };
 		1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8551D34E52C00A7EEAF /* AddPaymentViewController.swift */; };
+		1204788F1D93CEF4009E1B16 /* JOButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */; };
+		120478911D93CEFF009E1B16 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120478901D93CEFF009E1B16 /* SelectorView.swift */; };
 		120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120682381CBE277C004A34BB /* SystemConfiguration.framework */; };
 		121096931D1142E000D7174F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096921D1142E000D7174F /* LocationService.swift */; };
 		1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096951D13CA6300D7174F /* HistoryTableCell.swift */; };
@@ -167,6 +169,9 @@
 		12A6BF631D8E700A008BEFC1 /* YibbyBorderedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */; };
 		12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */; };
 		12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B174801D54574100BD0B87 /* BraintreePaymentService.swift */; };
+		12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */; };
+		12D7459B1D9126B800A7B9B9 /* YibbyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D7459A1D9126B800A7B9B9 /* YibbyCircleView.swift */; };
+		12D7459E1D92463700A7B9B9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12D7459D1D92463700A7B9B9 /* FontAwesome.ttf */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
 		12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A21D378A7B00F158BB /* CardTableCell.swift */; };
 		12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */; };
@@ -270,6 +275,8 @@
 		1201B8511D2B471800A7EEAF /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
 		1201B8531D32445E00A7EEAF /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bid.swift; path = ../../../YibbyPartner/YibbyPartner/Model/Bid.swift; sourceTree = "<group>"; };
 		1201B8551D34E52C00A7EEAF /* AddPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
+		1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JOButtonMenu.swift; sourceTree = "<group>"; };
+		120478901D93CEFF009E1B16 /* SelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
 		120682381CBE277C004A34BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		121096921D1142E000D7174F /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		121096951D13CA6300D7174F /* HistoryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableCell.swift; sourceTree = "<group>"; };
@@ -357,6 +364,10 @@
 		12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedUIView.swift; sourceTree = "<group>"; };
 		12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeBackendAPI.swift; sourceTree = "<group>"; };
 		12B174801D54574100BD0B87 /* BraintreePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreePaymentService.swift; sourceTree = "<group>"; };
+		12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeCardUtil.swift; sourceTree = "<group>"; };
+		12D7459A1D9126B800A7B9B9 /* YibbyCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyCircleView.swift; sourceTree = "<group>"; };
+		12D7459D1D92463700A7B9B9 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		12D7459F1D92469D00A7B9B9 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = Yibby/Resources/FontAwesome.ttf; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		12EF49711C95276800C07FAE /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		12F092A21D378A7B00F158BB /* CardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableCell.swift; sourceTree = "<group>"; };
@@ -447,12 +458,14 @@
 		1201B73A1D23A24500A7EEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				120478891D93CC08009E1B16 /* JOButtonMenu */,
 				12A6BF4B1D800190008BEFC1 /* MapMarker */,
 				12A6BF5B1D8A831F008BEFC1 /* ASValueTrackingSlider */,
 				126C4A981D796276005EC5FF /* CaishenPaymentView */,
 				1201B82F1D28E22B00A7EEAF /* ElloButton.swift */,
 				12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */,
 				12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */,
+				12D7459A1D9126B800A7B9B9 /* YibbyCircleView.swift */,
 				12A6BF571D894451008BEFC1 /* FloatLabelTextField.swift */,
 				12A6BF591D894476008BEFC1 /* YibbyFloatLabelTextField.swift */,
 				1201B8301D28E22B00A7EEAF /* ElloLabel.swift */,
@@ -507,6 +520,7 @@
 				121531711D441E3100C28C73 /* TimeUtil.swift */,
 				1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */,
 				123D41741D63011500475614 /* TypedNotifications.swift */,
+				12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -728,6 +742,15 @@
 			path = ViewControllers/Alerts;
 			sourceTree = "<group>";
 		};
+		120478891D93CC08009E1B16 /* JOButtonMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */,
+				120478901D93CEFF009E1B16 /* SelectorView.swift */,
+			);
+			path = JOButtonMenu;
+			sourceTree = "<group>";
+		};
 		123D41761D6302BF00475614 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +953,14 @@
 			path = ASValueTrackingSlider;
 			sourceTree = "<group>";
 		};
+		12D7459C1D92463700A7B9B9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				12D7459D1D92463700A7B9B9 /* FontAwesome.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		12EB18131C59FA980037EB86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,6 +972,7 @@
 		12F3CCC91C41EFC700F79A26 = {
 			isa = PBXGroup;
 			children = (
+				12D7459F1D92469D00A7B9B9 /* FontAwesome.ttf */,
 				123524921C894660004307EE /* GoogleService-Info.plist */,
 				12F3CCD41C41EFC700F79A26 /* Yibby */,
 				12F3CCE91C41EFC800F79A26 /* YibbyTests */,
@@ -965,6 +997,7 @@
 		12F3CCD41C41EFC700F79A26 /* Yibby */ = {
 			isa = PBXGroup;
 			children = (
+				12D7459C1D92463700A7B9B9 /* Resources */,
 				123D41761D6302BF00475614 /* ThirdParty */,
 				12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */,
 				12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */,
@@ -1120,6 +1153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D7459E1D92463700A7B9B9 /* FontAwesome.ttf in Resources */,
 				1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */,
 				1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */,
 				126C4AEC1D796276005EC5FF /* CardView.xib in Resources */,
@@ -1280,6 +1314,7 @@
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
 				12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
+				12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */,
 				1201B77D1D23ACDD00A7EEAF /* KeychainWrapper.swift in Sources */,
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
 				1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */,
@@ -1293,6 +1328,7 @@
 				126C4AE21D796276005EC5FF /* CardNumberFormatter.swift in Sources */,
 				1201B8341D28E22B00A7EEAF /* ElloTextField.swift in Sources */,
 				121096931D1142E000D7174F /* LocationService.swift in Sources */,
+				12D7459B1D9126B800A7B9B9 /* YibbyCircleView.swift in Sources */,
 				1254E13A1D66DB77007067BC /* JoinViewController.swift in Sources */,
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
@@ -1300,6 +1336,7 @@
 				1201B8541D32445E00A7EEAF /* Bid.swift in Sources */,
 				1201B84C1D290AF800A7EEAF /* ProfileService.swift in Sources */,
 				126C4ADB1D796276005EC5FF /* JCB.swift in Sources */,
+				120478911D93CEFF009E1B16 /* SelectorView.swift in Sources */,
 				12A6BF481D7E8C6F008BEFC1 /* YibbyButton1.swift in Sources */,
 				126C4AF01D796276005EC5FF /* CVCInputTextField.swift in Sources */,
 				126C4ADE1D796276005EC5FF /* Visa.swift in Sources */,
@@ -1363,6 +1400,7 @@
 				1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */,
 				1201B76F1D23A85F00A7EEAF /* RideEndViewController.swift in Sources */,
 				126C4AE01D796276005EC5FF /* Number.swift in Sources */,
+				1204788F1D93CEF4009E1B16 /* JOButtonMenu.swift in Sources */,
 				1201B8481D28EC6900A7EEAF /* Array.swift in Sources */,
 				1201B8281D28ADC800A7EEAF /* AlertCellPresenter.swift in Sources */,
 				126C4AD61D796276005EC5FF /* CVC.swift in Sources */,

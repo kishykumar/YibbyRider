@@ -43,7 +43,6 @@ PODS:
   - Fabric (1.6.7)
   - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
-  - FontAwesomeIconFactory (2.1.1)
   - GGLInstanceID (1.1.6)
   - Google/CloudMessaging (1.3.2):
     - GGLInstanceID (~> 1.0)
@@ -93,6 +92,7 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
+  - Spring (1.0.3)
   - Stripe (8.0.1)
   - SVGKit (2.0.1):
     - CocoaLumberjack (~> 2.x)
@@ -115,13 +115,13 @@ DEPENDENCIES:
   - ElloOSSUIFonts
   - Fabric
   - FDStackView (~> 1.0)
-  - FontAwesomeIconFactory
   - Google/CloudMessaging
   - GoogleMaps
   - IQKeyboardManagerSwift
   - LaunchScreen
   - MMDrawerController (~> 0.5.7)
   - PINRemoteImage
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
   - Stripe
   - SVGKit (from `https://github.com/SVGKit/SVGKit`)
   - SVProgressHUD
@@ -133,6 +133,9 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   BaasBoxSDK:
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
+  Spring:
+    :branch: swift2
+    :git: https://github.com/MengTo/Spring.git
   SVGKit:
     :git: https://github.com/SVGKit/SVGKit
 
@@ -140,6 +143,9 @@ CHECKOUT OPTIONS:
   BaasBoxSDK:
     :commit: 1bb726be3e22b637dc25d40c382f9203d05bfff9
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
+  Spring:
+    :commit: 18d5c7b74489de8044e34767f856d1e574f0820e
+    :git: https://github.com/MengTo/Spring.git
   SVGKit:
     :commit: 87b6c5c2ee4c69e582424b04742301387022339f
     :git: https://github.com/SVGKit/SVGKit
@@ -158,7 +164,6 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FontAwesomeIconFactory: bb9ce26d3dd13044854a82d380023c8e7d3ebf1a
   GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
   Google: 97618e118111b998cce1d8dd1bd98b82301d72db
   GoogleCloudMessaging: d1f06cd70691b8c53b3eefd66a0b42b34daeedcc
@@ -173,6 +178,7 @@ SPEC CHECKSUMS:
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   PINCache: '078426d356ab95ef875e9e62e5c35a2ea3333c28'
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   Stripe: ebb81bf4377dd7fa733f82ff29548cface9225e3
   SVGKit: 2afbeaf2c2be4615476951284750c3ddb790d0c7
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
@@ -181,6 +187,6 @@ SPEC CHECKSUMS:
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
-PODFILE CHECKSUM: 1ece35307b0742f30469904ae23d9206bc1e12d1
+PODFILE CHECKSUM: a1e6f5e6d81c97e0aa77b8935e9b127132a8708b
 
 COCOAPODS: 1.0.1
