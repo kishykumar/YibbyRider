@@ -7,16 +7,24 @@
 //
 
 import UIKit
-import CocoaLumberjack
 
 class LeftNavDrawerTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
     @IBOutlet weak var menuItemLabel: UILabel!
+    
+    @IBOutlet weak var menuItemIconLabelOutlet: UILabel!
+    
+    // MARK: - Setup
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    // MARK: - Configure
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

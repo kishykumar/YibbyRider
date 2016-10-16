@@ -179,6 +179,8 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
                     let selected: Bool = paymentMethod!.isEqual(defaultPaymentMethod)
                     cell.accessoryType = selected ? .Checkmark : .None
                     
+                    DDLogVerbose("paymentMethod: \(paymentMethod) defaultPaymentMethod: \(defaultPaymentMethod) selected: \(selected)")
+                    
                     if (selected) {
                         self.selectedIndexPath = indexPath
                     }

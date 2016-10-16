@@ -61,6 +61,8 @@ public extension UIImage {
         let posX = (originalWidth  - edge) / 2.0
         let posY = (originalHeight - edge) / 2.0
 
+        print("origW: \(originalWidth) origH: \(originalHeight) edge: \(edge) posX: \(posX) posY: \(posY)")
+        
         let cropSquare = CGRect(x: posX, y: posY, width: edge, height: edge)
 
         let imageRef = CGImageCreateWithImageInRect(self.CGImage, cropSquare)

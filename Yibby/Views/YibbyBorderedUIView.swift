@@ -31,6 +31,7 @@ public class YibbyBorderedUIView: SpringView {
         self.layer.shadowOpacity = 0.5
         self.layer.shadowRadius = 2
         self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.borderColor = UIColor.clearColor().CGColor
     }
 
     @IBInspectable

@@ -197,6 +197,7 @@
                         <outlet property="cardFieldsViewOutlet" destination="CbC-mZ-IC0" id="R0F-af-RKO"/>
                         <outlet property="deleteCardButtonOutlet" destination="3hY-ah-QFP" id="coA-6D-llf"/>
                         <outlet property="saveCardButtonOutlet" destination="K4D-Oo-WNE" id="wC9-c7-bqd"/>
+                        <outlet property="scanCardButtonOutlet" destination="ZJJ-0x-YDS" id="wek-L1-9S7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8P-jn-AoH" userLabel="First Responder" sceneMemberID="firstResponder"/>

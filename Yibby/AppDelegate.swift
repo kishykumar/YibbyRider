@@ -59,27 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
-        
-        // setup logger
-        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: DDLogLevel.All) // TTY = Xcode console
-        DDLog.addLogger(DDASLLogger.sharedInstance(), withLevel: DDLogLevel.All) // ASL = Apple System Logs
-        DDTTYLogger.sharedInstance().logFormatter = LogFormatter() // print filename, line#
-        DDASLLogger.sharedInstance().logFormatter = LogFormatter() // print filename, line#
-        
-        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
-        fileLogger.logFormatter = LogFormatter() // print filename, line#
-        fileLogger.rollingFrequency = 60*60*24  // 24 hours
-        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-        DDLog.addLogger(fileLogger)
-        
-        // setup LocationService
-        LocationService.sharedInstance().setupLocationManager()
-        
-        // Setup IQKeyboardManager
-        IQKeyboardManager.sharedManager().enable = true
-        IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
-        
+
+        setupLogger()
+        setupLocationService()
+        setupKeyboardManager()
+
         DDLogDebug("LaunchOptions \(launchOptions)");
         
         // Override point for customization after application launch.
@@ -105,6 +89,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         return true
     }
 
+    func setupLogger() {
+        
+        // setup logger
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: DDLogLevel.All) // TTY = Xcode console
+        DDLog.addLogger(DDASLLogger.sharedInstance(), withLevel: DDLogLevel.All) // ASL = Apple System Logs
+        DDTTYLogger.sharedInstance().logFormatter = LogFormatter() // print filename, line#
+        DDASLLogger.sharedInstance().logFormatter = LogFormatter() // print filename, line#
+        
+        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
+        fileLogger.logFormatter = LogFormatter() // print filename, line#
+        fileLogger.rollingFrequency = 60*60*24  // 24 hours
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.addLogger(fileLogger)
+    }
+    
+    func setupLocationService() {
+        // setup LocationService
+        LocationService.sharedInstance().setupLocationManager()
+    }
+    
+    func setupKeyboardManager() {
+        
+        // Setup IQKeyboardManager
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+    }
+    
     func initializeMainViewController () {
         DDLogVerbose("Initializing MainViewController");
 

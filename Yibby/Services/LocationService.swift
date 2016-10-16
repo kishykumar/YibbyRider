@@ -21,7 +21,7 @@ public class LocationService: NSObject, CLLocationManagerDelegate {
     // MARK: - Properties
     
     private static let myInstance = LocationService()
-    private var locationManager:CLLocationManager!
+    var locationManager:CLLocationManager!
     
     private var lastLocUpdateTS = 0.0
     private var curLocation: CLLocation!

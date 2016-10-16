@@ -141,6 +141,9 @@ public struct InterfaceString {
     }
     
     public struct Join {
+        static let Login = NSLocalizedString("Login", comment: "Login")
+        static let Signup = NSLocalizedString("Signup", comment: "Signup")
+        
         static let SignInAfterJoinError = NSLocalizedString("Your account has been created, but there was an error logging in, please try again", comment: "After successfully joining, there was an error signing in")
         static let Email = NSLocalizedString("Email", comment: "email key")
         static let EmailRequired = NSLocalizedString("Email is required.", comment: "email is required message")

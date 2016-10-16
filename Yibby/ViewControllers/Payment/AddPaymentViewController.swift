@@ -20,6 +20,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     @IBOutlet weak var deleteCardButtonOutlet: YibbyButton1!
     @IBOutlet weak var saveCardButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var cancelButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var scanCardButtonOutlet: UIButton!
     
     // TODO: Payment Type Icon
 //    var cardNumberField: BTUICardHint?

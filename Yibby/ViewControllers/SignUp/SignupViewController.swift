@@ -105,7 +105,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
                 DDLogVerbose("Success signing up: \(success)")
 
                 // if login is successful, save username, password, token in keychain
-                LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
+                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
                 // TODO: Show the payment view controller
                 
@@ -128,7 +128,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     // MARK: - IndicatorInfoProvider
     
     func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Sign up")
+        return IndicatorInfo(title: InterfaceString.Join.Signup)
     }
 }
 

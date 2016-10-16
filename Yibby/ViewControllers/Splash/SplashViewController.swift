@@ -127,7 +127,7 @@ class SplashViewController: UIViewController {
         if userDefaults.objectForKey(APP_FIRST_RUN) == nil {
             // Delete values from keychain here
             userDefaults.setValue(APP_FIRST_RUN, forKey: APP_FIRST_RUN)
-            LoginViewController.removeKeyChainKeys()
+            LoginViewController.removeLoginKeyChainKeys()
         }
 
         // register for push notification

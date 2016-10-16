@@ -16,4 +16,13 @@ extension UIImageView {
         }
     }
 
+    func setRoundedWithWhiteBorder() {
+        assert(self.frame.size.width == self.frame.size.height)
+        
+        let layer = self.layer
+        layer.masksToBounds = true
+        layer.cornerRadius = (self.frame.size.width / 2)
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.whiteColor().CGColor
+    }
 }

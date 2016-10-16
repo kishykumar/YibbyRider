@@ -25,6 +25,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.ttf</string>
+		<string>fontello.ttf</string>
+		<string>ionicons.ttf</string>
 	</array>
 	<key>Fabric</key>
 	<dict>

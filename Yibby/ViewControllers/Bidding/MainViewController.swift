@@ -300,13 +300,13 @@ public class MainViewController: BaseYibbyViewController,
                                                                           forBarMetrics: UIBarMetrics.Default)
         
         // Set Title Font, Font size, Font color
-//        self.navigationController!.navigationBar.titleTextAttributes = [
+//        self.navigationController?.navigationBar.titleTextAttributes = [
 //            NSFontAttributeName : UIFont.systemFontOfSize(18.0),
 //            NSForegroundColorAttributeName : UIColor.whiteColor()
 //        ]
 
 //
-//        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
     
     func setStatusBarColor () {
@@ -317,7 +317,7 @@ public class MainViewController: BaseYibbyViewController,
                     self.view.bounds.size.width, app.statusBarFrame.size.height))
         
         statusBarView.backgroundColor = UIColor.appDarkGreen1()
-        self.navigationController!.navigationBar.addSubview(statusBarView)
+        self.navigationController?.navigationBar.addSubview(statusBarView)
         
         // status bar text color
         UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -387,6 +387,12 @@ public class MainViewController: BaseYibbyViewController,
         
         // check for location services
         AlertUtil.displayLocationAlert()
+    }
+    
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        adjustGMSCameraFocus()
     }
     
     override public func didReceiveMemoryWarning() {
@@ -551,8 +557,8 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     // MARK: - SelectPaymentViewControllerDelegate
     
     func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
-//        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
-        self.navigationController!.popViewControllerAnimated(true)
+//        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
@@ -567,7 +573,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
             self.selectedPaymentMethod = method
             
             // remove the view controller
-            self.navigationController!.popViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(true)
     
             // update the card UI
             updateSelectCardUI(method)
@@ -586,7 +592,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
             self.selectedPaymentMethod = method
             
             // remove the view controller
-            self.navigationController!.popViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(true)
             
             // update the card UI
             updateSelectCardUI(method)
@@ -607,8 +613,8 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
         
         selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
         
-//        self.navigationController!.presentViewController(selectPaymentViewController, animated: true, completion: nil)
-        self.navigationController!.pushViewController(selectPaymentViewController, animated: true)
+//        self.navigationController?.presentViewController(selectPaymentViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(selectPaymentViewController, animated: true)        
     }
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE

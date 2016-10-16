@@ -55,7 +55,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     // MARK: - IndicatorInfoProvider
     
     func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Login")
+        return IndicatorInfo(title: InterfaceString.Join.Login)
     }
     
     // MARK: - Actions
@@ -64,17 +64,17 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     }
     
     // MARK: - KeyChain functions
-    static func setKeyChainKeys (username: String, password: String) {
+    static func setLoginKeyChainKeys (username: String, password: String) {
         KeychainWrapper.setString(username, forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
         KeychainWrapper.setString(password, forKey: LoginViewController.PASSWORD_KEY_NAME)
     }
     
-    static func removeKeyChainKeys () {
+    static func removeLoginKeyChainKeys () {
         KeychainWrapper.removeObjectForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
         KeychainWrapper.removeObjectForKey(LoginViewController.PASSWORD_KEY_NAME)
     }
     
-    static func getKeyChainKeys () -> (String?, String?) {
+    static func getLoginKeyChainValues () -> (String?, String?) {
         let retrievedEmailAddress = KeychainWrapper.stringForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
         let retrievedPassword = KeychainWrapper.stringForKey(LoginViewController.PASSWORD_KEY_NAME)
         return (retrievedEmailAddress, retrievedPassword)
@@ -104,7 +104,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
                 let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 // if login is successful, save username, password, token in keychain
-                LoginViewController.setKeyChainKeys(usernamei, password: passwordi)
+                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
                 appDelegate.sendGCMTokenToServer()
                 

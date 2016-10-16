@@ -41,6 +41,11 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - ElloOSSUIFonts (1.0.1)
   - Fabric (1.6.7)
+  - FBSnapshotTestCase (2.1.2):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
+  - FBSnapshotTestCase/Core (2.1.2)
+  - FBSnapshotTestCase/SwiftSupport (2.1.2):
+    - FBSnapshotTestCase/Core
   - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
   - GGLInstanceID (1.1.6)
@@ -84,6 +89,11 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
+  - Nimble (4.0.1)
+  - Nimble-Snapshots (4.0.1):
+    - FBSnapshotTestCase (~> 2.0)
+    - Nimble
+    - Quick
   - PINCache (2.2.2)
   - PINRemoteImage (2.1.4):
     - PINRemoteImage/FLAnimatedImage (= 2.1.4)
@@ -92,6 +102,7 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
+  - Quick (0.9.3)
   - Spring (1.0.3)
   - Stripe (8.0.1)
   - SVGKit (2.0.1):
@@ -120,7 +131,10 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - LaunchScreen
   - MMDrawerController (~> 0.5.7)
+  - Nimble (~> 4.0.0)
+  - Nimble-Snapshots (~> 4.0.0)
   - PINRemoteImage
+  - Quick
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
   - Stripe
   - SVGKit (from `https://github.com/SVGKit/SVGKit`)
@@ -162,6 +176,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   ElloOSSUIFonts: 4bc41bfb20baa34ce07215ad924254e514f65458
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
@@ -176,8 +191,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   LaunchScreen: 964c1b844d4190be813a0dee0ee791069325f277
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
+  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
+  Nimble-Snapshots: 2d15a585b816f7d14947ed6e172218f9d0980ea8
   PINCache: '078426d356ab95ef875e9e62e5c35a2ea3333c28'
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   Stripe: ebb81bf4377dd7fa733f82ff29548cface9225e3
   SVGKit: 2afbeaf2c2be4615476951284750c3ddb790d0c7
@@ -187,6 +205,6 @@ SPEC CHECKSUMS:
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
-PODFILE CHECKSUM: a1e6f5e6d81c97e0aa77b8935e9b127132a8708b
+PODFILE CHECKSUM: 3e6e5f6e11514f1acfbd34859691428cb9a95e0a
 
 COCOAPODS: 1.0.1

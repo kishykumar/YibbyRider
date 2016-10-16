@@ -92,6 +92,13 @@
 		1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */; };
 		121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */; };
 		121531721D441E3100C28C73 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531711D441E3100C28C73 /* TimeUtil.swift */; };
+		121C3C341D9BAB680027738D /* YibbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCEA1C41EFC800F79A26 /* YibbyTests.swift */; };
+		121C3C361D9CEEB80027738D /* AppDelegateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C3C351D9CEEB80027738D /* AppDelegateSpec.swift */; };
+		121C3C5B1D9D00570027738D /* YibbyBorderedUIViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C3C5A1D9D00570027738D /* YibbyBorderedUIViewSpec.swift */; };
+		121C3C5D1D9D04060027738D /* MainViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C3C5C1D9D04060027738D /* MainViewControllerSpec.swift */; };
+		1220F9891DB2A90F00390E44 /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1220F9881DB2A90300390E44 /* fontello.ttf */; };
+		1220F98B1DB2AD3500390E44 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1220F98A1DB2AD2D00390E44 /* ionicons.ttf */; };
+		1220F98D1DB3772000390E44 /* YibbyPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1220F98C1DB3772000390E44 /* YibbyPaddingLabel.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		1236AA4E1D72DC0100A36AC0 /* CardFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */; };
 		1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236AA501D72DD4900A36AC0 /* CardFieldsView.xib */; };
@@ -110,6 +117,7 @@
 		1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */; };
 		1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */; };
 		1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */; };
+		1265A6E81DA982F900D5FDBA /* YibbyBorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */; };
 		126C4AD21D796276005EC5FF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 126C4A9A1D796276005EC5FF /* Media.xcassets */; };
 		126C4AD31D796276005EC5FF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9D1D796276005EC5FF /* Card.swift */; };
 		126C4AD41D796276005EC5FF /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9E1D796276005EC5FF /* CardType.swift */; };
@@ -156,6 +164,28 @@
 		126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */; };
 		126C4B041D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */; };
 		126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */; };
+		129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */; };
+		12A364C01DA8563C00BA655F /* LoginViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */; };
+		12A364C21DA8755400BA655F /* SignupViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */; };
+		12A364C41DA87AFF00BA655F /* PaymentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C31DA87AFF00BA655F /* PaymentViewControllerSpec.swift */; };
+		12A364C61DA87B0D00BA655F /* AddPaymentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C51DA87B0D00BA655F /* AddPaymentViewControllerSpec.swift */; };
+		12A364C81DA889C000BA655F /* YibbyTestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C71DA889C000BA655F /* YibbyTestConfiguration.swift */; };
+		12A364CA1DA8A87500BA655F /* AboutViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C91DA8A87500BA655F /* AboutViewControllerSpec.swift */; };
+		12A364CC1DA8A89000BA655F /* ConfirmRideViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364CB1DA8A89000BA655F /* ConfirmRideViewControllerSpec.swift */; };
+		12A364CE1DA8A8A600BA655F /* FindOffersViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364CD1DA8A8A600BA655F /* FindOffersViewControllerSpec.swift */; };
+		12A364D01DA8A8BD00BA655F /* DestinationPickerViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364CF1DA8A8BD00BA655F /* DestinationPickerViewControllerSpec.swift */; };
+		12A364D21DA8A8D200BA655F /* LeftNavDrawerViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364D11DA8A8D200BA655F /* LeftNavDrawerViewControllerSpec.swift */; };
+		12A364D41DA8A8F000BA655F /* DriverEnRouteViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364D31DA8A8F000BA655F /* DriverEnRouteViewControllerSpec.swift */; };
+		12A364D61DA8A90600BA655F /* HelpViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364D51DA8A90600BA655F /* HelpViewControllerSpec.swift */; };
+		12A364D81DA8A92500BA655F /* HistoryViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364D71DA8A92500BA655F /* HistoryViewControllerSpec.swift */; };
+		12A364DA1DA8A93400BA655F /* RideDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364D91DA8A93400BA655F /* RideDetailViewControllerSpec.swift */; };
+		12A364DC1DA8A95C00BA655F /* PromotionsViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364DB1DA8A95C00BA655F /* PromotionsViewControllerSpec.swift */; };
+		12A364DE1DA8A97400BA655F /* PushControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364DD1DA8A97400BA655F /* PushControllerSpec.swift */; };
+		12A364E01DA8A98800BA655F /* RideEndViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364DF1DA8A98800BA655F /* RideEndViewControllerSpec.swift */; };
+		12A364E21DA8A99700BA655F /* TripViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364E11DA8A99700BA655F /* TripViewControllerSpec.swift */; };
+		12A364E41DA8A9AC00BA655F /* SettingsViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364E31DA8A9AC00BA655F /* SettingsViewControllerSpec.swift */; };
+		12A364E61DA8A9BC00BA655F /* JoinViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364E51DA8A9BC00BA655F /* JoinViewControllerSpec.swift */; };
+		12A364E81DA8A9CA00BA655F /* SplashViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364E71DA8A9CA00BA655F /* SplashViewControllerSpec.swift */; };
 		12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */; };
 		12A6BF461D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF451D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift */; };
 		12A6BF481D7E8C6F008BEFC1 /* YibbyButton1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */; };
@@ -172,6 +202,7 @@
 		12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */; };
 		12D7459B1D9126B800A7B9B9 /* YibbyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D7459A1D9126B800A7B9B9 /* YibbyCircleView.swift */; };
 		12D7459E1D92463700A7B9B9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12D7459D1D92463700A7B9B9 /* FontAwesome.ttf */; };
+		12EEF0D41DB110DF00F28A17 /* QuickExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
 		12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A21D378A7B00F158BB /* CardTableCell.swift */; };
 		12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */; };
@@ -179,7 +210,6 @@
 		12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */; };
 		12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */; };
 		12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */; };
-		12F3CCEB1C41EFC800F79A26 /* YibbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CCEA1C41EFC800F79A26 /* YibbyTests.swift */; };
 		12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCF51C4B9C0B00F79A26 /* Podfile */; };
 		12F3CCF81C4CF16D00F79A26 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F3CCF71C4CF16D00F79A26 /* CoreLocation.framework */; };
 		331475B0F61507A1D03B7C99 /* Pods_Yibby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBD461A0C740DBD36678D86 /* Pods_Yibby.framework */; };
@@ -284,6 +314,12 @@
 		1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
 		1215316F1D441DD000C28C73 /* ActivityIndicatorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorUtil.swift; sourceTree = "<group>"; };
 		121531711D441E3100C28C73 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
+		121C3C351D9CEEB80027738D /* AppDelegateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateSpec.swift; sourceTree = "<group>"; };
+		121C3C5A1D9D00570027738D /* YibbyBorderedUIViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedUIViewSpec.swift; sourceTree = "<group>"; };
+		121C3C5C1D9D04060027738D /* MainViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewControllerSpec.swift; sourceTree = "<group>"; };
+		1220F9881DB2A90300390E44 /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontello.ttf; sourceTree = "<group>"; };
+		1220F98A1DB2AD2D00390E44 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
+		1220F98C1DB3772000390E44 /* YibbyPaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyPaddingLabel.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFieldsView.swift; path = Yibby/Views/CaishenPaymentView/Classes/UI/CardFieldsView.swift; sourceTree = SOURCE_ROOT; };
 		1236AA501D72DD4900A36AC0 /* CardFieldsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardFieldsView.xib; sourceTree = "<group>"; };
@@ -301,6 +337,9 @@
 		1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyViewController.swift; sourceTree = SOURCE_ROOT; };
 		1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTabViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTabViewController.swift; sourceTree = SOURCE_ROOT; };
 		1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTableViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		1259D91A1DAB44C700DA6027 /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = "../../../Library/Developer/Xcode/DerivedData/Yibby-hcasmlpmkeqscobolfjjswldkusv/Build/Products/Debug-iphoneos/Nimble-Snapshots/Nimble_Snapshots.framework"; sourceTree = "<group>"; };
+		1259D91C1DAB47F600DA6027 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = "../../../Library/Developer/Xcode/DerivedData/Yibby-hcasmlpmkeqscobolfjjswldkusv/Build/Products/Debug-iphoneos/FBSnapshotTestCase/FBSnapshotTestCase.framework"; sourceTree = "<group>"; };
+		1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedTextField.swift; sourceTree = "<group>"; };
 		126C4A9A1D796276005EC5FF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		126C4A9D1D796276005EC5FF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		126C4A9E1D796276005EC5FF /* CardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
@@ -349,6 +388,28 @@
 		126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
+		129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364C31DA87AFF00BA655F /* PaymentViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364C51DA87B0D00BA655F /* AddPaymentViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364C71DA889C000BA655F /* YibbyTestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyTestConfiguration.swift; sourceTree = "<group>"; };
+		12A364C91DA8A87500BA655F /* AboutViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364CB1DA8A89000BA655F /* ConfirmRideViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmRideViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364CD1DA8A8A600BA655F /* FindOffersViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindOffersViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364CF1DA8A8BD00BA655F /* DestinationPickerViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationPickerViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364D11DA8A8D200BA655F /* LeftNavDrawerViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftNavDrawerViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364D31DA8A8F000BA655F /* DriverEnRouteViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364D51DA8A90600BA655F /* HelpViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364D71DA8A92500BA655F /* HistoryViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364D91DA8A93400BA655F /* RideDetailViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364DB1DA8A95C00BA655F /* PromotionsViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionsViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364DD1DA8A97400BA655F /* PushControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushControllerSpec.swift; sourceTree = "<group>"; };
+		12A364DF1DA8A98800BA655F /* RideEndViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideEndViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364E11DA8A99700BA655F /* TripViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364E31DA8A9AC00BA655F /* SettingsViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364E51DA8A9BC00BA655F /* JoinViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewControllerSpec.swift; sourceTree = "<group>"; };
+		12A364E71DA8A9CA00BA655F /* SplashViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewControllerSpec.swift; sourceTree = "<group>"; };
 		12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		12A6BF451D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardFieldsView+PrefillInformation.swift"; sourceTree = "<group>"; };
 		12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyButton1.swift; sourceTree = "<group>"; };
@@ -367,8 +428,8 @@
 		12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeCardUtil.swift; sourceTree = "<group>"; };
 		12D7459A1D9126B800A7B9B9 /* YibbyCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyCircleView.swift; sourceTree = "<group>"; };
 		12D7459D1D92463700A7B9B9 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		12D7459F1D92469D00A7B9B9 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = Yibby/Resources/FontAwesome.ttf; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickExtensions.swift; sourceTree = "<group>"; };
 		12EF49711C95276800C07FAE /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		12F092A21D378A7B00F158BB /* CardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableCell.swift; sourceTree = "<group>"; };
 		12F092A81D3DF37C00F158BB /* AddCardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardTableCell.swift; sourceTree = "<group>"; };
@@ -466,12 +527,14 @@
 				12A6BF471D7E8C6F008BEFC1 /* YibbyButton1.swift */,
 				12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */,
 				12D7459A1D9126B800A7B9B9 /* YibbyCircleView.swift */,
+				1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */,
 				12A6BF571D894451008BEFC1 /* FloatLabelTextField.swift */,
 				12A6BF591D894476008BEFC1 /* YibbyFloatLabelTextField.swift */,
 				1201B8301D28E22B00A7EEAF /* ElloLabel.swift */,
 				1201B8311D28E22B00A7EEAF /* ElloTextField.swift */,
 				1201B7741D23AB6700A7EEAF /* ENFooterActivityIndicatorView */,
 				1254E13C1D693063007067BC /* YibbyTextField.swift */,
+				1220F98C1DB3772000390E44 /* YibbyPaddingLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -502,6 +565,7 @@
 				1201B8131D289D6700A7EEAF /* UIImagePickerController.swift */,
 				1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */,
 				1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */,
+				129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -751,6 +815,298 @@
 			path = JOButtonMenu;
 			sourceTree = "<group>";
 		};
+		121C3C371D9CFFAB0027738D /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		121C3C381D9CFFAC0027738D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		121C3C391D9CFFAC0027738D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				12A364C71DA889C000BA655F /* YibbyTestConfiguration.swift */,
+				12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		121C3C3A1D9CFFAC0027738D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		121C3C3B1D9CFFAC0027738D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		121C3C3C1D9CFFAC0027738D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		121C3C3D1D9CFFAC0027738D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		121C3C3E1D9CFFAC0027738D /* Style */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		121C3C3F1D9CFFAC0027738D /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		121C3C401D9CFFAC0027738D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		121C3C411D9CFFAC0027738D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				121C3C421D9CFFAC0027738D /* About */,
+				121C3C431D9CFFAC0027738D /* Base */,
+				121C3C441D9CFFAC0027738D /* Bidding */,
+				121C3C451D9CFFAC0027738D /* Destination */,
+				121C3C461D9CFFAC0027738D /* Drawer */,
+				121C3C471D9CFFAC0027738D /* EnRoute */,
+				121C3C481D9CFFAC0027738D /* Help */,
+				121C3C491D9CFFAC0027738D /* History */,
+				121C3C4A1D9CFFAC0027738D /* Intro */,
+				121C3C4B1D9CFFAC0027738D /* Login */,
+				121C3C4C1D9CFFAC0027738D /* Payment */,
+				121C3C4D1D9CFFAC0027738D /* Profile */,
+				121C3C4E1D9CFFAC0027738D /* Promotions */,
+				121C3C4F1D9CFFAC0027738D /* PushNotifications */,
+				121C3C501D9CFFAC0027738D /* Ride */,
+				121C3C511D9CFFAC0027738D /* Settings */,
+				121C3C521D9CFFAC0027738D /* Signup */,
+				121C3C531D9CFFAC0027738D /* Splash */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		121C3C421D9CFFAC0027738D /* About */ = {
+			isa = PBXGroup;
+			children = (
+				12A364C91DA8A87500BA655F /* AboutViewControllerSpec.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		121C3C431D9CFFAC0027738D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		121C3C441D9CFFAC0027738D /* Bidding */ = {
+			isa = PBXGroup;
+			children = (
+				121C3C5C1D9D04060027738D /* MainViewControllerSpec.swift */,
+				12A364CB1DA8A89000BA655F /* ConfirmRideViewControllerSpec.swift */,
+				12A364CD1DA8A8A600BA655F /* FindOffersViewControllerSpec.swift */,
+			);
+			path = Bidding;
+			sourceTree = "<group>";
+		};
+		121C3C451D9CFFAC0027738D /* Destination */ = {
+			isa = PBXGroup;
+			children = (
+				12A364CF1DA8A8BD00BA655F /* DestinationPickerViewControllerSpec.swift */,
+			);
+			path = Destination;
+			sourceTree = "<group>";
+		};
+		121C3C461D9CFFAC0027738D /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				12A364D11DA8A8D200BA655F /* LeftNavDrawerViewControllerSpec.swift */,
+			);
+			path = Drawer;
+			sourceTree = "<group>";
+		};
+		121C3C471D9CFFAC0027738D /* EnRoute */ = {
+			isa = PBXGroup;
+			children = (
+				12A364D31DA8A8F000BA655F /* DriverEnRouteViewControllerSpec.swift */,
+			);
+			path = EnRoute;
+			sourceTree = "<group>";
+		};
+		121C3C481D9CFFAC0027738D /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				12A364D51DA8A90600BA655F /* HelpViewControllerSpec.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		121C3C491D9CFFAC0027738D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				12A364D71DA8A92500BA655F /* HistoryViewControllerSpec.swift */,
+				12A364D91DA8A93400BA655F /* RideDetailViewControllerSpec.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		121C3C4A1D9CFFAC0027738D /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		121C3C4B1D9CFFAC0027738D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		121C3C4C1D9CFFAC0027738D /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				12A364C31DA87AFF00BA655F /* PaymentViewControllerSpec.swift */,
+				12A364C51DA87B0D00BA655F /* AddPaymentViewControllerSpec.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		121C3C4D1D9CFFAC0027738D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		121C3C4E1D9CFFAC0027738D /* Promotions */ = {
+			isa = PBXGroup;
+			children = (
+				12A364DB1DA8A95C00BA655F /* PromotionsViewControllerSpec.swift */,
+			);
+			path = Promotions;
+			sourceTree = "<group>";
+		};
+		121C3C4F1D9CFFAC0027738D /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				12A364DD1DA8A97400BA655F /* PushControllerSpec.swift */,
+			);
+			path = PushNotifications;
+			sourceTree = "<group>";
+		};
+		121C3C501D9CFFAC0027738D /* Ride */ = {
+			isa = PBXGroup;
+			children = (
+				12A364DF1DA8A98800BA655F /* RideEndViewControllerSpec.swift */,
+				12A364E11DA8A99700BA655F /* TripViewControllerSpec.swift */,
+			);
+			path = Ride;
+			sourceTree = "<group>";
+		};
+		121C3C511D9CFFAC0027738D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				12A364E31DA8A9AC00BA655F /* SettingsViewControllerSpec.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		121C3C521D9CFFAC0027738D /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */,
+				12A364E51DA8A9BC00BA655F /* JoinViewControllerSpec.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		121C3C531D9CFFAC0027738D /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				12A364E71DA8A9CA00BA655F /* SplashViewControllerSpec.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		121C3C541D9CFFAC0027738D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				121C3C551D9CFFAC0027738D /* ASValueTrackingSlider */,
+				121C3C561D9CFFAC0027738D /* CaishenPaymentView */,
+				121C3C571D9CFFAC0027738D /* ENFooterActivityIndicatorView */,
+				121C3C581D9CFFAC0027738D /* JOButtonMenu */,
+				121C3C591D9CFFAC0027738D /* MapMarker */,
+				121C3C5A1D9D00570027738D /* YibbyBorderedUIViewSpec.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		121C3C551D9CFFAC0027738D /* ASValueTrackingSlider */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ASValueTrackingSlider;
+			sourceTree = "<group>";
+		};
+		121C3C561D9CFFAC0027738D /* CaishenPaymentView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CaishenPaymentView;
+			sourceTree = "<group>";
+		};
+		121C3C571D9CFFAC0027738D /* ENFooterActivityIndicatorView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ENFooterActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+		121C3C581D9CFFAC0027738D /* JOButtonMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = JOButtonMenu;
+			sourceTree = "<group>";
+		};
+		121C3C591D9CFFAC0027738D /* MapMarker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MapMarker;
+			sourceTree = "<group>";
+		};
 		123D41761D6302BF00475614 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,6 +1312,8 @@
 		12D7459C1D92463700A7B9B9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1220F98A1DB2AD2D00390E44 /* ionicons.ttf */,
+				1220F9881DB2A90300390E44 /* fontello.ttf */,
 				12D7459D1D92463700A7B9B9 /* FontAwesome.ttf */,
 			);
 			path = Resources;
@@ -972,7 +1330,6 @@
 		12F3CCC91C41EFC700F79A26 = {
 			isa = PBXGroup;
 			children = (
-				12D7459F1D92469D00A7B9B9 /* FontAwesome.ttf */,
 				123524921C894660004307EE /* GoogleService-Info.plist */,
 				12F3CCD41C41EFC700F79A26 /* Yibby */,
 				12F3CCE91C41EFC800F79A26 /* YibbyTests */,
@@ -1023,8 +1380,21 @@
 		12F3CCE91C41EFC800F79A26 /* YibbyTests */ = {
 			isa = PBXGroup;
 			children = (
+				121C3C371D9CFFAB0027738D /* Alerts */,
+				121C3C381D9CFFAC0027738D /* Extensions */,
+				121C3C391D9CFFAC0027738D /* Helpers */,
+				121C3C3A1D9CFFAC0027738D /* Model */,
+				121C3C3B1D9CFFAC0027738D /* Networking */,
+				121C3C3C1D9CFFAC0027738D /* Services */,
+				121C3C3D1D9CFFAC0027738D /* Storyboards */,
+				121C3C3E1D9CFFAC0027738D /* Style */,
+				121C3C3F1D9CFFAC0027738D /* ThirdParty */,
+				121C3C401D9CFFAC0027738D /* Utilities */,
+				121C3C411D9CFFAC0027738D /* ViewControllers */,
+				121C3C541D9CFFAC0027738D /* Views */,
 				12F3CCEA1C41EFC800F79A26 /* YibbyTests.swift */,
 				12F3CCEC1C41EFC800F79A26 /* Info.plist */,
+				121C3C351D9CEEB80027738D /* AppDelegateSpec.swift */,
 			);
 			path = YibbyTests;
 			sourceTree = "<group>";
@@ -1047,6 +1417,8 @@
 		655A3CB4424C6BF7AFEE185A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1259D91C1DAB47F600DA6027 /* FBSnapshotTestCase.framework */,
+				1259D91A1DAB44C700DA6027 /* Nimble_Snapshots.framework */,
 				1201B8491D28ED2300A7EEAF /* MobileCoreServices.framework */,
 				120682381CBE277C004A34BB /* SystemConfiguration.framework */,
 				12F3CCF71C4CF16D00F79A26 /* CoreLocation.framework */,
@@ -1153,6 +1525,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1220F98B1DB2AD3500390E44 /* ionicons.ttf in Resources */,
+				1220F9891DB2A90F00390E44 /* fontello.ttf in Resources */,
 				12D7459E1D92463700A7B9B9 /* FontAwesome.ttf in Resources */,
 				1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */,
 				1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */,
@@ -1362,6 +1736,7 @@
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
 				1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */,
 				126C4AEB1D796276005EC5FF /* CardTypeImageStore.swift in Sources */,
+				1220F98D1DB3772000390E44 /* YibbyPaddingLabel.swift in Sources */,
 				12A6BF581D894452008BEFC1 /* FloatLabelTextField.swift in Sources */,
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
 				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
@@ -1381,6 +1756,8 @@
 				12A6BF4F1D800384008BEFC1 /* YibbyMapMarker.swift in Sources */,
 				126C4AE71D796276005EC5FF /* CardTextField+PrefillInformation.swift in Sources */,
 				1201B83A1D28E58300A7EEAF /* InterfaceImage.swift in Sources */,
+				1265A6E81DA982F900D5FDBA /* YibbyBorderedTextField.swift in Sources */,
+				129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */,
 				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,
 				12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */,
 				121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */,
@@ -1453,8 +1830,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12F3CCEB1C41EFC800F79A26 /* YibbyTests.swift in Sources */,
+				121C3C361D9CEEB80027738D /* AppDelegateSpec.swift in Sources */,
+				12A364E61DA8A9BC00BA655F /* JoinViewControllerSpec.swift in Sources */,
+				12A364E21DA8A99700BA655F /* TripViewControllerSpec.swift in Sources */,
+				12A364D21DA8A8D200BA655F /* LeftNavDrawerViewControllerSpec.swift in Sources */,
+				121C3C5D1D9D04060027738D /* MainViewControllerSpec.swift in Sources */,
+				12A364C41DA87AFF00BA655F /* PaymentViewControllerSpec.swift in Sources */,
 				126C4AFC1D796580005EC5FF /* CaishenTests.swift in Sources */,
+				121C3C5B1D9D00570027738D /* YibbyBorderedUIViewSpec.swift in Sources */,
+				12A364DA1DA8A93400BA655F /* RideDetailViewControllerSpec.swift in Sources */,
+				12A364D81DA8A92500BA655F /* HistoryViewControllerSpec.swift in Sources */,
+				12A364CA1DA8A87500BA655F /* AboutViewControllerSpec.swift in Sources */,
+				12A364DC1DA8A95C00BA655F /* PromotionsViewControllerSpec.swift in Sources */,
+				121C3C341D9BAB680027738D /* YibbyTests.swift in Sources */,
+				12A364D41DA8A8F000BA655F /* DriverEnRouteViewControllerSpec.swift in Sources */,
+				12EEF0D41DB110DF00F28A17 /* QuickExtensions.swift in Sources */,
+				12A364C81DA889C000BA655F /* YibbyTestConfiguration.swift in Sources */,
+				12A364DE1DA8A97400BA655F /* PushControllerSpec.swift in Sources */,
+				12A364C01DA8563C00BA655F /* LoginViewControllerSpec.swift in Sources */,
+				12A364C21DA8755400BA655F /* SignupViewControllerSpec.swift in Sources */,
+				12A364D61DA8A90600BA655F /* HelpViewControllerSpec.swift in Sources */,
+				12A364CC1DA8A89000BA655F /* ConfirmRideViewControllerSpec.swift in Sources */,
+				12A364E81DA8A9CA00BA655F /* SplashViewControllerSpec.swift in Sources */,
+				12A364CE1DA8A8A600BA655F /* FindOffersViewControllerSpec.swift in Sources */,
+				12A364E41DA8A9AC00BA655F /* SettingsViewControllerSpec.swift in Sources */,
+				12A364D01DA8A8BD00BA655F /* DestinationPickerViewControllerSpec.swift in Sources */,
+				12A364C61DA87B0D00BA655F /* AddPaymentViewControllerSpec.swift in Sources */,
+				12A364E01DA8A98800BA655F /* RideEndViewControllerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,7 +1937,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_MODULE_NAME = Yibby;
@@ -1575,7 +1977,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = Yibby;
 				SDKROOT = iphoneos;

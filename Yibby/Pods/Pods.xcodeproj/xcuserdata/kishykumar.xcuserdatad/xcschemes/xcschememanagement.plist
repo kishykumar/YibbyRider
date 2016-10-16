@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FBSnapshotTestCase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FDStackView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -84,6 +89,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Nimble-Snapshots.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Nimble.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PINCache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -100,6 +115,11 @@
 			<false/>
 		</dict>
 		<key>Pods-YibbyTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -192,7 +212,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>40FF1C77152F384080A1A02E90A36DA9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5C402541CCBC314D289B7242F73A6923</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5DB46EA499F9A5E22765121102FCC34B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -227,12 +257,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9A3AE440FB23CCC076AA408C3C4836C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9AB92A2AE7314091D107EAC8561B8977</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9CDC17534D146A95C2F152669D6BCEA1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5C430B1E2D8298FD6C5403590C0B80F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -248,6 +288,11 @@
 			<true/>
 		</dict>
 		<key>BF15DE4E17E389ABC373A576A618294C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C205FB4CB772968E695A661D4B8E906F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -273,11 +318,6 @@
 			<true/>
 		</dict>
 		<key>ECD3D6459209FCB6B9C23734199A374D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F00E387A9EAFFFAAD4FCCEB48CE4E305</key>
 		<dict>
 			<key>primary</key>
 			<true/>

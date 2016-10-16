@@ -18,10 +18,13 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
+    @IBOutlet weak var userRealNameLabelOutlet: UILabel!
+    
     
     var photoSaveCallback: (UIImage -> Void)?
 
-    var menuItems: [String] = ["Trips", "Payment", "Settings", "Notifications", "Support", "Promotions", "Drive", "Logout"]
+    let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "SETTINGS", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
+    let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
     
     let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
 
@@ -33,8 +36,32 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         case Support
         case Promotions
         case Drive
-        case Logout
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func onAboutButtonClick(sender: AnyObject) {
+        
+        // Push the About View Controller
+        let aboutStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.About, bundle: nil)
+        let aboutViewController = aboutStoryboard.instantiateViewControllerWithIdentifier("AboutViewControllerIdentifier") as! AboutViewController
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+            
+            mmnvc.pushViewController(aboutViewController, animated: true)
+            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            
+        } else {
+            assert(false)
+        }
+    }
+    
+    @IBAction func onSignOutButtonClick(sender: AnyObject) {
+        logoutUser()
+    }
+    
     
     // MARK: - Setup Functions
     
@@ -42,15 +69,32 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupUI()
         setupViews()
     }
 
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Set tableview botton border in viewDidAppear because the tableView height is coming incorrect in viewDidLoad
+        self.tableView.addBottomBorder()
+    }
+    
     public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupViews () {
+    private func setupUI() {
+        
+        // Modify the background color because we don't want to show the regular gray one.
+        self.view.backgroundColor = UIColor.appDarkGreen1();
+
+        // Set rounded profile pic
+        self.profilePictureOutlet.setRoundedWithWhiteBorder()
+    }
+    
+    private func setupViews() {
         setupDefaultValues()
     }
     
@@ -77,9 +121,33 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let mycell = tableView.dequeueReusableCellWithIdentifier("LeftNavDrawerCellIdentifier", forIndexPath: indexPath) as! LeftNavDrawerTableViewCell
+
+        // set the label
         mycell.menuItemLabel.text = menuItems[indexPath.row]
+        
+        // set the icon
+        mycell.menuItemIconLabelOutlet.font = UIFont(name: "FontAwesome", size: 20)
+        mycell.menuItemIconLabelOutlet.text = String(format: "%C", menuItemsIconFAFormat[indexPath.row])
+        
+        // Cell shadow UI
+        mycell.layer.shadowOpacity = 0.5
+        mycell.layer.shadowRadius = 1.7
+        mycell.layer.shadowColor = UIColor.blackColor().CGColor
+        mycell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        mycell.layer.masksToBounds = false
+        mycell.layer.shadowPath = UIBezierPath(rect: mycell.bounds).CGPath
+        
         return mycell
+    }
+    
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tHeight = tableView.bounds.height
+        let height = tHeight/CGFloat(menuItems.count)
+        
+        return height
     }
     
     public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -122,11 +190,8 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
             selectedViewController = helpStoryboard.instantiateViewControllerWithIdentifier("HelpViewControllerIdentifier") as! HelpViewController
             
             break
-        case TableIndex.Logout.rawValue:
-            
-            logoutUser()
-            return;
-        default: break
+        default:
+            break
         }
 
         // Push the selected view controller to the main navigation controller
@@ -141,7 +206,6 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
             assert(false)
         }
     }
-    
     
     // BaasBox logout user
     func logoutUser() {
@@ -163,7 +227,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
                 
                 DDLogInfo("user logged out successfully \(success)")
                 // if logout is successful, remove username, password from keychain
-                LoginViewController.removeKeyChainKeys()
+                LoginViewController.removeLoginKeyChainKeys()
                 
                 // Show the Signup/LoginViewController View
                 
@@ -251,7 +315,7 @@ extension LeftNavDrawerViewController: UIImagePickerControllerDelegate, UINaviga
 
             image.copyWithCorrectOrientationAndSize() { image in
                 
-                self.photoSaveCallback?(image.roundCorners()!)
+                self.photoSaveCallback?(image.squareImage()!.roundCorners()!)
                 self.dismissViewControllerAnimated(true, completion: .None)
             }
         }
