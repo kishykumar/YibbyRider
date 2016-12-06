@@ -14,6 +14,8 @@ import SVProgressHUD
 
 class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
 
+    // MARK - Properties
+
     var rides = [BAAFile]()
     let identifier: String = "historyTableCell"
     
@@ -22,6 +24,8 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
     var nextPageToLoad: Int = 0
     var totalPages: Int = 0
     var isLoading: Bool = false
+    
+    // MARK - Setup
     
     let NUM_FETCH_RIDE_ENTRIES: Int = 5
     
@@ -56,6 +60,10 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         
         self.performSelector(#selector(HistoryViewController.loadNextPage),
                              withObject:nil, afterDelay:0.0)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
     }
     
     func loadNextPage() {

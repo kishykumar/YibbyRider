@@ -70,20 +70,20 @@ class PaymentViewControllerSpec: QuickSpec {
                         }
                         
                         it("should have correct number of sections") {
-                            subject.numberOfSectionsInTableView(subject.tableView) == 3
+                            expect(subject.numberOfSectionsInTableView(subject.tableView)) == 3
                         }
                         
                         it("should have correct number of rows in cardListSection section") {
-                            subject.tableView(subject.tableView, numberOfRowsInSection: subject.cardListSection) == BraintreePaymentService.sharedInstance().paymentMethods.count
+                            expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.cardListSection)) == BraintreePaymentService.sharedInstance().paymentMethods.count
                         }
                         
                         it("should have correct number of rows in addPaymentSection section") {
-                            subject.tableView(subject.tableView, numberOfRowsInSection: subject.addPaymentSection) == 1
+                            expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.addPaymentSection)) == 1
                         }
                         
                         it("should have 0 rows in defaultPaymentSection section when no default payment") {
                             BraintreePaymentService.sharedInstance().defaultPaymentMethod = nil
-                            subject.tableView(subject.tableView, numberOfRowsInSection: subject.defaultPaymentSection) == 0
+                            expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.defaultPaymentSection)) == 0
                             
                             // cleanup any state that was set
                             BraintreePaymentService.sharedInstance().defaultPaymentMethod = oldDefaultPaymentMethod
@@ -91,7 +91,7 @@ class PaymentViewControllerSpec: QuickSpec {
                         
                         it("should have 1 row in defaultPaymentSection section when we have default payment") {
                             BraintreePaymentService.sharedInstance().defaultPaymentMethod = BTPaymentMethodNonce()
-                            subject.tableView(subject.tableView, numberOfRowsInSection: subject.defaultPaymentSection) == 1
+                            expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.defaultPaymentSection)) == 1
                             
                             // cleanup any state that was set
                             BraintreePaymentService.sharedInstance().defaultPaymentMethod = oldDefaultPaymentMethod
@@ -196,15 +196,15 @@ class PaymentViewControllerSpec: QuickSpec {
                         }
                         
                         it("should have correct number of sections") {
-                            subject.numberOfSectionsInTableView(subject.tableView) == 2
+                            expect(subject.numberOfSectionsInTableView(subject.tableView)) == 2
                         }
                         
                         it("should have correct number of rows in cardListSection section") {
-                            subject.tableView(subject.tableView, numberOfRowsInSection: subject.cardListSection) == BraintreePaymentService.sharedInstance().paymentMethods.count
+                            expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.cardListSection)) == BraintreePaymentService.sharedInstance().paymentMethods.count
                         }
                         
                         it("should have correct number of rows in addPaymentSection section") {
-                            subject.tableView(subject.tableView, numberOfRowsInSection: subject.addPaymentSection) == 1
+                            expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.addPaymentSection)) == 1
                         }
                     }
                     
@@ -268,11 +268,11 @@ class PaymentViewControllerSpec: QuickSpec {
                     }
                     
                     it("should have correct number of sections") {
-                        subject.numberOfSectionsInTableView(subject.tableView) == 1
+                        expect(subject.numberOfSectionsInTableView(subject.tableView)) == 1
                     }
                     
                     it("should have correct number of rows in cardListSection section") {
-                        subject.tableView(subject.tableView, numberOfRowsInSection: subject.cardListSection) == BraintreePaymentService.sharedInstance().paymentMethods.count
+                        expect(subject.tableView(subject.tableView, numberOfRowsInSection: subject.cardListSection)) == BraintreePaymentService.sharedInstance().paymentMethods.count
                     }
                 }
                 

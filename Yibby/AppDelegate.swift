@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
     let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
     let BAASBOX_APPCODE = "1234567890"
-    let BAASBOX_URL = "http://sandbox1-env.us-west-1.elasticbeanstalk.com"
+    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
     
     var centerContainer: MMDrawerController?
     

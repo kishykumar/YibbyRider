@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertViewController" customModule="Ello" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertViewController" customModule="Yibby" customModuleProvider="target">
             <connections>
                 <outlet property="leftPadding" destination="jwb-iW-mxg" id="5we-e3-8nD"/>
                 <outlet property="rightPadding" destination="qU8-W6-OAy" id="PP9-lE-7s5"/>

@@ -117,6 +117,8 @@
 		1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E13E1D694E26007067BC /* BaseYibbyViewController.swift */; };
 		1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */; };
 		1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */; };
+		125B39041DBC96F80041E0D7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B39031DBC96F80041E0D7 /* EditProfileViewController.swift */; };
+		125B39061DBC97180041E0D7 /* Profile.Storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 125B39051DBC97180041E0D7 /* Profile.Storyboard */; };
 		1265A6E81DA982F900D5FDBA /* YibbyBorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */; };
 		126C4AD21D796276005EC5FF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 126C4A9A1D796276005EC5FF /* Media.xcassets */; };
 		126C4AD31D796276005EC5FF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9D1D796276005EC5FF /* Card.swift */; };
@@ -273,8 +275,8 @@
 		1201B7F51D25010500A7EEAF /* Destination.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Destination.storyboard; sourceTree = "<group>"; };
 		1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailViewController.swift; sourceTree = "<group>"; };
 		1201B7FB1D250D8400A7EEAF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		1201B8131D289D6700A7EEAF /* UIImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImagePickerController.swift; path = ../Utilities/UIImagePickerController.swift; sourceTree = "<group>"; };
-		1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageViewExtensions.swift; path = ../Utilities/UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		1201B8131D289D6700A7EEAF /* UIImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImagePickerController.swift; sourceTree = "<group>"; };
+		1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		1201B8181D28AA0C00A7EEAF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		1201B81B1D28ADC800A7EEAF /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		1201B81C1D28ADC800A7EEAF /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
@@ -300,10 +302,10 @@
 		1201B8471D28EC6900A7EEAF /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		1201B8491D28ED2300A7EEAF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1201B84B1D290AF800A7EEAF /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
-		1201B84D1D29125300A7EEAF /* TemporaryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemporaryCache.swift; path = "../../../../../Downloads/ello-ios-master/Sources/Utilities/TemporaryCache.swift"; sourceTree = "<group>"; };
-		1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGSizeExtensions.swift; path = "../../../../../Downloads/ello-ios-master/Sources/Extensions/CGSizeExtensions.swift"; sourceTree = "<group>"; };
+		1201B84D1D29125300A7EEAF /* TemporaryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryCache.swift; sourceTree = "<group>"; };
+		1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSizeExtensions.swift; sourceTree = "<group>"; };
 		1201B8511D2B471800A7EEAF /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
-		1201B8531D32445E00A7EEAF /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bid.swift; path = ../../../YibbyPartner/YibbyPartner/Model/Bid.swift; sourceTree = "<group>"; };
+		1201B8531D32445E00A7EEAF /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		1201B8551D34E52C00A7EEAF /* AddPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
 		1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JOButtonMenu.swift; sourceTree = "<group>"; };
 		120478901D93CEFF009E1B16 /* SelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,8 @@
 		1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseYibbyTableViewController.swift; path = Yibby/ViewControllers/Base/BaseYibbyTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		1259D91A1DAB44C700DA6027 /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = "../../../Library/Developer/Xcode/DerivedData/Yibby-hcasmlpmkeqscobolfjjswldkusv/Build/Products/Debug-iphoneos/Nimble-Snapshots/Nimble_Snapshots.framework"; sourceTree = "<group>"; };
 		1259D91C1DAB47F600DA6027 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = "../../../Library/Developer/Xcode/DerivedData/Yibby-hcasmlpmkeqscobolfjjswldkusv/Build/Products/Debug-iphoneos/FBSnapshotTestCase/FBSnapshotTestCase.framework"; sourceTree = "<group>"; };
+		125B39031DBC96F80041E0D7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		125B39051DBC97180041E0D7 /* Profile.Storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.Storyboard; sourceTree = "<group>"; };
 		1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedTextField.swift; sourceTree = "<group>"; };
 		126C4A9A1D796276005EC5FF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		126C4A9D1D796276005EC5FF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -683,6 +687,8 @@
 		1201B7551D23A85F00A7EEAF /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				125B39031DBC96F80041E0D7 /* EditProfileViewController.swift */,
+				125B39051DBC97180041E0D7 /* Profile.Storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1538,6 +1544,7 @@
 				126C4AD21D796276005EC5FF /* Media.xcassets in Resources */,
 				1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */,
 				1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */,
+				125B39061DBC97180041E0D7 /* Profile.Storyboard in Resources */,
 				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
 				1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */,
 				1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */,
@@ -1596,7 +1603,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-resources.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		8F2DAF073F92100A711F982C /* [CP] Embed Pods Frameworks */ = {
@@ -1611,7 +1618,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-frameworks.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		A68332386045623538C5223B /* [CP] Embed Pods Frameworks */ = {
@@ -1626,7 +1633,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Yibby copy/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D86B788C85FE27ED0CD78D20 /* [CP] Copy Pods Resources */ = {
@@ -1641,7 +1648,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Yibby copy/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E6F39E6AA71B9E64C2C8375A /* [CP] Check Pods Manifest.lock */ = {
@@ -1681,6 +1688,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				125B39041DBC96F80041E0D7 /* EditProfileViewController.swift in Sources */,
 				126C4AF11D796276005EC5FF /* CardInfoTextFieldDelegate.swift in Sources */,
 				12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */,
 				1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */,

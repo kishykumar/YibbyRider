@@ -19,7 +19,8 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var userRealNameLabelOutlet: UILabel!
-    
+    @IBOutlet weak var aboutButtonOutlet: UIButton!
+    @IBOutlet weak var signOutButtonOutlet: UIButton!
     
     var photoSaveCallback: (UIImage -> Void)?
 
@@ -62,6 +63,26 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         logoutUser()
     }
     
+    @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
+        photoSaveCallback = { image in
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+            ProfileService().updateUserProfilePicture(image,
+                                                      success: { url in
+                                                        DDLogVerbose("Success")
+                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                                        
+                                                        let userDefaults = NSUserDefaults.standardUserDefaults()
+                                                        userDefaults.setURL(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+                                                        
+                                                        self.profilePictureOutlet.image = image
+                },
+                                                      failure: { _, _ in
+                                                        DDLogVerbose("Failure")
+                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            })
+        }
+        openImagePicker()
+    }
     
     // MARK: - Setup Functions
     
@@ -198,7 +219,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            
+            mmnvc.navigationBarHidden = false
             mmnvc.pushViewController(selectedViewController, animated: true)
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             
@@ -255,29 +276,6 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
                 }
             }
         })
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
-        photoSaveCallback = { image in
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            ProfileService().updateUserProfilePicture(image,
-                success: { url in
-                    DDLogVerbose("Success")
-                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                    
-                    let userDefaults = NSUserDefaults.standardUserDefaults()
-                    userDefaults.setURL(url, forKey: self.PROFILE_PICTURE_URL_KEY)
-
-                    self.profilePictureOutlet.image = image
-                },
-                failure: { _, _ in
-                    DDLogVerbose("Failure")
-                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            })
-        }
-        openImagePicker()
     }
     
     // MARK: - Helpers

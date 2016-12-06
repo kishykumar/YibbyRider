@@ -191,6 +191,10 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         setupUI()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

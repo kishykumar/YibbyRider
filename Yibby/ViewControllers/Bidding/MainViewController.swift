@@ -73,9 +73,10 @@ public class MainViewController: BaseYibbyViewController,
     
 #endif
     
-    var responseHasArrived: Bool = false
-    
-    let NO_DRIVERS_FOUND_ERROR_CODE = 20099
+    @IBAction func onDrawerSlideButtonClick(sender: UITapGestureRecognizer) {
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
     
     // MARK: - Actions
     
@@ -135,64 +136,19 @@ public class MainViewController: BaseYibbyViewController,
             
             DDLogVerbose("Made the bid: pickupLatLng: \(pickupLatLng), pickupPlaceName: \(pickupPlaceName), dropoffLatLng: \(dropoffLatLng), dropoffPlaceName: \(dropoffPlaceName),  bidLow: \(bidLow), bidHigh: \(bidHigh)")
             
-            WebInterface.makeWebRequestAndHandleError(
-                self,
-                webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
-                
-                    ActivityIndicatorUtil.enableActivityIndicator(self.view)
-                    
-                    let client: BAAClient = BAAClient.sharedClient()
-                    
-                    client.createBid(self.bidHigh,
-                        bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude,
-                        pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName,
-                        dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude,
-                        dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
-                        
-                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                        if (error == nil) {
-                            // check the error codes
-                            if let bbCode = success["bb_code"] as? String {
-                                if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
-                                    
-                                    // TODO: display alert that no drivers are online
-                                    AlertUtil.displayAlert("No drivers online.", message: "")
-                                } else {
-                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
-                                    DDLogVerbose("Unexpected Error: success var: \(success)")
-                                }
-                            } else {
-                                
-                                if let successData = success["data"] as? [String: NSObject] {
-                                    
-                                    // set the bid state
-                                    
-                                    let userBid: Bid = Bid(id: successData["id"] as! String,
-                                        bidHigh: successData["bidHigh"] as! Int,
-                                        bidLow: successData["bidLow"] as! Int,
-                                        etaHigh: successData["etaHigh"] as! Int,
-                                        etaLow: successData["etaLow"] as! Int,
-                                        pickupLat: successData["pickupLat"] as! Double,
-                                        pickupLong: successData["pickupLong"] as! Double,
-                                        pickupLoc: successData["pickupLoc"] as! String,
-                                        dropoffLat: successData["dropoffLat"] as! Double,
-                                        dropoffLong: successData["dropoffLong"] as! Double,
-                                        dropoffLoc: successData["dropoffLoc"] as! String)!
-                                    
-                                    BidState.sharedInstance().setOngoingBid(userBid)
-                                    
-                                    self.performSegueWithIdentifier("findOffersSegue", sender: nil)
-                                } else {
-                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
-                                }
-                            }
-                        }
-                        else {
-                            errorBlock(success, error)
-                        }
-                        self.responseHasArrived = true
-                    })
-            })
+            let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
+            
+            let confirmRideViewController = biddingStoryboard.instantiateViewControllerWithIdentifier("ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
+            
+            // Initialize the view controller state 
+            confirmRideViewController.bidLow = self.bidLow
+            confirmRideViewController.bidHigh = self.bidHigh
+            confirmRideViewController.pickupLatLng = self.pickupLatLng
+            confirmRideViewController.pickupPlaceName = self.pickupPlaceName
+            confirmRideViewController.dropoffLatLng = self.dropoffLatLng
+            confirmRideViewController.dropoffPlaceName = self.dropoffPlaceName
+            
+            self.navigationController?.pushViewController(confirmRideViewController, animated: true)
         }
     }
     
@@ -265,6 +221,9 @@ public class MainViewController: BaseYibbyViewController,
     }
     
     func setupNavigationBar() {
+        
+        self.navigationController?.navigationBarHidden = true
+
         // set nav bar color
 //        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
 //        self.navigationController?.navigationBar.tintColor = UIColor.appDarkGreen1()
@@ -272,32 +231,31 @@ public class MainViewController: BaseYibbyViewController,
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
 
+        if let navigationController = self.navigationController {
         
-        //MMDrawerBarButtonItem
-        
-        // RIGHT Bar Button Item
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-            NSForegroundColorAttributeName: UIColor.blueColor()],
-            forState: .Normal)
-        
-        self.navigationItem.rightBarButtonItem?.title =
-            String.fa_stringForFontAwesomeIcon(FAIcon.FALightbulbO)
-        
-        self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
-                                                                           forBarMetrics: UIBarMetrics.Default)
-        
-        // LEFT Bar Button Item
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-            NSForegroundColorAttributeName: UIColor.yellowColor()],
-            forState: .Normal)
-        
-        self.navigationItem.leftBarButtonItem?.title =
-            String.fa_stringForFontAwesomeIcon(FAIcon.FABars)
-        
-        self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
-                                                                          forBarMetrics: UIBarMetrics.Default)
+            // RIGHT Bar Button Item
+            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
+                NSForegroundColorAttributeName: UIColor.blueColor()],
+                forState: .Normal)
+            
+            self.navigationItem.rightBarButtonItem?.title =
+                String.fa_stringForFontAwesomeIcon(FAIcon.FALightbulbO)
+            
+            self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
+                                                                               forBarMetrics: UIBarMetrics.Default)
+            
+            // LEFT Bar Button Item
+            self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
+                NSForegroundColorAttributeName: UIColor.yellowColor()],
+                forState: .Normal)
+            
+            self.navigationItem.leftBarButtonItem?.title =
+                String.fa_stringForFontAwesomeIcon(FAIcon.FABars)
+            
+            self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
+                                                                              forBarMetrics: UIBarMetrics.Default)
         
         // Set Title Font, Font size, Font color
 //        self.navigationController?.navigationBar.titleTextAttributes = [
@@ -307,17 +265,24 @@ public class MainViewController: BaseYibbyViewController,
 
 //
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        }
     }
     
     func setStatusBarColor () {
-        let app: UIApplication = UIApplication.sharedApplication()
+//        let app: UIApplication = UIApplication.sharedApplication()
+//        
+//        let statusBarView: UIView = UIView(frame:
+//            CGRectMake(0, -app.statusBarFrame.size.height,
+//                    self.view.bounds.size.width, app.statusBarFrame.size.height))
+//        
+//        statusBarView.backgroundColor = UIColor.appDarkGreen1()
+//        self.navigationController?.navigationBar.addSubview(statusBarView)
+
+        let statusBar: UIView = UIApplication.sharedApplication().valueForKey("statusBar") as! UIView
         
-        let statusBarView: UIView = UIView(frame:
-            CGRectMake(0, -app.statusBarFrame.size.height,
-                    self.view.bounds.size.width, app.statusBarFrame.size.height))
-        
-        statusBarView.backgroundColor = UIColor.appDarkGreen1()
-        self.navigationController?.navigationBar.addSubview(statusBarView)
+        if statusBar.respondsToSelector(Selector("setBackgroundColor:")) {
+            statusBar.backgroundColor = UIColor.appDarkGreen1()
+        }
         
         // status bar text color
         UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -386,7 +351,11 @@ public class MainViewController: BaseYibbyViewController,
         setupMapClient()
         
         // check for location services
-        AlertUtil.displayLocationAlert()
+//        AlertUtil.displayLocationAlert()
+    }
+    
+    override public func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
     }
     
     public override func viewDidAppear(animated: Bool) {

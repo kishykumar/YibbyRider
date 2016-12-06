@@ -1,16 +1,15 @@
 //
-//  AboutViewController.swift
+//  EditProfileViewController.swift
 //  Yibby
 //
-//  Created by Kishy Kumar on 4/5/16.
+//  Created by Kishy Kumar on 10/22/16.
 //  Copyright © 2016 MyComp. All rights reserved.
 //
 
 import UIKit
-import CocoaLumberjack
 
-public class AboutViewController: BaseYibbyViewController {
-
+public class EditProfileViewController: UIViewController {
+    
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
@@ -37,7 +36,7 @@ public class AboutViewController: BaseYibbyViewController {
     
     // MARK: - Actions
     
-    
+   
     
     // MARK: - Setup Functions
     
@@ -65,7 +64,7 @@ public class AboutViewController: BaseYibbyViewController {
     }
     
     private func setupViews() {
-        
+
     }
     
     private func setupDefaultValues() {
@@ -106,22 +105,22 @@ public class AboutViewController: BaseYibbyViewController {
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+
     }
     
     
     // MARK: - Helpers
     
     
-    
+
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
