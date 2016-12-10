@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import ElloUIFonts
+//import ElloUIFonts
 
 public class ElloLabel: UILabel {
     required public init?(coder aDecoder: NSCoder) {
@@ -28,7 +28,8 @@ public class ElloLabel: UILabel {
         paragraphStyle.alignment = alignment
 
         return [
-            NSFontAttributeName : UIFont.defaultFont(),
+//            NSFontAttributeName : UIFont.defaultFont(),
+            NSFontAttributeName : UIFont.systemFontOfSize(14),
             NSForegroundColorAttributeName : color,
             NSParagraphStyleAttributeName : paragraphStyle
         ]

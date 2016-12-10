@@ -1,6 +1,0 @@
-framework module ElloUIFonts {
-  umbrella header "ElloOSSUIFonts-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-import ElloUIFonts
+//import ElloUIFonts
 import CoreGraphics
 
 public protocol AlertCellDelegate: class {
@@ -32,7 +32,8 @@ public class AlertCell: UITableViewCell {
         super.awakeFromNib()
 
         input.backgroundColor = UIColor.whiteColor()
-        input.font = UIFont.defaultFont()
+//        input.font = UIFont.defaultFont()
+        input.font = UIFont.systemFontOfSize(14)
         input.textColor = UIColor.blackColor()
         input.tintColor = UIColor.blackColor()
         input.clipsToBounds = false

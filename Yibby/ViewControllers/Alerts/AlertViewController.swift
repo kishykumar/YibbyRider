@@ -218,10 +218,10 @@ extension AlertViewController {
 
 // MARK: UIViewControllerTransitioningDelegate
 extension AlertViewController: UIViewControllerTransitioningDelegate {
-    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
         if presented != self { return .None }
 
-        return AlertPresentationController(presentedViewController: presented, presentingViewController: presenting, backgroundColor: self.modalBackgroundColor)
+        return AlertPresentationController(presentedViewController: presented, presentingViewController: presenting!, backgroundColor: self.modalBackgroundColor)
     }
 }
 

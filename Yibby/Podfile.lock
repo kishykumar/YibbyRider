@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (3.5.1)
   - ASProgressPopUpView (0.8)
   - BaasBoxSDK (0.9.0)
   - BButton (4.0.2)
@@ -39,7 +39,6 @@ PODS:
   - Crashlytics (3.8.0):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
-  - ElloOSSUIFonts (1.0.1)
   - Fabric (1.6.7)
   - FBSnapshotTestCase (2.1.2):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
@@ -114,7 +113,7 @@ PODS:
   - XLPagerTabStrip (5.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4)
+  - Alamofire (~> 3.5)
   - ASProgressPopUpView
   - BaasBoxSDK (from `https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git`)
   - BButton
@@ -123,7 +122,6 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - Crashlytics
   - DZNEmptyDataSet
-  - ElloOSSUIFonts
   - Fabric
   - FDStackView (~> 1.0)
   - Google/CloudMessaging
@@ -135,7 +133,7 @@ DEPENDENCIES:
   - Nimble-Snapshots (~> 4.0.0)
   - PINRemoteImage
   - Quick
-  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
+  - Spring (from `https://github.com/tpae/Spring.git`, branch `swift-2.3-migration`)
   - Stripe
   - SVGKit (from `https://github.com/SVGKit/SVGKit`)
   - SVProgressHUD
@@ -148,8 +146,8 @@ EXTERNAL SOURCES:
   BaasBoxSDK:
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
   Spring:
-    :branch: swift2
-    :git: https://github.com/MengTo/Spring.git
+    :branch: swift-2.3-migration
+    :git: https://github.com/tpae/Spring.git
   SVGKit:
     :git: https://github.com/SVGKit/SVGKit
 
@@ -158,14 +156,14 @@ CHECKOUT OPTIONS:
     :commit: 1bb726be3e22b637dc25d40c382f9203d05bfff9
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
   Spring:
-    :commit: 18d5c7b74489de8044e34767f856d1e574f0820e
-    :git: https://github.com/MengTo/Spring.git
+    :commit: d49c77c36c1c49a5064f4726fb7fec9b3abbe4fb
+    :git: https://github.com/tpae/Spring.git
   SVGKit:
     :commit: 87b6c5c2ee4c69e582424b04742301387022339f
     :git: https://github.com/SVGKit/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   BaasBoxSDK: 8a68396af4eb48137da238109d114eccac04739d
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
@@ -174,7 +172,6 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  ElloOSSUIFonts: 4bc41bfb20baa34ce07215ad924254e514f65458
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
@@ -205,6 +202,6 @@ SPEC CHECKSUMS:
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
-PODFILE CHECKSUM: 3e6e5f6e11514f1acfbd34859691428cb9a95e0a
+PODFILE CHECKSUM: 6733d0e5a8a7517bc50822dc52fa719d9d2a1272
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0.beta.1

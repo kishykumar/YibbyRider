@@ -104,7 +104,7 @@ class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
         let path = "/customers/\(customerID)"
         let url = baseURL.URLByAppendingPathComponent(path)
         
-        Alamofire.request(.GET, url, parameters: [:])
+        Alamofire.request(.GET, url!, parameters: [:])
             .response { request, response, data, error in
                 let deserializer = STPCustomerDeserializer(data: data, urlResponse: response, error: error)
                 if let error = deserializer.error {

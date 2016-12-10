@@ -127,6 +127,6 @@ public class YibbyMapMarker: UIView {
         UIGraphicsEndImageContext()
         
         
-        return image
+        return image!
     }
 }

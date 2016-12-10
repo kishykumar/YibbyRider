@@ -43,7 +43,7 @@ public class ElloButton: UIButton {
     }
 
     func sharedSetup() {
-        titleLabel?.font = UIFont.defaultFont()
+        titleLabel?.font = UIFont.systemFontOfSize(14)
         titleLabel?.numberOfLines = 1
         setTitleColor(.whiteColor(), forState: .Normal)
         setTitleColor(.greyA(), forState: .Disabled)
@@ -67,7 +67,7 @@ public class LightElloButton: ElloButton {
     }
 
     override func sharedSetup() {
-        titleLabel?.font = UIFont.defaultFont()
+        titleLabel?.font = UIFont.systemFontOfSize(14)
         titleLabel?.numberOfLines = 1
         setTitleColor(.grey6(), forState: .Normal)
         setTitleColor(.blackColor(), forState: .Highlighted)
@@ -100,7 +100,7 @@ public class WhiteElloButton: ElloButton {
 
     override func sharedSetup() {
         super.sharedSetup()
-        titleLabel?.font = UIFont.defaultFont()
+        titleLabel?.font = UIFont.systemFontOfSize(14)
         setTitleColor(.blackColor(), forState: .Normal)
         setTitleColor(.grey6(), forState: .Highlighted)
         setTitleColor(.greyC(), forState: .Disabled)
@@ -167,7 +167,7 @@ public class GreenElloButton: ElloButton {
     }
 
     override func sharedSetup() {
-        titleLabel?.font = UIFont.defaultFont()
+        titleLabel?.font = UIFont.systemFontOfSize(14)
         titleLabel?.numberOfLines = 1
         setTitleColor(.whiteColor(), forState: .Normal)
         setTitleColor(.grey6(), forState: .Highlighted)
