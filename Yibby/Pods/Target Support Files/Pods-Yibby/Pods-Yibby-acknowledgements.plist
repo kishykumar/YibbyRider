@@ -37,6 +37,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>ASProgressPopUpView</string>
 			<key>Type</key>
@@ -64,6 +66,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>Alamofire</string>
 			<key>Type</key>
@@ -98,6 +102,8 @@ Font Awesome CSS, LESS, and SASS files are licensed under the MIT License: http:
 
 The Font Awesome pictograms are licensed under the CC BY 3.0 License: http://creativecommons.org/licenses/by/3.0
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>BButton</string>
 			<key>Type</key>
@@ -297,6 +303,8 @@ third-party archives.
    See the License for the specific language governing permissions and
    limitations under the License.
 </string>
+			<key>License</key>
+			<string>APACHE2</string>
 			<key>Title</key>
 			<string>BaasBoxSDK</string>
 			<key>Type</key>
@@ -324,6 +332,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>Braintree</string>
 			<key>Type</key>
@@ -354,6 +364,8 @@ THE SOFTWARE.
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.</string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>CardIO</string>
 			<key>Type</key>
@@ -379,6 +391,8 @@ with or without modification, are permitted provided that the following conditio
   written permission of Deusty, LLC.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
+			<key>License</key>
+			<string>BSD</string>
 			<key>Title</key>
 			<string>CocoaLumberjack</string>
 			<key>Type</key>
@@ -387,6 +401,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 		<dict>
 			<key>FooterText</key>
 			<string>Fabric: Copyright 2016 Twitter, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2016 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt</string>
+			<key>License</key>
+			<string>Commercial</string>
 			<key>Title</key>
 			<string>Crashlytics</string>
 			<key>Type</key>
@@ -404,35 +420,10 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>DZNEmptyDataSet</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
-			<string>Copyright (c) 2016 Ello
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-</string>
-			<key>Title</key>
-			<string>ElloOSSUIFonts</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -461,6 +452,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>FDStackView</string>
 			<key>Type</key>
@@ -490,6 +483,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>FLAnimatedImage</string>
 			<key>Type</key>
@@ -498,6 +493,8 @@ SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>Fabric: Copyright 2015 Twitter, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt</string>
+			<key>License</key>
+			<string>Commercial</string>
 			<key>Title</key>
 			<string>Fabric</string>
 			<key>Type</key>
@@ -506,6 +503,8 @@ SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GGLInstanceID</string>
 			<key>Type</key>
@@ -514,6 +513,8 @@ SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>Google</string>
 			<key>Type</key>
@@ -522,6 +523,8 @@ SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleCloudMessaging</string>
 			<key>Type</key>
@@ -530,6 +533,8 @@ SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleIPhoneUtilities</string>
 			<key>Type</key>
@@ -538,6 +543,8 @@ SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleInterchangeUtilities</string>
 			<key>Type</key>
@@ -553,6 +560,8 @@ part of an "About" menu item, is recommended.
 You can get the attribution text by making a call to
 [GMSServices openSourceLicenseInfo].
 </string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleMaps</string>
 			<key>Type</key>
@@ -561,6 +570,8 @@ You can get the attribution text by making a call to
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleNetworkingUtilities</string>
 			<key>Type</key>
@@ -569,6 +580,8 @@ You can get the attribution text by making a call to
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleSymbolUtilities</string>
 			<key>Type</key>
@@ -577,6 +590,8 @@ You can get the attribution text by making a call to
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2015 Google Inc.</string>
+			<key>License</key>
+			<string>Copyright</string>
 			<key>Title</key>
 			<string>GoogleUtilities</string>
 			<key>Type</key>
@@ -609,6 +624,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>IQKeyboardManagerSwift</string>
 			<key>Type</key>
@@ -636,6 +653,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>LaunchScreen</string>
 			<key>Type</key>
@@ -663,6 +682,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>MMDrawerController</string>
 			<key>Type</key>
@@ -872,6 +893,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 </string>
+			<key>License</key>
+			<string>Apache 2.0</string>
 			<key>Title</key>
 			<string>PINCache</string>
 			<key>Type</key>
@@ -893,6 +916,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 </string>
+			<key>License</key>
+			<string>Apache 2.0</string>
 			<key>Title</key>
 			<string>PINRemoteImage</string>
 			<key>Type</key>
@@ -909,6 +934,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>SVGKit</string>
 			<key>Type</key>
@@ -943,6 +970,8 @@ A different license may apply to other resources included in this package,
 including Freepik Icons. Please consult their 
 respective headers for the terms of their individual licenses.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>SVProgressHUD</string>
 			<key>Type</key>
@@ -970,6 +999,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>Spring</string>
 			<key>Type</key>
@@ -998,6 +1029,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>Stripe</string>
 			<key>Type</key>
@@ -1027,6 +1060,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>SwiftyJSON</string>
 			<key>Type</key>
@@ -1054,6 +1089,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>TTRangeSlider</string>
 			<key>Type</key>
@@ -1084,6 +1121,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>TextFieldEffects</string>
 			<key>Type</key>
@@ -1113,6 +1152,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>XLPagerTabStrip</string>
 			<key>Type</key>

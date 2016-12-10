@@ -1603,7 +1603,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-resources.sh\"";
+			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8F2DAF073F92100A711F982C /* [CP] Embed Pods Frameworks */ = {
@@ -1618,7 +1618,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-frameworks.sh\"";
+			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A68332386045623538C5223B /* [CP] Embed Pods Frameworks */ = {
@@ -1633,7 +1633,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Yibby copy/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D86B788C85FE27ED0CD78D20 /* [CP] Copy Pods Resources */ = {
@@ -1648,7 +1648,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Yibby copy/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E6F39E6AA71B9E64C2C8375A /* [CP] Check Pods Manifest.lock */ = {
@@ -1663,7 +1663,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F395F6FA1B80BE4DA42CA343 /* [CP] Check Pods Manifest.lock */ = {
@@ -1678,7 +1678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1951,6 +1951,7 @@
 				PRODUCT_MODULE_NAME = Yibby;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -1989,6 +1990,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = Yibby;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2016,6 +2018,7 @@
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2042,6 +2045,7 @@
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -27,7 +27,7 @@ public class YibbyTextField: UITextField {
         self.backgroundColor = UIColor.textFieldBackgroundColor1()
         self.textColor = UIColor.textFieldTextColor1()
         
-        self.font = UIFont.defaultFont()
+        self.font = UIFont.systemFontOfSize(14)
         
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 6.0;

@@ -43,7 +43,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         
         let attrTitle = NSAttributedString(string: InterfaceString.Button.TANDC,
                             attributes: [NSForegroundColorAttributeName : UIColor.appDarkGreen1(),
-                            NSFontAttributeName : UIFont.regularBoldFont(12.0),
+                            NSFontAttributeName : UIFont.boldSystemFontOfSize(12.0),
                             NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue])
         tandcButtonOutlet.setAttributedTitle(attrTitle, forState: .Normal)
     }
