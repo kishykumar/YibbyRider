@@ -9,8 +9,8 @@
 import Photos
 
 enum ImagePickerSheetResult {
-    case Controller(UIImagePickerController)
-    case Images([PHAsset])
+    case controller(UIImagePickerController)
+    case images([PHAsset])
 }
 
 extension UIImagePickerController {
@@ -18,49 +18,49 @@ extension UIImagePickerController {
         let controller = UIImagePickerController()
         controller.mediaTypes = [kUTTypeImage as String]
         controller.allowsEditing = false
-        controller.modalPresentationStyle = .FullScreen
+        controller.modalPresentationStyle = .fullScreen
         controller.navigationBar.tintColor = .greyA()
         return controller
     }
 
     class var elloPhotoLibraryPickerController: UIImagePickerController {
         let controller = elloImagePickerController
-        controller.sourceType = .PhotoLibrary
+        controller.sourceType = .photoLibrary
         return controller
     }
 
     class var elloCameraPickerController: UIImagePickerController {
         let controller = elloImagePickerController
-        controller.sourceType = .Camera
+        controller.sourceType = .camera
         return controller
     }
 
-    class func alertControllerForImagePicker(callback: UIImagePickerController -> Void) -> AlertViewController? {
+    class func alertControllerForImagePicker(_ callback: @escaping (UIImagePickerController) -> Void) -> AlertViewController? {
         let alertController: AlertViewController
 
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             alertController = AlertViewController(message: InterfaceString.ImagePicker.ChooseSource)
 
-            let cameraAction = AlertAction(title: InterfaceString.ImagePicker.Camera, style: .Dark) { _ in
+            let cameraAction = AlertAction(title: InterfaceString.ImagePicker.Camera, style: .dark) { _ in
                 callback(.elloCameraPickerController)
             }
             alertController.addAction(cameraAction)
 
-            let libraryAction = AlertAction(title: InterfaceString.ImagePicker.Library, style: .Dark) { _ in
+            let libraryAction = AlertAction(title: InterfaceString.ImagePicker.Library, style: .dark) { _ in
                 callback(.elloPhotoLibraryPickerController)
             }
             alertController.addAction(libraryAction)
 
-            let cancelAction = AlertAction(title: InterfaceString.Cancel, style: .Light) { _ in
+            let cancelAction = AlertAction(title: InterfaceString.Cancel, style: .light) { _ in
             }
             alertController.addAction(cancelAction)
-        } else if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+        } else if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             callback(.elloPhotoLibraryPickerController)
             return nil
         } else {
             alertController = AlertViewController(message: InterfaceString.ImagePicker.NoSourceAvailable)
 
-            let cancelAction = AlertAction(title: InterfaceString.OK, style: .Light, handler: .None)
+            let cancelAction = AlertAction(title: InterfaceString.OK, style: .light, handler: .none)
             alertController.addAction(cancelAction)
         }
 

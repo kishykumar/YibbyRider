@@ -10,15 +10,15 @@ import UIKit
 
 public protocol SelectorViewDelegate{
 //    func movedTo(point:CGPoint)
-    func endTouch(point:CGPoint)
+    func endTouch(_ point:CGPoint)
 }
 
-public class SelectorView: UIView {
+open class SelectorView: UIView {
     var delegate:SelectorViewDelegate?
 //    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        delegate?.movedTo((touches.first?.locationInView(self))!)
 //    }
-    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        delegate?.endTouch((touches.first?.locationInView(self))!)
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.endTouch((touches.first?.location(in: self))!)
     }
 }

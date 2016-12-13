@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 //import ElloUIFonts
 
-public class ElloLabel: UILabel {
+open class ElloLabel: UILabel {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         if let text = self.text {
@@ -19,17 +19,17 @@ public class ElloLabel: UILabel {
     }
 
     public init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
     }
 
-    func attributes(color: UIColor, alignment: NSTextAlignment) -> [String : AnyObject] {
+    func attributes(_ color: UIColor, alignment: NSTextAlignment) -> [String : AnyObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         paragraphStyle.alignment = alignment
 
         return [
 //            NSFontAttributeName : UIFont.defaultFont(),
-            NSFontAttributeName : UIFont.systemFontOfSize(14),
+            NSFontAttributeName : UIFont.systemFont(ofSize: 14),
             NSForegroundColorAttributeName : color,
             NSParagraphStyleAttributeName : paragraphStyle
         ]
@@ -38,7 +38,7 @@ public class ElloLabel: UILabel {
 
 // MARK: UIView Overrides
 extension ElloLabel {
-    public override func sizeThatFits(size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var size = super.sizeThatFits(size)
         size.height = heightForWidth(size.width) + 10
         return size
@@ -46,7 +46,7 @@ extension ElloLabel {
 }
 
 public extension ElloLabel {
-    func setLabelText(title: String, color: UIColor = UIColor.whiteColor(), alignment: NSTextAlignment = .Left) {
+    func setLabelText(_ title: String, color: UIColor = UIColor.white, alignment: NSTextAlignment = .left) {
         let attrs = attributes(color, alignment: alignment)
         attributedText = NSAttributedString(string: title, attributes: attrs)
     }
@@ -55,28 +55,28 @@ public extension ElloLabel {
         return heightForWidth(self.frame.size.width)
     }
 
-    func heightForWidth(width: CGFloat) -> CGFloat {
-        return (attributedText?.boundingRectWithSize(CGSize(width: width, height: CGFloat.max),
-            options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+    func heightForWidth(_ width: CGFloat) -> CGFloat {
+        return (attributedText?.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
             context: nil).size.height).map(ceil) ?? 0
     }
 
 }
 
-public class ElloToggleLabel: ElloLabel {
-    public override func setLabelText(title: String, color: UIColor = UIColor.greyA(), alignment: NSTextAlignment = .Left) {
+open class ElloToggleLabel: ElloLabel {
+    open override func setLabelText(_ title: String, color: UIColor = UIColor.greyA(), alignment: NSTextAlignment = .left) {
         super.setLabelText(title, color: color, alignment: alignment)
     }
 }
 
-public class ElloErrorLabel: ElloLabel {
-    public override func setLabelText(title: String, color: UIColor = UIColor.redColor(), alignment: NSTextAlignment = .Left) {
+open class ElloErrorLabel: ElloLabel {
+    open override func setLabelText(_ title: String, color: UIColor = UIColor.red, alignment: NSTextAlignment = .left) {
         super.setLabelText(title, color: color, alignment: alignment)
     }
 }
 
-public class ElloSizeableLabel: ElloLabel {
-    override public func attributes(color: UIColor, alignment: NSTextAlignment) -> [String : AnyObject] {
+open class ElloSizeableLabel: ElloLabel {
+    override open func attributes(_ color: UIColor, alignment: NSTextAlignment) -> [String : AnyObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         paragraphStyle.alignment = alignment

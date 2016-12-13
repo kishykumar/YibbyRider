@@ -28,7 +28,6 @@
 		1201B7731D23A85F00A7EEAF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7641D23A85F00A7EEAF /* SplashViewController.swift */; };
 		1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7761D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m */; };
 		1201B77A1D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7781D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m */; };
-		1201B77D1D23ACDD00A7EEAF /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B77B1D23ACDD00A7EEAF /* KeychainWrapper.swift */; };
 		1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B77C1D23ACDD00A7EEAF /* LogFormatter.swift */; };
 		1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7801D23AD0300A7EEAF /* WebInterface.swift */; };
 		1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7831D23ADD700A7EEAF /* StoryboardIdentifiers.swift */; };
@@ -252,7 +251,6 @@
 		1201B7761D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENFooterActivityIndicatorView.m; sourceTree = "<group>"; };
 		1201B7771D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ENFooterActivityIndicatorView.h"; sourceTree = "<group>"; };
 		1201B7781D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ENFooterActivityIndicatorView.m"; sourceTree = "<group>"; };
-		1201B77B1D23ACDD00A7EEAF /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		1201B77C1D23ACDD00A7EEAF /* LogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		1201B7801D23AD0300A7EEAF /* WebInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebInterface.swift; sourceTree = "<group>"; };
 		1201B7831D23ADD700A7EEAF /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
@@ -582,7 +580,6 @@
 				1201B83B1D28E8AE00A7EEAF /* Keyboard.swift */,
 				1201B8391D28E58300A7EEAF /* InterfaceImage.swift */,
 				1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */,
-				1201B77B1D23ACDD00A7EEAF /* KeychainWrapper.swift */,
 				1201B77C1D23ACDD00A7EEAF /* LogFormatter.swift */,
 				12A67D9D1C94CE7F005E3F9F /* AlertUtil.swift */,
 				121531711D441E3100C28C73 /* TimeUtil.swift */,
@@ -1493,6 +1490,7 @@
 					12F3CCD11C41EFC700F79A26 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 9ESLPLTZVR;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1501,6 +1499,7 @@
 					};
 					12F3CCE51C41EFC800F79A26 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = 12F3CCD11C41EFC700F79A26;
 					};
 				};
@@ -1697,7 +1696,6 @@
 				12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
 				12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */,
-				1201B77D1D23ACDD00A7EEAF /* KeychainWrapper.swift in Sources */,
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
 				1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */,
 				1201B7691D23A85F00A7EEAF /* LoginViewController.swift in Sources */,
@@ -1951,7 +1949,7 @@
 				PRODUCT_MODULE_NAME = Yibby;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -1990,7 +1988,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = Yibby;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2018,7 +2016,7 @@
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2045,7 +2043,7 @@
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -2065,6 +2063,7 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = YibbyTests;
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
+				SWIFT_VERSION = 3.0.1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yibby.app/Yibby";
 			};
 			name = Debug;
@@ -2084,6 +2083,7 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = YibbyTests;
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
+				SWIFT_VERSION = 3.0.1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yibby.app/Yibby";
 			};
 			name = Release;

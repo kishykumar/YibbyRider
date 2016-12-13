@@ -13,7 +13,7 @@ import Nimble_Snapshots
 
 // Add in custom configuration
 class YibbyTestConfiguration: QuickConfiguration {
-    override class func configure(config: Configuration) {
+    override class func configure(_ config: Configuration) {
         
         config.beforeSuite {
             

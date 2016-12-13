@@ -40,7 +40,7 @@ private let SecAttrAccount: String! = kSecAttrAccount as String
 private let SecAttrAccessGroup: String! = kSecAttrAccessGroup as String
 
 /// KeychainWrapper is a class to help make Keychain access in Swift more straightforward. It is designed to make accessing the Keychain services more like using NSUserDefaults, which is much more familiar to people.
-public class KeychainWrapper {
+public class HelloKeychainWrapper {
     // MARK: Private static Properties
     private struct internalVars {
         static var serviceName: String = ""

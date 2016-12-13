@@ -9,10 +9,10 @@
 import UIKit
 
 /// A text field which can be used to enter CVCs and provides validation of the same.
-public class CVCInputTextField: DetailInputTextField {
+open class CVCInputTextField: DetailInputTextField {
     
     /// The card type for the CVC that should be entered. The length of a CVC can vary based on this card type.
-    public var cardType: CardType?
+    open var cardType: CardType?
     override var expectedInputLength: Int {
         return cardType?.CVCLength ?? 3
     }
@@ -23,7 +23,7 @@ public class CVCInputTextField: DetailInputTextField {
      
      - returns: True, if the card validation code is valid.
      */
-    internal override func isInputValid(cvcString: String, partiallyValid: Bool) -> Bool {
+    internal override func isInputValid(_ cvcString: String, partiallyValid: Bool) -> Bool {
         if cvcString.characters.count == 0 && partiallyValid {
             return true
         }

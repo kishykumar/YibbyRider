@@ -19,7 +19,7 @@ extension String {
      
      - returns: `nsRange` converted to Range<String.Index> or nil, if its start and/or end location are not within `self`.
      */
-    func rangeFromNSRange(nsRange: NSRange) -> Range<String.Index>? {
+    func rangeFromNSRange(_ nsRange: NSRange) -> Range<String.Index>? {
         let from16 = utf16.startIndex.advancedBy(nsRange.location, limit: utf16.endIndex)
         let to16 = from16.advancedBy(nsRange.length, limit: utf16.endIndex)
         if let from = String.Index(from16, within: self),
@@ -36,10 +36,10 @@ extension String {
      
      - returns: An NSRange object that is equivalent to `range`.
      */
-    func NSRangeFromRange(range : Range<String.Index>) -> NSRange {
+    func NSRangeFromRange(_ range : Range<String.Index>) -> NSRange {
         let utf16view = self.utf16
-        let from = String.UTF16View.Index(range.startIndex, within: utf16view)
-        let to = String.UTF16View.Index(range.endIndex, within: utf16view)
+        let from = String.UTF16View.Index(range.lowerBound, within: utf16view)
+        let to = String.UTF16View.Index(range.upperBound, within: utf16view)
         return NSMakeRange(utf16view.startIndex.distanceTo(from), from.distanceTo(to))
     }
     
@@ -55,19 +55,19 @@ extension String {
         if characters.count < toExclusively || fromInclusively >= toExclusively {
             return nil
         }
-        return self.substringWithRange((self.startIndex.advancedBy(fromInclusively)..<self.startIndex.advancedBy(toExclusively)))
+        return self.substring(with: (self.characters.index(self.startIndex, offsetBy: fromInclusively)..<self.characters.index(self.startIndex, offsetBy: toExclusively)))
     }
     
     /**
      - returns: True if this string contains only digits.
      */
     func isNumeric() -> Bool {
-        return characters.reduce(true, combine: { (result, value) in
+        return characters.reduce(true, { (result, value) in
             let string = String(value)
             guard let firstChar = string.utf16.first else {
                 return result
             }
-            return result && NSCharacterSet.decimalDigitCharacterSet().characterIsMember(firstChar)}
+            return result && CharacterSet.decimalDigits.contains(UnicodeScalar(firstChar)!)}
         )
     }
 }

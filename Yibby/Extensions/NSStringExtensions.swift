@@ -8,29 +8,29 @@
 import Stripe
 extension NSString {
     
-    class func stp_stringWithCardBrand(brand: STPCardBrand) -> String {
+    class func stp_stringWithCardBrand(_ brand: STPCardBrand) -> String {
         switch brand {
-        case STPCardBrand.Amex:
+        case STPCardBrand.amex:
             return "American Express"
-        case STPCardBrand.DinersClub:
+        case STPCardBrand.dinersClub:
             return "Diners Club"
-        case STPCardBrand.Discover:
+        case STPCardBrand.discover:
             return "Discover"
         case STPCardBrand.JCB:
             return "JCB"
-        case STPCardBrand.MasterCard:
+        case STPCardBrand.masterCard:
             return "MasterCard"
-        case STPCardBrand.Unknown:
+        case STPCardBrand.unknown:
             return "Unknown"
-        case STPCardBrand.Visa:
+        case STPCardBrand.visa:
             return "Visa"
         }
     }
     
-    class func getFontSizeFromCGSize(text: String, font: UIFont, rect: CGSize) -> CGFloat {
+    class func getFontSizeFromCGSize(_ text: String, font: UIFont, rect: CGSize) -> CGFloat {
         
         // Size required to render string
-        let size = text.sizeWithAttributes([NSFontAttributeName: font])
+        let size = text.size(attributes: [NSFontAttributeName: font])
         
         // For current font point size, calculate points per pixel
         let pointsPerPixel: CGFloat =  font.pointSize / size.height;

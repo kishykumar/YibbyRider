@@ -20,7 +20,7 @@ class HistoryTableCell : UITableViewCell {
     @IBOutlet weak var ridePriceLabelOutlet: UILabel!
     
     // MARK: - Setup functions
-    func configure(ride: Ride) {
+    func configure(_ ride: Ride) {
         self.dateTimeLabelOutlet?.text = "02/09/16 at 2:09 PM"
         self.driverNameLabelOutlet?.text = "Jayson Gru"
         self.ridePriceLabelOutlet?.text = "$10"

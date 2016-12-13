@@ -28,7 +28,7 @@ class DriverEnRouteViewController: BaseYibbyViewController {
     
     var bid: Bid!
 
-    private var driverLocationObserver: NotificationObserver?
+    fileprivate var driverLocationObserver: NotificationObserver?
 
     let DRIVER_EN_ROUTE_MARKER_TITLE = "Driver En Route"
     
@@ -74,15 +74,15 @@ class DriverEnRouteViewController: BaseYibbyViewController {
         driverLocMapViewOutlet.moveCamera(update)
     }
     
-    func setDriverLocation (loc: CLLocationCoordinate2D) {
+    func setDriverLocation (_ loc: CLLocationCoordinate2D) {
         
         driverLocMarker?.map = nil
         
         self.driverLocLatLng = loc
         
         let dlmarker = GMSMarker(position: loc)
-        dlmarker.title = DRIVER_EN_ROUTE_MARKER_TITLE
-        dlmarker.map = driverLocMapViewOutlet
+        dlmarker?.title = DRIVER_EN_ROUTE_MARKER_TITLE
+        dlmarker?.map = driverLocMapViewOutlet
         driverLocMarker = dlmarker
         driverLocMapViewOutlet.selectedMarker = driverLocMarker
         
@@ -91,7 +91,7 @@ class DriverEnRouteViewController: BaseYibbyViewController {
     
     // MARK: Notifications
     
-    private func setupNotificationObservers() {
+    fileprivate func setupNotificationObservers() {
         
         driverLocationObserver = NotificationObserver(notification: DriverLocationNotifications.newDriverLocation) { [unowned self] loc in
             DDLogVerbose("NotificationObserver newDriverLoc: \(loc)")
@@ -100,7 +100,7 @@ class DriverEnRouteViewController: BaseYibbyViewController {
         }
     }
     
-    private func removeNotificationObservers() {
+    fileprivate func removeNotificationObservers() {
         driverLocationObserver?.removeObserver()
     }
     

@@ -8,20 +8,20 @@
 
 import UIKit
 
-public class BaseYibbyViewController: UIViewController {
+open class BaseYibbyViewController: UIViewController {
 
     // MARK: - Properties
     
     // MARK: - Setup functions
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.appBackgroundColor1();
     }
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

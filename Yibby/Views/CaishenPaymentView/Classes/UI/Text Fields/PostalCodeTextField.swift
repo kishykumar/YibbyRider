@@ -9,7 +9,7 @@
 import UIKit
 
 /// A text field which can be used to enter CVCs and provides validation of the same.
-public class PostalCodeTextField: DetailInputTextField {
+open class PostalCodeTextField: DetailInputTextField {
     
     internal override var expectedInputLength: Int {
         return 5
@@ -22,7 +22,7 @@ public class PostalCodeTextField: DetailInputTextField {
      
      - returns: True, if the card validation code is valid.
      */
-    internal override func isInputValid(input: String, partiallyValid: Bool) -> Bool {
+    internal override func isInputValid(_ input: String, partiallyValid: Bool) -> Bool {
         
         return true
     }
