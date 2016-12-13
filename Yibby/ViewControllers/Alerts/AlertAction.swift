@@ -10,18 +10,18 @@ import UIKit
 
 public typealias AlertHandler = ((AlertAction) -> Void)?
 public typealias AlertCellConfigClosure = (
-    cell: AlertCell,
-    type: AlertType,
-    action: AlertAction,
-    textAlignment: NSTextAlignment
+    _ cell: AlertCell,
+    _ type: AlertType,
+    _ action: AlertAction,
+    _ textAlignment: NSTextAlignment
 ) -> Void
 
 public enum ActionStyle {
-    case White
-    case Light
-    case Dark
-    case OKCancel
-    case URLInput
+    case white
+    case light
+    case dark
+    case okCancel
+    case urlInput
 }
 
 public struct AlertAction {
@@ -31,7 +31,7 @@ public struct AlertAction {
 
     public var isInput: Bool {
         switch style {
-        case .URLInput, .OKCancel:
+        case .urlInput, .okCancel:
             return true
         default:
             return false
@@ -46,15 +46,15 @@ public struct AlertAction {
 
     public var configure: AlertCellConfigClosure {
         switch style {
-        case .White:
+        case .white:
             return AlertCellPresenter.configureForWhiteAction
-        case .Light:
+        case .light:
             return AlertCellPresenter.configureForLightAction
-        case .Dark:
+        case .dark:
             return AlertCellPresenter.configureForDarkAction
-        case .OKCancel:
+        case .okCancel:
             return AlertCellPresenter.configureForOKCancelAction
-        case .URLInput:
+        case .urlInput:
             return AlertCellPresenter.configureForURLAction
         }
     }

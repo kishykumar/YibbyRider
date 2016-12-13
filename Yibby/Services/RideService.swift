@@ -11,8 +11,8 @@
 import BaasBoxSDK
 import CocoaLumberjack
 
-public typealias RideArrayResultBlock = (success: NSArray?, error: NSError?) -> Void
-public typealias RideResultBlock = (success: AnyObject?, error: NSError?) -> Void
+public typealias RideArrayResultBlock = (_ success: NSArray?, _ error: NSError?) -> Void
+public typealias RideResultBlock = (_ success: AnyObject?, _ error: NSError?) -> Void
 
 public struct RideService {
     
@@ -20,21 +20,21 @@ public struct RideService {
         
     }
 
-    public func getRidesCount (completionBlock: RideResultBlock) {
+    public func getRidesCount (_ completionBlock: RideResultBlock) {
 
     }
     
-    public func getRideByFileId (fileId: String, completionBlock: RideResultBlock) {
+    public func getRideByFileId (_ fileId: String, completionBlock: @escaping RideResultBlock) {
         
-        let client: BAAClient = BAAClient.sharedClient()
+        let client: BAAClient = BAAClient.shared()
         
         client.loadFileDetails(fileId, completion: {(success, error) -> Void in
             
             if (error == nil) {
-                completionBlock(success: (success as? BAAFile), error: nil)
+                completionBlock((success as? BAAFile), nil)
             }
             else {
-                completionBlock(success: nil, error: error)
+                completionBlock(nil, error as NSError?)
             }
         })
     }

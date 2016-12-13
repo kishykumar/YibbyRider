@@ -7,31 +7,31 @@
 //
 
 extension Array {
-    func safeValue(index: Int) -> Element? {
-        return (startIndex..<endIndex).contains(index) ? self[index] : .None
+    func safeValue(_ index: Int) -> Element? {
+        return (startIndex..<endIndex).contains(index) ? self[index] : .none
     }
 
-    func find(@noescape test: (el: Element) -> Bool) -> Element? {
+    func find(_ test: (_ el: Element) -> Bool) -> Element? {
         for ob in self {
-            if test(el: ob) {
+            if test(ob) {
                 return ob
             }
         }
         return nil
     }
 
-    func any(@noescape test: (el: Element) -> Bool) -> Bool {
+    func any(_ test: (_ el: Element) -> Bool) -> Bool {
         for ob in self {
-            if test(el: ob) {
+            if test(ob) {
                 return true
             }
         }
         return false
     }
 
-    func all(test: (el: Element) -> Bool) -> Bool {
+    func all(_ test: (_ el: Element) -> Bool) -> Bool {
         for ob in self {
-            if !test(el: ob) {
+            if !test(ob) {
                 return false
             }
         }

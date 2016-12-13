@@ -36,8 +36,8 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         self.tableView.emptyDataSetSource = self;
         self.tableView.emptyDataSetDelegate = self;
         
-        ActivityIndicatorUtil.enableActivityIndicator(view, status: InterfaceString.ActivityIndicator.Loading, mask: SVProgressHUDMaskType.Custom,
-                                     maskColor: UIColor.whiteColor(), style: SVProgressHUDStyle.Dark)
+        ActivityIndicatorUtil.enableActivityIndicator(view, status: InterfaceString.ActivityIndicator.Loading, mask: SVProgressHUDMaskType.custom,
+                                     maskColor: UIColor.white, style: SVProgressHUDStyle.dark)
         
         //This block runs when the table view scrolled to the bottom
         weak var weakSelf = self
@@ -58,19 +58,19 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         self.nextPageToLoad = 0
         self.totalPages = 0
         
-        self.performSelector(#selector(HistoryViewController.loadNextPage),
-                             withObject:nil, afterDelay:0.0)
+        self.perform(#selector(HistoryViewController.loadNextPage),
+                             with:nil, afterDelay:0.0)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func loadNextPage() {
         self.isLoading = true
 
         if (self.footerActivityIndicatorView() == nil) {
-            self.addFooterActivityIndicatorWithHeight(80.0)
+            self.addFooterActivityIndicator(withHeight: 80.0)
         }
 
         if nextPageToLoad == 0 {
@@ -78,10 +78,10 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
             // make nested webserver calls to get 1. the total number of rides,  and 2. the first page of rides
             WebInterface.makeWebRequestAndHandleError(
                 self,
-                webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
+                webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                     
-                    let client: BAAClient = BAAClient.sharedClient()
-                    client.fetchCountForFiles( {(success, error) -> Void in
+                    let client: BAAClient = BAAClient.shared()
+                    client.fetchCount( forFiles: {(success, error) -> Void in
                             
                             if (error == nil) {
                                 
@@ -103,8 +103,8 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
                                 }
                                 
                                 // TODO: Remove the delay later
-                                self.performSelector(#selector(HistoryViewController.loadNewRides),
-                                    withObject:nil, afterDelay:5.0)
+                                self.perform(#selector(HistoryViewController.loadNewRides),
+                                    with:nil, afterDelay:5.0)
                             }
                             else {
                                 errorBlock(success, error)
@@ -117,7 +117,7 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         
         // Add ENFooterActivityIndicatorView to tableView's footer
         if shownRides < totalRides {
-            self.performSelector(#selector(HistoryViewController.loadNewRides), withObject:nil, afterDelay:5.0)
+            self.perform(#selector(HistoryViewController.loadNewRides), with:nil, afterDelay:5.0)
         }
         else {
             self.removeFooterActivityIndicator()
@@ -129,9 +129,9 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         // load the new rides
         WebInterface.makeWebRequestAndHandleError(
             self,
-            webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
-                let client: BAAClient = BAAClient.sharedClient()
+                let client: BAAClient = BAAClient.shared()
                 let file: BAAFile = BAAFile()
                 client.loadFiles(file, withParams: ["orderBy": "_creation_date%20desc", "recordsPerPage": self.NUM_FETCH_RIDE_ENTRIES,
                     "page": self.nextPageToLoad], completion: {(success, error) -> Void in
@@ -177,9 +177,9 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
 
     
     // MARK: - UITableView DataSource
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: HistoryTableCell = tableView.dequeueReusableCellWithIdentifier(identifier) as! HistoryTableCell
+        let cell: HistoryTableCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! HistoryTableCell
 //        cell.configure(rides[indexPath.row])
         
         //let myfile: BAAFile = rides[indexPath.row]
@@ -194,7 +194,7 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         return cell
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.shownRides
     }
     
@@ -203,16 +203,16 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
 //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
 //    }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1;
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rideDetail" {
             let indexPath = self.tableView!.indexPathForSelectedRow
-            let destinationViewController: RideDetailViewController = segue.destinationViewController as! RideDetailViewController
+            let destinationViewController: RideDetailViewController = segue.destination as! RideDetailViewController
             
             destinationViewController.ride = rides[indexPath!.row]
         }
@@ -220,27 +220,27 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
     
     // MARK: DZNEmptyDataSet Delegate-Datasource
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         
         if (self.isLoading) {
             return nil;
         }
         
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: InterfaceString.EmptyDataMsg.NotRiddenYetTitle, attributes: attrs)
     }
     
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         
         if (self.isLoading) {
             return nil;
         }
         
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
         return NSAttributedString(string: InterfaceString.EmptyDataMsg.NotRiddenYetDescription, attributes: attrs)
     }
     
-    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         
         if (self.isLoading) {
             return nil;

@@ -10,10 +10,10 @@ import UIKit
 import CocoaLumberjack
 
 // BidState singleton
-public class BidState {
+open class BidState {
     
-    private static let myInstance = BidState()
-    private var ongoingBid: Bid?
+    fileprivate static let myInstance = BidState()
+    fileprivate var ongoingBid: Bid?
     
     init() {
         ongoingBid = nil
@@ -23,7 +23,7 @@ public class BidState {
         return myInstance
     }
 
-    func setOngoingBid (inBid: Bid) {
+    func setOngoingBid (_ inBid: Bid) {
         ongoingBid = inBid.copy() as? Bid // copies over the dictionary
     }
 
@@ -39,12 +39,12 @@ public class BidState {
         return (ongoingBid != nil)
     }
 
-    func isSameAsOngoingBid (bidId: String?) -> Bool {
+    func isSameAsOngoingBid (_ bidId: String?) -> Bool {
         
         if (ongoingBid == nil || bidId == nil) {
             return false
         }
         
-        return ((ongoingBid!.id as! String) == bidId)
+        return ((ongoingBid!.id ) == bidId)
     }
 }

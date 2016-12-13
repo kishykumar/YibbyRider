@@ -12,7 +12,7 @@ extension UIView {
         let border = CALayer()
         let borderWidth: CGFloat = 1.0
         
-        border.backgroundColor = UIColor(white: 0.8, alpha: 1.0).CGColor
+        border.backgroundColor = UIColor(white: 0.8, alpha: 1.0).cgColor
         border.frame = CGRect(x: 0,
                               y: self.frame.size.height - borderWidth,
                               width: self.frame.size.width,

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public class YibbyCircleView: YibbyBorderedUIView {
+open class YibbyCircleView: YibbyBorderedUIView {
     
     required public init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ public class YibbyCircleView: YibbyBorderedUIView {
     
     override func sharedSetup() {
 
-        let widthConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
         self.addConstraint(widthConstraint)
         
         self.layer.cornerRadius = self.bounds.height / 2

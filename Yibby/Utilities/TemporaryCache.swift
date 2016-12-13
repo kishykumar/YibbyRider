@@ -6,38 +6,38 @@
 //  Copyright (c) 2015 Ello. All rights reserved.
 //
 
-typealias TemporaryCacheEntry = (image: UIImage, expiration: NSDate)
+typealias TemporaryCacheEntry = (image: UIImage, expiration: Date)
 public enum CacheKey {
-    case CoverImage
-    case ProfilePicture
+    case coverImage
+    case profilePicture
 }
 public struct TemporaryCache {
     static var coverImage: TemporaryCacheEntry?
     static var profilePicture: TemporaryCacheEntry?
 
-    static func save(key: CacheKey, image: UIImage) {
-        let fiveMinutes: NSTimeInterval = 5 * 60
-        let date = NSDate(timeIntervalSinceNow: fiveMinutes)
+    static func save(_ key: CacheKey, image: UIImage) {
+        let fiveMinutes: TimeInterval = 5 * 60
+        let date = Date(timeIntervalSinceNow: fiveMinutes)
         switch key {
-        case .CoverImage:
+        case .coverImage:
             TemporaryCache.coverImage = (image: image, expiration: date)
-        case .ProfilePicture:
+        case .profilePicture:
             TemporaryCache.profilePicture = (image: image, expiration: date)
         }
     }
 
-    static func load(key: CacheKey) -> UIImage? {
-        let date = NSDate()
+    static func load(_ key: CacheKey) -> UIImage? {
+        let date = Date()
         let entry: TemporaryCacheEntry?
 
         switch key {
-        case .CoverImage:
+        case .coverImage:
             entry = TemporaryCache.coverImage
-        case .ProfilePicture:
+        case .profilePicture:
             entry = TemporaryCache.profilePicture
         }
 
-        if let entry = entry where entry.expiration.earlierDate(date) == date {
+        if let entry = entry, (entry.expiration as NSDate).earlierDate(date) == date {
             return entry.image
         }
         return nil

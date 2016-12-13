@@ -16,9 +16,9 @@ public typealias UpdateSourceCompletionBlock = STPErrorBlock
 
 
 // StripePaymentService singleton
-public class StripePaymentService: NSObject {
+open class StripePaymentService: NSObject {
     
-    private static let myInstance = StripePaymentService()
+    fileprivate static let myInstance = StripePaymentService()
     
     // 1) first head to https://dashboard.stripe.com/account/apikeys
     // and copy your "Test Publishable Key" (it looks like pk_test_abcdef) into the line below.
@@ -61,7 +61,7 @@ public class StripePaymentService: NSObject {
     }
     
     func setupConfiguration () {
-        configuration = STPPaymentConfiguration.sharedConfiguration()
+        configuration = STPPaymentConfiguration.shared()
         configuration!.publishableKey = self.stripePublishableKey
         configuration!.appleMerchantIdentifier = self.appleMerchantID
         configuration!.companyName = self.companyName
@@ -69,9 +69,9 @@ public class StripePaymentService: NSObject {
         self.apiClient = STPAPIClient(configuration: configuration!)
     }
 
-    func loadCustomerDetails(completionBlock: CustomerLoadCompletionBlock) {
+    func loadCustomerDetails(_ completionBlock: @escaping CustomerLoadCompletionBlock) {
         
-        apiAdapter.retrieveCustomer({(customer: STPCustomer?, error: NSError?) -> Void in
+        apiAdapter.retrieveCustomer({(customer: STPCustomer?, error: Error?) -> Void in
             
             if error != nil {
                 // TODO: handle error
@@ -100,26 +100,26 @@ public class StripePaymentService: NSObject {
         })
     }
     
-    func attachSourceToCustomer(source: STPSource, completionBlock: AttachSourceCompletionBlock) {
-        apiAdapter.attachSourceToCustomer(source, completion: {(error: NSError?) -> Void in
+    func attachSourceToCustomer(_ source: STPSource, completionBlock: @escaping AttachSourceCompletionBlock) {
+        apiAdapter.attachSource(toCustomer: source, completion: {(error: Error?) -> Void in
             completionBlock(error)
         })
     }
     
-    func updateSourceForCustomer(source: STPSource, oldSource: STPSource, completionBlock: UpdateSourceCompletionBlock) {
-        apiAdapter.updateSourceForCustomer(source, oldSource: oldSource, completion: {(error: NSError?) -> Void in
+    func updateSourceForCustomer(_ source: STPSource, oldSource: STPSource, completionBlock: @escaping UpdateSourceCompletionBlock) {
+        apiAdapter.updateSourceForCustomer(source, oldSource: oldSource, completion: {(error: Error?) -> Void in
             completionBlock(error)
         })
     }
     
-    func deleteSourceFromCustomer(source: STPSource, completionBlock: DeleteSourceCompletionBlock) {
-        apiAdapter.deleteSourceFromCustomer(source, completion: {(error: NSError?) -> Void in
+    func deleteSourceFromCustomer(_ source: STPSource, completionBlock: @escaping DeleteSourceCompletionBlock) {
+        apiAdapter.deleteSourceFromCustomer(source, completion: {(error: Error?) -> Void in
             completionBlock(error)
         })
     }
     
-    func selectDefaultCustomerSource(source: STPSource, completionBlock: DefaultSourceCompletionBlock) {
-        apiAdapter.selectDefaultCustomerSource(source, completion: {(error: NSError?) -> Void in
+    func selectDefaultCustomerSource(_ source: STPSource, completionBlock: @escaping DefaultSourceCompletionBlock) {
+        apiAdapter.selectDefaultCustomerSource(source, completion: {(error: Error?) -> Void in
             completionBlock(error)
         })
     }

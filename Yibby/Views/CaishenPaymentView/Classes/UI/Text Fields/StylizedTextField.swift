@@ -10,19 +10,19 @@ import UIKit
 
 /// A text field that provides additional UI customization.
 @IBDesignable
-public class StylizedTextField: UITextField, UITextFieldDelegate {
+open class StylizedTextField: UITextField, UITextFieldDelegate {
     
     /**
      Changes to this parameter draw the border of `self` in the given width.
      */
     @IBInspectable
-    public var borderWidth: CGFloat = 0 {
+    open var borderWidth: CGFloat = 0 {
         didSet {
             if borderWidth >= 0 {
-                self.borderStyle = .None
+                self.borderStyle = .none
                 self.layer.borderWidth = CGFloat(borderWidth)
             } else {
-                self.borderStyle = .RoundedRect
+                self.borderStyle = .roundedRect
                 self.layer.borderWidth = 0
             }
         }
@@ -32,7 +32,7 @@ public class StylizedTextField: UITextField, UITextFieldDelegate {
      If `borderWidth` has been set, changes to this parameter round the corners of `self` in the given corner radius.
      */
     @IBInspectable
-    public var cornerRadius: CGFloat = 0 {
+    open var cornerRadius: CGFloat = 0 {
         didSet {
             if cornerRadius >= 0 {
                 self.layer.cornerRadius = cornerRadius
@@ -44,25 +44,25 @@ public class StylizedTextField: UITextField, UITextFieldDelegate {
      If `borderWidth` has been set, changes to this parameter change the color of the border of `self`.
      */
     @IBInspectable
-    public var borderColor: UIColor = UIColor.blackColor() {
+    open var borderColor: UIColor = UIColor.black {
         didSet {
-            self.layer.borderColor = self.borderColor.CGColor
+            self.layer.borderColor = self.borderColor.cgColor
         }
     }
     
     /**
      A method which will be called, when the delete key has been pressed for an empty text field.
      */
-    public var deleteBackwardCallback: ((UITextField) -> Void)?
+    open var deleteBackwardCallback: ((UITextField) -> Void)?
     
-    public var textFieldReturnCallback: (() -> Void)?
+    open var textFieldReturnCallback: (() -> Void)?
     
-    public override var text: String? {
+    open override var text: String? {
         didSet {
             if (text ?? "").isEmpty {
                 deleteBackwardCallback?(self)
             } else if text == UITextField.emptyTextFieldCharacter {
-                drawPlaceholderInRect(textInputView.bounds)
+                drawPlaceholder(in: textInputView.bounds)
             }
             setNeedsDisplay()
         }
@@ -71,7 +71,7 @@ public class StylizedTextField: UITextField, UITextFieldDelegate {
     /**
      The color in which text flashes, when the user is about to enter an invalid card number.
      */
-    @IBInspectable public var invalidInputColor: UIColor = UIColor.redColor()
+    @IBInspectable open var invalidInputColor: UIColor = UIColor.red
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -87,24 +87,24 @@ public class StylizedTextField: UITextField, UITextFieldDelegate {
     
     // MARK: - Override functions
     
-    override public func becomeFirstResponder() -> Bool {
+    override open func becomeFirstResponder() -> Bool {
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
         return super.becomeFirstResponder()
     }
     
-    public override func drawRect(rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         if text == "" || text == UITextField.emptyTextFieldCharacter {
-            super.drawPlaceholderInRect(rect)
+            super.drawPlaceholder(in: rect)
         } else {
-            super.drawRect(rect)
+            super.draw(rect)
         }
     }
     
-    public override func drawPlaceholderInRect(rect: CGRect) {
+    open override func drawPlaceholder(in rect: CGRect) {
         
     }
     
-    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
 }
