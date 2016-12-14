@@ -46,7 +46,7 @@ public func animate(_ options: AnimationOptions, animated: Bool = true, animatio
 // MARK: Async, Timed, and Throttled closures
 
 public typealias BasicBlock = (() -> Void)
-public typealias ThrottledBlock = ((BasicBlock) -> Void)
+public typealias ThrottledBlock = ((@escaping BasicBlock) -> Void)
 public typealias CancellableBlock = (Bool) -> Void
 public typealias TakesIndexBlock = ((Int) -> Void)
 
@@ -191,10 +191,11 @@ public func debounce(_ timeout: TimeInterval, block: @escaping BasicBlock) -> Ba
 public func debounce(_ timeout: TimeInterval) -> ThrottledBlock {
     var timer: Timer? = nil
 
-    return { block in
+    return { (block: @escaping BasicBlock) -> Void in
         if let prevTimer = timer {
             prevTimer.invalidate()
         }
+        
         let proc = Proc(block)
         timer = Timer.scheduledTimer(timeInterval: timeout, target: proc, selector: #selector(Proc.run), userInfo: nil, repeats: false)
     }

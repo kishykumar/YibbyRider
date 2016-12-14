@@ -141,7 +141,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     
     func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
         
-        self.cardFieldsViewOutlet.prefillCardInformation(cardInfo.cardNumber, month: Int(cardInfo.expiryMonth), year: Int(cardInfo.expiryYear), cvc: cardInfo.cvv)
+        self.cardFieldsViewOutlet.prefillCardInformation(cardNumber: cardInfo.cardNumber, month: Int(cardInfo.expiryMonth), year: Int(cardInfo.expiryYear), cvc: cardInfo.cvv)
         
         paymentViewController?.dismiss(animated: true, completion: nil)
     }

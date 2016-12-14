@@ -1226,6 +1226,9 @@
 				126C4AB61D796276005EC5FF /* CardTextField.swift */,
 				126C4AB71D796276005EC5FF /* CardTextFieldDelegate.swift */,
 				126C4AB81D796276005EC5FF /* CardTypeImageStore.swift */,
+				126C4ABC1D796276005EC5FF /* StylizedTextField.swift */,
+				126C4ABA1D796276005EC5FF /* NumberInputTextField.swift */,
+				126C4ABB1D796276005EC5FF /* NumberInputTextFieldDelegate.swift */,
 				126C4AB91D796276005EC5FF /* CardView.xib */,
 				126C4ABD1D796276005EC5FF /* Text Fields */,
 			);
@@ -1235,8 +1238,6 @@
 		126C4ABD1D796276005EC5FF /* Text Fields */ = {
 			isa = PBXGroup;
 			children = (
-				126C4ABA1D796276005EC5FF /* NumberInputTextField.swift */,
-				126C4ABC1D796276005EC5FF /* StylizedTextField.swift */,
 				1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */,
 				1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */,
 				126C4ABE1D796276005EC5FF /* CVCInputTextField.swift */,
@@ -1252,7 +1253,6 @@
 		126C4ABF1D796276005EC5FF /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				126C4ABB1D796276005EC5FF /* NumberInputTextFieldDelegate.swift */,
 				126C4AC01D796276005EC5FF /* CardInfoTextFieldDelegate.swift */,
 			);
 			path = Delegates;

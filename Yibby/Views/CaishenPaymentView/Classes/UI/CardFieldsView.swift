@@ -23,7 +23,7 @@ import Foundation
  In order to create a custom CardTextField, you can create a subclass which overrides `getNibName()` and `getNibBundle()` in order to load a nib from a specific bundle, which follows this structure
  */
 @IBDesignable
-open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
+public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     
     // MARK: - Public variables
     
@@ -42,7 +42,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      The formatted text field which is used to enter the card number.
      */
-    @IBOutlet open weak var numberInputTextField: NumberInputTextField!
+    @IBOutlet public weak var numberInputTextField: NumberInputTextField!
     
     /**
      The text field which is used to enter the card validation code.
@@ -68,9 +68,9 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
 //    @IBOutlet public weak var cardInfoView: UIView?
     
     /// The image store for the card number text field.
-    var cardTypeImageStore: CardTypeImageStore = Bundle(for: CardTextField.self) as! CardTypeImageStore
+    var cardTypeImageStore: CardTypeImageStore = Bundle(for: CardTextField.self)
     
-    open var cardFieldsViewDelegate: CardFieldsViewDelegate? {
+    public var cardFieldsViewDelegate: CardFieldsViewDelegate? {
         didSet {
 //            setupAccessoryButton()
         }
@@ -89,12 +89,12 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      The duration of the view animation when switching from number input to detail.
      */
-    @IBInspectable open var viewAnimationDuration: Double = 0.3
+    @IBInspectable public var viewAnimationDuration: Double = 0.3
     
     /**
      The text color for invalid input in a text field.
      */
-    @IBInspectable open var invalidInputColor: UIColor? {
+    @IBInspectable public var invalidInputColor: UIColor? {
         didSet {
             guard let invalidInputColor = invalidInputColor else {
                 return
@@ -155,7 +155,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      The currently entered card values. Note that the values are not guaranteed to be valid.
      */
-    open var card: Card {
+    public var card: Card {
         get {
             let cardNumber = numberInputTextField.cardNumber
             let cardCVC = CVC(rawValue: cvcTextField.text ?? "")
@@ -163,7 +163,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
                 Expiry(month: monthTextField.text ?? "", year: yearTextField.text ?? "")
                     ?? Expiry.invalid
             
-            return Card(bankCardNumber: cardNumber, cardVerificationCode: cardCVC, expiryDate: cardExpiry)
+            return Card(number: cardNumber, cvc: cardCVC, expiry: cardExpiry)
         }
     }
     
@@ -171,7 +171,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
      This card type register contains a list of all valid card types. You can provide separate card type registers for different card number text fields.
      By default, CardTypeRegister.sharedCardTypeRegister is used.
      */
-    open var cardTypeRegister: CardTypeRegister = CardTypeRegister.sharedCardTypeRegister {
+    public var cardTypeRegister: CardTypeRegister = CardTypeRegister.sharedCardTypeRegister {
         didSet {
             numberInputTextField.cardTypeRegister = cardTypeRegister
         }
@@ -201,7 +201,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
             return nil
         }
         
-        return cardTypeRegister.cardTypeForNumber(number)
+        return cardTypeRegister.cardType(for: number)
     }
     
     internal var hideExpiryTextFields: Bool = false {
@@ -259,7 +259,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      Sets up the view by loading subviews from the given Nib in the specified bundle.
      */
-    fileprivate func setupView() {
+    private func setupView() {
         guard let nib = getNibBundle().loadNibNamed(getNibName(), owner: self, options: nil), let firstObjectInNib = nib.first as? UIView else {
             fatalError("The nib is expected to contain a UIView as root element.")
         }
@@ -277,8 +277,8 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
 
         addSubview(firstObjectInNib)
         
+        cardImageView?.image = self.cardTypeImageStore.image(for: UnknownCardType())
         
-        cardImageView?.image = self.cardTypeImageStore.imageForCardType(UnknownCardType())
 //        cardImageView?.layer.cornerRadius = 5.0
 //        cardImageView?.layer.shadowColor = UIColor.blackColor().CGColor
 //        cardImageView?.layer.shadowRadius = 2
@@ -310,7 +310,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
 //        setupAccessibilityLabels()
     }
     
-    fileprivate func setupTextFieldDelegates() {
+    private func setupTextFieldDelegates() {
         cardHolderNameTextField?.cardInfoTextFieldDelegate = self
         numberInputTextField?.numberInputTextFieldDelegate = self
         monthTextField?.cardInfoTextFieldDelegate = self
@@ -322,7 +322,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      Customizes text field attributes of subviews so that the appearance matches the appearance of `self`.
      */
-    fileprivate func setupTextFieldAttributes() {
+    private func setupTextFieldAttributes() {
         
         cardHolderNameTextField.textFieldReturnCallback = {_ -> Void in
             self.numberInputTextField?.becomeFirstResponder()
@@ -399,7 +399,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      Adds a callback to `numberInputTextField`, `monthTextField` and `yearTextField` to show the card type image in `cardImageView` when editing on any of these text fields began. Adds a callback to cvcTextField to show the CVC image in this view in this case.
      */
-    fileprivate func setupTargetsForEditinBegin() {
+    private func setupTargetsForEditinBegin() {
 //        // Show the full number text field, if editing began on it
 //        numberInputTextField?.addTarget(self, action: #selector(moveCardNumberInAnimated), forControlEvents: UIControlEvents.EditingDidBegin)
         
@@ -461,14 +461,14 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      You can override this function to provide your own Nib. If you do so, please override 'getNibBundle' as well to provide the right NSBundle to load the nib file.
      */
-    open func getNibName() -> String {
+    public func getNibName() -> String {
         return "CardFieldsView"
     }
     
     /**
      You can override this function to provide the NSBundle for your own Nib. If you do so, please override 'getNibName' as well to provide the right Nib to load the nib file.
      */
-    open func getNibBundle() -> Bundle {
+    public func getNibBundle() -> Bundle {
         return Bundle(for: CardFieldsView.self)
     }
     
@@ -483,29 +483,29 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
                 return .UnknownType
             }
             
-            return cardType.validateNumber(self.card.bankCardNumber)
-                .union(cardType.validateCVC(self.card.cardVerificationCode))
-                .union(cardType.validateExpiry(self.card.expiryDate))
+            return cardType.validate(number: self.card.bankCardNumber)
+                .union(cardType.validate(cvc: self.card.cardVerificationCode))
+                .union(cardType.validate(expiry: self.card.expiryDate))
         }()
         
-        cardFieldsViewDelegate?.cardTextField(self,
+        cardFieldsViewDelegate?.cardTextField(cardFieldsView: self,
                                              didEnterCardInformation: card,
                                              withValidationResult: result)
     }
     
-    @objc open func numberInputTextFieldDidChangeText(_ numberInputTextField: NumberInputTextField) {
+    @objc public func numberInputTextFieldDidChangeText(_ numberInputTextField: NumberInputTextField) {
         showCardImage()
         notifyDelegate()
-        hideExpiryTextFields = !cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber).requiresExpiry
-        hideCVCTextField = !cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber).requiresCVC
+        hideExpiryTextFields = !cardTypeRegister.cardType(for: numberInputTextField.cardNumber).requiresExpiry
+        hideCVCTextField = !cardTypeRegister.cardType(for: numberInputTextField.cardNumber).requiresCVC
     }
     
-    open func numberInputTextFieldDidComplete(_ numberInputTextField: NumberInputTextField) {
+    public func numberInputTextFieldDidComplete(_ numberInputTextField: NumberInputTextField) {
 //        moveCardNumberOutAnimated()
         
         notifyDelegate()
-        hideExpiryTextFields = !cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber).requiresExpiry
-        hideCVCTextField = !cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber).requiresCVC
+        hideExpiryTextFields = !cardTypeRegister.cardType(for: numberInputTextField.cardNumber).requiresExpiry
+        hideCVCTextField = !cardTypeRegister.cardType(for: numberInputTextField.cardNumber).requiresCVC
         if hideExpiryTextFields && hideCVCTextField {
             return
         } else if hideExpiryTextFields {
@@ -521,8 +521,8 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
      Displays the card image for the currently detected card type in the card text field's `cardImageView`.
      */
     internal func showCardImage() {
-        let cardType = cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber)
-        let cardTypeImage = cardTypeImageStore.imageForCardType(cardType)
+        let cardType = cardTypeRegister.cardType(for: numberInputTextField.cardNumber)
+        let cardTypeImage = cardTypeImageStore.image(for: cardType)
         
         cardImageView?.image = cardTypeImage
     }
@@ -531,8 +531,8 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
      Displays the CVC image for the currently detected card type in the card text field's `cardImageView`.
      */
     internal func showCVCImage() {
-        let cardType = cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber)
-        let cvcImage = cardTypeImageStore.cvcImageForCardType(cardType)
+        let cardType = cardTypeRegister.cardType(for: numberInputTextField.cardNumber)
+        let cvcImage = cardTypeImageStore.cvcImage(for: cardType)
         
         cardImageView?.image = cvcImage
         cvcTextField?.cardType = cardType
@@ -540,7 +540,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     
     // MARK: - UIView
     
-    open override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
 //        // If moving to a larger screen size and not showing the detail view, make sure that it is outside the view.
@@ -549,7 +549,7 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
 //        }
     }
     
-    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Detect touches in card number text field as long as the detail view is on top of it
         touches.forEach({ touch -> () in
             let point = touch.location(in: numberInputTextField)
@@ -599,9 +599,10 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
 //        }
 //    }
     
-    open override func becomeFirstResponder() -> Bool {
+    public override func becomeFirstResponder() -> Bool {
         // Return false if any of this text field's subviews is already first responder.
         // Otherwise let `numberInputTextField` become the first responder.
+        
         if [cardHolderNameTextField,numberInputTextField,monthTextField,yearTextField,cvcTextField,postalCodeTextField]
             .flatMap({return $0.isFirstResponder})
             .reduce(true, {$0 && $1}) {
@@ -610,20 +611,14 @@ open class CardFieldsView: UIView, NumberInputTextFieldDelegate {
         return numberInputTextField.becomeFirstResponder()
     }
     
-    open override var isFirstResponder : Bool {
+    public override var isFirstResponder: Bool {
         // Return true if any of `self`'s subviews is the current first responder.
-        // Needs to unwrap the IBOutlets otherwise IBInspectable is crashing when using CardTextField because IBOutlets
-        // are not initialized yet when IBInspectable engine runs.
-        guard let cardHolderNameTextField = cardHolderNameTextField, let numberInputTextField = numberInputTextField, let monthTextField = monthTextField, let yearTextField = yearTextField, let cvcTextField = cvcTextField, let postalCodeTextField = postalCodeTextField else {
-            return false
-        }
-        
         return [cardHolderNameTextField, numberInputTextField, monthTextField, yearTextField, cvcTextField, postalCodeTextField]
             .filter({$0.isFirstResponder})
             .isEmpty == false
     }
     
-    open override func resignFirstResponder() -> Bool {
+    public override func resignFirstResponder() -> Bool {
         // If any of `self`'s subviews is first responder, resign first responder status.
         return [cardHolderNameTextField,numberInputTextField,monthTextField,yearTextField,cvcTextField, postalCodeTextField]
             .filter({$0.isFirstResponder})

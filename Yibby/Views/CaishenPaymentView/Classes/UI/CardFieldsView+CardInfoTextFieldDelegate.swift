@@ -15,7 +15,7 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
         updateNumberColor()
         notifyDelegate()
         if expirationDateIsValid() {
-            selectNextTextField(textField, prefillText: nil)
+            select(textField, prefillText: nil)
         }
     }
     
@@ -26,14 +26,14 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
     
     public func textField(_ textField: UITextField, didEnterOverflowInfo overFlowDigits: String) {
         updateNumberColor()
-        selectNextTextField(textField, prefillText: overFlowDigits)
+        select(textField, prefillText: overFlowDigits)
     }
 
-    fileprivate func selectNextTextField(_ textField: UITextField, prefillText: String?) {
+    private func select(_ textField: UITextField, prefillText: String?) {
         var nextTextField: UITextField?
         if textField == monthTextField {
             if hideExpiryTextFields {
-                selectNextTextField(yearTextField, prefillText: prefillText)
+                select(yearTextField, prefillText: prefillText)
             } else {
                 nextTextField = yearTextField
             }
@@ -51,13 +51,13 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
             return
         }
         
-        nextTextField?.delegate?.textField?(nextTextField!, shouldChangeCharactersIn: NSMakeRange(0, (nextTextField?.text ?? "").characters.count), replacementString: prefillText)
+        _ = nextTextField?.delegate?.textField?(nextTextField!, shouldChangeCharactersIn: NSMakeRange(0, (nextTextField?.text ?? "").characters.count), replacementString: prefillText)
     }
     
     /**
      Updates the color of month and year text field based on whether or not the input into those text fields is valid or not.
      */
-    fileprivate func updateNumberColor() {
+    private func updateNumberColor() {
         // if the expiration date is not valid, set the text color for the date to `invalidNumberColor`
         if !expirationDateIsValid() {
             let invalidInputColor = self.invalidInputColor ?? UIColor.red
@@ -87,7 +87,7 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
 
      - returns: The validity of the entered expiration date.
      */
-    fileprivate func expirationDateIsValid() -> Bool {
+    private func expirationDateIsValid() -> Bool {
         return card.expiryDate == Expiry.invalid || card.expiryDate.rawValue.timeIntervalSinceNow > 0
     }
 
