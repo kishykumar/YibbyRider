@@ -11,6 +11,7 @@ import UIKit
 /**
  A protocol for the delegate of a `DetailInputTextField`.
  */
+@objc
 public protocol CardInfoTextFieldDelegate {
     
     /**

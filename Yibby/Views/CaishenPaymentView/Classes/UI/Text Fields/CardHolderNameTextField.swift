@@ -9,7 +9,7 @@
 import UIKit
 
 /// A text field which can be used to enter CVCs and provides validation of the same.
-open class CardHolderNameTextField: DetailInputTextField {
+public class CardHolderNameTextField: DetailInputTextField {
     
     override var expectedInputLength: Int {
         return 50
@@ -26,7 +26,7 @@ open class CardHolderNameTextField: DetailInputTextField {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         self.textFieldReturnCallback?()
         

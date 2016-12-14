@@ -13,32 +13,31 @@ import UIKit
  You can subclass `DetailInputTextField` and override `isInputValid` to specify the validation routine.
  The default implementation accepts any input.
  */
-open class DetailInputTextField: StylizedTextField {
+public class DetailInputTextField: StylizedTextField {
     
-    open var cardInfoTextFieldDelegate: CardInfoTextFieldDelegate?
+    public var cardInfoTextFieldDelegate: CardInfoTextFieldDelegate?
     
-    open func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         if (textField.text ?? "").isEmpty {
-            
             // NOTE: The following line has been commented out because it messes up
-//            textField.text = UITextField.emptyTextFieldCharacter
+            // textField.text = UITextField.emptyTextFieldCharacter
         }
     }
     
-    open override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newText = NSString(string: (textField.text ?? "")).replacingCharacters(in: range, with: string).replacingOccurrences(of: UITextField.emptyTextFieldCharacter, with: "")
         
         let deletingLastCharacter = !(textField.text ?? "").isEmpty && textField.text != UITextField.emptyTextFieldCharacter && newText.isEmpty
         if deletingLastCharacter {
-//            textField.text = UITextField.emptyTextFieldCharacter
+            // textField.text = UITextField.emptyTextFieldCharacter
             textField.text = ""
             cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: newText)
             return false
         }
         
-        let autoCompletedNewText = autocompleteText(newText)
+        let autoCompletedNewText = autocomplete(newText)
         
-        let (currentTextFieldText, overflowTextFieldText) = splitText(autoCompletedNewText)
+        let (currentTextFieldText, overflowTextFieldText) = split(autoCompletedNewText)
         
         if isInputValid(currentTextFieldText, partiallyValid: true) {
             textField.text = currentTextFieldText
@@ -56,17 +55,15 @@ open class DetailInputTextField: StylizedTextField {
         return false
     }
     
-    open func prefillInformation(_ info: String) {
-        if isInputValid(info, partiallyValid: false) {
-            text = info
-            cardInfoTextFieldDelegate?.textField(self, didEnterValidInfo: info)
-        } else if isInputValid(info, partiallyValid: true) {
-            text = info
-            cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: info)
+    public func prefill(_ text: String) {
+        if isInputValid(text, partiallyValid: false) {
+            cardInfoTextFieldDelegate?.textField(self, didEnterValidInfo: text)
+        } else if isInputValid(text, partiallyValid: true) {
+            cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: text)
         }
     }
     
-    fileprivate func splitText(_ text: String) -> (currentText: String, overflowText: String) {
+    private func split(_ text: String) -> (currentText: String, overflowText: String) {
         let hasOverflow = text.characters.count > expectedInputLength
         let index = (hasOverflow) ?
             text.characters.index(text.startIndex, offsetBy: expectedInputLength) :
@@ -77,7 +74,7 @@ open class DetailInputTextField: StylizedTextField {
 
 extension DetailInputTextField: AutoCompletingTextField {
 
-    func autocompleteText(_ text: String) -> String {
+    func autocomplete(_ text: String) -> String {
         return text
     }
 }

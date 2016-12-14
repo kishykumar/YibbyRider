@@ -9,7 +9,7 @@
 import UIKit
 
 /// A text field which can be used to enter CVCs and provides validation of the same.
-open class PostalCodeTextField: DetailInputTextField {
+public class PostalCodeTextField: DetailInputTextField {
     
     internal override var expectedInputLength: Int {
         return 5

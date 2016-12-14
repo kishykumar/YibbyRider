@@ -7,33 +7,9 @@
 //
 
 import UIKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 /// A text field which can be used to enter months and provides validation and auto completion.
-open class MonthInputTextField: DetailInputTextField {
+public class MonthInputTextField: DetailInputTextField {
     
     /**
      Checks the validity of the entered month.
@@ -66,17 +42,17 @@ open class MonthInputTextField: DetailInputTextField {
 
      - returns: Auto-completed string.
      */
-    internal override func autocompleteText(_ month: String) -> String {
-        let length = month.characters.count
+    internal override func autocomplete(_ text: String) -> String {
+        let length = text.characters.count
         if length != 1 {
-            return month
+            return text
         }
 
-        let monthNumber = Int(month)
+        let monthNumber = Int(text) ?? 0
         if monthNumber > 1 {
-            return "0" + month
+            return "0" + text
         }
 
-        return month
+        return text
     }
 }

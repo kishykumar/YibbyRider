@@ -9,15 +9,15 @@
 import UIKit
 
 /// A `CardTypeRegister` is used to maintain the range of accepted card types. You can provide different card type registers for different CardTextField's and customize the range of accepted card types individually.
-open class CardTypeRegister {
+public class CardTypeRegister {
     
     /**
      The default card type register, shared among all CardTextFields.
      */
-    open static let sharedCardTypeRegister = CardTypeRegister(registeredCardTypes: CardTypeRegister.defaultCardTypes)
+    public static let sharedCardTypeRegister = CardTypeRegister(registeredCardTypes: CardTypeRegister.defaultCardTypes)
     
     /// An array of all registered card types. You can edit this array with `registerCardType`, `unregisterCardType` or `setRegisteredCardTypes`.
-    open fileprivate(set) var registeredCardTypes: [CardType]
+    public private(set) var registeredCardTypes: [CardType]
     
     /**
      Creates a new `CardTypeRegister` that accepts no card types.
@@ -37,7 +37,7 @@ open class CardTypeRegister {
     }
 
     /// An array with the default card types provided by Caishen.
-    open static let defaultCardTypes: [CardType] = [
+    public static let defaultCardTypes: [CardType] = [
             AmericanExpress(),
             ChinaUnionPay(),
             DinersClub(),
@@ -52,8 +52,8 @@ open class CardTypeRegister {
      
      - parameter cardType: The card type that should be contained in this card type register.
      */
-    open func registerCardType(_ cardType: CardType) {
-        if registeredCardTypes.contains(where: { $0.isEqualTo(cardType) }) {
+    public func register(cardType: CardType) {
+        if registeredCardTypes.contains(where: { $0.isEqual(to: cardType) }) {
             return
         }
 
@@ -65,8 +65,8 @@ open class CardTypeRegister {
      
      - parameter cardType: The card type that should be removed from this card type register.
      */
-    open func unregisterCardType(_ cardType: CardType) {
-        registeredCardTypes = registeredCardTypes.filter { !$0.isEqualTo(cardType) }
+    public func unregister(cardType: CardType) {
+        registeredCardTypes = registeredCardTypes.filter { !$0.isEqual(to: cardType) }
     }
     
     /**
@@ -74,7 +74,7 @@ open class CardTypeRegister {
      
      - parameter cardTypes: The new range of card types contained in this card type register.
      */
-    open func setRegisteredCardTypes<T: Sequence>(_ cardTypes: T) where T.Iterator.Element == CardType {
+    public func setRegisteredCardTypes<T: Sequence>(_ cardTypes: T) where T.Iterator.Element == CardType {
         registeredCardTypes = [CardType]()
         registeredCardTypes.append(contentsOf: cardTypes)
     }
@@ -84,13 +84,13 @@ open class CardTypeRegister {
      
      - important: When creating custom card types, you should make sure, that there are no conflicts in the Issuer Identification Numbers you provide. For example, using [309] to detect a Diners Club card and using [3096] to detect a JCB card will not cause issues as IINs are parsed with the highest numbers first, i.e. the numbers that provide the most context possible, which will return a JCB card in this case. However, no two card types should provide the exact same number (like [309] to detect both a Diners Club card and a JCB card)!
      
-     - parameter cardNumber: The card number whose CardType should be determined
+     - parameter number: The card number whose CardType should be determined
      
      - returns: An instance of UnknownCardType, if no card type matches the Issuer Identification Number of the provided card number or any other card type that matches the card number.
      */
-    open func cardTypeForNumber(_ cardNumber: Number) -> CardType {
-        for i in (0...min(cardNumber.length, 6)).reversed() {
-            if let substring = cardNumber.rawValue[0,i], let substringAsNumber = Int(substring) {
+    public func cardType(for number: Number) -> CardType {
+        for i in (0...min(number.length, 6)).reversed() {
+            if let substring = number.rawValue[0,i], let substringAsNumber = Int(substring) {
                 if let firstMatchingCardType = registeredCardTypes.filter({
                     $0.identifyingDigits.contains(substringAsNumber)
                 }).first {
