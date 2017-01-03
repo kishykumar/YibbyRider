@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import BaasBoxSDK
 import CocoaLumberjack
+import SwiftyJSON
 
 public struct DriverLocationNotifications {
     static let newDriverLocation = TypedNotification<CLLocationCoordinate2D>(name: "com.Yibby.LocationService.NewDriverLocation")
@@ -33,8 +34,11 @@ open class LocationService: NSObject, CLLocationManagerDelegate {
     fileprivate var currentLocation: CLLocation?
     
     var driverLocationFetchTimer: Timer?
-    let DRIVER_LOC_FETCH_TIMER_INTERVAL = 5.0
+    static let DRIVER_LOC_FETCH_TIMER_INTERVAL = 5.0
 
+    let LATITUDE_JSON_FIELD_NAME = "latitude"
+    let LONGITUDE_JSON_FIELD_NAME = "longitude"
+    
     override init() {
         
     }
@@ -123,7 +127,7 @@ open class LocationService: NSObject, CLLocationManagerDelegate {
     
     fileprivate func startDriverLocationFetchTimer () {
         driverLocationFetchTimer =
-            Timer.scheduledTimer(timeInterval: DRIVER_LOC_FETCH_TIMER_INTERVAL,
+            Timer.scheduledTimer(timeInterval: LocationService.DRIVER_LOC_FETCH_TIMER_INTERVAL,
                                                    target: self,
                                                    selector: #selector(LocationService.fetchDriverLocation),
                                                    userInfo: nil, repeats: true)
@@ -131,19 +135,28 @@ open class LocationService: NSObject, CLLocationManagerDelegate {
     
     @objc fileprivate func fetchDriverLocation() {
         
-        // Refresh the location marker for the map
-        let client: BAAClient = BAAClient.shared()
-        client.getDriverLocation("", completion: {(success, error) -> Void in
-            
-            if ((success) != nil) {
-                // Post a notification to the View Controllers
-                postNotification(DriverLocationNotifications.newDriverLocation,
-                    value: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
-            }
-            else {
-                DDLogVerbose("Error logging in: \(error)")
-            }
-        })
+        if let bid = (BidState.sharedInstance().getOngoingBid()) {
+
+            // Refresh the location marker for the map
+            let client: BAAClient = BAAClient.shared()
+            client.getDriverLocation(bid.id, completion: {(success, error) -> Void in
+                
+                if ((success) != nil) {
+                    
+                    if let resultDict = success as? NSDictionary,
+                        let latitude = resultDict[self.LATITUDE_JSON_FIELD_NAME] as? Double,
+                        let longitude = resultDict[self.LONGITUDE_JSON_FIELD_NAME] as? Double {
+                        
+                        // Post a notification to the View Controllers
+                        postNotification(DriverLocationNotifications.newDriverLocation,
+                                         value: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                    }
+                }
+                else {
+                    DDLogError("Error in fetching driver location: \(error)")
+                }
+            })
+        }
     }
     
     fileprivate func stopDriverLocationFetchTimer() {

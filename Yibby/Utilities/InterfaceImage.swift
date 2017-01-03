@@ -21,6 +21,8 @@ public enum InterfaceImage: String {
 
     case ElloLogo = "ello_logo"
 
+    case DriverCar = "driver_car"
+    
     // Postbar Icons
     case Eye = "eye"
     case Heart = "hearts"

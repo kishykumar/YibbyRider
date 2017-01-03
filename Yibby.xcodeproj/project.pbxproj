@@ -165,6 +165,8 @@
 		126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */; };
 		126C4B041D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */; };
 		126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */; };
+		128CE53F1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CE53E1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift */; };
+		128CE5411E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CE5401E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift */; };
 		129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */; };
 		12A364C01DA8563C00BA655F /* LoginViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */; };
 		12A364C21DA8755400BA655F /* SignupViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */; };
@@ -390,6 +392,9 @@
 		126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
+		12814FB91E0D23B400F08CFF /* Yibby.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yibby.entitlements; sourceTree = "<group>"; };
+		128CE53E1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteContentViewController.swift; sourceTree = "<group>"; };
+		128CE5401E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteBottomViewController.swift; sourceTree = "<group>"; };
 		129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerSpec.swift; sourceTree = "<group>"; };
 		12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -779,6 +784,8 @@
 			children = (
 				1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */,
 				1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */,
+				128CE53E1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift */,
+				128CE5401E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift */,
 			);
 			path = EnRoute;
 			sourceTree = "<group>";
@@ -1357,6 +1364,7 @@
 		12F3CCD41C41EFC700F79A26 /* Yibby */ = {
 			isa = PBXGroup;
 			children = (
+				12814FB91E0D23B400F08CFF /* Yibby.entitlements */,
 				12D7459C1D92463700A7B9B9 /* Resources */,
 				123D41761D6302BF00475614 /* ThirdParty */,
 				12F3CCD51C41EFC700F79A26 /* AppDelegate.swift */,
@@ -1757,6 +1765,7 @@
 				126C4AE41D796276005EC5FF /* StringExtension.swift in Sources */,
 				1201B83C1D28E8AE00A7EEAF /* Keyboard.swift in Sources */,
 				1201B7651D23A85F00A7EEAF /* DestinationPickerViewController.swift in Sources */,
+				128CE53F1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift in Sources */,
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
 				12A6BF4F1D800384008BEFC1 /* YibbyMapMarker.swift in Sources */,
@@ -1818,6 +1827,7 @@
 				12F092AB1D3E156700F158BB /* StripePaymentService.swift in Sources */,
 				1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */,
 				1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */,
+				128CE5411E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift in Sources */,
 				126C4AF51D796276005EC5FF /* TextFieldValidation.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
@@ -1998,6 +2008,7 @@
 			baseConfigurationReference = 9FF1E0BA2BE2520D30E161FB /* Pods-Yibby.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yibby/Yibby.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2026,6 +2037,7 @@
 			baseConfigurationReference = 618C3573D4C0DEAE73480909 /* Pods-Yibby.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yibby/Yibby.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
