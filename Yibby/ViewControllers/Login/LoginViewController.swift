@@ -107,12 +107,11 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
-                appDelegate.sendGCMTokenToServer()
-                
                 if (self.onStartup) {
                     // switch to Main View Controller
                     MainViewController.initMainViewController(self, animated: true)
                 } else {
+                    appDelegate.sendGCMTokenToServer()
                     self.dismiss(animated: true, completion: nil)
                 }
             }

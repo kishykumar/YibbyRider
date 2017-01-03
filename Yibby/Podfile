@@ -42,6 +42,7 @@ def shared_pods
     pod 'IQKeyboardManagerSwift'
     pod 'SwiftKeychainWrapper'
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+    pod 'ISHPullUp'
     
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     
