@@ -107,8 +107,6 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
-                // TODO: Show the payment view controller
-                
                 let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
                 let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
                 

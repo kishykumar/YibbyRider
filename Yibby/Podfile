@@ -43,6 +43,9 @@ def shared_pods
     pod 'SwiftKeychainWrapper'
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
     pod 'ISHPullUp'
+    pod 'AlamofireObjectMapper', '~> 4.0'
+    pod 'ImagePicker'
+    pod 'Lightbox'
     
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     

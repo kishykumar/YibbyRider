@@ -11,6 +11,7 @@ import CocoaLumberjack
 import BaasBoxSDK
 import DZNEmptyDataSet
 import SVProgressHUD
+import Braintree
 
 class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
 
@@ -185,10 +186,17 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         //let myfile: BAAFile = rides[indexPath.row]
         
         // convert myfile to Ride
-        let myride:Ride = Ride(id: "", bidHigh: 10, bidLow: 5,
-            etaHigh: 5, etaLow: 1, pickupLat: 37.531631,
-            pickupLong: -122.263606, pickupLoc: "420 Oracle Pkwy, Redwood City, CA 94065", dropoffLat: 37.348209,
-            dropoffLong: -121.993756, dropoffLoc: "3500 Granada Ave, Santa Clara, CA 95051")
+        let myride = Ride()
+//        id: "",
+//                          riderBidPrice: 20.0,
+//                          driverBidPrice: 19.0,
+//                          fare: 19.0,
+//                          people: 1,
+//                          paymentMethod: BTPaymentMethodNonce(nonce: "123x", localizedDescription: "ending in 42", type: "Visa", isDefault: false)!,
+//                          pickupLocation: YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"),
+//                          dropoffLocation: YBLocation(lat: 37.348209, long: -121.993756, name: "3500 Granada Ave, Santa Clara, CA 95051"),
+//                          driverStartLocation: YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"),
+//                          bid: nil)
         
         cell.configure(myride)
         return cell

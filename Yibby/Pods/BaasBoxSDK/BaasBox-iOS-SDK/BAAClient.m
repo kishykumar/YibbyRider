@@ -334,6 +334,23 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
     
 }
 
+- (void)completeDriverRegistration: (NSDictionary *)parameters
+                        completion:(BAABooleanResultBlock)completionHandler {
+    
+    [self postPath:@"caber/complete"
+        parameters: parameters
+           success:^(NSDictionary *responseObject) {
+
+               NSLog(@"responseObject is: %@", responseObject);
+               completionHandler(YES, nil);
+                   
+           } failure:^(NSError *error) {
+               
+               completionHandler(NO, error);
+               
+           }];
+
+}
 
 - (void)authenticateCaber: (NSString *)type
                  username: (NSString *)username
@@ -2263,7 +2280,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 - (void)getDriverLocation: (NSString *)bidId
                completion: (BAAObjectResultBlock)completionBlock {
     
-    NSString *path = [NSString stringWithFormat:@"/location/d/bid/%@", bidId];
+    NSString *path = [NSString stringWithFormat:@"/location/d/%@", bidId];
 
     [self getPath:path
        parameters:@{
@@ -2286,7 +2303,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 
 - (void)getRiderLocation: (NSString *)bidId
               completion: (BAAObjectResultBlock)completionBlock {
-    NSString *path = [NSString stringWithFormat:@"/location/r/bid/%@", bidId];
+    NSString *path = [NSString stringWithFormat:@"/location/r/%@", bidId];
     
     [self getPath:path
        parameters:@{

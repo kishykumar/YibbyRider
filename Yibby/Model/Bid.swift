@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class Bid: NSObject, NSCopying {
+class Bid: NSObject {
     
     // MARK: - Properties
     var id: String
@@ -19,42 +19,33 @@ class Bid: NSObject, NSCopying {
     var etaHigh: Int
     var etaLow: Int
     
-    var pickupLat: CLLocationDegrees
-    var pickupLong: CLLocationDegrees
-    var pickupLoc: String
-    
-    var dropoffLat: CLLocationDegrees
-    var dropoffLong: CLLocationDegrees
-    var dropoffLoc: String
+    var pickupLocation: YBLocation
+    var dropoffLocation: YBLocation
     
     // MARK: Initialization
     
-    init?(id: String, bidHigh: Int, bidLow: Int, etaHigh: Int, etaLow: Int, pickupLat: Double, pickupLong: Double, pickupLoc: String, dropoffLat: Double, dropoffLong: Double, dropoffLoc: String) {
+    init(id: String, bidHigh: Int, bidLow: Int, etaHigh: Int, etaLow: Int, pickupLocation: YBLocation, dropoffLocation: YBLocation) {
         // Initialize stored properties.
         self.id = id
         self.bidHigh = bidHigh
         self.bidLow = bidLow
         self.etaHigh = etaHigh
         self.etaLow = etaLow
-        self.pickupLat = pickupLat
-        self.pickupLong = pickupLong
-        self.pickupLoc = pickupLoc
-        self.dropoffLat = dropoffLat
-        self.dropoffLong = dropoffLong
-        self.dropoffLoc = dropoffLoc
-                
+        self.pickupLocation = pickupLocation
+        self.dropoffLocation = dropoffLocation
+        
         // Initialization should fail if there is no name or if the rating is negative.
 //        if pickupLoc.isEmpty || dropoffLoc.isEmpty || bidHigh == 0 {
 //            return nil
 //        }
     }
     
-    func copy(with zone: NSZone?) -> Any {
-        let copy = Bid(id: id, bidHigh: bidHigh, bidLow: bidLow,
-            etaHigh: etaHigh, etaLow: etaLow, pickupLat: pickupLat,
-            pickupLong: pickupLong, pickupLoc: pickupLoc, dropoffLat: dropoffLat,
-            dropoffLong: dropoffLong, dropoffLoc: dropoffLoc)
-        
-        return copy!
-    }
+//    func copy(with zone: NSZone?) -> Any {
+//        let copy = Bid(id: id, bidHigh: bidHigh, bidLow: bidLow,
+//            etaHigh: etaHigh, etaLow: etaLow, pickupLat: pickupLat,
+//            pickupLong: pickupLong, pickupLoc: pickupLoc, dropoffLat: dropoffLat,
+//            dropoffLong: dropoffLong, dropoffLoc: dropoffLoc)
+//        
+//        return copy!
+//    }
 }
