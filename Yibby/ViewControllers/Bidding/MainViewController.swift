@@ -37,21 +37,21 @@ open class MainViewController: BaseYibbyViewController,
     @IBOutlet weak var peopleLabelOutlet: UILabel!
     @IBOutlet weak var cardHintOutlet: BTUICardHint!
     @IBOutlet weak var centerMarkersViewOutlet: YibbyBorderedUIView!
+    @IBOutlet weak var miscHintViewOutlet: UIView!
+    @IBOutlet weak var dollarHintViewOutlet: UIView!
+    
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
     var pickupFieldSelected: Bool?
     var dropoffFieldSelected: Bool?
     
-    var currentPlaceLatLng: CLLocationCoordinate2D?
-    var currentPlaceName: String?
+    var curLocation: YBLocation?
     
-    var pickupLatLng: CLLocationCoordinate2D?
-    var pickupPlaceName: String?
+    var pickupLocation: YBLocation?
     var pickupMarker: GMSMarker?
     
-    var dropoffLatLng: CLLocationCoordinate2D?
-    var dropoffPlaceName: String?
+    var dropoffLocation: YBLocation?
     var dropoffMarker: GMSMarker?
     
     var locationManager:CLLocationManager!
@@ -141,13 +141,12 @@ open class MainViewController: BaseYibbyViewController,
         }
         
         bidHigh = self.rangeSliderOutlet.value
-        DDLogVerbose("bidHigh value is: \(bidHigh)")
         
-        if (pickupLatLng != nil && pickupPlaceName != nil &&
-            dropoffLatLng != nil && dropoffPlaceName  != nil &&
+        if (pickupLocation != nil &&
+            dropoffLocation != nil &&
             bidLow != nil && bidHigh != nil) {
             
-            DDLogVerbose("Made the bid: pickupLatLng: \(pickupLatLng), pickupPlaceName: \(pickupPlaceName), dropoffLatLng: \(dropoffLatLng), dropoffPlaceName: \(dropoffPlaceName),  bidLow: \(bidLow), bidHigh: \(bidHigh)")
+            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidLow: \(bidLow), bidHigh: \(bidHigh)")
             
             let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
             
@@ -156,10 +155,8 @@ open class MainViewController: BaseYibbyViewController,
             // Initialize the view controller state 
             confirmRideViewController.bidLow = self.bidLow
             confirmRideViewController.bidHigh = self.bidHigh
-            confirmRideViewController.pickupLatLng = self.pickupLatLng
-            confirmRideViewController.pickupPlaceName = self.pickupPlaceName
-            confirmRideViewController.dropoffLatLng = self.dropoffLatLng
-            confirmRideViewController.dropoffPlaceName = self.dropoffPlaceName
+            confirmRideViewController.pickupLocation = self.pickupLocation
+            confirmRideViewController.dropoffLocation = self.dropoffLocation
             
             self.navigationController?.pushViewController(confirmRideViewController, animated: true)
         }
@@ -185,6 +182,7 @@ open class MainViewController: BaseYibbyViewController,
         // bidButton
         bidButton.color = UIColor.appDarkGreen1()
         bidButton.addAwesomeIcon(FAIcon.FAGavel, beforeTitle: true)
+        bidButton.isHidden = true
         
         // currency range slider
         setupRangeSliderUI()
@@ -198,6 +196,7 @@ open class MainViewController: BaseYibbyViewController,
         if let method = self.selectedPaymentMethod {
             updateSelectCardUI(paymentMethod: method)
         }
+        
     }
     
     func setupRangeSliderUI() {
@@ -324,18 +323,9 @@ open class MainViewController: BaseYibbyViewController,
     func initProperties() {
         bidLow = 1
         bidHigh = 100
-        let lat: CLLocationDegrees = 37.531631
-        let long: CLLocationDegrees = -122.263606
         
-        let latLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
-        
-        self.setPickupDetails("420 Oracle Pkwy, Redwood City, CA 94065", loc: latLng)
-        
-        let dlat: CLLocationDegrees = 37.348209
-        let dlong: CLLocationDegrees = -121.993756
-        
-        let dlatLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(dlat,dlong)
-        self.setDropoffDetails("3500 Granada Ave, Santa Clara, CA 95051", loc: dlatLng)
+        self.setPickupDetails(YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"))
+        self.setDropoffDetails(YBLocation(lat: 37.348209, long: -121.993756, name: "3500 Granada Ave, Santa Clara, CA 95051"))
         
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
@@ -365,6 +355,17 @@ open class MainViewController: BaseYibbyViewController,
         
         // check for location services
 //        AlertUtil.displayLocationAlert()
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        
+        // Moved the rounding circle code here because the circling wasn't happening correctly.
+        // Please refer here for why this solution has been picked:
+        // http://stackoverflow.com/questions/29685055/ios-frame-size-width-2-doesnt-produce-a-circle-on-every-device
+        miscHintViewOutlet.setRoundedWithWhiteBorder()
+        dollarHintViewOutlet.setRoundedWithWhiteBorder()
     }
     
     override open func viewWillAppear(_ animated: Bool) {
@@ -439,9 +440,10 @@ open class MainViewController: BaseYibbyViewController,
                             addressString = addressString + placemark.country!
                         }
                         
-                        self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
+                        let loc = YBLocation(coordinate: userLocation.coordinate, name: addressString)
                         
-                        self.setPickupDetails(addressString, loc: userLocation.coordinate)
+                        self.setCurrentLocationDetails(loc)
+                        self.setPickupDetails(loc)
                         
                         DDLogVerbose("Address from location manager came out: \(addressString)")
                     }
@@ -454,18 +456,21 @@ open class MainViewController: BaseYibbyViewController,
         dismiss(animated: true, completion: nil)
     }
     
-    func setPickupDetails (_ address: String, loc: CLLocationCoordinate2D) {
+    func setCurrentLocationDetails (_ location: YBLocation) {
+        self.curLocation = location
+    }
+    
+    func setPickupDetails (_ location: YBLocation) {
         
         pickupMarker?.map = nil
         
-        self.pickupPlaceName = address
-        self.pickupLatLng = loc
+        self.pickupLocation = location
         
-        let pumarker = GMSMarker(position: loc)
+        let pumarker = GMSMarker(position: location.coordinate())
         pumarker?.map = gmsMapViewOutlet
         
         pumarker?.icon = YibbyMapMarker.annotationImageWithMarker(pumarker!,
-                                                                 title: address,
+                                                                 title: location.name!,
                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: true)
         
@@ -473,19 +478,18 @@ open class MainViewController: BaseYibbyViewController,
         adjustGMSCameraFocus()
     }
     
-    func setDropoffDetails (_ address: String, loc: CLLocationCoordinate2D) {
+    func setDropoffDetails (_ location: YBLocation) {
         
         dropoffMarker?.map = nil
         
-        self.dropoffPlaceName = address
-        self.dropoffLatLng = loc
+        self.dropoffLocation = location
         
-        let domarker = GMSMarker(position: loc)
+        let domarker = GMSMarker(position: location.coordinate())
         domarker?.map = gmsMapViewOutlet
         
         //        domarker.icon = UIImage(named: "Visa")
         domarker?.icon = YibbyMapMarker.annotationImageWithMarker(domarker!,
-                                                                 title: address,
+                                                                 title: location.name!,
                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: false)
         
@@ -527,11 +531,6 @@ open class MainViewController: BaseYibbyViewController,
         
         let update = GMSCameraUpdate.fit(bounds, with: insets)
         gmsMapViewOutlet.moveCamera(update)
-    }
-    
-    func setCurrentLocationDetails (_ address: String, loc: CLLocationCoordinate2D) {
-        self.currentPlaceName = address
-        self.currentPlaceLatLng = loc
     }
 }
 
@@ -635,10 +634,12 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         DDLogVerbose("Place address: \(place.formattedAddress)")
         DDLogVerbose("Place attributions: (place.attributions)")
         
+        let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress)
+
         if (pickupFieldSelected == true) {
-            self.setPickupDetails(place.formattedAddress, loc: place.coordinate)
+            self.setPickupDetails(loc)
         } else if (dropoffFieldSelected == true) {
-            self.setDropoffDetails(place.formattedAddress, loc: place.coordinate)
+            self.setDropoffDetails(loc)
         }
         
         cleanup()

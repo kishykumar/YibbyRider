@@ -68,17 +68,17 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
             ProfileService().updateUserProfilePicture(image,
                                                       success: { url in
-                                                        DDLogVerbose("Success")
-                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                                        
-                                                        let userDefaults = UserDefaults.standard
-                                                        userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
-                                                        
-                                                        self.profilePictureOutlet.image = image
-                },
-                                                      failure: { _, _ in
-                                                        DDLogVerbose("Failure")
-                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                DDLogVerbose("Success")
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+                
+                self.profilePictureOutlet.image = image
+},
+              failure: { _, _ in
+                DDLogVerbose("Failure")
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })
         }
         openImagePicker()
@@ -112,7 +112,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         self.view.backgroundColor = UIColor.appDarkGreen1();
 
         // Set rounded profile pic
-        self.profilePictureOutlet.setRoundedWithWhiteBorder()
+         self.profilePictureOutlet.setRoundedWithWhiteBorder()
     }
     
     fileprivate func setupViews() {
@@ -256,14 +256,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
                     bundle: nil)
                 
                 self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
-                
-//                let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
-//
-//                if let loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
-//                {
-//                    loginViewController.onStartup = true
-//                    self.presentViewController(loginViewController, animated: true, completion: nil)
-//                }
             }
             else {
                 // We continue the user session if Logout hits an error

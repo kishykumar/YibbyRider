@@ -18,7 +18,7 @@ public typealias BTUpdateSourceCompletionBlock = BTErrorBlock
 // BraintreePaymentService singleton
 open class BraintreePaymentService: NSObject {
     
-    fileprivate static let myInstance = BraintreePaymentService()
+    private static let myInstance = BraintreePaymentService()
     
     var customerID: String? = nil
     var clientToken: String! = nil

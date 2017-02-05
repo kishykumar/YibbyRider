@@ -66,7 +66,7 @@ open class PushController: NSObject, PushControllerProtocol {
     func handleBgNotification (_ notification: [AnyHashable: Any]) {
         DDLogDebug("Setting recent push msg from \(savedNotification) to \(notification)")
 
-        if (BidState.sharedInstance().isOngoingBid()) {
+        if (YBClient.sharedInstance().isOngoingBid()) {
             
             DDLogDebug("Setting got response")
             
@@ -126,7 +126,7 @@ open class PushController: NSObject, PushControllerProtocol {
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
-            if (!BidState.sharedInstance().isOngoingBid()) {
+            if (!YBClient.sharedInstance().isOngoingBid()) {
                 DDLogDebug("No ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
                 return;
             }
@@ -146,9 +146,9 @@ open class PushController: NSObject, PushControllerProtocol {
                     if let bidData = topBidJson.data(using: String.Encoding.utf8) {
                         
                         let bidJson = JSON(data: bidData)
-                        if (!BidState.sharedInstance().isSameAsOngoingBid(bidJson[ID_JSON_FIELD_NAME].stringValue)) {
+                        if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: bidJson[ID_JSON_FIELD_NAME].stringValue)) {
                             DDLogDebug("Not same as ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
-                            DDLogDebug("Ongoingbid is: \(BidState.sharedInstance().getOngoingBid())")
+                            DDLogDebug("Ongoingbid is: \(YBClient.sharedInstance().getBid())")
                             return;
                         }
                         
@@ -166,7 +166,7 @@ open class PushController: NSObject, PushControllerProtocol {
                             DDLogDebug("NOOFFERS RCVD")
 
                             // delete the saved state bid
-                            BidState.sharedInstance().resetOngoingBid()
+                            YBClient.sharedInstance().resetBid()
 
                             disableTimeoutCode()
                             
@@ -184,9 +184,9 @@ open class PushController: NSObject, PushControllerProtocol {
                     if let rideData = topRideJson.data(using: String.Encoding.utf8) {
 
                         let rideJson = JSON(data: rideData)
-                        if (!BidState.sharedInstance().isSameAsOngoingBid(rideJson[BID_ID_JSON_FIELD_NAME].string)) {
+                        if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: rideJson[BID_ID_JSON_FIELD_NAME].string)) {
                             
-                            if let ongoingBid = BidState.sharedInstance().getOngoingBid() {
+                            if let ongoingBid = YBClient.sharedInstance().getBid() {
                                 DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(rideJson[BID_ID_JSON_FIELD_NAME].string)")
                             } else {
                                 DDLogDebug("Ongoingbid is: nil. Incoming is \(rideJson[BID_ID_JSON_FIELD_NAME].string)")

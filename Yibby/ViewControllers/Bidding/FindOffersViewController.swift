@@ -95,7 +95,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         
         DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
         // delete the saved state bid
-        BidState.sharedInstance().resetOngoingBid()
+        YBClient.sharedInstance().resetBid()
         
         // pop the view controller
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -124,7 +124,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         DDLogVerbose("Called")
         
         // if there is an active bid, save the current time
-        if (BidState.sharedInstance().isOngoingBid()) {
+        if (YBClient.sharedInstance().isOngoingBid()) {
             let curTime = Date()
             DDLogDebug("Setting bgtime \(curTime))")
             savedBgTimestamp = curTime
@@ -134,7 +134,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     func restoreProgressTimer () {
         DDLogVerbose("Called")
         
-        if (BidState.sharedInstance().isOngoingBid()) {
+        if (YBClient.sharedInstance().isOngoingBid()) {
             
             if let appBackgroundedTime = savedBgTimestamp {
                 

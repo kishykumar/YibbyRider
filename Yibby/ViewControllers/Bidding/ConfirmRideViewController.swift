@@ -18,11 +18,8 @@ class ConfirmRideViewController: BaseYibbyViewController {
     @IBOutlet weak var cancelButtonOutlet: YibbyButton1!
     @IBOutlet weak var acceptButtonOutlet: YibbyButton1!
     
-    var pickupLatLng: CLLocationCoordinate2D!
-    var pickupPlaceName: String!
-    
-    var dropoffLatLng: CLLocationCoordinate2D!
-    var dropoffPlaceName: String!
+    var pickupLocation: YBLocation!
+    var dropoffLocation: YBLocation!
     
     var bidLow: Float!
     var bidHigh: Float!
@@ -46,10 +43,10 @@ class ConfirmRideViewController: BaseYibbyViewController {
                 let client: BAAClient = BAAClient.shared()
                 
                 client.createBid(self.bidHigh as NSNumber!,
-                    bidLow: self.bidLow as NSNumber!, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude as NSNumber!,
-                    pickupLong: self.pickupLatLng!.longitude as NSNumber!, pickupLoc: self.pickupPlaceName,
-                    dropoffLat: self.dropoffLatLng!.latitude as NSNumber!, dropoffLong: self.dropoffLatLng!.longitude as NSNumber!,
-                    dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
+                    bidLow: self.bidLow as NSNumber!, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
+                    pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name,
+                    dropoffLat: self.dropoffLocation.latitude as NSNumber!, dropoffLong: self.dropoffLocation.longitude as NSNumber!,
+                    dropoffLoc: self.dropoffLocation.name, completion: {(success, error) -> Void in
                         
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
@@ -67,21 +64,24 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                 
                                 if let successData = (success as AnyObject)["data"] as? [String: NSObject] {
                                     
-                                    // set the bid state
+                                    let pickupLoc = YBLocation(lat: successData["pickupLat"] as! Double,
+                                                                    long: successData["pickupLong"] as! Double,
+                                                                    name: successData["pickupLoc"] as! String)
                                     
+                                    let dropoffLoc = YBLocation(lat: successData["dropoffLat"] as! Double,
+                                                                    long: successData["dropoffLong"] as! Double,
+                                                                    name: successData["dropoffLoc"] as! String)
+                                    
+                                    // set the bid state
                                     let userBid: Bid = Bid(id: successData["id"] as! String,
                                         bidHigh: successData["bidHigh"] as! Int,
                                         bidLow: successData["bidLow"] as! Int,
                                         etaHigh: successData["etaHigh"] as! Int,
                                         etaLow: successData["etaLow"] as! Int,
-                                        pickupLat: successData["pickupLat"] as! Double,
-                                        pickupLong: successData["pickupLong"] as! Double,
-                                        pickupLoc: successData["pickupLoc"] as! String,
-                                        dropoffLat: successData["dropoffLat"] as! Double,
-                                        dropoffLong: successData["dropoffLong"] as! Double,
-                                        dropoffLoc: successData["dropoffLoc"] as! String)!
+                                        pickupLocation: pickupLoc,
+                                        dropoffLocation: dropoffLoc)
                                     
-                                    BidState.sharedInstance().setOngoingBid(userBid)
+                                    YBClient.sharedInstance().setBid(userBid)
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {

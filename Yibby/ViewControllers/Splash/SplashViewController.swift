@@ -190,21 +190,13 @@ class SplashViewController: UIViewController {
             
             // no need to do anything if user is already authenticated
             MainViewController.initMainViewController(self, animated: false)
-
-//            self.performSegueWithIdentifier("mainFromSplashSegue", sender: nil)
             removeSplash()
         } else {
             DDLogVerbose("User NOT authenticated");
             
-//            self.performSegueWithIdentifier("loginFromSplashSegue", sender: nil)
             let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
                                                               bundle: nil)
-            
-            
-            
-//            let joinVC = signupStoryboard.instantiateViewControllerWithIdentifier("JoinViewControllerIdentifier") as! JoinViewController
-//            let joinNav = UINavigationController(rootViewController: joinVC)
-//            self.presentViewController(joinVC, animated: false, completion: nil)
+
             self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
 
             removeSplash()

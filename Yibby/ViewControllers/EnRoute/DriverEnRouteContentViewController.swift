@@ -44,15 +44,14 @@ class DriverEnRouteContentViewController: UIViewController {
     // MARK: - Setup functions
     
     func initProperties() {
-        self.bid = (BidState.sharedInstance().getOngoingBid())!
+        self.bid = (YBClient.sharedInstance().getBid())!
     }
     
     func rideBeginSetup() {
         LocationService.sharedInstance().startFetchingDriverLocation()
         
         // Add marker to the pickup location
-        let latLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bid.pickupLat, bid.pickupLong)
-        setPickupDetails(bid.pickupLoc, loc: latLng)
+        setPickupDetails(bid.pickupLocation)
         
         setDriverInitialLocation()
         adjustGMSCameraFocus()
@@ -109,10 +108,17 @@ class DriverEnRouteContentViewController: UIViewController {
             return
         }
         
-        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + pickupMarker.icon.size.height,
-                                  left: 10.0,
-                                  bottom: 20.0,
-                                  right: 10.0)
+        let widthInset = (driverLocMarker.icon.size.width < pickupMarker.icon.size.width) ? driverLocMarker.icon.size.width : pickupMarker.icon.size.width
+        
+        let heightInset = (driverLocMarker.icon.size.height < pickupMarker.icon.size.height) ? driverLocMarker.icon.size.height : pickupMarker.icon.size.height
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let pullupViewTargetHeight = DriverEnRouteBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
+        
+        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + heightInset/2,
+                                  left: (widthInset/2) + 10.0,
+                                  bottom: pullupViewTargetHeight + heightInset/2,
+                                  right: (widthInset/2) + 10.0)
         
         mapFitCoordinates(coordinate1: pickupMarker.position, coordinate2: driverLocMarker.position, insets: insets)
     }
@@ -192,15 +198,15 @@ class DriverEnRouteContentViewController: UIViewController {
     
     // MARK: - Helper functions
     
-    func setPickupDetails (_ address: String, loc: CLLocationCoordinate2D) {
+    func setPickupDetails (_ location: YBLocation) {
         
         pickupMarker?.map = nil
         
-        let pumarker = GMSMarker(position: loc)
+        let pumarker = GMSMarker(position: location.coordinate())
         pumarker?.map = gmsMapViewOutlet
-        
+        pumarker?.groundAnchor = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
         pumarker?.icon = YibbyMapMarker.annotationImageWithMarker(pumarker!,
-                                                                  title: address,
+                                                                  title: location.name!,
                                                                   andPinIcon: UIImage(named: "defaultMarker")!,
                                                                   pickup: true)
         

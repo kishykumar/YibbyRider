@@ -15,7 +15,6 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
     // MARK: - Properties
     
     @IBOutlet weak var rootViewOutlet: UIView!
-    @IBOutlet weak var handleViewOutlet: ISHPullUpHandleView!
     @IBOutlet weak var topViewOutlet: UIView!
     
     private var firstAppearanceCompleted = false
@@ -23,7 +22,7 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
     
     private var currentHeight = CGFloat(0)
     
-    private let PULLUP_VIEW_PERCENT_OF_SCREEN: CGFloat = 0.50 // 50%
+    static let PULLUP_VIEW_PERCENT_OF_SCREEN: CGFloat = 0.45 // 45%
     private var pullupViewTargetHeight: CGFloat!
     
     // MARK: - Actions
@@ -40,7 +39,7 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
         topViewOutlet.addGestureRecognizer(tapGesture)
         
         let screenSize: CGRect = UIScreen.main.bounds
-        pullupViewTargetHeight = PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
+        pullupViewTargetHeight = DriverEnRouteBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,12 +64,12 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
     
     func pullUpViewController(_ pullUpViewController: ISHPullUpViewController, minimumHeightForBottomViewController bottomVC: UIViewController) -> CGFloat {
         
-        return topViewOutlet.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height;
+        return pullupViewTargetHeight/4
     }
     
     func pullUpViewController(_ pullUpViewController: ISHPullUpViewController, targetHeightForBottomViewController bottomVC: UIViewController, fromCurrentHeight height: CGFloat) -> CGFloat {
         
-        let topViewHeight = topViewOutlet.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        let collapsedHeight = pullupViewTargetHeight/4
 //        let rootViewHeight = rootViewOutlet.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         
         if (height > pullupViewTargetHeight) {
@@ -78,8 +77,8 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
         }
         
         if (height < currentHeight) {
-            currentHeight = topViewHeight
-            return topViewHeight
+            currentHeight = collapsedHeight
+            return collapsedHeight
         }
         
         if (height > currentHeight) {
@@ -101,7 +100,6 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
     
     func pullUpViewController(_ pullUpViewController: ISHPullUpViewController, didChangeTo state: ISHPullUpState) {
 //        topLabel.text = textForState(state);
-        handleViewOutlet.setState(ISHPullUpHandleView.handleState(for: state), animated: firstAppearanceCompleted)
     }
 
     /*

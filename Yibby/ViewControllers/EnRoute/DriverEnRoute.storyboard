@@ -144,47 +144,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="YYv-Wb-fEJ" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-rX-uSt" userLabel="HandleView" customClass="ISHPullUpHandleView">
-                                                <rect key="frame" x="169.5" y="6" width="36" height="11"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
-                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtB-yD-3Bg" userLabel="DriverDetailsLabel">
-                                                <rect key="frame" x="8" y="19" width="359" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.49643686655405406" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="CtB-yD-3Bg" firstAttribute="centerX" secondItem="YYv-Wb-fEJ" secondAttribute="centerX" id="4kB-nk-efq"/>
-                                            <constraint firstItem="CtB-yD-3Bg" firstAttribute="top" secondItem="Hcx-rX-uSt" secondAttribute="bottom" constant="2" id="9L4-wY-1IL"/>
-                                            <constraint firstItem="Hcx-rX-uSt" firstAttribute="top" secondItem="YYv-Wb-fEJ" secondAttribute="top" constant="6" id="CLy-hy-WPp"/>
-                                            <constraint firstItem="CtB-yD-3Bg" firstAttribute="centerY" secondItem="YYv-Wb-fEJ" secondAttribute="centerY" id="asc-vI-qiA"/>
-                                            <constraint firstItem="CtB-yD-3Bg" firstAttribute="leading" secondItem="YYv-Wb-fEJ" secondAttribute="leading" constant="8" id="giK-zY-z0O"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CtB-yD-3Bg" secondAttribute="bottom" constant="5" id="jbc-uv-fZD"/>
-                                            <constraint firstItem="Hcx-rX-uSt" firstAttribute="centerX" secondItem="YYv-Wb-fEJ" secondAttribute="centerX" id="u6k-Ov-ADl"/>
-                                            <constraint firstAttribute="trailing" secondItem="CtB-yD-3Bg" secondAttribute="trailing" constant="8" id="u8d-qh-lY0"/>
+                                            <constraint firstAttribute="height" constant="5" id="Kfy-Fk-L39"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ETV-eB-2nS" userLabel="TripDetailsSV">
-                                        <rect key="frame" x="0.0" y="58" width="375" height="442"/>
+                                        <rect key="frame" x="0.0" y="5" width="375" height="495"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-pc-Kfm" userLabel="TopSV">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="247.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQr-gg-Jwt" userLabel="TopLeftView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="221"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="247.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AZB-ED-6Zf" userLabel="PaymentSV">
-                                                                <rect key="frame" x="18" y="90.5" width="75" height="93"/>
+                                                                <rect key="frame" x="18" y="117" width="75" height="93"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kA3-Dw-Y0A" userLabel="CardHintView" customClass="BTUICardHint">
                                                                         <rect key="frame" x="0.0" y="0.0" width="75" height="50.5"/>
@@ -202,13 +178,13 @@
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="0.13089432765369102" blue="0.07737115504493397" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8RT-28-Sfa" userLabel="TopRightView">
-                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="221"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="247.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wvn-T2-ROX" userLabel="TotalFareSV">
-                                                                <rect key="frame" x="85" y="111" width="89.5" height="53.5"/>
+                                                                <rect key="frame" x="85" y="137" width="89.5" height="53.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Fare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Dm-D8g" userLabel="TotalFareLabel">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="23"/>
@@ -225,18 +201,18 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="0.13089432770000001" blue="0.07737115504" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.39215686274509803" green="0.80000000000000004" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FFF-xf-YNc" userLabel="BottomSV">
-                                                <rect key="frame" x="0.0" y="221" width="375" height="221"/>
+                                                <rect key="frame" x="0.0" y="247.5" width="375" height="247.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKA-6M-Abp" userLabel="BottomLeftView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="221"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="247.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yLa-vw-khv" userLabel="PeopleSV">
-                                                                <rect key="frame" x="18" y="59" width="75" height="52.5"/>
+                                                                <rect key="frame" x="18" y="58.5" width="75" height="52.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn6-I8-4b3" userLabel="PeopleImage">
                                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="22"/>
@@ -253,13 +229,13 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="0.13089432770000001" blue="0.07737115504" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.39215686274509803" green="0.80000000000000004" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vg-1g-Y1f" userLabel="BottomRightView">
-                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="221"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="247.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JEy-HI-VYW" userLabel="DriverDetailsSV">
-                                                                <rect key="frame" x="25.5" y="106.5" width="152" height="104.5"/>
+                                                                <rect key="frame" x="25.5" y="133" width="152" height="104.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Gic-vf-y4b" userLabel="ContactDriverSV">
                                                                         <rect key="frame" x="89" y="0.0" width="63" height="24"/>
@@ -320,7 +296,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="0.13089432770000001" blue="0.07737115504" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="JEy-HI-VYW" secondAttribute="trailing" constant="10" id="XMV-Dx-tSl"/>
                                                             <constraint firstAttribute="bottom" secondItem="JEy-HI-VYW" secondAttribute="bottom" constant="10" id="fku-tA-S2H"/>
@@ -334,16 +310,15 @@
                                             <constraint firstItem="yLa-vw-khv" firstAttribute="leading" secondItem="AZB-ED-6Zf" secondAttribute="leading" priority="750" id="xGu-CE-wW0"/>
                                         </constraints>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gs1-9g-Qaf" userLabel="OuterCircleImageView">
-                                        <rect key="frame" x="103" y="195.5" width="169" height="168.5"/>
-                                        <color key="backgroundColor" red="1" green="0.95099769999999995" blue="0.2731306342" alpha="1" colorSpace="calibratedRGB"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="driver_image_circle" translatesAutoresizingMaskIntoConstraints="NO" id="gs1-9g-Qaf" userLabel="OuterCircleImageView">
+                                        <rect key="frame" x="103" y="168.5" width="169" height="168.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gs1-9g-Qaf" secondAttribute="height" multiplier="1:1" id="zRy-OG-xAI"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yWx-LG-Qc9" userLabel="InnerCircleImageView">
-                                        <rect key="frame" x="118" y="210.5" width="138.5" height="138"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="yWx-LG-Qc9" userLabel="InnerCircleImageView">
+                                        <rect key="frame" x="153" y="218.5" width="68.5" height="68"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.082004856418918914" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="yWx-LG-Qc9" secondAttribute="height" multiplier="1:1" id="haZ-l6-vmK"/>
                                         </constraints>
@@ -356,10 +331,10 @@
                                     <constraint firstItem="gs1-9g-Qaf" firstAttribute="centerY" secondItem="ETV-eB-2nS" secondAttribute="centerY" id="Arr-h0-W0f"/>
                                     <constraint firstItem="wvn-T2-ROX" firstAttribute="leading" secondItem="gs1-9g-Qaf" secondAttribute="trailing" id="C45-fp-jQ1"/>
                                     <constraint firstItem="gs1-9g-Qaf" firstAttribute="leading" secondItem="AZB-ED-6Zf" secondAttribute="trailing" constant="10" id="EJG-iS-qqL"/>
-                                    <constraint firstItem="gs1-9g-Qaf" firstAttribute="height" relation="lessThanOrEqual" secondItem="Eps-Pj-I4x" secondAttribute="height" multiplier="0.45" id="L5Y-lH-GUv"/>
+                                    <constraint firstItem="gs1-9g-Qaf" firstAttribute="height" relation="lessThanOrEqual" secondItem="Eps-Pj-I4x" secondAttribute="height" multiplier="0.5" id="L5Y-lH-GUv"/>
                                     <constraint firstAttribute="trailing" secondItem="ETV-eB-2nS" secondAttribute="trailing" id="LUv-a9-Zzi"/>
                                     <constraint firstAttribute="bottom" secondItem="ETV-eB-2nS" secondAttribute="bottom" id="ODo-jx-fEa"/>
-                                    <constraint firstItem="gs1-9g-Qaf" firstAttribute="width" secondItem="Eps-Pj-I4x" secondAttribute="width" multiplier="0.5" priority="750" id="Of8-46-bsW"/>
+                                    <constraint firstItem="gs1-9g-Qaf" firstAttribute="width" secondItem="Eps-Pj-I4x" secondAttribute="width" multiplier="0.6" priority="750" id="Of8-46-bsW"/>
                                     <constraint firstItem="yWx-LG-Qc9" firstAttribute="centerY" secondItem="ETV-eB-2nS" secondAttribute="centerY" id="RWA-Wg-X7g"/>
                                     <constraint firstItem="ETV-eB-2nS" firstAttribute="top" secondItem="YYv-Wb-fEJ" secondAttribute="bottom" id="UPD-cs-ipZ"/>
                                     <constraint firstItem="wvn-T2-ROX" firstAttribute="centerY" secondItem="gs1-9g-Qaf" secondAttribute="top" id="WGT-HN-gyA"/>
@@ -371,7 +346,7 @@
                                     <constraint firstItem="ETV-eB-2nS" firstAttribute="leading" secondItem="Eps-Pj-I4x" secondAttribute="leading" id="q6l-im-mFs"/>
                                     <constraint firstAttribute="trailing" secondItem="YYv-Wb-fEJ" secondAttribute="trailing" id="vOu-Fy-M0Y"/>
                                     <constraint firstItem="gs1-9g-Qaf" firstAttribute="width" relation="lessThanOrEqual" secondItem="Eps-Pj-I4x" secondAttribute="width" multiplier="0.45" id="yYa-qa-1N6"/>
-                                    <constraint firstItem="yWx-LG-Qc9" firstAttribute="leading" secondItem="gs1-9g-Qaf" secondAttribute="leading" constant="15" id="zBL-kf-Q9u"/>
+                                    <constraint firstItem="yWx-LG-Qc9" firstAttribute="leading" secondItem="gs1-9g-Qaf" secondAttribute="leading" constant="50" id="zBL-kf-Q9u"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRH-pX-QvA" userLabel="OverpullView">
@@ -402,7 +377,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="500"/>
                     <connections>
-                        <outlet property="handleViewOutlet" destination="Hcx-rX-uSt" id="L6t-Bl-9Ai"/>
                         <outlet property="rootViewOutlet" destination="Eps-Pj-I4x" id="6vf-T4-3Rq"/>
                         <outlet property="topViewOutlet" destination="YYv-Wb-fEJ" id="Tyr-2w-55y"/>
                     </connections>
@@ -414,5 +388,7 @@
     </scenes>
     <resources>
         <image name="back_button_green" width="64" height="73"/>
+        <image name="defaultProfile" width="480" height="640"/>
+        <image name="driver_image_circle" width="998" height="986"/>
     </resources>
 </document>
