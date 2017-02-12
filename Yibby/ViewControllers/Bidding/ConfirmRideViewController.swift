@@ -21,7 +21,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
     var pickupLocation: YBLocation!
     var dropoffLocation: YBLocation!
     
-    var bidLow: Float!
     var bidHigh: Float!
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
@@ -42,8 +41,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                 
                 let client: BAAClient = BAAClient.shared()
                 
-                client.createBid(self.bidHigh as NSNumber!,
-                    bidLow: self.bidLow as NSNumber!, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
+                client.createBid(self.bidHigh as NSNumber!, bidLow: 0, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
                     pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name,
                     dropoffLat: self.dropoffLocation.latitude as NSNumber!, dropoffLong: self.dropoffLocation.longitude as NSNumber!,
                     dropoffLoc: self.dropoffLocation.name, completion: {(success, error) -> Void in
@@ -73,13 +71,13 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                                                     name: successData["dropoffLoc"] as! String)
                                     
                                     // set the bid state
-                                    let userBid: Bid = Bid(id: successData["id"] as! String,
-                                        bidHigh: successData["bidHigh"] as! Int,
-                                        bidLow: successData["bidLow"] as! Int,
-                                        etaHigh: successData["etaHigh"] as! Int,
-                                        etaLow: successData["etaLow"] as! Int,
-                                        pickupLocation: pickupLoc,
-                                        dropoffLocation: dropoffLoc)
+                                    let userBid = Bid()
+                                    userBid.id = (successData["id"] as! String)
+                                    userBid.bidHigh = (successData["bidHigh"] as! Double)
+                                    userBid.pickupLocation = pickupLoc
+                                    userBid.dropoffLocation = dropoffLoc
+                                    userBid.people = (successData["people"] as? Int)
+                                    userBid.creationTime = (successData["_creation_date"] as! String)
                                     
                                     YBClient.sharedInstance().setBid(userBid)
                                     

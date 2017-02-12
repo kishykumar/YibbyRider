@@ -51,7 +51,7 @@ class DriverEnRouteContentViewController: UIViewController {
         LocationService.sharedInstance().startFetchingDriverLocation()
         
         // Add marker to the pickup location
-        setPickupDetails(bid.pickupLocation)
+        setPickupDetails(bid.pickupLocation!)
         
         setDriverInitialLocation()
         adjustGMSCameraFocus()

@@ -126,10 +126,10 @@ open class PushController: NSObject, PushControllerProtocol {
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
-            if (!YBClient.sharedInstance().isOngoingBid()) {
-                DDLogDebug("No ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
-                return;
-            }
+//            if (!YBClient.sharedInstance().isOngoingBid()) {
+//                DDLogDebug("No ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
+//                return;
+//            }
             
             let jsonCustom = notification[CUSTOM_JSON_FIELD_NAME]
             
@@ -138,96 +138,98 @@ open class PushController: NSObject, PushControllerProtocol {
                 return;
             }
             
-            if let dataFromString = jsonCustomString.data(using: .utf8, allowLossyConversion: false) {
+            let messageType = (notification[MESSAGE_JSON_FIELD_NAME] as! String)
+            
+            if (messageType == OFFER_MESSAGE_TYPE ||
+                messageType == NO_OFFERS_MESSAGE_TYPE) {
                 
-                let topJson = JSON(data: dataFromString)
-                if let topBidJson = topJson[BID_JSON_FIELD_NAME].string {
+                let bid = Bid(JSONString: jsonCustomString)!
+                if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: bid.id)) {
+                    DDLogDebug("Not same as ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
+                    DDLogDebug("Ongoingbid is: \(YBClient.sharedInstance().getBid())")
+                    return;
+                }
                 
-                    if let bidData = topBidJson.data(using: String.Encoding.utf8) {
-                        
-                        let bidJson = JSON(data: bidData)
-                        if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: bidJson[ID_JSON_FIELD_NAME].stringValue)) {
-                            DDLogDebug("Not same as ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
-                            DDLogDebug("Ongoingbid is: \(YBClient.sharedInstance().getBid())")
-                            return;
-                        }
-                        
-                        switch notification[MESSAGE_JSON_FIELD_NAME] as! String {
-                            
-                        case OFFER_MESSAGE_TYPE:
-                            DDLogDebug("OFFER RCVD")
-                            
-                            let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
-
-                            let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
-                            mmnvc.pushViewController(confirmRideViewController, animated: true)
-                            
-                        case NO_OFFERS_MESSAGE_TYPE:
-                            DDLogDebug("NOOFFERS RCVD")
-
-                            // delete the saved state bid
-                            YBClient.sharedInstance().resetBid()
-
-                            disableTimeoutCode()
-                            
-                            mmnvc.popViewController(animated: true)
-                            AlertUtil.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
-
-                        default:
-                            DDLogError("Weird message received during Bid: \(notification[MESSAGE_JSON_FIELD_NAME])")
-                            break
-                            
-                        }
-                    }
+                switch messageType {
+                    
+                case OFFER_MESSAGE_TYPE:
+                    
+                    // -- THIS CODEPATH IS NOT EXECUTED --
+                    assert(false)
+                    
+                    DDLogDebug("OFFER RCVD")
+                    
+                    let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
+                    
+                    let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
+                    mmnvc.pushViewController(confirmRideViewController, animated: true)
+                    
+                case NO_OFFERS_MESSAGE_TYPE:
+                    DDLogDebug("NOOFFERS RCVD")
+                    
+                    // delete the saved state bid
+                    YBClient.sharedInstance().resetBid()
+                    
+                    disableTimeoutCode()
+                    
+                    mmnvc.popViewController(animated: true)
+                    AlertUtil.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
+                    
+                default:
+                    DDLogError("Weird message received during Bid1: \(messageType)")
+                    break
                 }
-                else if let topRideJson = topJson[RIDE_JSON_FIELD_NAME].string {
-                    if let rideData = topRideJson.data(using: String.Encoding.utf8) {
-
-                        let rideJson = JSON(data: rideData)
-                        if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: rideJson[BID_ID_JSON_FIELD_NAME].string)) {
-                            
-                            if let ongoingBid = YBClient.sharedInstance().getBid() {
-                                DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(rideJson[BID_ID_JSON_FIELD_NAME].string)")
-                            } else {
-                                DDLogDebug("Ongoingbid is: nil. Incoming is \(rideJson[BID_ID_JSON_FIELD_NAME].string)")
-                            }
-                            
-                            return;
-                        }
-                        
-                        switch notification[MESSAGE_JSON_FIELD_NAME] as! String {
-                            
-                        case DRIVER_EN_ROUTE_MESSAGE_TYPE:
-                            DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
-                            disableTimeoutCode()
-                            
-                            let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
-
-                            let driverEnRouteViewController = driverEnRouteStoryboard.instantiateViewController(withIdentifier: "DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
-                            mmnvc.pushViewController(driverEnRouteViewController, animated: true)
-                            
-                        case RIDE_START_MESSAGE_TYPE:
-                            DDLogDebug("RIDE_START_MESSAGE_TYPE")
-
-                            let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                            
-                            let tripViewController = rideStoryboard.instantiateViewController(withIdentifier: "TripViewControllerIdentifier") as! TripViewController
-                            mmnvc.pushViewController(tripViewController, animated: true)
-                            
-                        case RIDE_END_MESSAGE_TYPE:
-                            DDLogDebug("RIDE_END_MESSAGE_TYPE")
-
-                            let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                            
-                            let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
-                            mmnvc.pushViewController(rideEndViewController, animated: true)
-                            
-                        default:
-                            DDLogError("Weird message received during Ride: \(notification[MESSAGE_JSON_FIELD_NAME])")
-                            break
-                        }
+            } else if (messageType == DRIVER_EN_ROUTE_MESSAGE_TYPE ||
+                        messageType == RIDE_START_MESSAGE_TYPE ||
+                        messageType == RIDE_END_MESSAGE_TYPE) {
+                
+                let ride = Ride(JSONString: jsonCustomString)!
+                
+                if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: ride.bidId)) {
+                    
+                    if let ongoingBid = YBClient.sharedInstance().getBid() {
+                        DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(ride.bidId)")
+                    } else {
+                        DDLogDebug("Ongoingbid is: nil. Incoming is \(ride.bidId)")
                     }
+                    
+                    return;
                 }
+                
+                switch messageType {
+
+                case DRIVER_EN_ROUTE_MESSAGE_TYPE:
+                    DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
+                    
+                    disableTimeoutCode()
+                    
+                    let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
+                    
+                    let driverEnRouteViewController = driverEnRouteStoryboard.instantiateViewController(withIdentifier: "DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
+                    mmnvc.pushViewController(driverEnRouteViewController, animated: true)
+                    
+                case RIDE_START_MESSAGE_TYPE:
+                    DDLogDebug("RIDE_START_MESSAGE_TYPE")
+                    
+                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                    
+                    let tripViewController = rideStoryboard.instantiateViewController(withIdentifier: "TripViewControllerIdentifier") as! TripViewController
+                    mmnvc.pushViewController(tripViewController, animated: true)
+                    
+                case RIDE_END_MESSAGE_TYPE:
+                    DDLogDebug("RIDE_END_MESSAGE_TYPE")
+                    
+                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                    
+                    let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
+                    mmnvc.pushViewController(rideEndViewController, animated: true)
+                    
+                default:
+                    DDLogError("Weird message received during Bid2: \(messageType)")
+                    break
+                }
+            } else {
+                DDLogError("Weird message received \(messageType)")
             }
         }
     }

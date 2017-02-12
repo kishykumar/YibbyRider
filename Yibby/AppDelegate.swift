@@ -92,8 +92,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func setupLogger() {
         
         // setup logger
-        DDLog.add(DDTTYLogger.sharedInstance, with: .all) // TTY = Xcode console
-        DDLog.add(DDASLLogger.sharedInstance, with: .all) // ASL = Apple System Logs
+        if #available(iOS 10.0, *) {
+            DDLog.add(DDASLLogger.sharedInstance, with: .all) // ASL = Apple System Logs
+        } else {
+            DDLog.add(DDASLLogger.sharedInstance, with: .all) // ASL = Apple System Logs
+            DDLog.add(DDTTYLogger.sharedInstance, with: .all) // TTY = Xcode console
+        }
+        
         DDTTYLogger.sharedInstance.logFormatter = LogFormatter() // print filename, line#
         DDASLLogger.sharedInstance.logFormatter = LogFormatter() // print filename, line#
         

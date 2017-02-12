@@ -57,7 +57,6 @@ open class MainViewController: BaseYibbyViewController,
     var locationManager:CLLocationManager!
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
     
-    var bidLow: Float?
     var bidHigh: Float?
     
     var priceSliderViewHidden = false
@@ -143,17 +142,15 @@ open class MainViewController: BaseYibbyViewController,
         bidHigh = self.rangeSliderOutlet.value
         
         if (pickupLocation != nil &&
-            dropoffLocation != nil &&
-            bidLow != nil && bidHigh != nil) {
+            dropoffLocation != nil && bidHigh != nil) {
             
-            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidLow: \(bidLow), bidHigh: \(bidHigh)")
+            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidHigh: \(bidHigh)")
             
             let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
             
             let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
             
             // Initialize the view controller state 
-            confirmRideViewController.bidLow = self.bidLow
             confirmRideViewController.bidHigh = self.bidHigh
             confirmRideViewController.pickupLocation = self.pickupLocation
             confirmRideViewController.dropoffLocation = self.dropoffLocation
@@ -182,7 +179,6 @@ open class MainViewController: BaseYibbyViewController,
         // bidButton
         bidButton.color = UIColor.appDarkGreen1()
         bidButton.addAwesomeIcon(FAIcon.FAGavel, beforeTitle: true)
-        bidButton.isHidden = true
         
         // currency range slider
         setupRangeSliderUI()
@@ -321,7 +317,6 @@ open class MainViewController: BaseYibbyViewController,
     }
     
     func initProperties() {
-        bidLow = 1
         bidHigh = 100
         
         self.setPickupDetails(YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"))

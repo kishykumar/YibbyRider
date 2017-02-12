@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import ObjectMapper
 
-class YBVehicle: NSObject {
+class YBVehicle: Mappable {
     
     // MARK: - Properties
     var id: String?

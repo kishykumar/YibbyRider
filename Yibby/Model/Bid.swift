@@ -7,45 +7,38 @@
 //
 
 import UIKit
-import GoogleMaps
+import ObjectMapper
 
-class Bid: NSObject {
+class Bid: Mappable {
     
     // MARK: - Properties
-    var id: String
-    var bidHigh: Int
-    var bidLow: Int
+    var id: String?
+    var bidHigh: Double?
     
-    var etaHigh: Int
-    var etaLow: Int
+    var pickupLocation: YBLocation?
+    var dropoffLocation: YBLocation?
     
-    var pickupLocation: YBLocation
-    var dropoffLocation: YBLocation
+    var people: Int?
+    
+    var creationTime: String?
     
     // MARK: Initialization
     
-    init(id: String, bidHigh: Int, bidLow: Int, etaHigh: Int, etaLow: Int, pickupLocation: YBLocation, dropoffLocation: YBLocation) {
-        // Initialize stored properties.
-        self.id = id
-        self.bidHigh = bidHigh
-        self.bidLow = bidLow
-        self.etaHigh = etaHigh
-        self.etaLow = etaLow
-        self.pickupLocation = pickupLocation
-        self.dropoffLocation = dropoffLocation
+    init() {
         
-        // Initialization should fail if there is no name or if the rating is negative.
-//        if pickupLoc.isEmpty || dropoffLoc.isEmpty || bidHigh == 0 {
-//            return nil
-//        }
     }
     
-//    func copy(with zone: NSZone?) -> Any {
-//        let copy = Bid(id: id, bidHigh: bidHigh, bidLow: bidLow,
-//            etaHigh: etaHigh, etaLow: etaLow, pickupLat: pickupLat,
-//            pickupLong: pickupLong, pickupLoc: pickupLoc, dropoffLat: dropoffLat,
-//            dropoffLong: dropoffLong, dropoffLoc: dropoffLoc)
-//        
-//        return copy!
-//    }
+    required init?(map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        id                  <- map["id"]
+        bidHigh             <- map["bidHigh"]
+        pickupLocation      <- map["pickupLocation"]
+        dropoffLocation     <- map["dropoffLocation"]
+        people              <- map["people"]
+        creationTime        <- map["creationTime"]
+    }
 }
