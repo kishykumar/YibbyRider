@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
 import Braintree
 import ObjectMapper
 
@@ -31,6 +30,8 @@ class Ride: Mappable {
     var driver: YBDriver?
     var vehicle: YBVehicle?
     
+    var bidId: String?
+    
     // MARK: Initialization
     
     init() {
@@ -53,5 +54,6 @@ class Ride: Mappable {
         driverStartLocation     <- map["driverStartLocation"]
         driver                  <- map["driver"]
         vehicle                 <- map["vehicle"]
+        bidId                   <- map["bidId"]
     }
 }
