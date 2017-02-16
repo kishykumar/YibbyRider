@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0825BB4B1E5624BC00A18145 /* TextfieldValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4A1E5624BC00A18145 /* TextfieldValidations.swift */; };
+		0825BB4D1E562EC200A18145 /* HeaderClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4C1E562EC200A18145 /* HeaderClass.swift */; };
+		0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4E1E563EB300A18145 /* ProfileVC.swift */; };
+		0825BB511E563EDB00A18145 /* EmergencyContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB501E563EDB00A18145 /* EmergencyContactsVC.swift */; };
+		0825BB531E5640E100A18145 /* CustomizeTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB521E5640E100A18145 /* CustomizeTextfield.swift */; };
 		120188221CF2A677005EF075 /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120188211CF2A677005EF075 /* SplashScreen.xib */; };
 		1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7351D239E4A00A7EEAF /* Ride.swift */; };
 		1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B73F1D23A84500A7EEAF /* AboutViewController.swift */; };
@@ -118,7 +123,7 @@
 		1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1401D69B4A8007067BC /* BaseYibbyTabViewController.swift */; };
 		1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1254E1421D69B4B9007067BC /* BaseYibbyTableViewController.swift */; };
 		125B39041DBC96F80041E0D7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B39031DBC96F80041E0D7 /* EditProfileViewController.swift */; };
-		125B39061DBC97180041E0D7 /* Profile.Storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 125B39051DBC97180041E0D7 /* Profile.Storyboard */; };
+		125B39061DBC97180041E0D7 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 125B39051DBC97180041E0D7 /* Profile.storyboard */; };
 		1265A6E81DA982F900D5FDBA /* YibbyBorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */; };
 		126C4AD21D796276005EC5FF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 126C4A9A1D796276005EC5FF /* Media.xcassets */; };
 		126C4AD31D796276005EC5FF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4A9D1D796276005EC5FF /* Card.swift */; };
@@ -229,6 +234,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0825BB4A1E5624BC00A18145 /* TextfieldValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldValidations.swift; sourceTree = "<group>"; };
+		0825BB4C1E562EC200A18145 /* HeaderClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderClass.swift; sourceTree = "<group>"; };
+		0825BB4E1E563EB300A18145 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		0825BB501E563EDB00A18145 /* EmergencyContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactsVC.swift; sourceTree = "<group>"; };
+		0825BB521E5640E100A18145 /* CustomizeTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeTextfield.swift; sourceTree = "<group>"; };
 		120188211CF2A677005EF075 /* SplashScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen.xib; sourceTree = "<group>"; };
 		1201B7351D239E4A00A7EEAF /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		1201B73F1D23A84500A7EEAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -342,7 +352,7 @@
 		1259D91A1DAB44C700DA6027 /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = "../../../Library/Developer/Xcode/DerivedData/Yibby-hcasmlpmkeqscobolfjjswldkusv/Build/Products/Debug-iphoneos/Nimble-Snapshots/Nimble_Snapshots.framework"; sourceTree = "<group>"; };
 		1259D91C1DAB47F600DA6027 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = "../../../Library/Developer/Xcode/DerivedData/Yibby-hcasmlpmkeqscobolfjjswldkusv/Build/Products/Debug-iphoneos/FBSnapshotTestCase/FBSnapshotTestCase.framework"; sourceTree = "<group>"; };
 		125B39031DBC96F80041E0D7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		125B39051DBC97180041E0D7 /* Profile.Storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.Storyboard; sourceTree = "<group>"; };
+		125B39051DBC97180041E0D7 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		1265A6E71DA982F900D5FDBA /* YibbyBorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedTextField.swift; sourceTree = "<group>"; };
 		126C4A9A1D796276005EC5FF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		126C4A9D1D796276005EC5FF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -664,6 +674,8 @@
 			children = (
 				1201B7FB1D250D8400A7EEAF /* Login.storyboard */,
 				1201B7521D23A85F00A7EEAF /* LoginViewController.swift */,
+				0825BB4A1E5624BC00A18145 /* TextfieldValidations.swift */,
+				0825BB4C1E562EC200A18145 /* HeaderClass.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -688,7 +700,10 @@
 			isa = PBXGroup;
 			children = (
 				125B39031DBC96F80041E0D7 /* EditProfileViewController.swift */,
-				125B39051DBC97180041E0D7 /* Profile.Storyboard */,
+				0825BB4E1E563EB300A18145 /* ProfileVC.swift */,
+				0825BB521E5640E100A18145 /* CustomizeTextfield.swift */,
+				0825BB501E563EDB00A18145 /* EmergencyContactsVC.swift */,
+				125B39051DBC97180041E0D7 /* Profile.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1544,7 +1559,7 @@
 				126C4AD21D796276005EC5FF /* Media.xcassets in Resources */,
 				1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */,
 				1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */,
-				125B39061DBC97180041E0D7 /* Profile.Storyboard in Resources */,
+				125B39061DBC97180041E0D7 /* Profile.storyboard in Resources */,
 				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
 				1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */,
 				1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */,
@@ -1723,6 +1738,7 @@
 				126C4AF01D796276005EC5FF /* CVCInputTextField.swift in Sources */,
 				126C4ADE1D796276005EC5FF /* Visa.swift in Sources */,
 				126C4AF71D796276005EC5FF /* UITextField+Extensions.swift in Sources */,
+				0825BB531E5640E100A18145 /* CustomizeTextfield.swift in Sources */,
 				126C4ADC1D796276005EC5FF /* MasterCard.swift in Sources */,
 				126C4AD91D796276005EC5FF /* DinersClub.swift in Sources */,
 				12A6BF5A1D894476008BEFC1 /* YibbyFloatLabelTextField.swift in Sources */,
@@ -1730,6 +1746,7 @@
 				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
+				0825BB4D1E562EC200A18145 /* HeaderClass.swift in Sources */,
 				126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */,
 				12A6BF4A1D7FFACD008BEFC1 /* UIColorExtensions.swift in Sources */,
 				126C4AE91D796276005EC5FF /* CardTextField.swift in Sources */,
@@ -1767,6 +1784,7 @@
 				1265A6E81DA982F900D5FDBA /* YibbyBorderedTextField.swift in Sources */,
 				129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */,
 				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,
+				0825BB511E563EDB00A18145 /* EmergencyContactsVC.swift in Sources */,
 				12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */,
 				121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */,
 				1201B8381D28E47B00A7EEAF /* CGRectExtensions.swift in Sources */,
@@ -1812,6 +1830,7 @@
 				12A6BF461D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */,
+				0825BB4B1E5624BC00A18145 /* TextfieldValidations.swift in Sources */,
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
 				1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */,
@@ -1828,6 +1847,7 @@
 				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				126C4AE51D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */,
+				0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
 				1254E13D1D693063007067BC /* YibbyTextField.swift in Sources */,
