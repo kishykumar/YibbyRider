@@ -83,11 +83,26 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     // MARK: - Helper functions
     
     func submitLoginForm() {
-        if (emailAddress.text == "" || password.text == "") {
-            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
-        } else {
+        
+        let validateText = TextfieldValidations()
+        
+        let allData = validateText.validateEmptyTextfieldsOnly(self.emailAddress.superview!)
+        
+        print("allData :: \(allData)")
+        if allData.boolValue == false {
+            
+            AlertUtil.displayAlert("error in form", message: "\(allData.textPlaceHolder)")
+            
+        }else{
+            
             loginUser(emailAddress.text!, passwordi: password.text!)
         }
+        
+//        if (emailAddress.text == "" || password.text == "") {
+//            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
+//        } else {
+//            loginUser(emailAddress.text!, passwordi: password.text!)
+//        }
     }
     
     // BaasBox login user
