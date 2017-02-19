@@ -88,15 +88,15 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         
         // Push the About View Controller
         let profileStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.ProfileStoryboard, bundle: nil)
-        let profileViewController = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileViewControllerIdentifier") as! ProfileVC
+        let profileViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewControllerIdentifier") as! ProfileVC
         
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
-            mmnvc.navigationBarHidden = false
+            mmnvc.isNavigationBarHidden = false
             mmnvc.pushViewController(profileViewController, animated: true)
-            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             
         } else {
             assert(false)
@@ -130,11 +130,8 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         self.view.backgroundColor = UIColor.appDarkGreen1();
 
         // Set rounded profile pic
-<<<<<<< HEAD
       //  self.profilePictureOutlet.setRoundedWithWhiteBorder()
-=======
          self.profilePictureOutlet.setRoundedWithWhiteBorder()
->>>>>>> swift3
     }
     
     fileprivate func setupViews() {
@@ -215,7 +212,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewControllerIdentifier") as! HistoryViewController
 
             break
-<<<<<<< HEAD
+/*<<<<<<< HEAD
         case TableIndex.Notifications.rawValue:
 
             /*let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -237,9 +234,9 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             
             break
         case TableIndex.Settings.rawValue:
-=======
+*/
         case TableIndex.settings.rawValue:
->>>>>>> swift3
+//>>>>>>> swift3
             
             let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
             selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsViewControllerIdentifier") as! SettingsViewController

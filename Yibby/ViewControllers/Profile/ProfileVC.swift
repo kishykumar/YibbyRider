@@ -29,23 +29,23 @@ class ProfileVC: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
+        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
-      customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
+      customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
         
-        VW.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
-        VW1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW1.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
-        VW2.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW2.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         VW2.layer.borderWidth = 1.0
         VW2.layer.cornerRadius = 7
-        firstNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        firstNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
-        lastNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        lastNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
     }
@@ -64,7 +64,7 @@ class ProfileVC: UIViewController {
 
     @IBAction func emergencyContactsBtnAction(sender: AnyObject) {
         
-        let emergencyContactsNVC = self.storyboard?.instantiateViewControllerWithIdentifier("EmergencyContactsVC") as! EmergencyContactsVC
+        let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "EmergencyContactsVC") as! EmergencyContactsVC
         _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
     }
     /*

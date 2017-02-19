@@ -21,10 +21,10 @@ class CustomizeTextfield : UITextField{
             
             let rightView = UIView()
             rightButton.frame = CGRect(x:0, y:0, width:25, height: 25)
-            rightButton.setImage(buttonImage, forState: .Normal)
+            rightButton.setImage(buttonImage, for: .normal)
             rightView.addSubview(rightButton)
             rightView.frame = CGRect(x:0, y:0, width:rightButton.frame.size.width+10, height: 30)
-            senderTextfield.rightViewMode = .Always
+            senderTextfield.rightViewMode = .always
             senderTextfield.rightView = rightView
             
             
@@ -49,8 +49,8 @@ class CustomizeTextfield : UITextField{
             // }
             leftView.addSubview(leftImageView)
             leftView.frame = CGRect(x:0, y:0, width:leftImageView.frame.size.width + 10, height: senderTextfield.frame.size.height)
-            leftImageView.contentMode = .ScaleToFill
-            senderTextfield.leftViewMode = .Always
+            leftImageView.contentMode = .scaleToFill
+            senderTextfield.leftViewMode = .always
             senderTextfield.leftView = leftView
             
             senderTextfield.text = textFieldData
@@ -74,8 +74,8 @@ func setRightViewImage(rightImageIcon : UIImage,senderTextfield : UITextField) {
             
             rightView.addSubview(rightImageView)
             rightView.frame = CGRect(x:0, y:0, width:30, height: senderTextfield.frame.size.height)
-            rightImageView.contentMode = .ScaleToFill
-            senderTextfield.rightViewMode = .Always
+            rightImageView.contentMode = .scaleToFill
+            senderTextfield.rightViewMode = .always
             senderTextfield.rightView = rightView
             
             senderTextfield.text = textFieldData
@@ -107,20 +107,20 @@ func setRightViewImage(rightImageIcon : UIImage,senderTextfield : UITextField) {
         
         func setBothSidesPadding(selectedTF:UITextField,amount:CGFloat) {
             
-            setLeftPaddingPoint(selectedTF, amount: amount)
-            setRightPaddingPoint(selectedTF, amount: amount)
+            setLeftPaddingPoint(selectedTF: selectedTF, amount: amount)
+            setRightPaddingPoint(selectedTF: selectedTF, amount: amount)
         }
         
         
         func setLeftPaddingPoint(selectedTF:UITextField,amount:CGFloat){
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
             self.leftView = paddingView
-            self.leftViewMode = .Always
+            self.leftViewMode = .always
         }
         func setRightPaddingPoint(selectedTF:UITextField,amount:CGFloat) {
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
             self.rightView = paddingView
-            self.rightViewMode = .Always
+            self.rightViewMode = .always
         }
         
         

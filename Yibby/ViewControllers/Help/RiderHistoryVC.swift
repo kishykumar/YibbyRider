@@ -22,15 +22,15 @@ class RiderHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         return 1 //sectionsCount
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 1
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            let riderCell = tableView.dequeueReusableCellWithIdentifier("RiderHistoryTVC", forIndexPath: indexPath) as UITableViewCell
+            let riderCell = tableView.dequeueReusableCell(withIdentifier: "RiderHistoryTVC", for: indexPath as IndexPath) as UITableViewCell
         
             return riderCell
     }

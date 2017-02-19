@@ -23,19 +23,19 @@ class TextfieldValidations {
                 }
                 
                 if textfield.placeholder == "Email address" {
-                    if !(isValidEmail(textfield.text!)) {
+                    if !(isValidEmail(testStr: textfield.text!)) {
                         return (false,"Enter valid email")
                     }
                     
                 }
                 if textfield.placeholder == "Password" {
-                    if !(isValidPassword(textfield.text!)){
+                    if !(isValidPassword(testStr: textfield.text!)){
                         return (false,"Password must be more than six characters with minimum one numeric and special character.")
                     }
                     
                 }
                 if textfield.placeholder == "Phone No" {
-                    if !(isValidPhoneNo(textfield.text!)){
+                    if !(isValidPhoneNo(testStr: textfield.text!)){
                         return (false,"Enter valid telephone no")
                     }
                     

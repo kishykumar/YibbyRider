@@ -1,3 +1,4 @@
+
 //
 //  NotificationsVC.swift
 //  Yibby
@@ -37,12 +38,12 @@ class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         return 3 //sectionsCount
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
 //    func tableView(_ tableView: UITableView, heightForRowAtindexPath: IndexPath) -> CGFloat {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
     {
         if indexPath.section == 0 {
             return 90
@@ -56,14 +57,14 @@ class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         if indexPath.section == 0 {
             
-            let notificationCell = tableView.dequeueReusableCellWithIdentifier("NotificationTVC", forIndexPath: indexPath) as UITableViewCell
+            let notificationCell = tableView.dequeueReusableCell(withIdentifier: "NotificationTVC", for: indexPath as IndexPath) as UITableViewCell
             
-            notificationCell.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+            notificationCell.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
             notificationCell.layer.borderWidth = 1.0
             notificationCell.layer.cornerRadius = 7
             
@@ -71,9 +72,9 @@ class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
         else if indexPath.section == 1 {
             
-            let notificationCell1 = tableView.dequeueReusableCellWithIdentifier("NotificationTVC1", forIndexPath: indexPath) as UITableViewCell
+            let notificationCell1 = tableView.dequeueReusableCell(withIdentifier: "NotificationTVC1", for: indexPath as IndexPath) as UITableViewCell
             
-            notificationCell1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+            notificationCell1.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
             notificationCell1.layer.borderWidth = 1.0
             notificationCell1.layer.cornerRadius = 7
             
@@ -81,9 +82,9 @@ class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
         else
         {
-            let notificationCell2 = tableView.dequeueReusableCellWithIdentifier("NotificationTVC2", forIndexPath: indexPath) as UITableViewCell
+            let notificationCell2 = tableView.dequeueReusableCell(withIdentifier: "NotificationTVC2", for: indexPath as IndexPath) as UITableViewCell
             
-            notificationCell2.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+            notificationCell2.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
             notificationCell2.layer.borderWidth = 1.0
             notificationCell2.layer.cornerRadius = 7
             
