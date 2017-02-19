@@ -18,6 +18,9 @@ public class AboutViewController: BaseYibbyViewController {
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     @IBOutlet weak var signOutButtonOutlet: UIButton!
     
+    @IBOutlet weak var rateUsButtonOutlet: UIButton!
+    @IBOutlet weak var likeUsButtonOutlet: UIButton!
+
     var photoSaveCallback: (UIImage -> Void)?
     
     let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "SETTINGS", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
@@ -43,6 +46,14 @@ public class AboutViewController: BaseYibbyViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rateUsButtonOutlet.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        rateUsButtonOutlet.layer.borderWidth = 1.0
+        rateUsButtonOutlet.layer.cornerRadius = 7
+        
+        likeUsButtonOutlet.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        likeUsButtonOutlet.layer.borderWidth = 1.0
+        likeUsButtonOutlet.layer.cornerRadius = 7
         
         // Do any additional setup after loading the view.
         setupUI()
@@ -109,6 +120,18 @@ public class AboutViewController: BaseYibbyViewController {
         
     }
     
+    // MARK: - rateUsOnGooglePlayBtnAction
+    
+    @IBAction func rateUsOnGooglePlayBtnAction(sender: AnyObject) {
+    }
+    
+    // MARK: - likeUsOnGooglePlayBtnAction
+    @IBAction func likeUsOnGooglePlayBtnAction(sender: AnyObject) {
+    }
+    
+    // MARK: - legalBtnAction
+    @IBAction func legalBtnAction(sender: AnyObject) {
+    }
     
     // MARK: - Helpers
     
