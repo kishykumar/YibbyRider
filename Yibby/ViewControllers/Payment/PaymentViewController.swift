@@ -116,7 +116,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.navigationBarHidden = false
     }
     
     func setupUI () {

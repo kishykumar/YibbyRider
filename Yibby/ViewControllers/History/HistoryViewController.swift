@@ -82,7 +82,8 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
                     
                     let client: BAAClient = BAAClient.sharedClient()
                     client.fetchCountForFiles( {(success, error) -> Void in
-                            
+                        
+                        print("crash")
                             if (error == nil) {
                                 
                                 // parse the result to get the total number of rides
@@ -98,11 +99,12 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
                                     self.removeFooterActivityIndicator()
                                     
                                     self.isLoading = false
-                                    self.tableView.reloadData()
+                                    //self.tableView.reloadData()
                                     return;
                                 }
                                 
                                 // TODO: Remove the delay later
+                                
                                 self.performSelector(#selector(HistoryViewController.loadNewRides),
                                     withObject:nil, afterDelay:5.0)
                             }

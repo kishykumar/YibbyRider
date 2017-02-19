@@ -51,6 +51,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
+            mmnvc.navigationBarHidden = false
             mmnvc.pushViewController(aboutViewController, animated: true)
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             
@@ -60,8 +61,24 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     }
     
     @IBAction func onSignOutButtonClick(sender: AnyObject) {
-        logoutUser()
+        
+        let alertController = UIAlertController(title: "Are you sure", message: "want to sign out?", preferredStyle:UIAlertControllerStyle.Alert)
+        
+        alertController.addAction(UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.Default)
+        { action -> Void in
+            // Put your code here
+            })
+        
+        alertController.addAction(UIAlertAction(title: "SIGN OUT", style: UIAlertActionStyle.Default)
+        { action -> Void in
+            // Put your code here
+            self.logoutUser()
+            })
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
     }
+    
+   
     
     @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
         photoSaveCallback = { image in
@@ -203,7 +220,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
             
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
             selectedViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
-            
+            //selectedViewController.navigationBarHidden = false
             break
         case TableIndex.Trips.rawValue:
             
