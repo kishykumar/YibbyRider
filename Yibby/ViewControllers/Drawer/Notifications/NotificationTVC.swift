@@ -19,9 +19,9 @@ class NotificationTVC: UITableViewCell {
 
     override func awakeFromNib() {
         
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
+        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
 
-        changeBtn.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        changeBtn.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         changeBtn.layer.borderWidth = 1.0
         changeBtn.layer.cornerRadius = 5
         

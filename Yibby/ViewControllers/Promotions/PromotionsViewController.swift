@@ -22,27 +22,28 @@ class PromotionsViewController: BaseYibbyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        VW.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
-        VW1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW1.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
         
-        accessContactsBtn.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        accessContactsBtn.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
         accessContactsBtn.layer.borderWidth = 1.0
         accessContactsBtn.layer.cornerRadius = 7
         
         let bottomLine = CALayer()
-        bottomLine.frame = CGRectMake(0.0, yebbyCodeTF.frame.height - 1, yebbyCodeTF.frame.width, 1.0)
-        bottomLine.backgroundColor = UIColor.lightGrayColor().CGColor
-        yebbyCodeTF.borderStyle = UITextBorderStyle.None
+        bottomLine.frame = CGRect(x: 0.0, y:  yebbyCodeTF.frame.height - 1, width: yebbyCodeTF.frame.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+        yebbyCodeTF.borderStyle = UITextBorderStyle.none
         yebbyCodeTF.layer.addSublayer(bottomLine)
         
         let bottomLine1 = CALayer()
-        bottomLine1.frame = CGRectMake(0.0, emailAddressTF.frame.height - 1, emailAddressTF.frame.width, 1.0)
-        bottomLine1.backgroundColor = UIColor.lightGrayColor().CGColor
-        emailAddressTF.borderStyle = UITextBorderStyle.None
+        bottomLine1.frame = CGRect(x: 0.0, y:  emailAddressTF.frame.height - 1, width: emailAddressTF.frame.width, height: 1.0)
+
+        bottomLine1.backgroundColor = UIColor.lightGray.cgColor
+        emailAddressTF.borderStyle = UITextBorderStyle.none
         emailAddressTF.layer.addSublayer(bottomLine1)
         
         // Do any additional setup after loading the view.

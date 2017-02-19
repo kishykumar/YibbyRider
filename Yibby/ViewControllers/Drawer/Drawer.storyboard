@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-<<<<<<< HEAD
-    <device id="retina4_0" orientation="portrait">
-=======
+
     <device id="retina4_7" orientation="portrait">
->>>>>>> swift3
+
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -38,11 +36,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-l6-JHX">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="156" width="320" height="372"/>
-=======
+
                                 <rect key="frame" x="0.0" y="178" width="375" height="449"/>
->>>>>>> swift3
+
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="l2z-Zg-mqO" userLabel="TableFooterView">
                                     <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
@@ -57,21 +53,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yc9-mq-Pox">
-<<<<<<< HEAD
-                                                    <rect key="frame" x="121" y="11" width="191" height="21"/>
-=======
+
                                                     <rect key="frame" x="121" y="12" width="246" height="21"/>
->>>>>>> swift3
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAIcon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-U2-SQH">
-<<<<<<< HEAD
-                                                    <rect key="frame" x="38" y="13.5" width="53" height="17"/>
-=======
+
                                                     <rect key="frame" x="38" y="14" width="53" height="17"/>
->>>>>>> swift3
                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                     <color key="textColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -138,47 +128,32 @@
                                 <rect key="frame" x="16" y="40" width="343" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jvy-EU-gux" userLabel="ArtContainerView">
-<<<<<<< HEAD
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="35.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1b2-Og-VOR" userLabel="Cloud1">
-                                                <rect key="frame" x="75.5" y="0.0" width="24.5" height="26"/>
-=======
+
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1b2-Og-VOR" userLabel="Cloud1">
                                                 <rect key="frame" x="104" y="0.0" width="24.5" height="26"/>
->>>>>>> swift3
                                                 <fontDescription key="fontDescription" name="Ionicons" family="Ionicons" pointSize="26"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pC-k5-2Qg" userLabel="Cloud2">
-<<<<<<< HEAD
-                                                <rect key="frame" x="129" y="3.5" width="28" height="32"/>
-=======
+
                                                 <rect key="frame" x="171" y="10.5" width="28" height="32"/>
->>>>>>> swift3
                                                 <fontDescription key="fontDescription" name="Ionicons" family="Ionicons" pointSize="32"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scr-Ms-At3" userLabel="Cloud3">
-<<<<<<< HEAD
-                                                <rect key="frame" x="182.5" y="5.5" width="23.5" height="25"/>
-=======
+
                                                 <rect key="frame" x="224" y="9" width="23.5" height="25"/>
->>>>>>> swift3
                                                 <fontDescription key="fontDescription" name="Ionicons" family="Ionicons" pointSize="25"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-Wt-mlI" userLabel="Sun">
-<<<<<<< HEAD
-                                                <rect key="frame" x="233.5" y="0.0" width="25" height="25.5"/>
-=======
+
                                                 <rect key="frame" x="275.5" y="0.0" width="25" height="25.5"/>
->>>>>>> swift3
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="25"/>
                                                 <color key="textColor" red="1" green="0.9509976999595865" blue="0.27313063418746442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -200,38 +175,26 @@
                                         </variation>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EYK-hZ-1jX" userLabel="ProfileSV">
-<<<<<<< HEAD
-                                        <rect key="frame" x="0.0" y="35.5" width="288" height="70.5"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZy-Db-ClQ" userLabel="DummyView">
-                                                <rect key="frame" x="0.0" y="10.5" width="0.0" height="50"/>
-=======
+
                                         <rect key="frame" x="0.0" y="42.5" width="343" height="85.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZy-Db-ClQ" userLabel="DummyView">
                                                 <rect key="frame" x="0.0" y="18" width="0.0" height="50"/>
->>>>>>> swift3
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="mhI-gs-2fg"/>
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="IQy-EO-Faz">
-<<<<<<< HEAD
-                                                <rect key="frame" x="29.5" y="0.0" width="70.5" height="70.5"/>
-=======
+
                                                 <rect key="frame" x="42.5" y="0.0" width="86" height="85.5"/>
->>>>>>> swift3
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="IQy-EO-Faz" secondAttribute="height" multiplier="1:1" id="h1C-9c-Vz2"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rn8-tN-m03" userLabel="NameTextfieldOutlet" customClass="YibbyPaddingLabel" customModule="Yibby" customModuleProvider="target">
-<<<<<<< HEAD
-                                                <rect key="frame" x="129" y="19" width="129.5" height="32.5"/>
-=======
+
                                                 <rect key="frame" x="171" y="26.5" width="129.5" height="32.5"/>
->>>>>>> swift3
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -242,11 +205,8 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Rv-rr-wgg" userLabel="DummyView">
-<<<<<<< HEAD
-                                                <rect key="frame" x="288" y="10.5" width="0.0" height="50"/>
-=======
+
                                                 <rect key="frame" x="343" y="18" width="0.0" height="50"/>
->>>>>>> swift3
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="FIa-LP-4Bx"/>

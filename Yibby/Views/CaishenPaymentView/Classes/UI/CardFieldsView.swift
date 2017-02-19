@@ -280,7 +280,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
         cardImageView?.image = self.cardTypeImageStore.image(for: UnknownCardType())
         
 //        cardImageView?.layer.cornerRadius = 5.0
-//        cardImageView?.layer.shadowColor = UIColor.blackColor().CGColor
+//        cardImageView?.layer.shadowColor = UIColor.blackColor().cgColor
 //        cardImageView?.layer.shadowRadius = 2
 //        cardImageView?.layer.shadowOffset = CGSize(width: 0, height: 0)
 //        cardImageView?.layer.shadowOpacity = 0.2

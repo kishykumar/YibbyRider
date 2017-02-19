@@ -16,9 +16,9 @@ class NotificationTVC1: UITableViewCell {
 
     override func awakeFromNib() {
         
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "winner_prize")!, senderTextfield: self.TF)
+        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
         
-        customTextfieldProperty.setRightViewImage(UIImage(named: "winner_prize")!, senderTextfield: self.TF)
+        customTextfieldProperty.setRightViewImage(rightImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
 
         super.awakeFromNib()
         // Initialization code

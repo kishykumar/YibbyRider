@@ -116,7 +116,7 @@ NSString *const SliderFillColorAnim = @"fillColor";
 
 - (UIColor *)opaqueColor
 {
-    return opaqueUIColorFromCGColor([_colorAnimLayer.presentationLayer fillColor] ?: _pathLayer.fillColor);
+    return opaqueUIColorFromcgColor([_colorAnimLayer.presentationLayer fillColor] ?: _pathLayer.fillColor);
 }
 
 - (void)setTextColor:(UIColor *)color
@@ -319,7 +319,7 @@ NSString *const SliderFillColorAnim = @"fillColor";
     _textLayer.frame = CGRectIntegral(textRect);
 }
 
-static UIColor* opaqueUIColorFromCGColor(CGColorRef col)
+static UIColor* opaqueUIColorFromcgColor(CGColorRef col)
 {
     if (col == NULL) return nil;
     
