@@ -11,12 +11,38 @@ import CocoaLumberjack
 
 class HelpViewController: BaseYibbyViewController {
 
+    @IBOutlet var userImage: UIImageView!
+    @IBOutlet var VW: UIView!
+    @IBOutlet var VW1: UIView!
+    
+    @IBOutlet var lastTripTime: UILabel!
+    @IBOutlet var lastTripDate: UILabel!
+    @IBOutlet var lastTripPrice: UILabel!
+
+    @IBOutlet var appVersionLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        VW.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW.layer.borderWidth = 1.0
+        VW.layer.cornerRadius = 7
+        VW1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW1.layer.borderWidth = 1.0
+        VW1.layer.cornerRadius = 7
+        
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func rideHistoryBtnAction(sender: AnyObject) {
+        let emergencyContactsNVC = self.storyboard?.instantiateViewControllerWithIdentifier("RiderHistoryVC") as! RiderHistoryVC
+        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
+    }
+    @IBAction func helpCenterBtnAction(sender: AnyObject) {
+    }
+    @IBAction func legalBtnAction(sender: AnyObject) {
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -84,6 +84,24 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         openImagePicker()
     }
     
+    @IBAction func onProfileButtonClick(sender: AnyObject) {
+        
+        // Push the About View Controller
+        let profileStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.ProfileStoryboard, bundle: nil)
+        let profileViewController = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileViewControllerIdentifier") as! ProfileVC
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+            
+            mmnvc.navigationBarHidden = false
+            mmnvc.pushViewController(profileViewController, animated: true)
+            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            
+        } else {
+            assert(false)
+        }
+    }
     // MARK: - Setup Functions
     
     public override func viewDidLoad() {
@@ -112,7 +130,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         self.view.backgroundColor = UIColor.appDarkGreen1();
 
         // Set rounded profile pic
-        self.profilePictureOutlet.setRoundedWithWhiteBorder()
+      //  self.profilePictureOutlet.setRoundedWithWhiteBorder()
     }
     
     private func setupViews() {
@@ -192,6 +210,26 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
             let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
             selectedViewController = historyStoryboard.instantiateViewControllerWithIdentifier("HistoryViewControllerIdentifier") as! HistoryViewController
 
+            break
+        case TableIndex.Notifications.rawValue:
+
+            /*let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+                mmnvc.navigationBarHidden = false
+                mmnvc.pushViewController(selectedViewController, animated: true)
+                appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+                
+            } else {
+                assert(false)
+            }*/
+
+           /* let NotificationsVCC = self.storyboard?.instantiateViewControllerWithIdentifier("NotificationsVC") as! NotificationsVC
+            _ = self.navigationController?.pushViewController(NotificationsVCC, animated: true)*/
+            
+            let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
+            selectedViewController = settingsStoryboard.instantiateViewControllerWithIdentifier("NotificationsVC") as! NotificationsVC
+            
             break
         case TableIndex.Settings.rawValue:
             

@@ -84,7 +84,9 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     func submitLoginForm() {
         
-        let validateText = TextfieldValidations()
+        MainViewController.initMainViewController(self, animated: true)
+        
+        /*let validateText = TextfieldValidations()
         
         let allData = validateText.validateEmptyTextfieldsOnly(self.emailAddress.superview!)
         
@@ -96,7 +98,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
         }else{
             
             loginUser(emailAddress.text!, passwordi: password.text!)
-        }
+        }*/
         
 //        if (emailAddress.text == "" || password.text == "") {
 //            AlertUtil.displayAlert("error in form", message: "Please enter email and password")

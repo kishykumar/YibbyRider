@@ -16,6 +16,14 @@ class EmergencyContactsVC: UIViewController {
     @IBOutlet weak var emailAddress1: UITextField!
     @IBOutlet weak var phoneNo1: UITextField!
     
+    @IBOutlet var VW: UIView!
+    @IBOutlet var VW1: UIView!
+    
+    @IBOutlet var firstNameLbl: UILabel!
+    @IBOutlet var lastNameLbl: UILabel!
+    @IBOutlet var firstNameLbl1: UILabel!
+    @IBOutlet var lastNameLbl1: UILabel!
+
     var customTextfieldProperty = CustomizeTextfield()
     
     override func viewDidLoad() {
@@ -23,16 +31,36 @@ class EmergencyContactsVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa"), senderTextfield: self.emailAddress)
+        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa"), senderTextfield: self.phoneNo)
-        
-        
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa"), senderTextfield: self.emailAddress1)
-        
-        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa"), senderTextfield: self.phoneNo1)
+        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
         
         
+        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.emailAddress1)
+        
+        customTextfieldProperty.setLeftViewImage(UIImage(named: "Visa")!, senderTextfield: self.phoneNo1)
+        
+        
+        VW.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW.layer.borderWidth = 1.0
+        VW.layer.cornerRadius = 7
+        VW1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        VW1.layer.borderWidth = 1.0
+        VW1.layer.cornerRadius = 7
+
+        firstNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        firstNameLbl.layer.borderWidth = 1.0
+        firstNameLbl.layer.cornerRadius = 5
+        lastNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        lastNameLbl.layer.borderWidth = 1.0
+        lastNameLbl.layer.cornerRadius = 5
+        firstNameLbl1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        firstNameLbl1.layer.borderWidth = 1.0
+        firstNameLbl1.layer.cornerRadius = 5
+        lastNameLbl1.layer.borderColor = UIColor(netHex: 0x31A343).CGColor
+        lastNameLbl1.layer.borderWidth = 1.0
+        lastNameLbl1.layer.cornerRadius = 5
+
     }
 
     override func didReceiveMemoryWarning() {

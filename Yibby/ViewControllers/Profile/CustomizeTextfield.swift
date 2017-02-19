@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomizeTextfield {
+class CustomizeTextfield : UITextField{
         
         var textFieldData : String? {
             didSet {
@@ -91,7 +91,7 @@ func setRightViewImage(rightImageIcon : UIImage,senderTextfield : UITextField) {
         
         
         
-        func removeRightView(senderTextfield : UITextField, type : String){
+        /*func removeRightView(senderTextfield : UITextField, type : String){
             print(senderTextfield.subviews)
             if type == "Right" {
                 senderTextfield.rightViewMode = .Never
@@ -100,7 +100,7 @@ func setRightViewImage(rightImageIcon : UIImage,senderTextfield : UITextField) {
                 senderTextfield.leftViewMode = .Never
                 senderTextfield.leftView = leftView
             }
-        }
+        }*/
         
         
         //MARK: Set Padding Left and Right
