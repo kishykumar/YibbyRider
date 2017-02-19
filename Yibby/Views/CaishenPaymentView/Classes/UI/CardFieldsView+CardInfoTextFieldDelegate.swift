@@ -11,29 +11,29 @@ import UIKit
 
 extension CardFieldsView: CardInfoTextFieldDelegate {
 
-    public func textField(textField: UITextField, didEnterValidInfo: String) {
+    public func textField(_ textField: UITextField, didEnterValidInfo: String) {
         updateNumberColor()
         notifyDelegate()
         if expirationDateIsValid() {
-            selectNextTextField(textField, prefillText: nil)
+            select(textField, prefillText: nil)
         }
     }
     
-    public func textField(textField: UITextField, didEnterPartiallyValidInfo: String) {
+    public func textField(_ textField: UITextField, didEnterPartiallyValidInfo: String) {
         updateNumberColor()
         notifyDelegate()
     }
     
-    public func textField(textField: UITextField, didEnterOverflowInfo overFlowDigits: String) {
+    public func textField(_ textField: UITextField, didEnterOverflowInfo overFlowDigits: String) {
         updateNumberColor()
-        selectNextTextField(textField, prefillText: overFlowDigits)
+        select(textField, prefillText: overFlowDigits)
     }
 
-    private func selectNextTextField(textField: UITextField, prefillText: String?) {
+    private func select(_ textField: UITextField, prefillText: String?) {
         var nextTextField: UITextField?
         if textField == monthTextField {
             if hideExpiryTextFields {
-                selectNextTextField(yearTextField, prefillText: prefillText)
+                select(yearTextField, prefillText: prefillText)
             } else {
                 nextTextField = yearTextField
             }
@@ -51,7 +51,7 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
             return
         }
         
-        nextTextField?.delegate?.textField?(nextTextField!, shouldChangeCharactersInRange: NSMakeRange(0, (nextTextField?.text ?? "").characters.count), replacementString: prefillText)
+        _ = nextTextField?.delegate?.textField?(nextTextField!, shouldChangeCharactersIn: NSMakeRange(0, (nextTextField?.text ?? "").characters.count), replacementString: prefillText)
     }
     
     /**
@@ -60,7 +60,7 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
     private func updateNumberColor() {
         // if the expiration date is not valid, set the text color for the date to `invalidNumberColor`
         if !expirationDateIsValid() {
-            let invalidInputColor = self.invalidInputColor ?? UIColor.redColor()
+            let invalidInputColor = self.invalidInputColor ?? UIColor.red
             // if the expiration date text fields haven't been assigned invalid input color
             if monthTextField?.textColor != invalidInputColor && yearTextField?.textColor != invalidInputColor {
                 monthTextField?.textColor = invalidInputColor
@@ -69,8 +69,8 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
 //                addDateInvalidityObserver()
             }
         } else {
-            monthTextField?.textColor = numberInputTextField?.textColor ?? UIColor.blackColor()
-            yearTextField?.textColor = numberInputTextField?.textColor ?? UIColor.blackColor()
+            monthTextField?.textColor = numberInputTextField?.textColor ?? UIColor.black
+            yearTextField?.textColor = numberInputTextField?.textColor ?? UIColor.black
         }
     }
 

@@ -10,7 +10,7 @@ import UIKit
 import Spring
 
 @IBDesignable
-public class YibbyBorderedUIView: SpringView {
+open class YibbyBorderedUIView: SpringView {
     
     required override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,8 +30,8 @@ public class YibbyBorderedUIView: SpringView {
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowOpacity = 0.5
         self.layer.shadowRadius = 2
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.borderColor = UIColor.clearColor().CGColor
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.clear.cgColor
     }
 
     @IBInspectable
@@ -62,9 +62,9 @@ public class YibbyBorderedUIView: SpringView {
     }
     
     @IBInspectable
-    var shadowColor: UIColor = UIColor.blackColor() {
+    var shadowColor: UIColor = UIColor.black {
         didSet {
-            self.layer.shadowColor = self.shadowColor.CGColor
+            self.layer.shadowColor = self.shadowColor.cgColor
         }
     }
     
@@ -80,9 +80,9 @@ public class YibbyBorderedUIView: SpringView {
     }
     
     @IBInspectable
-    var borderColor: UIColor = UIColor.clearColor() {
+    var borderColor: UIColor = UIColor.clear {
         didSet {
-            self.layer.borderColor = self.borderColor.CGColor
+            self.layer.borderColor = self.borderColor.cgColor
         }
     }
 }

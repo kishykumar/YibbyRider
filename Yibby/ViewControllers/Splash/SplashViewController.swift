@@ -37,11 +37,11 @@ class SplashViewController: UIViewController {
         initSplash()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         doSetup()
     }
@@ -55,7 +55,7 @@ class SplashViewController: UIViewController {
 
     func showLaunchScreen() {
         let v: UIView = self.launchScreenVC!.view!
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // add the view to window
         appDelegate.window?.addSubview(v)
@@ -71,7 +71,7 @@ class SplashViewController: UIViewController {
 
         // Instantiate a LaunchScreenViewController which will insert the UIView contained in our Launch Screen XIB
         // as a subview of it's view.
-        self.launchScreenVC = LaunchScreenViewController.init(fromStoryboard: self.storyboard)
+        self.launchScreenVC = LaunchScreenViewController.init(from: self.storyboard)
         
         // Take a snapshot of the launch screen. You could do this at any time you like.
 //        self.snapshot = self.launchScreenVC!.snapshot()
@@ -86,7 +86,7 @@ class SplashViewController: UIViewController {
     
     func removeSplash () {
         let v: UIView = self.launchScreenVC!.view!
-        UIView.animateWithDuration(1.0, delay: 1.0, options: .CurveEaseOut,
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut,
                                    animations: {() -> Void in
                                     v.alpha = 0.0
             },
@@ -116,15 +116,15 @@ class SplashViewController: UIViewController {
         ///////////////////////////////////////////////////////////////////////////
         
         // Do any additional setup after loading the view.
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // show the launch screen
         showLaunchScreen()
 //        dismissSplashSnapshot()
 
         // Clear keychain on first run in case of reinstallation
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        if userDefaults.objectForKey(APP_FIRST_RUN) == nil {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.object(forKey: APP_FIRST_RUN) == nil {
             // Delete values from keychain here
             userDefaults.setValue(APP_FIRST_RUN, forKey: APP_FIRST_RUN)
             LoginViewController.removeLoginKeyChainKeys()
@@ -134,7 +134,7 @@ class SplashViewController: UIViewController {
         registerForPushNotifications()
         
         var syncSuccess = false
-        let client: BAAClient = BAAClient.sharedClient()
+        let client: BAAClient = BAAClient.shared()
         client.syncClient(BAASBOX_RIDER_STRING, completion: { (success, error) -> Void in
 
             if (error == nil) {
@@ -163,14 +163,14 @@ class SplashViewController: UIViewController {
 #endif
 
         // wait for requests to finish
-        let timeoutDate: NSDate = NSDate(timeIntervalSinceNow: 10.0)
+        let timeoutDate: Date = Date(timeIntervalSinceNow: 10.0)
         
         while (self.syncAPIResponseArrived == false ||
             self.paymentsSetupCompleted == false ||
             SplashViewController.pushRegisterResponseArrived == false) &&
             (timeoutDate.timeIntervalSinceNow > 0) {
                     
-            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.1, false)
+            CFRunLoopRunInMode(CFRunLoopMode.defaultMode, 0.1, false)
         }
         
         DDLogDebug("Setup done")
@@ -190,22 +190,14 @@ class SplashViewController: UIViewController {
             
             // no need to do anything if user is already authenticated
             MainViewController.initMainViewController(self, animated: false)
-
-//            self.performSegueWithIdentifier("mainFromSplashSegue", sender: nil)
             removeSplash()
         } else {
             DDLogVerbose("User NOT authenticated");
             
-//            self.performSegueWithIdentifier("loginFromSplashSegue", sender: nil)
             let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
                                                               bundle: nil)
-            
-            
-            
-//            let joinVC = signupStoryboard.instantiateViewControllerWithIdentifier("JoinViewControllerIdentifier") as! JoinViewController
-//            let joinNav = UINavigationController(rootViewController: joinVC)
-//            self.presentViewController(joinVC, animated: false, completion: nil)
-            self.presentViewController(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+
+            self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
 
             removeSplash()
         }

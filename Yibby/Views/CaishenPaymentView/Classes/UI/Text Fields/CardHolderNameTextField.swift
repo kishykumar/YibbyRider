@@ -22,7 +22,7 @@ public class CardHolderNameTextField: DetailInputTextField {
      
      - returns: True, if the card validation code is valid.
      */
-    override func isInputValid(input: String, partiallyValid: Bool) -> Bool {
+    override func isInputValid(_ input: String, partiallyValid: Bool) -> Bool {
         return true
     }
     

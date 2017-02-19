@@ -27,8 +27,8 @@ private struct YibbyColors {
     static let themeColor1: UIColor = UIColor(netHex: 0x006400)
     static let appBackgroundColor1: UIColor = UIColor(netHex: 0xF1F1F1)
     
-    static let textFieldTextColor1: UIColor = UIColor.blackColor()
-    static let textFieldBackgroundColor1: UIColor = UIColor.whiteColor()
+    static let textFieldTextColor1: UIColor = UIColor.black
+    static let textFieldBackgroundColor1: UIColor = UIColor.white
     
     static let appDarkGreen1: UIColor = UIColor(netHex: 0x2ECC71)
     

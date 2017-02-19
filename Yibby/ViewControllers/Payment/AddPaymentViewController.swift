@@ -51,7 +51,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     var isSignup: Bool! = false // implicitly unwrapped optional
     
     // MARK: - Actions
-    @IBAction func deleteCardAction(sender: AnyObject) {
+    @IBAction func deleteCardAction(_ sender: AnyObject) {
         
         if self.isSignup == true {
             
@@ -81,8 +81,8 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                 })
         
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-        
-                self.editDelegate?.editPaymentViewController(self, didRemovePaymentMethod: self.cardToBeEdited!, completion: {(error: NSError?) -> Void in
+
+                self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didRemovePaymentMethod: self.cardToBeEdited!, completion: {(error: NSError?) -> Void in
                     
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
                     
@@ -97,7 +97,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         }
     }
     
-    @IBAction func saveButtonAction(sender: AnyObject) {
+    @IBAction func saveButtonAction(_ sender: AnyObject) {
         
         if isSignup == true {
             
@@ -110,7 +110,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         saveCard()
     }
     
-    @IBAction func cancelButtonAction(sender: AnyObject) {
+    @IBAction func cancelButtonAction(_ sender: AnyObject) {
         if (isEditCard == true) {
             self.editDelegate?.editPaymentViewControllerDidCancel(self)
         } else {
@@ -118,7 +118,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         }
     }
     
-    @IBAction func scanCardAction(sender: AnyObject) {
+    @IBAction func scanCardAction(_ sender: AnyObject) {
         
         // if camera is disabled, display alert.
         if (CardIOUtilities.canReadCardWithCamera() == false) {
@@ -128,22 +128,22 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         
         // display the cardIO view controller.
         let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)
-        cardIOVC.modalPresentationStyle = .FormSheet
-        cardIOVC.disableManualEntryButtons = true
-        presentViewController(cardIOVC, animated: true, completion: nil)
+        cardIOVC?.modalPresentationStyle = .formSheet
+        cardIOVC?.disableManualEntryButtons = true
+        present(cardIOVC!, animated: true, completion: nil)
     }
     
     // MARK: - CardIO Delegate Functions
     
-    func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController!) {
-        paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
+        paymentViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo!, inPaymentViewController paymentViewController: CardIOPaymentViewController!) {
+    func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
         
-        self.cardFieldsViewOutlet.prefillCardInformation(cardInfo.cardNumber, month: Int(cardInfo.expiryMonth), year: Int(cardInfo.expiryYear), cvc: cardInfo.cvv)
+        self.cardFieldsViewOutlet.prefillCardInformation(cardNumber: cardInfo.cardNumber, month: Int(cardInfo.expiryMonth), year: Int(cardInfo.expiryYear), cvc: cardInfo.cvv)
         
-        paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        paymentViewController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Setup Functions 
@@ -151,14 +151,14 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     func setupUI() {
         if (isEditCard == true) {
             
-            deleteCardButtonOutlet.hidden = false
-            deleteCardButtonOutlet.setType(BButtonType.Danger)
+            deleteCardButtonOutlet.isHidden = false
+            deleteCardButtonOutlet.setType(BButtonType.danger)
             
         } else if (isSignup == true) {
             self.navigationItem.hidesBackButton = true
             
-            deleteCardButtonOutlet.hidden = false
-            deleteCardButtonOutlet.setTitle(InterfaceString.Add, forState: .Normal)
+            deleteCardButtonOutlet.isHidden = false
+            deleteCardButtonOutlet.setTitle(InterfaceString.Add, for: UIControlState())
             deleteCardButtonOutlet.color = UIColor.appDarkGreen1()
             
             saveCardButtonOutlet.title = InterfaceString.Skip
@@ -167,7 +167,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             self.navigationItem.leftBarButtonItems?.removeAll()
             
         } else {
-            deleteCardButtonOutlet.hidden = true
+            deleteCardButtonOutlet.isHidden = true
         }
     }
     
@@ -191,8 +191,8 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         setupUI()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -213,7 +213,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
 
     // MARK: - Helper functions
     
-    func handleCardTokenError(error: NSError) {
+    func handleCardTokenError(_ error: NSError) {
         AlertUtil.displayAlert(error.localizedDescription, message: error.localizedFailureReason ?? "")
     }
     
@@ -278,18 +278,18 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             })
         #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
             
-            let cardClient: BTCardClient = BTCardClient(APIClient: BraintreePaymentService.sharedInstance().apiClient!)
+            let cardClient: BTCardClient = BTCardClient(apiClient: BraintreePaymentService.sharedInstance().apiClient!)
             
             let card: BTCard = BTCard(number: number!,
                                       expirationMonth: expMonth!,
                                       expirationYear: expYear!,
                                       cvv: cvc!)
             
-            cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: NSError?) -> Void in
+            cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
                 
                 if let error = error {
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                    self.handleCardTokenError(error)
+                    self.handleCardTokenError(error as NSError)
                 }
                 else {
                     //                var phone: String = self.rememberMePhoneCell.contents
@@ -298,21 +298,21 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                     // TODO: We save the zipcode
                     if self.isEditCard == true {
                         
-                        self.editDelegate?.editPaymentViewController(self, didCreateNewToken: tokenized!, completion: {(error: NSError?) -> Void in
+                        self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didCreateNewToken: tokenized!, completion: {(error: NSError?) -> Void in
                             ActivityIndicatorUtil.disableActivityIndicator(self.view)
                             if let error = error {
                                 self.handleCardTokenError(error)
                             }
                         })
                     } else if self.isSignup == true {
-                        self.signupDelegate?.signupPaymentViewController(self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
+                        self.signupDelegate?.signupPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
                             ActivityIndicatorUtil.disableActivityIndicator(self.view)
                             if let error = error {
                                 self.handleCardTokenError(error)
                             }
                         })
                     } else {
-                        self.addDelegate?.addPaymentViewController(self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
+                        self.addDelegate?.addPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
                             ActivityIndicatorUtil.disableActivityIndicator(self.view)
                             if let error = error {
                                 self.handleCardTokenError(error)

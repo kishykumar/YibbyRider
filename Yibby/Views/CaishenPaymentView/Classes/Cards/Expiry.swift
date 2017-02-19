@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+private let gregorianCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
 
 /**
  A Credit Card Expiry date.
@@ -16,20 +16,20 @@ private let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentif
 public struct Expiry: RawRepresentable {
 
     /// An invalid expiry date. This date is set to 1/1/1970 and therefor will be shown as `expired`.
-    public static let invalid = Expiry(rawValue: NSDate(timeIntervalSince1970: 0))
+    public static let invalid = Expiry(rawValue: Date(timeIntervalSince1970: 0))
 
-    public typealias RawValue = NSDate
+    public typealias RawValue = Date
 
-    public let rawValue: NSDate
+    public let rawValue: Date
 
     /// The month of the expiration date.
     public var month: UInt {
-        return UInt(components().month)
+        return UInt(components().month!)
     }
 
     /// The year of the expiration date.
     public var year: UInt {
-        return UInt(components().year)
+        return UInt(components().year!)
     }
 
     /**
@@ -39,28 +39,28 @@ public struct Expiry: RawRepresentable {
      */
     public init?(string: String) {
         // Make sure that there is only one non-numeric separation character in the entire string
-        guard string.stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet()).characters.count == 1 else {
+        guard string.trimmingCharacters(in: CharacterSet.decimalDigits).characters.count == 1 else {
             return nil
         }
         
-        let regex = try! NSRegularExpression(pattern: "^(\\d{1,2})[/|-](\\d{1,4})", options: .CaseInsensitive)
+        let regex = try! NSRegularExpression(pattern: "^(\\d{1,2})[/|-](\\d{1,4})", options: .caseInsensitive)
         var monthStr: String = ""
         var yearStr: String = ""
         
-        guard let match = regex.firstMatchInString(string, options: .ReportProgress, range: NSMakeRange(0, string.characters.count)) else {
+        guard let match = regex.firstMatch(in: string, options: .reportProgress, range: NSMakeRange(0, string.characters.count)) else {
             return nil
         }
         
-        let monthRange = match.rangeAtIndex(1)
-        if monthRange.length > 0, let range = string.rangeFromNSRange(monthRange) {
-            monthStr = string.substringWithRange(range)
+        let monthRange = match.rangeAt(1)
+        if monthRange.length > 0, let range = string.rangeFrom(monthRange) {
+            monthStr = string.substring(with: range)
         } else {
             return nil
         }
         
-        let yearRange = match.rangeAtIndex(2)
-        if yearRange.length > 0, let range = string.rangeFromNSRange(yearRange) {
-            yearStr = string.substringWithRange(range)
+        let yearRange = match.rangeAt(2)
+        if yearRange.length > 0, let range = string.rangeFrom(yearRange) {
+            yearStr = string.substring(with: range)
         } else {
             return nil
         }
@@ -77,10 +77,10 @@ public struct Expiry: RawRepresentable {
      - returns:             `nil`, if the expiration date could not be created because of invalid month or year strings.
      */
     public init?(month: String, year: String) {
-        guard let monthVal = UInt(month), yearVal = UInt(year) where year.characters.count >= 2 else {
+        guard let monthVal = UInt(month), let yearVal = UInt(year), year.characters.count >= 2 else {
             return nil
         }
-        
+
         self.init(month: monthVal, year: yearVal)
     }
 
@@ -112,19 +112,19 @@ public struct Expiry: RawRepresentable {
             return nil
         }
 
-        guard let date = toDate(month, year: yearValue) else {
+        guard let date = dateWith(month: month, year: yearValue) else {
             return nil
         }
 
         self.init(rawValue: date)
     }
 
-    public init(rawValue: NSDate) {
+    public init(rawValue: Date) {
         self.rawValue = rawValue
     }
 
-    private func components() -> NSDateComponents {
-        return gregorianCalendar.components([.Year, .Month], fromDate: rawValue)
+    private func components() -> DateComponents {
+        return gregorianCalendar.dateComponents([.year, .month], from: rawValue)
     }
 }
 
@@ -144,22 +144,23 @@ extension Expiry: CustomStringConvertible {
  
  - returns: The date with month and year and time set to one minute before the following month.
  */
-private func toDate(month: UInt, year: UInt) -> NSDate? {
-    let dateComponents = NSDateComponents()
+private func dateWith(month: UInt, year: UInt) -> Date? {
+    var dateComponents = DateComponents()
     dateComponents.day = 1
     dateComponents.month = Int(month)
     dateComponents.year = Int(year)
 
-    if let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian),
-        let components = gregorianCalendar.dateFromComponents(dateComponents) {
-            let monthRange = gregorianCalendar.rangeOfUnit(NSCalendarUnit.Day, inUnit: NSCalendarUnit.Month,
-                forDate:components)
+    let gregorianCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
+    if let components = gregorianCalendar.date(from: dateComponents) {
+            let monthRange = gregorianCalendar.range(of: Calendar.Component.day,
+                                                     in: Calendar.Component.month,
+                                                     for:components)
 
-            dateComponents.day = monthRange.length
+            dateComponents.day = monthRange?.count
             dateComponents.hour = 23
             dateComponents.minute = 59
 
-            return gregorianCalendar.dateFromComponents(dateComponents)
+            return gregorianCalendar.date(from: dateComponents)
     }
 
     return nil

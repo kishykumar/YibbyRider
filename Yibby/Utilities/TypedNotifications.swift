@@ -17,16 +17,16 @@ public struct TypedNotification<A> {
     }
 }
 
-public func postNotification<A>(note: TypedNotification<A>, value: A) {
+public func postNotification<A>(_ note: TypedNotification<A>, value: A) {
     let userInfo = ["value": Box(value)]
-    NSNotificationCenter.defaultCenter().postNotificationName(note.name, object: nil, userInfo: userInfo)
+    NotificationCenter.default.post(name: Notification.Name(rawValue: note.name), object: nil, userInfo: userInfo)
 }
 
-public class NotificationObserver {
+open class NotificationObserver {
     let observer: NSObjectProtocol
     
-    public init<A>(notification: TypedNotification<A>, block aBlock: A -> Void) {
-        observer = NSNotificationCenter.defaultCenter().addObserverForName(notification.name, object: nil, queue: nil) { note in
+    public init<A>(notification: TypedNotification<A>, block aBlock: @escaping (A) -> Void) {
+        observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: notification.name), object: nil, queue: nil) { note in
             if let value = (note.userInfo?["value"] as? Box<A>)?.value {
                 aBlock(value)
             } else {
@@ -35,8 +35,8 @@ public class NotificationObserver {
         }
     }
     
-    public func removeObserver() {
-        NSNotificationCenter.defaultCenter().removeObserver(observer)
+    open func removeObserver() {
+        NotificationCenter.default.removeObserver(observer)
     }
     
     deinit {

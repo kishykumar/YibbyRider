@@ -13,7 +13,7 @@ import CocoaLumberjack
 import PINRemoteImage
 import Crashlytics
 
-public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDataSource, UITableViewDelegate {
+open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +22,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     @IBOutlet weak var signOutButtonOutlet: UIButton!
     
-    var photoSaveCallback: (UIImage -> Void)?
+    var photoSaveCallback: ((UIImage) -> Void)?
 
     let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "SETTINGS", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
     let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
@@ -30,55 +30,55 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
 
     enum TableIndex: Int {
-        case Trips = 0
-        case Payment
-        case Settings
-        case Notifications
-        case Support
-        case Promotions
-        case Drive
+        case trips = 0
+        case payment
+        case settings
+        case notifications
+        case support
+        case promotions
+        case drive
     }
     
     // MARK: - Actions
     
-    @IBAction func onAboutButtonClick(sender: AnyObject) {
+    @IBAction func onAboutButtonClick(_ sender: AnyObject) {
         
         // Push the About View Controller
         let aboutStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.About, bundle: nil)
-        let aboutViewController = aboutStoryboard.instantiateViewControllerWithIdentifier("AboutViewControllerIdentifier") as! AboutViewController
+        let aboutViewController = aboutStoryboard.instantiateViewController(withIdentifier: "AboutViewControllerIdentifier") as! AboutViewController
         
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
             mmnvc.pushViewController(aboutViewController, animated: true)
-            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             
         } else {
             assert(false)
         }
     }
     
-    @IBAction func onSignOutButtonClick(sender: AnyObject) {
+    @IBAction func onSignOutButtonClick(_ sender: AnyObject) {
         logoutUser()
     }
     
-    @IBAction func onUpdateProfilePictureAction(sender: AnyObject) {
+    @IBAction func onUpdateProfilePictureAction(_ sender: AnyObject) {
         photoSaveCallback = { image in
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
             ProfileService().updateUserProfilePicture(image,
                                                       success: { url in
-                                                        DDLogVerbose("Success")
-                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                                        
-                                                        let userDefaults = NSUserDefaults.standardUserDefaults()
-                                                        userDefaults.setURL(url, forKey: self.PROFILE_PICTURE_URL_KEY)
-                                                        
-                                                        self.profilePictureOutlet.image = image
-                },
-                                                      failure: { _, _ in
-                                                        DDLogVerbose("Failure")
-                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                DDLogVerbose("Success")
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+                
+                self.profilePictureOutlet.image = image
+},
+              failure: { _, _ in
+                DDLogVerbose("Failure")
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })
         }
         openImagePicker()
@@ -104,7 +104,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     }
     // MARK: - Setup Functions
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -112,56 +112,60 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         setupViews()
     }
 
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // Set tableview botton border in viewDidAppear because the tableView height is coming incorrect in viewDidLoad
         self.tableView.addBottomBorder()
     }
     
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         
         // Modify the background color because we don't want to show the regular gray one.
         self.view.backgroundColor = UIColor.appDarkGreen1();
 
         // Set rounded profile pic
+<<<<<<< HEAD
       //  self.profilePictureOutlet.setRoundedWithWhiteBorder()
+=======
+         self.profilePictureOutlet.setRoundedWithWhiteBorder()
+>>>>>>> swift3
     }
     
-    private func setupViews() {
+    fileprivate func setupViews() {
         setupDefaultValues()
     }
     
-    private func setupDefaultValues() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    fileprivate func setupDefaultValues() {
+        let userDefaults = UserDefaults.standard
         
-        if let cachedImage = TemporaryCache.load(.CoverImage) {
+        if let cachedImage = TemporaryCache.load(.coverImage) {
             profilePictureOutlet.image = cachedImage
         }
-        else if let imageURL = userDefaults.URLForKey(self.PROFILE_PICTURE_URL_KEY) {
+        else if let imageURL = userDefaults.url(forKey: self.PROFILE_PICTURE_URL_KEY) {
             
-            let client: BAAClient = BAAClient.sharedClient()
+            let client: BAAClient = BAAClient.shared()
             
-            if let newUrl = client.getCompleteURLWithToken(imageURL) {
-                profilePictureOutlet.pin_setImageFromURL(newUrl)
+            if let newUrl = client.getCompleteURL(withToken: imageURL) {
+                profilePictureOutlet.pin_setImage(from: newUrl)
             }
         }
     }
     
     // MARK: Tableview Delegate/DataSource
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let mycell = tableView.dequeueReusableCellWithIdentifier("LeftNavDrawerCellIdentifier", forIndexPath: indexPath) as! LeftNavDrawerTableViewCell
+        let mycell = tableView.dequeueReusableCell(withIdentifier: "LeftNavDrawerCellIdentifier", for: indexPath) as! LeftNavDrawerTableViewCell
 
         // set the label
         mycell.menuItemLabel.text = menuItems[indexPath.row]
@@ -173,15 +177,15 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         // Cell shadow UI
         mycell.layer.shadowOpacity = 0.5
         mycell.layer.shadowRadius = 1.7
-        mycell.layer.shadowColor = UIColor.blackColor().CGColor
+        mycell.layer.shadowColor = UIColor.black.cgColor
         mycell.layer.shadowOffset = CGSize(width: 0, height: 0)
         mycell.layer.masksToBounds = false
-        mycell.layer.shadowPath = UIBezierPath(rect: mycell.bounds).CGPath
+        mycell.layer.shadowPath = UIBezierPath(rect: mycell.bounds).cgPath
         
         return mycell
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let tHeight = tableView.bounds.height
         let height = tHeight/CGFloat(menuItems.count)
@@ -189,28 +193,29 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         return height
     }
     
-    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
     }
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         var selectedViewController: UIViewController = UIViewController()
         
         switch (indexPath.row) {
-        case TableIndex.Payment.rawValue:
+        case TableIndex.payment.rawValue:
             
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-            selectedViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+            selectedViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentViewControllerIdentifier") as! PaymentViewController
             
             break
-        case TableIndex.Trips.rawValue:
+        case TableIndex.trips.rawValue:
             
             let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
-            selectedViewController = historyStoryboard.instantiateViewControllerWithIdentifier("HistoryViewControllerIdentifier") as! HistoryViewController
+            selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewControllerIdentifier") as! HistoryViewController
 
             break
+<<<<<<< HEAD
         case TableIndex.Notifications.rawValue:
 
             /*let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -232,21 +237,24 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
             
             break
         case TableIndex.Settings.rawValue:
+=======
+        case TableIndex.settings.rawValue:
+>>>>>>> swift3
             
             let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
-            selectedViewController = settingsStoryboard.instantiateViewControllerWithIdentifier("SettingsViewControllerIdentifier") as! SettingsViewController
+            selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsViewControllerIdentifier") as! SettingsViewController
             
             break
-        case TableIndex.Promotions.rawValue:
+        case TableIndex.promotions.rawValue:
             
             let promotionsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Promotions, bundle: nil)
-            selectedViewController = promotionsStoryboard.instantiateViewControllerWithIdentifier("PromotionsViewControllerIdentifier") as! PromotionsViewController
+            selectedViewController = promotionsStoryboard.instantiateViewController(withIdentifier: "PromotionsViewControllerIdentifier") as! PromotionsViewController
             
             break
-        case TableIndex.Support.rawValue:
+        case TableIndex.support.rawValue:
             
             let helpStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Help, bundle: nil)
-            selectedViewController = helpStoryboard.instantiateViewControllerWithIdentifier("HelpViewControllerIdentifier") as! HelpViewController
+            selectedViewController = helpStoryboard.instantiateViewController(withIdentifier: "HelpViewControllerIdentifier") as! HelpViewController
             
             break
         default:
@@ -254,12 +262,12 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
         }
 
         // Push the selected view controller to the main navigation controller
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.navigationBarHidden = false
+            mmnvc.isNavigationBarHidden = false
             mmnvc.pushViewController(selectedViewController, animated: true)
-            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             
         } else {
             assert(false)
@@ -270,18 +278,18 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     func logoutUser() {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
-        let client: BAAClient = BAAClient.sharedClient()
-        client.logoutCaberWithCompletion(BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
+        let client: BAAClient = BAAClient.shared()
+        client.logoutCaber(withCompletion: BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             
-            if (success || (error.domain == BaasBox.errorDomain() && error.code ==
+            if (success || ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
                             WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
                 
                 // pop all the view controllers so that user starts fresh :)
-                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-                    mmnvc.popToRootViewControllerAnimated(false)
+                    mmnvc.popToRootViewController(animated: false)
                 }
                 
                 DDLogInfo("user logged out successfully \(success)")
@@ -293,19 +301,11 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
                 let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
                     bundle: nil)
                 
-                self.presentViewController(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
-                
-//                let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
-//
-//                if let loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as? LoginViewController
-//                {
-//                    loginViewController.onStartup = true
-//                    self.presentViewController(loginViewController, animated: true, completion: nil)
-//                }
+                self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
             }
             else {
                 // We continue the user session if Logout hits an error
-                if (error.domain == BaasBox.errorDomain()) {
+                if ((error as! NSError).domain == BaasBox.errorDomain()) {
                     DDLogError("Error in logout: \(error)")
                     AlertUtil.displayAlert("Error Logging out. ", message: "This is...weird.")
                 }
@@ -318,14 +318,14 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
     
     // MARK: - Helpers
     
-    private func openImagePicker() {
+    fileprivate func openImagePicker() {
         let alertViewController = UIImagePickerController.alertControllerForImagePicker { imagePicker in
             imagePicker.delegate = self
-            self.presentViewController(imagePicker, animated: true, completion: .None)
+            self.present(imagePicker, animated: true, completion: .none)
         }
         
         if let alertViewController = alertViewController {
-            presentViewController(alertViewController, animated: true, completion: .None)
+            present(alertViewController, animated: true, completion: .none)
         }
     }
     
@@ -343,7 +343,7 @@ public class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDa
 
 extension LeftNavDrawerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -352,17 +352,17 @@ extension LeftNavDrawerViewController: UIImagePickerControllerDelegate, UINaviga
             image.copyWithCorrectOrientationAndSize() { image in
                 
                 self.photoSaveCallback?(image.squareImage()!.roundCorners()!)
-                self.dismissViewControllerAnimated(true, completion: .None)
+                self.dismiss(animated: true, completion: .none)
             }
         }
         else {
             DDLogVerbose("Failure")
 
-            self.dismissViewControllerAnimated(true, completion: .None)
+            self.dismiss(animated: true, completion: .none)
         }
     }
     
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: .None)
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: .none)
     }
 }

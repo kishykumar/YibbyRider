@@ -16,8 +16,8 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
 
     @IBOutlet weak var progressView: ASProgressPopUpView!
     
-    var offerTimer: NSTimer?
-    var progressTimer: NSTimer?
+    var offerTimer: Timer?
+    var progressTimer: Timer?
     
     var timerCount = 0.0
     
@@ -27,7 +27,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
 
     let PROGRESS_TIMER_INTERVAL = 0.5
     
-    var savedBgTimestamp: NSDate?
+    var savedBgTimestamp: Date?
 
     // MARK: - Setup Functions
 
@@ -38,10 +38,10 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         
         // progress view
         self.progressView.dataSource = self
-        self.progressView.showPopUpViewAnimated(true)
+        self.progressView.show(animated: true)
         self.progressView.progress = 0.0;
         self.progressView.font = UIFont(name: "Futura-CondensedExtraBold", size: 16)
-        self.progressView.popUpViewAnimatedColors = [UIColor.redColor(), UIColor.orangeColor(), UIColor.greenColor()]
+        self.progressView.popUpViewAnimatedColors = [UIColor.red, UIColor.orange, UIColor.green]
 
 //        self.progressView.popUpViewCornerRadius = 12.0;
 //        self.progressView.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:28];
@@ -60,8 +60,8 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         startProgressTimer()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +72,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     // MARK: - Helper
     
     func startOfferTimer() {
-        offerTimer = NSTimer.scheduledTimerWithTimeInterval(OFFER_TIMER_INTERVAL,
+        offerTimer = Timer.scheduledTimer(timeInterval: OFFER_TIMER_INTERVAL,
                                                             target: self,
                                                             selector: #selector(FindOffersViewController.bidWaitTimeoutCb),
                                                             userInfo: nil,
@@ -95,13 +95,13 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         
         DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
         // delete the saved state bid
-        BidState.sharedInstance().resetOngoingBid()
+        YBClient.sharedInstance().resetBid()
         
         // pop the view controller
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.popViewControllerAnimated(true)
+            mmnvc.popViewController(animated: true)
             AlertUtil.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
         }
     }
@@ -109,7 +109,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     // MARK: Progress view functions
     
     func startProgressTimer () {
-        progressTimer = NSTimer.scheduledTimerWithTimeInterval(PROGRESS_TIMER_INTERVAL, target: self,
+        progressTimer = Timer.scheduledTimer(timeInterval: PROGRESS_TIMER_INTERVAL, target: self,
                                                selector: #selector(FindOffersViewController.progress),
                                                userInfo: nil, repeats: true)
     }
@@ -124,8 +124,8 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         DDLogVerbose("Called")
         
         // if there is an active bid, save the current time
-        if (BidState.sharedInstance().isOngoingBid()) {
-            let curTime = NSDate()
+        if (YBClient.sharedInstance().isOngoingBid()) {
+            let curTime = Date()
             DDLogDebug("Setting bgtime \(curTime))")
             savedBgTimestamp = curTime
         }
@@ -134,11 +134,11 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     func restoreProgressTimer () {
         DDLogVerbose("Called")
         
-        if (BidState.sharedInstance().isOngoingBid()) {
+        if (YBClient.sharedInstance().isOngoingBid()) {
             
             if let appBackgroundedTime = savedBgTimestamp {
                 
-                let elapsedTime = NSTimeInterval(Int(TimeUtil.diffFromCurTime(appBackgroundedTime))) // seconds
+                let elapsedTime = TimeInterval(Int(TimeUtil.diffFromCurTime(appBackgroundedTime))) // seconds
                 
                 DDLogDebug("bgtime \(appBackgroundedTime) bumpUpTime \(elapsedTime))")
                 
@@ -173,7 +173,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     
     // <ASProgressPopUpViewDataSource> is entirely optional
     // it allows you to supply custom NSStrings to ASProgressPopUpView
-    func progressView(progressView: ASProgressPopUpView, stringForProgress progress: Float) -> String? {
+    func progressView(_ progressView: ASProgressPopUpView, stringForProgress progress: Float) -> String? {
         var s: String?
         if progress < 0.2 {
             s = "Drivers got your bid"
@@ -195,7 +195,7 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     // it then uses this size for all values and maintains a consistent size
     // if you want the popUpView size to adapt as values change then return 'NO'
     
-    func progressViewShouldPreCalculatePopUpViewSize(progressView: ASProgressPopUpView) -> Bool {
+    func progressViewShouldPreCalculatePopUpViewSize(_ progressView: ASProgressPopUpView) -> Bool {
         return false
     }
     

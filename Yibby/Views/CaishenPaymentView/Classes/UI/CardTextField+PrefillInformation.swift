@@ -18,34 +18,34 @@ public extension CardTextField {
      - parameter year:       The year that should be shown in the year input field.
      - parameter cvc:        The CVC that should be shown in the CVC input field.
      */
-    public func prefillCardInformation(cardNumber: String?, month: Int?, year: Int?, cvc: String?) {
+    public func prefill(_ number: String?, month: Int?, year: Int?, cvc: String?) {
         if let year = year {
             var trimmedYear = year
             if year > 100 {
                 trimmedYear = year % 100
             }
             
-            yearTextField?.prefillInformation(String(format: "%02i", arguments: [trimmedYear]))
+            yearTextField?.prefill(String(format: "%02i", arguments: [trimmedYear]))
         }
         
         if let month = month {
-            monthTextField?.prefillInformation(String(format: "%02i", arguments: [month]))
+            monthTextField?.prefill(String(format: "%02i", arguments: [month]))
         }
         
-        if let cardNumber = cardNumber, let numberInputTextField = numberInputTextField {
-            numberInputTextField.prefillInformation(cardNumber)
+        if let cardNumber = number, let numberInputTextField = numberInputTextField {
+            numberInputTextField.prefill(cardNumber)
             
             // With a new card number comes a new card type - pass this card type to `cvcTextField`
             cvcTextField?.cardType = cardType
         }
         
         if let cvc = cvc {
-            cvcTextField?.prefillInformation(cvc)
+            cvcTextField?.prefill(cvc)
         }
         
-        NSOperationQueue().addOperationWithBlock({
-            NSThread.sleepForTimeInterval(0.5)
-            NSOperationQueue.mainQueue().addOperationWithBlock({ [weak self] _ in
+        OperationQueue().addOperation({
+            Thread.sleep(forTimeInterval: 0.5)
+            OperationQueue.main.addOperation({ [weak self] _ in
                 self?.moveCardNumberOutAnimated()
             })
         })

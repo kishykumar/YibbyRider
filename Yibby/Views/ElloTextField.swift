@@ -10,26 +10,26 @@ import UIKit
 import Foundation
 
 enum ValidationState {
-    case Loading
-    case Error
-    case OK
-    case None
+    case loading
+    case error
+    case ok
+    case none
 
     var imageRepresentation: UIImage? {
         switch self {
-        case .Loading: return InterfaceImage.ValidationLoading.normalImage
-        case .Error: return InterfaceImage.ValidationError.normalImage
-        case .OK: return InterfaceImage.ValidationOK.normalImage
-        case .None: return nil
+        case .loading: return InterfaceImage.ValidationLoading.normalImage
+        case .error: return InterfaceImage.ValidationError.normalImage
+        case .ok: return InterfaceImage.ValidationOK.normalImage
+        case .none: return nil
         }
     }
 }
 
-public class ElloTextField: UITextField {
+open class ElloTextField: UITextField {
     var hasOnePassword = false
-    var validationState = ValidationState.None {
+    var validationState = ValidationState.none {
         didSet {
-            self.rightViewMode = .Always
+            self.rightViewMode = .always
             self.rightView = UIImageView(image: validationState.imageRepresentation)
         }
     }
@@ -46,22 +46,22 @@ public class ElloTextField: UITextField {
 
     func sharedSetup() {
         self.backgroundColor = UIColor.greyE5()
-        self.font = UIFont.systemFontOfSize(14)
-        self.textColor = UIColor.blackColor()
+        self.font = UIFont.systemFont(ofSize: 14)
+        self.textColor = UIColor.black
 
         self.setNeedsDisplay()
     }
 
-    override public func textRectForBounds(bounds: CGRect) -> CGRect {
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
         return rectForBounds(bounds)
     }
 
-    override public func editingRectForBounds(bounds: CGRect) -> CGRect {
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return rectForBounds(bounds)
     }
 
-    override public func clearButtonRectForBounds(bounds: CGRect) -> CGRect {
-        var rect = super.clearButtonRectForBounds(bounds)
+    override open func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.clearButtonRect(forBounds: bounds)
         rect.origin.x -= 10
         if hasOnePassword {
             rect.origin.x -= 44
@@ -69,13 +69,13 @@ public class ElloTextField: UITextField {
         return rect
     }
 
-    override public func rightViewRectForBounds(bounds: CGRect) -> CGRect {
-        var rect = super.rightViewRectForBounds(bounds)
+    override open func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.rightViewRect(forBounds: bounds)
         rect.origin.x -= 10
         return rect
     }
 
-    private func rectForBounds(bounds: CGRect) -> CGRect {
+    fileprivate func rectForBounds(_ bounds: CGRect) -> CGRect {
         return bounds.shrinkLeft(15).inset(topBottom: 10, sides: 15)
     }
 

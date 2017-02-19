@@ -39,13 +39,13 @@ public struct JOButtonMenuOption{
 }
 
 public protocol JOButtonMenuDelegate{
-    func selectedOption(sender:JOButtonMenu,index:Int)
-    func canceledAction(sender:JOButtonMenu)
+    func selectedOption(_ sender:JOButtonMenu,index:Int)
+    func canceledAction(_ sender:JOButtonMenu)
 }
 
-public class JOButtonMenu: UIButton {
-    public var delegate:JOButtonMenuDelegate!
-    public var dataset:[JOButtonMenuOption]!
+open class JOButtonMenu: UIButton {
+    open var delegate:JOButtonMenuDelegate!
+    open var dataset:[JOButtonMenuOption]!
     
     var singleTap:UITapGestureRecognizer!
     var drag:UIPanGestureRecognizer!
@@ -106,7 +106,7 @@ public class JOButtonMenu: UIButton {
         self.initialize()
     }
     
-    private func initialize(){
+    fileprivate func initialize(){
         singleTap = UITapGestureRecognizer(target: self, action: #selector(JOButtonMenu.singleTapEvent))
         self.addGestureRecognizer(singleTap)
         self.layer.masksToBounds = false
@@ -121,7 +121,7 @@ public class JOButtonMenu: UIButton {
         }
     }
     
-    func buttonTapEvent(sender: UITapGestureRecognizer) {
+    func buttonTapEvent(_ sender: UITapGestureRecognizer) {
         let selectedView = sender.view
         selectIndex(selectedView!.tag)
         self.deActivate(selectedItem)
@@ -130,19 +130,19 @@ public class JOButtonMenu: UIButton {
     /**
      Function that open the Options Selector
      */
-    private func activate() {
+    fileprivate func activate() {
         if !active {
             if dataset != nil {
-                let frameSV = UIScreen.mainScreen().bounds
+                let frameSV = UIScreen.main.bounds
                 selectedItem = -1
                 active = true
                 bgClear = SelectorView(frame: frameSV)
                 bgClear.delegate = self
-                bgClear.backgroundColor = UIColor.clearColor()
+                bgClear.backgroundColor = UIColor.clear
 
-                origin = self.superview?.convertPoint(self.frame.origin, toView: nil)
+                origin = self.superview?.convert(self.frame.origin, to: nil)
                 
-                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 if let vvc = appDelegate.window!.visibleViewController {
                     vvc.view?.addSubview(bgClear)
                 } else {
@@ -151,20 +151,20 @@ public class JOButtonMenu: UIButton {
 
                 let sizeBtn:CGSize = CGSize(width: ((CGFloat(dataset.count+1)*spacing)+(size*CGFloat(dataset.count))), height: size+(2*spacing))
                 
-                options = UIView(frame: CGRectMake(frameSV.size.width/2 - sizeBtn.width/2,
-                                                    origin.y - (sizeBtn.height),
-                                                    sizeBtn.width,
-                                                    sizeBtn.height))
+                options = UIView(frame: CGRect(x: frameSV.size.width/2 - sizeBtn.width/2,
+                                                    y: origin.y - (sizeBtn.height),
+                                                    width: sizeBtn.width,
+                                                    height: sizeBtn.height))
                 
                 options.layer.cornerRadius  = options.frame.height/2
-                options.backgroundColor     = UIColor.whiteColor()
-                options.layer.shadowColor   = UIColor.lightGrayColor().CGColor
+                options.backgroundColor     = UIColor.white
+                options.layer.shadowColor   = UIColor.lightGray.cgColor
                 options.layer.shadowOffset  = CGSize(width: 0.0, height: 0.0)
                 options.layer.shadowOpacity = 0.5
                 options.alpha               = 0.3
                 bgClear.addSubview(options)
                 
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                UIView.animate(withDuration: 0.2, animations: { () -> Void in
                     self.options.frame.origin.y = self.origin.y - (self.s_options_selector + sizeBtn.height)
                     self.options.alpha          = 1
                 })
@@ -176,14 +176,14 @@ public class JOButtonMenu: UIButton {
                 for i in 0...dataset.count-1 {
                     
                     // Create a circle view
-                    let option = UIView(frame: CGRectMake((CGFloat(i+1) * spacing) + (size * CGFloat(i)),
-                                                            self.spacing,
-                                                            self.size,
-                                                            self.size))
+                    let option = UIView(frame: CGRect(x: (CGFloat(i+1) * spacing) + (size * CGFloat(i)),
+                                                            y: self.spacing,
+                                                            width: self.size,
+                                                            height: self.size))
                     
                     option.layer.cornerRadius = self.size/2
                     option.layer.borderWidth = 1.0
-                    option.layer.borderColor = UIColor.redColor().CGColor
+                    option.layer.borderColor = UIColor.red.cgColor
                     
                     option.tag = i
                     
@@ -196,16 +196,16 @@ public class JOButtonMenu: UIButton {
                     let countLabel = UILabel(frame: CGRect(x: 10, y: 10, width: 20, height: 15))
                     
                     countLabel.text = dataset[i].labelText
-                    countLabel.font = UIFont.boldSystemFontOfSize(15.0)
-                    countLabel.textColor = UIColor.darkGrayColor()
-                    countLabel.textAlignment = NSTextAlignment.Center
+                    countLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
+                    countLabel.textColor = UIColor.darkGray
+                    countLabel.textAlignment = NSTextAlignment.center
 
                     option.addSubview(countLabel)
                     
                     option.center = CGPoint(x: (CGFloat(i+1)*self.spacing)+(self.size*CGFloat(i))+self.size/2, y: self.spacing+self.size/2)
                 
-                    countLabel.center = CGPointMake(option.bounds.size.width  / 2,
-                                                    option.bounds.size.height / 2);
+                    countLabel.center = CGPoint(x: option.bounds.size.width  / 2,
+                                                    y: option.bounds.size.height / 2);
                     
                 }
             }
@@ -218,12 +218,12 @@ public class JOButtonMenu: UIButton {
     /**
      Function that close the Options Selector
      */
-    private func deActivate(optionIdx:Int){
+    fileprivate func deActivate(_ optionIdx:Int){
         
         // If invalid index, then remove the popup view
         if (optionIdx < 0) {
             
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
+            UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 
                 self.options.alpha          = 0
                 self.options.frame.origin.y = self.origin.y - (self.size+(2*self.spacing))
@@ -240,18 +240,18 @@ public class JOButtonMenu: UIButton {
         }
         
         // Valid index: animate
-        for (i,option) in self.options.subviews.enumerate(){
+        for (i,option) in self.options.subviews.enumerated(){
 
             if (optionIdx == i) {
 
-                UIView.animateWithDuration(0.2, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                UIView.animate(withDuration: 0.2, delay: 0.1, options: UIViewAnimationOptions(), animations: { () -> Void in
 
                     option.center = CGPoint(x: (CGFloat(i+1) * self.spacing) + (self.size * CGFloat(i)) + (self.size / 2),
                                             y: -self.options.frame.height + (self.size / 2))
                     
                     }, completion:  { (finished) -> Void in
                         if finished {
-                            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                                 
                                 self.options.alpha          = 0
                                 self.options.frame.origin.y = self.origin.y - (self.size+(2*self.spacing))
@@ -292,7 +292,7 @@ public class JOButtonMenu: UIButton {
 //        }
 //    }
     
-    func selectIndex(index:Int){
+    func selectIndex(_ index:Int){
         if index >= 0 && index < dataset.count {
             selectedItem = index
         }
@@ -319,7 +319,7 @@ extension JOButtonMenu:SelectorViewDelegate {
 //        }
 //    }
     
-    public func endTouch(point:CGPoint){
+    public func endTouch(_ point:CGPoint){
 
         // If the touch falls in the options frame
         if (point.x > 0 && point.x < options.frame.maxX){

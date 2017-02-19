@@ -27,13 +27,13 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     // MARK: - Actions
     
-    @IBAction func submitFormButton(sender: UIButton) {
+    @IBAction func submitFormButton(_ sender: UIButton) {
         submitForm()
     }
     
-    @IBAction func tncButtonAction(sender: AnyObject) {
-        let url = NSURL(string: "https://google.com")!
-        UIApplication.sharedApplication().openURL(url)
+    @IBAction func tncButtonAction(_ sender: AnyObject) {
+        let url = URL(string: "https://google.com")!
+        UIApplication.shared.openURL(url)
     }
     
     // MARK: - Setup functions
@@ -43,9 +43,9 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         
         let attrTitle = NSAttributedString(string: InterfaceString.Button.TANDC,
                             attributes: [NSForegroundColorAttributeName : UIColor.appDarkGreen1(),
-                            NSFontAttributeName : UIFont.boldSystemFontOfSize(12.0),
-                            NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue])
-        tandcButtonOutlet.setAttributedTitle(attrTitle, forState: .Normal)
+                            NSFontAttributeName : UIFont.boldSystemFont(ofSize: 12.0),
+                            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue])
+        tandcButtonOutlet.setAttributedTitle(attrTitle, for: UIControlState())
     }
     
     func setupDelegates() {
@@ -64,7 +64,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         self.hideKeyboardWhenTappedAround()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -96,21 +96,19 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     }
     
     // BaasBox create user
-    func createUser(usernamei: String, passwordi: String) {
+    func createUser(_ usernamei: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
 
-        let client: BAAClient = BAAClient.sharedClient()
-        client.createCaberWithUsername(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
+        let client: BAAClient = BAAClient.shared()
+        client.createCaber(withUsername: BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
             if (success || self.testMode) {
                 DDLogVerbose("Success signing up: \(success)")
 
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
-                // TODO: Show the payment view controller
-                
                 let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-                let apViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+                let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
                 
                 apViewController.signupDelegate = self
                 apViewController.isSignup = true
@@ -127,7 +125,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     // MARK: - IndicatorInfoProvider
     
-    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: InterfaceString.Join.Signup)
     }
 }
@@ -136,12 +134,13 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
 extension SignupViewController: SignupPaymentViewControllerDelegate {
     
-    func signupPaymentViewControllerDidSkip(addPaymentViewController: AddPaymentViewController) {
+    func signupPaymentViewControllerDidSkip(_ addPaymentViewController: AddPaymentViewController) {
         MainViewController.initMainViewController(self, animated: true)
     }
     
     func signupPaymentViewController(addPaymentViewController: AddPaymentViewController,
-                                     didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock) {
+                                     didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
+
         
         BraintreePaymentService.sharedInstance().attachSourceToCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
             
@@ -159,7 +158,7 @@ extension SignupViewController: SignupPaymentViewControllerDelegate {
 
 extension SignupViewController: UITextFieldDelegate {
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == nameOutlet {
             

@@ -30,31 +30,31 @@ protocol SelectPaymentViewControllerDelegate {
                                                             controllerType: PaymentViewControllerType)
 #endif
 
-    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController)
+    func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentViewController)
 }
 
 enum PaymentViewControllerType: Int {
-    case PickDefault = 0
-    case PickForRide
-    case ListPayment
+    case pickDefault = 0
+    case pickForRide
+    case listPayment
 }
 
 class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControllerDelegate,
                                                     EditPaymentViewControllerDelegate,
-                                                    SelectPaymentViewControllerDelegate {
+SelectPaymentViewControllerDelegate {
 
     // MARK: - Properties
 
-    var controllerType: PaymentViewControllerType = PaymentViewControllerType.ListPayment
+    var controllerType: PaymentViewControllerType = PaymentViewControllerType.listPayment
 
     var totalSections: Int {
         get {
             switch (controllerType) {
-            case .ListPayment:
+            case .listPayment:
                 return 3;
-            case .PickForRide:
+            case .pickForRide:
                 return 2;
-            case .PickDefault:
+            case .pickDefault:
                 return 1;
             }
         }
@@ -71,7 +71,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     let defaultPaymentCellReuseIdentifier = "defaultPaymentIdentifier"
     let addCardCellReuseIdentifier = "addCardIdentifier"
 
-    var selectedIndexPath: NSIndexPath?
+    var selectedIndexPath: IndexPath?
     
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     
@@ -87,7 +87,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     
     // MARK: - Actions
     
-    @IBAction func saveButtonAction(sender: AnyObject) {
+    @IBAction func saveButtonAction(_ sender: AnyObject) {
         
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     
@@ -99,11 +99,11 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     
 #endif
         
-        self.delegate?.selectPaymentViewController(self, didSelectPaymentMethod: paymentMethod!,
-                                                   controllerType: PaymentViewControllerType.PickDefault)
+        self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod!,
+                                                   controllerType: PaymentViewControllerType.pickDefault)
     }
     
-    @IBAction func cancelButtonAction(sender: AnyObject) {
+    @IBAction func cancelButtonAction(_ sender: AnyObject) {
         self.delegate?.selectPaymentViewControllerDidCancel(self)
     }
     
@@ -115,12 +115,12 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func setupUI () {
-        if (controllerType == PaymentViewControllerType.ListPayment) {
+        if (controllerType == PaymentViewControllerType.listPayment) {
             
             // remove the save button
             self.navigationItem.rightBarButtonItems?.removeAll()
@@ -128,7 +128,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
             // remove the cancel button and show the back button
             self.navigationItem.leftBarButtonItems?.removeAll()
             
-        } else if (controllerType == PaymentViewControllerType.PickForRide) {
+        } else if (controllerType == PaymentViewControllerType.pickForRide) {
             
             // remove the save button
             self.navigationItem.rightBarButtonItems?.removeAll()
@@ -142,11 +142,11 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     }
 
     // MARK: - UITableView DataSource
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         if indexPath.section == cardListSection {
-            let cell: CardTableCell = tableView.dequeueReusableCellWithIdentifier(cardCellReuseIdentifier, forIndexPath: indexPath) as! CardTableCell
+            let cell: CardTableCell = tableView.dequeueReusableCell(withIdentifier: cardCellReuseIdentifier, for: indexPath) as! CardTableCell
             
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     
@@ -165,7 +165,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
             if ((paymentMethod) != nil) {
                 
                 cell.cardBrandImageViewOutlet.image =
-                    BTUI.braintreeTheme().vectorArtViewForPaymentInfoType(paymentMethod!.type).imageOfSize(CGSizeMake(42, 23))
+                    BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentMethod!.type).image(of: CGSize(width: 42, height: 23))
                 cell.cardTextLabelOutlet.text = paymentMethod?.localizedDescription
                 
             }
@@ -177,11 +177,11 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
             if ((paymentMethod) != nil) {
                 
                 // Configure the cell based on controller type
-                if (controllerType == PaymentViewControllerType.PickDefault) {
+                if (controllerType == PaymentViewControllerType.pickDefault) {
                     
                     // put a check mark on the default card
                     let selected: Bool = paymentMethod!.isEqual(defaultPaymentMethod)
-                    cell.accessoryType = selected ? .Checkmark : .None
+                    cell.accessoryType = selected ? .checkmark : .none
                     
                     DDLogVerbose("paymentMethod: \(paymentMethod) defaultPaymentMethod: \(defaultPaymentMethod) selected: \(selected)")
                     
@@ -189,11 +189,11 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
                         self.selectedIndexPath = indexPath
                     }
                     
-                } else if (controllerType == PaymentViewControllerType.PickForRide) {
+                } else if (controllerType == PaymentViewControllerType.pickForRide) {
                     
                     // put a check mark on the currently selected card
                     let selected: Bool = paymentMethod!.isEqual(self.selectedPaymentMethod)
-                    cell.accessoryType = selected ? .Checkmark : .None
+                    cell.accessoryType = selected ? .checkmark : .none
                     
                     if (selected) {
                         self.selectedIndexPath = indexPath
@@ -206,12 +206,12 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         }
         else if indexPath.section == addPaymentSection {
             
-            let cell: AddCardTableCell = tableView.dequeueReusableCellWithIdentifier(addCardCellReuseIdentifier, forIndexPath: indexPath) as! AddCardTableCell
+            let cell: AddCardTableCell = tableView.dequeueReusableCell(withIdentifier: addCardCellReuseIdentifier, for: indexPath) as! AddCardTableCell
             return cell
             
         } else if indexPath.section == defaultPaymentSection {
-            let cell: DefaultPaymentTableCell = tableView.dequeueReusableCellWithIdentifier(defaultPaymentCellReuseIdentifier,
-                                                        forIndexPath: indexPath) as! DefaultPaymentTableCell
+            let cell: DefaultPaymentTableCell = tableView.dequeueReusableCell(withIdentifier: defaultPaymentCellReuseIdentifier,
+                                                        for: indexPath) as! DefaultPaymentTableCell
             
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             if let defaultPaymentMethod = StripePaymentService.sharedInstance().defaultPaymentMethod {
@@ -238,7 +238,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     }
 
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
 
@@ -265,7 +265,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         return 0;
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == cardListSection) {
             return "Payment methods"
         } else if (section == addPaymentSection) {
@@ -276,7 +276,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
         return ""
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections.
         return totalSections;
     }
@@ -284,17 +284,17 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     
     //MARK: - UITableView Delegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
 
         let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
 
         if (indexPath.section == cardListSection) {
             
-            if (controllerType == PaymentViewControllerType.ListPayment) {
+            if (controllerType == PaymentViewControllerType.listPayment) {
             
-                let editCardViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+                let editCardViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
                 
                 editCardViewController.editDelegate = self
                 self.selectedIndexPath = indexPath
@@ -318,17 +318,17 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
                 self.navigationController!.pushViewController(editCardViewController, animated: true)
 
 #endif
-            } else if (controllerType == PaymentViewControllerType.PickDefault) {
+            } else if (controllerType == PaymentViewControllerType.pickDefault) {
                 
-                let oldSelectedCell = tableView.cellForRowAtIndexPath(self.selectedIndexPath!)
-                oldSelectedCell?.accessoryType = .None
+                let oldSelectedCell = tableView.cellForRow(at: self.selectedIndexPath!)
+                oldSelectedCell?.accessoryType = .none
 
-                let newSelectedCell = tableView.cellForRowAtIndexPath(indexPath)
-                newSelectedCell?.accessoryType = .Checkmark
+                let newSelectedCell = tableView.cellForRow(at: indexPath)
+                newSelectedCell?.accessoryType = .checkmark
                 
                 self.selectedIndexPath = indexPath
                 
-            } else if (controllerType == PaymentViewControllerType.PickForRide) {
+            } else if (controllerType == PaymentViewControllerType.pickForRide) {
 
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     
@@ -340,21 +340,21 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
 
 #endif
 
-                self.delegate?.selectPaymentViewController(self, didSelectPaymentMethod: paymentMethod,
-                                                           controllerType: PaymentViewControllerType.PickForRide)
+                self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod,
+                                                           controllerType: PaymentViewControllerType.pickForRide)
                 
             }
         } else if (indexPath.section == addPaymentSection) {
             
-            let apViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+            let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
             
             apViewController.addDelegate = self
             self.navigationController!.pushViewController(apViewController, animated: true)
             
         } else if (indexPath.section == defaultPaymentSection) {
-            let paymentViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+            let paymentViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentViewControllerIdentifier") as! PaymentViewController
             
-            paymentViewController.controllerType = PaymentViewControllerType.PickDefault
+            paymentViewController.controllerType = PaymentViewControllerType.pickDefault
             paymentViewController.delegate = self
             
             self.navigationController!.pushViewController(paymentViewController, animated: true)
@@ -363,7 +363,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rideDetail" {
 //            let indexPath = self.tableView!.indexPathForSelectedRow
 //            let destinationViewController: RideDetailViewController = segue.destinationViewController as! RideDetailViewController
@@ -372,16 +372,16 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
     
     // MARK: - AddPaymentViewControllerDelegate
     
-    func addPaymentViewControllerDidCancel(addPaymentViewController: AddPaymentViewController) {
-        self.navigationController!.popViewControllerAnimated(true)
+    func addPaymentViewControllerDidCancel(_ addPaymentViewController: AddPaymentViewController) {
+        self.navigationController!.popViewController(animated: true)
     }
 
-    func editPaymentViewControllerDidCancel(editPaymentViewController: AddPaymentViewController) {
-        self.navigationController!.popViewControllerAnimated(true)
+    func editPaymentViewControllerDidCancel(_ editPaymentViewController: AddPaymentViewController) {
+        self.navigationController!.popViewController(animated: true)
     }
     
-    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
-        self.navigationController!.popViewControllerAnimated(true)
+    func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentViewController) {
+        self.navigationController!.popViewController(animated: true)
     }
     
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
@@ -431,7 +431,7 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
     func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
-                                  didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock) {
+                                  didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
         
         BraintreePaymentService.sharedInstance().attachSourceToCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
             
@@ -439,17 +439,17 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
             completion(error)
             
             if (error == nil) {
-                self.navigationController!.popViewControllerAnimated(true)
+                self.navigationController!.popViewController(animated: true)
                 
                 // Completely reload the view as it may have changed the default payment
-                self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
-                    withObject:nil, afterDelay:0.0)
+                self.perform(#selector(PaymentViewController.reloadCustomerDetails),
+                             with:nil, afterDelay:0.0)
             }
         })
     }
     
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                   didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock) {
+                                   didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
         
         BraintreePaymentService.sharedInstance().deleteSourceFromCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
             
@@ -457,11 +457,11 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
             completion(error)
             
             if (error == nil) {
-                self.navigationController!.popViewControllerAnimated(true)
+                self.navigationController!.popViewController(animated: true)
                 
                 // Completely reload the view as it may have changed the default payment
-                self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
-                    withObject:nil, afterDelay:0.0)
+                self.perform(#selector(PaymentViewController.reloadCustomerDetails),
+                             with:nil, afterDelay:0.0)
             }
         })
     }
@@ -533,23 +533,23 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                   didCreateNewToken paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock) {
+                                   didCreateNewToken paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
         
         let oldPaymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(selectedIndexPath!.row)
         
         BraintreePaymentService.sharedInstance().updateSourceForCustomer(paymentMethod,
                                                                          oldPaymentMethod: oldPaymentMethod!,
-                                                                         completionBlock: {(error: NSError?) -> Void in
+                                                                         completionBlock: {(error: Error?) -> Void in
                                                                         
             // execute the completion block first
-            completion(error)
+            completion(error as NSError?)
             
             if (error == nil) {
-                self.navigationController!.popViewControllerAnimated(true)
+                self.navigationController!.popViewController(animated: true)
                 
                 // Completely reload the view as it may have changed the default payment
-                self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
-                    withObject:nil, afterDelay:0.0)
+                self.perform(#selector(PaymentViewController.reloadCustomerDetails),
+                             with:nil, afterDelay:0.0)
             }
         })
     }
@@ -560,22 +560,22 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
                                      didSelectPaymentMethod paymentMethod: BTPaymentMethodNonce,
                                                             controllerType: PaymentViewControllerType) {
         
-        if (controllerType == PaymentViewControllerType.PickDefault) {
+        if (controllerType == PaymentViewControllerType.pickDefault) {
             
             BraintreePaymentService.sharedInstance().selectDefaultCustomerSource(paymentMethod, completionBlock: {(error: NSError?) -> Void in
                 
                 if (error == nil) {
-                    self.navigationController!.popViewControllerAnimated(true)
+                    self.navigationController!.popViewController(animated: true)
                     
                     // Completely reload the view as it may have changed the default payment
-                    self.performSelector(#selector(PaymentViewController.reloadCustomerDetails),
-                        withObject:nil, afterDelay:0.0)
+                    self.perform(#selector(PaymentViewController.reloadCustomerDetails),
+                                 with:nil, afterDelay:0.0)
                 } else {
                     AlertUtil.displayAlert(error!.localizedDescription,
                         message: error!.localizedFailureReason ?? "Default could not be changed.")
                 }
             })
-        } else if (controllerType == PaymentViewControllerType.PickForRide) {
+        } else if (controllerType == PaymentViewControllerType.pickForRide) {
             
         }
     }

@@ -12,14 +12,15 @@ import SVProgressHUD
 import BaasBoxSDK
 import CocoaLumberjack
 
-public class WebInterface {
+open class WebInterface {
     
     static let BAASBOX_AUTHENTICATION_ERROR = -22222
 
-    static func makeWebRequestAndHandleError (vc: UIViewController, webRequest:(errorBlock: (BAAObjectResultBlock)) -> Void) {
+    static func makeWebRequestAndHandleError (_ vc: UIViewController, webRequest:(_ errorBlock: @escaping(BAAObjectResultBlock)) -> Void) {
         
-        webRequest(errorBlock: { (success, error) -> Void in
-            if (error.domain == BaasBox.errorDomain() && error.code ==
+        webRequest({ (success, error) -> Void in
+//            if (error.domain == BaasBox.errorDomain() && error.code ==
+            if ((error as! NSError).code ==
                 WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
                 // check for authentication error and redirect the user to Login page
                 
@@ -27,7 +28,7 @@ public class WebInterface {
                 let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
                     bundle: nil)
                 
-                vc.presentViewController(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+                vc.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
             }
             else {
                 AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")

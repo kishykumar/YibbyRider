@@ -17,10 +17,10 @@ class YibbyFloatLabelTextField: FloatLabelTextField {
     var borderWidth: CGFloat = 0 {
         didSet {
             if borderWidth >= 0 {
-                self.borderStyle = .None
+                self.borderStyle = .none
                 self.layer.borderWidth = CGFloat(borderWidth)
             } else {
-                self.borderStyle = .RoundedRect
+                self.borderStyle = .roundedRect
                 self.layer.borderWidth = 0
             }
         }
@@ -42,9 +42,9 @@ class YibbyFloatLabelTextField: FloatLabelTextField {
      If `borderWidth` has been set, changes to this parameter change the color of the border of `self`.
      */
     @IBInspectable
-    var borderColor: UIColor = UIColor.blackColor() {
+    var borderColor: UIColor = UIColor.black {
         didSet {
-            self.layer.borderColor = self.borderColor.CGColor
+            self.layer.borderColor = self.borderColor.cgColor
         }
     }
 }

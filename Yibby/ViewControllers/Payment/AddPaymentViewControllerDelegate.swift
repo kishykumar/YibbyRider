@@ -17,7 +17,7 @@ protocol AddPaymentViewControllerDelegate {
      *  @param addPaymentViewController the view controller that has been cancelled
      */
     
-    func addPaymentViewControllerDidCancel(addPaymentViewController: AddPaymentViewController)
+    func addPaymentViewControllerDidCancel(_ addPaymentViewController: AddPaymentViewController)
     
     /**
      *  This is called when the user successfully adds a card and tokenizes it with Stripe. You should send the token to your backend to store it on a customer, and then call the provided `completion` block when that call is finished. If an error occurred while talking to your backend, call `completion(error)`, otherwise, call `completion(nil)` and then dismiss (or pop) the view controller.
@@ -28,11 +28,15 @@ protocol AddPaymentViewControllerDelegate {
      */
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
-    didCreateToken token: STPToken, completion: STPErrorBlock)
+    
+        func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
+                                        didCreateToken token: STPToken, completion: STPErrorBlock)
+    
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-    func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
-                                  didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock)
+    
+        func addPaymentViewController(addPaymentViewController: AddPaymentViewController,
+                                      didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
+    
     #endif
     
 }

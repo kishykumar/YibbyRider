@@ -23,7 +23,7 @@ class TripViewController: BaseYibbyViewController {
 
     // MARK: - Actions
     
-    @IBAction func cancelRideAction(sender: AnyObject) {
+    @IBAction func cancelRideAction(_ sender: AnyObject) {
         
         
         return;
@@ -33,12 +33,12 @@ class TripViewController: BaseYibbyViewController {
         
         WebInterface.makeWebRequestAndHandleError(
             self,
-            webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
                 // enable the loading activity indicator
                 ActivityIndicatorUtil.enableActivityIndicator(self.view)
                 
-                let client: BAAClient = BAAClient.sharedClient()
+                let client: BAAClient = BAAClient.shared()
                 
                 client.cancelRiderRide(self.bid.id, completion: {(success, error) -> Void in
                     
@@ -63,7 +63,7 @@ class TripViewController: BaseYibbyViewController {
     // MARK: - Setup functions 
     
     func initProperties() {
-        self.bid = (BidState.sharedInstance().getOngoingBid())!
+        self.bid = (YBClient.sharedInstance().getBid())!
     }
     
     override func viewDidLoad() {
