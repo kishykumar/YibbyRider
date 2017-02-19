@@ -334,6 +334,23 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
     
 }
 
+- (void)completeDriverRegistration: (NSDictionary *)parameters
+                        completion:(BAABooleanResultBlock)completionHandler {
+    
+    [self postPath:@"caber/complete"
+        parameters: parameters
+           success:^(NSDictionary *responseObject) {
+
+               NSLog(@"responseObject is: %@", responseObject);
+               completionHandler(YES, nil);
+                   
+           } failure:^(NSError *error) {
+               
+               completionHandler(NO, error);
+               
+           }];
+
+}
 
 - (void)authenticateCaber: (NSString *)type
                  username: (NSString *)username
@@ -1917,11 +1934,15 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                                                                                       error:nil];
                          
                          if (httpResponse.statusCode == 401) {
-                             
                              NSError *error = [BaasBox authenticationErrorForResponse:jsonObject];                            
                              failure(error);
                              return;
-                             
+                         }
+                         
+                         if (httpResponse.statusCode >= 400) {
+                             NSError *error = [BaasBox badRequestErrorForResponse:jsonObject];
+                             failure(error);
+                             return;
                          }
                          
                          if (error == nil) {
@@ -1977,6 +1998,12 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              
                          }
                          
+                         if (r.statusCode >= 400) {
+                             NSError *error = [BaasBox badRequestErrorForResponse:jsonObject];
+                             failure(error);
+                             return;
+                         }
+                         
                          if (error == nil) {
 
                              success(jsonObject);
@@ -2020,6 +2047,12 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              
                          }
                          
+                         if (r.statusCode >= 400) {
+                             NSError *error = [BaasBox badRequestErrorForResponse:jsonObject];
+                             failure(error);
+                             return;
+                         }
+                         
                          if (error == nil) {
 
                              success(jsonObject);
@@ -2061,6 +2094,12 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              failure(error);
                              return;
                              
+                         }
+                         
+                         if (r.statusCode >= 400) {
+                             NSError *error = [BaasBox badRequestErrorForResponse:jsonObject];
+                             failure(error);
+                             return;
                          }
                          
                          if (error == nil) {

@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-public class YibbyTextField: UITextField {
+open class YibbyTextField: UITextField {
     
     let padding = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20);
     
@@ -27,28 +27,28 @@ public class YibbyTextField: UITextField {
         self.backgroundColor = UIColor.textFieldBackgroundColor1()
         self.textColor = UIColor.textFieldTextColor1()
         
-        self.font = UIFont.systemFontOfSize(14)
+        self.font = UIFont.systemFont(ofSize: 14)
         
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 6.0;
-        self.layer.borderColor = UIColor.themeColor1().CGColor
+        self.layer.borderColor = UIColor.themeColor1().cgColor
         
         self.setNeedsDisplay()
     }
     
-    override public func textRectForBounds(bounds: CGRect) -> CGRect {
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
         return rectForBounds(bounds)
     }
     
-    override public func editingRectForBounds(bounds: CGRect) -> CGRect {
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return rectForBounds(bounds)
     }
     
-    override public func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return rectForBounds(bounds)
     }
     
-    private func rectForBounds(bounds: CGRect) -> CGRect {
+    fileprivate func rectForBounds(_ bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
     

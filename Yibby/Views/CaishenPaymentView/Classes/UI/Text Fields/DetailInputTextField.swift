@@ -17,28 +17,27 @@ public class DetailInputTextField: StylizedTextField {
     
     public var cardInfoTextFieldDelegate: CardInfoTextFieldDelegate?
     
-    public func textFieldDidBeginEditing(textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         if (textField.text ?? "").isEmpty {
-            
             // NOTE: The following line has been commented out because it messes up
-//            textField.text = UITextField.emptyTextFieldCharacter
+            // textField.text = UITextField.emptyTextFieldCharacter
         }
     }
     
-    public override func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let newText = NSString(string: (textField.text ?? "")).stringByReplacingCharactersInRange(range, withString: string).stringByReplacingOccurrencesOfString(UITextField.emptyTextFieldCharacter, withString: "")
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = NSString(string: (textField.text ?? "")).replacingCharacters(in: range, with: string).replacingOccurrences(of: UITextField.emptyTextFieldCharacter, with: "")
         
         let deletingLastCharacter = !(textField.text ?? "").isEmpty && textField.text != UITextField.emptyTextFieldCharacter && newText.isEmpty
         if deletingLastCharacter {
-//            textField.text = UITextField.emptyTextFieldCharacter
+            // textField.text = UITextField.emptyTextFieldCharacter
             textField.text = ""
             cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: newText)
             return false
         }
         
-        let autoCompletedNewText = autocompleteText(newText)
+        let autoCompletedNewText = autocomplete(newText)
         
-        let (currentTextFieldText, overflowTextFieldText) = splitText(autoCompletedNewText)
+        let (currentTextFieldText, overflowTextFieldText) = split(autoCompletedNewText)
         
         if isInputValid(currentTextFieldText, partiallyValid: true) {
             textField.text = currentTextFieldText
@@ -56,28 +55,26 @@ public class DetailInputTextField: StylizedTextField {
         return false
     }
     
-    public func prefillInformation(info: String) {
-        if isInputValid(info, partiallyValid: false) {
-            text = info
-            cardInfoTextFieldDelegate?.textField(self, didEnterValidInfo: info)
-        } else if isInputValid(info, partiallyValid: true) {
-            text = info
-            cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: info)
+    public func prefill(_ text: String) {
+        if isInputValid(text, partiallyValid: false) {
+            cardInfoTextFieldDelegate?.textField(self, didEnterValidInfo: text)
+        } else if isInputValid(text, partiallyValid: true) {
+            cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: text)
         }
     }
     
-    private func splitText(text: String) -> (currentText: String, overflowText: String) {
+    private func split(_ text: String) -> (currentText: String, overflowText: String) {
         let hasOverflow = text.characters.count > expectedInputLength
         let index = (hasOverflow) ?
-            text.startIndex.advancedBy(expectedInputLength) :
-            text.startIndex.advancedBy(text.characters.count)
-        return (text.substringToIndex(index), text.substringFromIndex(index))
+            text.characters.index(text.startIndex, offsetBy: expectedInputLength) :
+            text.characters.index(text.startIndex, offsetBy: text.characters.count)
+        return (text.substring(to: index), text.substring(from: index))
     }
 }
 
 extension DetailInputTextField: AutoCompletingTextField {
 
-    func autocompleteText(text: String) -> String {
+    func autocomplete(_ text: String) -> String {
         return text
     }
 }
@@ -90,7 +87,7 @@ extension DetailInputTextField: TextFieldValidation {
         return 2
     }
 
-    func isInputValid(input: String, partiallyValid: Bool) -> Bool {
+    func isInputValid(_ input: String, partiallyValid: Bool) -> Bool {
         return true
     }
 }

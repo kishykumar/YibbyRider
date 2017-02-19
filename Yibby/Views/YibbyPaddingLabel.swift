@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public class YibbyPaddingLabel: UILabel {
+open class YibbyPaddingLabel: UILabel {
     
     @IBInspectable var topInset: CGFloat = 5.0
     @IBInspectable var bottomInset: CGFloat = 5.0
@@ -29,7 +29,7 @@ public class YibbyPaddingLabel: UILabel {
     func sharedSetup() {
         
         self.layer.cornerRadius = 8.0
-        self.layer.borderColor = UIColor.blackColor().CGColor
+        self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 1.0
     }
     
@@ -63,19 +63,19 @@ public class YibbyPaddingLabel: UILabel {
      If `borderWidth` has been set, changes to this parameter change the color of the border of `self`.
      */
     @IBInspectable
-    var borderColor: UIColor = UIColor.blackColor() {
+    var borderColor: UIColor = UIColor.black {
         didSet {
-            self.layer.borderColor = self.borderColor.CGColor
+            self.layer.borderColor = self.borderColor.cgColor
         }
     }
     
-    override public func drawTextInRect(rect: CGRect) {
+    override open func drawText(in rect: CGRect) {
         let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawTextInRect(UIEdgeInsetsInsetRect(rect, insets))
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
     }
     
-    override public func intrinsicContentSize() -> CGSize {
-        var intrinsicSuperViewContentSize = super.intrinsicContentSize()
+    override open var intrinsicContentSize : CGSize {
+        var intrinsicSuperViewContentSize = super.intrinsicContentSize
         intrinsicSuperViewContentSize.height += topInset + bottomInset
         intrinsicSuperViewContentSize.width += leftInset + rightInset
         return intrinsicSuperViewContentSize

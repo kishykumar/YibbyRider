@@ -20,7 +20,7 @@ import Braintree
 // 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message.
 // 4. 
 
-public class MainViewController: BaseYibbyViewController,
+open class MainViewController: BaseYibbyViewController,
                                 UITextFieldDelegate,
                                 DestinationDelegate,
                                 CLLocationManagerDelegate {
@@ -37,27 +37,26 @@ public class MainViewController: BaseYibbyViewController,
     @IBOutlet weak var peopleLabelOutlet: UILabel!
     @IBOutlet weak var cardHintOutlet: BTUICardHint!
     @IBOutlet weak var centerMarkersViewOutlet: YibbyBorderedUIView!
+    @IBOutlet weak var miscHintViewOutlet: UIView!
+    @IBOutlet weak var dollarHintViewOutlet: UIView!
+    
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
     var pickupFieldSelected: Bool?
     var dropoffFieldSelected: Bool?
     
-    var currentPlaceLatLng: CLLocationCoordinate2D?
-    var currentPlaceName: String?
+    var curLocation: YBLocation?
     
-    var pickupLatLng: CLLocationCoordinate2D?
-    var pickupPlaceName: String?
+    var pickupLocation: YBLocation?
     var pickupMarker: GMSMarker?
     
-    var dropoffLatLng: CLLocationCoordinate2D?
-    var dropoffPlaceName: String?
+    var dropoffLocation: YBLocation?
     var dropoffMarker: GMSMarker?
     
     var locationManager:CLLocationManager!
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
     
-    var bidLow: Float?
     var bidHigh: Float?
     
     var priceSliderViewHidden = false
@@ -73,23 +72,28 @@ public class MainViewController: BaseYibbyViewController,
     
 #endif
     
-    @IBAction func onDrawerSlideButtonClick(sender: UITapGestureRecognizer) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    @IBAction func onDrawerSlideButtonClick(_ sender: UITapGestureRecognizer) {
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
     }
     
     // MARK: - Actions
     
-    @IBAction func leftSlideButtonTapped(sender: AnyObject) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    // MARK: Actions
+    @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
+        
     }
     
-    @IBAction func onPaymentSelectAction(sender: UITapGestureRecognizer) {
+    @IBAction func leftSlideButtonTapped(_ sender: AnyObject) {
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPaymentSelectAction(_ sender: UITapGestureRecognizer) {
         displaySelectCardView()
     }
     
-    @IBAction func onDollarImageClickAction(sender: AnyObject) {
+    @IBAction func onDollarImageClickAction(_ sender: AnyObject) {
         
         if (priceSliderViewHidden) {
             priceSliderViewOutlet.animation = "fadeIn"
@@ -102,7 +106,7 @@ public class MainViewController: BaseYibbyViewController,
         }
     }
     
-    @IBAction func onMiscPickerImageClickAction(sender: AnyObject) {
+    @IBAction func onMiscPickerImageClickAction(_ sender: AnyObject) {
         
         if (miscPickerViewHidden) {
             miscPickerViewOutlet.animation = "fadeIn"
@@ -115,12 +119,20 @@ public class MainViewController: BaseYibbyViewController,
         }
     }
     
-    @IBAction func onCenterMarkersButtonClick(sender: AnyObject) {
+    @IBAction func onCenterMarkersButtonClick(_ sender: AnyObject) {
         adjustGMSCameraFocus()
     }
     
-    @IBAction func onBidButtonClick(sender: AnyObject) {
+    @IBAction func onBidButtonClick(_ sender: AnyObject) {
 
+        // TODO: REMOVE
+//        let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
+//        
+//        let derVC = driverEnRouteStoryboard.instantiateViewController(withIdentifier: "DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
+//        self.navigationController?.pushViewController(derVC, animated: true)
+//        return;
+        ///////////////////////////        ///////////////////////////
+        
         // Make sure user has a payment method selected
         if (self.selectedPaymentMethod == nil) {
             displaySelectCardView()
@@ -128,25 +140,20 @@ public class MainViewController: BaseYibbyViewController,
         }
         
         bidHigh = self.rangeSliderOutlet.value
-        DDLogVerbose("bidHigh value is: \(bidHigh)")
         
-        if (pickupLatLng != nil && pickupPlaceName != nil &&
-            dropoffLatLng != nil && dropoffPlaceName  != nil &&
-            bidLow != nil && bidHigh != nil) {
+        if (pickupLocation != nil &&
+            dropoffLocation != nil && bidHigh != nil) {
             
-            DDLogVerbose("Made the bid: pickupLatLng: \(pickupLatLng), pickupPlaceName: \(pickupPlaceName), dropoffLatLng: \(dropoffLatLng), dropoffPlaceName: \(dropoffPlaceName),  bidLow: \(bidLow), bidHigh: \(bidHigh)")
+            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidHigh: \(bidHigh)")
             
             let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
             
-            let confirmRideViewController = biddingStoryboard.instantiateViewControllerWithIdentifier("ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
+            let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
             
             // Initialize the view controller state 
-            confirmRideViewController.bidLow = self.bidLow
             confirmRideViewController.bidHigh = self.bidHigh
-            confirmRideViewController.pickupLatLng = self.pickupLatLng
-            confirmRideViewController.pickupPlaceName = self.pickupPlaceName
-            confirmRideViewController.dropoffLatLng = self.dropoffLatLng
-            confirmRideViewController.dropoffPlaceName = self.dropoffPlaceName
+            confirmRideViewController.pickupLocation = self.pickupLocation
+            confirmRideViewController.dropoffLocation = self.dropoffLocation
             
             self.navigationController?.pushViewController(confirmRideViewController, animated: true)
         }
@@ -154,13 +161,13 @@ public class MainViewController: BaseYibbyViewController,
     
     // MARK: - Setup
     
-    static func initMainViewController(vc: UIViewController, animated anim: Bool) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    static func initMainViewController(_ vc: UIViewController, animated anim: Bool) {
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.sendGCMTokenToServer()
 
         appDelegate.initializeMainViewController()
-        vc.presentViewController(appDelegate.centerContainer!, animated: anim, completion: nil)
+        vc.present(appDelegate.centerContainer!, animated: anim, completion: nil)
     }
     
     func setupDelegates() {
@@ -183,31 +190,32 @@ public class MainViewController: BaseYibbyViewController,
 
         // update card UI
         if let method = self.selectedPaymentMethod {
-            updateSelectCardUI(method)
+            updateSelectCardUI(paymentMethod: method)
         }
+        
     }
     
     func setupRangeSliderUI() {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize: CGRect = UIScreen.main.bounds
 
-        let formatter: NSNumberFormatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        let formatter: NumberFormatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
         
-        self.rangeSliderOutlet.showPopUpViewAnimated(false)
+        self.rangeSliderOutlet.showPopUpView(animated: false)
         
         self.rangeSliderOutlet.maximumValue = 100
         self.rangeSliderOutlet.numberFormatter = formatter
         self.rangeSliderOutlet.setMaxFractionDigitsDisplayed(0)
         
-        self.rangeSliderOutlet.font = UIFont.boldSystemFontOfSize(screenSize.size.height * 0.026)
+        self.rangeSliderOutlet.font = UIFont.boldSystemFont(ofSize: screenSize.size.height * 0.026)
         
         self.rangeSliderOutlet.popUpViewArrowLength = screenSize.size.height * 0.010
         
-        self.rangeSliderOutlet.popUpViewAnimatedColors = [UIColor.redColor(),
+        self.rangeSliderOutlet.popUpViewAnimatedColors = [UIColor.red,
                                                           UIColor.appDarkGreen1()]
         
         let thumbImage = UIImage(named: "defaultSlider")
-        self.rangeSliderOutlet.setThumbImage(thumbImage, forState: UIControlState.Normal)
+        self.rangeSliderOutlet.setThumbImage(thumbImage, for: UIControlState())
     }
     
     func setupPersonsButtonMenuUI() {
@@ -222,13 +230,13 @@ public class MainViewController: BaseYibbyViewController,
     
     func setupNavigationBar() {
         
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
 
         // set nav bar color
 //        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
 //        self.navigationController?.navigationBar.tintColor = UIColor.appDarkGreen1()
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
 
         if let navigationController = self.navigationController {
@@ -236,26 +244,26 @@ public class MainViewController: BaseYibbyViewController,
             // RIGHT Bar Button Item
             self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
                 NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-                NSForegroundColorAttributeName: UIColor.blueColor()],
-                forState: .Normal)
+                NSForegroundColorAttributeName: UIColor.blue],
+                for: UIControlState())
             
             self.navigationItem.rightBarButtonItem?.title =
-                String.fa_stringForFontAwesomeIcon(FAIcon.FALightbulbO)
+                String.fa_string(forFontAwesomeIcon: FAIcon.FALightbulbO)
             
             self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
-                                                                               forBarMetrics: UIBarMetrics.Default)
+                                                                               for: UIBarMetrics.default)
             
             // LEFT Bar Button Item
             self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
                 NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-                NSForegroundColorAttributeName: UIColor.yellowColor()],
-                forState: .Normal)
+                NSForegroundColorAttributeName: UIColor.yellow],
+                for: UIControlState())
             
             self.navigationItem.leftBarButtonItem?.title =
-                String.fa_stringForFontAwesomeIcon(FAIcon.FABars)
+                String.fa_string(forFontAwesomeIcon: FAIcon.FABars)
             
             self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
-                                                                              forBarMetrics: UIBarMetrics.Default)
+                                                                              for: UIBarMetrics.default)
         
         // Set Title Font, Font size, Font color
 //        self.navigationController?.navigationBar.titleTextAttributes = [
@@ -278,26 +286,26 @@ public class MainViewController: BaseYibbyViewController,
 //        statusBarView.backgroundColor = UIColor.appDarkGreen1()
 //        self.navigationController?.navigationBar.addSubview(statusBarView)
 
-        let statusBar: UIView = UIApplication.sharedApplication().valueForKey("statusBar") as! UIView
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         
-        if statusBar.respondsToSelector(Selector("setBackgroundColor:")) {
+        if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = UIColor.appDarkGreen1()
         }
         
         // status bar text color
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func setupMap () {
-        gmsMapViewOutlet.myLocationEnabled = true
+        gmsMapViewOutlet.isMyLocationEnabled = true
         
-        // Very Important: DONT disable consume all gestures, needed for nav drawer with a map
+        // Very Important: DONT disable consume all gestures because it's needed for nav drawer with a map
         gmsMapViewOutlet.settings.consumesGesturesInView = true
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
+        DispatchQueue.global(qos: .userInteractive).async {
             
             if let curLocation = LocationService.sharedInstance().provideCurrentLocation() {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.updateCurrentLocation(curLocation)
                 }
             }
@@ -309,20 +317,10 @@ public class MainViewController: BaseYibbyViewController,
     }
     
     func initProperties() {
-        bidLow = 1
         bidHigh = 100
-        let lat: CLLocationDegrees = 37.531631
-        let long: CLLocationDegrees = -122.263606
         
-        let latLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
-        
-        self.setPickupDetails("420 Oracle Pkwy, Redwood City, CA 94065", loc: latLng)
-        
-        let dlat: CLLocationDegrees = 37.348209
-        let dlong: CLLocationDegrees = -121.993756
-        
-        let dlatLng: CLLocationCoordinate2D = CLLocationCoordinate2DMake(dlat,dlong)
-        self.setDropoffDetails("3500 Granada Ave, Santa Clara, CA 95051", loc: dlatLng)
+        self.setPickupDetails(YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"))
+        self.setDropoffDetails(YBLocation(lat: 37.348209, long: -121.993756, name: "3500 Granada Ave, Santa Clara, CA 95051"))
         
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
@@ -338,7 +336,7 @@ public class MainViewController: BaseYibbyViewController,
 
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -354,17 +352,28 @@ public class MainViewController: BaseYibbyViewController,
 //        AlertUtil.displayLocationAlert()
     }
     
-    override public func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        
+        // Moved the rounding circle code here because the circling wasn't happening correctly.
+        // Please refer here for why this solution has been picked:
+        // http://stackoverflow.com/questions/29685055/ios-frame-size-width-2-doesnt-produce-a-circle-on-every-device
+        miscHintViewOutlet.setRoundedWithWhiteBorder()
+        dollarHintViewOutlet.setRoundedWithWhiteBorder()
     }
     
-    public override func viewDidAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         adjustGMSCameraFocus()
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -397,7 +406,7 @@ public class MainViewController: BaseYibbyViewController,
     
     // MARK: - Helpers
     
-    func updateCurrentLocation (userLocation: CLLocation) {
+    func updateCurrentLocation (_ userLocation: CLLocation) {
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
             
             if (error != nil) {
@@ -426,9 +435,10 @@ public class MainViewController: BaseYibbyViewController,
                             addressString = addressString + placemark.country!
                         }
                         
-                        self.setCurrentLocationDetails(addressString, loc: userLocation.coordinate)
+                        let loc = YBLocation(coordinate: userLocation.coordinate, name: addressString)
                         
-                        self.setPickupDetails(addressString, loc: userLocation.coordinate)
+                        self.setCurrentLocationDetails(loc)
+                        self.setPickupDetails(loc)
                         
                         DDLogVerbose("Address from location manager came out: \(addressString)")
                     }
@@ -437,22 +447,25 @@ public class MainViewController: BaseYibbyViewController,
         })
     }
     
-    func choseDestination(location: String) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func choseDestination(_ location: String) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func setPickupDetails (address: String, loc: CLLocationCoordinate2D) {
+    func setCurrentLocationDetails (_ location: YBLocation) {
+        self.curLocation = location
+    }
+    
+    func setPickupDetails (_ location: YBLocation) {
         
         pickupMarker?.map = nil
         
-        self.pickupPlaceName = address
-        self.pickupLatLng = loc
+        self.pickupLocation = location
         
-        let pumarker = GMSMarker(position: loc)
-        pumarker.map = gmsMapViewOutlet
+        let pumarker = GMSMarker(position: location.coordinate())
+        pumarker?.map = gmsMapViewOutlet
         
-        pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
-                                                                 title: address,
+        pumarker?.icon = YibbyMapMarker.annotationImageWithMarker(pumarker!,
+                                                                 title: location.name!,
                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: true)
         
@@ -460,19 +473,18 @@ public class MainViewController: BaseYibbyViewController,
         adjustGMSCameraFocus()
     }
     
-    func setDropoffDetails (address: String, loc: CLLocationCoordinate2D) {
+    func setDropoffDetails (_ location: YBLocation) {
         
         dropoffMarker?.map = nil
         
-        self.dropoffPlaceName = address
-        self.dropoffLatLng = loc
+        self.dropoffLocation = location
         
-        let domarker = GMSMarker(position: loc)
-        domarker.map = gmsMapViewOutlet
+        let domarker = GMSMarker(position: location.coordinate())
+        domarker?.map = gmsMapViewOutlet
         
         //        domarker.icon = UIImage(named: "Visa")
-        domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
-                                                                 title: address,
+        domarker?.icon = YibbyMapMarker.annotationImageWithMarker(domarker!,
+                                                                 title: location.name!,
                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: false)
         
@@ -504,30 +516,25 @@ public class MainViewController: BaseYibbyViewController,
                                          coordinate: (dropoffMarker.position))
         
         let centerMarkersRelativeOrigin: CGPoint =
-            (centerMarkersViewOutlet.superview?.convertPoint(centerMarkersViewOutlet.frame.origin,
-                toView: gmsMapViewOutlet))!
+            (centerMarkersViewOutlet.superview?.convert(centerMarkersViewOutlet.frame.origin,
+                to: gmsMapViewOutlet))!
         
         let insets = UIEdgeInsets(top: self.topLayoutGuide.length + pickupMarker.icon.size.height,
                                   left: (pickupMarker.icon.size.width / 2) + 10.0,
                                   bottom: gmsMapViewOutlet.frame.height - centerMarkersRelativeOrigin.y,
                                   right: (pickupMarker.icon.size.width / 2) + 10.0)
         
-        let update = GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: insets)
+        let update = GMSCameraUpdate.fit(bounds, with: insets)
         gmsMapViewOutlet.moveCamera(update)
-    }
-    
-    func setCurrentLocationDetails (address: String, loc: CLLocationCoordinate2D) {
-        self.currentPlaceName = address
-        self.currentPlaceLatLng = loc
     }
 }
 
 extension MainViewController: SelectPaymentViewControllerDelegate {
     // MARK: - SelectPaymentViewControllerDelegate
     
-    func selectPaymentViewControllerDidCancel(selectPaymentViewController: PaymentViewController) {
+    func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentViewController) {
 //        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
@@ -555,16 +562,16 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
                                      didSelectPaymentMethod method: BTPaymentMethodNonce,
                                                             controllerType: PaymentViewControllerType) {
         
-        if (controllerType == PaymentViewControllerType.PickForRide) {
+        if (controllerType == PaymentViewControllerType.pickForRide) {
             
             // modify the selected payment method
             self.selectedPaymentMethod = method
             
             // remove the view controller
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
             // update the card UI
-            updateSelectCardUI(method)
+            updateSelectCardUI(paymentMethod: method)
         }
     }
     
@@ -575,9 +582,9 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
         // Display the select card view
         let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
         
-        let selectPaymentViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("PaymentViewControllerIdentifier") as! PaymentViewController
+        let selectPaymentViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentViewControllerIdentifier") as! PaymentViewController
         
-        selectPaymentViewController.controllerType = PaymentViewControllerType.PickForRide
+        selectPaymentViewController.controllerType = PaymentViewControllerType.pickForRide
         selectPaymentViewController.delegate = self
         
         selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
@@ -616,34 +623,36 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
 
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
     
-    // Handle the user's selectiopublic public public n.
-    public func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
+    public func viewController(_ viewController: GMSAutocompleteViewController!, didAutocompleteWith place: GMSPlace!) {
 
         DDLogVerbose("Place name: \(place.name)")
         DDLogVerbose("Place address: \(place.formattedAddress)")
         DDLogVerbose("Place attributions: (place.attributions)")
         
+        let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress)
+
         if (pickupFieldSelected == true) {
-            self.setPickupDetails(place.formattedAddress, loc: place.coordinate)
+            self.setPickupDetails(loc)
         } else if (dropoffFieldSelected == true) {
-            self.setDropoffDetails(place.formattedAddress, loc: place.coordinate)
+            self.setDropoffDetails(loc)
         }
         
         cleanup()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    public func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
+    public func viewController(_ viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: Error!) {
+    
         // TODO: handle the error.
-        DDLogWarn("Error: \(error.description)")
+        DDLogWarn("Error: \((error as NSError).description)")
         cleanup()
     }
     
     // User canceled the operation.
-    public func wasCancelled(viewController: GMSAutocompleteViewController!) {
+    public func wasCancelled(_ viewController: GMSAutocompleteViewController!) {
         cleanup()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func cleanup () {
@@ -655,7 +664,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
 extension MainViewController: GMSMapViewDelegate {
     
     // MARK: - GMSMapViewDelegate
-    public func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+    public func mapView(_ mapView: GMSMapView!, didTap marker: GMSMarker!) -> Bool {
         
         if (marker == pickupMarker) {
             pickupFieldSelected = true
@@ -667,7 +676,7 @@ extension MainViewController: GMSMapViewDelegate {
         // This view controller lets a user pick address
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
-        self.presentViewController(autocompleteController, animated: true, completion: nil)
+        self.present(autocompleteController, animated: true, completion: nil)
         
         // default marker action is false, but we don't want that.
         return true
@@ -678,11 +687,11 @@ extension MainViewController: JOButtonMenuDelegate {
     
     // MARK: - JOButtonMenuDelegate
     
-    public func selectedOption(sender: JOButtonMenu, index: Int) {
+    public func selectedOption(_ sender: JOButtonMenu, index: Int) {
         peopleLabelOutlet.text = peopleButtonOutlet.dataset[index].labelText
     }
     
-    public func canceledAction(sender: JOButtonMenu) {
+    public func canceledAction(_ sender: JOButtonMenu) {
         print("User cancelled selection")
     }
 }

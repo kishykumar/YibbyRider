@@ -10,59 +10,59 @@ import Crashlytics
 import UIKit
 
 private let DesiredWidth: CGFloat = 300
-let MaxHeight = UIScreen.mainScreen().applicationFrame.height - 20
+let MaxHeight = UIScreen.main.applicationFrame.height - 20
 
 // TODO: REMOVE IT LATER
 public typealias ElloEmptyCompletion = () -> Void
-public typealias ElloFailureCompletion = (error: NSError, statusCode: Int?) -> Void
+public typealias ElloFailureCompletion = (_ error: NSError, _ statusCode: Int?) -> Void
 
 public enum AlertType {
-    case Normal
-    case Danger
-    case Clear
+    case normal
+    case danger
+    case clear
 
     var backgroundColor: UIColor {
         switch self {
-        case .Danger: return .redColor()
-        case .Clear: return .clearColor()
-        default: return .whiteColor()
+        case .danger: return .red
+        case .clear: return .clear
+        default: return .white
         }
     }
 
     var headerTextColor: UIColor {
         switch self {
-        case .Clear: return .whiteColor()
-        default: return .blackColor()
+        case .clear: return .white
+        default: return .black
         }
     }
 
     var cellColor: UIColor {
         switch self {
-        case .Clear: return .clearColor()
-        default: return .whiteColor()
+        case .clear: return .clear
+        default: return .white
         }
     }
 }
 
-public class AlertViewController: UIViewController {
-    @IBOutlet public weak var tableView: UITableView!
-    @IBOutlet public weak var topPadding: NSLayoutConstraint!
-    @IBOutlet public weak var leftPadding: NSLayoutConstraint!
-    @IBOutlet public weak var rightPadding: NSLayoutConstraint!
+open class AlertViewController: UIViewController {
+    @IBOutlet open weak var tableView: UITableView!
+    @IBOutlet open weak var topPadding: NSLayoutConstraint!
+    @IBOutlet open weak var leftPadding: NSLayoutConstraint!
+    @IBOutlet open weak var rightPadding: NSLayoutConstraint!
 
 //    var keyboardWillShowObserver: NotificationObserver?
 //    var keyboardWillHideObserver: NotificationObserver?
 
     // assign a contentView to show a message or spinner.  The contentView frame
     // size must be set.
-    public var contentView: UIView? {
+    open var contentView: UIView? {
         willSet { willSetContentView() }
         didSet { didSetContentView() }
     }
 
-    public var modalBackgroundColor: UIColor = .modalBackground()
+    open var modalBackgroundColor: UIColor = .modalBackground()
 
-    public var desiredSize: CGSize {
+    open var desiredSize: CGSize {
         if let contentView = contentView {
             return contentView.frame.size
         }
@@ -73,14 +73,14 @@ public class AlertViewController: UIViewController {
         }
     }
 
-    public var dismissable = true
-    public var autoDismiss = true
+    open var dismissable = true
+    open var autoDismiss = true
 
-    public private(set) var actions: [AlertAction] = []
-    private var inputs: [String] = []
+    open fileprivate(set) var actions: [AlertAction] = []
+    fileprivate var inputs: [String] = []
     var actionInputs: [String] {
         var retVals: [String] = []
-        for (index, action) in actions.enumerate() {
+        for (index, action) in actions.enumerated() {
             if action.isInput {
                 retVals.append(inputs[index])
             }
@@ -88,8 +88,8 @@ public class AlertViewController: UIViewController {
         return retVals
     }
 
-    private let textAlignment: NSTextAlignment
-    public var type: AlertType = .Normal {
+    fileprivate let textAlignment: NSTextAlignment
+    open var type: AlertType = .normal {
         didSet {
             let backgroundColor = type.backgroundColor
             view.backgroundColor = backgroundColor
@@ -99,30 +99,30 @@ public class AlertViewController: UIViewController {
         }
     }
 
-    public var message: String {
+    open var message: String {
         get { return headerView.label.text ?? "" }
         set(text) {
-            headerView.label.setLabelText(text, color: UIColor.blackColor())
+            headerView.label.setLabelText(text, color: UIColor.black)
             tableView.reloadData()
         }
     }
 
-    private let headerView: AlertHeaderView = {
+    fileprivate let headerView: AlertHeaderView = {
         return AlertHeaderView.loadFromNib()
     }()
 
-    private var totalHorizontalPadding: CGFloat {
+    fileprivate var totalHorizontalPadding: CGFloat {
         return leftPadding.constant + rightPadding.constant
     }
 
-    private var totalVerticalPadding: CGFloat {
+    fileprivate var totalVerticalPadding: CGFloat {
         return 2 * topPadding.constant
     }
 
-    public init(message: String? = nil, textAlignment: NSTextAlignment = .Center, type: AlertType = .Normal) {
+    public init(message: String? = nil, textAlignment: NSTextAlignment = .center, type: AlertType = .normal) {
         self.textAlignment = textAlignment
-        super.init(nibName: "AlertViewController", bundle: NSBundle(forClass: AlertViewController.self))
-        modalPresentationStyle = .Custom
+        super.init(nibName: "AlertViewController", bundle: Bundle(for: AlertViewController.self))
+        modalPresentationStyle = .custom
         transitioningDelegate = self
         headerView.label.setLabelText(message ?? "", color: type.headerTextColor)
 
@@ -138,29 +138,29 @@ public class AlertViewController: UIViewController {
 }
 
 public extension AlertViewController {
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerNib(AlertCell.nib(), forCellReuseIdentifier: AlertCell.reuseIdentifier())
+        tableView.register(AlertCell.nib(), forCellReuseIdentifier: AlertCell.reuseIdentifier())
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
 //        keyboardWillShowObserver = NotificationObserver(notification: Keyboard.Notifications.KeyboardWillShow, block: self.keyboardUpdateFrame)
 //        keyboardWillHideObserver = NotificationObserver(notification: Keyboard.Notifications.KeyboardWillHide, block: self.keyboardUpdateFrame)
 
-        if type == .Clear {
+        if type == .clear {
             leftPadding.constant = 5
             rightPadding.constant = 5
         }
     }
 
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.scrollEnabled = (view.frame.height == MaxHeight)
+        tableView.isScrollEnabled = (view.frame.height == MaxHeight)
     }
 
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 //        keyboardWillShowObserver?.removeObserver()
 //        keyboardWillShowObserver = nil
@@ -168,13 +168,13 @@ public extension AlertViewController {
 //        keyboardWillHideObserver = nil
     }
 
-    public func dismiss(animated: Bool = true, completion: ElloEmptyCompletion? = .None) {
-        dismissViewControllerAnimated(animated, completion: completion)
+    public func dismiss(_ animated: Bool = true, completion: ElloEmptyCompletion? = .none) {
+        self.dismiss(animated: animated, completion: completion)
     }
 }
 
 public extension AlertViewController {
-    func addAction(action: AlertAction) {
+    func addAction(_ action: AlertAction) {
         actions.append(action)
         inputs.append("")
 
@@ -190,19 +190,19 @@ public extension AlertViewController {
 }
 
 extension AlertViewController {
-    private func willSetContentView() {
+    fileprivate func willSetContentView() {
         if let contentView = contentView {
             contentView.removeFromSuperview()
         }
     }
 
-    private func didSetContentView() {
+    fileprivate func didSetContentView() {
         if let contentView = contentView {
-            self.tableView.hidden = true
+            self.tableView.isHidden = true
             self.view.addSubview(contentView)
         }
         else {
-            self.tableView.hidden = false
+            self.tableView.isHidden = false
         }
 
         resize()
@@ -218,8 +218,8 @@ extension AlertViewController {
 
 // MARK: UIViewControllerTransitioningDelegate
 extension AlertViewController: UIViewControllerTransitioningDelegate {
-    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
-        if presented != self { return .None }
+    public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        if presented != self { return .none }
 
         return AlertPresentationController(presentedViewController: presented, presentingViewController: presenting!, backgroundColor: self.modalBackgroundColor)
     }
@@ -227,33 +227,32 @@ extension AlertViewController: UIViewControllerTransitioningDelegate {
 
 // MARK: UITableViewDelegate
 extension AlertViewController: UITableViewDelegate {
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // apparently iOS (9?) has a bug where main-queue updates take a long time. WTF.
         nextTick {
             if self.autoDismiss {
                 self.dismiss()
             }
 
-            if let action = self.actions.safeValue(indexPath.row)
-                where !action.isInput
+            if let action = self.actions.safeValue(indexPath.row), !action.isInput
             {
                 action.handler?(action)
             }
         }
     }
 
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if message.characters.count == 0 {
             return nil
         }
         return headerView
     }
 
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if message.characters.count == 0 {
             return 0
         }
-        let size = CGSize(width: DesiredWidth - totalHorizontalPadding, height: .max)
+        let size = CGSize(width: DesiredWidth - totalHorizontalPadding, height: .greatestFiniteMagnitude)
         let height = headerView.label.sizeThatFits(size).height
         return height
     }
@@ -261,15 +260,15 @@ extension AlertViewController: UITableViewDelegate {
 
 // MARK: UITableViewDataSource
 extension AlertViewController: UITableViewDataSource {
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return actions.count
     }
 
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(AlertCell.reuseIdentifier(), forIndexPath: indexPath) as! AlertCell
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: AlertCell.reuseIdentifier(), for: indexPath) as! AlertCell
 
-        if let action = actions.safeValue(indexPath.row), input = inputs.safeValue(indexPath.row) {
-            action.configure(cell: cell, type: type, action: action, textAlignment: textAlignment)
+        if let action = actions.safeValue(indexPath.row), let input = inputs.safeValue(indexPath.row) {
+            action.configure(cell, type, action, textAlignment)
 
             cell.input.text = input
             cell.onInputChanged = { text in
@@ -289,7 +288,7 @@ extension AlertViewController: AlertCellDelegate {
 
         if let action = actions.find({ action in
             switch action.style {
-            case .OKCancel: return true
+            case .okCancel: return true
             default: return false
             }
         }) {

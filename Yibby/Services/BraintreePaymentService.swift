@@ -16,7 +16,7 @@ public typealias BTDefaultSourceCompletionBlock = BTErrorBlock
 public typealias BTUpdateSourceCompletionBlock = BTErrorBlock
 
 // BraintreePaymentService singleton
-public class BraintreePaymentService: NSObject {
+open class BraintreePaymentService: NSObject {
     
     private static let myInstance = BraintreePaymentService()
     
@@ -46,7 +46,7 @@ public class BraintreePaymentService: NSObject {
         return myInstance
     }
     
-    func setupConfiguration (completionBlock: BTCustomerLoadCompletionBlock) {
+    func setupConfiguration (_ completionBlock: @escaping BTCustomerLoadCompletionBlock) {
         
         apiAdapter.fetchClientToken( { (clientToken: String?, error: NSError?) -> Void in
             if error == nil {
@@ -68,7 +68,7 @@ public class BraintreePaymentService: NSObject {
         })
     }
     
-    func loadCustomerDetails(completionBlock: BTCustomerLoadCompletionBlock) {
+    func loadCustomerDetails(_ completionBlock: @escaping BTCustomerLoadCompletionBlock) {
         
         apiAdapter.retrievePaymentMethods(self.clientToken,
                                           completion: { (paymentMethods: [BTPaymentMethodNonce]?, error: NSError?) -> Void in
@@ -96,29 +96,29 @@ public class BraintreePaymentService: NSObject {
         })
     }
 
-    func attachSourceToCustomer(paymentMethod: BTPaymentMethodNonce, completionBlock: BTAttachSourceCompletionBlock) {
+    func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTAttachSourceCompletionBlock) {
         apiAdapter.attachSourceToCustomer(paymentMethod, completion: {(error: NSError?) -> Void in
             completionBlock(error)
         })
     }
     
-    func updateSourceForCustomer(paymentMethod: BTPaymentMethodNonce,
+    func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
                                  oldPaymentMethod: BTPaymentMethodNonce,
-                                 completionBlock: UpdateSourceCompletionBlock) {
+                                 completionBlock: @escaping UpdateSourceCompletionBlock) {
         apiAdapter.updateSourceForCustomer(paymentMethod,
                                            oldPaymentMethod: oldPaymentMethod,
-                                           completion: {(error: NSError?) -> Void in
+                                           completion: {(error: Error?) -> Void in
             completionBlock(error)
         })
     }
     
-    func deleteSourceFromCustomer(paymentMethod: BTPaymentMethodNonce, completionBlock: BTDeleteSourceCompletionBlock) {
+    func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTDeleteSourceCompletionBlock) {
         apiAdapter.deleteSourceFromCustomer(paymentMethod, completion: {(error: NSError?) -> Void in
             completionBlock(error)
         })
     }
     
-    func selectDefaultCustomerSource(paymentMethod: BTPaymentMethodNonce, completionBlock: BTDefaultSourceCompletionBlock) {
+    func selectDefaultCustomerSource(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTDefaultSourceCompletionBlock) {
         apiAdapter.selectDefaultCustomerSource(paymentMethod, completion: {(error: NSError?) -> Void in
             completionBlock(error)
         })

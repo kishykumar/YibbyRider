@@ -8,6 +8,6 @@
 
 import UIKit
 
-public class AlertHeaderView: UIView {
-    public weak var label: ElloLabel!
+open class AlertHeaderView: UIView {
+    open weak var label: ElloLabel!
 }

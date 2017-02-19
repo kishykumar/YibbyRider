@@ -10,6 +10,7 @@ import UIKit
 import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
+import SwiftKeychainWrapper
 
 class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
@@ -43,7 +44,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
         self.hideKeyboardWhenTappedAround()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -53,30 +54,30 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     }
     
     // MARK: - IndicatorInfoProvider
-    
-    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: InterfaceString.Join.Login)
     }
     
     // MARK: - Actions
-    @IBAction func loginAction(sender: AnyObject) {
+    @IBAction func loginAction(_ sender: AnyObject) {
         submitLoginForm()
     }
     
     // MARK: - KeyChain functions
-    static func setLoginKeyChainKeys (username: String, password: String) {
-        KeychainWrapper.setString(username, forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
-        KeychainWrapper.setString(password, forKey: LoginViewController.PASSWORD_KEY_NAME)
+    static func setLoginKeyChainKeys (_ username: String, password: String) {
+        let ret = KeychainWrapper.standard.set(username, forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
+        print("Keychain set value for email : \(ret)")
+        KeychainWrapper.standard.set(password, forKey: LoginViewController.PASSWORD_KEY_NAME)
     }
     
     static func removeLoginKeyChainKeys () {
-        KeychainWrapper.removeObjectForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
-        KeychainWrapper.removeObjectForKey(LoginViewController.PASSWORD_KEY_NAME)
+        KeychainWrapper.standard.remove(key: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
+        KeychainWrapper.standard.remove(key: LoginViewController.PASSWORD_KEY_NAME)
     }
     
     static func getLoginKeyChainValues () -> (String?, String?) {
-        let retrievedEmailAddress = KeychainWrapper.stringForKey(LoginViewController.EMAIL_ADDRESS_KEY_NAME)
-        let retrievedPassword = KeychainWrapper.stringForKey(LoginViewController.PASSWORD_KEY_NAME)
+        let retrievedEmailAddress = KeychainWrapper.standard.string(forKey: LoginViewController.EMAIL_ADDRESS_KEY_NAME)
+        let retrievedPassword = KeychainWrapper.standard.string(forKey: LoginViewController.PASSWORD_KEY_NAME)
         return (retrievedEmailAddress, retrievedPassword)
     }
     
@@ -108,34 +109,33 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     }
     
     // BaasBox login user
-    func loginUser(usernamei: String, passwordi: String) {
+    func loginUser(_ usernamei: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
 
-        let client: BAAClient = BAAClient.sharedClient()
+        let client: BAAClient = BAAClient.shared()
         client.authenticateCaber(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             
             if (success) {
                 DDLogVerbose("user logged in successfully \(success)")
-                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
-                
-                appDelegate.sendGCMTokenToServer()
                 
                 if (self.onStartup) {
                     // switch to Main View Controller
                     MainViewController.initMainViewController(self, animated: true)
                 } else {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    appDelegate.sendGCMTokenToServer()
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             else {
                 DDLogVerbose("Error logging in: \(error)")
 
-                if (error.domain == BaasBox.errorDomain() && error.code ==
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
                     WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
 
                     // check for authentication error and redirect the user to Login page
@@ -164,7 +164,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
 extension LoginViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == emailAddress {
             

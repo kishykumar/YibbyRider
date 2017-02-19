@@ -25,8 +25,8 @@ class RideDetailViewController: BaseYibbyViewController {
         
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {

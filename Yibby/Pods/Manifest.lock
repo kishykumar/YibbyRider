@@ -1,5 +1,8 @@
 PODS:
-  - Alamofire (3.5.1)
+  - Alamofire (4.2.0)
+  - AlamofireObjectMapper (4.0.1):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 2.0)
   - ASProgressPopUpView (0.8)
   - BaasBoxSDK (0.9.0)
   - BButton (4.0.2)
@@ -26,24 +29,19 @@ PODS:
     - Braintree/Card
     - Braintree/Core
   - CardIO (5.3.2)
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
+  - CocoaLumberjack/Default (3.0.0)
+  - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
-  - CocoaLumberjack/Swift (2.3.0):
+  - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
   - Crashlytics (3.8.0):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.7)
-  - FBSnapshotTestCase (2.1.2):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
-  - FBSnapshotTestCase/Core (2.1.2)
-  - FBSnapshotTestCase/SwiftSupport (2.1.2):
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
@@ -74,8 +72,13 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
-  - IQKeyboardManagerSwift (4.0.5)
+  - Hue (2.0.1)
+  - ImagePicker (2.0.0)
+  - IQKeyboardManagerSwift (4.0.7)
+  - ISHPullUp (1.0.4)
   - LaunchScreen (1.0.0)
+  - Lightbox (1.0.0):
+    - Hue
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
@@ -88,11 +91,14 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
-  - Nimble (4.0.1)
-  - Nimble-Snapshots (4.0.1):
+  - Nimble (5.0.0)
+  - Nimble-Snapshots (4.4.0):
+    - Nimble-Snapshots/Core (= 4.4.0)
+  - Nimble-Snapshots/Core (4.4.0):
     - FBSnapshotTestCase (~> 2.0)
     - Nimble
     - Quick
+  - ObjectMapper (2.2.2)
   - PINCache (2.2.2)
   - PINRemoteImage (2.1.4):
     - PINRemoteImage/FLAnimatedImage (= 2.1.4)
@@ -101,79 +107,84 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
-  - Quick (0.9.3)
+  - Quick (1.0.0)
   - Spring (1.0.3)
   - Stripe (8.0.1)
-  - SVGKit (2.0.1):
-    - CocoaLumberjack (~> 2.x)
   - SVProgressHUD (2.0.3)
-  - SwiftyJSON (2.3.2)
-  - TextFieldEffects (1.2.0)
+  - SwiftKeychainWrapper (3.0.1)
+  - SwiftyJSON (3.1.3)
+  - TextFieldEffects (1.3.0)
   - TTRangeSlider (1.0.3)
-  - XLPagerTabStrip (5.0.0)
+  - XLPagerTabStrip (6.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5)
+  - Alamofire (~> 4.0)
+  - AlamofireObjectMapper (~> 4.0)
   - ASProgressPopUpView
   - BaasBoxSDK (from `https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git`)
   - BButton
   - Braintree
   - CardIO
-  - CocoaLumberjack/Swift
+  - CocoaLumberjack/Swift (from `https://github.com/CocoaLumberjack/CocoaLumberjack`, branch `swift_3`)
   - Crashlytics
   - DZNEmptyDataSet
   - Fabric
   - FDStackView (~> 1.0)
   - Google/CloudMessaging
   - GoogleMaps
+  - ImagePicker
   - IQKeyboardManagerSwift
+  - ISHPullUp
   - LaunchScreen
+  - Lightbox
   - MMDrawerController (~> 0.5.7)
-  - Nimble (~> 4.0.0)
-  - Nimble-Snapshots (~> 4.0.0)
+  - Nimble (~> 5.0.0)
+  - Nimble-Snapshots
   - PINRemoteImage
   - Quick
-  - Spring (from `https://github.com/tpae/Spring.git`, branch `swift-2.3-migration`)
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - Stripe
-  - SVGKit (from `https://github.com/SVGKit/SVGKit`)
   - SVProgressHUD
+  - SwiftKeychainWrapper
   - SwiftyJSON
   - TextFieldEffects
   - TTRangeSlider
-  - XLPagerTabStrip (~> 5.0)
+  - XLPagerTabStrip (~> 6.0)
 
 EXTERNAL SOURCES:
   BaasBoxSDK:
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
+  CocoaLumberjack:
+    :branch: swift_3
+    :git: https://github.com/CocoaLumberjack/CocoaLumberjack
   Spring:
-    :branch: swift-2.3-migration
-    :git: https://github.com/tpae/Spring.git
-  SVGKit:
-    :git: https://github.com/SVGKit/SVGKit
+    :branch: swift3
+    :git: https://github.com/MengTo/Spring.git
 
 CHECKOUT OPTIONS:
   BaasBoxSDK:
-    :commit: 1bb726be3e22b637dc25d40c382f9203d05bfff9
+    :commit: 49db0b017e69f93e2867b697852af127bece8ee3
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
+  CocoaLumberjack:
+    :commit: 17936dcf48f858933bd791a05aff911be8bb68ba
+    :git: https://github.com/CocoaLumberjack/CocoaLumberjack
   Spring:
-    :commit: d49c77c36c1c49a5064f4726fb7fec9b3abbe4fb
-    :git: https://github.com/tpae/Spring.git
-  SVGKit:
-    :commit: 87b6c5c2ee4c69e582424b04742301387022339f
-    :git: https://github.com/SVGKit/SVGKit
+    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   BaasBoxSDK: 8a68396af4eb48137da238109d114eccac04739d
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 772ab9104053cca5d8cc3b32d79e6b1272f46527
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  CocoaLumberjack: 0d0a04bbec1e5d9c58d311750e42c85fc51a84ef
   Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
+  FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
@@ -185,23 +196,28 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
-  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
+  Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
+  ImagePicker: 81175d36c2852cb543cb4f5d6c19e28f3e8d90eb
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
+  ISHPullUp: b98a286f3e85dc885a3bf20bf75853947984277d
   LaunchScreen: 964c1b844d4190be813a0dee0ee791069325f277
+  Lightbox: 13f55a0a840f7945dc5ac87931564e7fe569fca9
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
-  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
-  Nimble-Snapshots: 2d15a585b816f7d14947ed6e172218f9d0980ea8
+  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
+  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   PINCache: '078426d356ab95ef875e9e62e5c35a2ea3333c28'
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
-  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   Stripe: ebb81bf4377dd7fa733f82ff29548cface9225e3
-  SVGKit: 2afbeaf2c2be4615476951284750c3ddb790d0c7
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
+  TextFieldEffects: ef594746f17997c813e07633f8ae5acaf9b04f27
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
-  XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
+  XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: 6733d0e5a8a7517bc50822dc52fa719d9d2a1272
+PODFILE CHECKSUM: 8cd4f6c116f39e2efb98fe337a9ccdd17fd6414f
 
 COCOAPODS: 1.2.0.beta.1

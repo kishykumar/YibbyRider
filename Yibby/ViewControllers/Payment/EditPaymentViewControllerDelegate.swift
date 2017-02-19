@@ -11,22 +11,22 @@ import Stripe
 
 protocol EditPaymentViewControllerDelegate {
     
-    func editPaymentViewControllerDidCancel(editPaymentViewController: AddPaymentViewController)
+    func editPaymentViewControllerDidCancel(_ editPaymentViewController: AddPaymentViewController)
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-    didCreateNewToken token: STPToken, completion: STPErrorBlock)
+        func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                        didCreateNewToken token: STPToken, completion: STPErrorBlock)
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                   didCreateNewToken token: BTPaymentMethodNonce, completion: BTErrorBlock)
+        func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                       didCreateNewToken token: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
     #endif
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-    didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock)
+        func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                        didRemovePaymentMethod paymentMethod: STPPaymentMethod, completion: STPErrorBlock)
     
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-    func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                   didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: BTErrorBlock)
+        func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
+                                       didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
     #endif
 }

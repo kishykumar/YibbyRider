@@ -25,22 +25,22 @@ public extension CardFieldsView {
                 trimmedYear = year % 100
             }
             
-            yearTextField?.prefillInformation(String(format: "%02i", arguments: [trimmedYear]))
+            yearTextField?.prefill(String(format: "%02i", arguments: [trimmedYear]))
         }
         
         if let month = month {
-            monthTextField?.prefillInformation(String(format: "%02i", arguments: [month]))
+            monthTextField?.prefill(String(format: "%02i", arguments: [month]))
         }
         
         if let cardNumber = cardNumber, let numberInputTextField = numberInputTextField {
-            numberInputTextField.prefillInformation(cardNumber)
+            numberInputTextField.prefill(cardNumber)
             
             // With a new card number comes a new card type - pass this card type to `cvcTextField`
             cvcTextField?.cardType = cardType
         }
         
         if let cvc = cvc {
-            cvcTextField?.prefillInformation(cvc)
+            cvcTextField?.prefill(cvc)
         }
         
 //        NSOperationQueue().addOperationWithBlock({

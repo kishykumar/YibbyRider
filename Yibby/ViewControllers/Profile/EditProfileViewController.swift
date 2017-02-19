@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class EditProfileViewController: UIViewController {
+open class EditProfileViewController: UIViewController {
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -17,7 +17,7 @@ public class EditProfileViewController: UIViewController {
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     @IBOutlet weak var signOutButtonOutlet: UIButton!
     
-    var photoSaveCallback: (UIImage -> Void)?
+    var photoSaveCallback: ((UIImage) -> Void)?
     
     let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "SETTINGS", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
     let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
@@ -25,13 +25,13 @@ public class EditProfileViewController: UIViewController {
     let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
     
     enum TableIndex: Int {
-        case Trips = 0
-        case Payment
-        case Settings
-        case Notifications
-        case Support
-        case Promotions
-        case Drive
+        case trips = 0
+        case payment
+        case settings
+        case notifications
+        case support
+        case promotions
+        case drive
     }
     
     // MARK: - Actions
@@ -40,7 +40,7 @@ public class EditProfileViewController: UIViewController {
     
     // MARK: - Setup Functions
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -49,37 +49,37 @@ public class EditProfileViewController: UIViewController {
         setupDefaultValues()
     }
     
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         
     }
     
-    private func setupViews() {
+    fileprivate func setupViews() {
 
     }
     
-    private func setupDefaultValues() {
+    fileprivate func setupDefaultValues() {
         
     }
     
     // MARK: Tableview Delegate/DataSource
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         
-        let mycell = tableView.dequeueReusableCellWithIdentifier("LeftNavDrawerCellIdentifier", forIndexPath: indexPath) as! LeftNavDrawerTableViewCell
+        let mycell = tableView.dequeueReusableCell(withIdentifier: "LeftNavDrawerCellIdentifier", for: indexPath) as! LeftNavDrawerTableViewCell
         
         // set the label
         mycell.menuItemLabel.text = menuItems[indexPath.row]
@@ -91,7 +91,7 @@ public class EditProfileViewController: UIViewController {
         return mycell
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         
         let tHeight = tableView.bounds.height
         let height = tHeight/CGFloat(menuItems.count)
@@ -99,12 +99,12 @@ public class EditProfileViewController: UIViewController {
         return height
     }
     
-    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath) {
         
     }
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
 
     }
     

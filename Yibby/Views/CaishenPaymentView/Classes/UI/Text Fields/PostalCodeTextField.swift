@@ -22,7 +22,7 @@ public class PostalCodeTextField: DetailInputTextField {
      
      - returns: True, if the card validation code is valid.
      */
-    internal override func isInputValid(input: String, partiallyValid: Bool) -> Bool {
+    internal override func isInputValid(_ input: String, partiallyValid: Bool) -> Bool {
         
         return true
     }

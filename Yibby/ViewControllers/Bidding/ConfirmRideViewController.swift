@@ -18,43 +18,38 @@ class ConfirmRideViewController: BaseYibbyViewController {
     @IBOutlet weak var cancelButtonOutlet: YibbyButton1!
     @IBOutlet weak var acceptButtonOutlet: YibbyButton1!
     
-    var pickupLatLng: CLLocationCoordinate2D!
-    var pickupPlaceName: String!
+    var pickupLocation: YBLocation!
+    var dropoffLocation: YBLocation!
     
-    var dropoffLatLng: CLLocationCoordinate2D!
-    var dropoffPlaceName: String!
-    
-    var bidLow: Float!
     var bidHigh: Float!
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
 
     // MARK: - Actions
     
-    @IBAction func onCancelButtonClick(sender: AnyObject) {
-        self.navigationController!.popViewControllerAnimated(true)
+    @IBAction func onCancelButtonClick(_ sender: AnyObject) {
+        self.navigationController!.popViewController(animated: true)
     }
     
-    @IBAction func onAcceptButtonClick(sender: AnyObject) {
+    @IBAction func onAcceptButtonClick(_ sender: AnyObject) {
         
         WebInterface.makeWebRequestAndHandleError(
             self,
-            webRequest: {(errorBlock: (BAAObjectResultBlock)) -> Void in
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
                 ActivityIndicatorUtil.enableActivityIndicator(self.view)
                 
-                let client: BAAClient = BAAClient.sharedClient()
+                let client: BAAClient = BAAClient.shared()
                 
-                client.createBid(self.bidHigh,
-                    bidLow: self.bidLow, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLatLng!.latitude,
-                    pickupLong: self.pickupLatLng!.longitude, pickupLoc: self.pickupPlaceName,
-                    dropoffLat: self.dropoffLatLng!.latitude, dropoffLong: self.dropoffLatLng!.longitude,
-                    dropoffLoc: self.dropoffPlaceName, completion: {(success, error) -> Void in
+                client.createBid(self.bidHigh as NSNumber!, bidLow: 0, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
+                    pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name,
+                    dropoffLat: self.dropoffLocation.latitude as NSNumber!, dropoffLong: self.dropoffLocation.longitude as NSNumber!,
+                    dropoffLoc: self.dropoffLocation.name, completion: {(success, error) -> Void in
                         
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
                             // check the error codes
-                            if let bbCode = success["bb_code"] as? String {
+                            if let bbCode = (success as AnyObject)["bb_code"] as? String {
                                 if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
                                     
                                     // TODO: display alert that no drivers are online
@@ -65,25 +60,28 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                 }
                             } else {
                                 
-                                if let successData = success["data"] as? [String: NSObject] {
+                                if let successData = (success as AnyObject)["data"] as? [String: NSObject] {
+                                    
+                                    let pickupLoc = YBLocation(lat: successData["pickupLat"] as! Double,
+                                                                    long: successData["pickupLong"] as! Double,
+                                                                    name: successData["pickupLoc"] as! String)
+                                    
+                                    let dropoffLoc = YBLocation(lat: successData["dropoffLat"] as! Double,
+                                                                    long: successData["dropoffLong"] as! Double,
+                                                                    name: successData["dropoffLoc"] as! String)
                                     
                                     // set the bid state
+                                    let userBid = Bid()
+                                    userBid.id = (successData["id"] as! String)
+                                    userBid.bidHigh = (successData["bidHigh"] as! Double)
+                                    userBid.pickupLocation = pickupLoc
+                                    userBid.dropoffLocation = dropoffLoc
+                                    userBid.people = (successData["people"] as? Int)
+                                    userBid.creationTime = (successData["_creation_date"] as! String)
                                     
-                                    let userBid: Bid = Bid(id: successData["id"] as! String,
-                                        bidHigh: successData["bidHigh"] as! Int,
-                                        bidLow: successData["bidLow"] as! Int,
-                                        etaHigh: successData["etaHigh"] as! Int,
-                                        etaLow: successData["etaLow"] as! Int,
-                                        pickupLat: successData["pickupLat"] as! Double,
-                                        pickupLong: successData["pickupLong"] as! Double,
-                                        pickupLoc: successData["pickupLoc"] as! String,
-                                        dropoffLat: successData["dropoffLat"] as! Double,
-                                        dropoffLong: successData["dropoffLong"] as! Double,
-                                        dropoffLoc: successData["dropoffLoc"] as! String)!
+                                    YBClient.sharedInstance().setBid(userBid)
                                     
-                                    BidState.sharedInstance().setOngoingBid(userBid)
-                                    
-                                    self.performSegueWithIdentifier("findOffersSegue", sender: nil)
+                                    self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {
                                     AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
                                 }
@@ -102,7 +100,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
         
         self.view.backgroundColor = UIColor.navyblue1()
         
-        self.cancelButtonOutlet.color = UIColor.redColor()
+        self.cancelButtonOutlet.color = UIColor.red
         self.acceptButtonOutlet.color = UIColor.appDarkGreen1()
     }
     
@@ -113,8 +111,8 @@ class ConfirmRideViewController: BaseYibbyViewController {
         setupUI()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func didReceiveMemoryWarning() {

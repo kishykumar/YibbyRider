@@ -16,7 +16,7 @@ public protocol AlertCellDelegate: class {
     func tappedCancelButton()
 }
 
-public class AlertCell: UITableViewCell {
+open class AlertCell: UITableViewCell {
     weak var delegate: AlertCellDelegate?
 
     @IBOutlet weak var label: ElloLabel!
@@ -28,26 +28,26 @@ public class AlertCell: UITableViewCell {
 
     var onInputChanged: ((String) -> Void)?
 
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
 
-        input.backgroundColor = UIColor.whiteColor()
+        input.backgroundColor = UIColor.white
 //        input.font = UIFont.defaultFont()
-        input.font = UIFont.systemFontOfSize(14)
-        input.textColor = UIColor.blackColor()
-        input.tintColor = UIColor.blackColor()
+        input.font = UIFont.systemFont(ofSize: 14)
+        input.textColor = UIColor.black
+        input.tintColor = UIColor.black
         input.clipsToBounds = false
 
-        inputBorder.backgroundColor = UIColor.blackColor()
+        inputBorder.backgroundColor = UIColor.black
         input.addSubview(inputBorder)
     }
 
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         inputBorder.frame = input.bounds.fromBottom().grow(top: 1, sides: 10, bottom: 0)
     }
 
-    override public func prepareForReuse() {
+    override open func prepareForReuse() {
         super.prepareForReuse()
 
         label.text = ""
@@ -73,7 +73,7 @@ extension AlertCell {
 
 extension AlertCell {
     class func nib() -> UINib {
-        return UINib(nibName: "AlertCell", bundle: .None)
+        return UINib(nibName: "AlertCell", bundle: .none)
     }
 
     class func reuseIdentifier() -> String {

@@ -9,7 +9,7 @@
 import UIKit
 import BButton
 
-public class YibbyButton1: BButton {
+open class YibbyButton1: BButton {
     
     required override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +22,7 @@ public class YibbyButton1: BButton {
     }
     
     func sharedSetup() {
-        self.setType(BButtonType.Default)
+        self.setType(BButtonType.default)
         buttonCornerRadius = 10.0
     }
 }

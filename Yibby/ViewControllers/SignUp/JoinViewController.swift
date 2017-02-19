@@ -36,17 +36,17 @@ class JoinViewController: BaseYibbyTabViewController {
 
     func setupTabBarUI() {
         // change selected bar color
-        settings.style.buttonBarBackgroundColor = .whiteColor()
-        settings.style.buttonBarItemBackgroundColor = .whiteColor()
+        settings.style.buttonBarBackgroundColor = .white
+        settings.style.buttonBarItemBackgroundColor = .white
         let blueInstagramColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
         
         settings.style.selectedBarBackgroundColor = blueInstagramColor
-        settings.style.buttonBarItemTitleColor = .blackColor()
+        settings.style.buttonBarItemTitleColor = .black
 
         // height of the moving bar line
         settings.style.selectedBarHeight = 2.0
         
-        settings.style.buttonBarItemFont = .boldSystemFontOfSize(16)
+        settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 16)
         settings.style.buttonBarMinimumLineSpacing = 0
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
         
@@ -56,10 +56,10 @@ class JoinViewController: BaseYibbyTabViewController {
         
         changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = .blackColor()
+            oldCell?.label.textColor = .black
             newCell?.label.textColor = blueInstagramColor
-            newCell?.backgroundColor = .redColor()
-            newCell?.tintColor = .redColor()
+            newCell?.backgroundColor = .red
+            newCell?.tintColor = .red
         }
     }
     
@@ -69,15 +69,14 @@ class JoinViewController: BaseYibbyTabViewController {
     }
     
     // MARK: - PagerTabStripDataSource
-
-    override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
         let loginStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Login, bundle: nil)
-        let loginVC = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewControllerIdentifier") as! LoginViewController
+        let loginVC = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewControllerIdentifier") as! LoginViewController
 
         let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
                                                           bundle: nil)
-        let signupVC = signupStoryboard.instantiateViewControllerWithIdentifier("SignupViewControllerIdentifier") as! SignupViewController
+        let signupVC = signupStoryboard.instantiateViewController(withIdentifier: "SignupViewControllerIdentifier") as! SignupViewController
 
         let child_1 = loginVC
         let child_2 = signupVC

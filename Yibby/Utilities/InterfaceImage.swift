@@ -7,20 +7,22 @@
 //
 
 import UIKit
-import SVGKit
+//import SVGKit
 
 
 public enum InterfaceImage: String {
     public enum Style {
-        case Normal
-        case White
-        case Selected
-        case Disabled
-        case Red
+        case normal
+        case white
+        case selected
+        case disabled
+        case red
     }
 
     case ElloLogo = "ello_logo"
 
+    case DriverCar = "driver_car"
+    
     // Postbar Icons
     case Eye = "eye"
     case Heart = "hearts"
@@ -87,40 +89,52 @@ public enum InterfaceImage: String {
     case AudioPlay = "embetter_audio_play"
     case VideoPlay = "embetter_video_play"
 
-    func image(style: Style) -> UIImage? {
+    func image(_ style: Style) -> UIImage? {
         switch style {
-        case .Normal:   return normalImage
-        case .White:    return whiteImage
-        case .Selected: return selectedImage
-        case .Disabled: return disabledImage
-        case .Red:      return redImage
+        case .normal:   return normalImage
+        case .white:    return whiteImage
+        case .selected: return selectedImage
+        case .disabled: return disabledImage
+        case .red:      return redImage
         }
     }
 
+//    var normalImage: UIImage! {
+//        switch self {
+//        case .ElloLogo,
+//            .GiantHeart,
+//            .AudioPlay,
+//            .VideoPlay,
+//            .BubbleTail,
+//            .NarrationPointer,
+//            .ValidationError,
+//            .ValidationOK:
+//            return SVGKImage(named: "\(self.rawValue).svg").uiImage
+//        default:
+//            return SVGKImage(named: "\(self.rawValue)_normal.svg").uiImage
+//        }
+//    }
+//    var selectedImage: UIImage! { return SVGKImage(named: "\(self.rawValue)_selected.svg").uiImage }
+//    var whiteImage: UIImage? { return SVGKImage(named: "\(self.rawValue)_white.svg").uiImage }
+//    var disabledImage: UIImage? {
+//        switch self {
+//        case .Repost, .AngleBracket:
+//            return SVGKImage(named: "\(self.rawValue)_disabled.svg").uiImage
+//        default:
+//            return nil
+//        }
+//    }
+//    var redImage: UIImage? { return SVGKImage(named: "\(self.rawValue)_red.svg").uiImage }
+    
     var normalImage: UIImage! {
-        switch self {
-        case .ElloLogo,
-            .GiantHeart,
-            .AudioPlay,
-            .VideoPlay,
-            .BubbleTail,
-            .NarrationPointer,
-            .ValidationError,
-            .ValidationOK:
-            return SVGKImage(named: "\(self.rawValue).svg").UIImage
-        default:
-            return SVGKImage(named: "\(self.rawValue)_normal.svg").UIImage
-        }
+        return UIImage(named:"defaultMarker")
     }
-    var selectedImage: UIImage! { return SVGKImage(named: "\(self.rawValue)_selected.svg").UIImage }
-    var whiteImage: UIImage? { return SVGKImage(named: "\(self.rawValue)_white.svg").UIImage }
+    var selectedImage: UIImage! { return UIImage(named:"defaultMarker") }
+    var whiteImage: UIImage? { return UIImage(named:"defaultMarker") }
     var disabledImage: UIImage? {
-        switch self {
-        case .Repost, .AngleBracket:
-            return SVGKImage(named: "\(self.rawValue)_disabled.svg").UIImage
-        default:
-            return nil
-        }
+        return UIImage(named:"defaultMarker")
+        
     }
-    var redImage: UIImage? { return SVGKImage(named: "\(self.rawValue)_red.svg").UIImage }
+    
+    var redImage: UIImage? { return UIImage(named:"defaultMarker") }
 }

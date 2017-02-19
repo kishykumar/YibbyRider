@@ -13,14 +13,14 @@ import Nimble
 import Nimble_Snapshots
 
 
-func showController(viewController: UIViewController) -> UIWindow {
+func showController(_ viewController: UIViewController) -> UIWindow {
     let frame: CGRect
     let view = viewController.view
-    if view.frame.size.width > 0 && view.frame.size.height > 0 {
-        frame = CGRect(origin: CGPointZero, size: view.frame.size)
+    if view?.frame.size.width > 0 && view?.frame.size.height > 0 {
+        frame = CGRect(origin: CGPoint.zero, size: (view?.frame.size)!)
     }
     else {
-        frame = UIScreen.mainScreen().bounds
+        frame = UIScreen.main.bounds
     }
     
     if #available(iOS 9.0, *) {
@@ -34,55 +34,55 @@ func showController(viewController: UIViewController) -> UIWindow {
     return window
 }
 
-func showView(view: UIView) -> UIWindow {
+func showView(_ view: UIView) -> UIWindow {
     let controller = UIViewController()
     controller.view.frame.size = view.frame.size
-    view.frame.origin = CGPointZero
+    view.frame.origin = CGPoint.zero
     controller.view.addSubview(view)
     return showController(controller)
 }
 
 public enum SnapshotDevice {
 //    case Pad_Landscape
-    case Pad_Portrait
-    case Phone4_Portrait
-    case Phone5_Portrait
-    case Phone6_Portrait
-    case Phone6Plus_Portrait
+    case pad_Portrait
+    case phone4_Portrait
+    case phone5_Portrait
+    case phone6_Portrait
+    case phone6Plus_Portrait
     
     static let all: [SnapshotDevice] = [
 //        .Pad_Landscape,
-        .Pad_Portrait,
-        .Phone4_Portrait,
-        .Phone5_Portrait,
-        .Phone6_Portrait,
-        .Phone6Plus_Portrait,
+        .pad_Portrait,
+        .phone4_Portrait,
+        .phone5_Portrait,
+        .phone6_Portrait,
+        .phone6Plus_Portrait,
         ]
     
     var description: String {
         switch self {
 //        case Pad_Landscape: return "iPad in Landscape"
-        case Pad_Portrait: return "iPad in Portrait"
-        case Phone4_Portrait: return "iPhone4 in Portrait"
-        case Phone5_Portrait: return "iPhone5 in Portrait"
-        case Phone6_Portrait: return "iPhone6 in Portrait"
-        case Phone6Plus_Portrait: return "iPhone6Plus in Portrait"
+        case .pad_Portrait: return "iPad in Portrait"
+        case .phone4_Portrait: return "iPhone4 in Portrait"
+        case .phone5_Portrait: return "iPhone5 in Portrait"
+        case .phone6_Portrait: return "iPhone6 in Portrait"
+        case .phone6Plus_Portrait: return "iPhone6Plus in Portrait"
         }
     }
     
     var size: CGSize {
         switch self {
 //        case Pad_Landscape: return CGSize(width: 1024, height: 768)
-        case Pad_Portrait: return CGSize(width: 768, height: 1024)
-        case Phone4_Portrait: return CGSize(width: 320, height: 480)
-        case Phone5_Portrait: return CGSize(width: 320, height: 568)
-        case Phone6_Portrait: return CGSize(width: 375, height: 667)
-        case Phone6Plus_Portrait: return CGSize(width: 414, height: 736)
+        case .pad_Portrait: return CGSize(width: 768, height: 1024)
+        case .phone4_Portrait: return CGSize(width: 320, height: 480)
+        case .phone5_Portrait: return CGSize(width: 320, height: 568)
+        case .phone6_Portrait: return CGSize(width: 375, height: 667)
+        case .phone6Plus_Portrait: return CGSize(width: 414, height: 736)
         }
     }
 }
 
-func validateAllSnapshots(subject: Snapshotable, named name: String? = nil, record: Bool = false, file: String = #file, line: UInt = #line) {
+func validateAllSnapshots(_ subject: Snapshotable, named name: String? = nil, record: Bool = false, file: String = #file, line: UInt = #line) {
     for device in SnapshotDevice.all {
         context(device.description) {
             describe("view") {
@@ -103,12 +103,12 @@ func validateAllSnapshots(subject: Snapshotable, named name: String? = nil, reco
     }
 }
 
-func prepareForSnapshot(subject: Snapshotable, device: SnapshotDevice) {
+func prepareForSnapshot(_ subject: Snapshotable, device: SnapshotDevice) {
     prepareForSnapshot(subject, size: device.size)
 }
 
-func prepareForSnapshot(subject: Snapshotable, size: CGSize) {
-    let parent = UIView(frame: CGRect(origin: CGPointZero, size: size))
+func prepareForSnapshot(_ subject: Snapshotable, size: CGSize) {
+    let parent = UIView(frame: CGRect(origin: CGPoint.zero, size: size))
     let view = subject.snapshotObject!
     view.frame = parent.bounds
     parent.addSubview(view)
@@ -119,35 +119,35 @@ func prepareForSnapshot(subject: Snapshotable, size: CGSize) {
 
 public extension UIStoryboard {
     
-    class func storyboardWithId(identifier: String, storyboardName: String = "Main") -> UIViewController {
-        return UIStoryboard(name: storyboardName, bundle: NSBundle(forClass: AppDelegate.self)).instantiateViewControllerWithIdentifier(identifier)
+    class func storyboardWithId(_ identifier: String, storyboardName: String = "Main") -> UIViewController {
+        return UIStoryboard(name: storyboardName, bundle: Bundle(forClass: AppDelegate.self)).instantiateViewControllerWithIdentifier(identifier)
     }
     
 }
 
-public func haveRegisteredIdentifier<T: UITableView>(identifier: String) -> NonNilMatcherFunc<T> {
+public func haveRegisteredIdentifier<T: UITableView>(_ identifier: String) -> NonNilMatcherFunc<T> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "\(identifier) should be registered"
         let tableView = try! actualExpression.evaluate() as! UITableView
         tableView.reloadData()
         // Using the side effect of a runtime crash when dequeing a cell here, if it works :thumbsup:
-        let _ = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let _ = tableView.dequeueReusableCell(withIdentifier: identifier, for: IndexPath(row: 0, section: 0))
         return true
     }
 }
 
-public func beVisibleIn<S: UIView>(view: UIView) -> NonNilMatcherFunc<S> {
+public func beVisibleIn<S: UIView>(_ view: UIView) -> NonNilMatcherFunc<S> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "be visible in \(view)"
         let childView = try! actualExpression.evaluate()
         if let childView = childView {
-            if childView.hidden || childView.alpha < 0.01 || childView.frame.size.width < 0.1 || childView.frame.size.height < 0.1 {
+            if childView.isHidden || childView.alpha < 0.01 || childView.frame.size.width < 0.1 || childView.frame.size.height < 0.1 {
                 return false
             }
             
             var parentView: UIView? = childView.superview
             while parentView != nil {
-                if let parentView = parentView where parentView == view {
+                if let parentView = parentView, parentView == view {
                     return true
                 }
                 parentView = parentView!.superview
@@ -215,11 +215,11 @@ public func beVisibleIn<S: UIView>(view: UIView) -> NonNilMatcherFunc<S> {
 //    }
 //}
 
-private func allSubviews(view: UIView) -> [UIView] {
+private func allSubviews(_ view: UIView) -> [UIView] {
     return view.subviews + view.subviews.flatMap { allSubviews($0) }
 }
 
-public func subviewThatMatches(view: UIView, test: (UIView) -> Bool) -> UIView? {
+public func subviewThatMatches(_ view: UIView, test: (UIView) -> Bool) -> UIView? {
     for subview in allSubviews(view) {
         if test(subview) {
             return subview
@@ -228,7 +228,7 @@ public func subviewThatMatches(view: UIView, test: (UIView) -> Bool) -> UIView? 
     return nil
 }
 
-public func haveSubview<V: UIView>(thatMatches test: (UIView) -> Bool) -> NonNilMatcherFunc<V> {
+public func haveSubview<V: UIView>(thatMatches test: @escaping (UIView) -> Bool) -> NonNilMatcherFunc<V> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "have subview that matches"
         

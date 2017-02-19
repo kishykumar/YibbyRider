@@ -14,7 +14,7 @@ class YibbyBorderedUIViewSpec: QuickSpec {
     override func spec() {
         describe("Properties") {
             it("are valid") {
-                let borderedView = YibbyBorderedUIView(frame: CGRectZero)
+                let borderedView = YibbyBorderedUIView(frame: CGRect.zero)
                 
                 expect(borderedView.layer.cornerRadius) > 0
                 expect(borderedView.layer.shadowOpacity) > 0
