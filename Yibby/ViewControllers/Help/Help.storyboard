@@ -154,7 +154,7 @@
                                     <color key="titleColor" red="0.70196078431372544" green="0.18823529411764706" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="rideHistoryBtnAction:" destination="A0p-s4-ALc" eventType="touchUpInside" id="8v7-fb-HeN"/>
+                                    <action selector="rideHistoryBtnActionWithSender:" destination="A0p-s4-ALc" eventType="touchUpInside" id="JYZ-8k-VOK"/>
                                 </connections>
                             </button>
                         </subviews>

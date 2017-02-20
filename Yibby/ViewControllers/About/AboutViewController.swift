@@ -9,7 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-open class AboutViewController: BaseYibbyViewController {
+public class AboutViewController: BaseYibbyViewController {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -18,6 +18,9 @@ open class AboutViewController: BaseYibbyViewController {
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     @IBOutlet weak var signOutButtonOutlet: UIButton!
     
+    @IBOutlet weak var rateUsButtonOutlet: UIButton!
+    @IBOutlet weak var likeUsButtonOutlet: UIButton!
+
     var photoSaveCallback: ((UIImage) -> Void)?
     
     let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "SETTINGS", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
@@ -26,13 +29,13 @@ open class AboutViewController: BaseYibbyViewController {
     let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
     
     enum TableIndex: Int {
-        case trips = 0
-        case payment
-        case settings
-        case notifications
-        case support
-        case promotions
-        case drive
+        case Trips = 0
+        case Payment
+        case Settings
+        case Notifications
+        case Support
+        case Promotions
+        case Drive
     }
     
     // MARK: - Actions
@@ -41,8 +44,16 @@ open class AboutViewController: BaseYibbyViewController {
     
     // MARK: - Setup Functions
     
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rateUsButtonOutlet.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        rateUsButtonOutlet.layer.borderWidth = 1.0
+        rateUsButtonOutlet.layer.cornerRadius = 7
+        
+        likeUsButtonOutlet.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        likeUsButtonOutlet.layer.borderWidth = 1.0
+        likeUsButtonOutlet.layer.cornerRadius = 7
         
         // Do any additional setup after loading the view.
         setupUI()
@@ -50,31 +61,31 @@ open class AboutViewController: BaseYibbyViewController {
         setupDefaultValues()
     }
     
-    open override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    open override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         
     }
     
-    fileprivate func setupViews() {
+    private func setupViews() {
         
     }
     
-    fileprivate func setupDefaultValues() {
+    private func setupDefaultValues() {
         
     }
     
     // MARK: Tableview Delegate/DataSource
     
-    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
@@ -82,6 +93,7 @@ open class AboutViewController: BaseYibbyViewController {
         
         let mycell = tableView.dequeueReusableCell(withIdentifier: "LeftNavDrawerCellIdentifier", for: indexPath) as! LeftNavDrawerTableViewCell
         
+
         // set the label
         mycell.menuItemLabel.text = menuItems[indexPath.row]
         
@@ -92,7 +104,7 @@ open class AboutViewController: BaseYibbyViewController {
         return mycell
     }
     
-    open func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         let tHeight = tableView.bounds.height
         let height = tHeight/CGFloat(menuItems.count)
@@ -100,15 +112,27 @@ open class AboutViewController: BaseYibbyViewController {
         return height
     }
     
-    open func tableView(_ tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath) {
+    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
-    open func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
     }
     
+    // MARK: - rateUsOnGooglePlayBtnAction
+    
+    @IBAction func rateUsOnGooglePlayBtnAction(sender: AnyObject) {
+    }
+    
+    // MARK: - likeUsOnGooglePlayBtnAction
+    @IBAction func likeUsOnGooglePlayBtnAction(sender: AnyObject) {
+    }
+    
+    // MARK: - legalBtnAction
+    @IBAction func legalBtnAction(sender: AnyObject) {
+    }
     
     // MARK: - Helpers
     
