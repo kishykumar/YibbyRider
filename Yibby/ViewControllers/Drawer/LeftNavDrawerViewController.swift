@@ -50,7 +50,8 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            
+            mmnvc.isNavigationBarHidden = false
+
             mmnvc.pushViewController(aboutViewController, animated: true)
             appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             
@@ -60,7 +61,21 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     }
     
     @IBAction func onSignOutButtonClick(_ sender: AnyObject) {
-        logoutUser()
+        
+        let alertController = UIAlertController(title: "Are you sure", message: "want to sign out?", preferredStyle:UIAlertControllerStyle.alert)
+        
+        alertController.addAction(UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.default)
+        { action -> Void in
+            // Put your code here
+        })
+        
+        alertController.addAction(UIAlertAction(title: "SIGN OUT", style: UIAlertActionStyle.default)
+        { action -> Void in
+            // Put your code here
+            self.logoutUser()
+        })
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func onUpdateProfilePictureAction(_ sender: AnyObject) {
@@ -212,6 +227,12 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewControllerIdentifier") as! HistoryViewController
 
             break
+            
+        case TableIndex.notifications.rawValue:
+            let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
+            selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "NotificationsVC") as! NotificationsVC
+            
+            break
 /*<<<<<<< HEAD
         case TableIndex.Notifications.rawValue:
 
@@ -235,6 +256,8 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             break
         case TableIndex.Settings.rawValue:
 */
+        
+            
         case TableIndex.settings.rawValue:
 //>>>>>>> swift3
             
