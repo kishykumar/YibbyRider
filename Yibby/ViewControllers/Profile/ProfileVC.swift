@@ -33,19 +33,19 @@ class ProfileVC: UIViewController {
         
       customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
         
-        VW.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
-        VW1.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        VW1.layer.borderColor = UIColor.borderColor().cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
-        VW2.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        VW2.layer.borderColor = UIColor.borderColor().cgColor
         VW2.layer.borderWidth = 1.0
         VW2.layer.cornerRadius = 7
-        firstNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
-        lastNameLbl.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        lastNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
     }

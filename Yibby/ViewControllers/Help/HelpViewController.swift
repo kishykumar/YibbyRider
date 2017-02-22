@@ -24,10 +24,10 @@ class HelpViewController: BaseYibbyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        VW.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
-        VW1.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        VW1.layer.borderColor = UIColor.borderColor().cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
         

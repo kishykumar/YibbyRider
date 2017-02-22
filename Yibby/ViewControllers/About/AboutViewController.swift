@@ -47,11 +47,11 @@ public class AboutViewController: BaseYibbyViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        rateUsButtonOutlet.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        rateUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
         rateUsButtonOutlet.layer.borderWidth = 1.0
         rateUsButtonOutlet.layer.cornerRadius = 7
         
-        likeUsButtonOutlet.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        likeUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
         likeUsButtonOutlet.layer.borderWidth = 1.0
         likeUsButtonOutlet.layer.cornerRadius = 7
         
