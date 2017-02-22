@@ -14,8 +14,11 @@ import CocoaLumberjack
 import Fabric
 import Crashlytics
 import IQKeyboardManagerSwift
+import FBSDKCoreKit
+import FBSDKLoginKit
 
- 
+var stringSocial = String ()
+
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
 // 2. Bug: Fix the SVProgressHUD (singleton) issue where pressing back button and then Trips again pops off the HUD early. 
@@ -25,7 +28,7 @@ import IQKeyboardManagerSwift
 // 6: Add the swipe down code using IQKeyboardManagerSwift
  
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
  //-- we have removed this because we are not sending upstream messages via GCM
 
     // MARK: - Properties
@@ -75,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+      //rahul  assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
         // [END_EXCLUDE]
@@ -85,7 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         gcmConfig?.receiverDelegate = self
         GCMService.sharedInstance().start(with: gcmConfig)
         // [END start_gcm_service]
-        
+        GIDSignIn.sharedInstance().delegate = self
+
         return true
     }
 
@@ -176,7 +180,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             })
         }
     }
-
+    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if (error == nil) {
+            
+        } else {
+            print("\(error.localizedDescription)")
+        }
+    }
+    // [END disconnect_handler]
+    func application(_ application: UIApplication,
+                     open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+        
+        if stringSocial == "facebook"
+        {
+            if #available(iOS 9.0, *) {
+                return FBSDKApplicationDelegate.sharedInstance().application(
+                    application,
+                    open: url as URL!,
+                    sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
+                    annotation: options[UIApplicationOpenURLOptionsKey.annotation]
+                )
+            } else {
+                // Fallback on earlier versions
+            }
+            
+        }
+        else{
+            if #available(iOS 9.0, *) {
+                return GIDSignIn.sharedInstance().handle(url,
+                                                         sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                         annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+                
+                
+                
+            } else {
+                
+                // Fallback on earlier versions
+            }
+        }
+               return true
+    }
+    public func application(_ application: UIApplication, open url1: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(
+            application,
+            open: url1 as URL!,
+            sourceApplication: sourceApplication,
+            annotation: annotation)
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         DDLogDebug("Called");
 

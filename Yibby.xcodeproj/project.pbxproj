@@ -229,6 +229,9 @@
 		12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CCF51C4B9C0B00F79A26 /* Podfile */; };
 		12F3CCF81C4CF16D00F79A26 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F3CCF71C4CF16D00F79A26 /* CoreLocation.framework */; };
 		331475B0F61507A1D03B7C99 /* Pods_Yibby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBD461A0C740DBD36678D86 /* Pods_Yibby.framework */; };
+		B1035A7B1E5D7DDC00435B8C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A781E5D7DDC00435B8C /* Bolts.framework */; };
+		B1035A7C1E5D7DDC00435B8C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */; };
+		B1035A7D1E5D7DDC00435B8C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */; };
 		D4FDEAD8264D59DAE3042ED0 /* Pods_YibbyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459AE71FE1000380B5FDA55B /* Pods_YibbyTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -487,6 +490,9 @@
 		953102D7B5DF36F72D6F2A76 /* Pods-YibbyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YibbyTests.debug.xcconfig"; path = "Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9DCF8A402103402C60E009F4 /* Pods-YibbyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YibbyTests.release.xcconfig"; path = "Yibby/Pods/Target Support Files/Pods-YibbyTests/Pods-YibbyTests.release.xcconfig"; sourceTree = "<group>"; };
 		9FF1E0BA2BE2520D30E161FB /* Pods-Yibby.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yibby.debug.xcconfig"; path = "Yibby/Pods/Target Support Files/Pods-Yibby/Pods-Yibby.debug.xcconfig"; sourceTree = "<group>"; };
+		B1035A781E5D7DDC00435B8C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		DAF0F8A29620D810751B13B7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -495,8 +501,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1035A7B1E5D7DDC00435B8C /* Bolts.framework in Frameworks */,
+				B1035A7C1E5D7DDC00435B8C /* FBSDKCoreKit.framework in Frameworks */,
 				1201B84A1D28ED2300A7EEAF /* MobileCoreServices.framework in Frameworks */,
 				120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */,
+				B1035A7D1E5D7DDC00435B8C /* FBSDKLoginKit.framework in Frameworks */,
 				12F3CCF81C4CF16D00F79A26 /* CoreLocation.framework in Frameworks */,
 				331475B0F61507A1D03B7C99 /* Pods_Yibby.framework in Frameworks */,
 			);
@@ -1477,6 +1486,9 @@
 			children = (
 				1259D91C1DAB47F600DA6027 /* FBSnapshotTestCase.framework */,
 				1259D91A1DAB44C700DA6027 /* Nimble_Snapshots.framework */,
+				B1035A781E5D7DDC00435B8C /* Bolts.framework */,
+				B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */,
+				B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */,
 				1201B8491D28ED2300A7EEAF /* MobileCoreServices.framework */,
 				120682381CBE277C004A34BB /* SystemConfiguration.framework */,
 				12F3CCF71C4CF16D00F79A26 /* CoreLocation.framework */,
@@ -1717,7 +1729,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F395F6FA1B80BE4DA42CA343 /* [CP] Check Pods Manifest.lock */ = {
@@ -1732,7 +1744,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2076,6 +2088,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yibby/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = Yibby/Info.plist;
@@ -2105,6 +2118,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yibby/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Yibby/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
