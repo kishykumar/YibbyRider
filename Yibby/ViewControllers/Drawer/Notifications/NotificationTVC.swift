@@ -21,7 +21,7 @@ class NotificationTVC: UITableViewCell {
         
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
 
-        changeBtn.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        changeBtn.layer.borderColor = UIColor.borderColor().cgColor
         changeBtn.layer.borderWidth = 1.0
         changeBtn.layer.cornerRadius = 5
         

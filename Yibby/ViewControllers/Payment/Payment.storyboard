@@ -57,20 +57,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1w2-Bg-3lU">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1w2-Bg-3lU">
                                             <rect key="frame" x="71" y="11" width="230" height="19"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTS-ih-yoc">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fTS-ih-yoc">
                                             <rect key="frame" x="16" y="11" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="AGo-VZ-cCw"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Visa ending in 2244" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4J-Zy-2Ra">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visa ending in 2244" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4J-Zy-2Ra">
                                             <rect key="frame" x="71" y="36" width="230" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="T3J-nQ-fFc"/>
@@ -80,6 +79,18 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1w2-Bg-3lU" firstAttribute="trailing" secondItem="C4J-Zy-2Ra" secondAttribute="trailing" id="2bO-Oa-93j"/>
+                                        <constraint firstItem="1w2-Bg-3lU" firstAttribute="leading" secondItem="C4J-Zy-2Ra" secondAttribute="leading" id="4l8-wG-rWh"/>
+                                        <constraint firstItem="C4J-Zy-2Ra" firstAttribute="leading" secondItem="fTS-ih-yoc" secondAttribute="trailing" constant="15" id="AcQ-D4-Hy2"/>
+                                        <constraint firstItem="fTS-ih-yoc" firstAttribute="top" secondItem="GYh-Sd-s6k" secondAttribute="topMargin" constant="3" id="Ess-0a-E6T"/>
+                                        <constraint firstItem="C4J-Zy-2Ra" firstAttribute="top" secondItem="1w2-Bg-3lU" secondAttribute="bottom" constant="6" id="H5x-yX-4lU"/>
+                                        <constraint firstItem="fTS-ih-yoc" firstAttribute="leading" secondItem="GYh-Sd-s6k" secondAttribute="leadingMargin" constant="8" id="aMd-f7-bFu"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fTS-ih-yoc" secondAttribute="bottom" constant="20" id="hYP-SF-xs6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1w2-Bg-3lU" secondAttribute="trailing" constant="66" id="nWu-Ky-7F8"/>
+                                        <constraint firstItem="fTS-ih-yoc" firstAttribute="bottom" secondItem="C4J-Zy-2Ra" secondAttribute="bottom" id="o02-1d-zlU"/>
+                                        <constraint firstItem="fTS-ih-yoc" firstAttribute="top" secondItem="1w2-Bg-3lU" secondAttribute="top" id="zkd-z1-jGV"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="paymentImageOutlet" destination="fTS-ih-yoc" id="l8U-Lf-gzZ"/>
@@ -148,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbC-mZ-IC0" customClass="CardFieldsView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="16" y="104" width="343" height="282.5"/>
+                                <rect key="frame" x="16" y="104" width="343" height="283"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CbC-mZ-IC0" secondAttribute="height" multiplier="96:79" id="Q8o-OT-jgI"/>
                                 </constraints>
@@ -166,7 +177,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-0x-YDS">
-                                <rect key="frame" x="129" y="406.5" width="117" height="30"/>
+                                <rect key="frame" x="129" y="407" width="117" height="30"/>
                                 <state key="normal" title="Scan Credit Card"/>
                                 <connections>
                                     <action selector="scanCardAction:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="Ycc-oj-LLH"/>

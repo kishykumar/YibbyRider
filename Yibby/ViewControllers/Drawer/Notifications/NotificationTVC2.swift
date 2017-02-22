@@ -14,7 +14,7 @@ class NotificationTVC2: UITableViewCell {
 
     override func awakeFromNib() {
         
-        learnMoreBtn.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        learnMoreBtn.layer.borderColor = UIColor.borderColor().cgColor
         learnMoreBtn.layer.borderWidth = 1.0
         learnMoreBtn.layer.cornerRadius = 5
         

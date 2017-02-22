@@ -69,11 +69,11 @@ func setRightViewImage(rightImageIcon : UIImage,senderTextfield : UITextField) {
             
             let rightView = UIView()
             let rightImageView = UIImageView()
-            rightImageView.frame = CGRect(x:5, y: 5, width:20, height: 20)
+            rightImageView.frame = CGRect(x:5, y: 5, width:senderTextfield.frame.size.height-10, height: senderTextfield.frame.size.height-10)
             rightImageView.image = rightImageIcon
             
             rightView.addSubview(rightImageView)
-            rightView.frame = CGRect(x:0, y:0, width:30, height: senderTextfield.frame.size.height)
+            rightView.frame = CGRect(x:0, y:0, width:rightImageView.frame.size.width + 10, height: senderTextfield.frame.size.height)
             rightImageView.contentMode = .scaleToFill
             senderTextfield.rightViewMode = .always
             senderTextfield.rightView = rightView

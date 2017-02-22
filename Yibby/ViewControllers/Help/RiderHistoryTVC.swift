@@ -21,11 +21,11 @@ class RiderHistoryTVC: UITableViewCell {
 
     override func awakeFromNib() {
         
-        riderHistoryImage.layer.borderColor = UIColor(netHex: 0xAAAAAA).cgColor
+        riderHistoryImage.layer.borderColor = UIColor.greyA().cgColor
         riderHistoryImage.layer.borderWidth = 1.0
         riderHistoryImage.layer.cornerRadius = 22.0
         
-        riderHistoryVW.layer.borderColor = UIColor(netHex: 0x31A343).cgColor
+        riderHistoryVW.layer.borderColor = UIColor.borderColor().cgColor
         riderHistoryVW.layer.borderWidth = 1.0
         riderHistoryVW.layer.cornerRadius = 7
         
