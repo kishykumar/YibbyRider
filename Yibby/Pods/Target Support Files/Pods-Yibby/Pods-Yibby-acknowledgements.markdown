@@ -451,6 +451,14 @@ Copyright 2015 Google Inc.
 
 Copyright 2015 Google Inc.
 
+## GoogleAppUtilities
+
+Copyright 2015 Google Inc.
+
+## GoogleAuthUtilities
+
+Copyright 2015 Google Inc.
+
 ## GoogleCloudMessaging
 
 Copyright 2015 Google Inc.
@@ -477,6 +485,10 @@ You can get the attribution text by making a call to
 ## GoogleNetworkingUtilities
 
 Copyright 2015 Google Inc.
+
+## GoogleSignIn
+
+Copyright 2015 Google Inc. All Rights Reserved.
 
 ## GoogleSymbolUtilities
 

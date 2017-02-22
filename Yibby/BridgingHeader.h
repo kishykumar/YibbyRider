@@ -20,5 +20,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "CardIO.h"
+#import <Google/SignIn.h>
 
 #endif /* BridgingHeader_h */

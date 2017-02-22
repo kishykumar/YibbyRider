@@ -11,8 +11,10 @@ import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
 import SwiftKeychainWrapper
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
+class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSignInUIDelegate,GIDSignInDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var emailAddress: UITextField!
@@ -109,6 +111,22 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
     }
     
     // BaasBox login user
+    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        //myActivityIndicator.stopAnimating()
+    }
+    
+    // Present a view that prompts the user to sign in with Google
+    func sign(_ signIn: GIDSignIn!,
+              present viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
+        //print("Sign in presented")
+    }
+    // Dismiss the "Sign in with Google" view
+    func sign(_ signIn: GIDSignIn!,
+              dismiss viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
+        // print("Sign in dismissed")
+    }
     func loginUser(_ usernamei: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
 
@@ -147,7 +165,102 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider {
             }
         })
     }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
+        if user != nil {
+            
+            
+            let userId:NSString = user.userID as NSString                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName:NSString = user.profile.name as NSString
+         
+            let email:NSString = user.profile.email as NSString
+            let img =   user.profile.imageURL(withDimension: 200)
+         
+         
+            // WebserviceForSocialRes(id: userId , reg: "s", email: email, userNmae: fullName)
+        /*    let params = [
+                "name": givenName ,
+                "social_id": userId as String ,
+                "Email": email as String,
+                "lat": self.strLat,
+                "long": self.strLong,
+                "social_username": givenName,
+                "social_type": "google",
+                "social_pic": String(describing: img!),
+                "location": self.location,
+                "deviceid":"12345678"
+            ]
+            print(params)
+            let url = URLBASE + URLSOCIALLOGIN
+            self.WebserviceForSignIn(params as NSDictionary, url: url)*/
+            
+        }
+    }
     
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!){
+        
+    }
+    @IBAction func facebookAction(_ sender: Any) {
+        stringSocial = "facebook"
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                if(fbloginresult.grantedPermissions.contains("email"))
+                {
+                    self.getFBUserData()
+                    fbLoginManager.logOut()
+                }
+            }
+        }
+        
+    }
+    @IBAction func GoogleAction(_ sender: Any) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        
+        GIDSignIn.sharedInstance().signIn()
+
+    }
+    
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+            
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
+                (connection, result, error) -> Void in
+                if (error == nil){
+                    
+                  //  self.stotLoader()
+                    let resultdict = result as! NSDictionary
+                    
+                    print(result)
+                    let params = [
+                        "name": resultdict.value(forKey: "name") as! String,
+                        "social_id": resultdict.value(forKey: "id") as! String ,
+                        "Email": resultdict.value(forKey: "email") as! String,
+                        //"lat": self.strLat,
+                      //  "long": self.strLong,
+                        "social_username": resultdict.value(forKey: "name") as! String,
+                        "social_type": "facebook",
+                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
+                       // "location": self.location,
+                        "deviceid":"12345678"
+                    ]
+                    print(params)
+                   // let url = URLBASE + URLSOCIALLOGIN
+                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
+                    
+                }
+                else
+                {
+                   // self.stotLoader()
+                    
+                }
+            })
+            
+            
+        }
+    }
     /*
     // MARK: - Navigation
 

@@ -46,7 +46,8 @@ def shared_pods
     pod 'AlamofireObjectMapper', '~> 4.0'
     pod 'ImagePicker'
     pod 'Lightbox'
-    
+    pod 'Google/SignIn'
+
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     
     #pod 'ECSlidingViewController', '~> 2.0.3'
