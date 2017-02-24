@@ -12,6 +12,7 @@ def testing_pods
 end
 
 def shared_pods
+    pod 'FoldingCell'
     pod 'Alamofire', '~> 4.0'
     pod 'GoogleMaps'
     pod 'Google/CloudMessaging'

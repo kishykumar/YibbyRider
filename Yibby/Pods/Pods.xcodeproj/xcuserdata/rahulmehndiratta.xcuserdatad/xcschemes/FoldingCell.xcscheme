@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0E4BE8669B6E37C5ACB638BC8E9AD472'
-               BlueprintName = 'Stripe'
+               BlueprintIdentifier = '44D04613A7591446E9F604C26C55657F'
+               BlueprintName = 'FoldingCell'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Stripe.framework'>
+               BuildableName = 'FoldingCell.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
