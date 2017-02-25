@@ -224,7 +224,9 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         case TableIndex.trips.rawValue:
             
             let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
-            selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewControllerIdentifier") as! HistoryViewController
+            selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "TripTableVC") as! TripTableVC
+            
+            //selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewControllerIdentifier") as! HistoryViewController
 
             break
             

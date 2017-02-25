@@ -69,6 +69,11 @@
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
+		<key>FoldingCell.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>41</integer>
+		</dict>
 		<key>Hue.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -222,6 +227,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>0E4BE8669B6E37C5ACB638BC8E9AD472</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>11BD9F68C2F91F5AF96C10585EAE863A</key>
 		<dict>
 			<key>primary</key>
@@ -322,6 +332,21 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>43DD0B5DADB27B2C120A22AA827DA0F5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>44137ECA14D9144492D2FE322F31E2AA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>44D04613A7591446E9F604C26C55657F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
 		<dict>
 			<key>primary</key>
@@ -337,6 +362,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>598DF063DC1727BC1C90CA71E202FA70</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5DB46EA499F9A5E22765121102FCC34B</key>
 		<dict>
 			<key>primary</key>
@@ -348,6 +378,11 @@
 			<true/>
 		</dict>
 		<key>7082854CB1467401C3CA90FC83DDE419</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>72740B67EAD2CAE223B127AE111B531C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -382,12 +417,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8059363FE0A78CE2B3186311B0F6683C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>819038238B58FC1A47F80F5D8255F96F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8205DD15B96613DA8CE169ABEF84ACEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82812A5C1F74CECF35329C586832377C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -502,6 +547,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AE1270E40EB6619AADAA33AC5BA9E63E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B09EEAC1DC104531F170630C032D7C25</key>
 		<dict>
 			<key>primary</key>
@@ -572,6 +622,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D66384010CA90E4C6C79187E3244EC22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D7D6460167E9A0525598385B4C60B93C</key>
 		<dict>
 			<key>primary</key>
@@ -602,6 +657,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E8D9A4C908708334EFF9D81782CAA6DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EA82564287A8DDE466C7A4893107E2B2</key>
 		<dict>
 			<key>primary</key>
@@ -628,6 +688,11 @@
 			<true/>
 		</dict>
 		<key>F8B6D8A285E98CFED5F124FABCC4A21E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F94F9EA94E667E2E4400B5B24CB4CD9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

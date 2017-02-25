@@ -18,6 +18,9 @@
 		084207E51E5870D4006607D8 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E41E5870D4006607D8 /* NotificationTVC.swift */; };
 		084207E71E5871D6006607D8 /* NotificationTVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E61E5871D6006607D8 /* NotificationTVC1.swift */; };
 		084207E91E5871F8006607D8 /* NotificationTVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E81E5871F8006607D8 /* NotificationTVC2.swift */; };
+		08C15C5B1E60E35C007F1411 /* TripTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5A1E60E35C007F1411 /* TripTableVC.swift */; };
+		08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5C1E60E38C007F1411 /* TripTableCell.swift */; };
+		08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */; };
 		120188221CF2A677005EF075 /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120188211CF2A677005EF075 /* SplashScreen.xib */; };
 		1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7351D239E4A00A7EEAF /* Ride.swift */; };
 		1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B73F1D23A84500A7EEAF /* AboutViewController.swift */; };
@@ -257,6 +260,9 @@
 		084207E41E5870D4006607D8 /* NotificationTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		084207E61E5871D6006607D8 /* NotificationTVC1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC1.swift; sourceTree = "<group>"; };
 		084207E81E5871F8006607D8 /* NotificationTVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC2.swift; sourceTree = "<group>"; };
+		08C15C5A1E60E35C007F1411 /* TripTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableVC.swift; sourceTree = "<group>"; };
+		08C15C5C1E60E38C007F1411 /* TripTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableCell.swift; sourceTree = "<group>"; };
+		08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostOrStolenItemVC.swift; sourceTree = "<group>"; };
 		120188211CF2A677005EF075 /* SplashScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen.xib; sourceTree = "<group>"; };
 		1201B7351D239E4A00A7EEAF /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		1201B73F1D23A84500A7EEAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -698,6 +704,9 @@
 			isa = PBXGroup;
 			children = (
 				1201B7F11D2500D200A7EEAF /* History.storyboard */,
+				08C15C5A1E60E35C007F1411 /* TripTableVC.swift */,
+				08C15C5C1E60E38C007F1411 /* TripTableCell.swift */,
+				08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */,
 				121096951D13CA6300D7174F /* HistoryTableCell.swift */,
 				1201B74F1D23A85F00A7EEAF /* HistoryViewController.swift */,
 				1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */,
@@ -1756,6 +1765,7 @@
 			files = (
 				125B39041DBC96F80041E0D7 /* EditProfileViewController.swift in Sources */,
 				126C4AF11D796276005EC5FF /* CardInfoTextFieldDelegate.swift in Sources */,
+				08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */,
 				12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */,
 				1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */,
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
@@ -1788,6 +1798,7 @@
 				12A6BF481D7E8C6F008BEFC1 /* YibbyButton1.swift in Sources */,
 				126C4AF01D796276005EC5FF /* CVCInputTextField.swift in Sources */,
 				126C4ADE1D796276005EC5FF /* Visa.swift in Sources */,
+				08C15C5B1E60E35C007F1411 /* TripTableVC.swift in Sources */,
 				126C4AF71D796276005EC5FF /* UITextField+Extensions.swift in Sources */,
 				0825BB531E5640E100A18145 /* CustomizeTextfield.swift in Sources */,
 				126C4ADC1D796276005EC5FF /* MasterCard.swift in Sources */,
@@ -1803,6 +1814,7 @@
 				126C4AE91D796276005EC5FF /* CardTextField.swift in Sources */,
 				1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */,
 				126C4ADF1D796276005EC5FF /* Expiry.swift in Sources */,
+				08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */,
 				126C4ADA1D796276005EC5FF /* Discover.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
 				1201B8401D28E93900A7EEAF /* FreeMethods.swift in Sources */,
