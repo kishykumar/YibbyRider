@@ -16,6 +16,7 @@ import Crashlytics
 import IQKeyboardManagerSwift
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FoldingCell
 
 var stringSocial = String ()
 

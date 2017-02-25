@@ -67,6 +67,8 @@ open class FoldingCell: UITableViewCell {
   override open func awakeFromNib() {
     super.awakeFromNib()
     
+    
+    
     commonInit()
   }
   
@@ -99,6 +101,7 @@ open class FoldingCell: UITableViewCell {
       foregroundView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
       foregroundViewTop.constant += height / 2
     }
+    //Sankar -comment
     foregroundView.layer.transform = foregroundView.transform3d()
     
     createAnimationView();
@@ -508,8 +511,12 @@ extension UIView {
   func pb_takeSnapshot(_ frame: CGRect) -> UIImage? {
     UIGraphicsBeginImageContextWithOptions(frame.size, false, 0.0)
     
-    let context = UIGraphicsGetCurrentContext();
-    context!.translateBy(x: frame.origin.x * -1, y: frame.origin.y * -1)
+//    let context = UIGraphicsGetCurrentContext();
+//    context!.translateBy(x: frame.origin.x * -1, y: frame.origin.y * -1)
+    
+    if let context = UIGraphicsGetCurrentContext() {
+        context.translateBy(x: frame.origin.x * -1, y: frame.origin.y * -1)
+    }
     
     guard let currentContext = UIGraphicsGetCurrentContext() else {
       return nil
