@@ -19,7 +19,7 @@ class LostOrStolenItemVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        VW.layer.borderColor = UIColor.grey5().cgColor
+        VW.layer.borderColor = UIColor.lightGray.cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
         

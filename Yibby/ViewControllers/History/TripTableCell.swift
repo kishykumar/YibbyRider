@@ -40,17 +40,17 @@ class TripTableCell: FoldingCell {
     var number: Int = 0 {
         didSet {
             
-            userIV.layer.borderColor = UIColor.borderColor().cgColor
+            userIV.layer.borderColor = UIColor.grey5().cgColor
             userIV.layer.borderWidth = 1.0
             userIV.layer.cornerRadius = userIV.frame.size.width/2
             
             userIV1.layer.borderColor = UIColor.borderColor().cgColor
             userIV1.layer.borderWidth = 1.0
-            userIV1.layer.cornerRadius = 12
+            userIV1.layer.cornerRadius = 20
             
             carIV.layer.borderColor = UIColor.borderColor().cgColor
             carIV.layer.borderWidth = 1.0
-            carIV.layer.cornerRadius = userIV.frame.size.width/2-7
+            carIV.layer.cornerRadius = carIV.frame.size.height/2-7
             
             customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "defaultMarker")!, senderTextfield: fromPlaceTF)
             
