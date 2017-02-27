@@ -123,4 +123,8 @@ class TripTableVC: UITableViewController {
         print("otherIssueBtn tap")
     }
 
+    @IBAction func carDetailsBtnAction(_ sender: AnyObject) {
+        print(sender.tag)
+        print("carDetailsBtnAction tap")
+    }
 }
