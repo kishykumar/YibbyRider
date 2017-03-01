@@ -126,5 +126,16 @@ class TripTableVC: UITableViewController {
     @IBAction func carDetailsBtnAction(_ sender: AnyObject) {
         print(sender.tag)
         print("carDetailsBtnAction tap")
+        
+        let loginSubView = self.storyboard!.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
+        
+        print(loginSubView.view.frame)        
+        
+        addChildViewController(loginSubView)
+        loginSubView.view.backgroundColor = .clear
+        DispatchQueue.main.async {
+            self.view.addSubview(loginSubView.view)
+            // self.emailTxtFld.isHidden=true
+        }
     }
 }
