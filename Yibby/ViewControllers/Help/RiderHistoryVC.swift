@@ -15,7 +15,6 @@ class RiderHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // Do any additional setup after loading the view.
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -26,7 +25,6 @@ class RiderHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         return 1
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

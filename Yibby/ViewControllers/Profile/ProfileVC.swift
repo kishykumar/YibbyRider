@@ -28,10 +28,13 @@ class ProfileVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        
+        setupUI()
+    }
+    
+    private func setupUI() {
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
-      customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
+        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
         
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
@@ -49,7 +52,6 @@ class ProfileVC: UIViewController {
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
     }
-    
     override func viewDidLayoutSubviews() {
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2

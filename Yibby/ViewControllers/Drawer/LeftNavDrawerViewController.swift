@@ -235,31 +235,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "NotificationsVC") as! NotificationsVC
             
             break
-/*<<<<<<< HEAD
-        case TableIndex.Notifications.rawValue:
-
-            /*let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-                mmnvc.navigationBarHidden = false
-                mmnvc.pushViewController(selectedViewController, animated: true)
-                appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-                
-            } else {
-                assert(false)
-            }*/
-
-           /* let NotificationsVCC = self.storyboard?.instantiateViewControllerWithIdentifier("NotificationsVC") as! NotificationsVC
-            _ = self.navigationController?.pushViewController(NotificationsVCC, animated: true)*/
-            
-            let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
-            selectedViewController = settingsStoryboard.instantiateViewControllerWithIdentifier("NotificationsVC") as! NotificationsVC
-            
-            break
-        case TableIndex.Settings.rawValue:
-*/
-        
-            
+          
         case TableIndex.settings.rawValue:
 //>>>>>>> swift3
             

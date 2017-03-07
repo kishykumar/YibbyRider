@@ -14,21 +14,31 @@ class NotificationTVC: UITableViewCell {
 
     @IBOutlet weak var changeBtn: UIButton!
 
+    @IBOutlet weak var VW: UIView!
+
     
     var customTextfieldProperty = CustomizeTextfield()
 
     override func awakeFromNib() {
         
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
-
-        changeBtn.layer.borderColor = UIColor.borderColor().cgColor
-        changeBtn.layer.borderWidth = 1.0
-        changeBtn.layer.cornerRadius = 5
+        setupUI()
         
         super.awakeFromNib()
         // Initialization code
     }
 
+    private func setupUI() {
+
+        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
+        
+        changeBtn.layer.borderColor = UIColor.borderColor().cgColor
+        changeBtn.layer.borderWidth = 1.0
+        changeBtn.layer.cornerRadius = 5
+        
+        VW.layer.borderColor = UIColor.borderColor().cgColor
+        VW.layer.borderWidth = 1.0
+        VW.layer.cornerRadius = 7
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

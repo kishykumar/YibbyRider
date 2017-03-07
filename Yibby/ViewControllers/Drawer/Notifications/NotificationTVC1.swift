@@ -12,16 +12,25 @@ class NotificationTVC1: UITableViewCell {
 
     @IBOutlet weak var TF: UITextField!
 
+    @IBOutlet weak var VW: UIView!
+
     var customTextfieldProperty = CustomizeTextfield()
 
     override func awakeFromNib() {
         
+        setupUI()
+        
+        super.awakeFromNib()
+        // Initialization code
+    }
+    private func setupUI() {
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
         
         customTextfieldProperty.setRightViewImage(rightImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
-
-        super.awakeFromNib()
-        // Initialization code
+        
+        VW.layer.borderColor = UIColor.borderColor().cgColor
+        VW.layer.borderWidth = 1.0
+        VW.layer.cornerRadius = 7
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

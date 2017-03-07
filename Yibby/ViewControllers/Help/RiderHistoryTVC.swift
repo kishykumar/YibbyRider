@@ -21,6 +21,13 @@ class RiderHistoryTVC: UITableViewCell {
 
     override func awakeFromNib() {
         
+        setupUI()
+        
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    private func setupUI() {
         riderHistoryImage.layer.borderColor = UIColor.greyA().cgColor
         riderHistoryImage.layer.borderWidth = 1.0
         riderHistoryImage.layer.cornerRadius = 22.0
@@ -28,12 +35,8 @@ class RiderHistoryTVC: UITableViewCell {
         riderHistoryVW.layer.borderColor = UIColor.borderColor().cgColor
         riderHistoryVW.layer.borderWidth = 1.0
         riderHistoryVW.layer.cornerRadius = 7
-        
-        
-        super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

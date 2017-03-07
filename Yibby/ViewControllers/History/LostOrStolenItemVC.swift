@@ -18,7 +18,12 @@ class LostOrStolenItemVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
+        setupUI()
+        // Do any additional setup after loading the view.
+    }
 
+    private func setupUI() {
         VW.layer.borderColor = UIColor.lightGray.cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
@@ -30,10 +35,7 @@ class LostOrStolenItemVC: UIViewController {
         contactDriverBtnOutlet.layer.borderColor = UIColor.borderColor().cgColor
         contactDriverBtnOutlet.layer.borderWidth = 1.0
         contactDriverBtnOutlet.layer.cornerRadius = 7
-        
-        // Do any additional setup after loading the view.
     }
-
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }

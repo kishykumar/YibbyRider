@@ -12,16 +12,25 @@ class NotificationTVC2: UITableViewCell {
 
     @IBOutlet weak var learnMoreBtn: UIButton!
 
+    @IBOutlet weak var VW: UIView!
+
     override func awakeFromNib() {
         
-        learnMoreBtn.layer.borderColor = UIColor.borderColor().cgColor
-        learnMoreBtn.layer.borderWidth = 1.0
-        learnMoreBtn.layer.cornerRadius = 5
+        setupUI()
         
         super.awakeFromNib()
         // Initialization code
     }
 
+    private func setupUI() {
+        learnMoreBtn.layer.borderColor = UIColor.borderColor().cgColor
+        learnMoreBtn.layer.borderWidth = 1.0
+        learnMoreBtn.layer.cornerRadius = 5
+        
+        VW.layer.borderColor = UIColor.borderColor().cgColor
+        VW.layer.borderWidth = 1.0
+        VW.layer.cornerRadius = 7
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
