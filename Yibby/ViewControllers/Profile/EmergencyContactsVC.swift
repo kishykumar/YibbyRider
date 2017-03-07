@@ -30,7 +30,12 @@ class EmergencyContactsVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+    
+        setupUI()
+    }
+
+    private func setupUI() {
+
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
@@ -47,7 +52,7 @@ class EmergencyContactsVC: UIViewController {
         VW1.layer.borderColor = UIColor.borderColor().cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
-
+        
         firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
@@ -60,9 +65,7 @@ class EmergencyContactsVC: UIViewController {
         lastNameLbl1.layer.borderColor = UIColor.borderColor().cgColor
         lastNameLbl1.layer.borderWidth = 1.0
         lastNameLbl1.layer.cornerRadius = 5
-
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

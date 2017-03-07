@@ -24,16 +24,19 @@ class HelpViewController: BaseYibbyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
+        
+        // Do any additional setup after loading the view.
+    }
+
+    private func setupUI() {
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
         VW1.layer.borderColor = UIColor.borderColor().cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
-        
-        // Do any additional setup after loading the view.
     }
-
     @IBAction func rideHistoryBtnAction(sender: AnyObject) {
         let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "RiderHistoryVC") as! RiderHistoryVC
         _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)

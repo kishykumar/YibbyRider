@@ -47,14 +47,6 @@ public class AboutViewController: BaseYibbyViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        rateUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
-        rateUsButtonOutlet.layer.borderWidth = 1.0
-        rateUsButtonOutlet.layer.cornerRadius = 7
-        
-        likeUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
-        likeUsButtonOutlet.layer.borderWidth = 1.0
-        likeUsButtonOutlet.layer.cornerRadius = 7
-        
         // Do any additional setup after loading the view.
         setupUI()
         setupViews()
@@ -72,7 +64,13 @@ public class AboutViewController: BaseYibbyViewController {
     }
     
     private func setupUI() {
+        rateUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
+        rateUsButtonOutlet.layer.borderWidth = 1.0
+        rateUsButtonOutlet.layer.cornerRadius = 7
         
+        likeUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
+        likeUsButtonOutlet.layer.borderWidth = 1.0
+        likeUsButtonOutlet.layer.cornerRadius = 7
     }
     
     private func setupViews() {
