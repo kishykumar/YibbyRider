@@ -51,10 +51,12 @@
 - (void) logoutWithCompletion:(BAABooleanResultBlock)completionBlock;
 
 // Caber APIs
-- (void)createCaberWithUsername:(NSString *)type
-                      username: (NSString *)username
-                      password:(NSString *)password
-                      completion:(BAABooleanResultBlock)completionBlock;
+- (void)createCaber:(NSString *)type
+                    name: (NSString *)name
+                    email: (NSString *)email
+                    phoneNumber: (NSString *)phoneNumber
+                    password:(NSString *)password
+                    completion:(BAABooleanResultBlock)completionBlock;
 
 
 - (void)completeDriverRegistration: (NSDictionary *)parameters
@@ -71,6 +73,14 @@
 - (void) logoutCaberWithCompletion: (NSString *)type
                         completion: (BAABooleanResultBlock)completionHandler;
 
+// Caber Profile
+- (void)getProfile: (NSString *)type
+                    completion: (BAAObjectResultBlock)completionBlock;
+
+- (void)updateProfile: (NSString *)type
+             jsonBody:(NSDictionary *)jsonBody
+           completion: (BAAObjectResultBlock)completionBlock;
+    
 // driver status
 - (void)updateDriverStatus:(NSString *)status
                 completion: (BAABooleanResultBlock)completionBlock;
