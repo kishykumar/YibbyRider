@@ -179,7 +179,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BaasBoxSDK:
-    :commit: 49db0b017e69f93e2867b697852af127bece8ee3
+    :commit: 5d08db346704b815a3d87ca625e6ab2ed1d70c99
     :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
   CocoaLumberjack:
     :commit: 17936dcf48f858933bd791a05aff911be8bb68ba

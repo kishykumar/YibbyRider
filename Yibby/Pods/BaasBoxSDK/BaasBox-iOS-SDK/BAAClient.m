@@ -289,14 +289,18 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 }
 
 
-- (void)createCaberWithUsername:(NSString *)type
-                       username: (NSString *)username
-                       password:(NSString *)password
-                     completion:(BAABooleanResultBlock)completionHandler {
-    
+- (void)createCaber:(NSString *)type
+                    name: (NSString *)name
+                    email: (NSString *)email
+                    phoneNumber: (NSString *)phoneNumber
+                    password:(NSString *)password
+                    completion:(BAABooleanResultBlock)completionBlock {
+
     [self postPath:@"caber"
         parameters:@{
-                     @"username" : username,
+                     @"name" : name,
+                     @"email" : email,
+                     @"phoneNumber" : phoneNumber,
                      @"password": password,
                      @"appcode" : self.appCode,
                      @"type" : type
@@ -312,7 +316,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                    self.currentUser = user;
                    [self saveUserToDisk:user];
                    
-                   completionHandler(YES, nil);
+                   completionBlock(YES, nil);
                    
                } else {
                    
@@ -322,13 +326,13 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                    NSError *error = [NSError errorWithDomain:[BaasBox errorDomain]
                                                         code:[BaasBox errorCode]
                                                     userInfo:errorDetail];
-                   completionHandler(NO, error);
+                   completionBlock(NO, error);
                    
                }
                
            } failure:^(NSError *error) {
                
-               completionHandler(NO, error);
+               completionBlock(NO, error);
                
            }];
     
@@ -575,6 +579,62 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                
            }];
     
+}
+
+- (void)getProfile: (NSString *)type
+        completion: (BAAObjectResultBlock)completionBlock {
+    
+    if (!self.currentUser) {
+        if (completionBlock) {
+            
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            details[@"NSLocalizedDescriptionKey"] = @"User not logged-in.";
+            NSError *error = [NSError errorWithDomain:[BaasBox errorDomain]
+                                                 code:[BaasBox errorCode]
+                                                userInfo:details];
+            completionBlock(NO, error);
+            
+        }
+        return;
+    }
+    
+    [self getPath:@"caber"
+       parameters:@{
+                    @"type" : type,
+                    @"appcode" : self.appCode,
+                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    }
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+              
+          } failure:^(NSError *error) {
+              
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
+              
+          }];
+}
+
+- (void)updateProfile: (NSString *)type
+        jsonBody:(NSDictionary *)jsonBody
+        completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self putPath:[NSString stringWithFormat:@"caber"]
+        parameters:jsonBody
+           success:^(NSDictionary *responseObject) {
+               
+               if (completionBlock) {
+                   completionBlock(responseObject[@"data"], nil);
+               }
+           } failure:^(NSError *error) {
+               if (completionBlock) {
+                   completionBlock(nil, error);
+               }
+           }];
 }
 
 
