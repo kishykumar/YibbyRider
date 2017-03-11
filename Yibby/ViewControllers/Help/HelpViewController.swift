@@ -41,9 +41,13 @@ class HelpViewController: BaseYibbyViewController {
         let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "RiderHistoryVC") as! RiderHistoryVC
         _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
     }
-    @IBAction func helpCenterBtnAction(sender: AnyObject) {
+    @IBAction func helpCenterBtnAction(sender: AnyObject){
+        let HelpCenterNVC = self.storyboard?.instantiateViewController(withIdentifier: "HelpCenterVC") as! HelpCenterVC
+        _ = self.navigationController?.pushViewController(HelpCenterNVC, animated: true)
     }
     @IBAction func legalBtnAction(sender: AnyObject) {
+        let LegalVCNVC = self.storyboard?.instantiateViewController(withIdentifier: "LegalVC") as! LegalVC
+        _ = self.navigationController?.pushViewController(LegalVCNVC, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

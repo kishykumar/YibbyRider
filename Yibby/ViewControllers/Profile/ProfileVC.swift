@@ -52,6 +52,7 @@ class ProfileVC: UIViewController {
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
     }
+    
     override func viewDidLayoutSubviews() {
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
