@@ -10,10 +10,105 @@ import UIKit
 
 class RideEndViewController: BaseYibbyViewController {
 
+    @IBOutlet var carImage: UIImageView!
+    @IBOutlet var driverImage: UIImageView!
+    @IBOutlet var mapImage: UIImageView!
+    
+    @IBOutlet var rideDateLbl: UILabel!
+    @IBOutlet var carNumberLbl: UILabel!
+    @IBOutlet var rideFareBtn: UILabel!
+    
+    @IBOutlet var finishBtn: UIButton!
+    
+    @IBOutlet var tipVW: UIView!
+    
+    
+    @IBOutlet var star1Btn: UIButton!
+    @IBOutlet var star2Btn: UIButton!
+    @IBOutlet var star3Btn: UIButton!
+    @IBOutlet var star4Btn: UIButton!
+    @IBOutlet var star5Btn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupUI()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    private func setupUI() {
+        carImage.layer.borderColor = UIColor.borderColor().cgColor
+        carImage.layer.borderWidth = 1.0
+        carImage.layer.cornerRadius = carImage.frame.size.width/2-4
+        
+        driverImage.layer.borderColor = UIColor.borderColor().cgColor
+        driverImage.layer.borderWidth = 1.0
+        driverImage.layer.cornerRadius = 25
+        
+        mapImage.layer.borderColor = UIColor.borderColor().cgColor
+        mapImage.layer.borderWidth = 1.0
+        mapImage.layer.cornerRadius = mapImage.frame.size.width/2-4
+        
+        //finishBtn.layer.borderColor = UIColor.lightGray.cgColor
+        //finishBtn.layer.borderWidth = 1.0
+        finishBtn.layer.cornerRadius = 7
+        
+        tipVW.layer.borderColor = UIColor.lightGray.cgColor
+        tipVW.layer.borderWidth = 1.0
+        tipVW.layer.cornerRadius = 7
+    }
+    
+    
+    @IBAction func finishBtnAction(_ sender: Any) {
+    }
+    
+    @IBAction func rateStarDriverBtnAction(_ sender: AnyObject) {
+        
+        if sender.tag == 0
+        {
+            star1Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star2Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            star3Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            star4Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            star5Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        }
+        else if sender.tag == 1
+        {
+            star1Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star2Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star3Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            star4Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            star5Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        }
+        else if sender.tag == 2
+        {
+            star1Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star2Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star3Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star4Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            star5Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        }
+        else if sender.tag == 3
+        {
+            star1Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star2Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star3Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star4Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star5Btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        }
+        else if sender.tag == 4
+        {
+            star1Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star2Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star3Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star4Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+            star5Btn.setTitleColor(UIColor.yellow, for: UIControlState.normal)
+        }
+    }
+    
+    
+    @IBAction func newPriceInTipBtnAction(_ sender: Any) {
     }
 
     override func didReceiveMemoryWarning() {

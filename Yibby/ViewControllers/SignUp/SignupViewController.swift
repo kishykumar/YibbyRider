@@ -91,19 +91,22 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
             AlertUtil.displayAlert("error in form", message: "Please enter email and password")
         } else {
-            createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
+//            createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
+            createUser(nameOutlet.text!, emaili: emailAddressOutlet.text!, phoneNumberi: phoneNumberOutlet.text!, passwordi: passwordOutlet.text!)
         }
     }
     
     // BaasBox create user
-    func createUser(_ usernamei: String, passwordi: String) {
+    
+    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
-
+        
         let client: BAAClient = BAAClient.shared()
-        client.createCaber(withUsername: BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
+        
+        client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
             if (success || self.testMode) {
                 DDLogVerbose("Success signing up: \(success)")
-
+                
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
@@ -117,14 +120,23 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
             }
             else {
                 DDLogVerbose("Signup failed: \(error)")
-                AlertUtil.displayAlert("Signup failed.", message: "Please try again.")
+                
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                    
+                    // check for authentication error and redirect the user to Login page
+                    AlertUtil.displayAlert("Signup failed.", message: "Please try again.")
+                }
+                else {
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
             }
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }
-    
+
     // MARK: - IndicatorInfoProvider
-    
+ 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: InterfaceString.Join.Signup)
     }
@@ -133,7 +145,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 // MARK: - SignupPaymentViewControllerDelegate
 
 extension SignupViewController: SignupPaymentViewControllerDelegate {
-    
+ 
     func signupPaymentViewControllerDidSkip(_ addPaymentViewController: AddPaymentViewController) {
         MainViewController.initMainViewController(self, animated: true)
     }

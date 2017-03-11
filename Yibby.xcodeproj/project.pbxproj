@@ -23,6 +23,8 @@
 		08C15C5B1E60E35C007F1411 /* TripTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5A1E60E35C007F1411 /* TripTableVC.swift */; };
 		08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5C1E60E38C007F1411 /* TripTableCell.swift */; };
 		08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */; };
+		08FE495B1E7416C60044ACBF /* HelpCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE49591E7416C60044ACBF /* HelpCenterVC.swift */; };
+		08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE495A1E7416C60044ACBF /* LegalVC.swift */; };
 		120188221CF2A677005EF075 /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120188211CF2A677005EF075 /* SplashScreen.xib */; };
 		1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7351D239E4A00A7EEAF /* Ride.swift */; };
 		1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B73F1D23A84500A7EEAF /* AboutViewController.swift */; };
@@ -267,6 +269,8 @@
 		08C15C5A1E60E35C007F1411 /* TripTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableVC.swift; sourceTree = "<group>"; };
 		08C15C5C1E60E38C007F1411 /* TripTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableCell.swift; sourceTree = "<group>"; };
 		08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostOrStolenItemVC.swift; sourceTree = "<group>"; };
+		08FE49591E7416C60044ACBF /* HelpCenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCenterVC.swift; sourceTree = "<group>"; };
+		08FE495A1E7416C60044ACBF /* LegalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalVC.swift; sourceTree = "<group>"; };
 		120188211CF2A677005EF075 /* SplashScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen.xib; sourceTree = "<group>"; };
 		1201B7351D239E4A00A7EEAF /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		1201B73F1D23A84500A7EEAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -701,6 +705,8 @@
 				1201B74D1D23A85F00A7EEAF /* HelpViewController.swift */,
 				080D05BC1E5829A500B5C81E /* RiderHistoryVC.swift */,
 				080D05BA1E58290200B5C81E /* RiderHistoryTVC.swift */,
+				08FE49591E7416C60044ACBF /* HelpCenterVC.swift */,
+				08FE495A1E7416C60044ACBF /* LegalVC.swift */,
 			);
 			path = Help;
 			sourceTree = "<group>";
@@ -1904,6 +1910,7 @@
 				124FD5CF1D362CFD002A4AB2 /* StripeBackendAPI.swift in Sources */,
 				126C4AD81D796276005EC5FF /* ChinaUnionPay.swift in Sources */,
 				12A6BF461D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift in Sources */,
+				08FE495B1E7416C60044ACBF /* HelpCenterVC.swift in Sources */,
 				080D05BD1E5829A500B5C81E /* RiderHistoryVC.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */,
@@ -1926,6 +1933,7 @@
 				1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */,
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				126C4AE51D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */,
+				08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */,
 				0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				080D05B91E58116700B5C81E /* NotificationsVC.swift in Sources */,
