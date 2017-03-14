@@ -227,8 +227,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JHA-eB-U1e" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NM0-8P-kcw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NM0-8P-kcw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -239,7 +240,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsb-kI-fBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13959" y="-855"/>
+            <point key="canvasLocation" x="-14044" y="-855"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aOG-3J-SkD">
@@ -247,7 +248,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4OR-ui-BuD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="66T-ac-Kut">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="66T-ac-Kut">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

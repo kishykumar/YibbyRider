@@ -88,12 +88,42 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     // MARK: - Helper Functions
     
     func submitForm() {
-        if (emailAddressOutlet.text == "" || passwordOutlet.text == "") {
-            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
-        } else {
-//            createUser(emailAddressOutlet.text!, passwordi: passwordOutlet.text!)
-            createUser(nameOutlet.text!, emaili: emailAddressOutlet.text!, phoneNumberi: phoneNumberOutlet.text!, passwordi: passwordOutlet.text!)
+        if nameOutlet.text == ""{
+            
+             AlertUtil.displayAlert("error in form", message: "Enter name")
         }
+        
+        else if emailAddressOutlet.text! == "" {
+            
+             AlertUtil.displayAlert("error in form", message: "Enter email address")
+        }
+        else if !isValidEmail(testStr: emailAddressOutlet.text!){
+         
+             AlertUtil.displayAlert("error in form", message: "Enter valid email address")
+        }
+        else if passwordOutlet.text == "" {
+           
+             AlertUtil.displayAlert("error in form", message: "Enter password")
+        }
+        else if  !isValidPassword(testStr: passwordOutlet.text!){
+           
+            
+            AlertUtil.displayAlert("error in form", message: "Password must be more than six characters with minimum one numeric and special character")
+            
+        }
+        else if phoneNumberOutlet.text! == ""{
+            
+            AlertUtil.displayAlert("error in form", message: "Enter phone no")
+        }
+        else if  !isValidPhoneNo(testStr: phoneNumberOutlet.text!){
+           
+             AlertUtil.displayAlert("error in form", message: "Enter valid phone no")
+            
+        }else{
+           createUser(nameOutlet.text!, emaili: emailAddressOutlet.text!, phoneNumberi: phoneNumberOutlet.text!, passwordi: passwordOutlet.text!)
+        }
+        
+        
     }
     
     // BaasBox create user

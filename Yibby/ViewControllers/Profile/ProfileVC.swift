@@ -32,6 +32,8 @@ class ProfileVC: UIViewController {
     }
     
     private func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+        
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
         customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)

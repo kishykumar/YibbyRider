@@ -33,6 +33,8 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
+        
         // Do any additional setup after loading the view.
         self.tableView.emptyDataSetSource = self;
         self.tableView.emptyDataSetDelegate = self;
@@ -61,6 +63,10 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         
         self.perform(#selector(HistoryViewController.loadNextPage),
                              with:nil, afterDelay:0.0)
+    }
+    
+    private func setupUI() {
+    self.customBackButton(y: 20 as AnyObject)
     }
     
     override func viewWillAppear(_ animated: Bool) {

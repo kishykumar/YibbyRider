@@ -38,6 +38,8 @@ class RideEndViewController: BaseYibbyViewController {
     }
     
     private func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+        
         carImage.layer.borderColor = UIColor.borderColor().cgColor
         carImage.layer.borderWidth = 1.0
         carImage.layer.cornerRadius = carImage.frame.size.width/2-4

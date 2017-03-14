@@ -21,8 +21,14 @@ class TripTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+
         createCellHeightsArray()
         //self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+    }
+    
+    func setupUI () {
+    self.customBackButton(y: 0 as AnyObject)
     }
     
     // MARK: configure
@@ -138,4 +144,9 @@ class TripTableVC: UITableViewController {
             // self.emailTxtFld.isHidden=true
         }
     }
+    
+    
+    /*@IBAction func backBtnAction(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }*/
 }

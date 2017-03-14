@@ -120,6 +120,7 @@ SelectPaymentViewControllerDelegate {
     }
     
     func setupUI () {
+        
         if (controllerType == PaymentViewControllerType.listPayment) {
             
             // remove the save button
@@ -134,6 +135,7 @@ SelectPaymentViewControllerDelegate {
             self.navigationItem.rightBarButtonItems?.removeAll()
             
         }
+        self.customBackButton(y: 0 as AnyObject)
     }
     
     override func didReceiveMemoryWarning() {

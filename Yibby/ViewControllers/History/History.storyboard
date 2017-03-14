@@ -239,7 +239,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uwA-V2-uoW" id="0Ze-i9-d8w">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGJ-UW-d1W" customClass="GMSMapView">
@@ -970,6 +970,18 @@
                                     <constraint firstItem="cxg-hI-caC" firstAttribute="top" secondItem="ds3-Ew-Ims" secondAttribute="top" constant="40" id="rB4-BG-4u7"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0O-yC-8kD">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="59"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="KC9-nb-HmI"/>
+                                    <constraint firstAttribute="width" constant="50" id="kJI-ub-Je7"/>
+                                </constraints>
+                                <state key="normal" image="back_button_green"/>
+                                <connections>
+                                    <action selector="backBtnAction:" destination="V0N-52-WFC" eventType="touchUpInside" id="dk7-0H-plQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -977,6 +989,8 @@
                             <constraint firstItem="u6x-DQ-Xxp" firstAttribute="top" secondItem="stR-RB-88f" secondAttribute="bottom" id="BfL-4L-h7P"/>
                             <constraint firstAttribute="trailing" secondItem="ds3-Ew-Ims" secondAttribute="trailing" id="Tcb-pv-FkX"/>
                             <constraint firstItem="ds3-Ew-Ims" firstAttribute="top" secondItem="kSu-xV-AUw" secondAttribute="top" id="Zs1-oP-3Ia"/>
+                            <constraint firstItem="C0O-yC-8kD" firstAttribute="top" secondItem="kSu-xV-AUw" secondAttribute="top" id="bYO-Uh-4dG"/>
+                            <constraint firstItem="C0O-yC-8kD" firstAttribute="leading" secondItem="kSu-xV-AUw" secondAttribute="leading" id="eB2-mT-h5z"/>
                             <constraint firstAttribute="trailing" secondItem="stR-RB-88f" secondAttribute="trailing" id="jQ3-wi-9L2"/>
                             <constraint firstItem="stR-RB-88f" firstAttribute="top" secondItem="kSu-xV-AUw" secondAttribute="top" id="v6p-eD-Fq9"/>
                             <constraint firstItem="ds3-Ew-Ims" firstAttribute="leading" secondItem="kSu-xV-AUw" secondAttribute="leading" id="yW7-qY-NM0"/>
@@ -996,6 +1010,7 @@
     <resources>
         <image name="CarRed" width="128" height="128"/>
         <image name="GG" width="1020" height="574"/>
+        <image name="back_button_green" width="16" height="16"/>
         <image name="defaultProfile" width="480" height="640"/>
         <image name="logoMain" width="468" height="468"/>
         <image name="upArrow" width="128" height="128"/>
