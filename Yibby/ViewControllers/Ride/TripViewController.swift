@@ -70,9 +70,16 @@ class TripViewController: BaseYibbyViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        setupUI()
+        
         initProperties()
     }
 
+    fileprivate func setupUI() {
+    self.customBackButton(y: 20 as AnyObject)
+    }
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

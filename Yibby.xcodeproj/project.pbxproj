@@ -25,6 +25,7 @@
 		08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */; };
 		08FE495B1E7416C60044ACBF /* HelpCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE49591E7416C60044ACBF /* HelpCenterVC.swift */; };
 		08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE495A1E7416C60044ACBF /* LegalVC.swift */; };
+		08FE49611E7522B90044ACBF /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE49601E7522B90044ACBF /* UIViewControllerExtensions.swift */; };
 		120188221CF2A677005EF075 /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120188211CF2A677005EF075 /* SplashScreen.xib */; };
 		1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7351D239E4A00A7EEAF /* Ride.swift */; };
 		1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B73F1D23A84500A7EEAF /* AboutViewController.swift */; };
@@ -271,6 +272,7 @@
 		08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostOrStolenItemVC.swift; sourceTree = "<group>"; };
 		08FE49591E7416C60044ACBF /* HelpCenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCenterVC.swift; sourceTree = "<group>"; };
 		08FE495A1E7416C60044ACBF /* LegalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalVC.swift; sourceTree = "<group>"; };
+		08FE49601E7522B90044ACBF /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		120188211CF2A677005EF075 /* SplashScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen.xib; sourceTree = "<group>"; };
 		1201B7351D239E4A00A7EEAF /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		1201B73F1D23A84500A7EEAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 			children = (
 				1201B8451D28EB4200A7EEAF /* ImageExtensions.swift */,
 				12A6BF491D7FFACD008BEFC1 /* UIColorExtensions.swift */,
+				08FE49601E7522B90044ACBF /* UIViewControllerExtensions.swift */,
 				1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */,
 				1201B83D1D28E90000A7EEAF /* ScreenExtensions.swift */,
 				1201B8471D28EC6900A7EEAF /* Array.swift */,
@@ -1842,6 +1845,7 @@
 				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
 				126C4AE61D796276005EC5FF /* CardTextField+InterfaceBuilder.swift in Sources */,
+				08FE49611E7522B90044ACBF /* UIViewControllerExtensions.swift in Sources */,
 				126C4AF31D796276005EC5FF /* MonthInputTextField.swift in Sources */,
 				126C4AD31D796276005EC5FF /* Card.swift in Sources */,
 				126C4AD41D796276005EC5FF /* CardType.swift in Sources */,

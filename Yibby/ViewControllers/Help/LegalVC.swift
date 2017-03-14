@@ -22,6 +22,8 @@ class LegalVC: UIViewController {
     }
 
     private func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+        
         privacyPolicyBtn.layer.borderColor = UIColor.borderColor().cgColor
         privacyPolicyBtn.layer.borderWidth = 1.0
         privacyPolicyBtn.layer.cornerRadius = 7

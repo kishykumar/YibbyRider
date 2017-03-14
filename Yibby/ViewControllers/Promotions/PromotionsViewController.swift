@@ -10,10 +10,10 @@ import UIKit
 import CocoaLumberjack
 
 class PromotionsViewController: BaseYibbyViewController {
-
+    
     @IBOutlet weak var yebbyCodeTF: UITextField!
     @IBOutlet weak var emailAddressTF: UITextField!
-
+    
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
     
@@ -21,7 +21,14 @@ class PromotionsViewController: BaseYibbyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupUI()
+        
+        // Do any additional setup after loading the view.
+    }
+    private func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+        
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
@@ -41,28 +48,25 @@ class PromotionsViewController: BaseYibbyViewController {
         
         let bottomLine1 = CALayer()
         bottomLine1.frame = CGRect(x: 0.0, y:  emailAddressTF.frame.height - 1, width: emailAddressTF.frame.width, height: 1.0)
-
+        
         bottomLine1.backgroundColor = UIColor.lightGray.cgColor
         emailAddressTF.borderStyle = UITextBorderStyle.none
         emailAddressTF.layer.addSublayer(bottomLine1)
-        
-        // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

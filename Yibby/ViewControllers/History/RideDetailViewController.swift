@@ -21,10 +21,16 @@ class RideDetailViewController: BaseYibbyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
+        
         // Do any additional setup after loading the view.
         
     }
 
+    private func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }

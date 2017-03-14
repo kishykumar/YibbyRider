@@ -24,6 +24,8 @@ class LostOrStolenItemVC: UIViewController {
     }
 
     private func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+        
         VW.layer.borderColor = UIColor.lightGray.cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7

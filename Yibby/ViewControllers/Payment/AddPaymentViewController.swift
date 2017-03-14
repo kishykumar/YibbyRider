@@ -149,6 +149,8 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     // MARK: - Setup Functions 
     
     func setupUI() {
+        self.customBackButton(y: 20 as AnyObject)
+        
         if (isEditCard == true) {
             
             deleteCardButtonOutlet.isHidden = false

@@ -15,8 +15,14 @@ class RiderHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
         // Do any additional setup after loading the view.
     }
+    
+    private func setupUI() {
+    self.customBackButton(y: 20 as AnyObject)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1 //sectionsCount
     }
