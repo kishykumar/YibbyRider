@@ -11,6 +11,8 @@ import Foundation
 
 // MARK: Password validation with 1 numeric and 1 special character
 
+var profileObjectModel = ProfileObject()
+
 func checkTextSufficientComplexity( text : String) -> Bool{
     let text = text
     let numberRegEx  = ".*[0-9]+.*"

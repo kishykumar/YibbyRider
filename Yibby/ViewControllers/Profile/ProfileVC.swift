@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import BaasBoxSDK
+import CocoaLumberjack
 
 class ProfileVC: UIViewController {
-
+    
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var phoneNo: UITextField!
     @IBOutlet var profileImage: UIImageView!
@@ -17,7 +19,7 @@ class ProfileVC: UIViewController {
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
     @IBOutlet var VW2: UIView!
-
+    
     @IBOutlet var firstNameLbl: UILabel!
     @IBOutlet var lastNameLbl: UILabel!
     
@@ -25,10 +27,12 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         setupUI()
+        
+        getProfile()
     }
     
     private func setupUI() {
@@ -55,31 +59,66 @@ class ProfileVC: UIViewController {
         lastNameLbl.layer.cornerRadius = 5
     }
     
+    func getProfile() {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.getProfile(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
+            if ((success) != nil) {
+                
+                if let resultDict = success as? NSDictionary
+                    
+                {
+                    profileObjectModel.setProfileData(responseDict: resultDict)
+                    
+                    self.emailAddress.text = profileObjectModel.email
+                    self.phoneNo.text = profileObjectModel.phoneNo
+                    
+                    var myStringArr = profileObjectModel.name.components(separatedBy: " ")
+                    self.firstNameLbl.text = myStringArr[0]
+                    self.lastNameLbl.text = myStringArr.count > 1 ? myStringArr[1] : nil
+                    
+                    DDLogVerbose("getProfile Data: \(success)")
+                }
+                else {
+                    DDLogError("Error in fetching getProfile: \(error)")
+                }
+                
+            }
+            else {
+                DDLogVerbose("getProfile failed: \(error)")
+            }
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
+    }
+    
     override func viewDidLayoutSubviews() {
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.layer.masksToBounds = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     @IBAction func emergencyContactsBtnAction(sender: AnyObject) {
         
         let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "EmergencyContactsVC") as! EmergencyContactsVC
         _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

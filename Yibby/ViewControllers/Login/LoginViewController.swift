@@ -26,6 +26,8 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
     
     var onStartup = true
     
+    let testMode = false
+    
     // MARK: - Setup functions
     
     func setupDelegates() {
@@ -91,7 +93,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
         
         /*let validateText = TextfieldValidations()
         
-        let allData = validateText.validateEmptyTextfieldsOnly(self.emailAddress.superview!)
+        let allData = validateText.validateEmptyTextfieldsOnly(superView: self.emailAddress.superview!)
         
         print("allData :: \(allData)")
         if allData.boolValue == false {
@@ -110,6 +112,33 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
 //        }
     }
     
+    
+    
+//    (void)getProfile: (NSString *)type
+//    completion: (BAAObjectResultBlock)completionBlock {
+    
+    
+    /*func getProfile(_ type: String!, completion completionBlock: BaasBoxSDK.BAAObjectResultBlock!)
+    
+     createCaber:(NSString *)type
+     name: (NSString *)name
+     email: (NSString *)email
+     phoneNumber: (NSString *)phoneNumber
+     password:(NSString *)password
+     completion:(BAABooleanResultBlock)completionBlock
+     
+    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
+            if (success || self.testMode) {
+                DDLogVerbose("Success signing up: \(success)")*/
+                
+                
+                
+                
     // BaasBox login user
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
         //myActivityIndicator.stopAnimating()

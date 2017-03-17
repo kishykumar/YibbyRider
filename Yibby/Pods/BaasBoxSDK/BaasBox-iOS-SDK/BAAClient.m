@@ -585,6 +585,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
         completion: (BAAObjectResultBlock)completionBlock {
     
     if (!self.currentUser) {
+        
         if (completionBlock) {
             
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
@@ -597,7 +598,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
         }
         return;
     }
-    
+
     [self getPath:@"caber"
        parameters:@{
                     @"type" : type,
@@ -605,6 +606,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                     @"X-BB-SESSION": self.currentUser.authenticationToken
                     }
           success:^(NSDictionary *responseObject) {
+              
               
               if (completionBlock) {
                   completionBlock(responseObject[@"data"], nil);
