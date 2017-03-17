@@ -128,7 +128,8 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     
     // BaasBox create user
     
-    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
+    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String)
+    {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()
@@ -164,6 +165,42 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }
+    /*{
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
+            if (success || self.testMode) {
+                DDLogVerbose("Success signing up: \(success)")
+                
+                // if login is successful, save username, password, token in keychain
+                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
+                
+                let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+                let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+                
+                apViewController.signupDelegate = self
+                apViewController.isSignup = true
+                
+                self.navigationController!.pushViewController(apViewController, animated: true)
+            }
+            else {
+                DDLogVerbose("Signup failed: \(error)")
+                
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                    
+                    // check for authentication error and redirect the user to Login page
+                    AlertUtil.displayAlert("Signup failed.", message: "Please try again.")
+                }
+                else {
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            }
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
+    }*/
 
     // MARK: - IndicatorInfoProvider
  
