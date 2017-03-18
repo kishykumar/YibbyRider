@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08032C121E6600A100E876A5 /* CarDetailsChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08032C111E6600A100E876A5 /* CarDetailsChildView.swift */; };
 		08032C161E66102B00E876A5 /* CancelRideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08032C151E66102B00E876A5 /* CancelRideVC.swift */; };
+		080349C21E7DB17A006C1E8A /* pickImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080349C11E7DB179006C1E8A /* pickImageClass.swift */; };
 		080D05B91E58116700B5C81E /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D05B81E58116700B5C81E /* NotificationsVC.swift */; };
 		080D05BB1E58290200B5C81E /* RiderHistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D05BA1E58290200B5C81E /* RiderHistoryTVC.swift */; };
 		080D05BD1E5829A500B5C81E /* RiderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D05BC1E5829A500B5C81E /* RiderHistoryVC.swift */; };
@@ -257,6 +258,7 @@
 /* Begin PBXFileReference section */
 		08032C111E6600A100E876A5 /* CarDetailsChildView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailsChildView.swift; sourceTree = "<group>"; };
 		08032C151E66102B00E876A5 /* CancelRideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelRideVC.swift; sourceTree = "<group>"; };
+		080349C11E7DB179006C1E8A /* pickImageClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickImageClass.swift; sourceTree = "<group>"; };
 		080D05B81E58116700B5C81E /* NotificationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		080D05BA1E58290200B5C81E /* RiderHistoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderHistoryTVC.swift; sourceTree = "<group>"; };
 		080D05BC1E5829A500B5C81E /* RiderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderHistoryVC.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				1201B8531D32445E00A7EEAF /* Bid.swift */,
+				080349C11E7DB179006C1E8A /* pickImageClass.swift */,
 				08F658E11E7C6CC600981C78 /* ProfileObject.swift */,
 				124B7A1A1E1B946E007C330F /* YBDriver.swift */,
 				124B7A221E1CEFAF007C330F /* YBLocation.swift */,
@@ -1856,6 +1859,7 @@
 				1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */,
 				1201B8251D28ADC800A7EEAF /* AlertAction.swift in Sources */,
 				126C4AE41D796276005EC5FF /* StringExtension.swift in Sources */,
+				080349C21E7DB17A006C1E8A /* pickImageClass.swift in Sources */,
 				1201B83C1D28E8AE00A7EEAF /* Keyboard.swift in Sources */,
 				084207E71E5871D6006607D8 /* NotificationTVC1.swift in Sources */,
 				1201B7651D23A85F00A7EEAF /* DestinationPickerViewController.swift in Sources */,

@@ -9,21 +9,39 @@
 import UIKit
 
 class ProfileObject {
-
+    
     var email = ""
     var name = ""
     var phoneNo = ""
-    
+    var addHomePlaceName = "Add Home"
+    var addWorkPlaceName = "Add Work"
     
     func setProfileData(responseDict: NSDictionary){
-     
+        
         print(responseDict)
         self.email = responseDict["email"] as! String
         self.name = responseDict["name"] as! String
-        self.phoneNo = responseDict["phoneNumber"] as! String  
+        self.phoneNo = responseDict["phoneNumber"] as! String
+        
+        
+        if responseDict["homeLocation"] as? NSDictionary != nil {
+            let homeLocationDict = responseDict["homeLocation"] as! NSDictionary
+            
+            if homeLocationDict.count > 0 {
+                if homeLocationDict["name"] as? String != nil {
+                    
+                    self.addHomePlaceName = homeLocationDict["name"] as! String
+                }
+            }}
+        
+        if responseDict["workLocation"] as? NSDictionary != nil {
+            let workLocationDict = responseDict["workLocation"] as! NSDictionary
+            
+            if workLocationDict.count > 0 {
+                if workLocationDict["name"] as? String != nil {
+                    
+                    self.addWorkPlaceName = workLocationDict["name"] as! String
+                }
+            }}
     }
-    
-    
-    
-    
 }

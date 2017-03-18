@@ -23,6 +23,11 @@ class ProfileVC: UIViewController {
     @IBOutlet var firstNameLbl: UILabel!
     @IBOutlet var lastNameLbl: UILabel!
     
+    @IBOutlet var addHomeBtnOutlet: UIButton!
+    
+    @IBOutlet var addWorkBtnOutlet: UIButton!
+    
+    
     var customTextfieldProperty = CustomizeTextfield()
     
     override func viewDidLoad() {
@@ -38,9 +43,9 @@ class ProfileVC: UIViewController {
     private func setupUI() {
         self.customBackButton(y: 20 as AnyObject)
         
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
+        /*customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
+        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)*/
         
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
@@ -51,10 +56,10 @@ class ProfileVC: UIViewController {
         VW2.layer.borderColor = UIColor.borderColor().cgColor
         VW2.layer.borderWidth = 1.0
         VW2.layer.cornerRadius = 7
-        firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
+        firstNameLbl.layer.borderColor = UIColor.lightGray.cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
-        lastNameLbl.layer.borderColor = UIColor.borderColor().cgColor
+        lastNameLbl.layer.borderColor = UIColor.lightGray.cgColor
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
     }
@@ -76,8 +81,13 @@ class ProfileVC: UIViewController {
                     self.phoneNo.text = profileObjectModel.phoneNo
                     
                     var myStringArr = profileObjectModel.name.components(separatedBy: " ")
-                    self.firstNameLbl.text = myStringArr[0]
-                    self.lastNameLbl.text = myStringArr.count > 1 ? myStringArr[1] : nil
+                    
+                    self.firstNameLbl.text = String(format: " %@ ", myStringArr[0])
+                    self.lastNameLbl.text = myStringArr.count > 1 ? String(format: " %@  ", myStringArr[1]) : nil
+                    
+                    self.addHomeBtnOutlet.setTitle(profileObjectModel.addHomePlaceName, for: UIControlState())
+                    
+                    self.addWorkBtnOutlet.setTitle(profileObjectModel.addWorkPlaceName, for: UIControlState())
                     
                     DDLogVerbose("getProfile Data: \(success)")
                 }

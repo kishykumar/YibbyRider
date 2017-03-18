@@ -24,6 +24,8 @@ class EmergencyContactsVC: UIViewController {
     @IBOutlet var firstNameLbl1: UILabel!
     @IBOutlet var lastNameLbl1: UILabel!
 
+    @IBOutlet var contactImage: UIImageView!
+    
     var customTextfieldProperty = CustomizeTextfield()
     
     override func viewDidLoad() {
@@ -72,6 +74,11 @@ class EmergencyContactsVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        
+        contactImage.layer.cornerRadius = contactImage.frame.size.width/2
+        contactImage.layer.masksToBounds = true
+    }
 
     /*
     // MARK: - Navigation
