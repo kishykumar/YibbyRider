@@ -17,6 +17,7 @@ public struct ProfileService {
     public init(){}
 
     public func updateUserProfilePicture(_ image: UIImage, success: @escaping ProfileUploadSuccessCompletion, failure: @escaping ElloFailureCompletion) {
+        
         updateUserImage(image, success: { (url) in
             TemporaryCache.save(.profilePicture, image: image)
             success(url)

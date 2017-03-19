@@ -24,7 +24,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     var photoSaveCallback: ((UIImage) -> Void)?
 
-    let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "SETTINGS", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
+    let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "PROFILE", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
     let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
     
     let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"

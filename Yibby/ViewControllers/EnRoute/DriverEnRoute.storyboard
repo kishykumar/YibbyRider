@@ -53,10 +53,10 @@
                                 <color key="backgroundColor" red="0.33835299693554755" green="1" blue="0.96876954454940178" alpha="0.18074324324324326" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbd-tf-60k" userLabel="CenterMarkersView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="329" y="41.5" width="30" height="30"/>
+                                <rect key="frame" x="332" y="43" width="27" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qx1-fv-8Nk" userLabel="LocationArrowLabel">
-                                        <rect key="frame" x="5" y="5" width="20" height="20"/>
+                                        <rect key="frame" x="5" y="5" width="17" height="17"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -235,10 +235,10 @@
                                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="247.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JEy-HI-VYW" userLabel="DriverDetailsSV">
-                                                                <rect key="frame" x="39.5" y="129" width="138" height="108.5"/>
+                                                                <rect key="frame" x="25.5" y="129" width="152" height="108.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Gic-vf-y4b" userLabel="ContactDriverSV">
-                                                                        <rect key="frame" x="67" y="0.0" width="71" height="28"/>
+                                                                        <rect key="frame" x="81" y="0.0" width="71" height="28"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMw-aa-CYD" userLabel="PhoneImageLabel">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -255,13 +255,13 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8 Stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJT-rz-fpW" userLabel="DriverStarsLabel">
-                                                                        <rect key="frame" x="69" y="36" width="69" height="20.5"/>
+                                                                        <rect key="frame" x="83" y="36" width="69" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="OMd-ER-djl" userLabel="DriverCarDetailsSV">
-                                                                        <rect key="frame" x="0.0" y="64.5" width="138" height="44"/>
+                                                                        <rect key="frame" x="0.0" y="64.5" width="152" height="44"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="B5e-sN-LUT" userLabel="CarMakeModelSV">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
@@ -281,7 +281,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6EDG137" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHN-Js-wf0" userLabel="CarNumberLabel" customClass="YibbyPaddingLabel" customModule="Yibby" customModuleProvider="target">
-                                                                                <rect key="frame" x="66" y="12" width="72" height="20.5"/>
+                                                                                <rect key="frame" x="66" y="7" width="86" height="30.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <nil key="highlightedColor"/>

@@ -15,7 +15,7 @@ import BButton
 
 
 open class SettingsViewController: BaseYibbyViewController,         UITextFieldDelegate,
-CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
+CLLocationManagerDelegate  {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -27,7 +27,8 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
     
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var phoneNo: UITextField!
-    @IBOutlet var profileImage: UIImageView!
+    
+    @IBOutlet var profileImageBtnOutlet: UIButton!
     
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
@@ -41,6 +42,8 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
     
     @IBOutlet var addHomeBtnOutlet: UIButton!
     @IBOutlet var addWorkBtnOutlet: UIButton!
+    
+    @IBOutlet var emailEditBtnOutlet: UIButton!
     
     var addWorkLocation: YBLocation?
     //var addWorkMarker: GMSMarker?
@@ -87,7 +90,7 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
         
         getProfile()
         
-        profileImage.isUserInteractionEnabled = true
+
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -123,6 +126,9 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
         lastNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
+        
+        
+        profileImageBtnOutlet.layer.cornerRadius = profileImageBtnOutlet.frame.size.width/2
     }
     
     fileprivate func setupViews() {
@@ -157,6 +163,19 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
                     self.addHomeBtnOutlet.setTitle(profileObjectModel.addHomePlaceName, for: UIControlState())
                     
                 self.addWorkBtnOutlet.setTitle(profileObjectModel.addWorkPlaceName, for: UIControlState())
+                    
+                    
+                    /*let client1: BAAClient = BAAClient.shared()
+                   
+                    client1.loadFileDetails("44f002c2-9488-4823-ae69-daa1ae4a5e73", completion:{(success, error) -> Void in
+                        if ((success) != nil) {
+                            
+                        }
+                        else
+                        {
+                            
+                        }
+                    })*/
                     
                     DDLogVerbose("getProfile Data: \(success)")
                 }
@@ -198,8 +217,8 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
   
     override open func viewDidLayoutSubviews() {
         
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.layer.masksToBounds = true
+//        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+//        profileImage.layer.masksToBounds = true
     }
 
     @IBAction func emergencyContactsBtnAction(sender: AnyObject) {
@@ -223,7 +242,9 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
     }
     
         
-    @IBAction func addWorkBtnAction(_ sender: Any) {
+    @IBAction func addWorkBtnAction(_ sender: Any)
+    
+    {
     
         addHomeSelected = false
         addWorkSelected = true
@@ -236,50 +257,53 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
         //self.setPickupDetails(loc)
     }
     
+    @IBAction func profileImgBtnAction(_ sender: Any) {
+        
+         self.showImagePickerActionSheet(btn: sender as! UIButton)
     
-    @IBAction func profileImageBtnAction(_ sender: UIButton) {
-        
-        let pickImageClass =  PickImageClass()
-        
-        pickImageClass.dismissVCCompletion(viewController: self, btn: sender , completionHandler: { (response : UIImage) in
-            print(response)
-            
-            if response != #imageLiteral(resourceName: "Visa") {
-                
-                ActivityIndicatorUtil.enableActivityIndicator(self.view)
-                
-                let client: BAAClient = BAAClient.shared()
-                
-                
-                //                - (void) uploadFile:(BAAFile *)file withPermissions:(NSDictionary *)permissions completion:(BAAObjectResultBlock)completionBlock {
-                
-                let dictionary = ["profilePicture": response]
-                
-                //- (void) uploadFileWithPermissions:(NSDictionary *)permissions completion:(BAAObjectResultBlock)completionBlock;
-                
-                let file: BAAFile = BAAFile()
-                
-                
-                client.uploadFile(file, withPermissions: dictionary, completion:{(success, error) -> Void in
-                    if ((success) != nil) {
-                        
-                        self.getProfile()
-                        
-                        DDLogVerbose("ProfileImage Data: \(success)")
-                    }
-                    else {
-                        DDLogVerbose("ProfileImage failed: \(error)")
-                    }
-                    
-                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                })
-            }
-            //
-        })
-
-        
+//        let pickImageClass =  PickImageClass()
+//        
+//        pickImageClass.dismissVCCompletion(viewController: self, btn: sender as! UIButton , completionHandler: { (response : UIImage) in
+//            
+//            print(response)
+//            
+//            if response != #imageLiteral(resourceName: "Visa") {
+//                
+//                
+//            }
+//            //
+//        })
     }
    
+    @IBAction func emailEditBtnAction(_ sender: Any) {
+        
+        if (self.emailEditBtnOutlet.currentImage?.isEqual(UIImage(named: "Settings")))! {
+            //do something here
+            self.emailEditBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
+            
+            self.emailAddress.isUserInteractionEnabled = true
+
+            self.emailAddress.becomeFirstResponder()
+            
+        }
+        else
+        {
+             self.emailEditBtnOutlet.setImage(UIImage(named: "Settings"), for: .normal)
+
+            self.emailAddress.isUserInteractionEnabled = false
+
+            self.emailAddress.resignFirstResponder()
+            
+            if (emailAddress.text?.isEqual(profileObjectModel.email))!
+            {
+                
+            }
+            else
+            {
+                updateProfile()
+            }
+        }
+    }
     
     func addHomeDetails (_ location: YBLocation) {
         
@@ -291,6 +315,12 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
         
         print(location.name!)
         
+        if location.name!.isEqual(profileObjectModel.addHomePlaceName)
+        {
+            
+        }
+        else
+        {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()
@@ -316,6 +346,7 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
+        }
     }
     
     func addWorkDetails (_ location: YBLocation) {
@@ -323,6 +354,12 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
         
         print(location.name!)
         
+        if location.name!.isEqual(profileObjectModel.addWorkPlaceName)
+        {
+            
+        }
+        else
+        {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()
@@ -348,6 +385,7 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
+        }
 
     }
     
@@ -444,6 +482,179 @@ CLLocationManagerDelegate,UIImagePickerControllerDelegate  {
             addWorkSelected = false
         }
     }
+
+extension SettingsViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    func showImagePickerActionSheet( btn : UIButton ) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        let actionSheet = UIAlertController(title: "Choose Image", message: "", preferredStyle: .actionSheet)
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { action -> Void in
+            //Do some other stuff
+            picker.allowsEditing = true
+            picker.sourceType = .photoLibrary
+            picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            self.present(picker, animated: true, completion: nil)
+            
+        })
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action -> Void in
+            //Do some other stuff
+            picker.allowsEditing = true
+            picker.sourceType = .camera
+            picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+            self.present(picker, animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { action -> Void in
+            
+        })
+        actionSheet.addAction(cameraAction)
+        actionSheet.addAction(photoLibrary)
+        actionSheet.addAction(cancelAction)
+        
+        
+        if let presenter = actionSheet.popoverPresentationController {
+            presenter.sourceView = btn
+            presenter.sourceRect = btn.bounds
+        }
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        
+        let imageSelected : UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        print(imageSelected)
+        
+        self.uploadProfileImage(image: imageSelected)
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    /*{
+        
+        let imageSelected : UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        print(imageSelected)
+        
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        
+        //                - (void) uploadFile:(BAAFile *)file withPermissions:(NSDictionary *)permissions completion:(BAAObjectResultBlock)completionBlock {
+        
+        //let imageSelected1 : UIImage = #imageLiteral(resourceName: "Visa")
+        
+        let dictionary = ["profilePicture": imageSelected]
+        
+        
+        //- (void) uploadFileWithPermissions:(NSDictionary *)permissions completion:(BAAObjectResultBlock)completionBlock;
+        
+        let file: BAAFile = BAAFile()
+        
+        client.uploadFile(file, withPermissions: dictionary, completion:{(success, error) -> Void in
+            
+            if ((success) != nil) {
+                
+                let dictionary = ["profilePicture": "44f002c2-9488-4823-ae69-daa1ae4a5e73"]
+                
+                client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                    if ((success) != nil) {
+                        
+                        self.getProfile()
+                        
+                        DDLogVerbose("updateProfile addWork Data: \(success)")
+                    }
+                    else {
+                        DDLogVerbose("updateProfile addWork failed: \(error)")
+                    }
+                    
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                })
+                
+                DDLogVerbose("ProfileImage Data: \(success)")
+            }
+            else {
+                DDLogVerbose("ProfileImage failed: \(error)")
+            }
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
+        
+        picker.dismiss(animated: true, completion: nil)
+    }*/
+    
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    public func uploadProfileImage(image: UIImage){
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        //let imageSelected1 : UIImage = image
+        
+        ProfileService().updateUserProfilePicture(image,
+                                                  success: { url in
+                                                    DDLogVerbose("Success")
+                                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                                    
+                                                    let userDefaults = UserDefaults.standard
+                                                    userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+                                                    
+                                                    //self.profileImage.image = image
+                                                    self.profileImageBtnOutlet.setImage(image, for: .normal)
+        },
+                                                  failure: { _, _ in
+                                                    DDLogVerbose("Failure")
+                                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
+        
+        
+        let userDefaults = UserDefaults.standard
+        
+        if let cachedImage = TemporaryCache.load(.profilePicture) {
+            //self.uploadProfileImage.image = cachedImage
+        }
+        else if let imageURL = userDefaults.url(forKey: self.PROFILE_PICTURE_URL_KEY) {
+            
+            let client: BAAClient = BAAClient.shared()
+            
+            if let newUrl = client.getCompleteURL(withToken: imageURL) {
+                
+                let img = UIImageView()
+                
+                 img.pin_setImage(from: newUrl)
+                profileImageBtnOutlet.setImage(img.image, for: .normal)
+                
+                //updateProfile Image
+                
+                        //let dictionary = ["profilePicture": newUrl]
+                        let dictionary = ["profilePicture": "916d18ca-53bd-4356-a8d6-6d444377e6f6"]
+                
+                        client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                            
+                            if ((success) != nil) {
+                                
+                                self.getProfile()
+                                
+                                DDLogVerbose("updateProfile image: \(success)")
+                            }
+                            else {
+                                DDLogVerbose("updateProfile image failed: \(error)")
+                            }
+                            
+                            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                })
+
+            }
+        }
+    }
+}
     
     /*extension SettingsViewController: GMSMapViewDelegate {
         
