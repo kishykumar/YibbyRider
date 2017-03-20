@@ -135,7 +135,7 @@
                                             <action selector="emailEditBtnAction:" destination="0Um-ky-vGd" eventType="touchUpInside" id="1eh-1V-JbK"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1E-f9-oxq">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1E-f9-oxq">
                                         <rect key="frame" x="15" y="175" width="270" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="270" id="jdJ-U2-NXh"/>
