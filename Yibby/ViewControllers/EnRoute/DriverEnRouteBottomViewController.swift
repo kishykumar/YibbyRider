@@ -102,6 +102,12 @@ class DriverEnRouteBottomViewController: UIViewController, ISHPullUpSizingDelega
 //        topLabel.text = textForState(state);
     }
 
+    @IBAction func driverInfoBtnAction(_ sender: Any) {        
+        let DriverInfoNVC = self.storyboard?.instantiateViewController(withIdentifier: "DriverInfoVC") as! DriverInfoVC
+        _ = self.navigationController?.pushViewController(DriverInfoNVC, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
