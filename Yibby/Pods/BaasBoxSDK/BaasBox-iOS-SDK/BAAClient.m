@@ -433,6 +433,44 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
            }];
 }
 
+- (void)getRides: (NSString *)type
+        completion: (BAAObjectResultBlock)completionBlock {
+    
+    if (!self.currentUser) {
+        if (completionBlock) {
+            
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            details[@"NSLocalizedDescriptionKey"] = @"GetRides can't be called for a non logged-in user.";
+            NSError *error = [NSError errorWithDomain:[BaasBox errorDomain]
+                                                 code:[BaasBox errorCode]
+                                             userInfo:details];
+            completionBlock(NO, error);
+            
+        }
+        return;
+    }
+    
+    [self getPath:@"rides"
+       parameters:@{
+                    @"type" : type,
+                    @"appcode" : self.appCode,
+                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    }
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+              
+          } failure:^(NSError *error) {
+              
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
+              
+          }];
+}
+
 - (void)cancelRiderRide:(NSString *)bidId
              completion:(BAAObjectResultBlock)completionBlock {
     
@@ -498,6 +536,24 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
            } failure:^(NSError *error) {
                completionBlock(nil, error);
            }];
+}
+
+- (void)postReview: (NSString *)type
+          jsonBody:(NSDictionary *)jsonBody
+        completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self postPath:[NSString stringWithFormat:@"ride/review"]
+       parameters:jsonBody
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+          } failure:^(NSError *error) {
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
+          }];
 }
 
 
@@ -585,7 +641,6 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
         completion: (BAAObjectResultBlock)completionBlock {
     
     if (!self.currentUser) {
-        
         if (completionBlock) {
             
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
@@ -598,7 +653,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
         }
         return;
     }
-
+    
     [self getPath:@"caber"
        parameters:@{
                     @"type" : type,
@@ -606,7 +661,6 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                     @"X-BB-SESSION": self.currentUser.authenticationToken
                     }
           success:^(NSDictionary *responseObject) {
-              
               
               if (completionBlock) {
                   completionBlock(responseObject[@"data"], nil);
