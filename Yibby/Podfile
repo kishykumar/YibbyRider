@@ -1,3 +1,4 @@
+source 'https://bitbucket.org/kishykumar/yibbypods'
 source 'https://github.com/ello/cocoapod-specs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 project '../Yibby'
@@ -16,7 +17,8 @@ def shared_pods
     pod 'Alamofire', '~> 4.0'
     pod 'GoogleMaps'
     pod 'Google/CloudMessaging'
-    pod 'BaasBoxSDK’, :git => 'https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git'
+    #pod 'BaasBoxSDK’, :git => 'https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git'
+    pod 'BaasBoxSDK’
     pod 'SwiftyJSON'
     pod 'MMDrawerController', '~> 0.5.7'
     pod 'TTRangeSlider'
