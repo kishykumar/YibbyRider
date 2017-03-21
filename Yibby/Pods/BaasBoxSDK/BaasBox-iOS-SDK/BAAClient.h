@@ -156,6 +156,9 @@
                     dropoffLoc:(NSString *)dropoffLoc
                     completion:(BAAObjectResultBlock)completionBlock;
 
+- (void) getRides:(NSString *)type
+                completion: (BAAObjectResultBlock)completionBlock;
+
 - (void)cancelRiderRide:(NSString *)bidId
        completion:(BAAObjectResultBlock)completionBlock;
 
@@ -167,6 +170,10 @@
 
 - (void)endRide:(NSString *)bidId
               completion:(BAAObjectResultBlock)completionBlock;
+
+- (void)postReview: (NSString *)type
+                jsonBody:(NSDictionary *)jsonBody
+                completion: (BAAObjectResultBlock)completionBlock;
 
 // Offer
 - (void)createOffer:(NSString *)bidId

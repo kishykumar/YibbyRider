@@ -135,7 +135,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireObjectMapper (~> 4.0)
   - ASProgressPopUpView
-  - BaasBoxSDK (from `https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git`)
+  - BaasBoxSDK
   - BButton
   - Braintree
   - CardIO
@@ -168,8 +168,6 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 6.0)
 
 EXTERNAL SOURCES:
-  BaasBoxSDK:
-    :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
   CocoaLumberjack:
     :branch: swift_3
     :git: https://github.com/CocoaLumberjack/CocoaLumberjack
@@ -178,9 +176,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/MengTo/Spring.git
 
 CHECKOUT OPTIONS:
-  BaasBoxSDK:
-    :commit: 5d08db346704b815a3d87ca625e6ab2ed1d70c99
-    :git: https://kishykumar@bitbucket.org/kishykumar/baasboxiossdk.git
   CocoaLumberjack:
     :commit: 17936dcf48f858933bd791a05aff911be8bb68ba
     :git: https://github.com/CocoaLumberjack/CocoaLumberjack
@@ -192,7 +187,7 @@ SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
-  BaasBoxSDK: 8a68396af4eb48137da238109d114eccac04739d
+  BaasBoxSDK: 9a5984f85e9b3b31bf6c6d280bca3fbabff7b164
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 772ab9104053cca5d8cc3b32d79e6b1272f46527
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
@@ -238,6 +233,6 @@ SPEC CHECKSUMS:
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: 02c3913fbfd8f711a37f18e2aba614d0a131bdc2
+PODFILE CHECKSUM: 13d1ed364bb57a73511996ec5234c9e89baa9a4c
 
 COCOAPODS: 1.0.1
