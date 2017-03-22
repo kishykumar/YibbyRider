@@ -22,6 +22,7 @@
 		084207E51E5870D4006607D8 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E41E5870D4006607D8 /* NotificationTVC.swift */; };
 		084207E71E5871D6006607D8 /* NotificationTVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E61E5871D6006607D8 /* NotificationTVC1.swift */; };
 		084207E91E5871F8006607D8 /* NotificationTVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E81E5871F8006607D8 /* NotificationTVC2.swift */; };
+		085FBBDE1E8302AC00002F4D /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FBBDD1E8302AC00002F4D /* ImageService.swift */; };
 		08C15C5B1E60E35C007F1411 /* TripTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5A1E60E35C007F1411 /* TripTableVC.swift */; };
 		08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5C1E60E38C007F1411 /* TripTableCell.swift */; };
 		08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */; };
@@ -272,6 +273,7 @@
 		084207E41E5870D4006607D8 /* NotificationTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		084207E61E5871D6006607D8 /* NotificationTVC1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC1.swift; sourceTree = "<group>"; };
 		084207E81E5871F8006607D8 /* NotificationTVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC2.swift; sourceTree = "<group>"; };
+		085FBBDD1E8302AC00002F4D /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		08C15C5A1E60E35C007F1411 /* TripTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableVC.swift; sourceTree = "<group>"; };
 		08C15C5C1E60E38C007F1411 /* TripTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableCell.swift; sourceTree = "<group>"; };
 		08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostOrStolenItemVC.swift; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				1201B8511D2B471800A7EEAF /* RideService.swift */,
 				12F092AA1D3E156700F158BB /* StripePaymentService.swift */,
 				12B174801D54574100BD0B87 /* BraintreePaymentService.swift */,
+				085FBBDD1E8302AC00002F4D /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1873,6 +1876,7 @@
 				12A6BF4F1D800384008BEFC1 /* YibbyMapMarker.swift in Sources */,
 				126C4AE71D796276005EC5FF /* CardTextField+PrefillInformation.swift in Sources */,
 				1201B83A1D28E58300A7EEAF /* InterfaceImage.swift in Sources */,
+				085FBBDE1E8302AC00002F4D /* ImageService.swift in Sources */,
 				1265A6E81DA982F900D5FDBA /* YibbyBorderedTextField.swift in Sources */,
 				129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */,
 				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,

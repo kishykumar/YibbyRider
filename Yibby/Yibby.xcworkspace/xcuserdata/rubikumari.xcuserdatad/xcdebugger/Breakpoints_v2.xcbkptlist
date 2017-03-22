@@ -74,7 +74,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Help/HelpViewController.swift"
-                  timestampString = "511729921.61544"
+                  timestampString = "511907642.66155"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -89,7 +89,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Help/HelpViewController.swift"
-                  timestampString = "511729921.617833"
+                  timestampString = "511907642.664118"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -191,40 +191,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewControllers/History/TripTableVC.swift"
-            timestampString = "511007168.436949"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "createCellHeightsArray()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewControllers/History/TripTableVC.swift"
-            timestampString = "511007168.436949"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
+            landmarkName = "TripTableVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -239,23 +207,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "tableView(_:willDisplay:forRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewControllers/History/TripTableVC.swift"
-            timestampString = "511007168.436949"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "getTripsService()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -271,7 +223,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
             endingLineNumber = "116"
-            landmarkName = "lostOrStolenItemBtnAction(_:)"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -287,7 +239,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "tableView(_:willDisplay:forRowAt:)"
+            landmarkName = "getTripsService()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,7 +266,7 @@
                   moduleName = "FoldingCell"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/FoldingCell/FoldingCell/FoldingCell/FoldingCell/FoldingCell.swift"
-                  timestampString = "511729921.671495"
+                  timestampString = "511907642.709072"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -329,7 +281,7 @@
                   moduleName = "FoldingCell"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/FoldingCell/FoldingCell/FoldingCell/FoldingCell/FoldingCell.swift"
-                  timestampString = "511729921.673364"
+                  timestampString = "511907642.711011"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -415,8 +367,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "tableView(_:willDisplay:forRowAt:)"
+            landmarkName = "getTripsService()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.TripTableVC.(getTripsService () -&gt; ()).(closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/History/TripTableVC.swift"
+                  timestampString = "511907651.91165"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1240">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.TripTableVC.(getTripsService () -&gt; ()).(closure #1).(implicit closure #2)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/History/TripTableVC.swift"
+                  timestampString = "511907651.915877"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -463,7 +447,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkName = "tableView(_:willDisplay:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -778,7 +762,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Help/HelpViewController.swift"
-                  timestampString = "511729921.78295"
+                  timestampString = "511907653.67211"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -793,7 +777,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Help/HelpViewController.swift"
-                  timestampString = "511729921.785002"
+                  timestampString = "511907653.675192"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -826,7 +810,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Help/HelpViewController.swift"
-                  timestampString = "511729921.790422"
+                  timestampString = "511907653.682399"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
@@ -841,7 +825,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Help/HelpViewController.swift"
-                  timestampString = "511729921.792465"
+                  timestampString = "511907653.684646"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
@@ -879,7 +863,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "586"
             endingLineNumber = "586"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutWithCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -895,8 +879,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "590"
             endingLineNumber = "590"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutWithCompletion:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BAAClient logoutWithCompletion:]"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907653.700265"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "590"
+                  endingLineNumber = "590"
+                  offsetFromSymbolStart = "386">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[BAAClient logoutWithCompletion:]_block_invoke"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907653.702391"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "590"
+                  endingLineNumber = "590"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -911,7 +927,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "601"
             endingLineNumber = "601"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutWithCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -927,7 +943,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "612"
             endingLineNumber = "612"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -943,7 +959,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "616"
             endingLineNumber = "616"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -959,7 +975,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "609"
             endingLineNumber = "609"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -991,7 +1007,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "599"
             endingLineNumber = "599"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutWithCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1007,7 +1023,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "588"
             endingLineNumber = "588"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutWithCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1023,55 +1039,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "620"
             endingLineNumber = "620"
-            landmarkName = "-getProfile:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__35-[BAAClient getProfile:completion:]_block_invoke.359"
-                  moduleName = "BaasBoxSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
-                  timestampString = "511729921.83995"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "621"
-                  endingLineNumber = "621"
-                  offsetFromSymbolStart = "108">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.360"
-                  moduleName = "BaasBoxSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
-                  timestampString = "511729921.841814"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "621"
-                  endingLineNumber = "621"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.361"
-                  moduleName = "BaasBoxSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
-                  timestampString = "511729921.843677"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "621"
-                  endingLineNumber = "621"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1129,7 +1098,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/SignUp/SignupViewController.swift"
-                  timestampString = "511729921.85939"
+                  timestampString = "511907653.756138"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
@@ -1144,7 +1113,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/SignUp/SignupViewController.swift"
-                  timestampString = "511729921.861496"
+                  timestampString = "511907653.758418"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
@@ -1209,7 +1178,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Networking/WebInterface.swift"
-                  timestampString = "511729921.875607"
+                  timestampString = "511907653.774205"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -1224,7 +1193,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Networking/WebInterface.swift"
-                  timestampString = "511729921.877741"
+                  timestampString = "511907653.77639"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -1337,7 +1306,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Login/LoginViewController.swift"
-                  timestampString = "511729921.904755"
+                  timestampString = "511907653.805372"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "168"
@@ -1352,7 +1321,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Login/LoginViewController.swift"
-                  timestampString = "511729921.906812"
+                  timestampString = "511907653.807588"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "168"
@@ -1486,7 +1455,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "627"
             endingLineNumber = "627"
-            landmarkName = "-updateProfile:jsonBody:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1502,7 +1471,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "633"
             endingLineNumber = "633"
-            landmarkName = "-updateProfile:jsonBody:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1518,7 +1487,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "631"
             endingLineNumber = "631"
-            landmarkName = "-updateProfile:jsonBody:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1534,7 +1503,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "637"
             endingLineNumber = "637"
-            landmarkName = "-updateProfile:jsonBody:completion:"
+            landmarkName = "-logoutCaberWithCompletion:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1657,7 +1626,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Bidding/MainViewController.swift"
-                  timestampString = "511729921.977999"
+                  timestampString = "511907653.885841"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "628"
@@ -1672,7 +1641,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Bidding/MainViewController.swift"
-                  timestampString = "511729921.980138"
+                  timestampString = "511907653.887974"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "628"
@@ -1865,7 +1834,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Bidding/MainViewController.swift"
-                  timestampString = "511729922.022954"
+                  timestampString = "511907653.929591"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "648"
@@ -1880,7 +1849,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Bidding/MainViewController.swift"
-                  timestampString = "511729922.025063"
+                  timestampString = "511907653.938696"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "648"
@@ -1945,27 +1914,27 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.039213"
+                  timestampString = "511907653.95356"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "211"
                   endingLineNumber = "211"
-                  offsetFromSymbolStart = "843">
+                  offsetFromSymbolStart = "501">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(updateProfile () -&gt; ()).(closure #1).(implicit closure #2)"
+                  symbolName = "Yibby.SettingsViewController.(updateProfile () -&gt; ()).(closure #1).(implicit closure #1)"
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.041282"
+                  timestampString = "511907653.955763"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "211"
                   endingLineNumber = "211"
-                  offsetFromSymbolStart = "12">
+                  offsetFromSymbolStart = "22">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1984,38 +1953,6 @@
             endingLineNumber = "202"
             landmarkName = "updateProfile()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.updateProfile () -&gt; ()"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.046751"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "838">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(updateProfile () -&gt; ()).(closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.048846"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "204"
-                  endingLineNumber = "204"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2032,38 +1969,6 @@
             endingLineNumber = "207"
             landmarkName = "updateProfile()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(updateProfile () -&gt; ()).(closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.054285"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "501">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(updateProfile () -&gt; ()).(closure #1).(implicit closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.056361"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2078,8 +1983,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "448"
             endingLineNumber = "448"
-            landmarkName = "viewController(_:didAutocompleteWith:)"
-            landmarkType = "7">
+            landmarkName = "SettingsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2094,40 +1999,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "468"
             endingLineNumber = "468"
-            landmarkName = "viewController(_:didFailAutocompleteWithError:)"
+            landmarkName = "viewController(_:didAutocompleteWith:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.viewController (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.GMSAutocompleteViewController&gt;, didFailAutocompleteWithError : Swift.ImplicitlyUnwrappedOptional&lt;Swift.Error&gt;) -&gt; ()"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.066574"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "470"
-                  endingLineNumber = "470"
-                  offsetFromSymbolStart = "114">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(viewController (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.GMSAutocompleteViewController&gt;, didFailAutocompleteWithError : Swift.ImplicitlyUnwrappedOptional&lt;Swift.Error&gt;) -&gt; ()).(implicit closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.068645"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "470"
-                  endingLineNumber = "470"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2141,7 +2014,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "662"
-            endingLineNumber = "662">
+            endingLineNumber = "662"
+            landmarkName = "uploadProfileImage(image:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2268,8 +2143,85 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "800"
             endingLineNumber = "800"
-            landmarkName = "-loadFiles:completion:"
+            landmarkName = "-updateObject:completion:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BAAClient updateObject:completion:]"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.028964"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "801"
+                  endingLineNumber = "801"
+                  offsetFromSymbolStart = "410">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[BAAClient updateObject:completion:]_block_invoke"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.032031"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "801"
+                  endingLineNumber = "801"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.430"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.034783"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "801"
+                  endingLineNumber = "801"
+                  offsetFromSymbolStart = "94">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.431"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.037797"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "801"
+                  endingLineNumber = "801"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[BAAClient updateObject:completion:]_block_invoke.433"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.040526"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "801"
+                  endingLineNumber = "801"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2284,7 +2236,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "808"
             endingLineNumber = "808"
-            landmarkName = "-loadFiles:withParams:completion:"
+            landmarkName = "-updateObject:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2300,7 +2252,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "862"
             endingLineNumber = "862"
-            landmarkName = "-loadFileData:completion:"
+            landmarkName = "-loadFiles:withParams:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2316,7 +2268,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "868"
             endingLineNumber = "868"
-            landmarkName = "-loadFileData:parameters:completion:"
+            landmarkName = "-loadFiles:withParams:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2332,7 +2284,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "900"
             endingLineNumber = "900"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-fetchCountForFiles:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2348,7 +2300,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "929"
             endingLineNumber = "929"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:parameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2364,7 +2316,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "941"
             endingLineNumber = "941"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:parameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2380,8 +2332,55 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "943"
             endingLineNumber = "943"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:parameters:completion:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[BAAClient loadFileData:parameters:completion:]_block_invoke"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.167591"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "946"
+                  endingLineNumber = "946"
+                  offsetFromSymbolStart = "432">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.502"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.16958"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "946"
+                  endingLineNumber = "946"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.503"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.171558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "946"
+                  endingLineNumber = "946"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2471,7 +2470,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Model/pickImageClass.swift"
-                  timestampString = "511729922.155602"
+                  timestampString = "511907654.196087"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
@@ -2486,7 +2485,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Model/pickImageClass.swift"
-                  timestampString = "511729922.157993"
+                  timestampString = "511907654.198341"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "81"
@@ -2588,7 +2587,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
             endingLineNumber = "279"
-            landmarkName = "emailEditBtnAction(_:)"
+            landmarkName = "profileImgBtnAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2727,7 +2726,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Model/pickImageClass.swift"
-                  timestampString = "511729922.222417"
+                  timestampString = "511907654.263425"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -2742,7 +2741,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Model/pickImageClass.swift"
-                  timestampString = "511729922.224467"
+                  timestampString = "511907654.265651"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -2764,8 +2763,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "538"
             endingLineNumber = "538"
-            landmarkName = "SettingsViewController"
-            landmarkType = "4">
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2780,8 +2779,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "488"
             endingLineNumber = "488"
-            landmarkName = "showImagePickerActionSheet(btn:)"
-            landmarkType = "7">
+            landmarkName = "SettingsViewController"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2860,8 +2859,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "592"
             endingLineNumber = "592"
-            landmarkName = "imagePickerControllerDidCancel(_:)"
-            landmarkType = "7">
+            landmarkName = "SettingsViewController"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2908,7 +2907,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "926"
             endingLineNumber = "926"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:parameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2924,7 +2923,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "938"
             endingLineNumber = "938"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:parameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2940,7 +2939,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "951"
             endingLineNumber = "951"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:parameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2958,53 +2957,6 @@
             endingLineNumber = "970"
             landmarkName = "-uploadFile:withPermissions:completion:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__51-[BAAClient uploadFile:withPermissions:completion:]_block_invoke"
-                  moduleName = "BaasBoxSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
-                  timestampString = "511729922.282115"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "971"
-                  endingLineNumber = "971"
-                  offsetFromSymbolStart = "1038">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.552"
-                  moduleName = "BaasBoxSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
-                  timestampString = "511729922.28401"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "971"
-                  endingLineNumber = "971"
-                  offsetFromSymbolStart = "102">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.553"
-                  moduleName = "BaasBoxSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
-                  timestampString = "511729922.285952"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "971"
-                  endingLineNumber = "971"
-                  offsetFromSymbolStart = "59">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3035,8 +2987,55 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "911"
             endingLineNumber = "911"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-fetchCountForFiles:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[BAAClient fetchCountForFiles:]_block_invoke.481"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.331361"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "911"
+                  endingLineNumber = "911"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.482"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.333278"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "911"
+                  endingLineNumber = "911"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.483"
+                  moduleName = "BaasBoxSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "511907654.33518"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "911"
+                  endingLineNumber = "911"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3051,7 +3050,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "919"
             endingLineNumber = "919"
-            landmarkName = "-uploadFile:withPermissions:completion:"
+            landmarkName = "-loadFileData:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3110,11 +3109,11 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.313559"
+                  timestampString = "511907654.375416"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "4149">
                </Location>
                <Location
@@ -3125,11 +3124,11 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.315637"
+                  timestampString = "511907654.377961"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "22">
                </Location>
             </Locations>
@@ -3158,11 +3157,11 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.32107"
+                  timestampString = "511907654.383602"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "4149">
                </Location>
                <Location
@@ -3173,11 +3172,11 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.323113"
+                  timestampString = "511907654.38576"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "22">
                </Location>
             </Locations>
@@ -3206,11 +3205,11 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.328568"
+                  timestampString = "511907654.392372"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "4149">
                </Location>
                <Location
@@ -3221,11 +3220,11 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.330782"
+                  timestampString = "511907654.39561"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "22">
                </Location>
             </Locations>
@@ -3259,7 +3258,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1000"
             endingLineNumber = "1000"
-            landmarkName = "-loadFileDetails:completion:"
+            landmarkName = "-uploadFile:withPermissions:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3286,7 +3285,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.3453"
+                  timestampString = "511907655.028846"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -3301,7 +3300,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.347386"
+                  timestampString = "511907655.03204"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -3398,7 +3397,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.371638"
+                  timestampString = "511907655.05815"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -3413,7 +3412,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.373717"
+                  timestampString = "511907655.060367"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "22"
@@ -3446,7 +3445,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.379241"
+                  timestampString = "511907655.065788"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"
@@ -3461,7 +3460,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.381382"
+                  timestampString = "511907655.067894"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"
@@ -3494,7 +3493,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.386882"
+                  timestampString = "511907655.073533"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "39"
@@ -3509,7 +3508,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/Services/ProfileService.swift"
-                  timestampString = "511729922.388961"
+                  timestampString = "511907655.07567"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "39"
@@ -3547,8 +3546,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "598"
             endingLineNumber = "598"
-            landmarkName = "uploadProfileImage(image:)"
-            landmarkType = "7">
+            landmarkName = "SettingsViewController"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3581,6 +3580,38 @@
             endingLineNumber = "624"
             landmarkName = "uploadProfileImage(image:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
+                  timestampString = "511907655.094062"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "625"
+                  endingLineNumber = "625"
+                  offsetFromSymbolStart = "843">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #1).(closure #1).(implicit closure #2)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
+                  timestampString = "511907655.096618"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "625"
+                  endingLineNumber = "625"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3597,38 +3628,6 @@
             endingLineNumber = "603"
             landmarkName = "uploadProfileImage(image:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.412254"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "603"
-                  endingLineNumber = "603"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #1).(implicit closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.414382"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "603"
-                  endingLineNumber = "603"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3661,38 +3660,6 @@
             endingLineNumber = "613"
             landmarkName = "uploadProfileImage(image:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #2)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.424295"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "613"
-                  endingLineNumber = "613"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #2).(implicit closure #1)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.426382"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "613"
-                  endingLineNumber = "613"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3709,6 +3676,38 @@
             endingLineNumber = "616"
             landmarkName = "uploadProfileImage(image:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
+                  timestampString = "511907655.115703"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "616"
+                  endingLineNumber = "616"
+                  offsetFromSymbolStart = "643">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
+                  timestampString = "511907655.117825"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "618"
+                  endingLineNumber = "618"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3773,38 +3772,6 @@
             endingLineNumber = "648"
             landmarkName = "uploadProfileImage(image:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #3)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.449651"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "648"
-                  endingLineNumber = "648"
-                  offsetFromSymbolStart = "843">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #3).(implicit closure #2)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.451755"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "648"
-                  endingLineNumber = "648"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3837,38 +3804,6 @@
             endingLineNumber = "652"
             landmarkName = "uploadProfileImage(image:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.uploadProfileImage (image : __ObjC.UIImage) -&gt; ()"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.461578"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "652"
-                  endingLineNumber = "652"
-                  offsetFromSymbolStart = "3283">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yibby.SettingsViewController.(uploadProfileImage (image : __ObjC.UIImage) -&gt; ()).(closure #3)"
-                  moduleName = "Yibby"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/Settings/SettingsViewController.swift"
-                  timestampString = "511729922.46376"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "652"
-                  endingLineNumber = "652"
-                  offsetFromSymbolStart = "1376">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3942,7 +3877,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/EnRoute/DriverEnRouteBottomViewController.swift"
-                  timestampString = "511729922.482629"
+                  timestampString = "511907655.162993"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
@@ -3957,7 +3892,7 @@
                   moduleName = "Yibby"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/EnRoute/DriverEnRouteBottomViewController.swift"
-                  timestampString = "511729922.484708"
+                  timestampString = "511907655.165232"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
@@ -3965,6 +3900,214 @@
                   offsetFromSymbolStart = "455">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/Settings/SettingsViewController.swift"
+            timestampString = "511903882.932804"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "610"
+            endingLineNumber = "610"
+            landmarkName = "uploadProfileImage(image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "511904537.868829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
+            landmarkName = "-getRides:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "511904540.717028"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
+            landmarkName = "-getRides:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/History/TripTableVC.swift"
+            timestampString = "511904852.979328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "TripTableVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/History/TripTableVC.swift"
+            timestampString = "511904854.996861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getTripsService()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.TripTableVC.getTripsService () -&gt; ()"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/History/TripTableVC.swift"
+                  timestampString = "511907655.188231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "311">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.TripTableVC.(getTripsService () -&gt; ()).(closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/History/TripTableVC.swift"
+                  timestampString = "511907655.19036"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/History/TripTableVC.swift"
+            timestampString = "511906081.821134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "TripTableVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/History/TripTableVC.swift"
+            timestampString = "511906139.012837"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "getTripsService()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.TripTableVC.(getTripsService () -&gt; ()).(closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/History/TripTableVC.swift"
+                  timestampString = "511907655.204293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "591">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yibby.TripTableVC.(getTripsService () -&gt; ()).(closure #1).(implicit closure #1)"
+                  moduleName = "Yibby"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubikumari/Documents/Rahul/Rder%20app/yibbyriderapp1/Yibby/ViewControllers/History/TripTableVC.swift"
+                  timestampString = "511907655.206417"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/History/TripTableVC.swift"
+            timestampString = "511907603.668836"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/BaasBoxSDK/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "511907701.437111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
+            landmarkName = "-getRides:completion:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

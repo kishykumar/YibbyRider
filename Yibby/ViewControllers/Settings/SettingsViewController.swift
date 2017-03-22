@@ -55,6 +55,9 @@ CLLocationManagerDelegate  {
     var addHomeSelected: Bool?
     var addWorkSelected: Bool?
     
+    
+    var profileImgFileId: String?
+    
     var customTextfieldProperty = CustomizeTextfield()
     
     var photoSaveCallback: ((UIImage) -> Void)?
@@ -598,7 +601,41 @@ extension SettingsViewController : UIImagePickerControllerDelegate,UINavigationC
         
         //let imageSelected1 : UIImage = image
         
-        ProfileService().updateUserProfilePicture(image,
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+ImageService.sharedInstance().uploadImage(image,
+                                                  cacheKey: .profilePicture,
+                                                  success: { (url, fileId) in
+                                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                                    self.profileImgFileId = fileId
+                                                    
+                                                    
+                                                    let client: BAAClient = BAAClient.shared()
+                                                    
+                                                    let dictionary = ["profilePicture": fileId]
+                                                    
+                                                    client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                                                        
+                                                        if ((success) != nil) {
+                                                            
+                                                            self.getProfile()
+                                                            
+                                                            DDLogVerbose("updateProfile image: \(success)")
+                                                        }
+                                                        else {
+                                                            DDLogVerbose("updateProfile image failed: \(error)")
+                                                        }
+                                                        
+                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                                    })
+
+                                                    
+        },
+                                                  failure: { error in
+                                                    DDLogError("Failure in uploading vehicleInspForm picture: \(error.description)")
+                                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
+        
+       /* ProfileService().updateUserProfilePicture(image,
                                                   success: { url in
                                                     DDLogVerbose("Success")
                                                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -652,7 +689,7 @@ extension SettingsViewController : UIImagePickerControllerDelegate,UINavigationC
                 })
 
             }
-        }
+        }*/
     }
 }
     

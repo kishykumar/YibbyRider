@@ -894,6 +894,9 @@
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="787"/>
+                    <connections>
+                        <outlet property="TV" destination="ROM-IH-Eb6" id="ToZ-HB-2Y0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAl-xA-tZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
