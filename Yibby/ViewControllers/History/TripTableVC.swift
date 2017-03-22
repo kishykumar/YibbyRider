@@ -8,6 +8,8 @@
 
 import UIKit
 import FoldingCell
+import BaasBoxSDK
+import CocoaLumberjack
 
 class TripTableVC: UITableViewController {
     
@@ -18,17 +20,53 @@ class TripTableVC: UITableViewController {
     
     var cellHeights = [CGFloat]()
     
+    var tripsArray = [String]()
+    
+    @IBOutlet var TV: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
 
+        getTripsService()
+        
         createCellHeightsArray()
         //self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
     }
     
     func setupUI () {
     self.customBackButton(y: 0 as AnyObject)
+    }
+    
+//    - (void)getRides: (NSString *)type
+//    completion: (BAAObjectResultBlock)completionBlock
+    
+    func getTripsService()
+    {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.getRides(BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            if let resultArray = success as? Array<Any>
+            {
+        
+                DDLogVerbose("Trips available \(resultArray)")
+                
+                
+                self.tripsArray = resultArray as! [String]
+                
+                self.TV.reloadData()
+            }
+            else {
+                DDLogVerbose("No Trips: \(error)")
+                
+                }
+        })
     }
     
     // MARK: configure
@@ -41,7 +79,7 @@ class TripTableVC: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return tripsArray.count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -112,7 +150,6 @@ class TripTableVC: UITableViewController {
     }
     
     @IBAction func lostOrStolenItemBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
         print("lostOrStolenItemBtn tap")
         
         let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "LostOrStolenItemVC") as! LostOrStolenItemVC
@@ -120,17 +157,14 @@ class TripTableVC: UITableViewController {
     }
     
     @IBAction func fareOrRideIssueBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
         print("fareOrRideIssueBtn tap")
     }
     
     @IBAction func otherIssueBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
         print("otherIssueBtn tap")
     }
 
     @IBAction func carDetailsBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
         print("carDetailsBtnAction tap")
         
         let loginSubView = self.storyboard!.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
