@@ -16,6 +16,11 @@ class LostOrStolenItemVC: UIViewController {
     
     @IBOutlet weak var contactDriverBtnOutlet: UIButton!
 
+    @IBOutlet var callLbl: UILabel!
+    
+    @IBOutlet var emailLbl: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -37,6 +42,9 @@ class LostOrStolenItemVC: UIViewController {
         contactDriverBtnOutlet.layer.borderColor = UIColor.borderColor().cgColor
         contactDriverBtnOutlet.layer.borderWidth = 1.0
         contactDriverBtnOutlet.layer.cornerRadius = 7
+        
+        callLbl.layer.cornerRadius = 2
+        emailLbl.layer.cornerRadius = 2
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
