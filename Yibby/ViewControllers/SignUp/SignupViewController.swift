@@ -11,6 +11,7 @@ import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
 import Braintree
+import DigitsKit
 
 class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 
@@ -120,12 +121,50 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
              AlertUtil.displayAlert("error in form", message: "Enter valid phone no")
             
         }else{
-           createUser(nameOutlet.text!, emaili: emailAddressOutlet.text!, phoneNumberi: phoneNumberOutlet.text!, passwordi: passwordOutlet.text!)
+            
+            
+                let digits = Digits.sharedInstance()
+                let configuration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
+                // configuration?.phoneNumber = self.txtPhone.text!
+                
+                let digitsAppearance = DGTAppearance()
+                
+                digitsAppearance.accentColor = UIColor.red
+                digitsAppearance.applyUIAppearanceColors()
+                configuration?.appearance = digitsAppearance
+                digits.authenticate(with: nil, configuration: configuration!) { session, error in
+                    
+                    if((error?.localizedDescription) != nil)
+                    {
+                        digits.logOut()
+                        
+                        self.phoneNumberOutlet.text = ""
+                    }
+                    else
+                    {
+                        
+                        
+                        digits.logOut()
+                        
+                        
+                        
+                        self.phoneNumberOutlet.text =  (session?.phoneNumber)!
+                      
+                        self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!, phoneNumberi: self.phoneNumberOutlet.text!, passwordi: self.passwordOutlet.text!)
+
+                    }
+                    // Country selector will be set to Spain and phone number field will be set to 5555555555
+                }
+                
+               
+                
+            
         }
         
         
+        
     }
-    
+  
     // BaasBox create user
     
     func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String)

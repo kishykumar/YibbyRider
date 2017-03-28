@@ -244,6 +244,9 @@
 		B1035A7B1E5D7DDC00435B8C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A781E5D7DDC00435B8C /* Bolts.framework */; };
 		B1035A7C1E5D7DDC00435B8C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */; };
 		B1035A7D1E5D7DDC00435B8C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */; };
+		B1BFB3751E8A2DF600E86F11 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */; };
+		B1BFB3761E8A2DF600E86F11 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B1BFB3731E8A2DF600E86F11 /* DigitsKitResources.bundle */; };
+		B1BFB3771E8A2DF600E86F11 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFB3741E8A2DF600E86F11 /* TwitterCore.framework */; };
 		D4FDEAD8264D59DAE3042ED0 /* Pods_YibbyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459AE71FE1000380B5FDA55B /* Pods_YibbyTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -517,6 +520,9 @@
 		B1035A781E5D7DDC00435B8C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DigitsKit.framework; sourceTree = "<group>"; };
+		B1BFB3731E8A2DF600E86F11 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = "<group>"; };
+		B1BFB3741E8A2DF600E86F11 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		DAF0F8A29620D810751B13B7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -528,6 +534,8 @@
 				B1035A7B1E5D7DDC00435B8C /* Bolts.framework in Frameworks */,
 				B1035A7C1E5D7DDC00435B8C /* FBSDKCoreKit.framework in Frameworks */,
 				1201B84A1D28ED2300A7EEAF /* MobileCoreServices.framework in Frameworks */,
+				B1BFB3751E8A2DF600E86F11 /* DigitsKit.framework in Frameworks */,
+				B1BFB3771E8A2DF600E86F11 /* TwitterCore.framework in Frameworks */,
 				120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */,
 				B1035A7D1E5D7DDC00435B8C /* FBSDKLoginKit.framework in Frameworks */,
 				12F3CCF81C4CF16D00F79A26 /* CoreLocation.framework in Frameworks */,
@@ -1520,6 +1528,9 @@
 		655A3CB4424C6BF7AFEE185A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */,
+				B1BFB3731E8A2DF600E86F11 /* DigitsKitResources.bundle */,
+				B1BFB3741E8A2DF600E86F11 /* TwitterCore.framework */,
 				1259D91C1DAB47F600DA6027 /* FBSnapshotTestCase.framework */,
 				1259D91A1DAB44C700DA6027 /* Nimble_Snapshots.framework */,
 				B1035A781E5D7DDC00435B8C /* Bolts.framework */,
@@ -1649,6 +1660,7 @@
 				125B39061DBC97180041E0D7 /* Profile.storyboard in Resources */,
 				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
 				1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */,
+				B1BFB3761E8A2DF600E86F11 /* DigitsKitResources.bundle in Resources */,
 				1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */,
 				1201B82D1D28ADC800A7EEAF /* AlertViewController.xib in Resources */,
 				124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */,
@@ -1691,7 +1703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 2398a3e4bff596394b13cf60fa880f4297f56425 7a040c161b72d9611e9163b4c56944640e0c1c978a3eb18ff5de805bbe3c9687";
+			shellScript = "./Fabric.framework/run 2c9f8435d86f4d5e3c3afa7c1f32febde0fd48d5 e8a225b4439a06c49c3dabe0fbe2ddbb8517b25318d6e5ef20760168399b7c97";
 		};
 		632842A4F4DD5124AA6962C4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
