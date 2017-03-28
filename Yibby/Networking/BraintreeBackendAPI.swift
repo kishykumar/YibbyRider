@@ -63,10 +63,10 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
     func setupFakeCards () {
         
         guard let _ = customerID else {
-            let card1 = BTPaymentMethodNonce(nonce: "123x", localizedDescription: "ending in 42", type: "Visa", isDefault: false)
-            let card2 = BTPaymentMethodNonce(nonce: "123y", localizedDescription: "ending in 44", type: "Amex", isDefault: false)
-            let card3 = BTPaymentMethodNonce(nonce: "123z", localizedDescription: "ending in 46", type: "MasterCard", isDefault: true)
-            let card4 = BTPaymentMethodNonce(nonce: "123w", localizedDescription: "ending in 48", type: "Visa", isDefault: false)
+            let card1 = BTPaymentMethodNonce(nonce: "123x", localizedDescription: "*4242", type: "Visa", isDefault: false)
+            let card2 = BTPaymentMethodNonce(nonce: "123y", localizedDescription: "*4244", type: "Amex", isDefault: false)
+            let card3 = BTPaymentMethodNonce(nonce: "123z", localizedDescription: "*4246", type: "MasterCard", isDefault: true)
+            let card4 = BTPaymentMethodNonce(nonce: "123w", localizedDescription: "*4248", type: "Visa", isDefault: false)
             
             self.sources.append(card1!)
             self.sources.append(card2!)

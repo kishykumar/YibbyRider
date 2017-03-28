@@ -133,6 +133,9 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         present(cardIOVC!, animated: true, completion: nil)
     }
     
+    @IBAction func finishBtnaction(_ sender: AnyObject) {
+        _ = navigationController?.popViewController(animated: true)
+    }
     // MARK: - CardIO Delegate Functions
     
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {

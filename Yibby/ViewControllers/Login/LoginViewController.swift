@@ -89,7 +89,8 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
     
     func submitLoginForm() {
         
-        MainViewController.initMainViewController(self, animated: true)
+        loginUser("k", passwordi: "k")
+        //MainViewController.initMainViewController(self, animated: true)
         
         /*let validateText = TextfieldValidations()
         

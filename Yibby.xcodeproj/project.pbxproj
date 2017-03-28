@@ -27,6 +27,7 @@
 		08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5C1E60E38C007F1411 /* TripTableCell.swift */; };
 		08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */; };
 		08F658E21E7C6CC700981C78 /* ProfileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F658E11E7C6CC600981C78 /* ProfileObject.swift */; };
+		08F790DE1E8ADAFE00CF53C0 /* TripObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F790DD1E8ADAFE00CF53C0 /* TripObject.swift */; };
 		08FE495B1E7416C60044ACBF /* HelpCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE49591E7416C60044ACBF /* HelpCenterVC.swift */; };
 		08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE495A1E7416C60044ACBF /* LegalVC.swift */; };
 		08FE49611E7522B90044ACBF /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE49601E7522B90044ACBF /* UIViewControllerExtensions.swift */; };
@@ -281,6 +282,7 @@
 		08C15C5C1E60E38C007F1411 /* TripTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableCell.swift; sourceTree = "<group>"; };
 		08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostOrStolenItemVC.swift; sourceTree = "<group>"; };
 		08F658E11E7C6CC600981C78 /* ProfileObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileObject.swift; sourceTree = "<group>"; };
+		08F790DD1E8ADAFE00CF53C0 /* TripObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripObject.swift; sourceTree = "<group>"; };
 		08FE49591E7416C60044ACBF /* HelpCenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCenterVC.swift; sourceTree = "<group>"; };
 		08FE495A1E7416C60044ACBF /* LegalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalVC.swift; sourceTree = "<group>"; };
 		08FE49601E7522B90044ACBF /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -570,13 +572,14 @@
 			children = (
 				1201B8531D32445E00A7EEAF /* Bid.swift */,
 				080349C11E7DB179006C1E8A /* pickImageClass.swift */,
-				08F658E11E7C6CC600981C78 /* ProfileObject.swift */,
 				124B7A1A1E1B946E007C330F /* YBDriver.swift */,
 				124B7A221E1CEFAF007C330F /* YBLocation.swift */,
 				124B7A1E1E1B9C05007C330F /* YBVehicle.swift */,
 				124B7A201E1CD7A5007C330F /* YBClient.swift */,
 				12EF49711C95276800C07FAE /* Offer.swift */,
 				1201B7351D239E4A00A7EEAF /* Ride.swift */,
+				08F658E11E7C6CC600981C78 /* ProfileObject.swift */,
+				08F790DD1E8ADAFE00CF53C0 /* TripObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1921,6 +1924,7 @@
 				1201B8281D28ADC800A7EEAF /* AlertCellPresenter.swift in Sources */,
 				126C4AD61D796276005EC5FF /* CVC.swift in Sources */,
 				1236AA531D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */,
+				08F790DE1E8ADAFE00CF53C0 /* TripObject.swift in Sources */,
 				1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */,
 				126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */,
 				126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */,

@@ -20,9 +20,12 @@ class TripTableVC: UITableViewController {
     
     var cellHeights = [CGFloat]()
     
-    var tripsArray = [String]()
+   // var tripsArray = [String]()
     
     @IBOutlet var TV: UITableView!
+    
+    
+    var responseDataArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +57,13 @@ class TripTableVC: UITableViewController {
             
             if let resultArray = success as? Array<Any>
             {
-        
+        let tripObjectModel = TripObject()
+            self.responseDataArray = tripObjectModel.saveTripDetails(responseArr: resultArray as NSArray)
+                
                 DDLogVerbose("Trips available \(resultArray)")
                 
                 
-                self.tripsArray = resultArray as! [String]
+               // self.tripsArray = resultArray as! [String]
                 
                 self.TV.reloadData()
             }
@@ -79,7 +84,7 @@ class TripTableVC: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tripsArray.count
+        return self.responseDataArray.count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -112,6 +117,12 @@ class TripTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath)
+        
+        
+        var tripObjectModel = TripObject()
+       tripObjectModel = self.responseDataArray[indexPath.row] as! TripObject
+        
+        print(tripObjectModel.id)
         
         return cell
     }
