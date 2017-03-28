@@ -44,7 +44,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>2398a3e4bff596394b13cf60fa880f4297f56425</string>
+		<string>2c9f8435d86f4d5e3c3afa7c1f32febde0fd48d5</string>
 		<key>Kits</key>
 		<array>
 			<dict>
@@ -52,6 +52,17 @@
 				<dict/>
 				<key>KitName</key>
 				<string>Crashlytics</string>
+			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>esS5ad7tFboioWvygmHP6pR9J</string>
+					<key>consumerSecret</key>
+					<string>tYBnyYokqdd7KxA2t6egXWmjbV2hJraMvR3jS331XR4KCCifXq</string>
+				</dict>
+				<key>KitName</key>
+				<string>Digits</string>
 			</dict>
 		</array>
 	</dict>
@@ -77,6 +88,8 @@
 	<string>We use your location to set your pickup point and improve our services. Learn more in our Privacy Statement.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to choose pictures</string>
+	<key>NSPhotoLibraryUsageDescription - 2</key>
+	<string>AddressBookContacts needs to access your photo library for setting the contact's image.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.ttf</string>
@@ -105,7 +118,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription - 2</key>
-	<string>AddressBookContacts needs to access your photo library for setting the contact&apos;s image.</string>
 </dict>
 </plist>

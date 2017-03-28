@@ -17,7 +17,7 @@ import IQKeyboardManagerSwift
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FoldingCell
-
+import DigitsKit
 var stringSocial = String ()
 
 // TODO:
@@ -57,7 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     var initialized: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        Fabric.with([Crashlytics.self, Digits.self])
+
         // setup Crashlytics
         Fabric.with([Crashlytics.self])
         
