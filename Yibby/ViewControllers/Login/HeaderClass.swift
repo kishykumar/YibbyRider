@@ -31,7 +31,7 @@ func checkTextSufficientComplexity( text : String) -> Bool{
 
 func isValidPassword(testStr:String) -> Bool{
     
-    if (testStr.characters.count > 6){
+    if (testStr.characters.count < 6){
         return checkTextSufficientComplexity(text: testStr)
     }
     else{

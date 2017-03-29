@@ -28,12 +28,12 @@ class TextfieldValidations {
                     }
                     
                 }
-                if textfield.placeholder == "Password" {
+               /* if textfield.placeholder == "Password" {
                     if !(isValidPassword(testStr: textfield.text!)){
                         return (false,"Password must be more than six characters with minimum one numeric and special character.")
                     }
                     
-                }
+                }*/
                 if textfield.placeholder == "Phone No" {
                     if !(isValidPhoneNo(testStr: textfield.text!)){
                         return (false,"Enter valid telephone no")

@@ -106,21 +106,22 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
            
              AlertUtil.displayAlert("error in form", message: "Enter password")
         }
-        else if  !isValidPassword(testStr: passwordOutlet.text!){
+      /*  else if  !isValidPassword(testStr: passwordOutlet.text!){
            
             
             AlertUtil.displayAlert("error in form", message: "Password must be more than six characters with minimum one numeric and special character")
             
-        }
+        }*/
         else if phoneNumberOutlet.text! == ""{
             
             AlertUtil.displayAlert("error in form", message: "Enter phone no")
         }
-        else if  !isValidPhoneNo(testStr: phoneNumberOutlet.text!){
+       /* else if  !isValidPhoneNo(testStr: phoneNumberOutlet.text!){
            
              AlertUtil.displayAlert("error in form", message: "Enter valid phone no")
             
-        }else{
+        }*/
+        else{
             
             
                 let digits = Digits.sharedInstance()
