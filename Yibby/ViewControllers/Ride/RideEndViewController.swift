@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CocoaLumberjack
+import BaasBoxSDK
 
 class RideEndViewController: BaseYibbyViewController {
 
@@ -63,6 +65,23 @@ class RideEndViewController: BaseYibbyViewController {
     
     
     @IBAction func finishBtnAction(_ sender: Any) {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        let dictionary = ["bidId": "87326438702473", "feedback": "Hello I am here", "rating": "5"]
+        
+            client.postReview(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+            if ((success) != nil) {
+                
+                DDLogVerbose("Review success: \(success)")
+            }
+            else {
+                DDLogVerbose("Review failed: \(error)")
+            }
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
     }
     
     @IBAction func rateStarDriverBtnAction(_ sender: AnyObject) {

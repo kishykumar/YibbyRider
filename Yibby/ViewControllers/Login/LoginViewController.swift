@@ -89,7 +89,8 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
     
     func submitLoginForm() {
         
-        loginUser("k", passwordi: "k")
+        
+        loginUser("Y", passwordi: "y")
         //MainViewController.initMainViewController(self, animated: true)
         
         /*let validateText = TextfieldValidations()
@@ -105,7 +106,6 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
             
             loginUser(emailAddress.text!, passwordi: password.text!)
         }*/
-        
 //        if (emailAddress.text == "" || password.text == "") {
 //            AlertUtil.displayAlert("error in form", message: "Please enter email and password")
 //        } else {

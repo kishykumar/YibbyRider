@@ -31,7 +31,11 @@ class ConfirmRideViewController: BaseYibbyViewController {
         self.navigationController!.popViewController(animated: true)
     }
     
-    @IBAction func onAcceptButtonClick(_ sender: AnyObject) {
+    @IBAction func onAcceptButtonClick(_ sender: AnyObject)
+    /*{
+        self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
+    }*/
+    {
         
         WebInterface.makeWebRequestAndHandleError(
             self,

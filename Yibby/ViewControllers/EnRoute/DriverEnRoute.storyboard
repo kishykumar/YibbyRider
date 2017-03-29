@@ -408,7 +408,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BT-GR-d4d">
-                                <rect key="frame" x="10" y="40" width="300" height="200"/>
+                                <rect key="frame" x="10" y="70" width="300" height="200"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarRed" translatesAutoresizingMaskIntoConstraints="NO" id="gbb-pL-doS">
                                         <rect key="frame" x="106" y="10" width="88" height="88"/>
@@ -466,7 +466,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-4B-0Rd">
-                                <rect key="frame" x="10" y="263" width="300" height="185"/>
+                                <rect key="frame" x="10" y="293" width="300" height="185"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarRed" translatesAutoresizingMaskIntoConstraints="NO" id="9k7-xr-8h7">
                                         <rect key="frame" x="109" y="10" width="100" height="90"/>
@@ -512,7 +512,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4BT-GR-d4d" firstAttribute="top" secondItem="9WD-Nw-DLG" secondAttribute="bottom" constant="20" id="Bq2-zb-1Wd"/>
+                            <constraint firstItem="4BT-GR-d4d" firstAttribute="top" secondItem="9WD-Nw-DLG" secondAttribute="bottom" constant="50" id="Bq2-zb-1Wd"/>
                             <constraint firstItem="NGz-4B-0Rd" firstAttribute="top" secondItem="4BT-GR-d4d" secondAttribute="bottom" constant="23" id="KPs-1L-Efr"/>
                             <constraint firstAttribute="trailing" secondItem="NGz-4B-0Rd" secondAttribute="trailing" constant="10" id="ZcD-w2-CtS"/>
                             <constraint firstItem="4BT-GR-d4d" firstAttribute="leading" secondItem="aQ8-7Y-hM0" secondAttribute="leading" constant="10" id="gJl-XS-YWz"/>

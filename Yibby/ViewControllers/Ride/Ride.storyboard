@@ -207,7 +207,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiv-ho-tVW">
                                         <rect key="frame" x="0.0" y="60" width="375" height="400"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar 10,2017 at 10:24 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7d-Do-1jH">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 10,2017 at 10:24 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7d-Do-1jH">
                                                 <rect key="frame" x="0.0" y="10" width="375" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="med-IZ-KpW"/>
@@ -251,8 +251,8 @@
                                                                     <constraint firstAttribute="height" constant="16" id="Mu8-Ui-UOQ"/>
                                                                     <constraint firstAttribute="width" constant="40" id="vsP-0j-IGe"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" red="0.4431372549" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                                <color key="textColor" red="0.41176470590000003" green="0.48627450979999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq5-ZQ-Mis">
@@ -261,8 +261,8 @@
                                                                     <constraint firstAttribute="height" constant="16" id="Wo1-xA-PFu"/>
                                                                     <constraint firstAttribute="width" constant="40" id="qbF-bh-w44"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" red="0.4431372549" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                                <color key="textColor" red="0.41176470590000003" green="0.48627450979999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mws-fI-IS1">
@@ -271,8 +271,8 @@
                                                                     <constraint firstAttribute="height" constant="16" id="CYu-DN-Enb"/>
                                                                     <constraint firstAttribute="width" constant="40" id="t9O-sP-3ah"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" red="0.4431372549" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                                <color key="textColor" red="0.41176470590000003" green="0.48627450979999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLh-DL-0Rq">
@@ -281,8 +281,8 @@
                                                                     <constraint firstAttribute="height" constant="16" id="Ddh-Sn-v0Z"/>
                                                                     <constraint firstAttribute="width" constant="40" id="yqU-PJ-nDy"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" red="0.4431372549" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                                <color key="textColor" red="0.41176470590000003" green="0.48627450979999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvK-dE-8Tv">
@@ -291,8 +291,8 @@
                                                                     <constraint firstAttribute="height" constant="16" id="KEF-mL-jEY"/>
                                                                     <constraint firstAttribute="width" constant="40" id="ghF-kd-7Uj"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" red="0.4431372549" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                                <color key="textColor" red="0.41176470590000003" green="0.48627450979999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>

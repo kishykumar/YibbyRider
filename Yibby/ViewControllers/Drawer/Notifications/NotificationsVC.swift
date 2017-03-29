@@ -18,6 +18,8 @@ class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
         self.customBackButton(y: 20 as AnyObject)
         
+        TV.isHidden = true
+        
         // Do any additional setup after loading the view.
     }
     
