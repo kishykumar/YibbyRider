@@ -60,7 +60,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILh-LH-XcK">
-                                <rect key="frame" x="10" y="411" width="300" height="48"/>
+                                <rect key="frame" x="10" y="436" width="300" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd7-RU-AVs">
                                         <rect key="frame" x="13" y="0.0" width="280" height="48"/>
@@ -93,7 +93,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhQ-g4-Ujy">
-                                <rect key="frame" x="10" y="45" width="300" height="230"/>
+                                <rect key="frame" x="10" y="70" width="300" height="230"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  JAMSHID  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dzf-29-H21">
                                         <rect key="frame" x="33" y="85" width="82" height="30"/>
@@ -194,7 +194,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpb-bH-7pp">
-                                <rect key="frame" x="10" y="290" width="300" height="106"/>
+                                <rect key="frame" x="10" y="315" width="300" height="106"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QV5-Zs-lem">
                                         <rect key="frame" x="15" y="67" width="270" height="1"/>
@@ -285,7 +285,7 @@
                             <constraint firstItem="ILh-LH-XcK" firstAttribute="leading" secondItem="Zvp-DK-1HQ" secondAttribute="leading" constant="10" id="KW7-lS-UQa"/>
                             <constraint firstItem="ILh-LH-XcK" firstAttribute="top" secondItem="tpb-bH-7pp" secondAttribute="bottom" constant="15" id="d9f-RH-92q"/>
                             <constraint firstItem="tpb-bH-7pp" firstAttribute="height" secondItem="Zvp-DK-1HQ" secondAttribute="height" multiplier="0.22" id="hNJ-5t-O7t"/>
-                            <constraint firstItem="FhQ-g4-Ujy" firstAttribute="top" secondItem="cL4-Mo-Xzo" secondAttribute="bottom" constant="25" id="icH-Eg-ekv"/>
+                            <constraint firstItem="FhQ-g4-Ujy" firstAttribute="top" secondItem="cL4-Mo-Xzo" secondAttribute="bottom" constant="50" id="icH-Eg-ekv"/>
                             <constraint firstItem="FhQ-g4-Ujy" firstAttribute="leading" secondItem="Zvp-DK-1HQ" secondAttribute="leading" constant="10" id="lJw-Ff-r0R"/>
                         </constraints>
                     </view>

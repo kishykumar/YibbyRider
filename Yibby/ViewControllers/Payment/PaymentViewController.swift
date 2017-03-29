@@ -103,7 +103,7 @@ SelectPaymentViewControllerDelegate {
                                                    controllerType: PaymentViewControllerType.pickDefault)
     }
     
-    @IBAction func cancelButtonAction(_ sender: AnyObject) {
+    @IBAction func cancelButtonAction(_ sender: AnyObject){
         self.delegate?.selectPaymentViewControllerDidCancel(self)
     }
     
@@ -120,6 +120,14 @@ SelectPaymentViewControllerDelegate {
     }
     
     func setupUI () {
+        //self.SetBackBarButtonCustom()
+        
+        self.customBackButton(y: 0 as AnyObject)
+        
+        /*let yourBackImage = UIImage(named: "back_button_green")
+        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
+        self.navigationController?.navigationBar.backItem?.title = ""*/
         
         if (controllerType == PaymentViewControllerType.listPayment) {
             
@@ -133,9 +141,26 @@ SelectPaymentViewControllerDelegate {
             
             // remove the save button
             self.navigationItem.rightBarButtonItems?.removeAll()
-            
         }
-        self.customBackButton(y: 0 as AnyObject)
+    }
+    
+    func SetBackBarButtonCustom()
+    {
+        //Back buttion
+        let btnLeftMenu: UIButton = UIButton()
+        btnLeftMenu.setImage(UIImage(named: "back_button_green"), for: UIControlState())
+        
+        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
+        
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50, height: 59)
+        
+        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+        self.navigationItem.leftBarButtonItem = barButton
+    }
+    
+    func onClcikBack()
+    {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
