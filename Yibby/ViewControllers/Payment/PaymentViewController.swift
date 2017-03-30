@@ -120,14 +120,7 @@ SelectPaymentViewControllerDelegate {
     }
     
     func setupUI () {
-        //self.SetBackBarButtonCustom()
         
-        self.customBackButton(y: 0 as AnyObject)
-        
-        /*let yourBackImage = UIImage(named: "back_button_green")
-        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
-        self.navigationController?.navigationBar.backItem?.title = ""*/
         
         if (controllerType == PaymentViewControllerType.listPayment) {
             
@@ -137,11 +130,16 @@ SelectPaymentViewControllerDelegate {
             // remove the cancel button and show the back button
             self.navigationItem.leftBarButtonItems?.removeAll()
             
+            self.customBackButton(y: 0 as AnyObject)
+
+            
         } else if (controllerType == PaymentViewControllerType.pickForRide) {
             
             // remove the save button
             self.navigationItem.rightBarButtonItems?.removeAll()
         }
+        
+        //self.SetBackBarButtonCustom()
     }
     
     func SetBackBarButtonCustom()

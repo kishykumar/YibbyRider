@@ -376,7 +376,7 @@
         <!--Navigation Controller-->
         <scene sceneID="K4r-7t-Gkb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="sRR-UV-9tD" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sRR-UV-9tD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="prT-V5-hNy">
@@ -394,7 +394,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqs-hS-0Q3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13284.375" y="-855.63380281690138"/>
+            <point key="canvasLocation" x="-13016" y="-856"/>
         </scene>
     </scenes>
     <resources>
