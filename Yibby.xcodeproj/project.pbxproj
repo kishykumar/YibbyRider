@@ -23,6 +23,7 @@
 		084207E71E5871D6006607D8 /* NotificationTVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E61E5871D6006607D8 /* NotificationTVC1.swift */; };
 		084207E91E5871F8006607D8 /* NotificationTVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E81E5871F8006607D8 /* NotificationTVC2.swift */; };
 		085FBBDE1E8302AC00002F4D /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FBBDD1E8302AC00002F4D /* ImageService.swift */; };
+		08B437011E8D972300469897 /* DriversOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B437001E8D972200469897 /* DriversOffer.swift */; };
 		08C15C5B1E60E35C007F1411 /* TripTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5A1E60E35C007F1411 /* TripTableVC.swift */; };
 		08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5C1E60E38C007F1411 /* TripTableCell.swift */; };
 		08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */; };
@@ -278,6 +279,7 @@
 		084207E61E5871D6006607D8 /* NotificationTVC1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC1.swift; sourceTree = "<group>"; };
 		084207E81E5871F8006607D8 /* NotificationTVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC2.swift; sourceTree = "<group>"; };
 		085FBBDD1E8302AC00002F4D /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		08B437001E8D972200469897 /* DriversOffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversOffer.swift; sourceTree = "<group>"; };
 		08C15C5A1E60E35C007F1411 /* TripTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableVC.swift; sourceTree = "<group>"; };
 		08C15C5C1E60E38C007F1411 /* TripTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableCell.swift; sourceTree = "<group>"; };
 		08C15C5E1E60EB0B007F1411 /* LostOrStolenItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostOrStolenItemVC.swift; sourceTree = "<group>"; };
@@ -698,6 +700,7 @@
 				1201B7411D23A84500A7EEAF /* ConfirmRideViewController.swift */,
 				1201B7421D23A84500A7EEAF /* FindOffersViewController.swift */,
 				1201B7431D23A84500A7EEAF /* MainViewController.swift */,
+				08B437001E8D972200469897 /* DriversOffer.swift */,
 				08032C151E66102B00E876A5 /* CancelRideVC.swift */,
 			);
 			path = Bidding;
@@ -1913,6 +1916,7 @@
 				1201B8421D28EA3700A7EEAF /* UIViewNibLoading.swift in Sources */,
 				1201B7711D23A85F00A7EEAF /* SettingsViewController.swift in Sources */,
 				1201B8461D28EB4200A7EEAF /* ImageExtensions.swift in Sources */,
+				08B437011E8D972300469897 /* DriversOffer.swift in Sources */,
 				1215316C1D3F5CBC00C28C73 /* NSStringExtensions.swift in Sources */,
 				08F658E21E7C6CC700981C78 /* ProfileObject.swift in Sources */,
 				084207E91E5871F8006607D8 /* NotificationTVC2.swift in Sources */,
