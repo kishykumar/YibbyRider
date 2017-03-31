@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "30CE52C8B1E0F5CE940B973AEF41F6EB"
+               BlueprintIdentifier = "52363D18463B1356E8F8BEE75DC12889"
                BuildableName = "ISHPullUp.framework"
                BlueprintName = "ISHPullUp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30CE52C8B1E0F5CE940B973AEF41F6EB"
+            BlueprintIdentifier = "52363D18463B1356E8F8BEE75DC12889"
             BuildableName = "ISHPullUp.framework"
             BlueprintName = "ISHPullUp"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30CE52C8B1E0F5CE940B973AEF41F6EB"
+            BlueprintIdentifier = "52363D18463B1356E8F8BEE75DC12889"
             BuildableName = "ISHPullUp.framework"
             BlueprintName = "ISHPullUp"
             ReferencedContainer = "container:Pods.xcodeproj">

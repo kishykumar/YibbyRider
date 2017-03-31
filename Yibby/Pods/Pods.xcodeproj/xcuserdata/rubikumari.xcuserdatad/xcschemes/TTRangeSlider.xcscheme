@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24DB76AB2BBD549F63A65BCEC39955EB"
+               BlueprintIdentifier = "F94F9EA94E667E2E4400B5B24CB4CD9F"
                BuildableName = "TTRangeSlider.framework"
                BlueprintName = "TTRangeSlider"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24DB76AB2BBD549F63A65BCEC39955EB"
+            BlueprintIdentifier = "F94F9EA94E667E2E4400B5B24CB4CD9F"
             BuildableName = "TTRangeSlider.framework"
             BlueprintName = "TTRangeSlider"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24DB76AB2BBD549F63A65BCEC39955EB"
+            BlueprintIdentifier = "F94F9EA94E667E2E4400B5B24CB4CD9F"
             BuildableName = "TTRangeSlider.framework"
             BlueprintName = "TTRangeSlider"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "34CD2E3428AB802BACA62286FF5074B1"
+               BlueprintIdentifier = "5DB46EA499F9A5E22765121102FCC34B"
                BuildableName = "FBSnapshotTestCase.framework"
                BlueprintName = "FBSnapshotTestCase"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34CD2E3428AB802BACA62286FF5074B1"
+            BlueprintIdentifier = "5DB46EA499F9A5E22765121102FCC34B"
             BuildableName = "FBSnapshotTestCase.framework"
             BlueprintName = "FBSnapshotTestCase"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34CD2E3428AB802BACA62286FF5074B1"
+            BlueprintIdentifier = "5DB46EA499F9A5E22765121102FCC34B"
             BuildableName = "FBSnapshotTestCase.framework"
             BlueprintName = "FBSnapshotTestCase"
             ReferencedContainer = "container:Pods.xcodeproj">

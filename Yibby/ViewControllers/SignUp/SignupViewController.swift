@@ -143,11 +143,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
                     }
                     else
                     {
-                        
-                        
                         digits.logOut()
-                        
-                        
                         
                         self.phoneNumberOutlet.text =  (session?.phoneNumber)!
                       

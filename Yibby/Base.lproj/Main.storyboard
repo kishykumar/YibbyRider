@@ -63,7 +63,7 @@
                 <viewControllerPlaceholder storyboardName="Bidding" referencedIdentifier="MainNavViewControllerIdentifier" id="6W7-GM-DPp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVe-Lu-0wt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="396.99999999999994"/>
+            <point key="canvasLocation" x="1195" y="401"/>
         </scene>
         <!--ConfirmRideViewControllerIdentifier-->
         <scene sceneID="aWF-jQ-Ver">
