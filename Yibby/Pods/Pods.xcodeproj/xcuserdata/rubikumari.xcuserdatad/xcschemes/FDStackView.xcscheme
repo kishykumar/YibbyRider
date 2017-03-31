@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "91272223AF96E8FC18D74C611C4E7BA8"
+               BlueprintIdentifier = "19C0DF4E1691836C9627E3B0BB3144CE"
                BuildableName = "FDStackView.framework"
                BlueprintName = "FDStackView"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "91272223AF96E8FC18D74C611C4E7BA8"
+            BlueprintIdentifier = "19C0DF4E1691836C9627E3B0BB3144CE"
             BuildableName = "FDStackView.framework"
             BlueprintName = "FDStackView"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "91272223AF96E8FC18D74C611C4E7BA8"
+            BlueprintIdentifier = "19C0DF4E1691836C9627E3B0BB3144CE"
             BuildableName = "FDStackView.framework"
             BlueprintName = "FDStackView"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -42,9 +42,6 @@ class TripTableVC: UITableViewController {
     self.customBackButton(y: 0 as AnyObject)
     }
     
-//    - (void)getRides: (NSString *)type
-//    completion: (BAAObjectResultBlock)completionBlock
-    
     func getTripsService()
     {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)

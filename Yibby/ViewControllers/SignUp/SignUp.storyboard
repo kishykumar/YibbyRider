@@ -99,7 +99,7 @@
                             <constraint firstItem="mbW-Z4-CeA" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="H4U-Q0-2du"/>
                             <constraint firstItem="pWa-GR-brA" firstAttribute="centerX" secondItem="JGF-1f-FtY" secondAttribute="centerX" id="KO8-f4-Qwk"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="top" secondItem="iFW-zz-HxR" secondAttribute="bottom" constant="20" id="KYU-J1-QoM"/>
-                            <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="pWa-GR-brA" secondAttribute="bottom" constant="40" id="bxi-Cw-VQ3"/>
+                            <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="pWa-GR-brA" secondAttribute="bottom" constant="-48" id="bxi-Cw-VQ3"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="top" secondItem="Uyt-Pk-j7d" secondAttribute="bottom" constant="25" id="cx3-rf-Dav"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="trailing" secondItem="JGF-1f-FtY" secondAttribute="trailingMargin" id="knr-I4-n3D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mbW-Z4-CeA" secondAttribute="trailing" id="mrd-3k-bRp"/>
@@ -132,7 +132,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="dfi-UO-Jic" userLabel="Container View">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="dfi-UO-Jic" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="28" width="320" height="476"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-7Z-NNX" customClass="ButtonBarView" customModule="XLPagerTabStrip">
@@ -153,7 +153,7 @@
                         <constraints>
                             <constraint firstItem="dfi-UO-Jic" firstAttribute="trailing" secondItem="dyZ-9E-L3v" secondAttribute="trailing" id="2hf-Cm-iEx"/>
                             <constraint firstItem="dfi-UO-Jic" firstAttribute="top" secondItem="Z7g-7Z-NNX" secondAttribute="bottom" id="3JC-QM-8uJ"/>
-                            <constraint firstItem="c6u-vX-7zJ" firstAttribute="top" secondItem="dfi-UO-Jic" secondAttribute="bottom" id="Juz-E5-gmd"/>
+                            <constraint firstItem="c6u-vX-7zJ" firstAttribute="top" secondItem="dfi-UO-Jic" secondAttribute="bottom" constant="-88" id="Juz-E5-gmd"/>
                             <constraint firstItem="Z7g-7Z-NNX" firstAttribute="leading" secondItem="dyZ-9E-L3v" secondAttribute="leading" id="KZI-MA-4UT"/>
                             <constraint firstItem="Z7g-7Z-NNX" firstAttribute="top" secondItem="JOS-2i-STb" secondAttribute="bottom" id="cv2-rP-X9h"/>
                             <constraint firstItem="dfi-UO-Jic" firstAttribute="leading" secondItem="dyZ-9E-L3v" secondAttribute="leading" id="iRS-7H-HJy"/>

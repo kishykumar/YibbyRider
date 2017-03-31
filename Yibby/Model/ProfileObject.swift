@@ -19,10 +19,18 @@ class ProfileObject {
     func setProfileData(responseDict: NSDictionary){
         
         print(responseDict)
-        self.email = responseDict["email"] as! String
-        self.name = responseDict["name"] as! String
-        self.phoneNo = responseDict["phoneNumber"] as! String
         
+        if responseDict["email"] as? String != nil {
+        self.email = responseDict["email"] as! String
+        }
+        
+        if responseDict["name"] as? String != nil {
+        self.name = responseDict["name"] as! String
+        }
+        
+        if responseDict["phoneNumber"] as? String != nil {
+        self.phoneNo = responseDict["phoneNumber"] as! String
+        }
         
         if responseDict["homeLocation"] as? NSDictionary != nil {
             let homeLocationDict = responseDict["homeLocation"] as! NSDictionary

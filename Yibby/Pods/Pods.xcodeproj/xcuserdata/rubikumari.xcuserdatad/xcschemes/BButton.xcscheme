@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8167FC80FB75998FEB9BCF29455230B"
+               BlueprintIdentifier = "E130CF53EF63B7C12121B58C27AFF36A"
                BuildableName = "BButton.framework"
                BlueprintName = "BButton"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8167FC80FB75998FEB9BCF29455230B"
+            BlueprintIdentifier = "E130CF53EF63B7C12121B58C27AFF36A"
             BuildableName = "BButton.framework"
             BlueprintName = "BButton"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8167FC80FB75998FEB9BCF29455230B"
+            BlueprintIdentifier = "E130CF53EF63B7C12121B58C27AFF36A"
             BuildableName = "BButton.framework"
             BlueprintName = "BButton"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A795DAB76A95D29F9CC4533E8B55AA35"
+               BlueprintIdentifier = "FFC60C150868ADC324A301A5CBAD01F4"
                BuildableName = "LaunchScreen.framework"
                BlueprintName = "LaunchScreen"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A795DAB76A95D29F9CC4533E8B55AA35"
+            BlueprintIdentifier = "FFC60C150868ADC324A301A5CBAD01F4"
             BuildableName = "LaunchScreen.framework"
             BlueprintName = "LaunchScreen"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A795DAB76A95D29F9CC4533E8B55AA35"
+            BlueprintIdentifier = "FFC60C150868ADC324A301A5CBAD01F4"
             BuildableName = "LaunchScreen.framework"
             BlueprintName = "LaunchScreen"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D386C75EFD4F03725E4EFB866B600B9A"
+               BlueprintIdentifier = "16FB872D0D2D4BA0F378AB34D47CF95F"
                BuildableName = "DZNEmptyDataSet.framework"
                BlueprintName = "DZNEmptyDataSet"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D386C75EFD4F03725E4EFB866B600B9A"
+            BlueprintIdentifier = "16FB872D0D2D4BA0F378AB34D47CF95F"
             BuildableName = "DZNEmptyDataSet.framework"
             BlueprintName = "DZNEmptyDataSet"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D386C75EFD4F03725E4EFB866B600B9A"
+            BlueprintIdentifier = "16FB872D0D2D4BA0F378AB34D47CF95F"
             BuildableName = "DZNEmptyDataSet.framework"
             BlueprintName = "DZNEmptyDataSet"
             ReferencedContainer = "container:Pods.xcodeproj">

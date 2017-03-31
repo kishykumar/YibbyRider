@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "91EDAB10E0C12A244338DF36893BFEED"
+               BlueprintIdentifier = "8BA031E36E18088F4FB5482F8DA8AD4A"
                BuildableName = "ASProgressPopUpView.framework"
                BlueprintName = "ASProgressPopUpView"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "91EDAB10E0C12A244338DF36893BFEED"
+            BlueprintIdentifier = "8BA031E36E18088F4FB5482F8DA8AD4A"
             BuildableName = "ASProgressPopUpView.framework"
             BlueprintName = "ASProgressPopUpView"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "91EDAB10E0C12A244338DF36893BFEED"
+            BlueprintIdentifier = "8BA031E36E18088F4FB5482F8DA8AD4A"
             BuildableName = "ASProgressPopUpView.framework"
             BlueprintName = "ASProgressPopUpView"
             ReferencedContainer = "container:Pods.xcodeproj">
