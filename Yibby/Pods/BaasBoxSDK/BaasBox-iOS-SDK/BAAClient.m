@@ -649,7 +649,6 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                                                  code:[BaasBox errorCode]
                                                 userInfo:details];
             completionBlock(NO, error);
-            
         }
         return;
     }
@@ -693,6 +692,154 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
            }];
 }
 
+- (void)getPaymentClientToken: (NSString *)type
+                   completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self postPath:@"client_token"
+       parameters:@{
+                    @"type" : type,
+                    @"appcode" : self.appCode,
+                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    }
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+              
+          } failure:^(NSError *error) {
+              
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
+              
+          }];
+}
+
+- (void)makeDefaultPaymentMethod: (NSString *)type
+              paymentMethodToken:(NSString *)paymentMethodToken
+                      completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self postPath:[NSString stringWithFormat:@"payment/default/%@", paymentMethodToken]
+        parameters:@{
+                     @"type" : type,
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               
+               if (completionBlock) {
+                   completionBlock(responseObject[@"data"], nil);
+               }
+               
+           } failure:^(NSError *error) {
+               
+               if (completionBlock) {
+                   completionBlock(nil, error);
+               }
+               
+           }];
+}
+
+- (void)addPaymentMethod: (NSString *)type
+      paymentMethodNonce:(NSString *)paymentMethodNonce
+              completion: (BAAObjectResultBlock)completionBlock {
+
+    [self postPath:[NSString stringWithFormat:@"payment/%@", paymentMethodNonce]
+        parameters:@{
+                     @"type" : type,
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               
+               if (completionBlock) {
+                   completionBlock(responseObject[@"data"], nil);
+               }
+               
+           } failure:^(NSError *error) {
+               
+               if (completionBlock) {
+                   completionBlock(nil, error);
+               }
+               
+           }];
+}
+
+- (void)deletePaymentMethod: (NSString *)type
+         paymentMethodToken:(NSString *)paymentMethodToken
+                 completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self deletePath:[NSString stringWithFormat:@"payment/%@", paymentMethodToken]
+        parameters:@{
+                     @"type" : type,
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               
+               if (completionBlock) {
+                   completionBlock(responseObject[@"data"], nil);
+               }
+               
+           } failure:^(NSError *error) {
+               
+               if (completionBlock) {
+                   completionBlock(nil, error);
+               }
+               
+           }];
+    
+}
+
+- (void)updatePaymentMethod: (NSString *)type
+                   jsonBody:(NSDictionary *)jsonBody
+                 completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self putPath:@"payment"
+        parameters:@{
+                     @"type" : type,
+                     @"appcode" : self.appCode,
+                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     }
+           success:^(NSDictionary *responseObject) {
+               
+               if (completionBlock) {
+                   completionBlock(responseObject[@"data"], nil);
+               }
+               
+           } failure:^(NSError *error) {
+               
+               if (completionBlock) {
+                   completionBlock(nil, error);
+               }
+               
+           }];
+}
+
+- (void)getPaymentMethods: (NSString *)type
+               completion: (BAAObjectResultBlock)completionBlock {
+    
+    [self getPath:@"payment"
+       parameters:@{
+                    @"type" : type,
+                    @"appcode" : self.appCode,
+                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    }
+          success:^(NSDictionary *responseObject) {
+              
+              if (completionBlock) {
+                  completionBlock(responseObject[@"data"], nil);
+              }
+              
+          } failure:^(NSError *error) {
+              
+              if (completionBlock) {
+                  completionBlock(nil, error);
+              }
+              
+          }];
+}
 
 #pragma mark - Objects
 
