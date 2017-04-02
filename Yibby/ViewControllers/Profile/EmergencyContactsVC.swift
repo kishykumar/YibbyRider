@@ -8,76 +8,113 @@
 
 import UIKit
 
-class EmergencyContactsVC: UIViewController {
+class EmergencyContactsVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
-    @IBOutlet weak var emailAddress: UITextField!
-    @IBOutlet weak var phoneNo: UITextField!
+    @IBOutlet weak var TV: UITableView!
+    @IBOutlet weak var addNewContactButtonOutlet: UIButton!
     
-    @IBOutlet weak var emailAddress1: UITextField!
-    @IBOutlet weak var phoneNo1: UITextField!
-    
-    @IBOutlet var VW: UIView!
-    @IBOutlet var VW1: UIView!
-    
-    @IBOutlet var firstNameLbl: UILabel!
-    @IBOutlet var lastNameLbl: UILabel!
-    @IBOutlet var firstNameLbl1: UILabel!
-    @IBOutlet var lastNameLbl1: UILabel!
+    var sectionsCount = 0
 
-    @IBOutlet var contactImage: UIImageView!
-    
-    var customTextfieldProperty = CustomizeTextfield()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    
+    sectionsCount = 1
         setupUI()
     }
 
     private func setupUI() {
         self.customBackButton(y: 20 as AnyObject)
         
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo)
+        self.addNewContactButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
+        self.addNewContactButtonOutlet.layer.borderWidth = 1.0
+        self.addNewContactButtonOutlet.layer.cornerRadius = 8
         
-        
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress1)
-        
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.phoneNo1)
-        
-        
-        VW.layer.borderColor = UIColor.borderColor().cgColor
-        VW.layer.borderWidth = 1.0
-        VW.layer.cornerRadius = 7
-        VW1.layer.borderColor = UIColor.borderColor().cgColor
-        VW1.layer.borderWidth = 1.0
-        VW1.layer.cornerRadius = 7
-        
-        firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
-        firstNameLbl.layer.borderWidth = 1.0
-        firstNameLbl.layer.cornerRadius = 5
-        lastNameLbl.layer.borderColor = UIColor.borderColor().cgColor
-        lastNameLbl.layer.borderWidth = 1.0
-        lastNameLbl.layer.cornerRadius = 5
-        firstNameLbl1.layer.borderColor = UIColor.borderColor().cgColor
-        firstNameLbl1.layer.borderWidth = 1.0
-        firstNameLbl1.layer.cornerRadius = 5
-        lastNameLbl1.layer.borderColor = UIColor.borderColor().cgColor
-        lastNameLbl1.layer.borderWidth = 1.0
-        lastNameLbl1.layer.cornerRadius = 5
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func addContactButtonAction(_ sender: UIButton) {
+        sectionsCount = sectionsCount+1
+        self.TV.reloadData()
+        
+    }
+    @IBAction func deleteContactAction(_ sender: UIButton) {
+        sectionsCount = sectionsCount-1
+        self.TV.reloadData()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 //sectionsCount
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+            let notificationCell = tableView.dequeueReusableCell(withIdentifier: "EmergencyContactTVC", for: indexPath as IndexPath) as UITableViewCell
+        
+        
+        notificationCell.layer.cornerRadius = 8
+            return notificationCell
+    }
+    
+    
+    
+    
+    /*@IBAction func emailEditBtnAction(_ sender: UIButton) {
+        
+        if (self.emailEditBtnOutlet.currentImage?.isEqual(UIImage(named: "Settings")))! {
+            //do something here
+            self.emailEditBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
+            
+            //
+            
+            self.emailAddressTFOutlet.layer.borderColor = UIColor.borderColor().cgColor
+            self.emailAddressTFOutlet.layer.borderWidth = 1.0
+            self.emailAddressTFOutlet.layer.cornerRadius = 7
+            
+            let col2 = UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
+            
+            self.emailAddressTFOutlet.textColor = col2
+            
+            self.emailAddressTFOutlet.isUserInteractionEnabled = true
+            
+            self.emailAddressTFOutlet.becomeFirstResponder()
+            
+        }
+        else
+        {
+            self.emailEditBtnOutlet.setImage(UIImage(named: "Settings"), for: .normal)
+            
+            self.emailAddressTFOutlet.isUserInteractionEnabled = false
+            
+            self.emailAddressTFOutlet.resignFirstResponder()
+            
+            self.emailAddressTFOutlet.layer.borderColor = UIColor.clear.cgColor
+            
+            self.emailAddressTFOutlet.textColor = UIColor.lightGray
+            
+//            if (emailAddressTFOutlet.text?.isEqual(profileObjectModel.email))!
+//            {
+//                
+//            }
+//            else
+//            {
+//            }
+        }
+    }*/
     override func viewDidLayoutSubviews() {
         
-        contactImage.layer.cornerRadius = contactImage.frame.size.width/2
-        contactImage.layer.masksToBounds = true
+        
     }
 
     /*

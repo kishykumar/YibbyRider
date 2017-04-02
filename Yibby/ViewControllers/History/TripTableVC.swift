@@ -90,6 +90,25 @@ class TripTableVC: UITableViewController {
             return
         }
         
+        var tripObjectModel = TripObject()
+        tripObjectModel = self.responseDataArray[indexPath.row] as! TripObject
+        
+        
+        print(tripObjectModel.id)
+        
+        cell.dateAndTimeLbl.text = tripObjectModel.dateTime
+        //cell.fareOrRideIssueBtn.setTitle("$\(tripObjectModel.fare)", for: .normal)
+        cell.userNameLbl.text = tripObjectModel.driver_firstName
+        cell.totalPriceLbl.text = "$\(tripObjectModel.fare)"
+        
+        cell.dateAndTimeLbl1.text = tripObjectModel.dateTime
+        cell.fromPlaceTF.text = tripObjectModel.pickup_name
+        cell.toPlaceTF.text = tripObjectModel.drop_name
+        cell.ridePriceLbl.text = "$\(tripObjectModel.riderBidPrice)"
+        
+        cell.cardDetailsBtnOutlet.tag = indexPath.row
+        
+        
         /*cell.closeNumberLabel.text = "sankar"
          
          if indexPath.row == 1
@@ -113,11 +132,12 @@ class TripTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) 
         
         
         var tripObjectModel = TripObject()
        tripObjectModel = self.responseDataArray[indexPath.row] as! TripObject
+        
         
         print(tripObjectModel.id)
         
@@ -172,13 +192,23 @@ class TripTableVC: UITableViewController {
         print("otherIssueBtn tap")
     }
 
-    @IBAction func carDetailsBtnAction(_ sender: AnyObject) {
+    @IBAction func carDetailsBtnAction(_ sender: UIButton) {
         print("carDetailsBtnAction tap")
         
+        var tripObjectModel = TripObject()
+        tripObjectModel = self.responseDataArray[sender.tag] as! TripObject
+        print(tripObjectModel)
+        print(tripObjectModel.vehicle_make)
+        
         let loginSubView = self.storyboard!.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
+        //loginSubView.selectedIndex = sender.tag
+        loginSubView.carModelStr = tripObjectModel.vehicle_make
+        loginSubView.carNumberStr = tripObjectModel.vehicle_licensePlate
         
         print(loginSubView.view.frame)        
         
+        print(sender.tag)
+     
         addChildViewController(loginSubView)
         loginSubView.view.backgroundColor = .clear
         DispatchQueue.main.async {

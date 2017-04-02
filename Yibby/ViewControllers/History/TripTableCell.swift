@@ -35,6 +35,8 @@ class TripTableCell: FoldingCell {
     @IBOutlet weak var fareOrRideIssueBtn: UIButton!
     @IBOutlet weak var otherIssueBtn: UIButton!
     
+    @IBOutlet weak var cardDetailsBtnOutlet: UIButton!
+    
     var customTextfieldProperty = CustomizeTextfield()
 
     var number: Int = 0 {

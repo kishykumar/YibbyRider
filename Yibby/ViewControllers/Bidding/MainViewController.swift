@@ -348,8 +348,38 @@ open class MainViewController: BaseYibbyViewController,
         setupMap()
         setupMapClient()
         
+        getProfile()
+        
         // check for location services
 //        AlertUtil.displayLocationAlert()
+    }
+    
+    func getProfile() {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.getProfile(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
+            if ((success) != nil) {
+                
+                if let resultDict = success as? NSDictionary
+                    
+                {
+                    profileObjectModel.setProfileData(responseDict: resultDict)
+                   
+                    DDLogVerbose("getProfile Data: \(success)")
+                }
+                else {
+                    DDLogError("Error in fetching getProfile: \(error)")
+                }
+                
+            }
+            else {
+                DDLogVerbose("getProfile failed: \(error)")
+            }
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
     }
     
     open override func viewDidLayoutSubviews() {

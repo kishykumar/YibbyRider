@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -895,6 +895,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="carIV" destination="eJV-Mo-ml9" id="KCo-L7-Wdd"/>
+                                    <outlet property="cardDetailsBtnOutlet" destination="hIt-fr-Xtn" id="ZI8-ix-gn4"/>
                                     <outlet property="cardNumberLbl" destination="sSA-Lj-682" id="ZdJ-Fx-zVY"/>
                                     <outlet property="containerView" destination="OXl-vq-qoP" id="twV-8Q-cKL"/>
                                     <outlet property="containerViewTop" destination="s0q-pl-d3h" id="CHX-ll-CWU"/>
@@ -911,7 +912,7 @@
                                     <outlet property="timeLbl" destination="IW6-5r-xqA" id="pDb-ba-3nn"/>
                                     <outlet property="tipPriceLbl" destination="hlk-B5-3Sa" id="lWq-JV-IZR"/>
                                     <outlet property="toPlaceTF" destination="5bS-uH-yOo" id="zy1-0Y-aOD"/>
-                                    <outlet property="totalPriceLbl" destination="d7u-Oa-zqM" id="3AM-7x-o2i"/>
+                                    <outlet property="totalPriceLbl" destination="IpT-YX-JEO" id="1EK-4n-0Cl"/>
                                     <outlet property="userIV" destination="gSp-LW-KB1" id="qCI-w4-jaE"/>
                                     <outlet property="userIV1" destination="fFW-sO-qdf" id="GgD-P5-1i0"/>
                                     <outlet property="userNameLbl" destination="xcc-JW-vJE" id="y2a-Ri-Xcv"/>
@@ -959,16 +960,6 @@
                                             <constraint firstAttribute="width" constant="80" id="w3K-sO-V0W"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTX-Wn-4Sj">
-                                        <rect key="frame" x="90" y="145" width="140" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="9iB-EV-wde"/>
-                                        </constraints>
-                                        <state key="normal" title="Toyota Corolla">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xun-8B-zmb">
                                         <rect key="frame" x="145" y="257" width="30" height="30"/>
                                         <constraints>
@@ -980,28 +971,50 @@
                                             <action selector="closeBtnAction:" destination="V0N-52-WFC" eventType="touchUpInside" id="1jf-Fj-JuF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aB-t9-WP8">
-                                        <rect key="frame" x="108" y="199" width="104" height="40"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toyota Corolla  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdB-CF-MX5" customClass="YibbyPaddingLabel" customModule="Yibby" customModuleProvider="target">
+                                        <rect key="frame" x="100.5" y="145" width="120.5" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="1ox-al-Lad"/>
+                                            <constraint firstAttribute="height" constant="40" id="Hkt-YJ-B54"/>
                                         </constraints>
-                                        <state key="normal" title="6EDG137">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.19215686269999999" green="0.63921568630000003" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6EDG137" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTf-fX-Nvg" customClass="YibbyPaddingLabel" customModule="Yibby" customModuleProvider="target">
+                                        <rect key="frame" x="100.5" y="199" width="120.5" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="TDk-Tg-H1K"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.19215686269999999" green="0.63921568630000003" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="4aB-t9-WP8" firstAttribute="centerX" secondItem="ds3-Ew-Ims" secondAttribute="centerX" id="0Af-7S-EQx"/>
-                                    <constraint firstItem="yTX-Wn-4Sj" firstAttribute="centerY" secondItem="ds3-Ew-Ims" secondAttribute="centerY" constant="15" id="FK1-LB-3wn"/>
+                                    <constraint firstItem="vdB-CF-MX5" firstAttribute="centerX" secondItem="ds3-Ew-Ims" secondAttribute="centerX" id="4ta-QQ-hmN"/>
+                                    <constraint firstItem="tTf-fX-Nvg" firstAttribute="top" secondItem="vdB-CF-MX5" secondAttribute="bottom" constant="14" id="JFs-7H-vsZ"/>
                                     <constraint firstAttribute="height" constant="300" id="K2y-Wk-xw9"/>
                                     <constraint firstItem="xun-8B-zmb" firstAttribute="centerX" secondItem="ds3-Ew-Ims" secondAttribute="centerX" id="S7N-Df-kfU"/>
                                     <constraint firstAttribute="bottom" secondItem="xun-8B-zmb" secondAttribute="bottom" constant="13" id="XfG-Gn-KlJ"/>
-                                    <constraint firstItem="yTX-Wn-4Sj" firstAttribute="centerX" secondItem="ds3-Ew-Ims" secondAttribute="centerX" id="ckq-rN-SKV"/>
-                                    <constraint firstItem="4aB-t9-WP8" firstAttribute="top" secondItem="yTX-Wn-4Sj" secondAttribute="bottom" constant="14" id="eYJ-Am-hnb"/>
+                                    <constraint firstItem="tTf-fX-Nvg" firstAttribute="leading" secondItem="vdB-CF-MX5" secondAttribute="leading" id="heU-83-xuc"/>
+                                    <constraint firstItem="tTf-fX-Nvg" firstAttribute="width" secondItem="vdB-CF-MX5" secondAttribute="width" id="lsx-xe-wYI"/>
+                                    <constraint firstItem="vdB-CF-MX5" firstAttribute="centerY" secondItem="ds3-Ew-Ims" secondAttribute="centerY" constant="15" id="nEa-ea-4hD"/>
                                     <constraint firstItem="cxg-hI-caC" firstAttribute="centerX" secondItem="ds3-Ew-Ims" secondAttribute="centerX" id="q4P-Eq-R5h"/>
                                     <constraint firstItem="cxg-hI-caC" firstAttribute="top" secondItem="ds3-Ew-Ims" secondAttribute="top" constant="40" id="rB4-BG-4u7"/>
+                                    <constraint firstItem="xun-8B-zmb" firstAttribute="top" secondItem="tTf-fX-Nvg" secondAttribute="bottom" constant="18" id="sfg-cT-tp3"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0O-yC-8kD">
@@ -1032,8 +1045,8 @@
                     </view>
                     <connections>
                         <outlet property="carIV" destination="cxg-hI-caC" id="hlr-ir-BL8"/>
-                        <outlet property="carModel" destination="yTX-Wn-4Sj" id="Jxd-ud-APN"/>
-                        <outlet property="carNumber" destination="4aB-t9-WP8" id="Bc1-nn-PA2"/>
+                        <outlet property="carModel" destination="vdB-CF-MX5" id="5Kj-en-SXO"/>
+                        <outlet property="carNumber" destination="tTf-fX-Nvg" id="sao-4d-V7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LTg-ap-IVX" userLabel="First Responder" sceneMemberID="firstResponder"/>

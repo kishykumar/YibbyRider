@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,10 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="2ZM-3O-CAa" userLabel="FooterView">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Yju-Vh-6pv">
                             <rect key="frame" x="0.0" y="288" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cardIdentifier" rowHeight="60" id="T0f-XX-Phr" customClass="CardTableCell" customModule="Yibby" customModuleProvider="target">
@@ -135,6 +135,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.94501847029999997" green="0.94515079260000001" blue="0.94497674700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="1w2-Bg-3lU" firstAttribute="trailing" secondItem="C4J-Zy-2Ra" secondAttribute="trailing" id="2bO-Oa-93j"/>
                                         <constraint firstItem="1w2-Bg-3lU" firstAttribute="leading" secondItem="C4J-Zy-2Ra" secondAttribute="leading" id="4l8-wG-rWh"/>
@@ -148,6 +149,7 @@
                                         <constraint firstItem="fTS-ih-yoc" firstAttribute="top" secondItem="1w2-Bg-3lU" secondAttribute="top" id="zkd-z1-jGV"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.945018470287323" green="0.94515079259872437" blue="0.94497674703598022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="paymentImageOutlet" destination="fTS-ih-yoc" id="l8U-Lf-gzZ"/>
                                     <outlet property="paymentTextOutlet" destination="C4J-Zy-2Ra" id="1ig-ee-BRm"/>
