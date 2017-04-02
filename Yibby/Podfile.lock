@@ -4,7 +4,7 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - ASProgressPopUpView (0.8)
-  - BaasBoxSDK (0.9.0)
+  - BaasBoxSDK (0.9.3)
   - BButton (4.0.2)
   - Braintree (4.4.1):
     - Braintree/Card (= 4.4.1)
@@ -187,7 +187,7 @@ SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
-  BaasBoxSDK: 9a5984f85e9b3b31bf6c6d280bca3fbabff7b164
+  BaasBoxSDK: 558ca56ab411890b4b18bb3b98fcce8cfd9b8bf8
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 772ab9104053cca5d8cc3b32d79e6b1272f46527
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e

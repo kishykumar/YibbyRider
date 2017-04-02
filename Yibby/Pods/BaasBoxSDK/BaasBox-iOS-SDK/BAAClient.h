@@ -80,7 +80,30 @@
 - (void)updateProfile: (NSString *)type
              jsonBody:(NSDictionary *)jsonBody
            completion: (BAAObjectResultBlock)completionBlock;
-    
+
+// Payments
+- (void)getPaymentClientToken: (NSString *)type
+        completion: (BAAObjectResultBlock)completionBlock;
+
+- (void)makeDefaultPaymentMethod: (NSString *)type
+                            paymentMethodToken:(NSString *)paymentMethodToken
+                            completion: (BAAObjectResultBlock)completionBlock;
+
+- (void)addPaymentMethod: (NSString *)type
+                        paymentMethodNonce:(NSString *)paymentMethodNonce
+                        completion: (BAAObjectResultBlock)completionBlock;
+
+- (void)deletePaymentMethod: (NSString *)type
+                        paymentMethodToken:(NSString *)paymentMethodToken
+                        completion: (BAAObjectResultBlock)completionBlock;
+
+- (void)updatePaymentMethod: (NSString *)type
+                    jsonBody:(NSDictionary *)jsonBody
+                    completion: (BAAObjectResultBlock)completionBlock;
+
+- (void)getPaymentMethods: (NSString *)type
+                      completion: (BAAObjectResultBlock)completionBlock;
+
 // driver status
 - (void)updateDriverStatus:(NSString *)status
                 completion: (BAABooleanResultBlock)completionBlock;
