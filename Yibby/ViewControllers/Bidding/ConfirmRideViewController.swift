@@ -102,7 +102,8 @@ class ConfirmRideViewController: BaseYibbyViewController {
     
     func setupUI() {
         
-        self.view.backgroundColor = UIColor.navyblue1()
+        //self.view.backgroundColor = UIColor.navyblue1()
+        self.view.backgroundColor = UIColor(red: 39/255, green: 56/255, blue: 76/255, alpha: 1)
         
         self.cancelButtonOutlet.color = UIColor.red
         self.acceptButtonOutlet.color = UIColor.appDarkGreen1()

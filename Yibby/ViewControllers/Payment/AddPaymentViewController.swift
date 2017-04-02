@@ -21,6 +21,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     @IBOutlet weak var saveCardButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var cancelButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var scanCardButtonOutlet: UIButton!
+    @IBOutlet weak var finishButtonOutlet: YibbyButton1!
     
     // TODO: Payment Type Icon
 //    var cardNumberField: BTUICardHint?
@@ -153,6 +154,8 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     
     func setupUI() {
         self.customBackButton(y: 20 as AnyObject)
+        
+        finishButtonOutlet.color = UIColor(red: 45/255, green: 195/255, blue: 89/255, alpha: 1)
         
         if (isEditCard == true) {
             

@@ -41,6 +41,8 @@ class CardTableCell : UITableViewCell {
         selectedColorLbl.layer.cornerRadius = selectedColorLbl.frame.size.width/2
         
         selectedColorLbl.clipsToBounds = true
+        
+        self.paymentDefaultsBtnOutlet.setBorderWithColor()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

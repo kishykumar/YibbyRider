@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardFieldsView" customModule="Yibby" customModuleProvider="target">
             <connections>
                 <outlet property="cardHolderNameTextField" destination="Jec-20-Hn3" id="As4-wi-xdG"/>
-                <outlet property="cardImageView" destination="giq-bc-ajh" id="dr3-hf-s61"/>
                 <outlet property="cvcTextField" destination="ODQ-iC-No3" id="GGY-mS-7LO"/>
                 <outlet property="monthTextField" destination="lzZ-iQ-V3u" id="Hho-s0-7Cd"/>
                 <outlet property="numberInputTextField" destination="1Cw-Er-hqU" id="Rxp-Zy-I78"/>
@@ -31,7 +29,7 @@
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder's Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jec-20-Hn3" customClass="CardHolderNameTextField" customModule="Yibby" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="309" height="52"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -49,8 +47,8 @@
                             <rect key="frame" x="0.0" y="72" width="309" height="51.5"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Cw-Er-hqU" customClass="NumberInputTextField" customModule="Yibby" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="249" height="51.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="309" height="51.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -65,15 +63,10 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown" translatesAutoresizingMaskIntoConstraints="NO" id="giq-bc-ajh">
-                                    <rect key="frame" x="259" y="10" width="50" height="31"/>
-                                </imageView>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="1Cw-Er-hqU" secondAttribute="bottom" id="BUB-rk-0PG"/>
                                 <constraint firstItem="1Cw-Er-hqU" firstAttribute="top" secondItem="KXp-nG-LYM" secondAttribute="top" id="fpf-YC-HnM"/>
-                                <constraint firstItem="giq-bc-ajh" firstAttribute="width" secondItem="1Cw-Er-hqU" secondAttribute="width" multiplier="0.2" id="k3j-Wk-O3f"/>
-                                <constraint firstItem="giq-bc-ajh" firstAttribute="height" secondItem="1Cw-Er-hqU" secondAttribute="height" multiplier="0.6" id="r3u-A2-ycB"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qKP-Pt-j2H" userLabel="ExpCvcSV">
@@ -81,7 +74,7 @@
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="MM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lzZ-iQ-V3u" customClass="MonthInputTextField" customModule="Yibby" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="96.5" height="52"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -97,7 +90,7 @@
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="YY" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aNT-In-dmZ" customClass="YearInputTextField" customModule="Yibby" customModuleProvider="target">
                                     <rect key="frame" x="106.5" y="0.0" width="96" height="52"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -113,7 +106,7 @@
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODQ-iC-No3" customClass="CVCInputTextField" customModule="Yibby" customModuleProvider="target">
                                     <rect key="frame" x="212.5" y="0.0" width="96.5" height="52"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -129,9 +122,9 @@
                                 </textField>
                             </subviews>
                         </stackView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postal Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-RC-Q8x" customClass="PostalCodeTextField" customModule="Yibby" customModuleProvider="target">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="United States of America" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-RC-Q8x" customClass="PostalCodeTextField" customModule="Yibby" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="215.5" width="309" height="51.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -159,7 +152,4 @@
             <point key="canvasLocation" x="271.5" y="372.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="Unknown" width="32" height="20"/>
-    </resources>
 </document>

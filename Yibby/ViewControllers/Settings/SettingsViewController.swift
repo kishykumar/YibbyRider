@@ -127,6 +127,8 @@ CLLocationManagerDelegate  {
         
         self.emailAddress.textColor = UIColor.lightGray
         
+        self.emailEditBtnOutlet.setBorderWithColor()
+        
         /*firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
@@ -299,6 +301,7 @@ CLLocationManagerDelegate  {
             //do something here
             self.emailEditBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
             
+            self.emailEditBtnOutlet.clearBorderWithColor()
             //
             
             self.emailAddress.layer.borderColor = UIColor.borderColor().cgColor
@@ -317,6 +320,8 @@ CLLocationManagerDelegate  {
         else
         {
              self.emailEditBtnOutlet.setImage(UIImage(named: "Settings"), for: .normal)
+            
+            self.emailEditBtnOutlet.setBorderWithColor()
 
             self.emailAddress.isUserInteractionEnabled = false
 

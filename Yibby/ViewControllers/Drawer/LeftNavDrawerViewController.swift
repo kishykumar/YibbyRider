@@ -13,6 +13,7 @@ import CocoaLumberjack
 import PINRemoteImage
 import Crashlytics
 
+
 open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
@@ -133,6 +134,68 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         // Set tableview botton border in viewDidAppear because the tableView height is coming incorrect in viewDidLoad
         self.tableView.addBottomBorder()
     }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        
+        self.userRealNameLabelOutlet.text = profileObjectModel.name
+        
+        
+//        getFileURLFromId
+//        
+            //+ (NSURL *) getFileURLFromId:(NSString *)fileId {
+
+        //let newUrl = NSURL()
+        
+       // newUrl.getFileURLFromId:profileObjectModel.profilePicture
+        
+       // let file: BAAFile = BAAFile()
+
+        
+      //  print(file.getFileURL(fromId: profileObjectModel.profilePicture))
+        
+        //profilePictureOutlet.pin_setImage(url)
+        
+        super.viewWillAppear(animated)
+    }
+    
+//    func getFileURLFromId() {
+//        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+//        
+//        let client: BAAClient = BAAClient.shared()
+//        client.authenticateCaber(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
+//            
+//            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+//            
+//            if (success) {
+//                DDLogVerbose("user logged in successfully \(success)")
+//                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//                
+//                // if login is successful, save username, password, token in keychain
+//                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
+//                
+//                if (self.onStartup) {
+//                    // switch to Main View Controller
+//                    MainViewController.initMainViewController(self, animated: true)
+//                } else {
+//                    appDelegate.sendGCMTokenToServer()
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//            else {
+//                DDLogVerbose("Error logging in: \(error)")
+//                
+//                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+//                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+//                    
+//                    // check for authentication error and redirect the user to Login page
+//                    AlertUtil.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")
+//                }
+//                else {
+//                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+//                }
+//            }
+//        })
+//    }
     
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

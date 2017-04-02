@@ -140,6 +140,7 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
                 
                 let client: BAAClient = BAAClient.shared()
                 let file: BAAFile = BAAFile()
+                
                 client.loadFiles(file, withParams: ["orderBy": "_creation_date%20desc", "recordsPerPage": self.NUM_FETCH_RIDE_ENTRIES,
                     "page": self.nextPageToLoad], completion: {(success, error) -> Void in
                         

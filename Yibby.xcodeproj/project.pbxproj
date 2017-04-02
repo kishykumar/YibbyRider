@@ -19,6 +19,7 @@
 		0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4E1E563EB300A18145 /* ProfileVC.swift */; };
 		0825BB511E563EDB00A18145 /* EmergencyContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB501E563EDB00A18145 /* EmergencyContactsVC.swift */; };
 		0825BB531E5640E100A18145 /* CustomizeTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB521E5640E100A18145 /* CustomizeTextfield.swift */; };
+		0838263D1E917B1C006DCE73 /* EmergencyContactTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838263C1E917B1B006DCE73 /* EmergencyContactTVC.swift */; };
 		084207E51E5870D4006607D8 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E41E5870D4006607D8 /* NotificationTVC.swift */; };
 		084207E71E5871D6006607D8 /* NotificationTVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E61E5871D6006607D8 /* NotificationTVC1.swift */; };
 		084207E91E5871F8006607D8 /* NotificationTVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084207E81E5871F8006607D8 /* NotificationTVC2.swift */; };
@@ -275,6 +276,7 @@
 		0825BB4E1E563EB300A18145 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0825BB501E563EDB00A18145 /* EmergencyContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactsVC.swift; sourceTree = "<group>"; };
 		0825BB521E5640E100A18145 /* CustomizeTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeTextfield.swift; sourceTree = "<group>"; };
+		0838263C1E917B1B006DCE73 /* EmergencyContactTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactTVC.swift; sourceTree = "<group>"; };
 		084207E41E5870D4006607D8 /* NotificationTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		084207E61E5871D6006607D8 /* NotificationTVC1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC1.swift; sourceTree = "<group>"; };
 		084207E81E5871F8006607D8 /* NotificationTVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTVC2.swift; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 			children = (
 				1201B7EF1D2500AD00A7EEAF /* Settings.storyboard */,
 				1201B7601D23A85F00A7EEAF /* SettingsViewController.swift */,
+				0838263C1E917B1B006DCE73 /* EmergencyContactTVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1824,6 +1827,7 @@
 				1201B7691D23A85F00A7EEAF /* LoginViewController.swift in Sources */,
 				1201B83E1D28E90000A7EEAF /* ScreenExtensions.swift in Sources */,
 				1236AA4E1D72DC0100A36AC0 /* CardFieldsView.swift in Sources */,
+				0838263D1E917B1C006DCE73 /* EmergencyContactTVC.swift in Sources */,
 				1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */,
 				123D417D1D6302BF00475614 /* BoxType.swift in Sources */,
 				1201B77A1D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m in Sources */,
