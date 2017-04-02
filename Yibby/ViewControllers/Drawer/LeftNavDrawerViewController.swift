@@ -146,9 +146,15 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
 
         // Set rounded profile pic
       //  self.profilePictureOutlet.setRoundedWithWhiteBorder()
-         self.profilePictureOutlet.setRoundedWithWhiteBorder()
-        
-       // self.userRealNameLabelOutlet.text = profileObjectModel.name
+         //self.profilePictureOutlet.setRoundedWithWhiteBorder()
+       
+        self.profilePictureOutlet.layer.cornerRadius = self.profilePictureOutlet.frame.size.height / 2;
+        self.profilePictureOutlet.layer.borderWidth = 2.0
+        self.profilePictureOutlet.layer.borderColor = UIColor.white.cgColor
+        self.profilePictureOutlet.layer.masksToBounds = true
+        self.profilePictureOutlet.clipsToBounds = true
+       
+        self.userRealNameLabelOutlet.text = profileObjectModel.name
     }
     
     fileprivate func setupViews() {

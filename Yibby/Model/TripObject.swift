@@ -44,6 +44,7 @@ class TripObject
     
     func saveTripDetails(responseArr: NSArray) -> NSMutableArray{
         
+        print(responseArr)
         
         let dataArray = NSMutableArray()
         
@@ -52,26 +53,32 @@ class TripObject
             
             let classObject = TripObject()
             
-            classObject.riderBidPrice = currentDict["riderBidPrice"] as! String
-            classObject.driverBidPrice = currentDict["driverBidPrice"] as! String
-            classObject.fare = currentDict["fare"] as! String
+            classObject.riderBidPrice = String(describing: currentDict["riderBidPrice"] as! NSObject)
+            print(classObject.riderBidPrice)
+            classObject.driverBidPrice = String(describing: currentDict["driverBidPrice"] as! NSObject)
+            
+            classObject.fare = String(describing: currentDict["fare"] as! NSObject)
+            
             classObject.id = currentDict["id"] as! String
             classObject.bidId = currentDict["bidId"] as! String
             classObject.dateTime = currentDict["datetime"] as! String
-            classObject.rideTime = currentDict["rideTime"] as! String
+            classObject.rideTime = String(describing: currentDict["rideTime"] as! NSObject)
             
             
             if let pickupDict = currentDict["pickupLocation"] as? NSDictionary {
-                classObject.pickup_latitude = pickupDict["latitude"] as! String
-                 classObject.pickup_longitude = pickupDict["longitude"] as! String
+                classObject.pickup_latitude = String(describing: pickupDict["latitude"] as! NSObject)
+                
+                 classObject.pickup_longitude = String(describing: pickupDict["longitude"] as! NSObject)
+                
                  classObject.pickup_name = pickupDict["name"] as! String
                 
             }
             
             if let dropLocationDict = currentDict["dropoffLocation"] as? NSDictionary {
                 
-                classObject.drop_latitude = dropLocationDict["latitude"] as! String
-                classObject.drop_longitude = dropLocationDict["longitude"] as! String
+                classObject.drop_latitude = String(describing: dropLocationDict["latitude"] as! NSObject)
+                
+                classObject.drop_longitude = String(describing:dropLocationDict["longitude"] as! NSObject)
                 classObject.drop_name = dropLocationDict["name"] as! String
                 
                 
@@ -87,8 +94,10 @@ classObject.driver_mobile = driverDict["mobile"] as! String
                 
         if let locationDict = currentDict["location"] as? NSDictionary {
             
-            classObject.driver_latitude = locationDict["latitude"] as! String
-            classObject.driver_longitude = locationDict["longitude"] as! String
+            classObject.driver_latitude = String(describing:locationDict["latitude"] as! NSObject)
+            
+            classObject.driver_longitude = String(describing:locationDict["longitude"] as! NSObject)
+            
                     
                 }
                 
@@ -100,7 +109,8 @@ classObject.driver_mobile = driverDict["mobile"] as! String
                  classObject.vehicle_licensePlate = vehicleDict["licensePlate"] as! String
                  classObject.vehicle_make = vehicleDict["make"] as! String
                  classObject.vehicle_model = vehicleDict["model"] as! String
-                 classObject.vehicle_capacity = vehicleDict["capacity"] as! String
+                 classObject.vehicle_capacity = String(describing: vehicleDict["capacity"] as! NSObject)
+                
                 
                 
             }

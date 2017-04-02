@@ -11,7 +11,7 @@ import UIKit
 class ProfileObject {
     
     var email = ""
-    var name = ""
+    var name = "Person Name"
     var phoneNo = ""
     var addHomePlaceName = "Add Home"
     var addWorkPlaceName = "Add Work"

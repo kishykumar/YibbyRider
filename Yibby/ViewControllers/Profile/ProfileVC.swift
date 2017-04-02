@@ -56,6 +56,7 @@ class ProfileVC: UIViewController {
         VW2.layer.borderColor = UIColor.borderColor().cgColor
         VW2.layer.borderWidth = 1.0
         VW2.layer.cornerRadius = 7
+        
         firstNameLbl.layer.borderColor = UIColor.lightGray.cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5

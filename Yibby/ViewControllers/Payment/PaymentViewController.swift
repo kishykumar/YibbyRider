@@ -297,9 +297,9 @@ SelectPaymentViewControllerDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        var headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
         
-        let headerLbl = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        var headerLbl = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
         headerLbl.textAlignment = .center
         
         if (section == cardListSection) {
@@ -307,7 +307,12 @@ SelectPaymentViewControllerDelegate {
         } else if (section == addPaymentSection) {
             headerLbl.text = "Add payment method"
         } else if (section == defaultPaymentSection) {
-            headerLbl.text = "Payment defaults"
+            headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 0))
+            
+            headerLbl = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 0))
+            
+            //headerLbl.text = "Payment defaults"
+            headerLbl.text = ""
         }
         
         headerView.addSubview(headerLbl)
@@ -360,7 +365,7 @@ SelectPaymentViewControllerDelegate {
         }
         else if indexPath.section == defaultPaymentSection {
             print("defaultPaymentSection")
-            return 80
+            return 0
         }
         return 0
     }

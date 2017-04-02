@@ -93,7 +93,6 @@ CLLocationManagerDelegate  {
         
         getProfile()
         
-
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -123,12 +122,17 @@ CLLocationManagerDelegate  {
         VW2.layer.borderColor = UIColor.borderColor().cgColor
         VW2.layer.borderWidth = 1.0
         VW2.layer.cornerRadius = 7
-        firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
+        
+        self.emailAddress.layer.borderColor = UIColor.clear.cgColor
+        
+        self.emailAddress.textColor = UIColor.lightGray
+        
+        /*firstNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
         lastNameLbl.layer.borderColor = UIColor.borderColor().cgColor
         lastNameLbl.layer.borderWidth = 1.0
-        lastNameLbl.layer.cornerRadius = 5
+        lastNameLbl.layer.cornerRadius = 5*/
         
         
         profileImageBtnOutlet.layer.cornerRadius = profileImageBtnOutlet.frame.size.width/2
@@ -156,12 +160,23 @@ CLLocationManagerDelegate  {
                     profileObjectModel.setProfileData(responseDict: resultDict)
                     
                     self.emailAddress.text = profileObjectModel.email
-                    self.phoneNo.text = profileObjectModel.phoneNo
+                    
+                    self.phoneNo.text = "+1 \(profileObjectModel.phoneNo.toPhoneNumber())"
                     
                     var myStringArr = profileObjectModel.name.components(separatedBy: " ")
                     
-                    self.firstNameLbl.text = String(format: " %@ ", myStringArr[0])
-                    self.lastNameLbl.text = myStringArr.count > 1 ? String(format: " %@  ", myStringArr[1]) : nil
+                    self.firstNameLbl.text = String(format: "%@", myStringArr[0])
+                    self.lastNameLbl.text = myStringArr.count > 1 ? String(format: "%@", myStringArr[1]) : nil
+                    
+                    if myStringArr.count == 0
+                    {
+                    self.firstNameLbl.layer.borderColor = UIColor.clear.cgColor
+                    self.lastNameLbl.layer.borderColor = UIColor.clear.cgColor
+                    }
+                    else if myStringArr.count == 1
+                    {
+                        self.lastNameLbl.layer.borderColor = UIColor.clear.cgColor
+                    }
                     
                     self.addHomeBtnOutlet.setTitle(profileObjectModel.addHomePlaceName, for: UIControlState())
                     
@@ -284,6 +299,16 @@ CLLocationManagerDelegate  {
             //do something here
             self.emailEditBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
             
+            //
+            
+            self.emailAddress.layer.borderColor = UIColor.borderColor().cgColor
+            self.emailAddress.layer.borderWidth = 1.0
+            self.emailAddress.layer.cornerRadius = 7
+            
+            let col2 = UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
+            
+            self.emailAddress.textColor = col2
+            
             self.emailAddress.isUserInteractionEnabled = true
 
             self.emailAddress.becomeFirstResponder()
@@ -296,6 +321,10 @@ CLLocationManagerDelegate  {
             self.emailAddress.isUserInteractionEnabled = false
 
             self.emailAddress.resignFirstResponder()
+            
+            self.emailAddress.layer.borderColor = UIColor.clear.cgColor
+            
+            self.emailAddress.textColor = UIColor.lightGray
             
             if (emailAddress.text?.isEqual(profileObjectModel.email))!
             {
@@ -715,3 +744,8 @@ ImageService.sharedInstance().uploadImage(image,
         }
     }*/
 
+extension String {
+    public func toPhoneNumber() -> String {
+        return self.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "$1-$2-$3", options: .regularExpression, range: nil)
+    }
+}

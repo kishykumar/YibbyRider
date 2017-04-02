@@ -40,7 +40,7 @@ class PromotionsViewController: BaseYibbyViewController {
         accessContactsBtn.layer.borderWidth = 1.0
         accessContactsBtn.layer.cornerRadius = 7
         
-        let bottomLine = CALayer()
+        /*let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y:  yebbyCodeTF.frame.height - 1, width: yebbyCodeTF.frame.width, height: 1.0)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         yebbyCodeTF.borderStyle = UITextBorderStyle.none
@@ -51,7 +51,7 @@ class PromotionsViewController: BaseYibbyViewController {
         
         bottomLine1.backgroundColor = UIColor.lightGray.cgColor
         emailAddressTF.borderStyle = UITextBorderStyle.none
-        emailAddressTF.layer.addSublayer(bottomLine1)
+        emailAddressTF.layer.addSublayer(bottomLine1)*/
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
