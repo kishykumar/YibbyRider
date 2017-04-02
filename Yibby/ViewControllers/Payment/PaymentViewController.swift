@@ -173,6 +173,8 @@ SelectPaymentViewControllerDelegate {
         if indexPath.section == cardListSection {
             let cell: CardTableCell = tableView.dequeueReusableCell(withIdentifier: cardCellReuseIdentifier, for: indexPath) as! CardTableCell
             
+            cell.selectedColorLbl.backgroundColor = UIColor.clear
+            
             #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
                 
                 let paymentMethod = StripePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)
@@ -180,8 +182,7 @@ SelectPaymentViewControllerDelegate {
                 if ((paymentMethod) != nil) {
                     cell.cardBrandImageViewOutlet.image = paymentMethod.image
                     cell.cardTextLabelOutlet.text = paymentMethod.label
-                    
-                    
+                 
                 }
                 
                 let defaultPaymentMethod = StripePaymentService.sharedInstance().defaultPaymentMethod
@@ -214,6 +215,7 @@ SelectPaymentViewControllerDelegate {
                     
                     if (selected) {
                         self.selectedIndexPath = indexPath
+                        cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
                     }
                     
                 } else if (controllerType == PaymentViewControllerType.pickForRide) {
@@ -224,6 +226,15 @@ SelectPaymentViewControllerDelegate {
                     
                     if (selected) {
                         self.selectedIndexPath = indexPath
+                        cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
+                    }
+                    
+                }
+                else
+                {
+                    if (indexPath.row == 0) {
+                    self.selectedIndexPath = indexPath
+                    cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
                     }
                 }
             } else {

@@ -10,8 +10,10 @@ import UIKit
 import FoldingCell
 import BaasBoxSDK
 import CocoaLumberjack
+import DZNEmptyDataSet
 
-class TripTableVC: UITableViewController {
+
+class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     let kCloseCellHeight: CGFloat = 180
     let kOpenCellHeight: CGFloat = 590
@@ -30,12 +32,24 @@ class TripTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Do any additional setup after loading the view.
+        TV.emptyDataSetSource = self;
+        TV.emptyDataSetDelegate = self;
+        
+        // A little trick for removing the cell separators
+        TV.tableFooterView = UIView()
+        
         setupUI()
 
         getTripsService()
         
         createCellHeightsArray()
         //self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+    }
+    
+    deinit {
+        TV.emptyDataSetSource = nil
+        TV.emptyDataSetDelegate = nil
     }
     
     func setupUI () {
@@ -217,6 +231,37 @@ class TripTableVC: UITableViewController {
         }
     }
     
+    
+    // MARK: DZNEmptyDataSet Delegate-Datasource
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        
+        /*if (self.isLoading) {
+         return nil;
+         }*/
+        
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: InterfaceString.EmptyDataMsg.NotRiddenYetTitle, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        
+        /*if (self.isLoading) {
+         return nil;
+         }*/
+        
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: InterfaceString.EmptyDataMsg.NotRiddenYetDescription, attributes: attrs)
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        
+        /*if (self.isLoading) {
+         return nil;
+         }*/
+        
+        return UIImage(named: "destTextFieldIcon")
+    }
     
     /*@IBAction func backBtnAction(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)

@@ -513,7 +513,7 @@
             </objects>
             <point key="canvasLocation" x="-2224" y="-1781"/>
         </scene>
-        <!--Trip TableVC-->
+        <!--Empty Data Set Delegate-->
         <scene sceneID="lrJ-1z-hFk">
             <objects>
                 <tableViewController storyboardIdentifier="TripTableVC" id="3px-SC-uhM" customClass="TripTableVC" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
@@ -922,6 +922,8 @@
                         <connections>
                             <outlet property="dataSource" destination="3px-SC-uhM" id="pth-cE-DuF"/>
                             <outlet property="delegate" destination="3px-SC-uhM" id="TCc-as-nnG"/>
+                            <outlet property="emptyDataSetDelegate" destination="3px-SC-uhM" id="Jpf-2R-lDl"/>
+                            <outlet property="emptyDataSetSource" destination="3px-SC-uhM" id="zC2-Od-som"/>
                         </connections>
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -972,7 +974,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toyota Corolla  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdB-CF-MX5" customClass="YibbyPaddingLabel" customModule="Yibby" customModuleProvider="target">
-                                        <rect key="frame" x="100.5" y="145" width="120.5" height="40"/>
+                                        <rect key="frame" x="97.5" y="145" width="126.5" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Hkt-YJ-B54"/>
@@ -987,7 +989,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6EDG137" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTf-fX-Nvg" customClass="YibbyPaddingLabel" customModule="Yibby" customModuleProvider="target">
-                                        <rect key="frame" x="100.5" y="199" width="120.5" height="40"/>
+                                        <rect key="frame" x="97.5" y="199" width="126.5" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="TDk-Tg-H1K"/>

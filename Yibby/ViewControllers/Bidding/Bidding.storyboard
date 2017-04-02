@@ -558,9 +558,9 @@
                                             <constraint firstAttribute="height" id="A53-du-HUf"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Confirm Your Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSt-KH-h3L">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bid's On The Way..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSt-KH-h3L">
                                         <rect key="frame" x="0.0" y="45" width="288" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -573,13 +573,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enc-cP-wkz" userLabel="CheckmarkLabel">
                                                         <rect key="frame" x="0.0" y="0.0" width="278" height="50"/>
                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="40"/>
-                                                        <color key="textColor" red="0.0" green="0.98465768909999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="0.18576782941818237" green="0.79348951578140259" blue="0.42149120569229126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="If there is a match within your range, then your ride will be requested automatically. " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvZ-QK-DVp">
                                                         <rect key="frame" x="0.0" y="50" width="278" height="50"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                 </subviews>
@@ -593,13 +593,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18K-z9-WQX" userLabel="CrossLabel">
                                                         <rect key="frame" x="0.0" y="0.0" width="278" height="50"/>
                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="40"/>
-                                                        <color key="textColor" red="0.90151321887969971" green="0.1838357150554657" blue="0.14317351579666138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="0.91213971376419067" green="0.31589505076408386" blue="0.2326938807964325" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="If there is no match within your range, then you will have a chance to counter the drivers offer." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-81-bTZ">
                                                         <rect key="frame" x="0.0" y="50" width="278" height="50"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                 </subviews>
@@ -641,7 +641,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIZ-sD-he3" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="38.5"/>
-                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.91213971376419067" green="0.31589505076408386" blue="0.2326938807964325" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="MIZ-sD-he3" secondAttribute="height" multiplier="3.5" id="28b-5I-WPC"/>
                                                 </constraints>
@@ -654,11 +654,11 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBX-JQ-Pg2" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                                 <rect key="frame" x="154" y="0.0" width="134" height="38.5"/>
-                                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.18576782941818237" green="0.79348951578140259" blue="0.42149120569229126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="oBX-JQ-Pg2" secondAttribute="height" multiplier="3.5" id="Aak-Lt-g9H"/>
                                                 </constraints>
-                                                <state key="normal" title="Accept">
+                                                <state key="normal" title="Continue">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -677,7 +677,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="0.73017842060810811" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.19855886697769165" green="0.28622028231620789" blue="0.37126219272613525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mtO-2i-JwJ" firstAttribute="bottom" secondItem="7jD-Jd-vej" secondAttribute="top" id="2c6-oZ-SBB"/>
                             <constraint firstItem="mtO-2i-JwJ" firstAttribute="leading" secondItem="zoF-0j-0Li" secondAttribute="leadingMargin" id="Sua-dv-bGs"/>

@@ -40,6 +40,7 @@ public class ImageService: NSObject, UIImagePickerControllerDelegate {
         if let data = UIImageJPEGRepresentation(image, 0.8) {
             
             let myLocalFile: BAAFile = BAAFile(data: data)
+        
             myLocalFile.uploadFile(withPermissions: nil, completion: { (file, error) -> Void in
                 if error == nil {
                     DDLogVerbose("File uploaded to Baasbox + \(file) + \((file as! BAAFile).fileURL())")

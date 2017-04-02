@@ -13,8 +13,8 @@ open class YibbyPaddingLabel: UILabel {
     
     @IBInspectable var topInset: CGFloat = 5.0
     @IBInspectable var bottomInset: CGFloat = 5.0
-    @IBInspectable var leftInset: CGFloat = 7.0
-    @IBInspectable var rightInset: CGFloat = 7.0
+    @IBInspectable var leftInset: CGFloat = 10.0
+    @IBInspectable var rightInset: CGFloat = 10.0
     
     required override public init(frame: CGRect) {
         super.init(frame: frame)
