@@ -472,14 +472,17 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 }
 
 - (void)cancelRiderRide:(NSString *)bidId
-             completion:(BAAObjectResultBlock)completionBlock {
+                message:(NSString *)message
+                completion:(BAAObjectResultBlock)completionBlock {
     
-    NSString *path = [NSString stringWithFormat:@"ride/%@/r/cancel", bidId];
+    NSString *path = @"ride/r/cancel";
 
     [self postPath:path
         parameters:@{
                      @"appcode" : self.appCode,
-                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     @"X-BB-SESSION": self.currentUser.authenticationToken,
+                     @"bidId": bidId,
+                     @"message": message
                      }
            success:^(NSDictionary *responseObject) {
                completionBlock(responseObject, nil);
@@ -489,14 +492,17 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 }
 
 - (void)cancelDriverRide:(NSString *)bidId
-              completion:(BAAObjectResultBlock)completionBlock {
+                 message:(NSString *)message
+                 completion:(BAAObjectResultBlock)completionBlock {
     
-    NSString *path = [NSString stringWithFormat:@"ride/%@/d/cancel", bidId];
+    NSString *path = [NSString stringWithFormat:@"ride/d/cancel"];
     
     [self postPath:path
         parameters:@{
                      @"appcode" : self.appCode,
-                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     @"X-BB-SESSION": self.currentUser.authenticationToken,
+                     @"bidId": bidId,
+                     @"message": message
                      }
            success:^(NSDictionary *responseObject) {
                completionBlock(responseObject, nil);
@@ -793,14 +799,17 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 }
 
 - (void)updatePaymentMethod: (NSString *)type
-                   jsonBody:(NSDictionary *)jsonBody
-                 completion: (BAAObjectResultBlock)completionBlock {
+                    paymentMethodToken:(NSString *)paymentMethodToken
+                    paymentMethodNonce:(NSString *)paymentMethodNonce
+                    completion: (BAAObjectResultBlock)completionBlock {
     
     [self putPath:@"payment"
         parameters:@{
                      @"type" : type,
                      @"appcode" : self.appCode,
-                     @"X-BB-SESSION": self.currentUser.authenticationToken
+                     @"X-BB-SESSION": self.currentUser.authenticationToken,
+                     @"paymentMethodToken": paymentMethodToken,
+                     @"paymentMethodNonce": paymentMethodNonce
                      }
            success:^(NSDictionary *responseObject) {
                

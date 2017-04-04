@@ -98,8 +98,9 @@
                         completion: (BAAObjectResultBlock)completionBlock;
 
 - (void)updatePaymentMethod: (NSString *)type
-                    jsonBody:(NSDictionary *)jsonBody
-                    completion: (BAAObjectResultBlock)completionBlock;
+         paymentMethodToken:(NSString *)paymentMethodToken
+         paymentMethodNonce:(NSString *)paymentMethodNonce
+                 completion: (BAAObjectResultBlock)completionBlock;
 
 - (void)getPaymentMethods: (NSString *)type
                       completion: (BAAObjectResultBlock)completionBlock;
@@ -183,10 +184,12 @@
                 completion: (BAAObjectResultBlock)completionBlock;
 
 - (void)cancelRiderRide:(NSString *)bidId
-       completion:(BAAObjectResultBlock)completionBlock;
+                message:(NSString *)message
+                completion:(BAAObjectResultBlock)completionBlock;
 
 - (void)cancelDriverRide:(NSString *)bidId
-             completion:(BAAObjectResultBlock)completionBlock;
+                message:(NSString *)message
+                completion:(BAAObjectResultBlock)completionBlock;
 
 - (void)startRide:(NSString *)bidId
               completion:(BAAObjectResultBlock)completionBlock;
