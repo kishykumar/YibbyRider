@@ -43,8 +43,8 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
         
         self.emailAddressTFOutlet.textColor = UIColor.lightGray
         
-        self.emailEditBtnOutlet.setBorderWithColor()
-        self.phoneNumberBtnOutlet.setBorderWithColor()
+        self.emailEditBtnOutlet.setRoundedWithWhiteBorder()
+        self.phoneNumberBtnOutlet.setRoundedWithWhiteBorder()
     }
     
     @IBAction func emailEditBtnAction(_ sender: UIButton) {
@@ -54,7 +54,7 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
             self.emailEditBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
             
             //
-            self.emailEditBtnOutlet.clearBorderWithColor()
+          //rahul  self.emailEditBtnOutlet.clearBorderWithColor()
 
             self.emailAddressTFOutlet.layer.borderColor = UIColor.borderColor().cgColor
             self.emailAddressTFOutlet.layer.borderWidth = 1.0
@@ -71,7 +71,7 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
         }
         else
         {
-            self.emailEditBtnOutlet.setBorderWithColor()
+            self.emailEditBtnOutlet.setRoundedWithWhiteBorder()
 
             self.emailEditBtnOutlet.setImage(UIImage(named: "Settings"), for: .normal)
             
@@ -99,7 +99,7 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
             //do something here
             self.phoneNumberBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
             
-            self.phoneNumberBtnOutlet.clearBorderWithColor()
+          //rahul  self.phoneNumberBtnOutlet.clearBorderWithColor()
             //
             
             self.phoneNoTFOutlet.layer.borderColor = UIColor.borderColor().cgColor
@@ -117,7 +117,7 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
         }
         else
         {
-            self.phoneNumberBtnOutlet.setBorderWithColor()
+            self.phoneNumberBtnOutlet.setRoundedWithWhiteBorder()
             
             self.phoneNumberBtnOutlet.setImage(UIImage(named: "Settings"), for: .normal)
             
