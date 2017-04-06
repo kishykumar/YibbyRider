@@ -40,7 +40,8 @@ class TripViewController: BaseYibbyViewController {
                 
                 let client: BAAClient = BAAClient.shared()
                 
-                client.cancelRiderRide(self.bid.id, completion: {(success, error) -> Void in
+                client.cancelRiderRide(self.bid.id, message: "", completion: {(success, error) -> Void in
+
                     
                     // diable the loading activity indicator
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
