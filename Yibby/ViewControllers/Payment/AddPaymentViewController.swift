@@ -11,6 +11,9 @@ import Crashlytics
 import BButton
 import Braintree
 import Stripe
+import BaasBoxSDK
+import CocoaLumberjack
+
 
 class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewControllerDelegate {
 
@@ -134,9 +137,41 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         present(cardIOVC!, animated: true, completion: nil)
     }
     
-    @IBAction func finishBtnaction(_ sender: AnyObject) {
-        _ = navigationController?.popViewController(animated: true)
-    }
+    @IBAction func finishBtnaction(_ sender: AnyObject)
+    {
+            
+        //_ = navigationController?.popViewController(animated: true)
+            
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+            
+            let client: BAAClient = BAAClient.shared()
+        
+        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", paymentMethodNonce: "", completion: {(success, error) -> Void in
+                
+                print(success as Any)
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                if ((success) != nil) {
+                    DDLogVerbose("PaymentMethod updated successfully \(success)")
+                    
+                    //back
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+                else {
+                    DDLogVerbose("Error PaymentMethod in: \(error)")
+                    
+                    if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                        WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                        
+                        // check for authentication error and redirect the user to Login page
+                    }
+                    else {
+                        AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    }
+                }
+            })
+        }
+        
     // MARK: - CardIO Delegate Functions
     
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
