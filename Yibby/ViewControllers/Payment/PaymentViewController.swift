@@ -10,6 +10,7 @@ import UIKit
 import CocoaLumberjack
 import Crashlytics
 import Braintree
+import BaasBoxSDK
 
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
     
@@ -44,14 +45,14 @@ class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControl
 SelectPaymentViewControllerDelegate {
     
     // MARK: - Properties
-    
+    var arrCardList = NSArray()
     var controllerType: PaymentViewControllerType = PaymentViewControllerType.listPayment
     
     var totalSections: Int {
         get {
             switch (controllerType) {
             case .listPayment:
-                return 3;
+                return arrCardList.count;
             case .pickForRide:
                 return 2;
             case .pickDefault:
@@ -111,7 +112,7 @@ SelectPaymentViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getPayment()
         setupUI()
     }
     
@@ -131,7 +132,7 @@ SelectPaymentViewControllerDelegate {
             self.navigationItem.leftBarButtonItems?.removeAll()
             
             self.customBackButton(y: 0 as AnyObject)
-
+            
             
         } else if (controllerType == PaymentViewControllerType.pickForRide) {
             
@@ -182,7 +183,7 @@ SelectPaymentViewControllerDelegate {
                 if ((paymentMethod) != nil) {
                     cell.cardBrandImageViewOutlet.image = paymentMethod.image
                     cell.cardTextLabelOutlet.text = paymentMethod.label
-                 
+                    
                 }
                 
                 let defaultPaymentMethod = StripePaymentService.sharedInstance().defaultPaymentMethod
@@ -233,8 +234,8 @@ SelectPaymentViewControllerDelegate {
                 else
                 {
                     if (indexPath.row == 0) {
-                    self.selectedIndexPath = indexPath
-                    cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
+                        self.selectedIndexPath = indexPath
+                        cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
                     }
                 }
             } else {
@@ -460,7 +461,33 @@ SelectPaymentViewControllerDelegate {
             self.navigationController!.pushViewController(paymentViewController, animated: true)
         }
     }
-    
+    func getPayment()
+    {
+        let client: BAAClient = BAAClient.shared()
+        print(BAASBOX_RIDER_STRING)
+        client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
+            if ((success) != nil) {
+                if let resultDict = success as? NSArray
+                    
+                {
+                    self.arrCardList = success as! NSArray
+                    self.tableView.reloadData()
+                    DDLogVerbose("getProfile Data: \(success)")
+                }
+                else {
+                    DDLogError("Error in fetching Get Method: \(error)")
+                }
+                
+            }
+            else {
+                DDLogVerbose("getProfile failed: \(error)")
+            }
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+        })
+        
+        
+    }
     // MARK: - Payment defaults Button Action
     
     @IBAction func paymentDefaultsSettingBtnAction(_ sender: AnyObject) {
