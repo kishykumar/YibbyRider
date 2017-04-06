@@ -16,7 +16,8 @@ class CardTableCell : UITableViewCell {
 
     @IBOutlet weak var cardTextLabelOutlet: UILabel!
     
-    @IBOutlet weak var selectedColorLbl: UILabel!
+   // @IBOutlet weak var selectedColorLbl: UILabel!
+    @IBOutlet weak var selectedCardColourButton: UIButton!
     
     @IBOutlet weak var VW: UIView!
     
@@ -36,11 +37,11 @@ class CardTableCell : UITableViewCell {
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7.0
         
-        selectedColorLbl.layer.borderColor = UIColor.borderColor().cgColor
-        selectedColorLbl.layer.borderWidth = 1.0
-        selectedColorLbl.layer.cornerRadius = selectedColorLbl.frame.size.width/2
+        selectedCardColourButton.layer.borderColor = UIColor.borderColor().cgColor
+        selectedCardColourButton.layer.borderWidth = 1.0
+        selectedCardColourButton.layer.cornerRadius = selectedCardColourButton.frame.size.width/2
         
-        selectedColorLbl.clipsToBounds = true
+        selectedCardColourButton.clipsToBounds = true
         
         self.paymentDefaultsBtnOutlet.setRoundedWithWhiteBorder()
     }

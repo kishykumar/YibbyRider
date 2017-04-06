@@ -114,6 +114,7 @@ SelectPaymentViewControllerDelegate {
         super.viewDidLoad()
         getPayment()
         setupUI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,7 +175,10 @@ SelectPaymentViewControllerDelegate {
         if indexPath.section == cardListSection {
             let cell: CardTableCell = tableView.dequeueReusableCell(withIdentifier: cardCellReuseIdentifier, for: indexPath) as! CardTableCell
             
-            cell.selectedColorLbl.backgroundColor = UIColor.clear
+            
+            cell.selectedCardColourButton.backgroundColor = UIColor.clear
+            
+            cell.selectedCardColourButton.tag = indexPath.row
             
             #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
                 
@@ -216,7 +220,7 @@ SelectPaymentViewControllerDelegate {
                     
                     if (selected) {
                         self.selectedIndexPath = indexPath
-                        cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
+                        cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
                     }
                     
                 } else if (controllerType == PaymentViewControllerType.pickForRide) {
@@ -227,7 +231,7 @@ SelectPaymentViewControllerDelegate {
                     
                     if (selected) {
                         self.selectedIndexPath = indexPath
-                        cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
+                       cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
                     }
                     
                 }
@@ -235,7 +239,7 @@ SelectPaymentViewControllerDelegate {
                 {
                     if (indexPath.row == 0) {
                         self.selectedIndexPath = indexPath
-                        cell.selectedColorLbl.backgroundColor = UIColor.borderColor()
+                     cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
                     }
                 }
             } else {
@@ -309,12 +313,13 @@ SelectPaymentViewControllerDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        var headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        var headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 38))
         
-        var headerLbl = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        var headerLbl = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 38))
         headerLbl.textAlignment = .center
         
         if (section == cardListSection) {
+
             headerLbl.text = "Payment methods"
         } else if (section == addPaymentSection) {
             headerLbl.text = "Add payment method"
@@ -463,15 +468,21 @@ SelectPaymentViewControllerDelegate {
     }
     func getPayment()
     {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+
         let client: BAAClient = BAAClient.shared()
         print(BAASBOX_RIDER_STRING)
         client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
             if ((success) != nil) {
-                if let resultDict = success as? NSArray
+                if (success as? NSArray) != nil
                     
                 {
                     self.arrCardList = success as! NSArray
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                         self.tableView.reloadData()
+                    }
+                   
+                    print(success as Any)
                     DDLogVerbose("getProfile Data: \(success)")
                 }
                 else {
@@ -554,6 +565,39 @@ SelectPaymentViewControllerDelegate {
     
     
     
+    @IBAction func paymentDefaultsSelectedcardColorBtnAction(_ sender: UIButton) {
+        
+        print(sender.tag)
+        
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        client.makeDefaultPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", completion: {(success, error) -> Void in
+            
+            print(success as Any)
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            if ((success) != nil) {
+                DDLogVerbose("makeDefaultPaymentMethod in successfully \(success)")
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            else {
+                DDLogVerbose("Error makeDefaultPaymentMethod in: \(error)")
+                
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                    
+                    // check for authentication error and redirect the user to Login page
+                }
+                else {
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            }
+        })
+    }
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
