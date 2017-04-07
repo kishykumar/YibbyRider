@@ -52,7 +52,7 @@ SelectPaymentViewControllerDelegate {
         get {
             switch (controllerType) {
             case .listPayment:
-                return arrCardList.count;
+                return 3;
             case .pickForRide:
                 return 2;
             case .pickDefault:
@@ -289,7 +289,8 @@ SelectPaymentViewControllerDelegate {
         #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
             if (section == cardListSection) {
-                return StripePaymentService.sharedInstance().paymentMethods.count;
+                return arrCardList.count
+               // return StripePaymentService.sharedInstance().paymentMethods.count;
             } else if (section == addPaymentSection) {
                 return 1;
             } else if (section == defaultPaymentSection) {
@@ -299,6 +300,7 @@ SelectPaymentViewControllerDelegate {
         #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
             
             if (section == cardListSection) {
+              return  arrCardList.count
                 return BraintreePaymentService.sharedInstance().paymentMethods.count;
             } else if (section == addPaymentSection) {
                 return 1;
