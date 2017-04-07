@@ -66,7 +66,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8C0-We-YaR" userLabel="UserPlusImageLabel">
-                                                <rect key="frame" x="14" y="7" width="23" height="20.5"/>
+                                                <rect key="frame" x="14" y="5.5" width="23" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jj-7V-LLr" userLabel="CreditCardImageLabel">
-                                                <rect key="frame" x="15" y="43.5" width="21.5" height="20.5"/>
+                                                <rect key="frame" x="14" y="42" width="23" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -111,10 +111,10 @@
                                     <outletCollection property="gestureRecognizers" destination="C16-YE-Oep" appends="YES" id="FQe-KK-sZU"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-4j-ErD" userLabel="DollarHintImage">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-4j-ErD" userLabel="DollarHintImage">
                                 <rect key="frame" x="288" y="401" width="71" height="71"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7b-Gs-qT1" userLabel="DollarImageLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7b-Gs-qT1" userLabel="DollarImageLabel">
                                         <rect key="frame" x="26" y="17.5" width="20" height="36"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -131,14 +131,14 @@
                                     <outletCollection property="gestureRecognizers" destination="80q-fr-FYB" appends="YES" id="8Zs-W4-v2b"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Cv-8g-cTx" userLabel="PriceSliderView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Cv-8g-cTx" userLabel="PriceSliderView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
                                 <rect key="frame" x="16" y="392.5" width="267" height="88.5"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hlJ-Fz-4Zg" userLabel="Slider" customClass="ASValueTrackingSlider">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hlJ-Fz-4Zg" userLabel="Slider" customClass="ASValueTrackingSlider">
                                         <rect key="frame" x="8" y="37" width="251" height="31"/>
                                         <color key="maximumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Maximum Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7S-yI-ZTJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7S-yI-ZTJ">
                                         <rect key="frame" x="91" y="69" width="86.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -188,7 +188,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7AZ-62-Gel" userLabel="CardSV">
-                                                                <rect key="frame" x="20" y="0.0" width="50" height="88"/>
+                                                                <rect key="frame" x="14" y="0.0" width="50" height="88"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-3B-T4R" userLabel="DummyView">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="0.0"/>
@@ -222,7 +222,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPp-0n-lyz" userLabel="DotsLabel">
-                                                                <rect key="frame" x="90.5" y="34" width="4.5" height="20.5"/>
+                                                                <rect key="frame" x="78" y="32.5" width="23" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -275,7 +275,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0cO-5Z-4vl" userLabel="PeopleSV">
-                                                                <rect key="frame" x="20" y="0.0" width="50" height="88"/>
+                                                                <rect key="frame" x="14" y="0.0" width="50" height="88"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGY-20-Ini" userLabel="DummyView">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="0.0"/>
@@ -285,13 +285,13 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Il-hE-5tw" userLabel="PersonImageLabel">
-                                                                        <rect key="frame" x="14.5" y="15.5" width="21.5" height="20.5"/>
+                                                                        <rect key="frame" x="13.5" y="14.5" width="23" height="23.5"/>
                                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p68-hJ-QQF" userLabel="PersonLabel">
-                                                                        <rect key="frame" x="0.0" y="52" width="50" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="53" width="50" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -309,7 +309,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8b-D3-JeZ" userLabel="DotsLabel">
-                                                                <rect key="frame" x="90.5" y="34" width="4.5" height="20.5"/>
+                                                                <rect key="frame" x="78" y="32.5" width="23" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -370,10 +370,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-oe-11F" userLabel="CenterMarkersView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="276.5" y="165" width="27.5" height="27.5"/>
+                                <rect key="frame" x="274" y="162.5" width="30" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-S8-o2k" userLabel="LocationArrowLabel">
-                                        <rect key="frame" x="5" y="5" width="17.5" height="17.5"/>
+                                        <rect key="frame" x="5" y="5" width="20" height="20"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
