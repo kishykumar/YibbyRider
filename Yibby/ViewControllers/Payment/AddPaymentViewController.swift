@@ -26,6 +26,8 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     @IBOutlet weak var scanCardButtonOutlet: UIButton!
     @IBOutlet weak var finishButtonOutlet: YibbyButton1!
     
+    var nonceStr = String()
+    
     // TODO: Payment Type Icon
 //    var cardNumberField: BTUICardHint?
     
@@ -139,39 +141,114 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     
     @IBAction func finishBtnaction(_ sender: AnyObject)
     {
-            
+        
+        if cardToBeEdited != nil {
+            updatePaymentCard()
+        }
+        else{
+        self.saveCard()
+        }
         //_ = navigationController?.popViewController(animated: true)
             
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            
-            let client: BAAClient = BAAClient.shared()
+    }
+    
+    func updatePaymentCard()
+    {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
-        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", paymentMethodNonce: "", completion: {(success, error) -> Void in
+        let client: BAAClient = BAAClient.shared()
+        
+        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", paymentMethodNonce: self.nonceStr, completion: {(success, error) -> Void in
+            
+            print(success as Any)
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            if ((success) != nil) {
+                DDLogVerbose("PaymentMethod updated successfully \(success)")
                 
-                print(success as Any)
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                //back
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            else {
+                DDLogVerbose("Error PaymentMethod in: \(error)")
                 
-                if ((success) != nil) {
-                    DDLogVerbose("PaymentMethod updated successfully \(success)")
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
                     
-                    //back
-                    _ = self.navigationController?.popViewController(animated: true)
+                    // check for authentication error and redirect the user to Login page
                 }
                 else {
-                    DDLogVerbose("Error PaymentMethod in: \(error)")
-                    
-                    if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                        WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-                        
-                        // check for authentication error and redirect the user to Login page
-                    }
-                    else {
-                        AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                    }
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
                 }
-            })
-        }
+            }
+        })
+    }
+    
+    
+    func addPaymentCard(nonce: AnyObject)
+    {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
+        let client: BAAClient = BAAClient.shared()
+        
+        client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: self.nonceStr, completion: {(success, error) -> Void in
+            
+            print(success as Any)
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            if ((success) != nil) {
+                DDLogVerbose("PaymentMethod added successfully \(success)")
+                
+                //back
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            else {
+                DDLogVerbose("Error PaymentMethod in: \(error)")
+                
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                    
+                    // check for authentication error and redirect the user to Login page
+                }
+                else {
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            }
+        })
+    }
+    
+    func deletePaymentCard()
+    {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", completion:{(success, error) -> Void in
+            
+            print(success as Any)
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            if ((success) != nil) {
+                DDLogVerbose("PaymentMethod deleted successfully \(success)")
+                
+                //back
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            else {
+                DDLogVerbose("Error PaymentMethod in: \(error)")
+                
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                    
+                    // check for authentication error and redirect the user to Login page
+                }
+                else {
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            }
+        })
+    }
+    
     // MARK: - CardIO Delegate Functions
     
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
@@ -330,6 +407,12 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             
             cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
                 
+                print(BTCardNonce.self)
+                print(tokenized?.nonce as AnyObject)
+                
+                self.nonceStr = (tokenized?.nonce as AnyObject) as! String
+                print(self.nonceStr)
+                
                 if let error = error {
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
                     self.handleCardTokenError(error as NSError)
@@ -357,6 +440,12 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                     } else {
                         self.addDelegate?.addPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
                             ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                            
+                            //self.addPaymentCard(nonce:  tokenized?.nonce as Any as AnyObject)
+                            
+                            
+                            
+                            
                             if let error = error {
                                 self.handleCardTokenError(error)
                             }
@@ -368,4 +457,145 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         #endif
     }
     
+    /*
+ func saveCard() {
+ 
+ if !isInputCardValid() {
+ return;
+ }
+ 
+ ActivityIndicatorUtil.enableActivityIndicator(self.view)
+ 
+ let number = cardFieldsViewOutlet.numberInputTextField.text
+ let expMonth = cardFieldsViewOutlet.monthTextField.text
+ let expYear = cardFieldsViewOutlet.yearTextField.text
+ let cvc = cardFieldsViewOutlet.cvcTextField.text
+ 
+ #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+ 
+ let apiClient = StripePaymentService.sharedInstance().apiClient!
+ 
+ apiClient.createTokenWithCard(cardParams, completion: {(token: STPToken?, tokenError: NSError?) -> Void in
+ 
+ if let tokenError = tokenError {
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ self.handleCardTokenError(tokenError)
+ }
+ else {
+ //                var phone: String = self.rememberMePhoneCell.contents
+ //                var email: String = self.emailCell.contents
+ 
+ // TODO: We save the zipcode
+ if self.isEditCard == true {
+ 
+ self.editDelegate?.editPaymentViewController(self, didCreateNewToken: token!, completion: {(error: NSError?) -> Void in
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ if let error = error {
+ self.handleCardTokenError(error)
+ }
+ })
+ } else if self.isSignup == true {
+ self.signupDelegate?.signupPaymentViewController(self, didCreateToken: token!, completion: {(error: NSError?) -> Void in
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ if let error = error {
+ self.handleCardTokenError(error)
+ }
+ })
+ } else {
+ self.addDelegate?.addPaymentViewController(self, didCreateToken: token!, completion: {(error: NSError?) -> Void in
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ if let error = error {
+ self.handleCardTokenError(error)
+ }
+ })
+ }
+ }
+ })
+ #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+ 
+ let cardClient: BTCardClient = BTCardClient(apiClient: BraintreePaymentService.sharedInstance().apiClient!)
+ 
+ let card: BTCard = BTCard(number: number!,
+ expirationMonth: expMonth!,
+ expirationYear: expYear!,
+ cvv: cvc!)
+ 
+ cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
+ 
+ print(BTCardNonce.self)
+ print(tokenized?.nonce as Any)
+ 
+ 
+ let client: BAAClient = BAAClient.shared()
+ 
+ client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: tokenized?.nonce, completion: {(success, error) -> Void in
+ 
+ print(success as Any)
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ 
+ if ((success) != nil) {
+ DDLogVerbose("PaymentMethod added successfully \(success)")
+ 
+ //back
+ _ = self.navigationController?.popViewController(animated: true)
+ }
+ else {
+ DDLogVerbose("Error PaymentMethod in: \(error)")
+ 
+ if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+ WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+ 
+ // check for authentication error and redirect the user to Login page
+ }
+ else {
+ AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+ }
+ }
+ })
+ 
+ 
+ if let error = error {
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ self.handleCardTokenError(error as NSError)
+ }
+ else {
+ //                var phone: String = self.rememberMePhoneCell.contents
+ //                var email: String = self.emailCell.contents
+ 
+ // TODO: We save the zipcode
+ if self.isEditCard == true {
+ 
+ self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didCreateNewToken: tokenized!, completion: {(error: NSError?) -> Void in
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ if let error = error {
+ self.handleCardTokenError(error)
+ }
+ })
+ } else if self.isSignup == true {
+ self.signupDelegate?.signupPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ if let error = error {
+ self.handleCardTokenError(error)
+ }
+ })
+ } else {
+ self.addDelegate?.addPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
+ ActivityIndicatorUtil.disableActivityIndicator(self.view)
+ 
+ //self.addPaymentCard(nonce:  tokenized?.nonce as Any as AnyObject)
+ 
+ 
+ 
+ 
+ if let error = error {
+ self.handleCardTokenError(error)
+ }
+ })
+ }
+ }
+ })
+ 
+ #endif
+ }*/
+ 
 }

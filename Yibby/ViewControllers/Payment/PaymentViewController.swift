@@ -197,9 +197,24 @@ SelectPaymentViewControllerDelegate {
                 let paymentMethod: BTPaymentMethodNonce? = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)
                 if ((paymentMethod) != nil) {
                     
-                    cell.cardBrandImageViewOutlet.image =
+                    /*cell.cardBrandImageViewOutlet.image =
                         BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentMethod!.type).image(of: CGSize(width: 42, height: 23))
                     cell.cardTextLabelOutlet.text = paymentMethod?.localizedDescription
+ */
+                    
+                    
+                    var paymentObjectModel = PaymentDetailsObject()
+                    paymentObjectModel = self.arrCardList[indexPath.row] as! PaymentDetailsObject
+                    
+                    cell.cardBrandImageViewOutlet.image =
+                        BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentObjectModel.type).image(of: CGSize(width: 42, height: 23))
+                    cell.cardTextLabelOutlet.text = "*\(paymentObjectModel.last4)"
+                    
+                    if paymentObjectModel.isDefault == "1"
+                    {
+                    self.selectedIndexPath = indexPath
+                    cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
+                    }
                     
                 }
                 
@@ -235,13 +250,13 @@ SelectPaymentViewControllerDelegate {
                     }
                     
                 }
-                else
+                /*else
                 {
                     if (indexPath.row == 0) {
                         self.selectedIndexPath = indexPath
                      cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
                     }
-                }
+                }*/
             } else {
                 DDLogError("Nil payment method. This should not happen. Index: \(indexPath.row)")
             }
@@ -470,22 +485,25 @@ SelectPaymentViewControllerDelegate {
     }
     func getPayment()
     {
+        
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
 
         let client: BAAClient = BAAClient.shared()
         print(BAASBOX_RIDER_STRING)
         client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
             if ((success) != nil) {
-                if (success as? NSArray) != nil
-                    
+                
+                if let resultArray = success as? Array<Any>
                 {
-                    self.arrCardList = success as! NSArray
+                    let paymentObjectModel = PaymentDetailsObject()
+                    self.arrCardList = paymentObjectModel.savePaymentCardDetails(responseArr: resultArray as NSArray)
+                    //self.arrCardList = success as! NSArray
                     DispatchQueue.main.async {
                          self.tableView.reloadData()
                     }
                    
                     print(success as Any)
-                    DDLogVerbose("getProfile Data: \(success)")
+                    DDLogVerbose("getPayment Data: \(success)")
                 }
                 else {
                     DDLogError("Error in fetching Get Method: \(error)")
@@ -493,7 +511,7 @@ SelectPaymentViewControllerDelegate {
                 
             }
             else {
-                DDLogVerbose("getProfile failed: \(error)")
+                DDLogVerbose("getPayment failed: \(error)")
             }
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)

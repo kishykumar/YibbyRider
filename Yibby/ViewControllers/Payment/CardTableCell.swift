@@ -44,6 +44,8 @@ class CardTableCell : UITableViewCell {
         selectedCardColourButton.clipsToBounds = true
         
         self.paymentDefaultsBtnOutlet.setRoundedWithWhiteBorder()
+
+        //self.paymentDefaultsBtnOutlet.setRoundedWithWhiteBorder()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
