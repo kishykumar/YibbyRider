@@ -15,6 +15,9 @@ class ProfileObject {
     var phoneNo = ""
     var addHomePlaceName = "Add Home"
     var addWorkPlaceName = "Add Work"
+    var profilePicture = ""
+    
+    
     
     func setProfileData(responseDict: NSDictionary){
         
@@ -30,6 +33,10 @@ class ProfileObject {
         
         if responseDict["phoneNumber"] as? String != nil {
         self.phoneNo = responseDict["phoneNumber"] as! String
+        }
+        
+        if responseDict["profilePicture"] as? String != nil {
+            self.profilePicture = responseDict["profilePicture"] as! String
         }
         
         if responseDict["homeLocation"] as? NSDictionary != nil {

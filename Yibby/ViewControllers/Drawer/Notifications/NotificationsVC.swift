@@ -3,7 +3,7 @@
 //  NotificationsVC.swift
 //  Yibby
 //
-//  Created by Rubi Kumari on 18/02/17.
+//  Created by Rahul Mehndiratta on 18/02/17.
 //  Copyright © 2017 MyComp. All rights reserved.
 //
 
