@@ -2,7 +2,7 @@
 //  TripObject.swift
 //  Yibby
 //
-//  Created by Rubi Kumari on 28/03/17.
+//  Created by Rahul Mehndiratta on 28/03/17.
 //  Copyright © 2017 MyComp. All rights reserved.
 //
 

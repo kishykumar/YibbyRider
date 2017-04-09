@@ -2,7 +2,7 @@
 //  EmergencyContactTVC.swift
 //  Yibby
 //
-//  Created by Girish Sami on 02/04/17.
+//  Created by Rahul Mehndiratta on 02/04/17.
 //  Copyright © 2017 MyComp. All rights reserved.
 //
 

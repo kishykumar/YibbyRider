@@ -2,7 +2,7 @@
 //  CarDetailsChildView.swift
 //  FoldingCell
 //
-//  Created by Rubi Kumari on 26/02/17.
+//  Created by Rahul Mehndiratta on 26/02/17.
 //  Copyright © 2017 Alex K. All rights reserved.
 //
 

@@ -247,12 +247,12 @@
 		B1035A7B1E5D7DDC00435B8C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A781E5D7DDC00435B8C /* Bolts.framework */; };
 		B1035A7C1E5D7DDC00435B8C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */; };
 		B1035A7D1E5D7DDC00435B8C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */; };
+		B193074A1E98A36E00C3AF59 /* PaymentDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19307491E98A36E00C3AF59 /* PaymentDetailsObject.swift */; };
+		B193074C1E9977D800C3AF59 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B193074B1E9977D800C3AF59 /* UIButtonExtensions.swift */; };
 		B1BFB3751E8A2DF600E86F11 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */; };
 		B1BFB3761E8A2DF600E86F11 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B1BFB3731E8A2DF600E86F11 /* DigitsKitResources.bundle */; };
 		B1BFB3771E8A2DF600E86F11 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFB3741E8A2DF600E86F11 /* TwitterCore.framework */; };
 		D4FDEAD8264D59DAE3042ED0 /* Pods_YibbyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459AE71FE1000380B5FDA55B /* Pods_YibbyTests.framework */; };
-		E139CC171E981CC9006D30DE /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E139CC161E981CC9006D30DE /* UIButtonExtensions.swift */; };
-		E139CC191E9827AE006D30DE /* PaymentDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E139CC181E9827AE006D30DE /* PaymentDetailsObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -528,12 +528,12 @@
 		B1035A781E5D7DDC00435B8C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B19307491E98A36E00C3AF59 /* PaymentDetailsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDetailsObject.swift; sourceTree = "<group>"; };
+		B193074B1E9977D800C3AF59 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DigitsKit.framework; sourceTree = "<group>"; };
 		B1BFB3731E8A2DF600E86F11 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = "<group>"; };
 		B1BFB3741E8A2DF600E86F11 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		DAF0F8A29620D810751B13B7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E139CC161E981CC9006D30DE /* UIButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
-		E139CC181E9827AE006D30DE /* PaymentDetailsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDetailsObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -588,7 +588,7 @@
 				1201B7351D239E4A00A7EEAF /* Ride.swift */,
 				08F658E11E7C6CC600981C78 /* ProfileObject.swift */,
 				08F790DD1E8ADAFE00CF53C0 /* TripObject.swift */,
-				E139CC181E9827AE006D30DE /* PaymentDetailsObject.swift */,
+				B19307491E98A36E00C3AF59 /* PaymentDetailsObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -657,6 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				1201B8451D28EB4200A7EEAF /* ImageExtensions.swift */,
+				B193074B1E9977D800C3AF59 /* UIButtonExtensions.swift */,
 				12A6BF491D7FFACD008BEFC1 /* UIColorExtensions.swift */,
 				08FE49601E7522B90044ACBF /* UIViewControllerExtensions.swift */,
 				1201B84F1D2A075C00A7EEAF /* CGSizeExtensions.swift */,
@@ -669,7 +670,6 @@
 				1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */,
 				1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */,
 				129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */,
-				E139CC161E981CC9006D30DE /* UIButtonExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1943,7 +1943,6 @@
 				126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */,
 				126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
-				E139CC171E981CC9006D30DE /* UIButtonExtensions.swift in Sources */,
 				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
 				126C4AEA1D796276005EC5FF /* CardTextFieldDelegate.swift in Sources */,
 				126C4AF41D796276005EC5FF /* AutoCompletingTextField.swift in Sources */,
@@ -1989,7 +1988,8 @@
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				080D05B91E58116700B5C81E /* NotificationsVC.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
-				E139CC191E9827AE006D30DE /* PaymentDetailsObject.swift in Sources */,
+				B193074C1E9977D800C3AF59 /* UIButtonExtensions.swift in Sources */,
+				B193074A1E98A36E00C3AF59 /* PaymentDetailsObject.swift in Sources */,
 				1254E13D1D693063007067BC /* YibbyTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

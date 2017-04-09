@@ -2,8 +2,8 @@
 //  DriversOffer.swift
 //  sr
 //
-//  Created by Rubi Kumari on 30/03/17.
-//  Copyright © 2017 Rubi Kumari. All rights reserved.
+//  Created by Rahul Mehndiratta on 30/03/17.
+//  Copyright © 2017 Rahul Mehndiratta. All rights reserved.
 //
 
 import UIKit

@@ -136,8 +136,9 @@ CLLocationManagerDelegate  {
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5*/
         
-        
         profileImageBtnOutlet.layer.cornerRadius = profileImageBtnOutlet.frame.size.width/2
+        profileImageBtnOutlet.layer.masksToBounds = true
+        profileImageBtnOutlet.clipsToBounds = true
     }
     
     fileprivate func setupViews() {
@@ -184,6 +185,8 @@ CLLocationManagerDelegate  {
                     
                 self.addWorkBtnOutlet.setTitle(profileObjectModel.addWorkPlaceName, for: UIControlState())
                     
+                    //To set profile Picture
+                    self.getProfilePicture()
                     
                     /*let client1: BAAClient = BAAClient.shared()
                    
@@ -212,6 +215,30 @@ CLLocationManagerDelegate  {
         })
     }
 
+    func getProfilePicture()
+    {
+        print("Profile Image ID :: \(profileObjectModel.profilePicture)")
+        if profileObjectModel.profilePicture != "" {
+            
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+            
+            let imageUrl  = BAAFile.getURLFromId(profileObjectModel.profilePicture)
+            
+            let client: BAAClient = BAAClient.shared()
+            if let newUrl = client.getCompleteURL(withToken: imageUrl) {
+                print(newUrl)
+                profileImageBtnOutlet.pin_setImage(from: newUrl)
+                
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            }
+            else
+            {
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+            }
+        }
+        
+    }
     
     func updateProfile() {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
