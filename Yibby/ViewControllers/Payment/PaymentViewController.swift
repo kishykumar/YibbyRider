@@ -112,13 +112,14 @@ SelectPaymentViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPayment()
-        setupUI()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+        getPayment()
+        setupUI()
     }
     
     func setupUI () {
@@ -588,11 +589,12 @@ SelectPaymentViewControllerDelegate {
     @IBAction func paymentDefaultsSelectedcardColorBtnAction(_ sender: UIButton) {
         
         print(sender.tag)
-        
+      let  paymentObjectModel = self.arrCardList[sender.tag] as! PaymentDetailsObject
+
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()
-        client.makeDefaultPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", completion: {(success, error) -> Void in
+        client.makeDefaultPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentObjectModel.token, completion: {(success, error) -> Void in
             
             print(success as Any)
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -601,7 +603,8 @@ SelectPaymentViewControllerDelegate {
                 DDLogVerbose("makeDefaultPaymentMethod in successfully \(success)")
                 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.getPayment()
+                   // self.tableView.reloadData()
                 }
             }
             else {
