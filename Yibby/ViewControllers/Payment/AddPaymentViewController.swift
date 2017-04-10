@@ -191,7 +191,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         
         let client: BAAClient = BAAClient.shared()
         
-        client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: self.nonceStr, completion: {(success, error) -> Void in
+        client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: nonce as! String, completion: {(success, error) -> Void in
             
             print(success as Any)
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -441,7 +441,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                         self.addDelegate?.addPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
                             ActivityIndicatorUtil.disableActivityIndicator(self.view)
                             
-                            //self.addPaymentCard(nonce:  tokenized?.nonce as Any as AnyObject)
+                           self.addPaymentCard(nonce:  tokenized?.nonce as Any as AnyObject)
                             
                             
                             
