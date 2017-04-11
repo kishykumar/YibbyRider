@@ -30,7 +30,7 @@ public protocol BraintreeBackendAPIAdapter {
     func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
     
     func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
-                                 oldPaymentMethod: BTPaymentMethodNonce,
+                                 oldPaymentMethod: String,
                                  completion: @escaping BTErrorBlock)
     
     func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
@@ -236,7 +236,7 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
     
     func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
         
-        guard let customerID = customerID else {
+       /* guard let customerID = customerID else {
             
             if (self.sources.count == 0) {
                 self.defaultSource = paymentMethod
@@ -266,14 +266,22 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
                         failure: {(error: (Error?)) -> Void in
                             completion(error as NSError?)
             }
-        )
+        )*/
+        let client: BAAClient = BAAClient.shared()
+        client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: paymentMethod.nonce, completion: {(success, error) -> Void in
+            
+            print(success as Any)
+            
+            completion(error as NSError?)
+            
+        })
     }
     
     func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
-                                oldPaymentMethod: BTPaymentMethodNonce,
+                                oldPaymentMethod: String,
                                 completion: @escaping BTErrorBlock) {
         
-        guard let customerID = customerID else {
+   /*     guard let customerID = customerID else {
             
             let idx = self.sources.index(of: oldPaymentMethod)
             if (idx != nil) {
@@ -310,7 +318,16 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
                 failure: {(error: (Error?)) -> Void in
                     completion(error as NSError?)
             }
-        )
+        )*/
+        let client: BAAClient = BAAClient.shared()
+        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: oldPaymentMethod, paymentMethodNonce: paymentMethod.nonce, completion: {(success, error) -> Void in
+            
+            print(success as Any)
+            
+            completion(error as NSError?)
+            
+        })
+       
     }
     
     func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce,
