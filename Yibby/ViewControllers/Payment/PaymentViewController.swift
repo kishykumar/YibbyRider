@@ -436,9 +436,12 @@ SelectPaymentViewControllerDelegate {
                 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                     
                     let paymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)!
-                    
+                    var paymentObjectModel = PaymentDetailsObject()
+                    paymentObjectModel = self.arrCardList[indexPath.row] as! PaymentDetailsObject
                     editCardViewController.cardToBeEdited = paymentMethod
                     editCardViewController.isEditCard = true
+                    editCardViewController.updatecardToken = paymentObjectModel.token
+
                     self.navigationController!.pushViewController(editCardViewController, animated: true)
                     
                 #endif
@@ -794,11 +797,11 @@ SelectPaymentViewControllerDelegate {
     
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
                                    didCreateNewToken paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
-        
+   //rahul
         let oldPaymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(selectedIndexPath!.row)
         
         BraintreePaymentService.sharedInstance().updateSourceForCustomer(paymentMethod,
-                                                                         oldPaymentMethod: oldPaymentMethod!,
+                                                                         oldPaymentMethod: oldPaymentMethod!.nonce,
                                                                          completionBlock: {(error: Error?) -> Void in
                                                                             
                                                                             // execute the completion block first

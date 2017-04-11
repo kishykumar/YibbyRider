@@ -103,7 +103,7 @@ open class BraintreePaymentService: NSObject {
     }
     
     func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
-                                 oldPaymentMethod: BTPaymentMethodNonce,
+                                 oldPaymentMethod: String,
                                  completionBlock: @escaping UpdateSourceCompletionBlock) {
         apiAdapter.updateSourceForCustomer(paymentMethod,
                                            oldPaymentMethod: oldPaymentMethod,
