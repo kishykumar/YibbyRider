@@ -111,6 +111,16 @@ open class BraintreePaymentService: NSObject {
             completionBlock(error)
         })
     }
+    //with string
+    func updateSourceForCustomerstring(_ paymentMethod: String,
+                                 oldPaymentMethod: String,
+                                 completionBlock: @escaping UpdateSourceCompletionBlock) {
+        apiAdapter.updateSourceForCustomerString(paymentMethod,
+                                           oldPaymentMethod: oldPaymentMethod,
+                                           completion: {(error: Error?) -> Void in
+                                            completionBlock(error)
+        })
+    }
     
     func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTDeleteSourceCompletionBlock) {
         apiAdapter.deleteSourceFromCustomer(paymentMethod, completion: {(error: NSError?) -> Void in

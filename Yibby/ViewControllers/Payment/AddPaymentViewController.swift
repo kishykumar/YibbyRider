@@ -154,11 +154,35 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         
     }
     
-    func updatePaymentCard()
+    func updatePaymentCard(nonce: String)
     {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        BraintreePaymentService.sharedInstance().updateSourceForCustomerstring(nonce, oldPaymentMethod: self.updatecardToken, completionBlock: {(error: Error?) -> Void in
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            if let error = error {
+                DDLogVerbose("Error PaymentMethod in: \(error)")
+                print(error.localizedDescription)
+
+                
+                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                    
+                    // check for authentication error and redirect the user to Login page
+                }
+                else {
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            }
+            else
+            {
+                DDLogVerbose("PaymentMethod updated successfully ")
+                
+                //back
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+        })
         
-        let client: BAAClient = BAAClient.shared()
+      /*  let client: BAAClient = BAAClient.shared()
         
         client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", paymentMethodNonce: self.nonceStr, completion: {(success, error) -> Void in
             
@@ -183,69 +207,11 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                     AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
                 }
             }
-        })
+        })*/
     }
     
     
-    func addPaymentCard(nonce: BTPaymentMethodNonce)
-    {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
-        
-        BraintreePaymentService.sharedInstance().attachSourceToCustomer(nonce, completionBlock: {(error: NSError?) -> Void in
-            
-            if error != nil
-            {
-                DDLogVerbose("Error PaymentMethod in: \(error)")
-                
-                if (error?.domain == BaasBox.errorDomain() && error?.code ==
-                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-                    
-                    // check for authentication error and redirect the user to Login page
-                }
-                else {
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                }
-                
-            }
-            else
-            {
-                DDLogVerbose("PaymentMethod added successfully ")
-                
-                //back
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-            
-            
-        })
-        
-        /*   let client: BAAClient = BAAClient.shared()
-         
-         client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: nonce as! String, completion: {(success, error) -> Void in
-         
-         print(success as Any)
-         ActivityIndicatorUtil.disableActivityIndicator(self.view)
-         
-         if ((success) != nil) {
-         DDLogVerbose("PaymentMethod added successfully \(success)")
-         
-         //back
-         _ = self.navigationController?.popViewController(animated: true)
-         }
-         else {
-         DDLogVerbose("Error PaymentMethod in: \(error)")
-         
-         if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-         WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-         
-         // check for authentication error and redirect the user to Login page
-         }
-         else {
-         AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-         }
-         }
-         })*/
-    }
+ 
     
     func deletePaymentCard()
     {
@@ -461,13 +427,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                         //                            }
                         //                        })
                         
-                        BraintreePaymentService.sharedInstance().updateSourceForCustomerupdateSourceForCustomer(tokenized!,
-                                                                                                                oldPaymentMethod: self.updatecardToken,
-                                                                                                                completion: {(error: Error?) -> Void in
-                                                                                                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                                                                                                    if let error = error {
-                                                                                                                        self.handleCardTokenError(error)
-                                                                                                                    }                        })
+                        self.updatePaymentCard(nonce: (tokenized?.nonce)!)
                         
                         
                     }
