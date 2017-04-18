@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import ObjectMapper
 
-class PaymentDetailsObject
+
+class PaymentDetailsObject 
 {
 
     var expirationMonth = ""
@@ -19,7 +21,42 @@ class PaymentDetailsObject
     var token = ""
     var type = ""
     
+    init() {
+        
+    }
     
+  /*  required init?(map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map, responseArr: NSArray) -> NSMutableArray {
+        print(responseArr)
+        
+        let dataArray = NSMutableArray()
+        
+        for index in 0..<responseArr.count{
+            let currentDict = responseArr[index] as! NSDictionary
+            
+            let classObject = PaymentDetailsObject()
+            
+            classObject.expirationMonth  <- map["expirationMonth"]
+            classObject.isDefault  <- map["isDefault"]
+            classObject.postalCode  <- map["postalCode"]
+            classObject.last4  <- map["last4"]
+            classObject.postalCode  <- map["postalCode"]
+            classObject.token  <- map["token"]
+            classObject.type  <- map["type"]
+            
+            
+            
+            dataArray.add(classObject)
+            
+        }
+        
+        return dataArray
+    }
+*/
     func savePaymentCardDetails(responseArr: NSArray) -> NSMutableArray{
         
         print(responseArr)
@@ -45,5 +82,7 @@ class PaymentDetailsObject
         return dataArray
         
     }
-
+    
+    
+   
 }
