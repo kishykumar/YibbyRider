@@ -420,14 +420,14 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                     // TODO: We save the zipcode
                     if self.isEditCard == true {
                         
-                        //                        self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didCreateNewToken: tokenized!, completion: {(error: NSError?) -> Void in
-                        //                            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                        //                            if let error = error {
-                        //                                self.handleCardTokenError(error)
-                        //                            }
-                        //                        })
+                                                self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didCreateNewToken: tokenized!, completion: {(error: NSError?) -> Void in
+                                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                                    if let error = error {
+                                                        self.handleCardTokenError(error)
+                                                    }
+                                                })
                         
-                        self.updatePaymentCard(nonce: (tokenized?.nonce)!)
+                      //  self.updatePaymentCard(nonce: (tokenized?.nonce)!)
                         
                         
                     }
