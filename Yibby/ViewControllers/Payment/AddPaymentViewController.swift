@@ -56,6 +56,8 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     var isEditCard: Bool! = false   // implicitly unwrapped optional
     var isSignup: Bool! = false // implicitly unwrapped optional
     var updatecardToken = String()
+    var Cardmodel = PaymentDetailsObject()
+
     // MARK: - Actions
     @IBAction func deleteCardAction(_ sender: AnyObject) {
         
@@ -88,7 +90,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                                                 
                                             #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                                                 
-                                                self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didRemovePaymentMethod: self.cardToBeEdited!, completion: {(error: NSError?) -> Void in
+                                                self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didRemovePaymentMethod: self.updatecardToken, completion: {(error: NSError?) -> Void in
                                                     
                                                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
                                                     
@@ -157,6 +159,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     func updatePaymentCard(nonce: String)
     {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
+    
         BraintreePaymentService.sharedInstance().updateSourceForCustomerstring(nonce, oldPaymentMethod: self.updatecardToken, completionBlock: {(error: Error?) -> Void in
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             if let error = error {
@@ -219,7 +222,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         
         let client: BAAClient = BAAClient.shared()
         
-        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: "4phrcj", completion:{(success, error) -> Void in
+        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: updatecardToken, completion:{(success, error) -> Void in
             
             print(success as Any)
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -289,17 +292,20 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(Cardmodel)
         // Do any additional setup after loading the view.
         CardIOUtilities.preload()
         
-        if let card = cardToBeEdited {
-            
+             if isEditCard == true {
             // cardParams.number will have the last 4 of the card
             #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
                 self.cardFieldsViewOutlet.numberInputTextField.placeholder = "************" + card.last4()
             #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-                self.cardFieldsViewOutlet.numberInputTextField.placeholder = "************" + card.localizedDescription
+                self.cardFieldsViewOutlet.numberInputTextField.placeholder = "************" + Cardmodel.last4
+                self.cardFieldsViewOutlet.monthTextField.text = Cardmodel.expirationMonth
+                self.cardFieldsViewOutlet.yearTextField.text = Cardmodel.expirationYear
+                self.cardFieldsViewOutlet.postalCodeTextField.text = Cardmodel.postalCode
+
             #endif
             
         }
@@ -351,7 +357,9 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         let expMonth = cardFieldsViewOutlet.monthTextField.text
         let expYear = cardFieldsViewOutlet.yearTextField.text
         let cvc = cardFieldsViewOutlet.cvcTextField.text
-        
+        let postalcard = cardFieldsViewOutlet.postalCodeTextField.text
+        let name = cardFieldsViewOutlet.cardHolderNameTextField.text
+
         #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
             let apiClient = StripePaymentService.sharedInstance().apiClient!
@@ -399,13 +407,17 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             let card: BTCard = BTCard(number: number!,
                                       expirationMonth: expMonth!,
                                       expirationYear: expYear!,
-                                      cvv: cvc!)
+                                      cvv: cvc!
+                                      )
+            card.postalCode = postalcard
+            card.cardholderName = name
             
             cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
                 
                 print(BTCardNonce.self)
                 print(tokenized?.nonce as AnyObject)
-                
+                if (tokenized != nil)
+                {
                 self.nonceStr = (tokenized?.nonce as AnyObject) as! String
                 print(self.nonceStr)
                 
@@ -470,6 +482,14 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
                             
                         })
                     }
+                }
+                }
+                else
+                {
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+
                 }
             })
             

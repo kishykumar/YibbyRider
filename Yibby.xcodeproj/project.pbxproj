@@ -247,6 +247,9 @@
 		B1035A7B1E5D7DDC00435B8C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A781E5D7DDC00435B8C /* Bolts.framework */; };
 		B1035A7C1E5D7DDC00435B8C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */; };
 		B1035A7D1E5D7DDC00435B8C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */; };
+		B12CC9BF1EA9D5F100172B2D /* PaymentObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CC9BE1EA9D5F100172B2D /* PaymentObjectModel.swift */; };
+		B12CC9C11EA9D60E00172B2D /* PaymentObjectModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CC9C01EA9D60E00172B2D /* PaymentObjectModels.swift */; };
+		B12CC9C31EA9D91300172B2D /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CC9C21EA9D91300172B2D /* ProfileModel.swift */; };
 		B193074A1E98A36E00C3AF59 /* PaymentDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19307491E98A36E00C3AF59 /* PaymentDetailsObject.swift */; };
 		B193074C1E9977D800C3AF59 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B193074B1E9977D800C3AF59 /* UIButtonExtensions.swift */; };
 		B1BFB3751E8A2DF600E86F11 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */; };
@@ -528,6 +531,9 @@
 		B1035A781E5D7DDC00435B8C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B1035A791E5D7DDC00435B8C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		B1035A7A1E5D7DDC00435B8C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B12CC9BE1EA9D5F100172B2D /* PaymentObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentObjectModel.swift; sourceTree = "<group>"; };
+		B12CC9C01EA9D60E00172B2D /* PaymentObjectModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentObjectModels.swift; sourceTree = "<group>"; };
+		B12CC9C21EA9D91300172B2D /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		B19307491E98A36E00C3AF59 /* PaymentDetailsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDetailsObject.swift; sourceTree = "<group>"; };
 		B193074B1E9977D800C3AF59 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		B1BFB3721E8A2DF600E86F11 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DigitsKit.framework; sourceTree = "<group>"; };
@@ -587,8 +593,11 @@
 				12EF49711C95276800C07FAE /* Offer.swift */,
 				1201B7351D239E4A00A7EEAF /* Ride.swift */,
 				08F658E11E7C6CC600981C78 /* ProfileObject.swift */,
+				B12CC9C21EA9D91300172B2D /* ProfileModel.swift */,
 				08F790DD1E8ADAFE00CF53C0 /* TripObject.swift */,
 				B19307491E98A36E00C3AF59 /* PaymentDetailsObject.swift */,
+				B12CC9BE1EA9D5F100172B2D /* PaymentObjectModel.swift */,
+				B12CC9C01EA9D60E00172B2D /* PaymentObjectModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1885,6 +1894,7 @@
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
 				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
+				B12CC9BF1EA9D5F100172B2D /* PaymentObjectModel.swift in Sources */,
 				126C4AE61D796276005EC5FF /* CardTextField+InterfaceBuilder.swift in Sources */,
 				08FE49611E7522B90044ACBF /* UIViewControllerExtensions.swift in Sources */,
 				126C4AF31D796276005EC5FF /* MonthInputTextField.swift in Sources */,
@@ -1909,6 +1919,7 @@
 				129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */,
 				1201B8561D34E52C00A7EEAF /* AddPaymentViewController.swift in Sources */,
 				0825BB511E563EDB00A18145 /* EmergencyContactsVC.swift in Sources */,
+				B12CC9C31EA9D91300172B2D /* ProfileModel.swift in Sources */,
 				12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */,
 				08032C161E66102B00E876A5 /* CancelRideVC.swift in Sources */,
 				121531701D441DD000C28C73 /* ActivityIndicatorUtil.swift in Sources */,
@@ -1941,6 +1952,7 @@
 				08F790DE1E8ADAFE00CF53C0 /* TripObject.swift in Sources */,
 				1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */,
 				126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */,
+				B12CC9C11EA9D60E00172B2D /* PaymentObjectModels.swift in Sources */,
 				126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
 				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
