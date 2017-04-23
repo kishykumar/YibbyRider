@@ -118,7 +118,8 @@ SelectPaymentViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-        getPayment()
+       reloadCustomerDetails()
+        // getPayment()
         setupUI()
     }
     
@@ -195,8 +196,7 @@ SelectPaymentViewControllerDelegate {
                 
             #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                 
-                let paymentMethod: BTPaymentMethodNonce? = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)
-                if ((paymentMethod) != nil) {
+                
                     
                     /*cell.cardBrandImageViewOutlet.image =
                         BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentMethod!.type).image(of: CGSize(width: 42, height: 23))
@@ -217,12 +217,12 @@ SelectPaymentViewControllerDelegate {
                     cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
                     }
                     
-                }
+                
                 
                 let defaultPaymentMethod = BraintreePaymentService.sharedInstance().defaultPaymentMethod
                 
             #endif
-            
+            /*
             if ((paymentMethod) != nil) {
                 
                 // Configure the cell based on controller type
@@ -261,7 +261,7 @@ SelectPaymentViewControllerDelegate {
             } else {
                 DDLogError("Nil payment method. This should not happen. Index: \(indexPath.row)")
             }
-            
+            */
             cell.paymentDefaultsBtnOutlet.tag = indexPath.row
             
             return cell
@@ -435,13 +435,12 @@ SelectPaymentViewControllerDelegate {
                     
                 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                     
-                    let paymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)!
+
                     var paymentObjectModel = PaymentDetailsObject()
                     paymentObjectModel = self.arrCardList[indexPath.row] as! PaymentDetailsObject
-                    editCardViewController.cardToBeEdited = paymentMethod
                     editCardViewController.isEditCard = true
                     editCardViewController.updatecardToken = paymentObjectModel.token
-
+editCardViewController.Cardmodel = paymentObjectModel
                     self.navigationController!.pushViewController(editCardViewController, animated: true)
                     
                 #endif
@@ -493,13 +492,13 @@ SelectPaymentViewControllerDelegate {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
 
         let client: BAAClient = BAAClient.shared()
-        print(BAASBOX_RIDER_STRING)
         client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
             if ((success) != nil) {
-                
+               
+                //let bid = PaymentObjectModels(JSONString: jsonCustomString)!
                 if let resultArray = success as? Array<Any>
                 {
-                    let paymentObjectModel = PaymentDetailsObject()
+                                       let paymentObjectModel = PaymentDetailsObject()
                     self.arrCardList = paymentObjectModel.savePaymentCardDetails(responseArr: resultArray as NSArray)
                     //self.arrCardList = success as! NSArray
                     DispatchQueue.main.async {
@@ -712,7 +711,7 @@ SelectPaymentViewControllerDelegate {
     }
     
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                   didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
+                                   didRemovePaymentMethod paymentMethod: String, completion: @escaping BTErrorBlock) {
         
         BraintreePaymentService.sharedInstance().deleteSourceFromCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
             
@@ -798,10 +797,12 @@ SelectPaymentViewControllerDelegate {
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
                                    didCreateNewToken paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
    //rahul
-        let oldPaymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue(selectedIndexPath!.row)
+       
+        var paymentObjectModel = PaymentDetailsObject()
+        paymentObjectModel = self.arrCardList[selectedIndexPath!.row] as! PaymentDetailsObject
         
         BraintreePaymentService.sharedInstance().updateSourceForCustomer(paymentMethod,
-                                                                         oldPaymentMethod: oldPaymentMethod!.nonce,
+                                                                         oldPaymentMethod: paymentObjectModel.token,
                                                                          completionBlock: {(error: Error?) -> Void in
                                                                             
                                                                             // execute the completion block first
@@ -844,11 +845,26 @@ SelectPaymentViewControllerDelegate {
     }
     
     func reloadCustomerDetails() {
-        
-        BraintreePaymentService.sharedInstance().loadCustomerDetails({
-            // reload the tableview in case the table datasource methods already fired
-            self.tableView.reloadData()
+        BraintreePaymentService.sharedInstance().loadCustomerDetails({(arrlist: NSArray?,error: NSError?) -> Void in
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+
+            if (error == nil) {
+                let paymentObjectModel = PaymentDetailsObject()
+                self.arrCardList = paymentObjectModel.savePaymentCardDetails(responseArr: arrlist! as NSArray)
+                //self.arrCardList = success as! NSArray
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            }
+            else {
+                DDLogError("Error in fetching Get Method: \(error)")
+            }
+
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+
         })
+        
         
     }
     

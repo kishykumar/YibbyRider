@@ -27,6 +27,6 @@ protocol EditPaymentViewControllerDelegate {
     
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
         func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                       didRemovePaymentMethod paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
+                                       didRemovePaymentMethod paymentMethod: String, completion: @escaping BTErrorBlock)
     #endif
 }

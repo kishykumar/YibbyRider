@@ -10,6 +10,8 @@ import Braintree
 import CocoaLumberjack
 
 public typealias BTCustomerLoadCompletionBlock = () -> Void
+public typealias BTCustomerPaymentLoadCompletionBlock = PaymentMethodsCompletionBlock
+
 public typealias BTAttachSourceCompletionBlock = BTErrorBlock
 public typealias BTDeleteSourceCompletionBlock = BTErrorBlock
 public typealias BTDefaultSourceCompletionBlock = BTErrorBlock
@@ -55,9 +57,9 @@ open class BraintreePaymentService: NSObject {
 
                     self.apiClient = BTAPIClient(authorization: clientToken)
                     
-                    self.loadCustomerDetails({
+                   /* self.loadCustomerDetails({
                         completionBlock()
-                    })
+                    })*/
                     
                 } else {
                     DDLogError("Error in Braintree client token: nil")    
@@ -68,30 +70,18 @@ open class BraintreePaymentService: NSObject {
         })
     }
     
-    func loadCustomerDetails(_ completionBlock: @escaping BTCustomerLoadCompletionBlock) {
+    func loadCustomerDetails(_ completionBlock: @escaping BTCustomerPaymentLoadCompletionBlock) {
         
-        apiAdapter.retrievePaymentMethods(self.clientToken,
-                                          completion: { (paymentMethods: [BTPaymentMethodNonce]?, error: NSError?) -> Void in
+        apiAdapter.retrievePaymentMethods(completion: { (paymentMethods: NSArray?, error: NSError?) -> Void in
             
             if error != nil {
                 // TODO: handle error
                 AlertUtil.displayAlert(error!.localizedDescription, message: "")
             }
             else {
-                if let paymentMethods = paymentMethods {
-                    self.paymentMethods.removeAll()
-                    self.defaultPaymentMethod = nil
-                    
-                    self.paymentMethods = paymentMethods
-                    
-                    for method in paymentMethods {
-                        if method.isDefault {
-                            self.defaultPaymentMethod = method
-                        }
-                    }
-                }
+               
                 
-                completionBlock()
+                completionBlock(paymentMethods as NSArray?, nil)
             }
         })
     }
@@ -122,7 +112,7 @@ open class BraintreePaymentService: NSObject {
         })
     }
     
-    func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTDeleteSourceCompletionBlock) {
+    func deleteSourceFromCustomer(_ paymentMethod: String, completionBlock: @escaping BTDeleteSourceCompletionBlock) {
         apiAdapter.deleteSourceFromCustomer(paymentMethod, completion: {(error: NSError?) -> Void in
             completionBlock(error)
         })

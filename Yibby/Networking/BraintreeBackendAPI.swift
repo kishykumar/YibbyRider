@@ -15,7 +15,7 @@ import Braintree
 
 public typealias MakeTransactionCompletionBlock = (_ transactionId: String, _ error: NSError?) -> Void
 public typealias TokenFetchCompletionBlock = (_ clientToken: String?, _ error: NSError?) -> Void
-public typealias PaymentMethodsCompletionBlock = (_ paymentMethods: [BTPaymentMethodNonce]?, _ error: NSError?) -> Void
+public typealias PaymentMethodsCompletionBlock = (_ paymentMethods: NSArray?, _ error: NSError?) -> Void
 public typealias BTErrorBlock = (NSError?) -> Void
 
 public protocol BraintreeBackendAPIAdapter {
@@ -25,9 +25,9 @@ public protocol BraintreeBackendAPIAdapter {
     
     func fetchClientToken(_ completionBlock: @escaping TokenFetchCompletionBlock)
     
-    func retrievePaymentMethods(_ clientToken: String, completion: @escaping PaymentMethodsCompletionBlock)
+    func retrievePaymentMethods( completion: @escaping PaymentMethodsCompletionBlock)
     
-    func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
+    func deleteSourceFromCustomer(_ paymentMethod: String, completion: @escaping BTErrorBlock)
     
     func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
                                  oldPaymentMethod: String,
@@ -44,43 +44,41 @@ public protocol BraintreeBackendAPIAdapter {
 class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
     
     // MARK: - Properties
-    
-    let customerID: String?
+
     
     // used for fake cards
-    var defaultSource: BTPaymentMethodNonce? = nil
-    var sources: [BTPaymentMethodNonce] = []
+//    var defaultSource: BTPaymentMethodNonce? = nil
+//    var sources: [BTPaymentMethodNonce] = []
     
-    static var sharedClient = BraintreeBackendAPI(customerID: nil)
+    static var sharedClient = BraintreeBackendAPI()
     
-    static func sharedInit(_ customerID: String?) {
-        sharedClient = BraintreeBackendAPI(customerID: customerID)
+    static func sharedInit() {
+        sharedClient = BraintreeBackendAPI()
     }
     
-    init(customerID: String?) {
-        self.customerID = customerID
+   /* init(_: ) {
         super.init()
-        self.setupFakeCards()
-    }
+//        self.setupFakeCards()
+    }*/
     
-    func setupFakeCards () {
-        
-        guard let _ = customerID else {
-            let card1 = BTPaymentMethodNonce(nonce: "123x", localizedDescription: "*4242", type: "Visa", isDefault: false)
-            let card2 = BTPaymentMethodNonce(nonce: "123y", localizedDescription: "*4244", type: "Amex", isDefault: false)
-            let card3 = BTPaymentMethodNonce(nonce: "123z", localizedDescription: "*4246", type: "MasterCard", isDefault: true)
-            let card4 = BTPaymentMethodNonce(nonce: "123w", localizedDescription: "*4248", type: "Visa", isDefault: false)
-            
-            self.sources.append(card1!)
-            self.sources.append(card2!)
-            self.sources.append(card3!)
-            self.sources.append(card4!)
-            
-            self.defaultSource = card1
-            
-            return;
-        }
-    }
+//    func setupFakeCards () {
+//        
+//        guard let _ = customerID else {
+//            let card1 = BTPaymentMethodNonce(nonce: "123x", localizedDescription: "*4242", type: "Visa", isDefault: false)
+//            let card2 = BTPaymentMethodNonce(nonce: "123y", localizedDescription: "*4244", type: "Amex", isDefault: false)
+//            let card3 = BTPaymentMethodNonce(nonce: "123z", localizedDescription: "*4246", type: "MasterCard", isDefault: true)
+//            let card4 = BTPaymentMethodNonce(nonce: "123w", localizedDescription: "*4248", type: "Visa", isDefault: false)
+//            
+//            self.sources.append(card1!)
+//            self.sources.append(card2!)
+//            self.sources.append(card3!)
+//            self.sources.append(card4!)
+//            
+//            self.defaultSource = card1
+//            
+//            return;
+//        }
+//    }
     
     func makeTransaction(_ paymentMethodNonce: String, completion completionBlock: MakeTransactionCompletionBlock) {
     
@@ -162,22 +160,24 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
         let client: BAAClient = BAAClient.shared()
         client.getPaymentClientToken(BAASBOX_RIDER_STRING,completion: {(success, error) -> Void in
             
-            print(success as! String)
             
             if (error == nil)
             {
+                print(success as! String)
+
                 completionBlock(success as? String, error as NSError?)
             }
             else
             {
+
             completionBlock(nil, error as NSError?)
             }
             
         })    }
     
-    func retrievePaymentMethods(_ clientToken: String, completion: @escaping PaymentMethodsCompletionBlock) {
+    func retrievePaymentMethods( completion: @escaping PaymentMethodsCompletionBlock) {
     
-        guard let customerID = customerID else {
+     /*   guard let customerID = customerID else {
             
             completion(self.sources, nil)
             
@@ -190,12 +190,32 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
                                                completion: {(paymentMethodNonces: [BTPaymentMethodNonce]?, error: NSError?) -> Void in
                 completion(paymentMethodNonces, error)
             } as! ([BTPaymentMethodNonce]?, Error?) -> Void)
-        }
+        }*/
+        let client: BAAClient = BAAClient.shared()
+        client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
+            if ((success) != nil) {
+                
+                //let bid = PaymentObjectModels(JSONString: jsonCustomString)!
+                if let resultArray = success as? Array<Any>
+                {
+                  completion(resultArray as NSArray?, nil)
+                }
+                else {
+                    DDLogError("Error in fetching Get Method: \(error)")
+                }
+                
+            }
+            else {
+                completion(nil, error as NSError?)
+            }
+            
+        })
+
     }
     
     func selectDefaultCustomerSource(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
         
-        guard let customerID = customerID else {
+     /*   guard let customerID = customerID else {
             
             for method in self.sources {
                 if method.isDefault {
@@ -237,7 +257,7 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
             "customer": customerID,
             "source": paymentMethod.nonce,
             ]
-        
+ 
         let client: BAAClient = BAAClient.shared()
         client.postPath(path, parameters: params,
                         
@@ -248,7 +268,7 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
                         failure: {(error: (Error?)) -> Void in
                             completion(error as NSError?)
             }
-        )
+        )*/
     }
     
     func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
@@ -337,6 +357,8 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
                     completion(error as NSError?)
             }
         )*/
+        print(oldPaymentMethod)
+        print(paymentMethod.nonce)
         let client: BAAClient = BAAClient.shared()
         client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: oldPaymentMethod, paymentMethodNonce: paymentMethod.nonce, completion: {(success, error) -> Void in
             
@@ -402,7 +424,7 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
     }
 
     
-    func deleteSourceFromCustomer(_ paymentMethod: BTPaymentMethodNonce,
+    func deleteSourceFromCustomer(_ paymentMethod: String,
                                         completion: @escaping BTErrorBlock) {
 
        /* guard let customerID = customerID else {
@@ -445,7 +467,7 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
         )
     }*/
         let client: BAAClient = BAAClient.shared()
-        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentMethod.nonce, completion: {(success, error) -> Void in
+        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentMethod, completion: {(success, error) -> Void in
             
             print(success as Any)
             
