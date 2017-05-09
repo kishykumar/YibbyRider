@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         setupLocationService()
         setupKeyboardManager()
 
-        DDLogDebug("LaunchOptions \(launchOptions)");
+        DDLogDebug("LaunchOptions \(String(describing: launchOptions))");
         
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(GOOGLE_API_KEY_IOS)

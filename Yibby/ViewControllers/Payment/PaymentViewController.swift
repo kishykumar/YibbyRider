@@ -29,6 +29,9 @@ protocol SelectPaymentViewControllerDelegate {
     func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
                                      didSelectPaymentMethod method: BTPaymentMethodNonce,
                                      controllerType: PaymentViewControllerType)
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
+                                     didSelectPaymentMethod method: PaymentDetailsObject,
+                                     controllerType: PaymentViewControllerType)
     #endif
     
     func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentViewController)
@@ -41,8 +44,8 @@ enum PaymentViewControllerType: Int {
 }
 
 class PaymentViewController: BaseYibbyTableViewController, AddPaymentViewControllerDelegate,
-    EditPaymentViewControllerDelegate,
-SelectPaymentViewControllerDelegate {
+EditPaymentViewControllerDelegate, SelectPaymentViewControllerDelegate {
+    
     
     // MARK: - Properties
     var arrCardList = NSArray()
@@ -100,8 +103,7 @@ SelectPaymentViewControllerDelegate {
             
         #endif
         
-        self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod!,
-                                                   controllerType: PaymentViewControllerType.pickDefault)
+        self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod!, controllerType: PaymentViewControllerType.pickDefault)
     }
     
     @IBAction func cancelButtonAction(_ sender: AnyObject){
@@ -112,13 +114,11 @@ SelectPaymentViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-       reloadCustomerDetails()
+        reloadCustomerDetails()
         // getPayment()
         setupUI()
     }
@@ -197,71 +197,71 @@ SelectPaymentViewControllerDelegate {
             #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                 
                 
-                    
-                    /*cell.cardBrandImageViewOutlet.image =
-                        BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentMethod!.type).image(of: CGSize(width: 42, height: 23))
-                    cell.cardTextLabelOutlet.text = paymentMethod?.localizedDescription
- */
-                    
-                    
-                    var paymentObjectModel = PaymentDetailsObject()
-                    paymentObjectModel = self.arrCardList[indexPath.row] as! PaymentDetailsObject
-                    
-                    cell.cardBrandImageViewOutlet.image =
-                        BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentObjectModel.type).image(of: CGSize(width: 42, height: 23))
-                    cell.cardTextLabelOutlet.text = "*\(paymentObjectModel.last4)"
-                    
-                    if paymentObjectModel.isDefault == "1"
-                    {
+                
+                /*cell.cardBrandImageViewOutlet.image =
+                 BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentMethod!.type).image(of: CGSize(width: 42, height: 23))
+                 cell.cardTextLabelOutlet.text = paymentMethod?.localizedDescription
+                 */
+                
+                
+                var paymentObjectModel = PaymentDetailsObject()
+                paymentObjectModel = self.arrCardList[indexPath.row] as! PaymentDetailsObject
+                
+                cell.cardBrandImageViewOutlet.image =
+                    BTUI.braintreeTheme().vectorArtView(forPaymentInfoType: paymentObjectModel.type).image(of: CGSize(width: 42, height: 23))
+                cell.cardTextLabelOutlet.text = "*\(paymentObjectModel.last4)"
+                
+                if paymentObjectModel.isDefault == "1"
+                {
                     self.selectedIndexPath = indexPath
                     cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
-                    }
-                    
+                }
+                
                 
                 
                 let defaultPaymentMethod = BraintreePaymentService.sharedInstance().defaultPaymentMethod
                 
             #endif
             /*
-            if ((paymentMethod) != nil) {
-                
-                // Configure the cell based on controller type
-                if (controllerType == PaymentViewControllerType.pickDefault) {
-                    
-                    // put a check mark on the default card
-                    let selected: Bool = paymentMethod!.isEqual(defaultPaymentMethod)
-                    cell.accessoryType = selected ? .checkmark : .none
-                    
-                    DDLogVerbose("paymentMethod: \(paymentMethod) defaultPaymentMethod: \(defaultPaymentMethod) selected: \(selected)")
-                    
-                    if (selected) {
-                        self.selectedIndexPath = indexPath
-                        cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
-                    }
-                    
-                } else if (controllerType == PaymentViewControllerType.pickForRide) {
-                    
-                    // put a check mark on the currently selected card
-                    let selected: Bool = paymentMethod!.isEqual(self.selectedPaymentMethod)
-                    cell.accessoryType = selected ? .checkmark : .none
-                    
-                    if (selected) {
-                        self.selectedIndexPath = indexPath
-                       cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
-                    }
-                    
-                }
-                /*else
-                {
-                    if (indexPath.row == 0) {
-                        self.selectedIndexPath = indexPath
-                     cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
-                    }
-                }*/
-            } else {
-                DDLogError("Nil payment method. This should not happen. Index: \(indexPath.row)")
-            }
-            */
+             if ((paymentMethod) != nil) {
+             
+             // Configure the cell based on controller type
+             if (controllerType == PaymentViewControllerType.pickDefault) {
+             
+             // put a check mark on the default card
+             let selected: Bool = paymentMethod!.isEqual(defaultPaymentMethod)
+             cell.accessoryType = selected ? .checkmark : .none
+             
+             DDLogVerbose("paymentMethod: \(paymentMethod) defaultPaymentMethod: \(defaultPaymentMethod) selected: \(selected)")
+             
+             if (selected) {
+             self.selectedIndexPath = indexPath
+             cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
+             }
+             
+             } else if (controllerType == PaymentViewControllerType.pickForRide) {
+             
+             // put a check mark on the currently selected card
+             let selected: Bool = paymentMethod!.isEqual(self.selectedPaymentMethod)
+             cell.accessoryType = selected ? .checkmark : .none
+             
+             if (selected) {
+             self.selectedIndexPath = indexPath
+             cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
+             }
+             
+             }
+             /*else
+             {
+             if (indexPath.row == 0) {
+             self.selectedIndexPath = indexPath
+             cell.selectedCardColourButton.backgroundColor = UIColor.borderColor()
+             }
+             }*/
+             } else {
+             DDLogError("Nil payment method. This should not happen. Index: \(indexPath.row)")
+             }
+             */
             cell.paymentDefaultsBtnOutlet.tag = indexPath.row
             
             return cell
@@ -306,7 +306,7 @@ SelectPaymentViewControllerDelegate {
             
             if (section == cardListSection) {
                 return arrCardList.count
-               // return StripePaymentService.sharedInstance().paymentMethods.count;
+                // return StripePaymentService.sharedInstance().paymentMethods.count;
             } else if (section == addPaymentSection) {
                 return 1;
             } else if (section == defaultPaymentSection) {
@@ -316,7 +316,7 @@ SelectPaymentViewControllerDelegate {
         #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
             
             if (section == cardListSection) {
-              return  arrCardList.count
+                return  arrCardList.count
                 return BraintreePaymentService.sharedInstance().paymentMethods.count;
             } else if (section == addPaymentSection) {
                 return 1;
@@ -337,7 +337,7 @@ SelectPaymentViewControllerDelegate {
         headerLbl.textAlignment = .center
         
         if (section == cardListSection) {
-
+            
             headerLbl.text = "Payment methods"
         } else if (section == addPaymentSection) {
             headerLbl.text = "Add payment method"
@@ -435,12 +435,12 @@ SelectPaymentViewControllerDelegate {
                     
                 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                     
-
+                    
                     var paymentObjectModel = PaymentDetailsObject()
                     paymentObjectModel = self.arrCardList[indexPath.row] as! PaymentDetailsObject
                     editCardViewController.isEditCard = true
                     editCardViewController.updatecardToken = paymentObjectModel.token
-editCardViewController.Cardmodel = paymentObjectModel
+                    editCardViewController.Cardmodel = paymentObjectModel
                     self.navigationController!.pushViewController(editCardViewController, animated: true)
                     
                 #endif
@@ -490,21 +490,21 @@ editCardViewController.Cardmodel = paymentObjectModel
     {
         
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
-
+        
         let client: BAAClient = BAAClient.shared()
         client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
             if ((success) != nil) {
-               
+                
                 //let bid = PaymentObjectModels(JSONString: jsonCustomString)!
                 if let resultArray = success as? Array<Any>
                 {
-                                       let paymentObjectModel = PaymentDetailsObject()
+                    let paymentObjectModel = PaymentDetailsObject()
                     self.arrCardList = paymentObjectModel.savePaymentCardDetails(responseArr: resultArray as NSArray)
                     //self.arrCardList = success as! NSArray
                     DispatchQueue.main.async {
-                         self.tableView.reloadData()
+                        self.tableView.reloadData()
                     }
-                   
+                    
                     print(success as Any)
                     DDLogVerbose("getPayment Data: \(success)")
                 }
@@ -576,12 +576,13 @@ editCardViewController.Cardmodel = paymentObjectModel
                 
             #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                 
-                let paymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue((sender as AnyObject).tag)!
+                //let paymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue((sender as AnyObject).tag)!
+                let paymentMethod = arrCardList.object(at: (sender as AnyObject).tag) as! PaymentDetailsObject
                 
             #endif
             
-            self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod,
-                                                       controllerType: PaymentViewControllerType.pickForRide)
+           // self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod,controllerType: PaymentViewControllerType.pickForRide)
+            self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod, controllerType: PaymentViewControllerType.pickForRide)
             
         }
     }
@@ -591,8 +592,8 @@ editCardViewController.Cardmodel = paymentObjectModel
     @IBAction func paymentDefaultsSelectedcardColorBtnAction(_ sender: UIButton) {
         
         print(sender.tag)
-      let  paymentObjectModel = self.arrCardList[sender.tag] as! PaymentDetailsObject
-
+        let  paymentObjectModel = self.arrCardList[sender.tag] as! PaymentDetailsObject
+        
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()
@@ -606,7 +607,7 @@ editCardViewController.Cardmodel = paymentObjectModel
                 
                 DispatchQueue.main.async {
                     self.getPayment()
-                   // self.tableView.reloadData()
+                    // self.tableView.reloadData()
                 }
             }
             else {
@@ -756,9 +757,7 @@ editCardViewController.Cardmodel = paymentObjectModel
     
     // MARK: - SelectPaymentViewControllerDelegate
     
-    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
-    didSelectPaymentMethod method: STPPaymentMethod,
-    controllerType: PaymentViewControllerType) {
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController, didSelectPaymentMethod method: STPPaymentMethod, controllerType: PaymentViewControllerType) {
     
     if (controllerType == PaymentViewControllerType.PickDefault) {
     
@@ -796,8 +795,8 @@ editCardViewController.Cardmodel = paymentObjectModel
     
     func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
                                    didCreateNewToken paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
-   //rahul
-       
+        //rahul
+        
         var paymentObjectModel = PaymentDetailsObject()
         paymentObjectModel = self.arrCardList[selectedIndexPath!.row] as! PaymentDetailsObject
         
@@ -843,11 +842,13 @@ editCardViewController.Cardmodel = paymentObjectModel
             
         }
     }
-    
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController, didSelectPaymentMethod method: PaymentDetailsObject, controllerType: PaymentViewControllerType) {
+        
+    }
     func reloadCustomerDetails() {
         BraintreePaymentService.sharedInstance().loadCustomerDetails({(arrlist: NSArray?,error: NSError?) -> Void in
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
-
+            
             if (error == nil) {
                 let paymentObjectModel = PaymentDetailsObject()
                 self.arrCardList = paymentObjectModel.savePaymentCardDetails(responseArr: arrlist! as NSArray)
@@ -855,21 +856,15 @@ editCardViewController.Cardmodel = paymentObjectModel
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             }
             else {
                 DDLogError("Error in fetching Get Method: \(error)")
             }
-
+            
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
-
         })
-        
-        
     }
-    
     #endif
-    
 }
 
 

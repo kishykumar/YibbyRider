@@ -20,6 +20,7 @@ class PaymentDetailsObject
     var postalCode = ""
     var token = ""
     var type = ""
+    var isCurrent:Bool?
     
     init() {
         
@@ -75,9 +76,11 @@ class PaymentDetailsObject
             classObject.postalCode = String(describing: currentDict["postalCode"] as! NSObject)
             classObject.token = String(describing: currentDict["token"] as! NSObject)
             classObject.type = String(describing: currentDict["type"] as! NSObject)
-            
+            classObject.isCurrent = currentDict["isDefault"] as? Bool
             dataArray.add(classObject)
-            
+            if classObject.isCurrent! {
+                BraintreePaymentService.sharedInstance().currentPaymentMethod = classObject
+            }
         }
         return dataArray
         
