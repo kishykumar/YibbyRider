@@ -1,43 +1,43 @@
 PODS:
-  - Alamofire (4.2.0)
-  - AlamofireObjectMapper (4.0.1):
+  - Alamofire (4.4.0)
+  - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - ASProgressPopUpView (0.8)
-  - BaasBoxSDK (0.9.4)
+  - ASProgressPopUpView (0.9)
+  - BaasBoxSDK (0.9.7)
   - BButton (4.0.2)
-  - Braintree (4.4.1):
-    - Braintree/Card (= 4.4.1)
-    - Braintree/Core (= 4.4.1)
-    - Braintree/PayPal (= 4.4.1)
-    - Braintree/UI (= 4.4.1)
-  - Braintree/Card (4.4.1):
+  - Braintree (4.8.1):
+    - Braintree/Card (= 4.8.1)
+    - Braintree/Core (= 4.8.1)
+    - Braintree/PayPal (= 4.8.1)
+    - Braintree/UI (= 4.8.1)
+  - Braintree/Card (4.8.1):
     - Braintree/Core
-  - Braintree/Core (4.4.1)
-  - Braintree/PayPal (4.4.1):
+  - Braintree/Core (4.8.1)
+  - Braintree/PayPal (4.8.1):
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.4.1):
+  - Braintree/PayPalDataCollector (4.8.1):
     - Braintree/Core
     - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.4.1):
+  - Braintree/PayPalOneTouch (4.8.1):
     - Braintree/Core
     - Braintree/PayPalDataCollector
     - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.4.1)
-  - Braintree/UI (4.4.1):
+  - Braintree/PayPalUtils (4.8.1)
+  - Braintree/UI (4.8.1):
     - Braintree/Card
     - Braintree/Core
-  - CardIO (5.3.2)
+  - CardIO (5.4.1)
   - CocoaLumberjack/Default (3.0.0)
   - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
-  - Crashlytics (3.8.0):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.6.7)
+  - Fabric (1.6.11)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -45,50 +45,54 @@ PODS:
     - FBSnapshotTestCase/Core
   - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
-  - FoldingCell (2.0.3)
-  - GGLInstanceID (1.1.6)
-  - Google/CloudMessaging (1.3.2):
+  - FoldingCell (2.0.5)
+  - GGLInstanceID (1.2.1)
+  - Google/CloudMessaging (2.0.4):
     - GGLInstanceID (~> 1.0)
     - Google/Core
     - GoogleCloudMessaging (~> 1.0)
-  - Google/Core (1.3.2):
+  - Google/Core (2.0.4):
     - GoogleInterchangeUtilities (~> 1.0)
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.1)
-  - Google/SignIn (1.3.2):
+  - Google/SignIn (2.0.4):
     - Google/Core
-    - GoogleSignIn (~> 2.0)
-  - GoogleAppUtilities (1.1.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleAuthUtilities (1.0.1):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleCloudMessaging (1.1.3):
+    - GoogleSignIn (~> 3.0)
+  - GoogleAppUtilities (1.1.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleAuthUtilities (2.0.2):
+    - GoogleNetworkingUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleCloudMessaging (1.2.0):
     - GoogleInterchangeUtilities (~> 1.0)
     - GoogleIPhoneUtilities (~> 1.0)
-    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleIPhoneUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.0)
-  - GoogleInterchangeUtilities (1.1.0):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleIPhoneUtilities (1.1.1):
-    - GoogleSymbolUtilities (~> 1.0)
-    - GoogleUtilities (~> 1.0)
-  - GoogleMaps (1.12.1)
-  - GoogleNetworkingUtilities (1.0.0):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSignIn (2.4.0):
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
+    - GoogleMaps/Base
+  - GoogleNetworkingUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GooglePlaces (2.2.0):
+    - GoogleMaps/Base (= 2.2.0)
+  - GoogleSignIn (3.0.0):
     - GoogleAppUtilities (~> 1.0)
-    - GoogleAuthUtilities (~> 1.0)
+    - GoogleAuthUtilities (~> 2.0)
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.0.3)
-  - GoogleUtilities (1.1.0):
-    - GoogleSymbolUtilities (~> 1.0.0)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleUtilities (1.3.2):
+    - GoogleSymbolUtilities (~> 1.1)
   - Hue (2.0.1)
   - ImagePicker (2.0.0)
-  - IQKeyboardManagerSwift (4.0.7)
+  - IQKeyboardManagerSwift (4.0.9)
   - ISHPullUp (1.0.4)
   - LaunchScreen (1.0.0)
   - Lightbox (1.0.0):
@@ -112,8 +116,8 @@ PODS:
     - FBSnapshotTestCase (~> 2.0)
     - Nimble
     - Quick
-  - ObjectMapper (2.2.2)
-  - PINCache (2.2.2)
+  - ObjectMapper (2.2.6)
+  - PINCache (2.3)
   - PINRemoteImage (2.1.4):
     - PINRemoteImage/FLAnimatedImage (= 2.1.4)
   - PINRemoteImage/Core (2.1.4):
@@ -121,14 +125,14 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
-  - Quick (1.0.0)
+  - Quick (1.1.0)
   - Spring (1.0.3)
-  - Stripe (8.0.1)
-  - SVProgressHUD (2.0.3)
+  - Stripe (10.1.0)
+  - SVProgressHUD (2.1.2)
   - SwiftKeychainWrapper (3.0.1)
-  - SwiftyJSON (3.1.3)
-  - TextFieldEffects (1.3.0)
-  - TTRangeSlider (1.0.3)
+  - SwiftyJSON (3.1.4)
+  - TextFieldEffects (1.3.2)
+  - TTRangeSlider (1.0.5)
   - XLPagerTabStrip (6.0.0)
 
 DEPENDENCIES:
@@ -148,6 +152,7 @@ DEPENDENCIES:
   - Google/CloudMessaging
   - Google/SignIn
   - GoogleMaps
+  - GooglePlaces
   - ImagePicker
   - IQKeyboardManagerSwift
   - ISHPullUp
@@ -180,59 +185,60 @@ CHECKOUT OPTIONS:
     :commit: 17936dcf48f858933bd791a05aff911be8bb68ba
     :git: https://github.com/CocoaLumberjack/CocoaLumberjack
   Spring:
-    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :commit: 8201b5c93bd7ebdf4cd18160bcde1e6e88c2be64
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
-  ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
-  BaasBoxSDK: b8c00acc9185a1b93472b7b68b5e40eeb8ebdf1e
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
+  ASProgressPopUpView: dfe44c9a0313ac93a8092bd361b59f52c83a7560
+  BaasBoxSDK: 9df8447c6bf31b2d04d5fd4b7cc38c0b3b6fe1e4
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
-  Braintree: 772ab9104053cca5d8cc3b32d79e6b1272f46527
-  CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
+  Braintree: 9e63eeb60d34f54fa1aa8f3d75fe3976927c06d5
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   CocoaLumberjack: 0d0a04bbec1e5d9c58d311750e42c85fc51a84ef
-  Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FoldingCell: 2f3113051609167776743415fc00ed877ac6d62c
-  GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
-  Google: 97618e118111b998cce1d8dd1bd98b82301d72db
-  GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
-  GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
-  GoogleCloudMessaging: d1f06cd70691b8c53b3eefd66a0b42b34daeedcc
-  GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
-  GoogleIPhoneUtilities: 3252d20d075b902e37a08036dcc9f74828cf5595
-  GoogleMaps: d4e7526e96e78faf7131ea95f13dd5411cc2916d
-  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
-  GoogleSignIn: 79929b51e6299c69f1197bbd9c7a1367d523ecd8
-  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
-  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  FoldingCell: fb189fc746e95b722a1debf8ef455006b70cae2e
+  GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
+  Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
+  GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
+  GoogleAuthUtilities: ccad2e0a9284699973ff57c0dd24c3893657fda4
+  GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
+  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  GoogleSignIn: 3d571172b8603be39dcb1705d8217146bb76fe62
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   ImagePicker: 81175d36c2852cb543cb4f5d6c19e28f3e8d90eb
-  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
+  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
   ISHPullUp: b98a286f3e85dc885a3bf20bf75853947984277d
   LaunchScreen: 964c1b844d4190be813a0dee0ee791069325f277
   Lightbox: 13f55a0a840f7945dc5ac87931564e7fe569fca9
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
-  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
-  PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
+  ObjectMapper: 042708195cc46c20871cbcbec0453826398273fd
+  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
-  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  Stripe: ebb81bf4377dd7fa733f82ff29548cface9225e3
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  Stripe: 1c7aa951a075cced500a919d92b687b35d410705
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
-  SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
-  TextFieldEffects: ef594746f17997c813e07633f8ae5acaf9b04f27
-  TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  TextFieldEffects: 9e5cce561ea39c75b86e9d3637601727a67e8b23
+  TTRangeSlider: 2f2ce4a33b32bb323c6575b9f5161c4664459c58
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: 13d1ed364bb57a73511996ec5234c9e89baa9a4c
+PODFILE CHECKSUM: 83093aa7ba8d98a5dc6bb168be1433ce10d5bb9a
 
 COCOAPODS: 1.0.1

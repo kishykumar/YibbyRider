@@ -400,15 +400,16 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 
 
 - (void)createBid:(NSNumber *)bidHigh
-           bidLow:(NSNumber *)bidLow
-          etaHigh:(NSNumber *)etaHigh
-           etaLow:(NSNumber *)etaLow
-        pickupLat:(NSNumber *)pickupLat
+       bidLow:(NSNumber *)bidLow
+       etaHigh:(NSNumber *)etaHigh
+       etaLow:(NSNumber *)etaLow
+       pickupLat:(NSNumber *)pickupLat
        pickupLong:(NSNumber *)pickupLong
-        pickupLoc:(NSString *)pickupLoc
+       pickupLoc:(NSString *)pickupLoc
        dropoffLat:(NSNumber *)dropoffLat
-      dropoffLong:(NSNumber *)dropoffLong
+       dropoffLong:(NSNumber *)dropoffLong
        dropoffLoc:(NSString *)dropoffLoc
+       paymentMethodToken:(NSString *)paymentMethodToken
        completion:(BAAObjectResultBlock)completionBlock {
     
     [self postPath:@"bid"
@@ -423,6 +424,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                      @"dropoffLat": dropoffLat,
                      @"dropoffLong": dropoffLong,
                      @"dropoffLoc": dropoffLoc,
+                     @"paymentMethodToken": paymentMethodToken,
                      @"appcode" : self.appCode,
                      @"X-BB-SESSION": self.currentUser.authenticationToken
                      }
@@ -701,6 +703,20 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 - (void)getPaymentClientToken: (NSString *)type
                    completion: (BAAObjectResultBlock)completionBlock {
     
+    if (!self.currentUser) {
+        if (completionBlock) {
+            
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            details[@"NSLocalizedDescriptionKey"] = @"getPaymentClientToken shouldn't be called without checking isAuthenticated().";
+            NSError *error = [NSError errorWithDomain:[BaasBox errorDomain]
+                                                 code:[BaasBox errorCode]
+                                             userInfo:details];
+            completionBlock(nil, error);
+            
+        }
+        return;
+    }
+ 
     [self postPath:@"client_token"
        parameters:@{
                     @"type" : type,
@@ -2168,12 +2184,14 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
               forHTTPHeaderField:@"Content-Type"];
         
     } else {
-        
-        [mutableRequest setValue:[NSString stringWithFormat:@"application/json; charset=%@", charset]
-              forHTTPHeaderField:@"Content-Type"];
+
         if ([mutableRequest.HTTPMethod isEqualToString:@"POST"] || [mutableRequest.HTTPMethod isEqualToString:@"PUT"]) {
+            [mutableRequest setValue:[NSString stringWithFormat:@"application/json; charset=%@", charset]
+                  forHTTPHeaderField:@"Content-Type"];
+
             [mutableRequest setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:error]];
         }
+
         if ([mutableRequest.HTTPMethod isEqualToString:@"GET"]) {
             mutableRequest.URL = [NSURL URLWithString:[[mutableRequest.URL absoluteString] stringByAppendingFormat:mutableRequest.URL.query ? @"&%@" : @"?%@", query]];
         }

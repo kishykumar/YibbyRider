@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 protocol DestinationDelegate {
     func choseDestination(_ location: String)

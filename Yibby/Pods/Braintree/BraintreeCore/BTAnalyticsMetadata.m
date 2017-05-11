@@ -1,4 +1,4 @@
-#import "BTAnalyticsMetaData.h"
+#import "BTAnalyticsMetadata.h"
 
 #import "Braintree-Version.h"
 #import "BTKeychain.h"
@@ -124,7 +124,12 @@
 }
 
 - (NSString *)iosDeploymentTarget {
-    return [@(__IPHONE_OS_VERSION_MIN_REQUIRED) stringValue];
+    NSString *rawVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MinimumOSVersion"];
+    NSArray *rawVersionArray = [rawVersionString componentsSeparatedByString:@"."];
+    NSInteger majorVersionNumber = [[rawVersionArray objectAtIndex:0] integerValue] * 10000;
+    NSInteger minorVersionNumber = [[rawVersionArray objectAtIndex:1] integerValue] * 100;
+    
+    return [NSString stringWithFormat:@"%i", (int)majorVersionNumber + (int)minorVersionNumber];
 }
 
 - (NSString *)iosBaseSDK {
@@ -175,8 +180,13 @@
     if ([UIApplication class] == nil) {
         return nil;
     }
-
-    UIInterfaceOrientation deviceOrientation = [[[[UIApplication sharedApplication] keyWindow] rootViewController] interfaceOrientation];
+    
+    if ([self.class isAppExtension]) {
+        return nil;
+    }
+    
+    UIApplication *sharedApplication = [UIApplication performSelector:@selector(sharedApplication)];
+    UIInterfaceOrientation deviceOrientation = [[[sharedApplication keyWindow] rootViewController] interfaceOrientation];
 
     switch (deviceOrientation) {
         case UIInterfaceOrientationPortrait:
@@ -196,6 +206,9 @@
 }
 
 - (NSString *)deviceScreenOrientation {
+    if ([self.class isAppExtension]) {
+        return @"AppExtension";
+    }
     if ([UIDevice class] == nil) {
         return nil;
     }
@@ -219,24 +232,39 @@
 }
 
 - (BOOL)isPaypalInstalled {
+    if ([self.class isAppExtension]) {
+        return NO;
+    }
+    
+    UIApplication *sharedApplication = [UIApplication performSelector:@selector(sharedApplication)];
     static BOOL paypalInstalled;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSURL *paypalV1URL = [NSURL URLWithString:@"com.paypal.ppclient.touch.v1://"];
         NSURL *paypalV2URL = [NSURL URLWithString:@"com.paypal.ppclient.touch.v2://"];
-        paypalInstalled = [[UIApplication sharedApplication] canOpenURL:paypalV1URL] || [[UIApplication sharedApplication] canOpenURL:paypalV2URL];
+        paypalInstalled = [sharedApplication canOpenURL:paypalV1URL] || [sharedApplication canOpenURL:paypalV2URL];
     });
     return paypalInstalled;
 }
 
 - (BOOL)isVenmoInstalled {
+    if ([self.class isAppExtension]) {
+        return NO;
+    }
+    
+    UIApplication *sharedApplication = [UIApplication performSelector:@selector(sharedApplication)];
     static BOOL venmoInstalled;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSURL *venmoURL = [NSURL URLWithString:@"com.venmo.touch.v2://x-callback-url/vzero/auth"];
-        venmoInstalled = [[UIApplication sharedApplication] canOpenURL:venmoURL];
+        venmoInstalled = [sharedApplication canOpenURL:venmoURL];
     });
     return venmoInstalled;
+}
+    
++ (BOOL)isAppExtension {
+    NSDictionary *extensionDictionary = [[NSBundle mainBundle] infoDictionary][@"NSExtension"];
+    return [extensionDictionary isKindOfClass:[NSDictionary class]];
 }
 
 @end

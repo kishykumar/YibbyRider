@@ -13,6 +13,7 @@ import BaasBoxSDK
 import BButton
 import CocoaLumberjack
 import Braintree
+import GooglePlaces
 
 // TODO:
 // 1. Create bid state that we save on the app
@@ -68,7 +69,8 @@ open class MainViewController: BaseYibbyViewController,
     
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
-    var selectedPaymentMethod: BTPaymentMethodNonce?
+    //var selectedPaymentMethod: BTPaymentMethodNonce?
+    var selectedPaymentMethod: PaymentDetailsObject?
     
 #endif
     
@@ -329,8 +331,7 @@ open class MainViewController: BaseYibbyViewController,
     
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
 
-        self.selectedPaymentMethod = self.selectedPaymentMethod ??
-            BraintreePaymentService.sharedInstance().defaultPaymentMethod
+        self.selectedPaymentMethod = BraintreePaymentService.sharedInstance().currentPaymentMethod
     
 #endif
 
@@ -492,9 +493,9 @@ open class MainViewController: BaseYibbyViewController,
         self.pickupLocation = location
         
         let pumarker = GMSMarker(position: location.coordinate())
-        pumarker?.map = gmsMapViewOutlet
+        pumarker.map = gmsMapViewOutlet
         
-        pumarker?.icon = YibbyMapMarker.annotationImageWithMarker(pumarker!,
+        pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
                                                                  title: location.name!,
                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: true)
@@ -510,10 +511,10 @@ open class MainViewController: BaseYibbyViewController,
         self.dropoffLocation = location
         
         let domarker = GMSMarker(position: location.coordinate())
-        domarker?.map = gmsMapViewOutlet
+        domarker.map = gmsMapViewOutlet
         
         //        domarker.icon = UIImage(named: "Visa")
-        domarker?.icon = YibbyMapMarker.annotationImageWithMarker(domarker!,
+        domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
                                                                  title: location.name!,
                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
                                                                  pickup: false)
@@ -549,10 +550,10 @@ open class MainViewController: BaseYibbyViewController,
             (centerMarkersViewOutlet.superview?.convert(centerMarkersViewOutlet.frame.origin,
                 to: gmsMapViewOutlet))!
         
-        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + pickupMarker.icon.size.height,
-                                  left: (pickupMarker.icon.size.width / 2) + 10.0,
+        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + (pickupMarker.icon?.size.height)!,
+                                  left: ((pickupMarker.icon?.size.width)! / 2) + 10.0,
                                   bottom: gmsMapViewOutlet.frame.height - centerMarkersRelativeOrigin.y,
-                                  right: (pickupMarker.icon.size.width / 2) + 10.0)
+                                  right: ((pickupMarker.icon?.size.width)! / 2) + 10.0)
         
         let update = GMSCameraUpdate.fit(bounds, with: insets)
         gmsMapViewOutlet.moveCamera(update)
@@ -560,6 +561,8 @@ open class MainViewController: BaseYibbyViewController,
 }
 
 extension MainViewController: SelectPaymentViewControllerDelegate {
+    
+
     // MARK: - SelectPaymentViewControllerDelegate
     
     func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentViewController) {
@@ -595,6 +598,19 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
         if (controllerType == PaymentViewControllerType.pickForRide) {
             
             // modify the selected payment method
+            //self.selectedPaymentMethod = method
+            
+            // remove the view controller
+            self.navigationController?.popViewController(animated: true)
+            
+            // update the card UI
+           // updateSelectCardUI(paymentMethod: method)
+        }
+    }
+    func selectPaymentViewController(selectPaymentViewController: PaymentViewController, didSelectPaymentMethod method: PaymentDetailsObject, controllerType: PaymentViewControllerType) {
+        if (controllerType == PaymentViewControllerType.pickForRide) {
+            
+            // modify the selected payment method
             self.selectedPaymentMethod = method
             
             // remove the view controller
@@ -604,7 +620,6 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
             updateSelectCardUI(paymentMethod: method)
         }
     }
-    
     #endif
     
     func displaySelectCardView () {
@@ -617,7 +632,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
         selectPaymentViewController.controllerType = PaymentViewControllerType.pickForRide
         selectPaymentViewController.delegate = self
         
-        selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
+        //selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
         
 //        self.navigationController?.presentViewController(selectPaymentViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(selectPaymentViewController, animated: true)        
@@ -636,13 +651,13 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
-    func updateSelectCardUI (paymentMethod: BTPaymentMethodNonce) {
+    func updateSelectCardUI (paymentMethod: PaymentDetailsObject) {
         
         
         let paymentMethodType: BTUIPaymentOptionType =
             BraintreeCardUtil.paymentMethodTypeFromBrand(paymentMethod.type)
         self.cardHintOutlet.setCardType(paymentMethodType, animated: false)
-        self.cardLabelOutlet.text = paymentMethod.localizedDescription
+        self.cardLabelOutlet.text = paymentMethod.last4
         
         //        self.cardLabelOutlet.font = UIFont(name: "FontAwesome", size: 17)
         //        self.cardLabelOutlet.text = String(format: "%C", 0xf042)
@@ -653,13 +668,13 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
 
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
     
-    public func viewController(_ viewController: GMSAutocompleteViewController!, didAutocompleteWith place: GMSPlace!) {
+    public func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 
         DDLogVerbose("Place name: \(place.name)")
         DDLogVerbose("Place address: \(place.formattedAddress)")
         DDLogVerbose("Place attributions: (place.attributions)")
         
-        let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress)
+        let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress!)
 
         if (pickupFieldSelected == true) {
             self.setPickupDetails(loc)
