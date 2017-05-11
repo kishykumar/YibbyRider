@@ -12,7 +12,7 @@ import BaasBoxSDK
 import GoogleMaps
 import MMDrawerController
 import BButton
-
+import GooglePlaces
 
 open class SettingsViewController: BaseYibbyViewController,         UITextFieldDelegate,
 CLLocationManagerDelegate  {
@@ -514,7 +514,7 @@ CLLocationManagerDelegate  {
             DDLogVerbose("Place address: \(place.formattedAddress)")
             DDLogVerbose("Place attributions: (place.attributions)")
             
-            let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress)
+            let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress!)
             
             if (addHomeSelected == true) {
                 self.addHomeDetails(loc)

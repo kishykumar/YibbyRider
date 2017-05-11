@@ -83,7 +83,7 @@ open class StripePaymentService: NSObject {
                     self.paymentMethods.removeAll()
                     self.defaultPaymentMethod = nil
                     
-                    for source: STPSource in customer.sources {
+                    for source: STPSourceProtocol in customer.sources {
                         if (source is STPCard) {
                             let card: STPCard = (source as! STPCard)
                             self.paymentMethods.append(card)

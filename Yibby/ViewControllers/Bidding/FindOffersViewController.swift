@@ -11,6 +11,11 @@ import CocoaLumberjack
 import ASProgressPopUpView
 
 class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewDataSource {
+    
+    func allStrings(forProgressView progressView: ASProgressPopUpView!) -> [Any]! {
+        return [""]
+    }
+
 
     // MARK: - Properties
 

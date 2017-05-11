@@ -19,6 +19,7 @@ public protocol StripeBackendAPIAdapter : STPBackendAPIAdapter {
 
 class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
     
+
     // MARK: - Properties 
     
     let customerID: String?
@@ -88,7 +89,6 @@ class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
             }
         )
     }
-    
     @objc func retrieveCustomer(_ completion: @escaping STPCustomerCompletionBlock) {
         
         let client: BAAClient = BAAClient.shared()
@@ -117,10 +117,15 @@ class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
                 }
             }
     }
-    
-    @objc func selectDefaultCustomerSource(_ source: STPSource, completion: @escaping STPErrorBlock) {
+    /**
+     *  Change a customer's `default_source` to be the provided card. On your backend, retrieve the Stripe customer associated with your logged-in user. Then, call the Customer Update method as described at https://stripe.com/docs/api#update_customer , specifying default_source to be the value of source.stripeID (for an example Ruby implementation of this API, see https://github.com/stripe/example-ios-backend/blob/master/web.rb#L82 ). If this API call succeeds, call `completion(nil)`. Otherwise, call `completion(error)` with the error that occurred.
+     *
+     *  @param source     The newly-selected default source for the user.
+     *  @param completion call this callback when you're done selecting the new default source for the customer on your backend. For example, `completion(nil)` (if your call succeeds) or `completion(error)` if an error is returned.
+     */
+    func selectDefaultCustomerSource(_ source: STPSourceProtocol, completion: @escaping STPErrorBlock) {
         guard let customerID = customerID else {
-
+            
             if let card = source as? STPCard {
                 self.defaultSource = card
             }
@@ -139,18 +144,18 @@ class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
         
         let client: BAAClient = BAAClient.shared()
         client.postPath(path, parameters: params,
-            
-            success: {(responseObject: (Any?)) -> Void in
-                completion(nil)
-            },
-            
-            failure: {(error: (Error?)) -> Void in
-                completion(error as NSError?)
-            }
+                        
+                        success: {(responseObject: (Any?)) -> Void in
+                            completion(nil)
+        },
+                        
+                        failure: {(error: (Error?)) -> Void in
+                            completion(error as NSError?)
+        }
         )
     }
-    
-    @objc func attachSource(toCustomer source: STPSource, completion: @escaping STPErrorBlock) {
+
+    func attachSource(toCustomer source: STPSourceProtocol, completion: @escaping STPErrorBlock) {
         
         guard let customerID = customerID else {
             

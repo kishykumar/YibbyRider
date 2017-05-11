@@ -108,17 +108,17 @@ class DriverEnRouteContentViewController: UIViewController {
             return
         }
         
-        let widthInset = (driverLocMarker.icon.size.width < pickupMarker.icon.size.width) ? driverLocMarker.icon.size.width : pickupMarker.icon.size.width
+        let widthInset = ((driverLocMarker.icon?.size.width)! < (pickupMarker.icon?.size.width)!) ? driverLocMarker.icon?.size.width : pickupMarker.icon?.size.width
         
-        let heightInset = (driverLocMarker.icon.size.height < pickupMarker.icon.size.height) ? driverLocMarker.icon.size.height : pickupMarker.icon.size.height
+        let heightInset = (driverLocMarker.icon?.size.height.isLess(than: (pickupMarker.icon?.size.height)!))! ? driverLocMarker.icon?.size.height : pickupMarker.icon?.size.height
         
         let screenSize: CGRect = UIScreen.main.bounds
         let pullupViewTargetHeight = DriverEnRouteBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
         
-        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + heightInset/2,
-                                  left: (widthInset/2) + 10.0,
-                                  bottom: pullupViewTargetHeight + heightInset/2,
-                                  right: (widthInset/2) + 10.0)
+        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + heightInset!/2,
+                                  left: (widthInset!/2) + 10.0,
+                                  bottom: pullupViewTargetHeight + heightInset!/2,
+                                  right: (widthInset!/2) + 10.0)
         
         mapFitCoordinates(coordinate1: pickupMarker.position, coordinate2: driverLocMarker.position, insets: insets)
     }
@@ -169,8 +169,8 @@ class DriverEnRouteContentViewController: UIViewController {
         self.driverLocLatLng = loc
         
         let dlmarker = GMSMarker(position: loc)
-        dlmarker?.title = DRIVER_EN_ROUTE_MARKER_TITLE
-        dlmarker?.map = gmsMapViewOutlet
+        dlmarker.title = DRIVER_EN_ROUTE_MARKER_TITLE
+        dlmarker.map = gmsMapViewOutlet
         
         driverLocMarker = dlmarker
         
@@ -203,9 +203,9 @@ class DriverEnRouteContentViewController: UIViewController {
         pickupMarker?.map = nil
         
         let pumarker = GMSMarker(position: location.coordinate())
-        pumarker?.map = gmsMapViewOutlet
-        pumarker?.groundAnchor = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
-        pumarker?.icon = YibbyMapMarker.annotationImageWithMarker(pumarker!,
+        pumarker.map = gmsMapViewOutlet
+        pumarker.groundAnchor = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
+        pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
                                                                   title: location.name!,
                                                                   andPinIcon: UIImage(named: "defaultMarker")!,
                                                                   pickup: true)

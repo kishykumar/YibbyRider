@@ -178,6 +178,7 @@
                     dropoffLat:(NSNumber *)dropoffLat
                     dropoffLong:(NSNumber *)dropoffLong
                     dropoffLoc:(NSString *)dropoffLoc
+                    paymentMethodToken:(NSString *)paymentMethodToken
                     completion:(BAAObjectResultBlock)completionBlock;
 
 - (void) getRides:(NSString *)type

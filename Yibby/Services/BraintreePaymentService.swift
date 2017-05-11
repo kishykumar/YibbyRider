@@ -34,11 +34,13 @@ open class BraintreePaymentService: NSObject {
 //    var configuration: STPPaymentConfiguration?
     
     var paymentMethods = [BTPaymentMethodNonce]()
+    var allPaymentMethods = [PaymentDetailsObject]()
     
     var apiAdapter: BraintreeBackendAPIAdapter = BraintreeBackendAPI.sharedClient
     var apiClient: BTAPIClient?
     
     var defaultPaymentMethod: BTPaymentMethodNonce?
+    var currentPaymentMethod: PaymentDetailsObject?
     
     override init() {
         
