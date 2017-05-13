@@ -409,31 +409,30 @@ open class MainViewController: BaseYibbyViewController,
         // Dispose of any resources that can be recreated.
     }
     
-    /*
+    
     @IBAction func getCurrentPlace(sender: UIButton) {
         
-        placesClient?.currentPlaceWithCallback({
-        (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
-            
+        placesClient?.currentPlace(callback: {
+            (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
             if let error = error {
                 print("Pick Place error: \(error.localizedDescription)")
                 return
             }
-            
-            self.nameLabel.text = "No current place"
-            self.addressLabel.text = ""
+          //  self.nameLabel.text = "No current place"
+            //self.addressLabel.text = ""
             
             if let placeLikelihoodList = placeLikelihoodList {
                 let place = placeLikelihoodList.likelihoods.first?.place
                 if let place = place {
-                    self.nameLabel.text = place.name
-                    self.addressLabel.text = place.formattedAddress.componentsSeparatedByString(", ")
-                        .joinWithSeparator("\n")
+                    print(place.formattedAddress)
+                 //   self.nameLabel.text = place.name
+                   // self.addressLabel.text = place.formattedAddress.componentsSeparatedByString(", ")
+                     //   .joinWithSeparator("\n")
                 }
             }
-        })
-    }
-    */
+        } as! GMSPlaceLikelihoodListCallback)
+           }
+    
     
     // MARK: - Helpers
     

@@ -19,6 +19,7 @@ import FBSDKLoginKit
 import FoldingCell
 import DigitsKit
 var stringSocial = String ()
+import GooglePlaces
 
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
@@ -46,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     let subscriptionTopic = "/topics/global"
     let APP_FIRST_RUN = "FIRST_RUN"
 
-    let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
+     let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
+    
+    let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     let BAASBOX_APPCODE = "1234567890"
     let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
     
@@ -73,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(GOOGLE_API_KEY_IOS)
-        
+        GMSPlacesClient.provideAPIKey(GMS_Places_API_KEY_IOS)
         // [START_EXCLUDE]
         // Configure the Google context: parses the GoogleService-Info.plist, and initializes
         // the services that have entries in the file
