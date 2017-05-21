@@ -455,6 +455,7 @@ EditPaymentViewControllerDelegate, SelectPaymentViewControllerDelegate {
                 self.selectedIndexPath = indexPath
                 
             } else if (controllerType == PaymentViewControllerType.pickForRide) {
+                /*
                 
                 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
                     
@@ -468,6 +469,20 @@ EditPaymentViewControllerDelegate, SelectPaymentViewControllerDelegate {
                 
                 self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod,
                                                            controllerType: PaymentViewControllerType.pickForRide)
+ */
+                #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
+                    
+                    let paymentMethod = StripePaymentService.sharedInstance().paymentMethods.safeValue(indexPath.row)
+                    
+                #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
+                    
+                    //let paymentMethod = BraintreePaymentService.sharedInstance().paymentMethods.safeValue((sender as AnyObject).tag)!
+                    let paymentMethod = arrCardList.object(at:indexPath.row) as! PaymentDetailsObject
+                    
+                #endif
+                
+                // self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod,controllerType: PaymentViewControllerType.pickForRide)
+                self.delegate?.selectPaymentViewController(selectPaymentViewController: self, didSelectPaymentMethod: paymentMethod, controllerType: PaymentViewControllerType.pickForRide)
                 
             }
         } else if (indexPath.section == addPaymentSection) {
