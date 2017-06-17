@@ -65,8 +65,8 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
                              with:nil, afterDelay:0.0)
     }
     
-    private func setupUI() {
-    self.customBackButton(y: 20 as AnyObject)
+    func setupUI() {
+        setupBackButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {

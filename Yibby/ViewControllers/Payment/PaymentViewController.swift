@@ -134,7 +134,7 @@ EditPaymentViewControllerDelegate, SelectPaymentViewControllerDelegate {
             // remove the cancel button and show the back button
             self.navigationItem.leftBarButtonItems?.removeAll()
             
-            self.customBackButton(y: 0 as AnyObject)
+            setupBackButton()
             
             
         } else if (controllerType == PaymentViewControllerType.pickForRide) {
@@ -606,7 +606,6 @@ EditPaymentViewControllerDelegate, SelectPaymentViewControllerDelegate {
     
     @IBAction func paymentDefaultsSelectedcardColorBtnAction(_ sender: UIButton) {
         
-        print(sender.tag)
         let  paymentObjectModel = self.arrCardList[sender.tag] as! PaymentDetailsObject
         
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
@@ -614,7 +613,6 @@ EditPaymentViewControllerDelegate, SelectPaymentViewControllerDelegate {
         let client: BAAClient = BAAClient.shared()
         client.makeDefaultPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentObjectModel.token, completion: {(success, error) -> Void in
             
-            print(success as Any)
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             
             if ((success) != nil) {

@@ -46,6 +46,7 @@ PODS:
   - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
   - FoldingCell (2.0.5)
+  - Font-Awesome-Swift (1.6.2)
   - GGLInstanceID (1.2.1)
   - Google/CloudMessaging (2.0.4):
     - GGLInstanceID (~> 1.0)
@@ -149,6 +150,7 @@ DEPENDENCIES:
   - Fabric
   - FDStackView (~> 1.0)
   - FoldingCell
+  - Font-Awesome-Swift (~> 1.6.2)
   - Google/CloudMessaging
   - Google/SignIn
   - GoogleMaps
@@ -200,10 +202,11 @@ SPEC CHECKSUMS:
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FoldingCell: fb189fc746e95b722a1debf8ef455006b70cae2e
+  Font-Awesome-Swift: 4dc96df73b5f32aaccdee50a454c3ec253ee4977
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
@@ -226,7 +229,7 @@ SPEC CHECKSUMS:
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
-  ObjectMapper: 042708195cc46c20871cbcbec0453826398273fd
+  ObjectMapper: '042708195cc46c20871cbcbec0453826398273fd'
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
@@ -239,6 +242,6 @@ SPEC CHECKSUMS:
   TTRangeSlider: 2f2ce4a33b32bb323c6575b9f5161c4664459c58
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: 83093aa7ba8d98a5dc6bb168be1433ce10d5bb9a
+PODFILE CHECKSUM: 650d8bc2817b2df39b5113b7c9aff84b926dd373
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0.beta.1

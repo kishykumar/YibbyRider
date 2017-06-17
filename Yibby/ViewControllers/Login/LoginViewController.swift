@@ -88,6 +88,8 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
     // MARK: - Helper functions
     
     func submitLoginForm() {
+        emailAddress.text = "1111111111"
+        password.text = "1"
         
     //loginUser("sankar", passwordi: "sankar123!")
         //MainViewController.initMainViewController(self, animated: true)

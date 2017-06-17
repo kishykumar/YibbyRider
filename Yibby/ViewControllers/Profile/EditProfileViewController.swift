@@ -60,7 +60,7 @@ open class EditProfileViewController: UIViewController {
     }
     
     fileprivate func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
     }
     
     fileprivate func setupViews() {

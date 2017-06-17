@@ -51,7 +51,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.isNavigationBarHidden = false
+//            mmnvc.isNavigationBarHidden = false
             
             mmnvc.pushViewController(aboutViewController, animated: true)
             appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
@@ -63,14 +63,14 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     @IBAction func onSignOutButtonClick(_ sender: AnyObject) {
         
-        let alertController = UIAlertController(title: "Are you sure", message: "want to sign out?", preferredStyle:UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: InterfaceString.SignOut.ConfirmSignOutTitle, message: InterfaceString.SignOut.ConfirmSignOutMessage, preferredStyle:UIAlertControllerStyle.alert)
         
-        alertController.addAction(UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.default)
+        alertController.addAction(UIAlertAction(title: InterfaceString.Cancel.uppercased(), style: UIAlertActionStyle.default)
         { action -> Void in
             // Put your code here
         })
         
-        alertController.addAction(UIAlertAction(title: "SIGN OUT", style: UIAlertActionStyle.default)
+        alertController.addAction(UIAlertAction(title: InterfaceString.SignOut.SignOut.uppercased(), style: UIAlertActionStyle.default)
         { action -> Void in
             // Put your code here
             self.logoutUser()
@@ -83,18 +83,16 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         photoSaveCallback = { image in
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
             ProfileService().updateUserProfilePicture(image,
-                                                      success: { url in
-                                                        DDLogVerbose("Success")
-                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                                        
-                                                        let userDefaults = UserDefaults.standard
-                                                        userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
-                                                        
-                                                        self.profilePictureOutlet.image = image
-            },
-                                                      failure: { _, _ in
-                                                        DDLogVerbose("Failure")
-                                                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+              success: { url in
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+                
+                self.profilePictureOutlet.image = image
+              },
+              failure: { _, _ in
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })
         }
         openImagePicker()
@@ -102,22 +100,25 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     @IBAction func onProfileButtonClick(sender: AnyObject) {
         
-        // Push the About View Controller
-        let profileStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.ProfileStoryboard, bundle: nil)
-        let profileViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewControllerIdentifier") as! ProfileVC
+//        let profileStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.ProfileStoryboard, bundle: nil)
+//        let profileViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewControllerIdentifier") as! ProfileVC
+        
+        let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
+        let settingsViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsViewControllerIdentifier") as! SettingsViewController
         
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
-            mmnvc.isNavigationBarHidden = false
-            mmnvc.pushViewController(profileViewController, animated: true)
+//            mmnvc.isNavigationBarHidden = false
+            mmnvc.pushViewController(settingsViewController, animated: true)
             appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             
         } else {
             assert(false)
         }
     }
+    
     // MARK: - Setup Functions
     
     open override func viewDidLoad() {
@@ -137,41 +138,22 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     open override func viewWillAppear(_ animated: Bool) {
         
-        self.userRealNameLabelOutlet.text = profileObjectModel.name
-        //print(imageUrl)
-        
-        self.getProfilePicture()
-        
+//        self.userRealNameLabelOutlet.text = YBClient.sharedInstance().getProfile()?.name
+//        self.getProfilePicture()
         super.viewWillAppear(animated)
-
     }
     
     
-    func getProfilePicture()
-    {
-        print("Profile Image ID :: \(profileObjectModel.profilePicture)")
-        if profileObjectModel.profilePicture != "" {
-            
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            
-            let imageUrl  = BAAFile.getURLFromId(profileObjectModel.profilePicture)
-            
-            let client: BAAClient = BAAClient.shared()
-            if let newUrl = client.getCompleteURL(withToken: imageUrl) {
-                print(newUrl)
-                profilePictureOutlet.pin_setImage(from: newUrl)
-                
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            }
-            else
-            {
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                
+    func getProfilePicture() {
+        if let profilePic = YBClient.sharedInstance().getProfile()?.profilePicture {
+            if (profilePic != "") {
+                if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
+                    
+                    profilePictureOutlet.pin_setImage(from: imageUrl)
+                }
             }
         }
-        
     }
-    
     
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -184,16 +166,21 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         self.view.backgroundColor = UIColor.appDarkGreen1();
         
         // Set rounded profile pic
-        //  self.profilePictureOutlet.setRoundedWithWhiteBorder()
-        //self.profilePictureOutlet.setRoundedWithWhiteBorder()
+        self.profilePictureOutlet.setRoundedWithWhiteBorder()
         
-        self.profilePictureOutlet.layer.cornerRadius = self.profilePictureOutlet.frame.size.height / 2;
-        self.profilePictureOutlet.layer.borderWidth = 2.0
-        self.profilePictureOutlet.layer.borderColor = UIColor.white.cgColor
-        self.profilePictureOutlet.layer.masksToBounds = true
-        self.profilePictureOutlet.clipsToBounds = true
+//        self.profilePictureOutlet.layer.cornerRadius = self.profilePictureOutlet.frame.size.height / 2;
+//        self.profilePictureOutlet.layer.borderWidth = 2.0
+//        self.profilePictureOutlet.layer.borderColor = UIColor.white.cgColor
+//        self.profilePictureOutlet.layer.masksToBounds = true
+//        self.profilePictureOutlet.clipsToBounds = true
         
-        self.userRealNameLabelOutlet.text = profileObjectModel.name
+        if let userRealName = YBClient.sharedInstance().getProfile()?.name {
+            if (userRealName != "") {
+                self.userRealNameLabelOutlet.text = userRealName
+            } else {
+                self.userRealNameLabelOutlet.text = "Yibby User"
+            }
+        }
     }
     
     fileprivate func setupViews() {
@@ -284,7 +271,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             break
             
         case TableIndex.settings.rawValue:
-            //>>>>>>> swift3
             
             let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
             selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsViewControllerIdentifier") as! SettingsViewController
@@ -310,7 +296,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.isNavigationBarHidden = false
+//            mmnvc.isNavigationBarHidden = false
             mmnvc.pushViewController(selectedViewController, animated: true)
             appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             

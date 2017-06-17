@@ -28,7 +28,7 @@ class RideDetailViewController: BaseYibbyViewController {
     }
 
     private func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {

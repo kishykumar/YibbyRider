@@ -11,16 +11,11 @@ import UIKit
 class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet var emailAddressTFOutlet: UITextField!
-    
     @IBOutlet var phoneNoTFOutlet: UITextField!
-    
-    @IBOutlet var VW1: UIView!
-    
+    @IBOutlet var profileDetailsViewOutlet: UIView!
     @IBOutlet var firstNameLblOutlet: YibbyPaddingLabel!
     @IBOutlet weak var lastNameLblOutlet: YibbyPaddingLabel!
-    
-    @IBOutlet var contactImageBtnOutlet: UIButton!
-    
+    @IBOutlet weak var contactImageViewOutlet: UIImageView!
     @IBOutlet weak var emailEditBtnOutlet: UIButton!
     @IBOutlet weak var phoneNumberBtnOutlet: UIButton!
     
@@ -35,9 +30,9 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
         /*contactImageBtnOutlet.layer.cornerRadius = contactImageBtnOutlet.frame.size.width/2
         contactImageBtnOutlet.layer.masksToBounds = true*/
         
-        VW1.layer.borderColor = UIColor.borderColor().cgColor
-        VW1.layer.borderWidth = 1.0
-        VW1.layer.cornerRadius = 8
+        profileDetailsViewOutlet.layer.borderColor = UIColor.borderColor().cgColor
+        profileDetailsViewOutlet.layer.borderWidth = 1.0
+        profileDetailsViewOutlet.layer.cornerRadius = 8
         
         self.emailAddressTFOutlet.layer.borderColor = UIColor.clear.cgColor
         
@@ -139,7 +134,6 @@ class EmergencyContactTVC: UITableViewCell, UITextFieldDelegate {
         }
     }
 
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

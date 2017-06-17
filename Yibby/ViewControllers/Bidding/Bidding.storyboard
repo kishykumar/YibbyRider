@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,22 +29,15 @@
                         <viewControllerLayoutGuide type="bottom" id="Y2E-n1-aGI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-c9-zdZ" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.89592279485992299" green="0.9607436272852421" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_icon_green" translatesAutoresizingMaskIntoConstraints="NO" id="QL3-xR-UYF">
-                                <rect key="frame" x="0.0" y="0.0" width="62" height="72"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="asS-Mb-2LY" appends="YES" id="O9U-gB-NtO"/>
-                                </connections>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pH-U2-oZp" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="16" y="403" width="288" height="48"/>
+                                <rect key="frame" x="16" y="511" width="288" height="48"/>
                                 <color key="backgroundColor" red="0.48060405015670127" green="0.1509024872624154" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6pH-U2-oZp" secondAttribute="height" multiplier="6" id="25e-yr-XFV"/>
@@ -56,7 +49,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="DxL-We-APj" userLabel="MiscHintImage">
-                                <rect key="frame" x="16" y="207.5" width="51" height="71"/>
+                                <rect key="frame" x="16" y="315.5" width="51" height="71"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="334-Lq-Drq" userLabel="ImagesSV">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="71"/>
@@ -172,7 +165,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYy-S2-RDP" userLabel="MiscPickerView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="72" y="199.5" width="232" height="88"/>
+                                <rect key="frame" x="72" y="307.5" width="232" height="88"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yt9-Gr-Iji" userLabel="MiscPickerSV">
                                         <rect key="frame" x="0.0" y="0.0" width="232" height="88"/>
@@ -373,7 +366,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-oe-11F" userLabel="CenterMarkersView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="277" y="165.5" width="27" height="27"/>
+                                <rect key="frame" x="277" y="273.5" width="27" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-S8-o2k" userLabel="LocationArrowLabel">
                                         <rect key="frame" x="5" y="5" width="17" height="17"/>
@@ -421,9 +414,7 @@
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="681-AK-AHd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6pH-U2-oZp" secondAttribute="trailing" id="83M-im-T3W"/>
                             <constraint firstItem="sFe-oe-11F" firstAttribute="trailing" secondItem="GYy-S2-RDP" secondAttribute="trailing" id="8wc-jQ-oBZ"/>
-                            <constraint firstItem="QL3-xR-UYF" firstAttribute="top" secondItem="VS0-cT-rpZ" secondAttribute="bottom" id="9kA-3l-EfC"/>
                             <constraint firstItem="DxL-We-APj" firstAttribute="height" secondItem="GYy-S2-RDP" secondAttribute="height" multiplier="0.8" id="EGz-PE-ydz"/>
-                            <constraint firstItem="QL3-xR-UYF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LY5-hh-87S"/>
                             <constraint firstItem="GYy-S2-RDP" firstAttribute="leading" secondItem="DxL-We-APj" secondAttribute="trailing" constant="5" id="M98-Ee-BBh"/>
                             <constraint firstItem="0Cv-8g-cTx" firstAttribute="top" secondItem="GYy-S2-RDP" secondAttribute="bottom" constant="15" id="Np0-LX-E2M"/>
                             <constraint firstItem="MUC-c9-zdZ" firstAttribute="bottom" secondItem="Y2E-n1-aGI" secondAttribute="top" id="OPD-9u-wfL"/>
@@ -449,7 +440,9 @@
                             <inset key="imageInsets" minX="0.0" minY="20" maxX="20" maxY="0.0"/>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bidButton" destination="6pH-U2-oZp" id="vxk-oB-tP2"/>
                         <outlet property="cardHintOutlet" destination="rxC-Ve-T6D" id="4N4-Y5-DpB"/>
@@ -1241,6 +1234,5 @@
     </scenes>
     <resources>
         <image name="Visa" width="32" height="20"/>
-        <image name="menu_icon_green" width="62" height="72"/>
     </resources>
 </document>

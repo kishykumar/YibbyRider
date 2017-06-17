@@ -23,14 +23,23 @@ extension UIView {
     
     func setRoundedWithWhiteBorder() {
         
-        let widthConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
-        self.addConstraint(widthConstraint)
+//        let widthConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+//        self.addConstraint(widthConstraint)
         
         let layer = self.layer
         
         self.clipsToBounds = true
-        layer.cornerRadius = self.frame.size.width / 2;
+        layer.cornerRadius = self.frame.size.height / 2;
         layer.borderWidth = 2.0
         layer.borderColor = UIColor.white.cgColor
+        layer.masksToBounds = true
+    }
+    
+    func makeRounded() {
+        
+        let layer = self.layer
+        self.clipsToBounds = true
+        layer.cornerRadius = self.frame.size.height / 2;
+        layer.masksToBounds = true
     }
 }

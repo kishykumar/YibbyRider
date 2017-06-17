@@ -24,13 +24,14 @@ open class WebInterface {
                 WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
                 // check for authentication error and redirect the user to Login page
                 
-                DDLogVerbose("Error in webRequest: \(error)")
+                DDLogVerbose("Error in webRequest1: \(error)")
                 let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
                     bundle: nil)
                 
                 vc.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
             }
             else {
+                DDLogVerbose("Error in webRequest2: \(error)")
                 AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
             }
         })

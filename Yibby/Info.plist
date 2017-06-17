@@ -89,7 +89,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to choose pictures</string>
 	<key>NSPhotoLibraryUsageDescription - 2</key>
-	<string>AddressBookContacts needs to access your photo library for setting the contact's image.</string>
+	<string>AddressBookContacts needs to access your photo library for setting the contact&apos;s image.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.ttf</string>

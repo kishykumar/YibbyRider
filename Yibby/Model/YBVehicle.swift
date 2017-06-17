@@ -19,6 +19,7 @@ class YBVehicle: Mappable {
     var make: String?
     var model: String?
     var capacity: Int?
+    var vehiclePictureFileId: String?
     
     // MARK: Initialization
     
@@ -28,12 +29,13 @@ class YBVehicle: Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        id                  <- map["id"]
-        exteriorColor       <- map["exteriorColor"]
-        licensePlate        <- map["licensePlate"]
-        make                <- map["make"]
-        model               <- map["model"]
-        capacity            <- map["capacity"]
+        id                   <- map["id"]
+        exteriorColor        <- map["exteriorColor"]
+        licensePlate         <- map["licensePlate"]
+        make                 <- map["make"]
+        model                <- map["model"]
+        capacity             <- map["capacity"]
+        vehiclePictureFileId <- map["vehiclePictureFileId"]
     }
 }
 

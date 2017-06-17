@@ -9,6 +9,7 @@
 import Braintree
 import CocoaLumberjack
 
+public typealias BTSetupCompletionBlock = BTErrorBlock
 public typealias BTCustomerLoadCompletionBlock = () -> Void
 public typealias BTCustomerPaymentLoadCompletionBlock = PaymentMethodsCompletionBlock
 
@@ -50,7 +51,7 @@ open class BraintreePaymentService: NSObject {
         return myInstance
     }
     
-    func setupConfiguration (_ completionBlock: @escaping BTCustomerLoadCompletionBlock) {
+    func setupConfiguration (_ completionBlock: @escaping BTSetupCompletionBlock) {
         
         apiAdapter.fetchClientToken( { (clientToken: String?, error: NSError?) -> Void in
             if error == nil {
@@ -58,16 +59,14 @@ open class BraintreePaymentService: NSObject {
                     self.clientToken = clientToken
 
                     self.apiClient = BTAPIClient(authorization: clientToken)
-                    
-                   /* self.loadCustomerDetails({
-                        completionBlock()
-                    })*/
-                    
+                    completionBlock(nil)
                 } else {
-                    DDLogError("Error in Braintree client token: nil")    
+                    DDLogError("Error in Braintree client token: nil")
+                    completionBlock(InterfaceError.createNSError(InterfaceError.Error.paymentsSetupFailure))
                 }
             } else {
                 DDLogError("Error fetching Braintree client token")
+                completionBlock(error)
             }
         })
     }

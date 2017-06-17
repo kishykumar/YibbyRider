@@ -2,16 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CLIENT_ID</key>
-    <string>678839221785-7u0fu0d0kjd0mb4dlahm8shfos9veis9.apps.googleusercontent.com</string>
-    <key>REVERSED_CLIENT_ID</key>
-    <string>com.googleusercontent.apps.678839221785-7u0fu0d0kjd0mb4dlahm8shfos9veis9</string>
+	<key>CLIENT_ID</key>
+	<string>362032360237-28c69fu8k2dh31amc25d8n3lqv3ec5q8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.362032360237-28c69fu8k2dh31amc25d8n3lqv3ec5q8</string>
 	<key>GCM_SENDER_ID</key>
 	<string>362032360237</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.yibby.app.user</string>
+	<key>PROJECT_ID</key>
+	<string>yibbyapp</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -21,10 +23,8 @@
 	<key>IS_GCM_ENABLED</key>
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<false/>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:362032360237:ios:0bf60252c20344c4</string>
-	<key>PROJECT_ID</key>
-	<string>yibbyapp</string>
 </dict>
 </plist>

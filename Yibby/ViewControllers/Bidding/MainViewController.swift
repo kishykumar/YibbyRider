@@ -189,11 +189,22 @@ open class MainViewController: BaseYibbyViewController,
         
         setupNavigationBar()
         setStatusBarColor()
+        setupMenuButton()
 
         // update card UI
         if let method = self.selectedPaymentMethod {
             updateSelectCardUI(paymentMethod: method)
         }
+        
+    }
+    
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+    }
+    
+    open override func updateViewConstraints() {
+        super.updateViewConstraints()
         
     }
     
@@ -231,41 +242,47 @@ open class MainViewController: BaseYibbyViewController,
     }
     
     func setupNavigationBar() {
+//        let app: UIApplication = UIApplication.shared
+
+//        let image : UIImage? = UIImage.init(named: "menu_icon_green")!.withRenderingMode(.alwaysOriginal)
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
+//        self.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsetsMake(app.statusBarFrame.size.height-4, -8, -(app.statusBarFrame.size.height-4), 8)
         
         self.navigationController?.isNavigationBarHidden = true
 
         // set nav bar color
 //        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
 //        self.navigationController?.navigationBar.tintColor = UIColor.appDarkGreen1()
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
 
-        if let navigationController = self.navigationController {
+        // Make nav bar transparent
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+//        if let navigationController = self.navigationController {
         
             // RIGHT Bar Button Item
-            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-                NSForegroundColorAttributeName: UIColor.blue],
-                for: UIControlState())
-            
-            self.navigationItem.rightBarButtonItem?.title =
-                String.fa_string(forFontAwesomeIcon: FAIcon.FALightbulbO)
-            
-            self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
-                                                                               for: UIBarMetrics.default)
-            
+//            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+//                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
+//                NSForegroundColorAttributeName: UIColor.blue],
+//                for: UIControlState())
+//            
+//            self.navigationItem.rightBarButtonItem?.title =
+//                String.fa_string(forFontAwesomeIcon: FAIcon.FALightbulbO)
+//            
+//            self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
+//                                                                               for: UIBarMetrics.default)
+//            
             // LEFT Bar Button Item
-            self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
-                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-                NSForegroundColorAttributeName: UIColor.yellow],
-                for: UIControlState())
-            
-            self.navigationItem.leftBarButtonItem?.title =
-                String.fa_string(forFontAwesomeIcon: FAIcon.FABars)
-            
-            self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
-                                                                              for: UIBarMetrics.default)
+//            self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+//                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
+//                NSForegroundColorAttributeName: UIColor.yellow],
+//                for: UIControlState())
+//            
+//            self.navigationItem.leftBarButtonItem?.title =
+//                String.fa_string(forFontAwesomeIcon: FAIcon.FABars)
+//            
+//            self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
+//                                                                              for: UIBarMetrics.default)
         
         // Set Title Font, Font size, Font color
 //        self.navigationController?.navigationBar.titleTextAttributes = [
@@ -275,7 +292,7 @@ open class MainViewController: BaseYibbyViewController,
 
 //
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        }
+//        }
     }
     
     func setStatusBarColor () {
@@ -289,13 +306,14 @@ open class MainViewController: BaseYibbyViewController,
 //        self.navigationController?.navigationBar.addSubview(statusBarView)
 
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        
+
         if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = UIColor.appDarkGreen1()
         }
-        
+
         // status bar text color
         UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.isStatusBarHidden = false   
     }
     
     func setupMap () {
@@ -348,39 +366,9 @@ open class MainViewController: BaseYibbyViewController,
         setupUI()
         setupMap()
         setupMapClient()
-        
-        getProfile()
-        
+                
         // check for location services
 //        AlertUtil.displayLocationAlert()
-    }
-    
-    func getProfile() {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
-        let client: BAAClient = BAAClient.shared()
-        
-        client.getProfile(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
-            if ((success) != nil) {
-                
-                if let resultDict = success as? NSDictionary
-                    
-                {
-                    profileObjectModel.setProfileData(responseDict: resultDict)
-                   
-                    DDLogVerbose("getProfile Data: \(success)")
-                }
-                else {
-                    DDLogError("Error in fetching getProfile: \(error)")
-                }
-                
-            }
-            else {
-                DDLogVerbose("getProfile failed: \(error)")
-            }
-            
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-        })
     }
     
     open override func viewDidLayoutSubviews() {
@@ -395,7 +383,7 @@ open class MainViewController: BaseYibbyViewController,
     }
     
     override open func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
     }
     
     open override func viewDidAppear(_ animated: Bool) {

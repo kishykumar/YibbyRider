@@ -45,14 +45,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
                 
                 let client: BAAClient = BAAClient.shared()
                 let paymentToken = BraintreePaymentService.sharedInstance().currentPaymentMethod?.token
-                print(self.bidHigh as NSNumber!)
-                print(self.pickupLocation.latitude as NSNumber!)
-                print(self.pickupLocation.longitude as NSNumber!)
-                print(self.pickupLocation.name!)
-                print(self.dropoffLocation.latitude as NSNumber!)
-                print(self.dropoffLocation.longitude as NSNumber!)
-                print(self.dropoffLocation.name!)
-                print(paymentToken!)
 
                 client.createBid(self.bidHigh as NSNumber!, bidLow: 0, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
                     pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name!,

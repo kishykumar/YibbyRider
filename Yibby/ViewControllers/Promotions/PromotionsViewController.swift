@@ -27,7 +27,7 @@ class PromotionsViewController: BaseYibbyViewController {
         // Do any additional setup after loading the view.
     }
     private func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
