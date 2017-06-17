@@ -31,7 +31,7 @@ class DriverInfoVC: UIViewController {
 
     private func setupUI() {
         
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0

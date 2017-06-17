@@ -16,7 +16,7 @@ class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         TV.isHidden = true
         

@@ -9,11 +9,12 @@
 import UIKit
 import BaasBoxSDK
 import CocoaLumberjack
+import ObjectMapper
 
 class ProfileVC: UIViewController {
     
-    @IBOutlet weak var emailAddress: UITextField!
-    @IBOutlet weak var phoneNo: UITextField!
+    @IBOutlet weak var emailAddress: YibbyTextField!
+    @IBOutlet weak var phoneNo: YibbyTextField!
     @IBOutlet var profileImage: UIImageView!
     
     @IBOutlet var VW: UIView!
@@ -24,7 +25,6 @@ class ProfileVC: UIViewController {
     @IBOutlet var lastNameLbl: UILabel!
     
     @IBOutlet var addHomeBtnOutlet: UIButton!
-    
     @IBOutlet var addWorkBtnOutlet: UIButton!
     
     
@@ -41,7 +41,7 @@ class ProfileVC: UIViewController {
     }
     
     private func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         /*customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         
@@ -50,6 +50,7 @@ class ProfileVC: UIViewController {
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
+        
         VW1.layer.borderColor = UIColor.borderColor().cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
@@ -60,6 +61,7 @@ class ProfileVC: UIViewController {
         firstNameLbl.layer.borderColor = UIColor.lightGray.cgColor
         firstNameLbl.layer.borderWidth = 1.0
         firstNameLbl.layer.cornerRadius = 5
+        
         lastNameLbl.layer.borderColor = UIColor.lightGray.cgColor
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
@@ -71,37 +73,37 @@ class ProfileVC: UIViewController {
         let client: BAAClient = BAAClient.shared()
         
         client.getProfile(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
-            if ((success) != nil) {
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            DDLogVerbose("getProfile data: \(success)")
+
+            if let success = success {
+                let profileModel = Mapper<YBProfile>().map(JSONObject: success)
                 
-                if let resultDict = success as? NSDictionary
+                if let profile = profileModel {
+
+                    self.emailAddress.text = profile.email
+                    self.phoneNo.text = profile.phoneNumber
                     
-                {
-                    profileObjectModel.setProfileData(responseDict: resultDict)
+                    let nameArr = profile.name?.components(separatedBy: " ")
                     
-                    self.emailAddress.text = profileObjectModel.email
-                    self.phoneNo.text = profileObjectModel.phoneNo
+                    if let myStringArr = nameArr {
+                        self.firstNameLbl.text = String(format: " %@ ", myStringArr[0])
+                        self.lastNameLbl.text = myStringArr.count > 1 ? String(format: " %@  ", myStringArr[1]) : nil
+                    }
                     
-                    var myStringArr = profileObjectModel.name.components(separatedBy: " ")
-                    
-                    self.firstNameLbl.text = String(format: " %@ ", myStringArr[0])
-                    self.lastNameLbl.text = myStringArr.count > 1 ? String(format: " %@  ", myStringArr[1]) : nil
-                    
-                    self.addHomeBtnOutlet.setTitle(profileObjectModel.addHomePlaceName, for: UIControlState())
-                    
-                    self.addWorkBtnOutlet.setTitle(profileObjectModel.addWorkPlaceName, for: UIControlState())
-                    
-                    DDLogVerbose("getProfile Data: \(success)")
+                    self.addHomeBtnOutlet.setTitle(profile.homeLocation?.name, for: UIControlState())
+                    self.addWorkBtnOutlet.setTitle(profile.workLocation?.name, for: UIControlState())
                 }
                 else {
                     DDLogError("Error in fetching getProfile: \(error)")
                 }
                 
-            }
-            else {
+            } else {
+                // TODO: Show the alert with error
                 DDLogVerbose("getProfile failed: \(error)")
             }
-            
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }
     

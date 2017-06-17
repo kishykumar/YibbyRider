@@ -16,9 +16,9 @@ class YBDriver: Mappable {
     var id: String?
     var firstName: String?
     var location: YBLocation?
-    var photoUrl: String?
+    var profilePictureFileId: String?
     var rating: String?
-    var mobile: String?
+    var phoneNumber: String?
     
     // MARK: Initialization
     
@@ -28,19 +28,19 @@ class YBDriver: Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        id           <- map["id"]
-        firstName    <- map["firstName"]
-        location     <- map["location"]
-        photoUrl     <- map["photoUrl"]
-        rating       <- map["rating"]
-        mobile       <- map["mobile"]
+        id                          <- map["id"]
+        firstName                   <- map["firstName"]
+        location                    <- map["location"]
+        profilePictureFileId        <- map["profilePictureFileId"]
+        rating                      <- map["rating"]
+        phoneNumber                 <- map["phoneNumber"]
     }
 }
 
 extension YBDriver {
     
     func call() {
-        let phoneURLString = "tel:\(self.mobile)"
+        let phoneURLString = "tel:\(self.phoneNumber)"
         let phoneURL = URL(string: phoneURLString)!
         UIApplication.shared.openURL(phoneURL)
     }

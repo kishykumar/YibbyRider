@@ -20,7 +20,7 @@ class RiderHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     private func setupUI() {
-    self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

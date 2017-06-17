@@ -47,11 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     let subscriptionTopic = "/topics/global"
     let APP_FIRST_RUN = "FIRST_RUN"
 
-     let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
+    let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
     
     let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     let BAASBOX_APPCODE = "1234567890"
-    let BAASBOX_URL = "http://341b620b.ngrok.io/"//"http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
     
     var centerContainer: MMDrawerController?
     

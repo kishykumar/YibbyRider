@@ -98,7 +98,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
             
              AlertUtil.displayAlert("error in form", message: "Enter email address")
         }
-        else if !isValidEmail(testStr: emailAddressOutlet.text!){
+        else if !CredentialsValidator.isValidEmail(testStr: emailAddressOutlet.text!) {
          
              AlertUtil.displayAlert("error in form", message: "Enter valid email address")
         }
@@ -116,7 +116,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
             
             AlertUtil.displayAlert("error in form", message: "Enter phone no")
         }
-       /* else if  !isValidPhoneNo(testStr: phoneNumberOutlet.text!){
+       /* else if  !CredentialsValidator.isValidPhoneNo(testStr: phoneNumberOutlet.text!){
            
              AlertUtil.displayAlert("error in form", message: "Enter valid phone no")
             
@@ -164,8 +164,7 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
   
     // BaasBox create user
     
-    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String)
-    {
+    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()

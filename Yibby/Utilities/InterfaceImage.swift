@@ -23,6 +23,9 @@ public enum InterfaceImage: String {
 
     case DriverCar = "driver_car"
     
+    // Markers
+    case DefaultMarker = "defaultMarker"
+    
     // Postbar Icons
     case Eye = "eye"
     case Heart = "hearts"

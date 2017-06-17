@@ -13,24 +13,24 @@ import ObjectMapper
 class Ride: Mappable {
     
     // MARK: - Properties
-    var id: String?
-
-    var riderBidPrice: Float?
-    var driverBidPrice: Float?
-    var fare: Float?
-
-    var people: Int?
-
-//    var paymentMethod: BTPaymentMethodNonce?
-
-    var pickupLocation: YBLocation?
-    var dropoffLocation: YBLocation?
-    var driverStartLocation: YBLocation?
-    
-    var driver: YBDriver?
-    var vehicle: YBVehicle?
-    
     var bidId: String?
+    var datetime: String?
+    var driver: YBDriver?
+    var driverBidPrice: Float?
+    var driverStartLocation: YBLocation?
+    var dropoffLocation: YBLocation?
+    var fare: Float?
+    var id: String?
+    var miles: Float?
+    var paymentMethodToken: String?
+    var paymentMethodBrand: String?
+    var paymentMethodLast4: String?
+    var numPeople: Int?
+    var pickupLocation: YBLocation?
+    var rideTime: Int?
+    var riderBidPrice: Float?
+    var tip: Float?
+    var vehicle: YBVehicle?
     
     // MARK: Initialization
     
@@ -44,16 +44,23 @@ class Ride: Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        id                      <- map["id"]
-        riderBidPrice           <- map["riderBidPrice"]
-        driverBidPrice          <- map["driverBidPrice"]
-        fare                    <- map["fare"]
-        people                  <- map["people"]
-        pickupLocation          <- map["pickupLocation"]
-        dropoffLocation         <- map["dropoffLocation"]
-        driverStartLocation     <- map["driverStartLocation"]
-        driver                  <- map["driver"]
-        vehicle                 <- map["vehicle"]
         bidId                   <- map["bidId"]
+        datetime                <- map["datetime"]
+        driver                  <- map["driver"]
+        driverBidPrice          <- map["driverBidPrice"]
+        driverStartLocation     <- map["driverStartLocation"]
+        dropoffLocation         <- map["dropoffLocation"]
+        fare                    <- map["fare"]
+        id                      <- map["id"]
+        miles                   <- map["miles"]
+        paymentMethodToken      <- map["paymentMethodToken"]
+        paymentMethodBrand      <- map["paymentMethodBrand"]
+        paymentMethodLast4      <- map["paymentMethodLast4"]
+        numPeople               <- map["numPeople"]
+        pickupLocation          <- map["pickupLocation"]
+        rideTime                <- map["rideTime"]
+        riderBidPrice           <- map["riderBidPrice"]
+        tip                     <- map["tip"]
+        vehicle                 <- map["vehicle"]
     }
 }

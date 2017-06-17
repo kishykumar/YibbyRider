@@ -24,10 +24,13 @@ class NotificationTVC1: UITableViewCell {
         // Initialization code
     }
     private func setupUI() {
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
+//        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
         
-        customTextfieldProperty.setRightViewImage(rightImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
-        
+        TF.setLeftViewFAIcon(icon: .FAMapMarker, leftViewMode: .always, textColor: .greenD1(), backgroundColor: .clear, size: nil)
+
+//        customTextfieldProperty.setRightViewImage(rightImageIcon: UIImage(named: "winner_prize")!, senderTextfield: self.TF)
+        TF.setRightViewFAIcon(icon: .FAMapMarker, rightViewMode: .always, textColor: .greenD1(), backgroundColor: .clear, size: nil)
+
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7

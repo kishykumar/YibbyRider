@@ -29,8 +29,9 @@ class NotificationTVC: UITableViewCell {
 
     private func setupUI() {
 
-        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
-        
+//        customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.cardNoTF)
+        self.cardNoTF.setLeftViewFAIcon(icon: .FACcVisa, leftViewMode: .always, textColor: .greenD1(), backgroundColor: .clear, size: nil)
+
         changeBtn.layer.borderColor = UIColor.borderColor().cgColor
         changeBtn.layer.borderWidth = 1.0
         changeBtn.layer.cornerRadius = 5

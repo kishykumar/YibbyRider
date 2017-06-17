@@ -23,7 +23,7 @@ class TextfieldValidations {
                 }
                 
                 if textfield.placeholder == "Email address" {
-                    if !(isValidEmail(testStr: textfield.text!)) {
+                    if !(CredentialsValidator.isValidEmail(testStr: textfield.text!)) {
                         return (false,"Enter valid email")
                     }
                     
@@ -35,7 +35,7 @@ class TextfieldValidations {
                     
                 }*/
                 if textfield.placeholder == "Phone No" {
-                    if !(isValidPhoneNo(testStr: textfield.text!)){
+                    if !(CredentialsValidator.isValidPhoneNo(testStr: textfield.text!)){
                         return (false,"Enter valid telephone no")
                     }
                     

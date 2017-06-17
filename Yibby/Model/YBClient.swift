@@ -25,6 +25,7 @@ open class YBClient {
     private var status: YBClientStatus
     private var bid: Bid?
     private var ride: Ride?
+    private var profile: YBProfile?
     
     init() {
         status = .looking
@@ -39,6 +40,9 @@ open class YBClient {
     
     func setRide (_ ride: Ride?) { self.ride = ride }
     func getRide () -> Ride? { return ride }
+    
+    func setProfile (_ profile: YBProfile?) { self.profile = profile }
+    func getProfile () -> YBProfile? { return profile }
     
     func setStatus (_ status: YBClientStatus) { self.status = status }
     func getStatus () -> YBClientStatus? { return status }

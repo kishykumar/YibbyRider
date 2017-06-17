@@ -1,0 +1,28 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/kishykumar/Installs/xcodeworkspace/Yibby/build/Release-iphoneos/Yibby.app/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Yibby-Swift.h",
+          'external-contents': "/Users/kishykumar/Installs/xcodeworkspace/Yibby/build/Release-iphoneos/Yibby.app/Headers/Yibby-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/kishykumar/Installs/xcodeworkspace/Yibby/build/Release-iphoneos/Yibby.app/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/kishykumar/Installs/xcodeworkspace/Yibby/build/Yibby.build/Release-iphoneos/Yibby.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

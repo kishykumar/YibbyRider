@@ -164,8 +164,6 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             if let error = error {
                 DDLogVerbose("Error PaymentMethod in: \(error)")
-                print(error.localizedDescription)
-
                 
                 if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
                     WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
@@ -224,7 +222,6 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
         
         client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: updatecardToken, completion:{(success, error) -> Void in
             
-            print(success as Any)
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             
             if ((success) != nil) {
@@ -264,7 +261,7 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     // MARK: - Setup Functions
     
     func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         finishButtonOutlet.color = UIColor(red: 45/255, green: 195/255, blue: 89/255, alpha: 1)
         
@@ -292,7 +289,6 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Cardmodel)
         // Do any additional setup after loading the view.
         CardIOUtilities.preload()
         
@@ -414,12 +410,9 @@ class AddPaymentViewController: BaseYibbyViewController, CardIOPaymentViewContro
             
             cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
                 
-                print(BTCardNonce.self)
-                print(tokenized?.nonce as AnyObject)
                 if (tokenized != nil)
                 {
                 self.nonceStr = (tokenized?.nonce as AnyObject) as! String
-                print(self.nonceStr)
                 
                 if let error = error {
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)

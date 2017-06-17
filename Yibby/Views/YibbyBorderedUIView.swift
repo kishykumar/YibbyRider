@@ -24,13 +24,16 @@ open class YibbyBorderedUIView: SpringView {
     
     func sharedSetup() {
         
-        self.layer.cornerRadius = 10
+//        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 0
         
         // shadow
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 2
-        self.layer.shadowColor = UIColor.black.cgColor
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.shadowRadius = 2
+        self.layer.shadowOpacity = 0.0
+        self.layer.shadowRadius = 0
+        self.layer.shadowColor = UIColor.clear.cgColor
         self.layer.borderColor = UIColor.clear.cgColor
     }
 

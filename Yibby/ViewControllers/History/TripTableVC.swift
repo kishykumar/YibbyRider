@@ -11,23 +11,26 @@ import FoldingCell
 import BaasBoxSDK
 import CocoaLumberjack
 import DZNEmptyDataSet
+import ObjectMapper
+import GoogleMaps
+import Braintree
 
-
-class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    let kCloseCellHeight: CGFloat = 180
-    let kOpenCellHeight: CGFloat = 590
+//    let kCloseCellHeight: CGFloat = 172
+//    let kOpenCellHeight: CGFloat = 563
     
-    let kRowsCount = 2
+    let kCloseCellHeight: CGFloat = 195 // Any size about the constraint size (165) is spacing between cells :)
+    let kOpenCellHeight: CGFloat = 580 // Any size about the constraint size (550) is spacing between cells
     
+    var kRowsCount = 0
     var cellHeights = [CGFloat]()
-    
-   // var tripsArray = [String]()
-    
     @IBOutlet var TV: UITableView!
     
+//    var responseDataArray = NSMutableArray()
+    var responseDataArray = [Ride]()
     
-    var responseDataArray = NSMutableArray()
+    // MARK: - Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,56 +49,85 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
         createCellHeightsArray()
         //self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
     }
-    
+        
     deinit {
         TV.emptyDataSetSource = nil
         TV.emptyDataSetDelegate = nil
     }
     
     func setupUI () {
-    self.customBackButton(y: 0 as AnyObject)
+        
+        // add spacing on top of tableview
+        let topInset: CGFloat = 60
+        TV.contentInset =  UIEdgeInsetsMake(topInset, 0, 0, 0);
+        
+        self.navigationController?.isNavigationBarHidden = true
+
+        setupBackButton()
+//        setupNavigationBar()
     }
-    
-    func getTripsService()
-    {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+
+    func setupNavigationBar() {
         
-        let client: BAAClient = BAAClient.shared()
+        self.navigationController?.navigationItem.hidesBackButton = true
         
-        client.getRides(BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
-            
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            
-            if let resultArray = success as? Array<Any>
-            {
-        let tripObjectModel = TripObject()
-            self.responseDataArray = tripObjectModel.saveTripDetails(responseArr: resultArray as NSArray)
-                
-                DDLogVerbose("Trips available \(resultArray)")
-                
-                
-               // self.tripsArray = resultArray as! [String]
-                
-                self.TV.reloadData()
-            }
-            else {
-                DDLogVerbose("No Trips: \(error)")
-                
-                }
-        })
+        let image : UIImage? = UIImage.init(named: "back_button_green")!.withRenderingMode(.alwaysOriginal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0)
+        
+        
+        // Make Navbar invisible
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        
+//        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        negativeSpacer.width = -25
+        
+//        let backBtn = UIBarButtonItem()
+//        let image: UIImage = UIImage(named: "back_button_green")!
+//        backBtn.image = image
+        //set other properties for your button
+        //set traget and action
+//        self.navigationItem.leftBarButtonItem = backBtn
+//        self.navigationItem.leftBarButtonItems = [negativeSpacer, backBtn]
     }
     
     // MARK: configure
     func createCellHeightsArray() {
+        
+        cellHeights.removeAll()
+        kRowsCount = self.responseDataArray.count
+        
         for _ in 0...kRowsCount {
             cellHeights.append(kCloseCellHeight)
         }
     }
     
+    func reinit() {
+        createCellHeightsArray()
+        self.TV.reloadData()
+    }
+    
     // MARK: - Table view data source
+    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.responseDataArray.count
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 30.0
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = UIView()
+//        view.backgroundColor = UIColor.clear
+//        return view
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.responseDataArray.count
+//        return 1
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -104,24 +136,93 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
             return
         }
         
-        var tripObjectModel = TripObject()
-        tripObjectModel = self.responseDataArray[indexPath.row] as! TripObject
+        let ride = self.responseDataArray[indexPath.row]
+
+        DDLogVerbose("Yibby.Ride at row=\(indexPath.row): \(ride as Any)")
+        dump(ride)
         
-        
-        print(tripObjectModel.id)
-        
-        cell.dateAndTimeLbl.text = tripObjectModel.dateTime
         //cell.fareOrRideIssueBtn.setTitle("$\(tripObjectModel.fare)", for: .normal)
-        cell.userNameLbl.text = tripObjectModel.driver_firstName
-        cell.totalPriceLbl.text = "$\(tripObjectModel.fare)"
+        cell.userNameLbl.text = ride.driver?.firstName
+        cell.totalPriceLbl.text = "$\(ride.fare!)"
         
-        cell.dateAndTimeLbl1.text = tripObjectModel.dateTime
-        cell.fromPlaceTF.text = tripObjectModel.pickup_name
-        cell.toPlaceTF.text = tripObjectModel.drop_name
-        cell.ridePriceLbl.text = "$\(tripObjectModel.riderBidPrice)"
+        if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
+            let prettyDate = TimeUtil.prettyPrintDate1(rideDate)
+            cell.dateAndTimeLbl1.text = prettyDate
+            cell.dateAndTimeLbl.text = prettyDate
+        }
+        
+        cell.fromPlaceTF.text = ride.pickupLocation?.name
+        cell.toPlaceTF.text = ride.dropoffLocation?.name
+        
+        if let riderBidPrice = ride.riderBidPrice {
+            cell.ridePriceLbl.text = "$\(riderBidPrice)"
+        }
+        
+        if let tip = ride.tip {
+            cell.tipPriceLbl.text = "$\(tip)"
+        }
+        
+        if let totalFare = ride.fare {
+            cell.totalFareLabelOutlet.text = "$\(totalFare)"
+        }
         
         cell.cardDetailsBtnOutlet.tag = indexPath.row
+        cell.gmsMapViewOutlet.clear()
+        cell.gmsMapViewOpenOutlet.clear()
         
+        if let dropoffCoordinate = ride.dropoffLocation?.coordinate(),
+            let pickupCoordinate = ride.pickupLocation?.coordinate() {
+            
+            // Markers for gmsMapViewOutlet
+            
+            let domarker = GMSMarker(position: dropoffCoordinate)
+            domarker.map = cell.gmsMapViewOutlet
+            
+            let pumarker = GMSMarker(position: pickupCoordinate)
+            pumarker.map = cell.gmsMapViewOutlet
+            
+            adjustGMSCameraFocus(mapView: cell.gmsMapViewOutlet, pickupMarker: pumarker, dropoffMarker: domarker)
+            
+            // Markers for gmsMapViewOpenOutlet
+            
+            let domarkerOpen = GMSMarker(position: dropoffCoordinate)
+            domarkerOpen.map = cell.gmsMapViewOpenOutlet
+            
+            let pumarkerOpen = GMSMarker(position: pickupCoordinate)
+            pumarkerOpen.map = cell.gmsMapViewOpenOutlet
+            
+            adjustGMSCameraFocus(mapView: cell.gmsMapViewOpenOutlet, pickupMarker: pumarkerOpen, dropoffMarker: domarkerOpen)
+        }
+
+        if let profilePictureFileId = ride.driver?.profilePictureFileId {
+            setPicture(imageView: cell.userIV, ride: ride, fileId: profilePictureFileId)
+            setPicture(imageView: cell.userIV1, ride: ride, fileId: profilePictureFileId)
+        }
+        
+        if let vehiclePictureFileId = ride.vehicle?.vehiclePictureFileId {
+            setPicture(imageView: cell.carIV, ride: ride, fileId: vehiclePictureFileId)
+        }
+        
+        if let milesTravelled = ride.miles {
+            cell.distanceInMilesLbl.text = "\(String(describing: milesTravelled)) miles"
+        }
+        
+        if let rideTime = ride.rideTime {
+            cell.timeLbl.text = "\(String(describing: rideTime)) mins"
+        }
+        
+        if let paymentMethodBrand = ride.paymentMethodBrand, let paymentMethodLast4 = ride.paymentMethodLast4 {
+            cell.cardNumberLbl.text = "*\(paymentMethodLast4)"
+            
+            let paymentMethodType: BTUIPaymentOptionType =
+                BraintreeCardUtil.paymentMethodTypeFromBrand(paymentMethodBrand)
+            cell.cardHintOutlet.setCardType(paymentMethodType, animated: false)
+        } else {
+            let paymentMethodType: BTUIPaymentOptionType =
+                BraintreeCardUtil.paymentMethodTypeFromBrand("Visa")
+            cell.cardHintOutlet.setCardType(paymentMethodType, animated: false)
+            cell.cardNumberLbl.text = "*9999"
+        }
         
         /*cell.closeNumberLabel.text = "sankar"
          
@@ -147,14 +248,7 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) 
-        
-        
-        var tripObjectModel = TripObject()
-       tripObjectModel = self.responseDataArray[indexPath.row] as! TripObject
-        
-        
-        print(tripObjectModel.id)
-        
+        let ride = self.responseDataArray[indexPath.row] 
         return cell
     }
     
@@ -162,7 +256,7 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
         return cellHeights[(indexPath as NSIndexPath).row]
     }
     
-    // MARK: Table vie delegate
+    // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -209,19 +303,11 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
     @IBAction func carDetailsBtnAction(_ sender: UIButton) {
         print("carDetailsBtnAction tap")
         
-        var tripObjectModel = TripObject()
-        tripObjectModel = self.responseDataArray[sender.tag] as! TripObject
-        print(tripObjectModel)
-        print(tripObjectModel.vehicle_make)
-        
+        let ride = self.responseDataArray[sender.tag] as! Ride
         let loginSubView = self.storyboard!.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
         //loginSubView.selectedIndex = sender.tag
-        loginSubView.carModelStr = tripObjectModel.vehicle_make
-        loginSubView.carNumberStr = tripObjectModel.vehicle_licensePlate
-        
-        print(loginSubView.view.frame)        
-        
-        print(sender.tag)
+        loginSubView.carModelStr = ride.vehicle?.make
+        loginSubView.carNumberStr = ride.vehicle?.licensePlate
      
         addChildViewController(loginSubView)
         loginSubView.view.backgroundColor = .clear
@@ -232,7 +318,7 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
     }
     
     
-    // MARK: DZNEmptyDataSet Delegate-Datasource
+    // MARK: - DZNEmptyDataSet Delegate-Datasource
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         
@@ -266,4 +352,53 @@ class TripTableVC: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSet
     /*@IBAction func backBtnAction(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
     }*/
+    
+    // MARK: - Helpers
+    
+    fileprivate func getTripsService() {
+        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+        
+        let client: BAAClient = BAAClient.shared()
+        
+        client.getRides(BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
+            
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            
+            if let success = success {
+                let ridesArray = Mapper<Ride>().mapArray(JSONObject: success)! //Swift 3
+                self.responseDataArray = ridesArray
+                self.reinit()
+            }
+            else {
+                DDLogVerbose("No Trips: \(error)")
+            }
+        })
+    }
+    
+    fileprivate func adjustGMSCameraFocus(mapView: GMSMapView, pickupMarker: GMSMarker, dropoffMarker: GMSMarker) {
+        
+        let bounds = GMSCoordinateBounds(coordinate: (pickupMarker.position),
+                                         coordinate: (dropoffMarker.position))
+        
+//        if let markerHeight = pickupMarker.icon?.size.height, let markerWidth = pickupMarker.icon?.size.width {
+            let insets = UIEdgeInsets(top: 50.0,
+                                  left: 10.0,
+                                  bottom: 20.0,
+                                  right: 10.0)
+            
+            let update = GMSCameraUpdate.fit(bounds, with: insets)
+            mapView.moveCamera(update)
+//        }
+    }
+    
+    func setPicture(imageView: UIImageView, ride: Ride, fileId: String) {
+        
+        if (fileId == "") {
+            return;
+        }
+        
+        if let newUrl = BAAFile.getCompleteURL(withToken: fileId) {
+            imageView.pin_setImage(from: newUrl)
+        }
+    }
 }

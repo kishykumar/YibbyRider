@@ -23,7 +23,7 @@ class HelpCenterVC: UIViewController {
     }
 
     private func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         useYibbyBtn.layer.borderColor = UIColor.borderColor().cgColor
         useYibbyBtn.layer.borderWidth = 1.0

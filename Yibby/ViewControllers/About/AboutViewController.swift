@@ -64,7 +64,7 @@ public class AboutViewController: BaseYibbyViewController {
     }
     
     private func setupUI() {
-        self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
         
         rateUsButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
         rateUsButtonOutlet.layer.borderWidth = 1.0

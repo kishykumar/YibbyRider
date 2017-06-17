@@ -141,6 +141,12 @@ public struct InterfaceString {
         static let ForgotPassword = NSLocalizedString("Forgot Password", comment: "forgot password title")
     }
     
+    public struct SignOut {
+        static let SignOut = NSLocalizedString("Sign Out", comment: "SignOut")
+        static let ConfirmSignOutTitle = NSLocalizedString("Are you sure", comment: "Are you sure?")
+        static let ConfirmSignOutMessage = NSLocalizedString("You want to sign out?", comment: "You want to sign out?")
+    }
+    
     public struct Join {
         static let Login = NSLocalizedString("Login", comment: "Login")
         static let Signup = NSLocalizedString("Signup", comment: "Signup")

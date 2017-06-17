@@ -160,7 +160,14 @@ class SplashViewController: UIViewController {
                 
             #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
                 
-                BraintreePaymentService.sharedInstance().setupConfiguration({
+                BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
+                    
+                    if (error == nil) {
+                    
+                    } else {
+                    
+                    }
+                    
                     self.paymentsSetupCompleted = true
                 })
                 

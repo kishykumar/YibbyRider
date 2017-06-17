@@ -78,7 +78,7 @@ class TripViewController: BaseYibbyViewController {
     }
 
     fileprivate func setupUI() {
-    self.customBackButton(y: 20 as AnyObject)
+        setupBackButton()
     }
         
     override func didReceiveMemoryWarning() {
