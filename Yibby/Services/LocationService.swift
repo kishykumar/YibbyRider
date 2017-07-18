@@ -135,7 +135,7 @@ open class LocationService: NSObject, CLLocationManagerDelegate {
     
     @objc fileprivate func fetchDriverLocation() {
         
-        if let bid = (YBClient.sharedInstance().getBid()) {
+        if let bid = (YBClient.sharedInstance().bid) {
 
             // Refresh the location marker for the map
             let client: BAAClient = BAAClient.shared()

@@ -249,7 +249,8 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
 extension SignupViewController: SignupPaymentViewControllerDelegate {
  
     func signupPaymentViewControllerDidSkip(_ addPaymentViewController: AddPaymentViewController) {
-        MainViewController.initMainViewController(self, animated: true)
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.initializeApp()
     }
     
     func signupPaymentViewController(addPaymentViewController: AddPaymentViewController,
@@ -262,7 +263,8 @@ extension SignupViewController: SignupPaymentViewControllerDelegate {
             completion(error)
             
             if (error == nil) {
-                MainViewController.initMainViewController(self, animated: true)
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.initializeApp()
             }
         })
     }

@@ -9,12 +9,12 @@
 import UIKit
 import CocoaLumberjack
 
-enum YBClientStatus: Int {
-    case looking = 0
-    case ongoingBid
-    case driverEnRoute
-    case onRide
-    case pendingRating
+enum YBClientStatus: String {
+    case looking = "LOOKING"
+    case ongoingBid = "BID_IN_PROCESS"
+    case driverEnRoute = "DRIVER_EN_ROUTE"
+    case onRide = "RIDE_START"
+    case pendingRating = "RIDE_END"
 }
 
 // BidState singleton
@@ -22,10 +22,12 @@ open class YBClient {
     
     private static let myInstance = YBClient()
     
-    private var status: YBClientStatus
-    private var bid: Bid?
-    private var ride: Ride?
-    private var profile: YBProfile?
+    var status: YBClientStatus
+    var bid: Bid?
+    var ride: Ride?
+    var profile: YBProfile?
+    var paymentMethods = [YBPaymentMethod]()
+    var defaultPaymentMethod: YBPaymentMethod?
     
     init() {
         status = .looking
@@ -35,35 +37,73 @@ open class YBClient {
         return myInstance
     }
     
-    func setBid (_ bid: Bid?) { self.bid = bid }
-    func getBid () -> Bid? { return bid }
-    
-    func setRide (_ ride: Ride?) { self.ride = ride }
-    func getRide () -> Ride? { return ride }
-    
-    func setProfile (_ profile: YBProfile?) { self.profile = profile }
-    func getProfile () -> YBProfile? { return profile }
-    
-    func setStatus (_ status: YBClientStatus) { self.status = status }
-    func getStatus () -> YBClientStatus? { return status }
+//    func setBid (_ bid: Bid?) { self.bid = bid }
+//    func getBid () -> Bid? { return bid }
+//    
+//    func setRide (_ ride: Ride?) { self.ride = ride }
+//    func getRide () -> Ride? { return ride }
+//    
+//    func setProfile (_ profile: YBProfile?) { self.profile = profile }
+//    func getProfile () -> YBProfile? { return profile }
+//    
+//    func setStatus (_ status: YBClientStatus) { self.status = status }
+//    func getStatus () -> YBClientStatus? { return status }
+//    
+//    func setPaymentMethods (_ pms: [PaymentMethod]) { self.paymentMethods = pms }
+//    func getPaymentMethods () -> [PaymentMethod]? { return self.paymentMethods }
 }
 
 extension YBClient {
 
     func resetBid () {
-        setBid(nil)
+        bid = nil
     }
     
     func isOngoingBid () -> Bool {
-        return (getBid() != nil)
+        return (bid != nil)
     }
     
     func isSameAsOngoingBid (bidId: String?) -> Bool {
         
-        if (getBid() == nil || bidId == nil) {
+        if (bid == nil || bidId == nil) {
             return false
         }
         
-        return ((getBid()!.id ) == bidId)
+        return ((bid!.id ) == bidId)
+    }
+    
+    func syncClient(_ syncData: YBSync) {
+        defaultPaymentMethod = nil
+        if let myBid = syncData.bid {
+            self.bid = myBid
+        }
+        
+        if let myRide = syncData.ride {
+            self.ride = myRide
+        }
+        
+        if let myProfile = syncData.profile {
+            self.profile = myProfile
+        }
+        
+        self.status = syncData.status!
+        
+        if let paymentMethods = syncData.paymentMethods {
+            refreshPaymentMethods(paymentMethods)
+        }
+    }
+    
+    func refreshPaymentMethods(_ paymentMethods: [YBPaymentMethod]) {
+        
+        self.paymentMethods = paymentMethods
+        
+        // Loop through all the payment Methods to find the default one
+        for pm in paymentMethods {
+            if let isDefault = pm.isDefault, isDefault == true {
+                self.defaultPaymentMethod = pm
+                break;
+            }
+        }
+        assert(self.defaultPaymentMethod != nil)
     }
 }

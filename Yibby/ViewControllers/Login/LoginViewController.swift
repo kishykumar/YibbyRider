@@ -24,7 +24,7 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
     static let PASSWORD_KEY_NAME = "PASSWORD"
     static let EMAIL_ADDRESS_KEY_NAME = "EMAIL_ADDRESS"
     
-    var onStartup = true
+//    var onStartup = true
     
     let testMode = false
     
@@ -175,13 +175,13 @@ class LoginViewController: BaseYibbyViewController, IndicatorInfoProvider,GIDSig
                 // if login is successful, save username, password, token in keychain
                 LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                 
-                if (self.onStartup) {
+//                if (self.onStartup) {
                     // switch to Main View Controller
-                    MainViewController.initMainViewController(self, animated: true)
-                } else {
-                    appDelegate.sendGCMTokenToServer()
-                    self.dismiss(animated: true, completion: nil)
-                }
+                    appDelegate.initializeApp()
+//                } else {
+//                    appDelegate.sendGCMTokenToServer()
+//                    self.dismiss(animated: true, completion: nil)
+//                }
             }
             else {
                 DDLogVerbose("Error logging in: \(error)")

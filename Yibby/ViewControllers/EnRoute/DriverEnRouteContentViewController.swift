@@ -44,7 +44,7 @@ class DriverEnRouteContentViewController: UIViewController {
     // MARK: - Setup functions
     
     func initProperties() {
-        self.bid = (YBClient.sharedInstance().getBid())!
+        self.bid = (YBClient.sharedInstance().bid)!
     }
     
     func rideBeginSetup() {

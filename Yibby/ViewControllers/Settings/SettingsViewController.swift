@@ -108,7 +108,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
     }
     
     func getProfilePicture() {
-        if let profilePic = YBClient.sharedInstance().getProfile()?.profilePicture {
+        if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
             if (profilePic != "") {
                 if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
                 
@@ -243,7 +243,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
             emailAddress.resignFirstResponder()
             emailAddress.removeFormatting()
             
-            if (emailAddress.text?.isEqual(YBClient.sharedInstance().getProfile()?.email))! {
+            if (emailAddress.text?.isEqual(YBClient.sharedInstance().profile?.email))! {
                 
             }
             else {
@@ -323,7 +323,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
         
         print(location.name!)
         
-        if location.name!.isEqual(YBClient.sharedInstance().getProfile()?.homeLocation?.name)
+        if location.name!.isEqual(YBClient.sharedInstance().profile?.homeLocation?.name)
         {
             
         }
@@ -362,7 +362,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
         
         print(location.name!)
         
-        if location.name!.isEqual(YBClient.sharedInstance().getProfile()?.workLocation?.name)
+        if location.name!.isEqual(YBClient.sharedInstance().profile?.workLocation?.name)
         {
             
         }

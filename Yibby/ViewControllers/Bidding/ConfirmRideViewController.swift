@@ -22,6 +22,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
     var dropoffLocation: YBLocation!
     
     var bidHigh: Float!
+    var currentPaymentMethod: YBPaymentMethod!
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
 
@@ -44,7 +45,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                 ActivityIndicatorUtil.enableActivityIndicator(self.view)
                 
                 let client: BAAClient = BAAClient.shared()
-                let paymentToken = BraintreePaymentService.sharedInstance().currentPaymentMethod?.token
+                let paymentToken = currentPaymentMethod.token
 
                 client.createBid(self.bidHigh as NSNumber!, bidLow: 0, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
                     pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name!,
@@ -84,7 +85,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     userBid.people = (successData["people"] as? Int)
                                     userBid.creationTime = (successData["_creation_date"] as! String)
                                     
-                                    YBClient.sharedInstance().setBid(userBid)
+                                    YBClient.sharedInstance().bid = userBid
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {

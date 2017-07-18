@@ -10,26 +10,22 @@ import UIKit
 import AlamofireObjectMapper
 import ObjectMapper
 
-class PaymentObjectModels: Mappable {
+public class YBPaymentMethods: Mappable {
     
     //  JSON object:
-    //    [VehicleModel, ...]
+    //    [YBPaymentMethod, ...]
     
     // MARK: - Properties
-    var models: [PaymentObjectModel]?
+    var models: [YBPaymentMethod]?
     
     // MARK: Initialization
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         // do the checks here to make sure if a required property exists within the JSON.
     }
     
     // Mappable
-    func mapping(map: Map) {
-        models <- map[""]
+    public func mapping(map: Map) {
+        models <- map["Models"]
     }
-}
-
-extension PaymentObjectModels {
-    
 }
