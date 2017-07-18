@@ -58,33 +58,33 @@ class PaymentDetailsObject
         return dataArray
     }
 */
-    func savePaymentCardDetails(responseArr: NSArray) -> NSMutableArray{
-        
-        print(responseArr)
-        
-        let dataArray = NSMutableArray()
-        
-        for index in 0..<responseArr.count{
-            let currentDict = responseArr[index] as! NSDictionary
-            
-            let classObject = PaymentDetailsObject()
-            
-            classObject.expirationMonth = String(describing: currentDict["expirationMonth"] as! NSObject)
-            classObject.expirationYear = String(describing: currentDict["expirationYear"] as! NSObject)
-            classObject.isDefault = String(describing: currentDict["isDefault"] as! NSObject)
-            classObject.last4 = String(describing: currentDict["last4"] as! NSObject)
-            classObject.postalCode = String(describing: currentDict["postalCode"] as! NSObject)
-            classObject.token = String(describing: currentDict["token"] as! NSObject)
-            classObject.type = String(describing: currentDict["type"] as! NSObject)
-            classObject.isCurrent = currentDict["isDefault"] as? Bool
-            dataArray.add(classObject)
-            if classObject.isCurrent! {
-                BraintreePaymentService.sharedInstance().currentPaymentMethod = classObject
-            }
-        }
-        return dataArray
-        
-    }
+//    func savePaymentCardDetails(responseArr: NSArray) -> NSMutableArray{
+//        
+//        print(responseArr)
+//        
+//        let dataArray = NSMutableArray()
+//        
+//        for index in 0..<responseArr.count{
+//            let currentDict = responseArr[index] as! NSDictionary
+//            
+//            let classObject = PaymentDetailsObject()
+//            
+//            classObject.expirationMonth = String(describing: currentDict["expirationMonth"] as! NSObject)
+//            classObject.expirationYear = String(describing: currentDict["expirationYear"] as! NSObject)
+//            classObject.isDefault = String(describing: currentDict["isDefault"] as! NSObject)
+//            classObject.last4 = String(describing: currentDict["last4"] as! NSObject)
+//            classObject.postalCode = String(describing: currentDict["postalCode"] as! NSObject)
+//            classObject.token = String(describing: currentDict["token"] as! NSObject)
+//            classObject.type = String(describing: currentDict["type"] as! NSObject)
+//            classObject.isCurrent = currentDict["isDefault"] as? Bool
+//            dataArray.add(classObject)
+//            if classObject.isCurrent! {
+//                BraintreePaymentService.sharedInstance().currentPaymentMethod = classObject
+//            }
+//        }
+//        return dataArray
+//        
+//    }
     
     
    

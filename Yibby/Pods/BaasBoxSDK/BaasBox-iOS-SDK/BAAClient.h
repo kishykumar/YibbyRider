@@ -95,7 +95,7 @@
 
 - (void)deletePaymentMethod: (NSString *)type
                         paymentMethodToken:(NSString *)paymentMethodToken
-                        completion: (BAAObjectResultBlock)completionBlock;
+                        completion: (BAABooleanResultBlock)completionBlock;
 
 - (void)updatePaymentMethod: (NSString *)type
          paymentMethodToken:(NSString *)paymentMethodToken
@@ -107,15 +107,12 @@
 
 // driver status
 - (void)updateDriverStatus:(NSString *)status
+                latitude: (NSNumber *)latitude
+                longitude:(NSNumber *)longitude
                 completion: (BAABooleanResultBlock)completionBlock;
 
 - (void)syncClient: (NSString *)type
                     completion: (BAAObjectResultBlock)completionBlock;
-
-- (void) updateLocation: (NSString *)type
-                latitude: (NSNumber *)latitude
-                longitude:(NSNumber *)longitude
-                completion:(BAABooleanResultBlock)completionBlock;
 
 // get location
 - (void)getDriverLocation: (NSString *)bidId

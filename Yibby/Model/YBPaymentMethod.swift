@@ -10,33 +10,25 @@ import UIKit
 import AlamofireObjectMapper
 import ObjectMapper
 
-class PaymentObjectModel: Mappable {
-    
-    //  JSON object:
-    //    {
-    //    "model_name": "Crown Victoria",
-    //    "model_make_id": "ford"
-    //    }
+public class YBPaymentMethod: Mappable {
     
     // MARK: - Properties
-    var expirationMonth: String?
-    var expirationYear: String?
-    var isDefault: String?
+    var expirationMonth: Int?
+    var expirationYear: Int?
+    var isDefault: Bool?
     var last4: String?
-    var postalCode: String?
+    var postalCode: Int?
     var token: String?
     var type: String?
    
-    
     // MARK: Initialization
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
 
-
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         expirationMonth           <- map["expirationMonth"]
         expirationYear         <- map["expirationYear"]
         isDefault           <- map["isDefault"]
@@ -44,10 +36,5 @@ class PaymentObjectModel: Mappable {
         postalCode           <- map["postalCode"]
         token         <- map["token"]
         type           <- map["type"]
-    
     }
-}
-
-extension PaymentObjectModel {
-    
 }

@@ -145,7 +145,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     
     func getProfilePicture() {
-        if let profilePic = YBClient.sharedInstance().getProfile()?.profilePicture {
+        if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
             if (profilePic != "") {
                 if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
                     
@@ -174,7 +174,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
 //        self.profilePictureOutlet.layer.masksToBounds = true
 //        self.profilePictureOutlet.clipsToBounds = true
         
-        if let userRealName = YBClient.sharedInstance().getProfile()?.name {
+        if let userRealName = YBClient.sharedInstance().profile?.name {
             if (userRealName != "") {
                 self.userRealNameLabelOutlet.text = userRealName
             } else {
@@ -252,7 +252,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         case TableIndex.payment.rawValue:
             
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-            selectedViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentViewControllerIdentifier") as! PaymentViewController
+            selectedViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentsViewControllerIdentifier") as! PaymentsViewController
             
             break
         case TableIndex.trips.rawValue:

@@ -12,33 +12,29 @@ import BaasBoxSDK
 import CocoaLumberjack
 import Alamofire
 import Braintree
+import ObjectMapper
 
 public typealias MakeTransactionCompletionBlock = (_ transactionId: String, _ error: NSError?) -> Void
 public typealias TokenFetchCompletionBlock = (_ clientToken: String?, _ error: NSError?) -> Void
-public typealias PaymentMethodsCompletionBlock = (_ paymentMethods: NSArray?, _ error: NSError?) -> Void
+public typealias PaymentMethodsCompletionBlock = (_ paymentMethods: [YBPaymentMethod]?, _ error: NSError?) -> Void
 public typealias BTErrorBlock = (NSError?) -> Void
+public typealias PaymentMethodCompletionBlock = (_ paymentMethod: YBPaymentMethod?, _ error: NSError?) -> Void
 
 public protocol BraintreeBackendAPIAdapter {
-    
-    // complete charge equivalent to Stripe
-    func makeTransaction(_ paymentMethodNonce: String, completion completionBlock: MakeTransactionCompletionBlock)
     
     func fetchClientToken(_ completionBlock: @escaping TokenFetchCompletionBlock)
     
     func retrievePaymentMethods( completion: @escaping PaymentMethodsCompletionBlock)
     
-    func deleteSourceFromCustomer(_ paymentMethod: String, completion: @escaping BTErrorBlock)
+    func deleteSourceFromCustomer(_ paymentMethod: YBPaymentMethod, completionBlock: @escaping BTErrorBlock)
     
-    func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
-                                 oldPaymentMethod: String,
-                                 completion: @escaping BTErrorBlock)
-    func updateSourceForCustomerString(_ paymentMethod: String,
-                                 oldPaymentMethod: String,
+    func updateSourceForCustomer(_ newPaymentMethodNonce: BTPaymentMethodNonce,
+                                 oldPaymentMethod: YBPaymentMethod,
                                  completion: @escaping BTErrorBlock)
     
-    func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
+    func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping PaymentMethodCompletionBlock)
     
-    func selectDefaultCustomerSource(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
+    func selectDefaultCustomerSource(_ paymentMethod: YBPaymentMethod, completion: @escaping PaymentMethodCompletionBlock)
 }
 
 class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
@@ -80,34 +76,6 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
 //        }
 //    }
     
-    func makeTransaction(_ paymentMethodNonce: String, completion completionBlock: MakeTransactionCompletionBlock) {
-    
-//        guard let customerID = customerID else {
-//            completion(nil)
-//            DDLogError("Customer ID nil for Stripe Client.")
-//            return
-//        }
-//        
-//        let path = "charge"
-//        
-//        let params: [String: AnyObject] = [
-//            "source": result.source.stripeID,
-//            "amount": amount,
-//            "customer": customerID
-//        ]
-//        
-//        let client: BAAClient = BAAClient.sharedClient()
-//        client.postPath(path, parameters: params,
-//                        
-//                        success: {(responseObject: (AnyObject)!) -> Void in
-//                            completion(nil)
-//            },
-//                        
-//                        failure: {(error: (NSError)!) -> Void in
-//                            completion(error)
-//            }
-//        )
-    }
     func addPaymentCard(nonce: AnyObject)
     {
         
@@ -152,358 +120,79 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
                 completionBlock(nil, error as NSError?)
             }
             
-        })    }
+        })
+    }
     
     func retrievePaymentMethods( completion: @escaping PaymentMethodsCompletionBlock) {
     
-     /*   guard let customerID = customerID else {
-            
-            completion(self.sources, nil)
-            
-            DDLogError("Customer ID nil for Stripe Client.")
-            return;
-        }
-        
-        if let apiClient: BTAPIClient = BTAPIClient(authorization: clientToken) {
-            apiClient.fetchPaymentMethodNonces(true,
-                                               completion: {(paymentMethodNonces: [BTPaymentMethodNonce]?, error: NSError?) -> Void in
-                completion(paymentMethodNonces, error)
-            } as! ([BTPaymentMethodNonce]?, Error?) -> Void)
-        }*/
         let client: BAAClient = BAAClient.shared()
         client.getPaymentMethods(BAASBOX_RIDER_STRING, completion:{(success, error) -> Void in
-            if ((success) != nil) {
-                
-                //let bid = PaymentObjectModels(JSONString: jsonCustomString)!
-                if let resultArray = success as? Array<Any>
-                {
-                  completion(resultArray as NSArray?, nil)
-                }
-                else {
-                    DDLogError("Error in fetching Get Method: \(error)")
-                }
-                
+            
+            if (success != nil) {
+                let paymentMethods = Mapper<YBPaymentMethod>().mapArray(JSONObject: success)
+                completion(paymentMethods, nil)
             }
             else {
                 completion(nil, error as NSError?)
             }
-            
         })
-
     }
     
-    func selectDefaultCustomerSource(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
+    func selectDefaultCustomerSource(_ paymentMethod: YBPaymentMethod, completion: @escaping PaymentMethodCompletionBlock) {
         
-     /*   guard let customerID = customerID else {
-            
-            for method in self.sources {
-                if method.isDefault {
-
-                    let oldIdx = self.sources.index(of: method)
-                    let newIdx = self.sources.index(of: paymentMethod)
-                    
-                    let oldMethod = BTPaymentMethodNonce(nonce: method.nonce,
-                                                         localizedDescription: method.localizedDescription,
-                                                         type: method.type,
-                                                         isDefault: false)
-                    
-                    let newMethod = BTPaymentMethodNonce(nonce: paymentMethod.nonce,
-                                                    localizedDescription: paymentMethod.localizedDescription,
-                                                    type: paymentMethod.type,
-                                                    isDefault: true)
-                    
-
-                    self.sources.remove(at: oldIdx!)
-                    self.sources.remove(at: newIdx!)
-
-                    self.sources.append(newMethod!)
-                    self.sources.append(oldMethod!)
-
-                    break;
-                }
-            }
-            
-            self.defaultSource = paymentMethod
-            completion(nil)
-            
-            DDLogError("Customer ID nil for Stripe Client.")
-            return;
-        }
-        
-        let path = "/customers/\(customerID)/select_source"
-        
-        let params = [
-            "customer": customerID,
-            "source": paymentMethod.nonce,
-            ]
- 
         let client: BAAClient = BAAClient.shared()
-        client.postPath(path, parameters: params,
-                        
-                        success: {(responseObject: (Any?)) -> Void in
-                            completion(nil)
-            },
-                        
-                        failure: {(error: (Error?)) -> Void in
-                            completion(error as NSError?)
+        client.makeDefaultPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentMethod.token, completion: {(success, error) -> Void in
+            
+            if (success != nil) {
+                let paymentMethodModel = Mapper<YBPaymentMethod>().map(JSONObject: success)
+                completion(paymentMethodModel, error as NSError?)
+            } else {
+                completion(nil, error as NSError?)
             }
-        )*/
+        })
     }
     
-    func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
+    func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completion: @escaping PaymentMethodCompletionBlock) {
         
-       /* guard let customerID = customerID else {
-            
-            if (self.sources.count == 0) {
-                self.defaultSource = paymentMethod
-            }
-            
-            self.sources.append(paymentMethod)
-            completion(nil)
-            
-            DDLogError("Customer ID nil for Stripe Client.")
-            return;
-        }
-        
-        let path = "/customers/\(customerID)/sources"
-        
-        let params = [
-            "customer": customerID,
-            "source":   paymentMethod.nonce,
-            ]
-        
-        let client: BAAClient = BAAClient.shared()
-        client.postPath(path, parameters: params,
-                        
-                        success: {(responseObject: (Any?)) -> Void in
-                            completion(nil)
-            },
-                        
-                        failure: {(error: (Error?)) -> Void in
-                            completion(error as NSError?)
-            }
-        )*/
         let client: BAAClient = BAAClient.shared()
         client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: paymentMethod.nonce, completion: {(success, error) -> Void in
             
-            print(success as Any)
-            print(error?.localizedDescription as Any)
-
-            completion(error as NSError?)
-            
+            if (success != nil) {
+                let paymentMethodModel = Mapper<YBPaymentMethod>().map(JSONObject: success)
+                completion(paymentMethodModel, error as NSError?)
+            } else {
+                completion(nil, error as NSError?)
+            }
         })
     }
     
-    func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
-                                oldPaymentMethod: String,
+    func updateSourceForCustomer(_ newPaymentMethodNonce: BTPaymentMethodNonce,
+                                oldPaymentMethod: YBPaymentMethod,
                                 completion: @escaping BTErrorBlock) {
-        
-   /*     guard let customerID = customerID else {
-            
-            let idx = self.sources.index(of: oldPaymentMethod)
-            if (idx != nil) {
-                
-                self.sources.remove(at: idx!)
-                self.sources.append(paymentMethod)
-                
-                // check if we removed the default card
-                if (self.defaultSource == paymentMethod) {
-                    self.defaultSource = paymentMethod
-                }
-            }
 
-            completion(nil)
-            
-            DDLogError("Customer ID nil for Stripe Client.")
-            return;
-        }
-        
-        let path = "/customers/\(customerID)/sources"
-        
-        let params = [
-            "customer": customerID,
-            "source":   paymentMethod.nonce,
-            ]
-        
         let client: BAAClient = BAAClient.shared()
-        client.postPath(path, parameters: params,
-                        
-                success: {(responseObject: (Any?)) -> Void in
-                    completion(nil)
-            },
-                        
-                failure: {(error: (Error?)) -> Void in
-                    completion(error as NSError?)
-            }
-        )*/
-        print(oldPaymentMethod)
-        print(paymentMethod.nonce)
-        let client: BAAClient = BAAClient.shared()
-        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: oldPaymentMethod, paymentMethodNonce: paymentMethod.nonce, completion: {(success, error) -> Void in
+        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: oldPaymentMethod.token, paymentMethodNonce: newPaymentMethodNonce.nonce, completion: {(success, error) -> Void in
             
             print(success as Any)
             
             completion(error as NSError?)
             
         })
-       
     }
-    //With String
-    func updateSourceForCustomerString(_ paymentMethod: String,
-                                 oldPaymentMethod: String,
-                                 completion: @escaping BTErrorBlock) {
-        
-        /*     guard let customerID = customerID else {
-         
-         let idx = self.sources.index(of: oldPaymentMethod)
-         if (idx != nil) {
-         
-         self.sources.remove(at: idx!)
-         self.sources.append(paymentMethod)
-         
-         // check if we removed the default card
-         if (self.defaultSource == paymentMethod) {
-         self.defaultSource = paymentMethod
-         }
-         }
-         
-         completion(nil)
-         
-         DDLogError("Customer ID nil for Stripe Client.")
-         return;
-         }
-         
-         let path = "/customers/\(customerID)/sources"
-         
-         let params = [
-         "customer": customerID,
-         "source":   paymentMethod.nonce,
-         ]
-         
-         let client: BAAClient = BAAClient.shared()
-         client.postPath(path, parameters: params,
-         
-         success: {(responseObject: (Any?)) -> Void in
-         completion(nil)
-         },
-         
-         failure: {(error: (Error?)) -> Void in
-         completion(error as NSError?)
-         }
-         )*/
-        let client: BAAClient = BAAClient.shared()
-        client.updatePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: oldPaymentMethod, paymentMethodNonce: paymentMethod, completion: {(success, error) -> Void in
-            
-            print(success as Any)
-            
-            completion(error as NSError?)
-            
-        })
-        
-    }
-
     
-    func deleteSourceFromCustomer(_ paymentMethod: String,
-                                        completion: @escaping BTErrorBlock) {
+    func deleteSourceFromCustomer(_ paymentMethod: YBPaymentMethod,
+                                  completionBlock: @escaping BTErrorBlock) {
 
-       /* guard let customerID = customerID else {
+        let client: BAAClient = BAAClient.shared()
+        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentMethod.token, completion: {(success, error) -> Void in
             
-            
-            let idx = self.sources.index(of: paymentMethod)
-            if (idx != nil) {
-                
-                self.sources.remove(at: idx!)
-                
-                // check if we removed the default card
-                if (self.defaultSource == paymentMethod) {
-                    self.defaultSource = self.sources.last
+            if let successBool = success as? Bool {
+                if (successBool == true) {
+                    completionBlock(nil)
+                } else {
+                    completionBlock(error as NSError?)
                 }
             }
-
-            completion(nil)
-            
-            DDLogError("Customer ID nil for Stripe Client.")
-            return;
-        }
-        
-        let path = "/customers/\(customerID)/sources"
-        
-        let params = [
-            "customer": customerID,
-            "source":   paymentMethod.nonce,
-            ]
-        
-        let client: BAAClient = BAAClient.shared()
-        client.deletePath(path, parameters: params,
-                          
-                          success: {(responseObject: (Any?)) -> Void in
-                            completion(nil)
-            },
-                          
-                          failure: {(error: (Error?)) -> Void in
-                            completion(error as NSError?)
-            }
-        )
-    }*/
-        let client: BAAClient = BAAClient.shared()
-        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentMethod, completion: {(success, error) -> Void in
-            
-            print(success as Any)
-            
-            completion(error as NSError?)
-            
         })
     }
-    func deleteSourceFromCustomerString(_ paymentMethod: String,
-                                  completion: @escaping BTErrorBlock) {
-        
-        /* guard let customerID = customerID else {
-         
-         
-         let idx = self.sources.index(of: paymentMethod)
-         if (idx != nil) {
-         
-         self.sources.remove(at: idx!)
-         
-         // check if we removed the default card
-         if (self.defaultSource == paymentMethod) {
-         self.defaultSource = self.sources.last
-         }
-         }
-         
-         completion(nil)
-         
-         DDLogError("Customer ID nil for Stripe Client.")
-         return;
-         }
-         
-         let path = "/customers/\(customerID)/sources"
-         
-         let params = [
-         "customer": customerID,
-         "source":   paymentMethod.nonce,
-         ]
-         
-         let client: BAAClient = BAAClient.shared()
-         client.deletePath(path, parameters: params,
-         
-         success: {(responseObject: (Any?)) -> Void in
-         completion(nil)
-         },
-         
-         failure: {(error: (Error?)) -> Void in
-         completion(error as NSError?)
-         }
-         )
-         }*/
-        let client: BAAClient = BAAClient.shared()
-        client.deletePaymentMethod(BAASBOX_RIDER_STRING, paymentMethodToken: paymentMethod, completion: {(success, error) -> Void in
-            
-            print(success as Any)
-            
-            completion(error as NSError?)
-            
-        })
-    }
-
 }

@@ -36,7 +36,6 @@ extension UIViewController {
         self.view.addSubview(button)
         
         let topGuide = self.topLayoutGuide
-        DDLogVerbose("KKDBG_topLayoutlen1: \(topGuide.length)")
         let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: topGuide, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
         
         let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)

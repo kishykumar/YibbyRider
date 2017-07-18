@@ -7,56 +7,56 @@
 //
 
 import UIKit
+import Braintree
 
 class CardTableCell : UITableViewCell {
     
     // MARK: - Properties
     
-    @IBOutlet weak var cardBrandImageViewOutlet: UIImageView!
-
     @IBOutlet weak var cardTextLabelOutlet: UILabel!
+    @IBOutlet weak var selectedCardButton: UIButton!
+    @IBOutlet weak var editPaymentButtonOutlet: UIButton!
+    @IBOutlet weak var cardBrandViewOutlet: BTUICardHint!
     
-   // @IBOutlet weak var selectedColorLbl: UILabel!
-    @IBOutlet weak var selectedCardColourButton: UIButton!
+    var myPaymentMethod: YBPaymentMethod!
+    var myViewController: UIViewController!
     
-    @IBOutlet weak var VW: UIView!
+    // MARK: - Actions
     
-    @IBOutlet weak var paymentDefaultsBtnOutlet: UIButton!
-    
+    @IBAction func onEditButtonClick(_ sender: UIButton) {
+     
+        let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+        let editCardViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+
+        editCardViewController.editDelegate = myViewController as! EditPaymentViewControllerDelegate?
+        editCardViewController.isEditCard = true
+        editCardViewController.paymentMethodToEdit = myPaymentMethod
+        myViewController.navigationController!.pushViewController(editCardViewController, animated: true)
+    }
+
+    // MARK: - Setup
+
     override func awakeFromNib() {
-        
         setupUI()
-        
+
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     private func setupUI() {
         
-        VW.layer.borderColor = UIColor.borderColor().cgColor
-        VW.layer.borderWidth = 1.0
-        VW.layer.cornerRadius = 7.0
+//        VW.layer.borderColor = UIColor.borderColor().cgColor
+//        VW.layer.borderWidth = 1.0
+//        VW.layer.cornerRadius = 7.0
+ 
+        selectedCardButton.layer.borderColor = UIColor.borderColor().cgColor
+        selectedCardButton.layer.borderWidth = 1.0
+        selectedCardButton.layer.cornerRadius = selectedCardButton.frame.size.width/2
         
-        selectedCardColourButton.layer.borderColor = UIColor.borderColor().cgColor
-        selectedCardColourButton.layer.borderWidth = 1.0
-        selectedCardColourButton.layer.cornerRadius = selectedCardColourButton.frame.size.width/2
-        
-        selectedCardColourButton.clipsToBounds = true
-        
-        self.paymentDefaultsBtnOutlet.setRoundedWithWhiteBorder()
+        editPaymentButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
+        editPaymentButtonOutlet.layer.borderWidth = 1.0
+        editPaymentButtonOutlet.layer.cornerRadius = 8.0
 
-        //self.paymentDefaultsBtnOutlet.setRoundedWithWhiteBorder()
+        selectedCardButton.clipsToBounds = true
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    // MARK: - Setup functions
-    
-//    func configure(ride: Ride) {
-//        
-//    }
 }

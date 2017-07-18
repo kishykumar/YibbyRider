@@ -4,7 +4,7 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - ASProgressPopUpView (0.9)
-  - BaasBoxSDK (0.9.7)
+  - BaasBoxSDK (0.9.9)
   - BButton (4.0.2)
   - Braintree (4.8.1):
     - Braintree/Card (= 4.8.1)
@@ -194,7 +194,7 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   ASProgressPopUpView: dfe44c9a0313ac93a8092bd361b59f52c83a7560
-  BaasBoxSDK: 9df8447c6bf31b2d04d5fd4b7cc38c0b3b6fe1e4
+  BaasBoxSDK: bb813cc8d943fdc7af204a76c81b68127bcec8dd
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 9e63eeb60d34f54fa1aa8f3d75fe3976927c06d5
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
@@ -208,7 +208,7 @@ SPEC CHECKSUMS:
   FoldingCell: fb189fc746e95b722a1debf8ef455006b70cae2e
   Font-Awesome-Swift: 4dc96df73b5f32aaccdee50a454c3ec253ee4977
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
-  Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
+  Google: d536877ec602555b755cc28ce6fed104825c693c
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleAuthUtilities: ccad2e0a9284699973ff57c0dd24c3893657fda4
   GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26

@@ -18,7 +18,9 @@ protocol EditPaymentViewControllerDelegate {
                                         didCreateNewToken token: STPToken, completion: STPErrorBlock)
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
         func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                       didCreateNewToken token: BTPaymentMethodNonce, completion: @escaping BTErrorBlock)
+                                       didCreateNewNonce nonce: BTPaymentMethodNonce,
+                                       oldPaymentMethod: YBPaymentMethod,
+                                       completion: @escaping BTErrorBlock)
     #endif
     
     #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
@@ -27,6 +29,6 @@ protocol EditPaymentViewControllerDelegate {
     
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
         func editPaymentViewController(editPaymentViewController: AddPaymentViewController,
-                                       didRemovePaymentMethod paymentMethod: String, completion: @escaping BTErrorBlock)
+                                       didRemovePaymentMethod paymentMethod: YBPaymentMethod, completion: @escaping BTErrorBlock)
     #endif
 }

@@ -48,8 +48,8 @@
                                     <action selector="onBidButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyF-t8-aao"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="DxL-We-APj" userLabel="MiscHintImage">
-                                <rect key="frame" x="16" y="315.5" width="51" height="71"/>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="DxL-We-APj" userLabel="MiscHintView">
+                                <rect key="frame" x="16" y="316" width="51" height="71"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="334-Lq-Drq" userLabel="ImagesSV">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="71"/>
@@ -101,17 +101,18 @@
                                     <constraint firstAttribute="bottom" secondItem="334-Lq-Drq" secondAttribute="bottom" id="5s9-4V-OF1"/>
                                     <constraint firstAttribute="trailing" secondItem="334-Lq-Drq" secondAttribute="trailing" id="LXo-p3-bar"/>
                                     <constraint firstItem="334-Lq-Drq" firstAttribute="top" secondItem="DxL-We-APj" secondAttribute="top" id="ZeD-LK-hMc"/>
+                                    <constraint firstAttribute="width" secondItem="DxL-We-APj" secondAttribute="height" multiplier="0.71831" id="gwz-gg-ebk"/>
                                     <constraint firstItem="334-Lq-Drq" firstAttribute="leading" secondItem="DxL-We-APj" secondAttribute="leading" id="kuB-q2-98i"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="C16-YE-Oep" appends="YES" id="FQe-KK-sZU"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-4j-ErD" userLabel="DollarHintImage">
-                                <rect key="frame" x="288" y="401" width="71" height="71"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-4j-ErD" userLabel="DollarHintView">
+                                <rect key="frame" x="233" y="419.5" width="71" height="71"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7b-Gs-qT1" userLabel="DollarImageLabel">
-                                        <rect key="frame" x="26" y="17.5" width="20" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7b-Gs-qT1" userLabel="DollarImageLabel">
+                                        <rect key="frame" x="26" y="18" width="20" height="35"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -121,21 +122,22 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="o7b-Gs-qT1" firstAttribute="centerY" secondItem="cqP-4j-ErD" secondAttribute="centerY" id="6Za-HH-dMl"/>
+                                    <constraint firstAttribute="width" secondItem="cqP-4j-ErD" secondAttribute="height" multiplier="1:1" id="eys-Yz-2Rx"/>
                                     <constraint firstItem="o7b-Gs-qT1" firstAttribute="centerX" secondItem="cqP-4j-ErD" secondAttribute="centerX" id="fdf-Bd-1GG"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="80q-fr-FYB" appends="YES" id="8Zs-W4-v2b"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Cv-8g-cTx" userLabel="PriceSliderView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="16" y="392.5" width="267" height="88.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Cv-8g-cTx" userLabel="PriceSliderView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
+                                <rect key="frame" x="16" y="411" width="212" height="88"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hlJ-Fz-4Zg" userLabel="Slider" customClass="ASValueTrackingSlider">
-                                        <rect key="frame" x="8" y="37" width="251" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hlJ-Fz-4Zg" userLabel="Slider" customClass="ASValueTrackingSlider">
+                                        <rect key="frame" x="8" y="37" width="196" height="31"/>
                                         <color key="maximumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Maximum Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7S-yI-ZTJ">
-                                        <rect key="frame" x="91" y="69" width="86.5" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7S-yI-ZTJ">
+                                        <rect key="frame" x="63" y="69" width="86.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -165,7 +167,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYy-S2-RDP" userLabel="MiscPickerView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="72" y="307.5" width="232" height="88"/>
+                                <rect key="frame" x="72" y="308" width="232" height="88"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yt9-Gr-Iji" userLabel="MiscPickerSV">
                                         <rect key="frame" x="0.0" y="0.0" width="232" height="88"/>
@@ -366,7 +368,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-oe-11F" userLabel="CenterMarkersView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="277" y="273.5" width="27" height="27"/>
+                                <rect key="frame" x="277" y="274" width="27" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-S8-o2k" userLabel="LocationArrowLabel">
                                         <rect key="frame" x="5" y="5" width="17" height="17"/>
@@ -486,7 +488,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2425" y="68"/>
+            <point key="canvasLocation" x="-2426.25" y="67.605633802816897"/>
         </scene>
         <!--Find Offers View Controller-->
         <scene sceneID="0ld-GX-rfp">
@@ -546,7 +548,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyo-FB-7ju">
                                 <rect key="frame" x="0.0" y="20" width="320" height="114"/>
-                                <color key="backgroundColor" red="0.16799616810000001" green="0.2430863976" blue="0.31598845120000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="mtO-2i-JwJ" userLabel="MainSV">
                                 <rect key="frame" x="16" y="40" width="288" height="528"/>
@@ -677,7 +678,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.19855886697769165" green="0.28622028231620789" blue="0.37126219272613525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="mtO-2i-JwJ" firstAttribute="bottom" secondItem="7jD-Jd-vej" secondAttribute="top" id="2c6-oZ-SBB"/>
                             <constraint firstItem="dyo-FB-7ju" firstAttribute="leading" secondItem="zoF-0j-0Li" secondAttribute="leading" id="8Sb-qC-YeG"/>

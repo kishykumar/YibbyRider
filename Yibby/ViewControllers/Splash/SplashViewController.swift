@@ -12,6 +12,10 @@ import LaunchScreen
 import BaasBoxSDK
 import MMDrawerController
 
+public struct AppInitNotifications {
+    static let pushStatus = TypedNotification<Bool>(name: "com.Yibby.SplashViewController.pushSuccess")
+}
+
 class SplashViewController: UIViewController {
     
     // MARK: - Properties
@@ -19,22 +23,47 @@ class SplashViewController: UIViewController {
     static let SPLASH_SCREEN_TAG = 10
     
     let APP_FIRST_RUN = "FIRST_RUN"
+    let ERROR_TEXTVIEW_TAG = 100
     
     var launchScreenVC: LaunchScreenViewController?
     var snapshot: UIImage?
     var imageView: UIImageView?
+    fileprivate var pushStatusObserver: NotificationObserver?
+
+//    var syncAPIResponseArrived: Bool = false
+//    var paymentsSetupCompleted: Bool = false
+//    static var pushRegisterResponseArrived: Bool = false
+//    static var pushSuccessful: Bool = false
     
-    var syncAPIResponseArrived: Bool = false
-    var paymentsSetupCompleted: Bool = false
-    static var pushRegisterResponseArrived: Bool = false
-    static var pushSuccessful: Bool = false
     
-    
-    // MARK: view functions
+    // MARK: - Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initSplash()
+        setupNotificationObservers()
+    }
+    
+    deinit {
+        DDLogVerbose("SplashViewController Deinit")
+        removeNotificationObservers()
+    }
+    
+    fileprivate func setupNotificationObservers() {
+        
+        pushStatusObserver = NotificationObserver(notification: AppInitNotifications.pushStatus) { [unowned self] success in
+            DDLogVerbose("pushStatusObserver status: \(success)")
+            
+            if (success) {
+                self.pushRegistrationSuccessCallback()
+            } else {
+                self.pushRegistrationErrorCallback()
+            }
+        }
+    }
+    
+    fileprivate func removeNotificationObservers() {
+        pushStatusObserver?.removeObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +78,50 @@ class SplashViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func doSetup () {
+        DDLogVerbose("Called");
+        
+        ///////////////////////////////////////////////////////////////////////////
+        // We do the app's initialization in viewDidAppear().
+        // 1. Setup Splash Screen
+        // 2. Register for remote notifications
+        // 3. Sync the app with the webserver by making the http call
+        // 4. Segue to the appropriate view controller one all initialization is done
+        ///////////////////////////////////////////////////////////////////////////
+        
+        // Do any additional setup after loading the view.
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // show the launch screen
+        showLaunchScreen()
+        
+        // Clear keychain on first run in case of reinstallation
+        let userDefaults = UserDefaults.standard
+        if userDefaults.object(forKey: APP_FIRST_RUN) == nil {
+            // Delete values from keychain here
+            userDefaults.setValue(APP_FIRST_RUN, forKey: APP_FIRST_RUN)
+            LoginViewController.removeLoginKeyChainKeys()
+        }
+        
+        let client: BAAClient = BAAClient.shared()
+
+        if client.isAuthenticated() {
+            DDLogVerbose("User already authenticated");
+            
+            appDelegate.initializeApp()
+            
+        } else {
+            DDLogVerbose("User NOT authenticated");
+            
+            let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                                                              bundle: nil)
+            
+            self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+            
+            removeSplash()
+        }
     }
     
     // MARK: - Helpers
@@ -90,141 +163,42 @@ class SplashViewController: UIViewController {
                        animations: {() -> Void in
                         v.alpha = 0.0
         },
-                       completion: {(finished: Bool) -> Void in
-                        DDLogVerbose("Removing the splash screen");
-                        v.removeFromSuperview()
-        }
+            completion: {(finished: Bool) -> Void in
+                DDLogVerbose("Removing the splash screen");
+                v.removeFromSuperview()
+            }
         )
     }
-    
-    
-    // Register for remote notifications
-    func registerForPushNotifications () {
-        PushController.registerForPushNotifications()
+
+    func pushRegistrationSuccessCallback() {
+        DDLogDebug("pushRegistrationSuccessCallback Called")
+
+//        BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
+//            if (error == nil) {
+//            } else {
+//            }
+//        })
+//
+//        // wait for requests to finish
+//        let timeoutDate: Date = Date(timeIntervalSinceNow: 10.0)
+//        
+//        while (self.syncAPIResponseArrived == false ||
+//            self.paymentsSetupCompleted == false ||
+//            SplashViewController.pushRegisterResponseArrived == false) &&
+//            (timeoutDate.timeIntervalSinceNow > 0) {
+//                
+//                CFRunLoopRunInMode(CFRunLoopMode.defaultMode, 0.1, false)
+//        }
+        removeSplash()
     }
-    
-    
-    func doSetup () {
-        DDLogVerbose("Called");
+
+    func pushRegistrationErrorCallback() {
+
+        let v: UIView = self.launchScreenVC!.view!
+        let label: UITextView = v.viewWithTag(ERROR_TEXTVIEW_TAG) as! UITextView
+        label.isHidden = false
         
-        ///////////////////////////////////////////////////////////////////////////
-        // We do the app's initialization in viewDidAppear().
-        // 1. Setup Splash Screen
-        // 2. Register for remote notifications
-        // 3. Sync the app with the webserver by making the http call
-        // 4. Segue to the appropriate view controller one all initialization is done
-        ///////////////////////////////////////////////////////////////////////////
-        
-        // Do any additional setup after loading the view.
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        // show the launch screen
-        showLaunchScreen()
-        //        dismissSplashSnapshot()
-        
-        // Clear keychain on first run in case of reinstallation
-        let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: APP_FIRST_RUN) == nil {
-            // Delete values from keychain here
-            userDefaults.setValue(APP_FIRST_RUN, forKey: APP_FIRST_RUN)
-            LoginViewController.removeLoginKeyChainKeys()
-        }
-        
-        // register for push notification
-        registerForPushNotifications()
-        let client: BAAClient = BAAClient.shared()
-        if client.isAuthenticated() {
-            var syncSuccess = false
-            
-            client.syncClient(BAASBOX_RIDER_STRING, completion: { (success, error) -> Void in
-                
-                if (error == nil) {
-                    DDLogDebug("Sync successful: \(success))")
-                    let responseDictionary = success as! [String:Any]
-                    let paymentObjectModel = PaymentDetailsObject()
-                    BraintreePaymentService.sharedInstance().allPaymentMethods = paymentObjectModel.savePaymentCardDetails(responseArr: responseDictionary["paymentMethods"] as! NSArray) as! [PaymentDetailsObject]
-                    syncSuccess = true
-                }
-                else {
-                    DDLogDebug("Error in Sync: \(error)")
-                    syncSuccess = false
-                }
-                self.syncAPIResponseArrived = true
-            })
-            
-            #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-                
-                StripePaymentService.sharedInstance().setupConfiguration({
-                    self.paymentsSetupCompleted = true
-                })
-                
-            #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-                
-                BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
-                    
-                    if (error == nil) {
-                    
-                    } else {
-                    
-                    }
-                    
-                    self.paymentsSetupCompleted = true
-                })
-                
-            #endif
-            
-            // wait for requests to finish
-            let timeoutDate: Date = Date(timeIntervalSinceNow: 10.0)
-            
-            while (self.syncAPIResponseArrived == false ||
-                self.paymentsSetupCompleted == false ||
-                SplashViewController.pushRegisterResponseArrived == false) &&
-                (timeoutDate.timeIntervalSinceNow > 0) {
-                    
-                    CFRunLoopRunInMode(CFRunLoopMode.defaultMode, 0.1, false)
-            }
-            
-            DDLogDebug("Setup done")
-            
-            // TODO:
-            if (syncSuccess == false) {
-                
-            }
-            
-            if (SplashViewController.pushSuccessful == false) {
-                
-            }
-            
-            // Setup is complete, we should move on and show our first screen
-            
-            DDLogVerbose("User already authenticated");
-            
-            // no need to do anything if user is already authenticated
-            MainViewController.initMainViewController(self, animated: false)
-            removeSplash()
-        } else {
-            DDLogVerbose("User NOT authenticated");
-            
-            let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
-                                                              bundle: nil)
-            
-            self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
-            
-            removeSplash()
-        }
-        
-        // this is important to mark that the application has been initialized
-        appDelegate.initialized = true
+        // earlier we were removing the splash, now just showing the error
+        //        removeSplash()
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

@@ -8,11 +8,11 @@
 
 import Braintree
 import CocoaLumberjack
+import ObjectMapper
 
 public typealias BTSetupCompletionBlock = BTErrorBlock
 public typealias BTCustomerLoadCompletionBlock = () -> Void
-public typealias BTCustomerPaymentLoadCompletionBlock = PaymentMethodsCompletionBlock
-
+public typealias BTCustomerPaymentLoadCompletionBlock = BTErrorBlock
 public typealias BTAttachSourceCompletionBlock = BTErrorBlock
 public typealias BTDeleteSourceCompletionBlock = BTErrorBlock
 public typealias BTDefaultSourceCompletionBlock = BTErrorBlock
@@ -23,25 +23,25 @@ open class BraintreePaymentService: NSObject {
     
     private static let myInstance = BraintreePaymentService()
     
-    var customerID: String? = nil
+//    var customerID: String? = nil
     var clientToken: String! = nil
     
-    var appleMerchantID: String? = nil
+//    var appleMerchantID: String? = nil
     
     // These values will be shown to the user when they purchase with Apple Pay.
-    let companyName = InterfaceString.App.AppName
-    let paymentCurrency = InterfaceString.Payment.PaymentCurrency
+//    let companyName = InterfaceString.App.AppName
+//    let paymentCurrency = InterfaceString.Payment.PaymentCurrency
     
 //    var configuration: STPPaymentConfiguration?
     
-    var paymentMethods = [BTPaymentMethodNonce]()
-    var allPaymentMethods = [PaymentDetailsObject]()
+//    var paymentMethods = [BTPaymentMethodNonce]()
+//    var allPaymentMethods = [PaymentDetailsObject]()
     
     var apiAdapter: BraintreeBackendAPIAdapter = BraintreeBackendAPI.sharedClient
     var apiClient: BTAPIClient?
     
-    var defaultPaymentMethod: BTPaymentMethodNonce?
-    var currentPaymentMethod: PaymentDetailsObject?
+//    var defaultPaymentMethod: BTPaymentMethodNonce?
+//    var currentPaymentMethod: PaymentDetailsObject?
     
     override init() {
         
@@ -73,55 +73,94 @@ open class BraintreePaymentService: NSObject {
     
     func loadCustomerDetails(_ completionBlock: @escaping BTCustomerPaymentLoadCompletionBlock) {
         
-        apiAdapter.retrievePaymentMethods(completion: { (paymentMethods: NSArray?, error: NSError?) -> Void in
+        apiAdapter.retrievePaymentMethods(completion: { (paymentMethods: [YBPaymentMethod]?, error: NSError?) -> Void in
             
-            if error != nil {
-                // TODO: handle error
-                AlertUtil.displayAlert(error!.localizedDescription, message: "")
+            if (error == nil && paymentMethods != nil) {
+                YBClient.sharedInstance().refreshPaymentMethods((paymentMethods)!)
             }
-            else {
-               
-                
-                completionBlock(paymentMethods as NSArray?, nil)
-            }
+            
+            completionBlock(error)
         })
     }
 
-    func attachSourceToCustomer(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTAttachSourceCompletionBlock) {
-        apiAdapter.attachSourceToCustomer(paymentMethod, completion: {(error: NSError?) -> Void in
+    func attachSourceToCustomer(_ paymentMethodNonce: BTPaymentMethodNonce, completionBlock: @escaping BTAttachSourceCompletionBlock) {
+        
+        apiAdapter.attachSourceToCustomer(paymentMethodNonce, completion: {(paymentMethodModel: YBPaymentMethod?, error: NSError?) -> Void in
+
+            if (error == nil) {
+                // add the payment method to the local list of payment methods
+                YBClient.sharedInstance().paymentMethods.append(paymentMethodModel!)
+            }
+            
             completionBlock(error)
         })
     }
     
     func updateSourceForCustomer(_ paymentMethod: BTPaymentMethodNonce,
-                                 oldPaymentMethod: String,
+                                 oldPaymentMethod: YBPaymentMethod,
                                  completionBlock: @escaping UpdateSourceCompletionBlock) {
+        
         apiAdapter.updateSourceForCustomer(paymentMethod,
                                            oldPaymentMethod: oldPaymentMethod,
                                            completion: {(error: Error?) -> Void in
             completionBlock(error)
         })
     }
-    //with string
-    func updateSourceForCustomerstring(_ paymentMethod: String,
-                                 oldPaymentMethod: String,
-                                 completionBlock: @escaping UpdateSourceCompletionBlock) {
-        apiAdapter.updateSourceForCustomerString(paymentMethod,
-                                           oldPaymentMethod: oldPaymentMethod,
-                                           completion: {(error: Error?) -> Void in
-                                            completionBlock(error)
-        })
-    }
     
-    func deleteSourceFromCustomer(_ paymentMethod: String, completionBlock: @escaping BTDeleteSourceCompletionBlock) {
-        apiAdapter.deleteSourceFromCustomer(paymentMethod, completion: {(error: NSError?) -> Void in
+    func deleteSourceFromCustomer(_ paymentMethod: YBPaymentMethod, completionBlock: @escaping BTDeleteSourceCompletionBlock) {
+        
+        apiAdapter.deleteSourceFromCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
+            
+            let listedPaymentMethods = YBClient.sharedInstance().paymentMethods
+            let index = listedPaymentMethods.index{$0 === paymentMethod}
+            
+            if (index != nil) {
+                
+                // Special case: if the default payment method was deleted, we need to refresh the list from the server
+                if (paymentMethod.token == YBClient.sharedInstance().defaultPaymentMethod?.token) {
+                    
+                    self.loadCustomerDetails({(error: NSError?) -> Void in
+                      completionBlock(error)
+                    })
+                    return;
+                }
+                
+                YBClient.sharedInstance().paymentMethods.remove(at: index!)
+            }
+            
             completionBlock(error)
         })
     }
     
-    func selectDefaultCustomerSource(_ paymentMethod: BTPaymentMethodNonce, completionBlock: @escaping BTDefaultSourceCompletionBlock) {
-        apiAdapter.selectDefaultCustomerSource(paymentMethod, completion: {(error: NSError?) -> Void in
+    func selectDefaultCustomerSource(_ paymentMethod: YBPaymentMethod, completionBlock: @escaping BTDefaultSourceCompletionBlock) {
+        
+        apiAdapter.selectDefaultCustomerSource(paymentMethod, completion: {(paymentMethodModel: YBPaymentMethod?, error: NSError?) -> Void in
+            
+            if (error == nil) {
+                
+                // Loop through all the payment Methods to find the old default one and unmark it
+                for pm in YBClient.sharedInstance().paymentMethods {
+                    if let isDefault = pm.isDefault, isDefault == true {
+                        pm.isDefault = false
+                        break;
+                    }
+                }
+                
+                // Loop through all the payment Methods to find the new default and mark it
+                for pm in YBClient.sharedInstance().paymentMethods {
+                    if pm.token == paymentMethodModel?.token {
+                        
+                        pm.isDefault = true
+                        
+                        // update the state for old default payment Method and the new one
+                        YBClient.sharedInstance().defaultPaymentMethod = pm
+                        break;
+                    }
+                }
+            }
+            
             completionBlock(error)
+            
         })
     }
     

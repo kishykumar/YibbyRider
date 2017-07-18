@@ -70,7 +70,7 @@ open class MainViewController: BaseYibbyViewController,
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
     //var selectedPaymentMethod: BTPaymentMethodNonce?
-    var selectedPaymentMethod: PaymentDetailsObject?
+    var selectedPaymentMethod: YBPaymentMethod?
     
 #endif
     
@@ -156,21 +156,13 @@ open class MainViewController: BaseYibbyViewController,
             confirmRideViewController.bidHigh = self.bidHigh
             confirmRideViewController.pickupLocation = self.pickupLocation
             confirmRideViewController.dropoffLocation = self.dropoffLocation
+            confirmRideViewController.currentPaymentMethod = self.selectedPaymentMethod
             
             self.navigationController?.pushViewController(confirmRideViewController, animated: true)
         }
     }
     
     // MARK: - Setup
-    
-    static func initMainViewController(_ vc: UIViewController, animated anim: Bool) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.sendGCMTokenToServer()
-
-        appDelegate.initializeMainViewController()
-        vc.present(appDelegate.centerContainer!, animated: anim, completion: nil)
-    }
     
     func setupDelegates() {
         gmsMapViewOutlet.delegate = self
@@ -349,7 +341,7 @@ open class MainViewController: BaseYibbyViewController,
     
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
 
-        self.selectedPaymentMethod = BraintreePaymentService.sharedInstance().currentPaymentMethod
+        self.selectedPaymentMethod = YBClient.sharedInstance().defaultPaymentMethod
     
 #endif
 
@@ -552,7 +544,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
 
     // MARK: - SelectPaymentViewControllerDelegate
     
-    func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentViewController) {
+    func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentsViewController) {
 //        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
@@ -578,25 +570,28 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
-    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
-                                     didSelectPaymentMethod method: BTPaymentMethodNonce,
-                                                            controllerType: PaymentViewControllerType) {
+//    func selectPaymentViewController(selectPaymentViewController: PaymentsViewController,
+//                                     didSelectPaymentMethod method: BTPaymentMethodNonce,
+//                                                            controllerType: PaymentsViewControllerType) {
+//        
+//        if (controllerType == PaymentsViewControllerType.pickForRide) {
+//            
+//            // modify the selected payment method
+//            //self.selectedPaymentMethod = method
+//            
+//            // remove the view controller
+//            self.navigationController?.popViewController(animated: true)
+//            
+//            // update the card UI
+//           // updateSelectCardUI(paymentMethod: method)
+//        }
+//    }
+    
+    func selectPaymentViewController(selectPaymentViewController: PaymentsViewController,
+                                     didSelectPaymentMethod method: YBPaymentMethod) {
         
-        if (controllerType == PaymentViewControllerType.pickForRide) {
-            
-            // modify the selected payment method
-            //self.selectedPaymentMethod = method
-            
-            // remove the view controller
-            self.navigationController?.popViewController(animated: true)
-            
-            // update the card UI
-           // updateSelectCardUI(paymentMethod: method)
-        }
-    }
-    func selectPaymentViewController(selectPaymentViewController: PaymentViewController, didSelectPaymentMethod method: PaymentDetailsObject, controllerType: PaymentViewControllerType) {
-        if (controllerType == PaymentViewControllerType.pickForRide) {
-            
+//        if (controllerType == PaymentsViewControllerType.pickForRide) {
+        
             // modify the selected payment method
             self.selectedPaymentMethod = method
             
@@ -605,7 +600,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
             
             // update the card UI
             updateSelectCardUI(paymentMethod: method)
-        }
+//        }
     }
     #endif
     
@@ -614,12 +609,12 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
         // Display the select card view
         let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
         
-        let selectPaymentViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentViewControllerIdentifier") as! PaymentViewController
+        let selectPaymentViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentsViewControllerIdentifier") as! PaymentsViewController
         
-        selectPaymentViewController.controllerType = PaymentViewControllerType.pickForRide
+        selectPaymentViewController.controllerType = PaymentsViewControllerType.pickForRide
         selectPaymentViewController.delegate = self
         
-        //selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
+        selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
         
 //        self.navigationController?.presentViewController(selectPaymentViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(selectPaymentViewController, animated: true)        
@@ -638,7 +633,7 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     
     #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
-    func updateSelectCardUI (paymentMethod: PaymentDetailsObject) {
+    func updateSelectCardUI (paymentMethod: YBPaymentMethod) {
         
         
         let paymentMethodType: BTUIPaymentOptionType =

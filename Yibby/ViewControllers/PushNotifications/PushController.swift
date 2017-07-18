@@ -146,7 +146,7 @@ open class PushController: NSObject, PushControllerProtocol {
                 let bid = Bid(JSONString: jsonCustomString)!
                 if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: bid.id)) {
                     DDLogDebug("Not same as ongoingBid. Discarded: \(notification[MESSAGE_JSON_FIELD_NAME] as! String)")
-                    DDLogDebug("Ongoingbid is: \(YBClient.sharedInstance().getBid())")
+                    DDLogDebug("Ongoingbid is: \(YBClient.sharedInstance().bid)")
                     return;
                 }
                 
@@ -187,7 +187,7 @@ open class PushController: NSObject, PushControllerProtocol {
                 
                 if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: ride.bidId)) {
                     
-                    if let ongoingBid = YBClient.sharedInstance().getBid() {
+                    if let ongoingBid = YBClient.sharedInstance().bid {
                         DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(ride.bidId)")
                     } else {
                         DDLogDebug("Ongoingbid is: nil. Incoming is \(ride.bidId)")
