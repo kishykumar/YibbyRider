@@ -163,24 +163,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func syncApp() {
         let client: BAAClient = BAAClient.shared()
         
-        client.syncClient(BAASBOX_RIDER_STRING, completion: { (success, error) -> Void in
+        let bidId = YBClient.sharedInstance().getPersistedBidId()
+        client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
             
             if let success = success {
 
                 let syncModel = Mapper<YBSync>().map(JSONObject: success)
-                
+
                 if let syncData = syncModel {
-                    
+
                     // TODO: Do the Braintree setup as part of sync
                     BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
                         if (error == nil) {
 
                             YBClient.sharedInstance().syncClient(syncData)
                             
+                            DDLogVerbose("KKDBG syncapp status \(YBClient.sharedInstance().status)")
+                            
                             self.initializeMainViewController()
                             if let centerNav = self.centerContainer?.centerViewController as? UINavigationController {
                                 var controllers = centerNav.viewControllers
 
+                                YBClient.sharedInstance().status = .looking
                                 switch (YBClient.sharedInstance().status) {
                                 case .looking:
                                     
@@ -196,21 +200,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                                     break
                                     
                                 case .driverEnRoute:
-                                    let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
-                                    
-                                    let driverEnRouteViewController = driverEnRouteStoryboard.instantiateViewController(withIdentifier: "DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
-                                    controllers.append(driverEnRouteViewController)
-                                    break
+                                    fallthrough
                                     
                                 case .onRide:
+                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
                                     
+                                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                                    controllers.append(rideViewController)
                                     break
                                     
                                 case .pendingRating:
                                     
-                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                                    let rideEndStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.RideEnd, bundle: nil)
                                     
-                                    let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
+                                    let rideEndViewController = rideEndStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
                                     controllers.append(rideEndViewController)
 
                                     break

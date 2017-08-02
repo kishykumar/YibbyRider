@@ -16,7 +16,7 @@ import GoogleMaps
 import Braintree
 
 class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
+
 //    let kCloseCellHeight: CGFloat = 172
 //    let kOpenCellHeight: CGFloat = 563
     
@@ -60,21 +60,12 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         // add spacing on top of tableview
         let topInset: CGFloat = 60
         TV.contentInset =  UIEdgeInsetsMake(topInset, 0, 0, 0);
-        
-        self.navigationController?.isNavigationBarHidden = true
 
         setupBackButton()
 //        setupNavigationBar()
     }
 
     func setupNavigationBar() {
-        
-        self.navigationController?.navigationItem.hidesBackButton = true
-        
-        let image : UIImage? = UIImage.init(named: "back_button_green")!.withRenderingMode(.alwaysOriginal)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0)
-        
         
         // Make Navbar invisible
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

@@ -43,6 +43,39 @@ open class BraintreeCardUtil {
         else {
             return BTUIPaymentOptionType.unknown
         }
+    }
+    
+    class func paymentMethodImageFromBrand(_ brand: String?) -> UIImage? {
         
+        if brand == nil {
+            return UIImage(named: "Unknown")
+        }
+        if (brand == InterfaceString.Card.AmericanExpress) {
+            return UIImage(named: "Amex")
+        }
+        else if (brand == InterfaceString.Card.Visa) {
+            return UIImage(named: "Visa")
+        }
+        else if (brand == InterfaceString.Card.MasterCard) {
+            return UIImage(named: "MasterCard")
+        }
+        else if (brand == InterfaceString.Card.Discover) {
+            return UIImage(named: "Discover")
+        }
+        else if (brand == InterfaceString.Card.JCB) {
+            return UIImage(named: "JCB")
+        }
+        else if (brand == InterfaceString.Card.Maestro) {
+            return UIImage(named: "Maestro")
+        }
+        else if (brand == InterfaceString.Card.DinersClub) {
+            return UIImage(named: "Diners Club")
+        }
+        else if (brand == InterfaceString.Card.UnionPay) {
+            return UIImage(named: "UnionPay")
+        }
+        else {
+            return UIImage(named: "Unknown")
+        }
     }
 }

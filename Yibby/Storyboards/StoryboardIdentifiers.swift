@@ -9,6 +9,6 @@
 import UIKit
 
 public enum StoryboardIdentifier: String {
-    case Login = "LoginViewController"
-    case Settings = "SettingsViewController"
+    case Login = "LoginViewControllerIdentifier"
+    case Settings = "SettingsViewControllerIdentifier"
 }

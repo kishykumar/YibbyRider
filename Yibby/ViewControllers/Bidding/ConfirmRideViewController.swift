@@ -84,8 +84,11 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     userBid.dropoffLocation = dropoffLoc
                                     userBid.people = (successData["people"] as? Int)
                                     userBid.creationTime = (successData["_creation_date"] as! String)
-                                    
+
+                                    DDLogVerbose("KKDBG_bidID \(userBid.id)")
                                     YBClient.sharedInstance().bid = userBid
+
+                                    YBClient.sharedInstance().persistBidId(bid: userBid)
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {
@@ -105,7 +108,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
     func setupUI() {
         
         //self.view.backgroundColor = UIColor.navyblue1()
-        self.view.backgroundColor = UIColor(red: 39/255, green: 56/255, blue: 76/255, alpha: 1)
+        self.view.backgroundColor = UIColor.appDarkGreen1()
         
         self.cancelButtonOutlet.color = UIColor.red
         self.acceptButtonOutlet.color = UIColor.appDarkGreen1()

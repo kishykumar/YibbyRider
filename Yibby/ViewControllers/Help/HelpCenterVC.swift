@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HelpCenterVC: UIViewController {
+class HelpCenterVC: BaseYibbyViewController {
 
     @IBOutlet var useYibbyBtn: UIButton!
     @IBOutlet var lostStolenItemBtn: UIButton!

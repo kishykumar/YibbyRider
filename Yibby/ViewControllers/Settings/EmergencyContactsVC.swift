@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmergencyContactsVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class EmergencyContactsVC: BaseYibbyViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var TV: UITableView!
     @IBOutlet weak var addNewContactButtonOutlet: UIButton!

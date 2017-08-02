@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LostOrStolenItemVC: UIViewController {
+class LostOrStolenItemVC: BaseYibbyViewController {
 
     
     @IBOutlet var VW: UIView!

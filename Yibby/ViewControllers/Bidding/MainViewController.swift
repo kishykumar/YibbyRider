@@ -21,7 +21,7 @@ import GooglePlaces
 // 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message.
 // 4. 
 
-open class MainViewController: BaseYibbyViewController,
+class MainViewController: BaseYibbyViewController,
                                 UITextFieldDelegate,
                                 DestinationDelegate,
                                 CLLocationManagerDelegate {
@@ -83,7 +83,7 @@ open class MainViewController: BaseYibbyViewController,
     
     // MARK: Actions
     @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
-        
+        AlertUtil.displayAlert("Thanks for taking a ride with Yibby!", message: "Please come back.")
     }
     
     @IBAction func leftSlideButtonTapped(_ sender: AnyObject) {
@@ -187,7 +187,6 @@ open class MainViewController: BaseYibbyViewController,
         if let method = self.selectedPaymentMethod {
             updateSelectCardUI(paymentMethod: method)
         }
-        
     }
     
     open override func viewWillLayoutSubviews() {
@@ -240,7 +239,7 @@ open class MainViewController: BaseYibbyViewController,
 //        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
 //        self.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsetsMake(app.statusBarFrame.size.height-4, -8, -(app.statusBarFrame.size.height-4), 8)
         
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
 
         // set nav bar color
 //        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()

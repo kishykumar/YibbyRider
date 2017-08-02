@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LegalVC: UIViewController {
+class LegalVC: BaseYibbyViewController {
 
     @IBOutlet var privacyPolicyBtn: UIButton!
     @IBOutlet var termsOfServiceBtn: UIButton!

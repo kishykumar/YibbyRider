@@ -40,21 +40,14 @@ class HelpViewController: BaseYibbyViewController {
         VW1.layer.cornerRadius = 7
     }
     
-    
     @IBAction func rideHistoryBtnAction(sender: AnyObject) {
-        /*let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "RiderHistoryVC") as! RiderHistoryVC
-        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)*/
         
-        let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "TripTableVC") as! TripTableVC
-        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
-        
-        // Push to Trips View Controller
-//        let tripStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
-//        let vc = tripStoryboard.instantiateViewController(withIdentifier: "TripTableVC") as! TripTableVC
-//        present(vc, animated: true, completion: nil)
-        
- 
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+
+        let tripTableVC = historyStoryboard.instantiateViewController(withIdentifier: "TripTableVC") as! TripTableVC
+        _ = self.navigationController?.pushViewController(tripTableVC, animated: true)
     }
+    
     @IBAction func helpCenterBtnAction(sender: AnyObject){
         let HelpCenterNVC = self.storyboard?.instantiateViewController(withIdentifier: "HelpCenterVC") as! HelpCenterVC
         _ = self.navigationController?.pushViewController(HelpCenterNVC, animated: true)

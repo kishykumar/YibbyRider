@@ -89,6 +89,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AMPopTip/AMPopTip.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ASProgressPopUpView/ASProgressPopUpView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AlamofireObjectMapper/AlamofireObjectMapper.framework"
@@ -96,6 +97,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/BaasBoxSDK/BaasBoxSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Braintree/Braintree.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Cosmos/Cosmos.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FDStackView/FDStackView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FLAnimatedImage/FLAnimatedImage.framework"
@@ -113,14 +115,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/PINRemoteImage/PINRemoteImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Spring/Spring.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/StepSlider/StepSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Stripe/Stripe.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TTRangeSlider/TTRangeSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TextFieldEffects/TextFieldEffects.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XLPagerTabStrip/XLPagerTabStrip.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AMPopTip/AMPopTip.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ASProgressPopUpView/ASProgressPopUpView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AlamofireObjectMapper/AlamofireObjectMapper.framework"
@@ -128,6 +131,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/BaasBoxSDK/BaasBoxSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Braintree/Braintree.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Cosmos/Cosmos.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FDStackView/FDStackView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FLAnimatedImage/FLAnimatedImage.framework"
@@ -145,10 +149,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/PINRemoteImage/PINRemoteImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Spring/Spring.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/StepSlider/StepSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Stripe/Stripe.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TTRangeSlider/TTRangeSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TextFieldEffects/TextFieldEffects.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XLPagerTabStrip/XLPagerTabStrip.framework"
 fi
