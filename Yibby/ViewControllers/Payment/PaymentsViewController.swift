@@ -77,6 +77,8 @@ class PaymentsViewController: BaseYibbyViewController,
     
     func setupUI () {
         
+        setupBackButton()
+        
         if (controllerType == PaymentsViewControllerType.pickForRide) {
             
             paymentsTableHeaderLabelOutlet.text = "Payment Selection"

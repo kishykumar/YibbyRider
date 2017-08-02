@@ -2505,8 +2505,9 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 }
 
 - (void)syncClient: (NSString *)type
-        completion: (BAAObjectResultBlock)completionBlock {
-    
+                    bidId: (NSString *)bidId
+                    completion: (BAAObjectResultBlock)completionBlock {
+
     if (!self.currentUser) {
         if (completionBlock) {
             
@@ -2516,16 +2517,21 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                                                  code:[BaasBox errorCode]
                                              userInfo:details];
             completionBlock(NO, error);
-            
         }
         return;
+    }
+    
+    NSString *tempBidId = @"";
+    if (bidId != nil) {
+        tempBidId = bidId;
     }
     
     [self getPath:@"/caber/sync"
        parameters:@{
                     @"type" : type,
                     @"appcode" : self.appCode,
-                    @"X-BB-SESSION": self.currentUser.authenticationToken
+                    @"X-BB-SESSION": self.currentUser.authenticationToken,
+                    @"bidId": tempBidId
                     }
         success:^(NSDictionary *responseObject) {
             

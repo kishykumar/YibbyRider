@@ -9,7 +9,7 @@
 
 import UIKit
 
-class NotificationsVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class NotificationsVC: BaseYibbyViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var TV: UITableView!
     

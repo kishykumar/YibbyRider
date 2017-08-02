@@ -38,12 +38,12 @@ public struct InterfaceString {
         static let Login = NSLocalizedString("Login", comment: "Login Storyboard")
         static let SignUp = NSLocalizedString("SignUp", comment: "SignUp Storyboard")
         static let Drawer = NSLocalizedString("Drawer", comment: "Drawer Storyboard")
-        static let DriverEnRoute = NSLocalizedString("DriverEnRoute", comment: "DriverEnRoute Storyboard")
         static let Help = NSLocalizedString("Help", comment: "Help Storyboard")
         static let History = NSLocalizedString("History", comment: "History Storyboard")
         static let Payment = NSLocalizedString("Payment", comment: "Payment Storyboard")
         static let Promotions = NSLocalizedString("Promotions", comment: "Promotions Storyboard")
         static let Ride = NSLocalizedString("Ride", comment: "Ride Storyboard")
+        static let RideEnd = NSLocalizedString("RideEnd", comment: "RideEnd Storyboard")
         static let ProfileStoryboard = NSLocalizedString("Profile", comment: "Profile Storyboard")
     }
     

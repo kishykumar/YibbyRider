@@ -66,7 +66,7 @@
                                                                             <rect key="frame" x="55" y="4" width="115" height="35"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-5L-Mwx" userLabel="CardHintView" customClass="BTUICardHint">
-                                                                                    <rect key="frame" x="9" y="4.5" width="36" height="26"/>
+                                                                                    <rect key="frame" x="9" y="5" width="36" height="26"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" priority="250" constant="26" id="69g-S6-s0G"/>
@@ -162,22 +162,22 @@
                                                 <rect key="frame" x="20" y="363" width="280" height="175"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Payment Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5m-yW-ch3">
-                                                        <rect key="frame" x="0.0" y="10" width="280" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="10" width="280" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="0AS-Ds-gyb" userLabel="AddCreditCardSV">
-                                                        <rect key="frame" x="20" y="51" width="240" height="34"/>
+                                                        <rect key="frame" x="20" y="52" width="240" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-Mi-qsq" userLabel="CreditCardFALabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="27" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="29" height="34"/>
                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="25"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kI-Ys-0Ct" userLabel="AddCreditCardButton">
-                                                                <rect key="frame" x="39" y="0.0" width="201" height="34"/>
+                                                                <rect key="frame" x="41" y="0.0" width="199" height="34"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                 <state key="normal" title="Add Credit Card">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -189,7 +189,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LiO-yc-EGZ" userLabel="YibbyCodeSV">
-                                                        <rect key="frame" x="20" y="105" width="240" height="25"/>
+                                                        <rect key="frame" x="20" y="106" width="240" height="25"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B9y-oV-9sO" userLabel="YibbyYImageView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -254,7 +254,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vYj-sK-3qj" firstAttribute="leading" secondItem="wXE-nf-oiU" secondAttribute="leading" id="4bH-hY-ZR9"/>
+                            <constraint firstItem="vYj-sK-3qj" firstAttribute="leading" secondItem="wXE-nf-oiU" secondAttribute="leading" id="1Aj-M8-txm"/>
                             <constraint firstItem="vYj-sK-3qj" firstAttribute="top" secondItem="k8o-2o-Q4T" secondAttribute="bottom" id="jc5-cd-WFO"/>
                             <constraint firstAttribute="trailing" secondItem="vYj-sK-3qj" secondAttribute="trailing" id="qH6-zt-pA7"/>
                             <constraint firstItem="pYY-j0-kie" firstAttribute="top" secondItem="vYj-sK-3qj" secondAttribute="bottom" id="x80-eo-ADa"/>

@@ -112,6 +112,7 @@
                 completion: (BAABooleanResultBlock)completionBlock;
 
 - (void)syncClient: (NSString *)type
+                    bidId: (NSString *)bidId
                     completion: (BAAObjectResultBlock)completionBlock;
 
 // get location

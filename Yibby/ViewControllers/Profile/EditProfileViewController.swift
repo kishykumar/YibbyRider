@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class EditProfileViewController: UIViewController {
+open class EditProfileViewController: BaseYibbyViewController {
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!

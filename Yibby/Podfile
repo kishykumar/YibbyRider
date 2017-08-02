@@ -22,11 +22,17 @@ def shared_pods
     pod 'BaasBoxSDK’
     pod 'SwiftyJSON'
     pod 'MMDrawerController', '~> 0.5.7'
-    pod 'TTRangeSlider'
+    #pod 'TTRangeSlider'
     pod 'BButton'
     pod 'TextFieldEffects'
+
     pod 'SVProgressHUD'
-    
+    #pod 'MBProgressHUD'
+    pod 'Cosmos', '~> 11.0'
+    pod 'StepSlider'
+    pod 'AMPopTip'
+    #pod 'CRToast', '~> 0.0.7'
+
     #pod 'CocoaLumberjack/Swift', '~> 3.0.0'
     pod 'CocoaLumberjack/Swift', :git => 'https://github.com/CocoaLumberjack/CocoaLumberjack', :branch => 'swift_3'
     

@@ -29,6 +29,8 @@ open class YBClient {
     var paymentMethods = [YBPaymentMethod]()
     var defaultPaymentMethod: YBPaymentMethod?
     
+    let APP_BID_ID_KEY = "APP_BID_ID"
+    
     init() {
         status = .looking
     }
@@ -71,7 +73,7 @@ extension YBClient {
         
         return ((bid!.id ) == bidId)
     }
-    
+
     func syncClient(_ syncData: YBSync) {
         defaultPaymentMethod = nil
         if let myBid = syncData.bid {
@@ -86,13 +88,15 @@ extension YBClient {
             self.profile = myProfile
         }
         
-        self.status = syncData.status!
+        if let status = syncData.status {
+            self.status = status
+        }
         
         if let paymentMethods = syncData.paymentMethods {
             refreshPaymentMethods(paymentMethods)
         }
     }
-    
+
     func refreshPaymentMethods(_ paymentMethods: [YBPaymentMethod]) {
         
         self.paymentMethods = paymentMethods
@@ -105,5 +109,16 @@ extension YBClient {
             }
         }
         assert(self.defaultPaymentMethod != nil)
+    }
+    
+    func persistBidId(bid: Bid) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(bid.id, forKey: APP_BID_ID_KEY)
+    }
+    
+    func getPersistedBidId() -> String? {
+        let userDefaults = UserDefaults.standard
+        let bidId = userDefaults.object(forKey: APP_BID_ID_KEY) as? String
+        return bidId
     }
 }

@@ -10,10 +10,7 @@
 		08032C121E6600A100E876A5 /* CarDetailsChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08032C111E6600A100E876A5 /* CarDetailsChildView.swift */; };
 		08032C161E66102B00E876A5 /* CancelRideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08032C151E66102B00E876A5 /* CancelRideVC.swift */; };
 		080349C21E7DB17A006C1E8A /* pickImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080349C11E7DB179006C1E8A /* pickImageClass.swift */; };
-		0803D6C41E8052BE0011990E /* DriverInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0803D6C31E8052BE0011990E /* DriverInfoVC.swift */; };
 		080D05B91E58116700B5C81E /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D05B81E58116700B5C81E /* NotificationsVC.swift */; };
-		080D05BB1E58290200B5C81E /* RiderHistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D05BA1E58290200B5C81E /* RiderHistoryTVC.swift */; };
-		080D05BD1E5829A500B5C81E /* RiderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D05BC1E5829A500B5C81E /* RiderHistoryVC.swift */; };
 		0825BB4B1E5624BC00A18145 /* TextfieldValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4A1E5624BC00A18145 /* TextfieldValidations.swift */; };
 		0825BB4D1E562EC200A18145 /* HeaderClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4C1E562EC200A18145 /* HeaderClass.swift */; };
 		0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825BB4E1E563EB300A18145 /* ProfileVC.swift */; };
@@ -61,10 +58,8 @@
 		1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B78B1D23B0B900A7EEAF /* Main.storyboard */; };
 		1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */; };
 		1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7DC1D24EE8F00A7EEAF /* SignUp.storyboard */; };
-		1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */; };
 		1201B7E21D24F65B00A7EEAF /* Bidding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E11D24F65B00A7EEAF /* Bidding.storyboard */; };
-		1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */; };
-		1201B7E61D24FFAA00A7EEAF /* Ride.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E51D24FFAA00A7EEAF /* Ride.storyboard */; };
+		1201B7E61D24FFAA00A7EEAF /* RideEnd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E51D24FFAA00A7EEAF /* RideEnd.storyboard */; };
 		1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E71D24FFF100A7EEAF /* Drawer.storyboard */; };
 		1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7E91D25002700A7EEAF /* About.storyboard */; };
 		1201B7EC1D25005300A7EEAF /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1201B7EB1D25005300A7EEAF /* Help.storyboard */; };
@@ -110,6 +105,12 @@
 		1204788F1D93CEF4009E1B16 /* JOButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */; };
 		120478911D93CEFF009E1B16 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120478901D93CEFF009E1B16 /* SelectorView.swift */; };
 		120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120682381CBE277C004A34BB /* SystemConfiguration.framework */; };
+		12085F5D1F213B0F00DBC91F /* DriverInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F581F213B0F00DBC91F /* DriverInfoVC.swift */; };
+		12085F5E1F213B0F00DBC91F /* Ride.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12085F591F213B0F00DBC91F /* Ride.storyboard */; };
+		12085F5F1F213B0F00DBC91F /* RideBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F5A1F213B0F00DBC91F /* RideBottomViewController.swift */; };
+		12085F601F213B0F00DBC91F /* RideContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F5B1F213B0F00DBC91F /* RideContentViewController.swift */; };
+		12085F611F213B0F00DBC91F /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F5C1F213B0F00DBC91F /* RideViewController.swift */; };
+		12085F631F21DBB500DBC91F /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F621F21DBB500DBC91F /* MessageComposer.swift */; };
 		121096931D1142E000D7174F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096921D1142E000D7174F /* LocationService.swift */; };
 		1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096951D13CA6300D7174F /* HistoryTableCell.swift */; };
 		1214C02D1EEFC5E300247C82 /* CredentialsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214C02C1EEFC5E300247C82 /* CredentialsValidator.swift */; };
@@ -200,8 +201,6 @@
 		126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */; };
 		126C4B041D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */; };
 		126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */; };
-		128CE53F1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CE53E1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift */; };
-		128CE5411E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CE5401E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift */; };
 		129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */; };
 		12A364C01DA8563C00BA655F /* LoginViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */; };
 		12A364C21DA8755400BA655F /* SignupViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */; };
@@ -278,10 +277,7 @@
 		08032C111E6600A100E876A5 /* CarDetailsChildView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailsChildView.swift; sourceTree = "<group>"; };
 		08032C151E66102B00E876A5 /* CancelRideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelRideVC.swift; sourceTree = "<group>"; };
 		080349C11E7DB179006C1E8A /* pickImageClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickImageClass.swift; sourceTree = "<group>"; };
-		0803D6C31E8052BE0011990E /* DriverInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverInfoVC.swift; sourceTree = "<group>"; };
 		080D05B81E58116700B5C81E /* NotificationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
-		080D05BA1E58290200B5C81E /* RiderHistoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderHistoryTVC.swift; sourceTree = "<group>"; };
-		080D05BC1E5829A500B5C81E /* RiderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderHistoryVC.swift; sourceTree = "<group>"; };
 		0825BB4A1E5624BC00A18145 /* TextfieldValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldValidations.swift; sourceTree = "<group>"; };
 		0825BB4C1E562EC200A18145 /* HeaderClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderClass.swift; sourceTree = "<group>"; };
 		0825BB4E1E563EB300A18145 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -331,10 +327,8 @@
 		1201B78C1D23B0B900A7EEAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceString.swift; sourceTree = "<group>"; };
 		1201B7DC1D24EE8F00A7EEAF /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
-		1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteViewController.swift; sourceTree = "<group>"; };
 		1201B7E11D24F65B00A7EEAF /* Bidding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bidding.storyboard; sourceTree = "<group>"; };
-		1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DriverEnRoute.storyboard; sourceTree = "<group>"; };
-		1201B7E51D24FFAA00A7EEAF /* Ride.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ride.storyboard; sourceTree = "<group>"; };
+		1201B7E51D24FFAA00A7EEAF /* RideEnd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RideEnd.storyboard; sourceTree = "<group>"; };
 		1201B7E71D24FFF100A7EEAF /* Drawer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Drawer.storyboard; sourceTree = "<group>"; };
 		1201B7E91D25002700A7EEAF /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		1201B7EB1D25005300A7EEAF /* Help.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
@@ -380,6 +374,12 @@
 		1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JOButtonMenu.swift; sourceTree = "<group>"; };
 		120478901D93CEFF009E1B16 /* SelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
 		120682381CBE277C004A34BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		12085F581F213B0F00DBC91F /* DriverInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverInfoVC.swift; sourceTree = "<group>"; };
+		12085F591F213B0F00DBC91F /* Ride.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ride.storyboard; sourceTree = "<group>"; };
+		12085F5A1F213B0F00DBC91F /* RideBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideBottomViewController.swift; sourceTree = "<group>"; };
+		12085F5B1F213B0F00DBC91F /* RideContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideContentViewController.swift; sourceTree = "<group>"; };
+		12085F5C1F213B0F00DBC91F /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
+		12085F621F21DBB500DBC91F /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
 		121096921D1142E000D7174F /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		121096951D13CA6300D7174F /* HistoryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableCell.swift; sourceTree = "<group>"; };
 		1214C02C1EEFC5E300247C82 /* CredentialsValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsValidator.swift; sourceTree = "<group>"; };
@@ -473,8 +473,6 @@
 		126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		12814FB91E0D23B400F08CFF /* Yibby.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yibby.entitlements; sourceTree = "<group>"; };
-		128CE53E1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteContentViewController.swift; sourceTree = "<group>"; };
-		128CE5401E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEnRouteBottomViewController.swift; sourceTree = "<group>"; };
 		129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		12A364BF1DA8563C00BA655F /* LoginViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerSpec.swift; sourceTree = "<group>"; };
 		12A364C11DA8755400BA655F /* SignupViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -623,7 +621,6 @@
 				1201B7401D23A84500A7EEAF /* Bidding */,
 				1201B7481D23A85F00A7EEAF /* Destination */,
 				1201B74A1D23A85F00A7EEAF /* Drawer */,
-				1201B7DE1D24F62500A7EEAF /* EnRoute */,
 				1201B74C1D23A85F00A7EEAF /* Help */,
 				1201B74E1D23A85F00A7EEAF /* History */,
 				1201B7501D23A85F00A7EEAF /* Intro */,
@@ -703,6 +700,7 @@
 			children = (
 				1201B83F1D28E93900A7EEAF /* FreeMethods.swift */,
 				1201B84D1D29125300A7EEAF /* TemporaryCache.swift */,
+				12085F621F21DBB500DBC91F /* MessageComposer.swift */,
 				1201B83B1D28E8AE00A7EEAF /* Keyboard.swift */,
 				1201B8391D28E58300A7EEAF /* InterfaceImage.swift */,
 				1201B7D71D23BAE200A7EEAF /* InterfaceString.swift */,
@@ -765,8 +763,6 @@
 			children = (
 				1201B7EB1D25005300A7EEAF /* Help.storyboard */,
 				1201B74D1D23A85F00A7EEAF /* HelpViewController.swift */,
-				080D05BC1E5829A500B5C81E /* RiderHistoryVC.swift */,
-				080D05BA1E58290200B5C81E /* RiderHistoryTVC.swift */,
 				08FE49591E7416C60044ACBF /* HelpCenterVC.swift */,
 				08FE495A1E7416C60044ACBF /* LegalVC.swift */,
 			);
@@ -854,7 +850,12 @@
 		1201B75A1D23A85F00A7EEAF /* Ride */ = {
 			isa = PBXGroup;
 			children = (
-				1201B7E51D24FFAA00A7EEAF /* Ride.storyboard */,
+				12085F581F213B0F00DBC91F /* DriverInfoVC.swift */,
+				12085F591F213B0F00DBC91F /* Ride.storyboard */,
+				12085F5A1F213B0F00DBC91F /* RideBottomViewController.swift */,
+				12085F5B1F213B0F00DBC91F /* RideContentViewController.swift */,
+				12085F5C1F213B0F00DBC91F /* RideViewController.swift */,
+				1201B7E51D24FFAA00A7EEAF /* RideEnd.storyboard */,
 				1201B75D1D23A85F00A7EEAF /* RideEndViewController.swift */,
 				1201B75E1D23A85F00A7EEAF /* TripViewController.swift */,
 			);
@@ -918,18 +919,6 @@
 				1201B7831D23ADD700A7EEAF /* StoryboardIdentifiers.swift */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		1201B7DE1D24F62500A7EEAF /* EnRoute */ = {
-			isa = PBXGroup;
-			children = (
-				1201B7E31D24FF7900A7EEAF /* DriverEnRoute.storyboard */,
-				1201B7DF1D24F62500A7EEAF /* DriverEnRouteViewController.swift */,
-				128CE53E1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift */,
-				128CE5401E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift */,
-				0803D6C31E8052BE0011990E /* DriverInfoVC.swift */,
-			);
-			path = EnRoute;
 			sourceTree = "<group>";
 		};
 		1201B8171D28A9EC00A7EEAF /* Style */ = {
@@ -1690,6 +1679,7 @@
 				1220F98B1DB2AD3500390E44 /* ionicons.ttf in Resources */,
 				1220F9891DB2A90F00390E44 /* fontello.ttf in Resources */,
 				1201B7E81D24FFF100A7EEAF /* Drawer.storyboard in Resources */,
+				12085F5E1F213B0F00DBC91F /* Ride.storyboard in Resources */,
 				1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */,
 				126C4AEC1D796276005EC5FF /* CardView.xib in Resources */,
 				1201B7F61D25010500A7EEAF /* Destination.storyboard in Resources */,
@@ -1701,13 +1691,12 @@
 				1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */,
 				125B39061DBC97180041E0D7 /* Profile.storyboard in Resources */,
 				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
-				1201B7E41D24FF7900A7EEAF /* DriverEnRoute.storyboard in Resources */,
 				B1BFB3761E8A2DF600E86F11 /* DigitsKitResources.bundle in Resources */,
 				1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */,
 				1201B82D1D28ADC800A7EEAF /* AlertViewController.xib in Resources */,
 				124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */,
 				1201B7E21D24F65B00A7EEAF /* Bidding.storyboard in Resources */,
-				1201B7E61D24FFAA00A7EEAF /* Ride.storyboard in Resources */,
+				1201B7E61D24FFAA00A7EEAF /* RideEnd.storyboard in Resources */,
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
 				1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */,
 				1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */,
@@ -1850,7 +1839,6 @@
 				12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */,
 				1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */,
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
-				0803D6C41E8052BE0011990E /* DriverInfoVC.swift in Sources */,
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
 				12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
@@ -1872,7 +1860,6 @@
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
 				126C4AD71D796276005EC5FF /* AmericanExpress.swift in Sources */,
-				080D05BB1E58290200B5C81E /* RiderHistoryTVC.swift in Sources */,
 				084207E51E5870D4006607D8 /* NotificationTVC.swift in Sources */,
 				1201B8541D32445E00A7EEAF /* Bid.swift in Sources */,
 				1201B84C1D290AF800A7EEAF /* ProfileService.swift in Sources */,
@@ -1893,6 +1880,7 @@
 				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
+				12085F601F213B0F00DBC91F /* RideContentViewController.swift in Sources */,
 				0825BB4D1E562EC200A18145 /* HeaderClass.swift in Sources */,
 				126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */,
 				12A6BF4A1D7FFACD008BEFC1 /* UIColorExtensions.swift in Sources */,
@@ -1927,7 +1915,6 @@
 				1201B83C1D28E8AE00A7EEAF /* Keyboard.swift in Sources */,
 				084207E71E5871D6006607D8 /* NotificationTVC1.swift in Sources */,
 				1201B7651D23A85F00A7EEAF /* DestinationPickerViewController.swift in Sources */,
-				128CE53F1E03D08200AD30A6 /* DriverEnRouteContentViewController.swift in Sources */,
 				1201B7661D23A85F00A7EEAF /* LeftNavDrawerViewController.swift in Sources */,
 				1201B76B1D23A85F00A7EEAF /* PromotionsViewController.swift in Sources */,
 				12A6BF4F1D800384008BEFC1 /* YibbyMapMarker.swift in Sources */,
@@ -1970,13 +1957,13 @@
 				1236AA531D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */,
 				08F790DE1E8ADAFE00CF53C0 /* TripObject.swift in Sources */,
 				1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */,
+				12085F611F213B0F00DBC91F /* RideViewController.swift in Sources */,
 				126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */,
 				124E3CB11F00E2830081FDFD /* YBSync.swift in Sources */,
 				B12CC9C11EA9D60E00172B2D /* YBPaymentMethods.swift in Sources */,
 				126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
 				1228B8781EE7DDC800524062 /* YBLeftImageTextField.swift in Sources */,
-				1201B7E01D24F62500A7EEAF /* DriverEnRouteViewController.swift in Sources */,
 				126C4AEA1D796276005EC5FF /* CardTextFieldDelegate.swift in Sources */,
 				126C4AF41D796276005EC5FF /* AutoCompletingTextField.swift in Sources */,
 				121531721D441E3100C28C73 /* TimeUtil.swift in Sources */,
@@ -1995,7 +1982,6 @@
 				126C4AD81D796276005EC5FF /* ChinaUnionPay.swift in Sources */,
 				12A6BF461D7E8596008BEFC1 /* CardFieldsView+PrefillInformation.swift in Sources */,
 				08FE495B1E7416C60044ACBF /* HelpCenterVC.swift in Sources */,
-				080D05BD1E5829A500B5C81E /* RiderHistoryVC.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
 				126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */,
 				0825BB4B1E5624BC00A18145 /* TextfieldValidations.swift in Sources */,
@@ -2009,8 +1995,8 @@
 				1219433B1EEA90830001BD00 /* InterfaceError.swift in Sources */,
 				1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */,
 				1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */,
-				128CE5411E03D09200AD30A6 /* DriverEnRouteBottomViewController.swift in Sources */,
 				126C4AF51D796276005EC5FF /* TextFieldValidation.swift in Sources */,
+				12085F631F21DBB500DBC91F /* MessageComposer.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
@@ -2020,8 +2006,10 @@
 				126C4AE51D796276005EC5FF /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */,
 				08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */,
 				1253F2CC1EFA18E300C50BB5 /* IntrinsicTableView.swift in Sources */,
+				12085F5D1F213B0F00DBC91F /* DriverInfoVC.swift in Sources */,
 				0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */,
 				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
+				12085F5F1F213B0F00DBC91F /* RideBottomViewController.swift in Sources */,
 				080D05B91E58116700B5C81E /* NotificationsVC.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
 				B193074C1E9977D800C3AF59 /* UIButtonExtensions.swift in Sources */,

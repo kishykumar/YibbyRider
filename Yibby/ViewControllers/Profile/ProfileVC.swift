@@ -11,7 +11,7 @@ import BaasBoxSDK
 import CocoaLumberjack
 import ObjectMapper
 
-class ProfileVC: UIViewController {
+class ProfileVC: BaseYibbyViewController {
     
     @IBOutlet weak var emailAddress: YibbyTextField!
     @IBOutlet weak var phoneNo: YibbyTextField!

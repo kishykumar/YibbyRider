@@ -502,8 +502,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kf2-1Q-1rx" customClass="ASProgressPopUpView">
-                                <rect key="frame" x="40" y="119" width="240" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kf2-1Q-1rx" customClass="ASProgressPopUpView">
+                                <rect key="frame" x="40" y="139" width="240" height="2"/>
                             </progressView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Please wait while the drivers battle out the cheapest price for you." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAl-L2-eNg">
                                 <rect key="frame" x="40" y="285" width="240" height="85"/>

@@ -203,26 +203,30 @@ open class PushController: NSObject, PushControllerProtocol {
                     
                     disableTimeoutCode()
                     
-                    let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
+                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
                     
-                    let driverEnRouteViewController = driverEnRouteStoryboard.instantiateViewController(withIdentifier: "DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
-                    mmnvc.pushViewController(driverEnRouteViewController, animated: true)
+                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                    mmnvc.pushViewController(rideViewController, animated: true)
                     
                 case RIDE_START_MESSAGE_TYPE:
                     DDLogDebug("RIDE_START_MESSAGE_TYPE")
+
+                    // Publish the Ride started notification This will update the driver status in RideViewController.
+                    postNotification(RideNotifications.rideStart, value: "")
                     
-                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                    
-                    let tripViewController = rideStoryboard.instantiateViewController(withIdentifier: "TripViewControllerIdentifier") as! TripViewController
-                    mmnvc.pushViewController(tripViewController, animated: true)
+//                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+//                    
+//                    let tripViewController = rideStoryboard.instantiateViewController(withIdentifier: "TripViewControllerIdentifier") as! TripViewController
+//                    mmnvc.pushViewController(tripViewController, animated: true)
                     
                 case RIDE_END_MESSAGE_TYPE:
                     DDLogDebug("RIDE_END_MESSAGE_TYPE")
+                    postNotification(RideNotifications.rideEnd, value: "")
                     
-                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                    
-                    let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
-                    mmnvc.pushViewController(rideEndViewController, animated: true)
+//                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+//                    
+//                    let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
+//                    mmnvc.pushViewController(rideEndViewController, animated: true)
                     
                 default:
                     DDLogError("Weird message received during Bid2: \(messageType)")
