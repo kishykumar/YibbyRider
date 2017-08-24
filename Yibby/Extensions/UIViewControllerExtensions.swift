@@ -20,6 +20,25 @@ extension UIViewController {
         }
     }
     
+    func setupMenuButton() {
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+        let menuButton: YBMenuButton = YBMenuButton()
+        menuButton.myViewController = self
+        self.view.addSubview(menuButton)
+    }
+    
+    func setupBackButton() {
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
+        let backButton: YBMenuButton = YBMenuButton()
+        backButton.myButtonType = .back
+        backButton.myViewController = self
+        self.view.addSubview(backButton)
+    }
+    
 //    private func setupButtonOnNavigationBarInternal(barButton: UIBarButtonItem) {
 //        let app: UIApplication = UIApplication.shared
 //        let negativeSpacer: UIBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)

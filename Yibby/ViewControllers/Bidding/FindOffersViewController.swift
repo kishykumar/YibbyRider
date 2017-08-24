@@ -8,31 +8,51 @@
 
 import UIKit
 import CocoaLumberjack
-import ASProgressPopUpView
+import LTMorphingLabel
+import M13ProgressSuite
 
-class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewDataSource {
-    
-    func allStrings(forProgressView progressView: ASProgressPopUpView!) -> [Any]! {
-        return [""]
-    }
-
+class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate {
 
     // MARK: - Properties
-
-    @IBOutlet weak var progressView: ASProgressPopUpView!
+    @IBOutlet weak var morphingLabelOutlet: LTMorphingLabel!
+    @IBOutlet weak var progressBarOutlet: M13ProgressViewBar!
+    @IBOutlet weak var progressImageOutlet: M13ProgressViewImage!
+    
+    fileprivate var morphingLabelTextArrayIndex = 0
+    
+    fileprivate var morphingLabelTextArray = [
+        "Finding the cheapest ride",
+        "Hang on tight!",
+        "Ride in less than 30 seconds",
+        "Top Rated drivers",
+        "Reliable",
+        "You save, drivers save!"
+    ]
+    
+    fileprivate var morphingLabelText: String {
+        morphingLabelTextArrayIndex =
+            morphingLabelTextArrayIndex >= (morphingLabelTextArray.count - 1) ?
+                                            0 :
+                                            (morphingLabelTextArrayIndex + 1)
+        
+        return morphingLabelTextArray[morphingLabelTextArrayIndex]
+    }
     
     var offerTimer: Timer?
     var progressTimer: Timer?
-    
-    var timerCount = 0.0
     
     let OFFER_TIMER_INTERVAL = 35.0 // TODO: Change this to 30 seconds
     let OFFER_TIMER_EXPIRE_MSG_TITLE = "No offers received."
     let OFFER_TIMER_EXPIRE_MSG_CONTENT = "Reason: Drivers didn't respond."
 
-    let PROGRESS_TIMER_INTERVAL = 0.5
+    let PROGRESS_TIMER_INTERVAL: Float = 0.3 // this is the default image progress view animation time
+
+    var sampleProgress: Int = 1
+    var progressTimeSum: Int = 0
+    var logoImageProgress: Int = 1
+    var logoImageProgressDirection: Bool = true
     
-    var savedBgTimestamp: Date?
+//    var savedBgTimestamp: Date?
 
     // MARK: - Setup Functions
 
@@ -41,15 +61,22 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         // hide the back button
         self.navigationItem.setHidesBackButton(true, animated: false)
         
-        // progress view
-        self.progressView.dataSource = self
-        self.progressView.show(animated: true)
-        self.progressView.progress = 0.0;
-        self.progressView.font = UIFont(name: "Futura-CondensedExtraBold", size: 16)
-        self.progressView.popUpViewAnimatedColors = [UIColor.red, UIColor.orange, UIColor.green]
+        progressBarOutlet.progressDirection = M13ProgressViewBarProgressDirectionLeftToRight
+        progressBarOutlet.showPercentage = false
+        progressBarOutlet.indeterminate = true
 
-//        self.progressView.popUpViewCornerRadius = 12.0;
-//        self.progressView.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:28];
+        let screenSize: CGRect = UIScreen.main.bounds
+        DDLogVerbose("KKDBG_width: \(progressBarOutlet.frame.width) \(screenSize.width)")
+        
+        progressImageOutlet.progressImage = UIImage(named: "green-yibby-logo.png")
+        progressImageOutlet.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
+        progressImageOutlet.drawGreyscaleBackground = true
+        
+        setupDelegates()
+    }
+    
+    func setupDelegates() {
+        morphingLabelOutlet.delegate = self
     }
     
     override func viewDidLoad() {
@@ -114,9 +141,9 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
     // MARK: Progress view functions
     
     func startProgressTimer () {
-        progressTimer = Timer.scheduledTimer(timeInterval: PROGRESS_TIMER_INTERVAL, target: self,
-                                               selector: #selector(FindOffersViewController.progress),
-                                               userInfo: nil, repeats: true)
+        progressTimer = Timer.scheduledTimer(timeInterval: TimeInterval(PROGRESS_TIMER_INTERVAL), target: self,
+                                             selector: #selector(FindOffersViewController.progress),
+                                             userInfo: nil, repeats: true)
     }
     
     func stopProgressTimer() {
@@ -125,84 +152,110 @@ class FindOffersViewController: BaseYibbyViewController, ASProgressPopUpViewData
         }
     }
     
-    func saveProgressTimer () {
-        DDLogVerbose("Called")
-        
-        // if there is an active bid, save the current time
-        if (YBClient.sharedInstance().isOngoingBid()) {
-            let curTime = Date()
-            DDLogDebug("Setting bgtime \(curTime))")
-            savedBgTimestamp = curTime
-        }
-    }
-    
-    func restoreProgressTimer () {
-        DDLogVerbose("Called")
-        
-        if (YBClient.sharedInstance().isOngoingBid()) {
-            
-            if let appBackgroundedTime = savedBgTimestamp {
-                
-                let elapsedTime = TimeInterval(Int(TimeUtil.diffFromCurTime(appBackgroundedTime))) // seconds
-                
-                DDLogDebug("bgtime \(appBackgroundedTime) bumpUpTime \(elapsedTime))")
-                
-                var progress: Float = self.progressView.progress
-                if progress < 1.0 {
-                    progress += Float(1.0 / (OFFER_TIMER_INTERVAL / elapsedTime))
-                    
-                    if progress > 1.0 {
-                       progress = 1.0
-                    }
-                    
-                    self.progressView.setProgress(progress, animated: true)
-                }
-                savedBgTimestamp = nil
-            }
-        }
-    }
+//    func saveProgressTimer () {
+//        DDLogVerbose("Called")
+//        
+//        // if there is an active bid, save the current time
+//        if (YBClient.sharedInstance().isOngoingBid()) {
+//            let curTime = Date()
+//            DDLogDebug("Setting bgtime \(curTime))")
+//            savedBgTimestamp = curTime
+//        }
+//    }
+//    
+//    func restoreProgressTimer () {
+//        DDLogVerbose("Called")
+//        
+//        if (YBClient.sharedInstance().isOngoingBid()) {
+//            
+//            if let appBackgroundedTime = savedBgTimestamp {
+//                
+//                let elapsedTime = TimeInterval(Int(TimeUtil.diffFromCurTime(appBackgroundedTime))) // seconds
+//                
+//                DDLogDebug("bgtime \(appBackgroundedTime) bumpUpTime \(elapsedTime))")
+//                
+//                var progress: Float = self.progressView.progress
+//                if progress < 1.0 {
+//                    progress += Float(1.0 / (OFFER_TIMER_INTERVAL / elapsedTime))
+//                    
+//                    if progress > 1.0 {
+//                       progress = 1.0
+//                    }
+//                    
+//                    self.progressView.setProgress(progress, animated: true)
+//                }
+//                savedBgTimestamp = nil
+//            }
+//        }
+//    }
 
     func progress() {
-
-        var progress: Float = self.progressView.progress
-        if progress < 1.0 {
-            progress += Float(1.0 / (OFFER_TIMER_INTERVAL / PROGRESS_TIMER_INTERVAL))
-            
-            if progress > 1.0 {
-                progress = 1.0
-            }
-            
-            self.progressView.setProgress(progress, animated: true)
-        }
-    }
-    
-    // <ASProgressPopUpViewDataSource> is entirely optional
-    // it allows you to supply custom NSStrings to ASProgressPopUpView
-    func progressView(_ progressView: ASProgressPopUpView, stringForProgress progress: Float) -> String? {
-        var s: String?
-        if progress < 0.2 {
-            s = "Drivers got your bid"
-        }
-        else if progress > 0.4 && progress < 0.6 {
-            s = "We are negotiating heavily"
-        }
-        else if progress > 0.75 && progress < 1.0 {
-            s = "Almost there"
-        }
-        else if progress >= 1.0 {
-            s = "Done"
+        
+        progressTimeSum += 3 // sum by 0.3s
+        
+        // called every 3 seconds
+        if (progressTimeSum % 30 == 0) {
+            morphingLabelOutlet.text = morphingLabelText
         }
         
-        return s;
+        // A Bad NOTE:
+        // Lot of hard coded variables have been used here! :(
+        // This is to avoid floating point computations.
+        // Can you believe I was getting (0.1 < 0.1) is true?
+        //
+        // 0.3s is the animation time for the logo image view and
+        // I have chosen that to be the progress timer interval to
+        // make the math easy. 3 seconds is the total animation time
+        // for the logo image.
+        //
+        // Every interval we increment the overall progress by 1 (or 0.1s),
+        // which is the progress for a single sample.
+        // Total samples will be 10.
+        // 0 to 10 go left to right
+        // 10 to 0 go right to left
+        
+        if (logoImageProgressDirection) {
+            progressImageOutlet.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
+            
+            progressImageOutlet.setProgress(CGFloat(Float(logoImageProgress)/10.0), animated: true)
+            logoImageProgress = logoImageProgress + sampleProgress
+            
+            let maxProgress: Int = 10
+            
+            if (maxProgress < logoImageProgress) {
+                logoImageProgress = 1
+                logoImageProgressDirection = false
+            }
+        } else {
+            let maxProgress: Int = 10
+            progressImageOutlet.progressDirection = M13ProgressViewImageProgressDirectionRightToLeft
+            progressImageOutlet.setProgress(CGFloat(Float(10 - logoImageProgress) / 10.0), animated: true)
+            logoImageProgress = logoImageProgress + sampleProgress
+            
+            if (maxProgress < logoImageProgress) {
+                logoImageProgress = 1
+                logoImageProgressDirection = true
+            }
+        }
     }
     
-    // by default ASProgressPopUpView precalculates the largest popUpView size needed
-    // it then uses this size for all values and maintains a consistent size
-    // if you want the popUpView size to adapt as values change then return 'NO'
-    
-    func progressViewShouldPreCalculatePopUpViewSize(_ progressView: ASProgressPopUpView) -> Bool {
-        return false
-    }
+//    func progressView(_ progressView: ASProgressPopUpView, stringForProgress progress: Float) -> String? {
+//        var s: String?
+//        if progress < 0.2 {
+//            s = "Drivers got your bid"
+//        }
+//        else if progress > 0.4 && progress < 0.6 {
+//            s = "We are negotiating heavily"
+//        }
+//        else if progress > 0.75 && progress < 1.0 {
+//            s = "Almost there"
+//        }
+//        else if progress >= 1.0 {
+//            s = "Done"
+//        }
+//        
+//        return s;
+//    }
     
     /*
     // MARK: - Navigation

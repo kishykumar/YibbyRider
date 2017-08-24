@@ -14,23 +14,25 @@ import ISHPullUp
 
 public struct RideNotifications {
     static let rideStart = TypedNotification<String>(name: "com.Yibby.Ride.RideStart")
+    static let driverArrived = TypedNotification<String>(name: "com.Yibby.Ride.DriverArrived")
     static let rideEnd = TypedNotification<String>(name: "com.Yibby.Ride.RideEnd")
+}
+
+public enum RideViewControllerState: Int {
+    case driverEnRoute = 0
+    case driverArrived
+    case rideStart
+    case rideEnd
 }
 
 class RideViewController: ISHPullUpViewController {
     
     fileprivate var rideStartObserver: NotificationObserver?
     fileprivate var rideEndObserver: NotificationObserver?
-    
-    enum RideViewControllerState: Int {
-        case driverEnRoute = 0
-        case driverArrived
-        case rideStart
-        case rideEnd
-    }
+    fileprivate var driverArrivedObserver: NotificationObserver?
     
     // MARK: - Properties
-    var controllerState: RideViewControllerState!
+    public var controllerState: RideViewControllerState!
     
     // MARK: - Actions
     
@@ -72,7 +74,7 @@ class RideViewController: ISHPullUpViewController {
         super.viewDidLoad()
         
         setupNotificationObservers()
-        setupNavigationBar()
+        setupMenuButton()
     }
     
     deinit {
@@ -90,13 +92,19 @@ class RideViewController: ISHPullUpViewController {
         rideStartObserver = NotificationObserver(notification: RideNotifications.rideStart) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideStart: \(comment)")
             
-            //            self.setDriverLocation(loc)
+            self.updateControllerState(RideViewControllerState.rideStart)
         }
         
         rideEndObserver = NotificationObserver(notification: RideNotifications.rideEnd) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideEnd: \(comment)")
             
-            //            self.setDriverLocation(loc)
+            self.updateControllerState(RideViewControllerState.rideEnd)
+        }
+        
+        driverArrivedObserver = NotificationObserver(notification: RideNotifications.driverArrived) { [unowned self] comment in
+            DDLogVerbose("NotificationObserver driverArrived: \(comment)")
+            
+            self.updateControllerState(RideViewControllerState.driverArrived)
         }
     }
     
@@ -107,6 +115,23 @@ class RideViewController: ISHPullUpViewController {
     
     // MARK: - Helpers
 
+    func updateControllerState(_ state: RideViewControllerState) {
+        
+        switch (state) {
+        case .driverArrived:
+            driverArrivedCallback()
+            
+        case .rideEnd:
+            rideEndCallback()
+            
+        case .rideStart:
+            rideStartCallback()
+            
+        default:
+            assert(false)
+        }
+    }
+    
     func rideStartCallback() {
         controllerState = .rideStart
         
@@ -132,7 +157,8 @@ class RideViewController: ISHPullUpViewController {
     }
     
     func rideEndCallback() {
-        
+        controllerState = .rideEnd
+
         let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
 
         let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController

@@ -12,8 +12,14 @@ import LaunchScreen
 import BaasBoxSDK
 import MMDrawerController
 
+public enum AppInitReturnCode: Int {
+    case success = 0
+    case error
+    case loginError
+}
+
 public struct AppInitNotifications {
-    static let pushStatus = TypedNotification<Bool>(name: "com.Yibby.SplashViewController.pushSuccess")
+    static let pushStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.SplashViewController.pushSuccess")
 }
 
 class SplashViewController: UIViewController {
@@ -51,13 +57,23 @@ class SplashViewController: UIViewController {
     
     fileprivate func setupNotificationObservers() {
         
-        pushStatusObserver = NotificationObserver(notification: AppInitNotifications.pushStatus) { [unowned self] success in
-            DDLogVerbose("pushStatusObserver status: \(success)")
+        pushStatusObserver = NotificationObserver(notification: AppInitNotifications.pushStatus) { [unowned self] returnCode in
+            DDLogVerbose("pushStatusObserver status: \(returnCode)")
             
-            if (success) {
-                self.pushRegistrationSuccessCallback()
-            } else {
+            switch (returnCode) {
+            case .error:
                 self.pushRegistrationErrorCallback()
+                break
+                
+            case .success:
+                self.pushRegistrationSuccessCallback()
+                break
+                
+            case .loginError:
+                self.pushLoginErrorCallback()
+                break
+                
+            default: break
             }
         }
     }
@@ -106,7 +122,6 @@ class SplashViewController: UIViewController {
         }
         
         let client: BAAClient = BAAClient.shared()
-
         if client.isAuthenticated() {
             DDLogVerbose("User already authenticated");
             
@@ -158,6 +173,10 @@ class SplashViewController: UIViewController {
     }
     
     func removeSplash () {
+        
+        // Initialize the status bar before we show the first screen
+        setStatusBar()
+        
         let v: UIView = self.launchScreenVC!.view!
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut,
                        animations: {() -> Void in
@@ -200,5 +219,26 @@ class SplashViewController: UIViewController {
         
         // earlier we were removing the splash, now just showing the error
         //        removeSplash()
+    }
+    
+    func pushLoginErrorCallback() {
+        removeSplash()
+        
+        let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                                                          bundle: nil)
+        
+        self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+    }
+    
+    func setStatusBar() {
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        
+        if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor = UIColor.appDarkGreen1()
+        }
+        
+        // status bar text color
+        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.isStatusBarHidden = false   
     }
 }

@@ -19,9 +19,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     
     @IBOutlet weak var rootViewOutlet: UIView!
     @IBOutlet weak var topViewOutlet: UIView!
-    
-    @IBOutlet weak var driverStatusLabelOutlet: SpringLabel!
-    
+
     @IBOutlet weak var cardHintViewOutlet: BTUICardHint!
     @IBOutlet weak var cardNumberLabelOutlet: UILabel!
     @IBOutlet weak var totalFareLabelOutlet: UILabel!
@@ -35,7 +33,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBOutlet weak var innerCircleImageViewOutlet: UIImageView!
     
     private var firstAppearanceCompleted = false
-    weak var pullUpController: ISHPullUpViewController!
+    weak var pullUpController: RideViewController!
     
     private var currentHeight = CGFloat(0)
     
@@ -103,7 +101,8 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         let screenSize: CGRect = UIScreen.main.bounds
         pullupViewTargetHeight = RideBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
         
-        driverStatusLabelOutlet.text = "Driver on the way"
+        // TODO: FIX
+//        driverStatusLabelOutlet.text = "Driver on the way"
         
         if let ride = YBClient.sharedInstance().ride {
             
@@ -120,7 +119,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             peopleLabelOutlet.text = String(describing: ride.numPeople)
             
             if let myDriver = ride.driver {
-                driverStarsLabelOutlet.text = "\(String(describing: myDriver.rating!)) Stars"
+                driverStarsLabelOutlet.text = "\(String(describing: myDriver.rating!))"
                 
                 if let driverRatingStr = myDriver.rating, let driverRating = Double(driverRatingStr) {
                     switch (driverRating) {
@@ -143,7 +142,6 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
                     if (driverProfilePic != "") {
                         if let imageUrl  = BAAFile.getCompleteURL(withToken: driverProfilePic) {
                             innerCircleImageViewOutlet.pin_setImage(from: imageUrl)
-                            innerCircleImageViewOutlet.setRoundedWithWhiteBorder()
                         }
                     }
                 }
@@ -152,7 +150,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             if let driverVehicle = ride.vehicle {
                 driverCarMakeLabelOutlet.text = driverVehicle.make
                 driverCarModelLabelOutlet.text = driverVehicle.model
-                driverCarNumberLabelOutlet.text = driverVehicle.licensePlate
+                driverCarNumberLabelOutlet.text = driverVehicle.licensePlate?.uppercased()
             }
         }
     }
@@ -172,11 +170,13 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     // MARK: - Helpers
     
     func rideStartCallback() {
-        driverStatusLabelOutlet.text = "Your Ride has started."
+        // TODO: FIX
+//        driverStatusLabelOutlet.text = "Your Ride has started."
     }
     
     func driverArrivedCallback() {
-        driverStatusLabelOutlet.text = "Your Driver has arrived."
+        // TODO: FIX
+//        driverStatusLabelOutlet.text = "Your Driver has arrived."
     }
     
     // MARK: - ISHPullUpSizingDelegate

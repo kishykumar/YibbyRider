@@ -10,7 +10,7 @@ import UIKit
 import CocoaLumberjack
 import BaasBoxSDK
 import DZNEmptyDataSet
-import SVProgressHUD
+import MBProgressHUD
 import Braintree
 
 class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
@@ -39,8 +39,7 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         self.tableView.emptyDataSetSource = self;
         self.tableView.emptyDataSetDelegate = self;
         
-        ActivityIndicatorUtil.enableActivityIndicator(view, status: InterfaceString.ActivityIndicator.Loading, mask: SVProgressHUDMaskType.custom,
-                                     maskColor: UIColor.white, style: SVProgressHUDStyle.dark)
+        ActivityIndicatorUtil.enableActivityIndicator(view, title: InterfaceString.ActivityIndicator.Loading)
         
         //This block runs when the table view scrolled to the bottom
         weak var weakSelf = self
@@ -73,7 +72,7 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    func loadNextPage() {
+    @objc fileprivate func loadNextPage() {
         self.isLoading = true
 
         if (self.footerActivityIndicatorView() == nil) {
@@ -131,7 +130,7 @@ class HistoryViewController: BaseYibbyTableViewController, DZNEmptyDataSetSource
         }
     }
 
-    func loadNewRides() {
+    @objc fileprivate func loadNewRides() {
         
         // load the new rides
         WebInterface.makeWebRequestAndHandleError(

@@ -254,40 +254,35 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
             selectedViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentsViewControllerIdentifier") as! PaymentsViewController
             
-            break
         case TableIndex.trips.rawValue:
             
             let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
             selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "TripTableVC") as! TripTableVC
             
-            //selectedViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewControllerIdentifier") as! HistoryViewController
-            
-            break
-            
         case TableIndex.notifications.rawValue:
             let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
             selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "NotificationsVC") as! NotificationsVC
-            
-            break
             
         case TableIndex.settings.rawValue:
             
             let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
             selectedViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsViewControllerIdentifier") as! SettingsViewController
             
-            break
         case TableIndex.promotions.rawValue:
             
             let promotionsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Promotions, bundle: nil)
             selectedViewController = promotionsStoryboard.instantiateViewController(withIdentifier: "PromotionsViewControllerIdentifier") as! PromotionsViewController
-            
-            break
+
         case TableIndex.support.rawValue:
             
             let helpStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Help, bundle: nil)
             selectedViewController = helpStoryboard.instantiateViewController(withIdentifier: "HelpViewControllerIdentifier") as! HelpViewController
-            
-            break
+
+        case TableIndex.drive.rawValue:
+
+            let driveStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drive, bundle: nil)
+            selectedViewController = driveStoryboard.instantiateViewController(withIdentifier: "DriveViewControllerIdentifier") as! DriveViewController
+
         default:
             break
         }

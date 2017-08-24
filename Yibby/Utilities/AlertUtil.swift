@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import SVProgressHUD
 import BaasBoxSDK
 import CocoaLumberjack
 

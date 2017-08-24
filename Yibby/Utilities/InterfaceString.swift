@@ -38,6 +38,7 @@ public struct InterfaceString {
         static let Login = NSLocalizedString("Login", comment: "Login Storyboard")
         static let SignUp = NSLocalizedString("SignUp", comment: "SignUp Storyboard")
         static let Drawer = NSLocalizedString("Drawer", comment: "Drawer Storyboard")
+        static let Drive = NSLocalizedString("Drive", comment: "Drive Storyboard")
         static let Help = NSLocalizedString("Help", comment: "Help Storyboard")
         static let History = NSLocalizedString("History", comment: "History Storyboard")
         static let Payment = NSLocalizedString("Payment", comment: "Payment Storyboard")
@@ -168,8 +169,8 @@ public struct InterfaceString {
     }
     
     public struct EmptyDataMsg {
-        static let NotRiddenYetTitle = NSLocalizedString("Bummer! You haven't ridden with us yet. ", comment: "NotRiddenYet Title")
-        static let NotRiddenYetDescription = NSLocalizedString("Bid, take the ride, save some money, and check back later. ", comment: "NotRiddenYet Description")
+        static let NotRiddenYetTitle = NSLocalizedString("Bummer! No rides.", comment: "NotRiddenYet Title")
+        static let NotRiddenYetDescription = NSLocalizedString("Save money by riding with Yibby.", comment: "NotRiddenYet Description")
         
     }
     
@@ -177,9 +178,14 @@ public struct InterfaceString {
         static let TANDC = NSLocalizedString("TERMS OF SERVICE AND PRIVACY POLICY", comment: "TANDC")
     }
     
+    public struct ActionSheet {
+        static let SelectTip = NSLocalizedString("Select Tip", comment: "Select Tip")
+    }
+    
     public struct Ride {
         static let Pickup = NSLocalizedString("Pickup", comment: "Pickup")
         static let Dropoff = NSLocalizedString("Dropoff", comment: "Dropoff")
+        static let Driver = NSLocalizedString("Driver", comment: "Driver")
     }
     
     static let GenericError = NSLocalizedString("Something went wrong. Thank you for your patience with Yibby Beta!", comment: "Generic error message")

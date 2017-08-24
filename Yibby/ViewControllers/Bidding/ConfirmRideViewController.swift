@@ -22,6 +22,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
     var dropoffLocation: YBLocation!
     
     var bidHigh: Float!
+    var numPeople: Int!
     var currentPaymentMethod: YBPaymentMethod!
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
@@ -32,25 +33,25 @@ class ConfirmRideViewController: BaseYibbyViewController {
         self.navigationController!.popViewController(animated: true)
     }
     
-    @IBAction func onAcceptButtonClick(_ sender: AnyObject)
-    /*{
-        self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
-    }*/
-    {
+    @IBAction func onAcceptButtonClick(_ sender: AnyObject) {
         
         WebInterface.makeWebRequestAndHandleError(
             self,
             webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
-                ActivityIndicatorUtil.enableActivityIndicator(self.view)
+                ActivityIndicatorUtil.enableActivityIndicator(self.view, title: "Finding offers")
                 
                 let client: BAAClient = BAAClient.shared()
-                let paymentToken = currentPaymentMethod.token
 
                 client.createBid(self.bidHigh as NSNumber!, bidLow: 0, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
                     pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name!,
                     dropoffLat: self.dropoffLocation.latitude as NSNumber!, dropoffLong: self.dropoffLocation.longitude as NSNumber!,
-                    dropoffLoc: self.dropoffLocation.name!,paymentMethodToken: paymentToken!, completion: {(success, error) -> Void in
+                    dropoffLoc: self.dropoffLocation.name!,
+                    paymentMethodToken: currentPaymentMethod.token!,
+                    paymentMethodBrand: currentPaymentMethod.type!,
+                    paymentMethodLast4: currentPaymentMethod.last4!,
+                    numPeople: numPeople as NSNumber!,
+                    completion: {(success, error) -> Void in
                         
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
@@ -59,10 +60,18 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                 if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
                                     
                                     // TODO: display alert that no drivers are online
+                                    
+                                    // NOTE: The alert has to be shown after the popViewController is done. 
+                                    // Otherwise, iOS gives an error and doesn't pop the view controller
+                                    self.navigationController!.popViewController(animated: true)
                                     AlertUtil.displayAlert("No drivers online.", message: "")
                                 } else {
-                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
                                     DDLogVerbose("Unexpected Error: success var: \(success)")
+                                    
+                                    // NOTE: The alert has to be shown after the popViewController is done.
+                                    // Otherwise, iOS gives an error and doesn't pop the view controller
+                                    self.navigationController!.popViewController(animated: true)
+                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
                                 }
                             } else {
                                 
@@ -92,12 +101,17 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {
+                                    
+                                    // NOTE: The alert has to be shown after the popViewController is done.
+                                    // Otherwise, iOS gives an error and doesn't pop the view controller
+                                    self.navigationController!.popViewController(animated: true)
                                     AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
                                 }
                             }
                         }
                         else {
                             errorBlock(success, error)
+                            self.navigationController!.popViewController(animated: true)
                         }
                 })
         })
@@ -106,10 +120,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
     // MARK: - Setup
     
     func setupUI() {
-        
-        //self.view.backgroundColor = UIColor.navyblue1()
-        self.view.backgroundColor = UIColor.appDarkGreen1()
-        
         self.cancelButtonOutlet.color = UIColor.red
         self.acceptButtonOutlet.color = UIColor.appDarkGreen1()
     }

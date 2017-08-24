@@ -11,8 +11,11 @@ import FoldingCell
 import GoogleMaps
 import Font_Awesome_Swift
 import Braintree
+import Presentr
 
 class TripTableCell: FoldingCell {
+    
+    // MARK: - Properties 
     
     @IBOutlet weak var dateAndTimeLbl: UILabel!
     @IBOutlet weak var userNameLbl: UILabel!
@@ -38,8 +41,8 @@ class TripTableCell: FoldingCell {
     @IBOutlet weak var cardDetailsBtnOutlet: UIButton!
     @IBOutlet weak var gmsMapViewOpenOutlet: GMSMapView!
     
-    
-//    var customTextfieldProperty = CustomizeTextfield()
+    var myTrip: Ride!
+    var myViewController: TripTableVC!
 
     var number: Int = 0 {
         didSet {
@@ -101,6 +104,37 @@ class TripTableCell: FoldingCell {
         }
     }
     
+    // MARK: - Actions
+    @IBAction func onCarDetailsButtonClick(_ sender: UIButton) {
+        
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let carDetailsViewController = historyStoryboard.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
+        
+        // loginSubView.selectedIndex = sender.tag
+        carDetailsViewController.carModelStr = myTrip.vehicle?.make
+        carDetailsViewController.carNumberStr = myTrip.vehicle?.licensePlate
+        carDetailsViewController.view.backgroundColor = .clear
+        
+        presentTopHalfController(vc: carDetailsViewController)
+    }
+    
+    @IBAction func onLostStolenButtonClick(_ sender: UIButton) {
+        
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let emergencyContactsNVC = historyStoryboard.instantiateViewController(withIdentifier: "LostOrStolenItemVC") as! LostOrStolenItemVC
+        _ = myViewController.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
+    }
+    
+    @IBAction func onFareOrRideIssueButtonClick(_ sender: UIButton) {
+        print("fareOrRideIssueBtn tap")
+    }
+    
+    @IBAction func onOtherIssueButtonClick(_ sender: UIButton) {
+        print("otherIssueBtn tap")
+    }
+    
+    // MARK: - Setup
+    
     override func awakeFromNib() {
         
         foregroundView.layer.cornerRadius = 10
@@ -125,27 +159,19 @@ class TripTableCell: FoldingCell {
         let durations = [0.26, 0.2, 0.2]
         return durations[itemIndex]
     }
-}
-
-// MARK: Actions
-extension TripTableCell {
     
-    /*@IBAction func lostOrStolenItemBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
-        print("lostOrStolenItemBtn tap")
+    // MARK: - Helpers
+    
+    fileprivate func presentTopHalfController(vc: UIViewController) {
+        let presenter = myViewController.presenter
         
-        let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "LostOrStolenItemVC") as! LostOrStolenItemVC
-        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
+        presenter.presentationType = .topHalf
+        presenter.transitionType = nil
+        presenter.dismissTransitionType = nil
+        presenter.dismissAnimated = true
+        presenter.dismissOnSwipe = true
+        presenter.dismissOnSwipeDirection = .top
+        myViewController.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
     }
-    
-    @IBAction func fareOrRideIssueBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
-        print("fareOrRideIssueBtn tap")
-    }
-    
-    @IBAction func otherIssueBtnAction(_ sender: AnyObject) {
-        print(sender.tag)
-        print("otherIssueBtn tap")
-    }*/
 }
 

@@ -14,8 +14,9 @@ import GooglePlaces
 import ImagePicker
 import Lightbox
 import BButton
+import SwiftValidator
 
-class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
+class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, ValidationDelegate {
 
     // MARK: - Properties
     
@@ -33,6 +34,9 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
     @IBOutlet weak var addHomePlusButtonOutlet: UIButton!
     @IBOutlet weak var addWorkPlusButtonOutlet: UIButton!
     
+    @IBOutlet weak var errorLabelOutlet: UILabel!
+    
+    
     var addWorkLocation: YBLocation?
     var addHomeLocation: YBLocation?
 
@@ -45,10 +49,106 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
     
     let imagePickerController = ImagePickerController()
 
+    let validator = Validator()
+
     // MARK: - Actions
     
+    @IBAction func emergencyContactsBtnAction(sender: AnyObject) {
+        
+        let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "EmergencyContactsVC") as! EmergencyContactsVC
+        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
+    }
     
+    @IBAction func onAddHomePlusButtonClick(_ sender: UIButton) {
+        addHomeSelected = true
+        addWorkSelected = false
+        
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func addHomeBtnAction(_ sender: Any) {
+        
+        addHomeSelected = true
+        addWorkSelected = false
+        
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func onAddWorkPlusButtonClick(_ sender: UIButton) {
+        addHomeSelected = false
+        addWorkSelected = true
+        
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func addWorkBtnAction(_ sender: Any) {
+        addHomeSelected = false
+        addWorkSelected = true
+        
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func onProfileImageClick(_ sender: UITapGestureRecognizer) {
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func emailEditBtnAction(_ sender: Any) {
+        
+        if (emailEditInProgress == true) {
+            
+            self.validator.validate(self)
+            
+        } else {
+            
+            emailEditBtnOutlet.setFAIcon(icon: .FACheckCircle, forState: .normal)
+            emailEditBtnOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
+            emailEditBtnOutlet.layer.borderWidth = 0.0
+            
+            emailAddress.isUserInteractionEnabled = true
+            emailAddress.becomeFirstResponder()
+            emailAddress.layer.borderWidth = 1.0
+            emailAddress.layer.cornerRadius = 7.0
+            emailAddress.layer.borderColor = UIColor.appDarkGreen1().cgColor
+            
+            emailEditInProgress = true
+        }
+    }
+    
+
     // MARK: - Setup Functions
+    
+    func setupValidator() {
+        validator.styleTransformers(success:{ (validationRule) -> Void in
+            
+            // clear error label
+            validationRule.errorLabel?.isHidden = true
+            validationRule.errorLabel?.text = ""
+            
+            if let textField = validationRule.field as? UITextField {
+                textField.layer.borderColor = UIColor.appDarkGreen1().cgColor
+            }
+        }, error:{ (validationError) -> Void in
+            
+            //            validationError.errorLabel?.isHidden = false
+            //            validationError.errorLabel?.text = validationError.errorMessage
+            //
+            //            if let textField = validationError.field as? UITextField {
+            //                textField.setBottomBorder(UIColor.red)
+            //            }
+        })
+        
+        validator.registerField(self.emailAddress,
+                                errorLabel: errorLabelOutlet,
+                                rules: [RequiredRule(message: "Email Address is required"), EmailRule()])
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +157,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
         setupUI()
         setupDelegates()
         setupImagePicker()
+        setupValidator()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +206,44 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
         addWorkPlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
         
         emailAddress.removeFormatting()
+        
+        if let profile = YBClient.sharedInstance().profile {
+            self.applyProfileModel(profile)
+        }
     }
+    
+    // MARK: - ValidationDelegate Methods
+    
+    func validationSuccessful() {
+        
+        emailEditBtnOutlet.setFAIcon(icon: .FAWrench, forState: .normal)
+        emailEditBtnOutlet.setTitleColor(UIColor.black, for: .normal)
+        emailEditBtnOutlet.layer.borderWidth = 1.0
+        
+        emailAddress.isUserInteractionEnabled = false
+        emailAddress.resignFirstResponder()
+        emailAddress.removeFormatting()
+        
+        if (emailAddress.text?.isEqual(YBClient.sharedInstance().profile?.email))! {
+            
+        }
+        else {
+            updateEmail()
+        }
+        
+        emailEditInProgress = false
+    }
+    
+    func validationFailed(_ errors:[(Validatable, ValidationError)]) {
+        
+        let (_, validationError) = errors[0]
+
+        emailAddress.layer.borderColor = UIColor.red.cgColor
+        validationError.errorLabel?.isHidden = false
+        validationError.errorLabel?.text = validationError.errorMessage
+    }
+    
+    // MARK: - Helpers
     
     func getProfilePicture() {
         if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
@@ -117,7 +255,8 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
             }
         }
     }
-    
+
+    @available(*, deprecated)
     func getProfile() {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
@@ -127,201 +266,94 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
             
-            DDLogVerbose("getProfile data: \(success)")
+            DDLogVerbose("getProfile data: \(String(describing: success))")
             
             if let success = success {
                 let profileModel = Mapper<YBProfile>().map(JSONObject: success)
                 
                 if let profile = profileModel {
-                    
-                    self.emailAddress.text = profile.email
-                    self.phoneNo.text = profile.phoneNumber?.toPhoneNumber()
-                    
-                    let nameArr = profile.name?.components(separatedBy: " ")
-                    
-                    if let myStringArr = nameArr {
-                        self.firstNameLbl.text = String(format: " %@ ", myStringArr[0])
-                        self.lastNameLbl.text = myStringArr.count > 1 ? String(format: " %@  ", myStringArr[1]) : nil
-                        
-                        if (self.lastNameLbl.text == nil || self.lastNameLbl.text == "") {
-                            self.lastNameLbl.isHidden = true
-                            self.lastNameLbl.isEnabled = false
-                        }
-                    }
-                    
-                    self.addHomeBtnOutlet.setTitle(profile.homeLocation?.name, for: UIControlState())
-                    self.addWorkBtnOutlet.setTitle(profile.workLocation?.name, for: UIControlState())
+                    self.applyProfileModel(profile)
                 }
                 else {
-                    DDLogError("Error in fetching getProfile: \(error)")
+                    AlertUtil.displayAlert("Error in Fetching User Profile", message: error?.localizedDescription ?? "")
+                    DDLogVerbose("getProfile failed1: \(String(describing: success))")
                 }
                 
             } else {
                 // TODO: Show the alert with error
-                DDLogVerbose("getProfile failed: \(error)")
+                AlertUtil.displayAlert("Error in Fetching User Profile", message: error?.localizedDescription ?? "")
+                DDLogVerbose("getProfile failed2: \(String(describing: error))")
             }
         })
     }
     
-    func updateProfile() {
+    func updateEmail() {
+        
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
         let client: BAAClient = BAAClient.shared()
         
-        let dictionary = ["email": emailAddress.text]
+        let dictionary: [String: String] = ["email": emailAddress.text!]
         
         client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
-            if ((success) != nil) {
+            if let success = success {
+                let profileModel = Mapper<YBProfile>().map(JSONObject: success)
                 
-                    self.getProfile()
-                
-                    DDLogVerbose("updateProfile Data: \(success)")
+                if let profile = profileModel {
+                    self.applyProfileModel(profile)
+                }
+                else {
+                    AlertUtil.displayAlert("Error in Updating User Profile", message: error?.localizedDescription ?? "")
+                    DDLogError("Error in updating Profile: \(String(describing: success))")
+                }
             }
             else {
-                DDLogVerbose("updateProfile failed: \(error)")
+                AlertUtil.displayAlert("Error in Updating User Profile", message: error?.localizedDescription ?? "")
+                DDLogVerbose("updateProfile failed: \(String(describing: error))")
             }
             
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }
 
-    @IBAction func emergencyContactsBtnAction(sender: AnyObject) {
+    func applyProfileModel(_ profile: YBProfile) {
+        self.emailAddress.text = profile.email
+        self.phoneNo.text = profile.phoneNumber?.toPhoneNumber()
         
-        let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "EmergencyContactsVC") as! EmergencyContactsVC
-        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
-    }
-    
-    @IBAction func onAddHomePlusButtonClick(_ sender: UIButton) {
-        addHomeSelected = true
-        addWorkSelected = false
+        let nameArr = profile.name?.components(separatedBy: " ")
         
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.present(autocompleteController, animated: true, completion: nil)
-    }
-   
-    @IBAction func addHomeBtnAction(_ sender: Any) {
-        
-        addHomeSelected = true
-        addWorkSelected = false
-        
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.present(autocompleteController, animated: true, completion: nil)
-    }
-    
-    @IBAction func onAddWorkPlusButtonClick(_ sender: UIButton) {
-        addHomeSelected = false
-        addWorkSelected = true
-        
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.present(autocompleteController, animated: true, completion: nil)
-    }
-    
-    @IBAction func addWorkBtnAction(_ sender: Any) {
-        addHomeSelected = false
-        addWorkSelected = true
-        
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.present(autocompleteController, animated: true, completion: nil)
-    }
-    
-    @IBAction func onProfileImageClick(_ sender: UITapGestureRecognizer) {
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    @IBAction func emailEditBtnAction(_ sender: Any) {
-        
-        if (emailEditInProgress == true) {
-            emailEditBtnOutlet.setFAIcon(icon: .FAWrench, forState: .normal)
-            emailEditBtnOutlet.setTitleColor(UIColor.black, for: .normal)
-            emailEditBtnOutlet.layer.borderWidth = 1.0
+        if let myStringArr = nameArr {
             
-            emailAddress.isUserInteractionEnabled = false
-            emailAddress.resignFirstResponder()
-            emailAddress.removeFormatting()
+            let firstName = String(format: " %@ ", myStringArr[0])
+            self.firstNameLbl.text = firstName.uppercased()
             
-            if (emailAddress.text?.isEqual(YBClient.sharedInstance().profile?.email))! {
-                
+            let lastName = myStringArr.count > 1 ? String(format: " %@  ", myStringArr[1]) : nil
+            self.lastNameLbl.text = lastName?.uppercased()
+            
+            if (self.lastNameLbl.text == nil || self.lastNameLbl.text == "") {
+                self.lastNameLbl.isHidden = true
+                self.lastNameLbl.isEnabled = false
             }
-            else {
-//                updateProfile()
-            }
-            
-            emailEditInProgress = false
-            
-        } else {
-            
-            emailEditBtnOutlet.setFAIcon(icon: .FACheckCircle, forState: .normal)
-//            emailEditBtnOutlet.setFATitleColor(color: UIColor.appDarkGreen1())
-//            emailEditBtnOutlet.tintColor = UIColor.appDarkGreen1()
-            emailEditBtnOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
-            emailEditBtnOutlet.layer.borderWidth = 0.0
-            
-            emailAddress.isUserInteractionEnabled = true
-            emailAddress.becomeFirstResponder()
-            emailAddress.layer.borderWidth = 1.0
-            emailAddress.layer.cornerRadius = 7.0
-            emailAddress.layer.borderColor = UIColor.appDarkGreen1().cgColor
-            
-//            self.emailAddress.padding = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
-
-            emailEditInProgress = true
         }
-
-//        if (self.emailEditBtnOutlet.currentImage?.isEqual(UIImage(named: "Settings")))! {
-//            self.emailEditBtnOutlet.setImage(UIImage(named: "tick"), for: .normal)
-//            
-//            self.emailAddress.layer.borderColor = UIColor.borderColor().cgColor
-//            self.emailAddress.layer.borderWidth = 1.0
-//            self.emailAddress.layer.cornerRadius = 7
-//            
-//            let col2 = UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
-//            
-//            self.emailAddress.textColor = col2
-//            
-//            self.emailAddress.isUserInteractionEnabled = true
-//
-//            self.emailAddress.becomeFirstResponder()
-//            
-//        }
-//        else
-//        {
-//             self.emailEditBtnOutlet.setImage(UIImage(named: "Settings"), for: .normal)
-//            self.emailEditBtnOutlet.setRoundedWithWhiteBorder()
-//
-//            self.emailAddress.isUserInteractionEnabled = false
-//
-//            self.emailAddress.resignFirstResponder()
-//            
-//            self.emailAddress.layer.borderColor = UIColor.clear.cgColor
-//            
-//            self.emailAddress.textColor = UIColor.lightGray
-//            
-//            if (emailAddress.text?.isEqual(YBClient.sharedInstance().getProfile()?.email))!
-//            {
-//                
-//            }
-//            else
-//            {
-//                updateProfile()
-//            }
-//        }
-    }
-    
-    // MARK: - Helpers
         
+        if let homeLocName = profile.homeLocation?.name {
+            if (homeLocName != "") {
+                self.addHomeBtnOutlet.setTitle(homeLocName, for: UIControlState())
+            }
+        }
+        
+        if let workLocName = profile.workLocation?.name {
+            if (workLocName != "") {
+                self.addWorkBtnOutlet.setTitle(workLocName, for: UIControlState())
+            }
+        }
+    }
+
     func addHomeDetails (_ location: YBLocation) {
         
         self.addHomeLocation = location
         
-        print(location.name!)
-        
         addHomeBtnOutlet.setTitle(location.name!, for: UIControlState())
-        
-        print(location.name!)
         
         if location.name!.isEqual(YBClient.sharedInstance().profile?.homeLocation?.name)
         {
@@ -329,38 +361,37 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
         }
         else
         {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
-        let client: BAAClient = BAAClient.shared()
-        
-        //let dictionary = ["email": "kumar01@gmail.com"]
-        
-        let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
-        
-        print(dict)
-        
-        let dictionary = ["homeLocation": dict]
-        
-        client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
-            if ((success) != nil) {
-                
-                self.getProfile()
-                
-                DDLogVerbose("updateProfile addHome Data: \(success)")
-            }
-            else {
-                DDLogVerbose("updateProfile addHome failed: \(error)")
-            }
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
             
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-        })
+            let client: BAAClient = BAAClient.shared()
+                
+            let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
+            let dictionary = ["homeLocation": dict]
+            
+            client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                if let success = success {
+                    let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+                    
+                    if let profile = profileModel {
+                        self.applyProfileModel(profile)
+                    }
+                    else {
+                        AlertUtil.displayAlert("Error in Updating Home", message: error?.localizedDescription ?? "")
+                        DDLogError("Error in updating home: \(String(describing: success))")
+                    }
+                }
+                else {
+                    AlertUtil.displayAlert("Error in Updating Home", message: error?.localizedDescription ?? "")
+                    DDLogVerbose("addHomeDetails failed: \(String(describing: error))")
+                }
+                
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            })
         }
     }
     
     func addWorkDetails (_ location: YBLocation) {
         addWorkBtnOutlet.setTitle(location.name!, for: UIControlState())
-        
-        print(location.name!)
         
         if location.name!.isEqual(YBClient.sharedInstance().profile?.workLocation?.name)
         {
@@ -371,24 +402,24 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate  {
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
             
             let client: BAAClient = BAAClient.shared()
-            
-            //let dictionary = ["email": "kumar01@gmail.com"]
-            
             let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
-            
-            print(dict)
-            
             let dictionary = ["workLocation": dict]
             
             client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
-                if ((success) != nil) {
+                if let success = success {
+                    let profileModel = Mapper<YBProfile>().map(JSONObject: success)
                     
-                    self.getProfile()
-                    
-                    DDLogVerbose("updateProfile addWork Data: \(success)")
+                    if let profile = profileModel {
+                        self.applyProfileModel(profile)
+                    }
+                    else {
+                        AlertUtil.displayAlert("Error in Updating Work", message: error?.localizedDescription ?? "")
+                        DDLogError("Error in updating Work: \(String(describing: success))")
+                    }
                 }
                 else {
-                    DDLogVerbose("updateProfile addWork failed: \(error)")
+                    AlertUtil.displayAlert("Error in Updating Work", message: error?.localizedDescription ?? "")
+                    DDLogVerbose("addWorkDetails failed: \(String(describing: error))")
                 }
                 
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -403,7 +434,7 @@ extension SettingsViewController: GMSAutocompleteViewControllerDelegate {
     public func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
         DDLogVerbose("Place name: \(place.name)")
-        DDLogVerbose("Place address: \(place.formattedAddress)")
+        DDLogVerbose("Place address: \(String(describing: place.formattedAddress))")
         DDLogVerbose("Place attributions: (place.attributions)")
         
         let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress!)

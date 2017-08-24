@@ -177,8 +177,10 @@ class PaymentsViewController: BaseYibbyViewController,
             let newSelectedPaymentMethod = listedPaymentMethods.safeValue(indexPath.row)
             
             // unselect the old one
-            let oldCell = tableView.cellForRow(at: self.selectedIndexPath) as! CardTableCell
-            oldCell.selectedCardButton.backgroundColor = UIColor.white
+            if (self.selectedIndexPath != nil) {
+                let oldCell = tableView.cellForRow(at: self.selectedIndexPath) as! CardTableCell
+                oldCell.selectedCardButton.backgroundColor = UIColor.white
+            }
             
             // select the new one
             let newCell = tableView.cellForRow(at: indexPath) as! CardTableCell
