@@ -20,6 +20,7 @@ import FoldingCell
 import DigitsKit
 import GooglePlaces
 import ObjectMapper
+import KSCrash
 
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
@@ -53,8 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     let BAASBOX_APPCODE = "1234567890"
-    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    
+//    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+    let BAASBOX_URL = "http://2445e6bb.ngrok.io"
     var centerContainer: MMDrawerController?
     
     var pushController: PushController =  PushController()
@@ -62,28 +63,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     var initialized: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         Fabric.with([Crashlytics.self, Digits.self])
 
-        // setup Crashlytics
-        Fabric.with([Crashlytics.self])
-        
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
 
         setupLogger()
         setupKeyboardManager()
 
+        let kSCrashInstallationEmail = KSCrashInstallationEmail.sharedInstance()
+        kSCrashInstallationEmail?.recipients = ["kishykumar@gmail.com"]
+        
         DDLogDebug("LaunchOptions \(String(describing: launchOptions))");
         
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(GOOGLE_API_KEY_IOS)
         GMSPlacesClient.provideAPIKey(GMS_Places_API_KEY_IOS)
+        
         // [START_EXCLUDE]
         // Configure the Google context: parses the GoogleService-Info.plist, and initializes
         // the services that have entries in the file
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-                
+
         gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
         // [END_EXCLUDE]
         
@@ -92,6 +95,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         gcmConfig?.receiverDelegate = self
         GCMService.sharedInstance().start(with: gcmConfig)
         // [END start_gcm_service]
+        
+        // Init facebook login
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
 
         return true
@@ -167,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
             
             if let success = success {
-
+                
                 let syncModel = Mapper<YBSync>().map(JSONObject: success)
 
                 if let syncData = syncModel {
@@ -177,14 +185,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                         if (error == nil) {
 
                             YBClient.sharedInstance().syncClient(syncData)
-                            
+
                             DDLogVerbose("KKDBG syncapp status \(YBClient.sharedInstance().status)")
-                            
+
                             self.initializeMainViewController()
                             if let centerNav = self.centerContainer?.centerViewController as? UINavigationController {
                                 var controllers = centerNav.viewControllers
 
-                                YBClient.sharedInstance().status = .looking
                                 switch (YBClient.sharedInstance().status) {
                                 case .looking:
                                     
@@ -200,13 +207,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                                     break
                                     
                                 case .driverEnRoute:
-                                    fallthrough
+                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                                    
+                                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                                    
+                                    rideViewController.controllerState = .driverEnRoute
+                                    
+                                    controllers.append(rideViewController)
+                                    
+                                    break
+                                    
+                                case .driverArrived:
+                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                                    
+                                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                                    
+                                    rideViewController.controllerState = .driverArrived
+                                    
+                                    controllers.append(rideViewController)
+                                    
+                                    break
                                     
                                 case .onRide:
                                     let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
                                     
                                     let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                                    
+                                    rideViewController.controllerState = .rideStart
+                                        
                                     controllers.append(rideViewController)
+                                    
                                     break
                                     
                                 case .pendingRating:
@@ -228,33 +258,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                                 
                                 // Post the notification to the caller View Controller
                                 postNotification(AppInitNotifications.pushStatus,
-                                                 value: true)
+                                                 value: AppInitReturnCode.success)
                                 
                                 self.initialized = true
                             }
                         } else {
-                            DDLogError("Error in Braintree setup: \(error)")
-                            self.handleAppInitializationError()
+                            DDLogError("Error in Braintree setup: \(String(describing: error))")
+                            self.handleAppInitializationError(error)
                         }
                     })
                 }
                 else {
-                    DDLogError("Error in parsing sync data: \(error)")
-                    self.handleAppInitializationError()
+                    DDLogError("Error in parsing sync data: \(String(describing: error))")
+                    self.handleAppInitializationError(error)
                 }
             } else {
                 // TODO: Show the alert with error
-                DDLogVerbose("syncClient failed: \(error)")
-                self.handleAppInitializationError()
+                DDLogVerbose("syncClient failed: \(String(describing: error))")
+                self.handleAppInitializationError(error)
             }
         })
     }
     
-    func handleAppInitializationError() {
- 
-        // Post the notification to the Caller ViewController that registration was not successful
-        postNotification(AppInitNotifications.pushStatus,
-                         value: false)
+    func handleAppInitializationError(_ error: Error?) {
+
+        // If it's authentication error, show the logic view controller
+        if ((error! as NSError).code == WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+            postNotification(AppInitNotifications.pushStatus,
+                             value: AppInitReturnCode.loginError)
+            
+            DDLogVerbose("Error in webRequest1: \(String(describing: error))")
+        } else {
+        
+            // Post the notification to the Caller ViewController that registration was not successful
+            postNotification(AppInitNotifications.pushStatus,
+                             value: AppInitReturnCode.error)
+        }
     }
 
     // BaasBox login user
@@ -334,6 +373,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         }
                return true
     }
+    
     public func application(_ application: UIApplication, open url1: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(
             application,
@@ -348,10 +388,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         
-        if let vvc = window!.visibleViewController as? FindOffersViewController {
-            DDLogDebug("Saving the timer")
-            vvc.saveProgressTimer()
-        }
+//        if let vvc = window!.visibleViewController as? FindOffersViewController {
+//            DDLogDebug("Saving the timer")
+//            vvc.saveProgressTimer()
+//        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -388,10 +428,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             }
         })
         
-        if let vvc = window!.visibleViewController as? FindOffersViewController {
-            DDLogVerbose("Restoring the timer")
-            vvc.restoreProgressTimer()
-        }
+//        if let vvc = window!.visibleViewController as? FindOffersViewController {
+//            DDLogVerbose("Restoring the timer")
+//            vvc.restoreProgressTimer()
+//        }
         
         // process a saved notification, if any
         pushController.processSavedNotification()
@@ -437,7 +477,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             else {
                 DDLogWarn("Error: enabling push notifications: \(error)")
                 
-                self.handleAppInitializationError()
+                self.handleAppInitializationError(error)
             }
         })
     }
@@ -451,7 +491,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 //        NSNotificationCenter.defaultCenter().postNotificationName(
 //            registrationKey, object: nil, userInfo: userInfo)
         
-        self.handleAppInitializationError()
+        self.handleAppInitializationError(error)
     }
     
     // GCM Registration Handler
@@ -474,7 +514,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             NotificationCenter.default.post(
                 name: Notification.Name(rawValue: self.registrationKey), object: nil, userInfo: userInfo)
             
-            self.handleAppInitializationError()
+            self.handleAppInitializationError(error)
         }
     }
     

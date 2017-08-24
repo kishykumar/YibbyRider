@@ -12,20 +12,31 @@ import CocoaLumberjack
 import XLPagerTabStrip
 import Braintree
 import DigitsKit
+import SwiftValidator
+import PhoneNumberKit
 
-class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
+class SignupViewController: BaseYibbyViewController,
+                            IndicatorInfoProvider,
+                            ValidationDelegate,
+                            SignupPaymentViewControllerDelegate,
+                            UITextFieldDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var nameOutlet: UITextField!
     @IBOutlet weak var emailAddressOutlet: UITextField!
-    @IBOutlet weak var phoneNumberOutlet: UITextField!
+    @IBOutlet weak var phoneNumberOutlet: PhoneNumberTextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     @IBOutlet weak var signupButtonOutlet: YibbyButton1!
     @IBOutlet weak var tandcButtonOutlet: UIButton!
+    @IBOutlet weak var errorLabelOutlet: UILabel!
     
     // flag to test creating the same user without calling the webserver.
     let testMode = false
     
+    let MAX_PHONE_NUMBER_TEXTFIELD_LENGTH = 14 // includes 10 digits, 1 paranthesis "()", 1 hyphen "-", and 1 space " "
+
+    let validator = Validator()
+
     // MARK: - Actions
     
     @IBAction func submitFormButton(_ sender: UIButton) {
@@ -56,12 +67,51 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         passwordOutlet.delegate = self
     }
     
+    func setupValidator() {
+        
+        validator.styleTransformers(success:{ (validationRule) -> Void in
+            
+            // clear error label
+            validationRule.errorLabel?.isHidden = true
+            validationRule.errorLabel?.text = ""
+            
+            if let textField = validationRule.field as? UITextField {
+                textField.removeBottomBorder()
+            }
+        }, error:{ (validationError) -> Void in
+            
+//            validationError.errorLabel?.isHidden = false
+//            validationError.errorLabel?.text = validationError.errorMessage
+//            
+//            if let textField = validationError.field as? UITextField {
+//                textField.setBottomBorder(UIColor.red)
+//            }
+        })
+        
+        validator.registerField(nameOutlet, errorLabel: errorLabelOutlet , rules: [RequiredRule(message: "Full Name is required"), FullNameRule()])
+        
+        validator.registerField(emailAddressOutlet,
+                                errorLabel: self.errorLabelOutlet,
+                                rules: [RequiredRule(message: "Email Address is required"), EmailRule()])
+        
+        validator.registerField(phoneNumberOutlet,
+                                errorLabel: self.errorLabelOutlet,
+                                rules: [RequiredRule(message: "Phone number is required"),
+                                        MinLengthRule(length: MAX_PHONE_NUMBER_TEXTFIELD_LENGTH,
+                                                      message: "Must be at least 9 characters long")])
+        
+        validator.registerField(passwordOutlet,
+                                errorLabel: self.errorLabelOutlet,
+                                rules: [RequiredRule(message: "Password is required"), YBPasswordRule()])
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupDelegates()
         setupUI()
+        setupValidator()
         self.hideKeyboardWhenTappedAround()
     }
 
@@ -69,11 +119,70 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
         super.viewWillAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.signupButtonOutlet.isUserInteractionEnabled = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - ValidationDelegate Methods
+    
+    func validationSuccessful() {
+
+        var formattedPhoneNumber = self.phoneNumberOutlet.text
+        
+        formattedPhoneNumber =
+            formattedPhoneNumber?.replacingOccurrences(of: "(", with: "", options: .literal, range: nil)
+        formattedPhoneNumber =
+            formattedPhoneNumber?.replacingOccurrences(of: ")", with: "", options: .literal, range: nil)
+        formattedPhoneNumber =
+            formattedPhoneNumber?.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+        formattedPhoneNumber =
+            formattedPhoneNumber?.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
+        
+        let digits = Digits.sharedInstance()
+        let configuration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
+        // configuration?.phoneNumber = self.txtPhone.text!
+        
+        let digitsAppearance = DGTAppearance()
+        
+        digitsAppearance.accentColor = UIColor.appDarkGreen1()
+        digitsAppearance.applyUIAppearanceColors()
+        configuration?.appearance = digitsAppearance
+        configuration?.phoneNumber = formattedPhoneNumber
+        
+        digits.authenticate(with: nil, configuration: configuration!) { session, error in
+            
+            if((error?.localizedDescription) != nil) {
+                digits.logOut()
+            }
+            else {
+                digits.logOut()
+                
+                // self.phoneNumberOutlet.text =  (session?.phoneNumber)!
+                
+                self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!,
+                                phoneNumberi: formattedPhoneNumber!, passwordi: self.passwordOutlet.text!)
+            }
+            // Country selector will be set to Spain and phone number field will be set to 5555555555
+        }
+    }
+    
+    func validationFailed(_ errors:[(Validatable, ValidationError)]) {
+        
+        let (_, validationError) = errors[0]
+        
+        validationError.errorLabel?.isHidden = false
+        validationError.errorLabel?.text = validationError.errorMessage
+        
+        if let textField = validationError.field as? UITextField {
+            textField.setBottomBorder(UIColor.red)
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -89,84 +198,15 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     // MARK: - Helper Functions
     
     func submitForm() {
-        if nameOutlet.text == ""{
-            
-             AlertUtil.displayAlert("error in form", message: "Enter name")
-        }
-        
-        else if emailAddressOutlet.text! == "" {
-            
-             AlertUtil.displayAlert("error in form", message: "Enter email address")
-        }
-        else if !CredentialsValidator.isValidEmail(testStr: emailAddressOutlet.text!) {
-         
-             AlertUtil.displayAlert("error in form", message: "Enter valid email address")
-        }
-        else if passwordOutlet.text == "" {
-           
-             AlertUtil.displayAlert("error in form", message: "Enter password")
-        }
-      /*  else if  !isValidPassword(testStr: passwordOutlet.text!){
-           
-            
-            AlertUtil.displayAlert("error in form", message: "Password must be more than six characters with minimum one numeric and special character")
-            
-        }*/
-        else if phoneNumberOutlet.text! == ""{
-            
-            AlertUtil.displayAlert("error in form", message: "Enter phone no")
-        }
-       /* else if  !CredentialsValidator.isValidPhoneNo(testStr: phoneNumberOutlet.text!){
-           
-             AlertUtil.displayAlert("error in form", message: "Enter valid phone no")
-            
-        }*/
-        else{
-            
-            
-                let digits = Digits.sharedInstance()
-                let configuration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
-                // configuration?.phoneNumber = self.txtPhone.text!
-                
-                let digitsAppearance = DGTAppearance()
-                
-                digitsAppearance.accentColor = UIColor.red
-                digitsAppearance.applyUIAppearanceColors()
-                configuration?.appearance = digitsAppearance
-                digits.authenticate(with: nil, configuration: configuration!) { session, error in
-                    
-                    if((error?.localizedDescription) != nil)
-                    {
-                        digits.logOut()
-                        
-                        self.phoneNumberOutlet.text = ""
-                    }
-                    else
-                    {
-                        digits.logOut()
-                        
-                        self.phoneNumberOutlet.text =  (session?.phoneNumber)!
-                      
-                        self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!, phoneNumberi: self.phoneNumberOutlet.text!, passwordi: self.passwordOutlet.text!)
-
-                    }
-                    // Country selector will be set to Spain and phone number field will be set to 5555555555
-                }
-                
-               
-                
-            
-        }
-        
-        
-        
+        validator.validate(self)
     }
   
     // BaasBox create user
     
     func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
+        self.signupButtonOutlet.isUserInteractionEnabled = false
+
         let client: BAAClient = BAAClient.shared()
         
         client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
@@ -196,10 +236,13 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
                 else {
                     AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
                 }
+                
+                self.signupButtonOutlet.isUserInteractionEnabled = true
             }
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }
+    
     /*{
         ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
@@ -242,12 +285,9 @@ class SignupViewController: BaseYibbyViewController, IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: InterfaceString.Join.Signup)
     }
-}
 
-// MARK: - SignupPaymentViewControllerDelegate
+    // MARK: - SignupPaymentViewControllerDelegate
 
-extension SignupViewController: SignupPaymentViewControllerDelegate {
- 
     func signupPaymentViewControllerDidSkip(_ addPaymentViewController: AddPaymentViewController) {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.initializeApp()
@@ -268,11 +308,8 @@ extension SignupViewController: SignupPaymentViewControllerDelegate {
             }
         })
     }
-}
 
-// MARK: - UITextFieldDelegate
-
-extension SignupViewController: UITextFieldDelegate {
+    // MARK: - UITextFieldDelegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -301,4 +338,20 @@ extension SignupViewController: UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if (textField == phoneNumberOutlet) {
+            if var str = textField.text {
+                str = str + string
+                if str.characters.count <= MAX_PHONE_NUMBER_TEXTFIELD_LENGTH {
+                    return true
+                }
+                
+                textField.text = str.substring(to: str.index(str.startIndex, offsetBy: MAX_PHONE_NUMBER_TEXTFIELD_LENGTH))
+                return false
+            }
+        }
+        
+        return true
+    }
 }

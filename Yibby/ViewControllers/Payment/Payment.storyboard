@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -162,13 +162,13 @@
                                                 <rect key="frame" x="20" y="363" width="280" height="175"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Payment Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5m-yW-ch3">
-                                                        <rect key="frame" x="0.0" y="10" width="280" height="21"/>
+                                                        <rect key="frame" x="0.0" y="10" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="0AS-Ds-gyb" userLabel="AddCreditCardSV">
-                                                        <rect key="frame" x="20" y="52" width="240" height="34"/>
+                                                        <rect key="frame" x="20" y="50.5" width="240" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-Mi-qsq" userLabel="CreditCardFALabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="29" height="34"/>
@@ -189,7 +189,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LiO-yc-EGZ" userLabel="YibbyCodeSV">
-                                                        <rect key="frame" x="20" y="106" width="240" height="25"/>
+                                                        <rect key="frame" x="20" y="104.5" width="240" height="25"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B9y-oV-9sO" userLabel="YibbyYImageView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -514,13 +514,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbC-mZ-IC0" customClass="CardFieldsView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="16" y="80" width="288" height="237"/>
+                                <rect key="frame" x="16" y="83.5" width="288" height="237"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CbC-mZ-IC0" secondAttribute="height" multiplier="96:79" id="Q8o-OT-jgI"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-Np-zHT">
-                                <rect key="frame" x="16" y="465" width="288" height="48"/>
+                                <rect key="frame" x="16" y="468.5" width="288" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hY-ah-QFP" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="119" height="48"/>
@@ -564,7 +564,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-0x-YDS">
-                                <rect key="frame" x="102" y="337" width="117" height="30"/>
+                                <rect key="frame" x="102" y="340.5" width="117" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Scan Credit Card"/>
                                 <connections>
@@ -577,21 +577,30 @@
                                     <color key="titleColor" red="0.4485248327255249" green="0.92197567224502563" blue="0.27586859464645386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="skipButtonAction:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="ERB-PP-948"/>
+                                    <action selector="onSkipButtonClick:" destination="Vg4-FY-bXK" eventType="touchUpInside" id="nly-nF-fNY"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6VZ-zq-FtB">
+                                <rect key="frame" x="51" y="42" width="218" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZJJ-0x-YDS" firstAttribute="top" secondItem="CbC-mZ-IC0" secondAttribute="bottom" constant="20" id="5A8-Di-Ncz"/>
                             <constraint firstItem="xbk-Np-zHT" firstAttribute="top" secondItem="ZJJ-0x-YDS" secondAttribute="bottom" constant="98" id="A5s-GX-g2H"/>
                             <constraint firstItem="qHc-RZ-d2M" firstAttribute="top" secondItem="VIK-rb-uT8" secondAttribute="bottom" id="B1d-Aj-Yfp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6VZ-zq-FtB" secondAttribute="trailing" constant="35" id="KTN-Ho-A1b"/>
                             <constraint firstItem="CbC-mZ-IC0" firstAttribute="trailing" secondItem="3YO-Rg-t82" secondAttribute="trailingMargin" id="NSq-1Q-Stn"/>
                             <constraint firstItem="qHc-RZ-d2M" firstAttribute="trailing" secondItem="3YO-Rg-t82" secondAttribute="trailingMargin" id="PeI-RI-TPC"/>
                             <constraint firstItem="ZJJ-0x-YDS" firstAttribute="centerX" secondItem="3YO-Rg-t82" secondAttribute="centerX" id="QIL-gk-nMj"/>
                             <constraint firstAttribute="trailing" secondItem="xbk-Np-zHT" secondAttribute="trailing" constant="16" id="Sin-E0-N1C"/>
                             <constraint firstItem="xbk-Np-zHT" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leading" constant="16" id="YAr-oM-ABZ"/>
-                            <constraint firstItem="CbC-mZ-IC0" firstAttribute="top" secondItem="VIK-rb-uT8" secondAttribute="bottom" constant="60" id="cuz-O4-E3w"/>
+                            <constraint firstItem="6VZ-zq-FtB" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" constant="35" id="rNd-kf-vnJ"/>
+                            <constraint firstItem="6VZ-zq-FtB" firstAttribute="top" secondItem="VIK-rb-uT8" secondAttribute="bottom" constant="22" id="tmz-lz-eFF"/>
+                            <constraint firstItem="CbC-mZ-IC0" firstAttribute="top" secondItem="6VZ-zq-FtB" secondAttribute="bottom" constant="22" id="wIt-9k-5p4"/>
                             <constraint firstItem="CbC-mZ-IC0" firstAttribute="leading" secondItem="3YO-Rg-t82" secondAttribute="leadingMargin" id="yP1-BB-7zv"/>
                         </constraints>
                     </view>
@@ -606,6 +615,7 @@
                     <connections>
                         <outlet property="cardFieldsViewOutlet" destination="CbC-mZ-IC0" id="R0F-af-RKO"/>
                         <outlet property="deleteCardButtonOutlet" destination="3hY-ah-QFP" id="coA-6D-llf"/>
+                        <outlet property="errorLabelOutlet" destination="6VZ-zq-FtB" id="dF4-dS-F45"/>
                         <outlet property="finishButtonOutlet" destination="yn4-bU-NCv" id="pLa-vN-qAA"/>
                         <outlet property="scanCardButtonOutlet" destination="ZJJ-0x-YDS" id="wek-L1-9S7"/>
                         <outlet property="skipButtonOutlet" destination="qHc-RZ-d2M" id="ZXt-hL-II6"/>

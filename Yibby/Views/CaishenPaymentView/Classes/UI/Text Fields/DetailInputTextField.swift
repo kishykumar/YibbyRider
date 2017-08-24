@@ -38,7 +38,6 @@ public class DetailInputTextField: StylizedTextField {
         let autoCompletedNewText = autocomplete(newText)
         
         let (currentTextFieldText, overflowTextFieldText) = split(autoCompletedNewText)
-        
         if isInputValid(currentTextFieldText, partiallyValid: true) {
             textField.text = currentTextFieldText
             if isInputValid(currentTextFieldText, partiallyValid: false) {

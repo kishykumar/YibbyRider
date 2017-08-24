@@ -14,8 +14,14 @@ public class CVCInputTextField: DetailInputTextField {
     /// The card type for the CVC that should be entered. The length of a CVC can vary based on this card type.
     public var cardType: CardType?
     override var expectedInputLength: Int {
-        return cardType?.CVCLength ?? 3
+        
+        let length = cardType?.CVCLength
+        if (length == nil || length == 0) {
+            return 3
+        }
+        return length!
     }
+    
     /**
      Checks the validity of the entered card validation code.
      
@@ -30,7 +36,8 @@ public class CVCInputTextField: DetailInputTextField {
         
         let cvc = CVC(rawValue: cvcString)
         return (cardType?.validate(cvc: cvc) == .Valid)
-            || partiallyValid && (cardType?.validate(cvc: cvc) == .CVCIncomplete)
+            || (partiallyValid &&
+                    ((cardType?.validate(cvc: cvc) == .CVCIncomplete) || (cardType?.validate(cvc: cvc) == .UnknownType)))
     }
 
 }

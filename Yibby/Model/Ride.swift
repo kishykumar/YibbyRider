@@ -17,7 +17,7 @@ class Ride: Mappable {
     var datetime: String?
     var driver: YBDriver?
     var driverBidPrice: Float?
-    var driverStartLocation: YBLocation?
+    var driverLocation: YBLocation?
     var dropoffLocation: YBLocation?
     var fare: Float?
     var id: String?
@@ -48,7 +48,7 @@ class Ride: Mappable {
         datetime                <- map["datetime"]
         driver                  <- map["driver"]
         driverBidPrice          <- map["driverBidPrice"]
-        driverStartLocation     <- map["driverStartLocation"]
+        driverLocation          <- map["driverLocation"]
         dropoffLocation         <- map["dropoffLocation"]
         fare                    <- map["fare"]
         id                      <- map["id"]

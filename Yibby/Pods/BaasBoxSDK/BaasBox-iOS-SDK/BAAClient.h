@@ -167,19 +167,25 @@
 
 // Bid
 - (void)createBid:(NSNumber *)bidHigh
-                    bidLow:(NSNumber *)bidLow
-                    etaHigh:(NSNumber *)etaHigh
-                    etaLow:(NSNumber *)etaLow
-                    pickupLat:(NSNumber *)pickupLat
-                    pickupLong:(NSNumber *)pickupLong
-                    pickupLoc:(NSString *)pickupLoc
-                    dropoffLat:(NSNumber *)dropoffLat
-                    dropoffLong:(NSNumber *)dropoffLong
-                    dropoffLoc:(NSString *)dropoffLoc
-                    paymentMethodToken:(NSString *)paymentMethodToken
-                    completion:(BAAObjectResultBlock)completionBlock;
+        bidLow:(NSNumber *)bidLow
+        etaHigh:(NSNumber *)etaHigh
+        etaLow:(NSNumber *)etaLow
+        pickupLat:(NSNumber *)pickupLat
+        pickupLong:(NSNumber *)pickupLong
+        pickupLoc:(NSString *)pickupLoc
+        dropoffLat:(NSNumber *)dropoffLat
+        dropoffLong:(NSNumber *)dropoffLong
+        dropoffLoc:(NSString *)dropoffLoc
+        paymentMethodToken:(NSString *)paymentMethodToken
+        paymentMethodBrand:(NSString *)paymentMethodBrand
+        paymentMethodLast4:(NSString *)paymentMethodLast4
+        numPeople:(NSNumber *)numPeople
+        completion:(BAAObjectResultBlock)completionBlock;
+
+- (void) fetchCountForRides:(BAAIntegerResultBlock)completionBlock;
 
 - (void) getRides:(NSString *)type
+                withParams:(NSDictionary *) parameters
                 completion: (BAAObjectResultBlock)completionBlock;
 
 - (void)cancelRiderRide:(NSString *)bidId
@@ -192,6 +198,9 @@
 
 - (void)startRide:(NSString *)bidId
               completion:(BAAObjectResultBlock)completionBlock;
+
+- (void)arrivedAtPickup:(NSString *)bidId
+       completion:(BAAObjectResultBlock)completionBlock;
 
 - (void)endRide:(NSString *)bidId
               completion:(BAAObjectResultBlock)completionBlock;

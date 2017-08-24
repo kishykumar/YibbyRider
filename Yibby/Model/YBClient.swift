@@ -13,6 +13,7 @@ enum YBClientStatus: String {
     case looking = "LOOKING"
     case ongoingBid = "BID_IN_PROCESS"
     case driverEnRoute = "DRIVER_EN_ROUTE"
+    case driverArrived = "DRIVER_ARRIVED"
     case onRide = "RIDE_START"
     case pendingRating = "RIDE_END"
 }
@@ -93,7 +94,9 @@ extension YBClient {
         }
         
         if let paymentMethods = syncData.paymentMethods {
-            refreshPaymentMethods(paymentMethods)
+            if (paymentMethods.count != 0) {
+                refreshPaymentMethods(paymentMethods)
+            }
         }
     }
 

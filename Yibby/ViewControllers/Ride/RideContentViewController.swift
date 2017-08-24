@@ -16,8 +16,9 @@ class RideContentViewController: BaseYibbyViewController {
 
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
+    @IBOutlet weak var cancelButtonOutlet: YibbyButton1!
     
-    weak var pullUpController: ISHPullUpViewController!
+    weak var pullUpController: RideViewController!
     
     var driverLocLatLng: CLLocationCoordinate2D?
     var driverLocMarker: GMSMarker?
@@ -28,9 +29,10 @@ class RideContentViewController: BaseYibbyViewController {
     
     fileprivate var driverLocationObserver: NotificationObserver?
 
-    let DRIVER_EN_ROUTE_MARKER_TITLE = "Driver En Route"
-    let DRIVER_ARRIVED_MARKER_TITLE = "Your driver has arrived."
-    let RIDE_STARTED_MARKER_TITLE = "Your ride has started."
+    let DRIVER_EN_ROUTE_MARKER_TITLE = "En Route"
+    let DRIVER_ARRIVED_MARKER_TITLE = "Driver Arrived"
+    let RIDE_STARTED_MARKER_TITLE = "Ride Started"
+    let RIDE_END_MARKER_TITLE = "Arrived"
     
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
     
@@ -56,7 +58,38 @@ class RideContentViewController: BaseYibbyViewController {
         // Add marker to the pickup location
         setPickupDetails(bid.pickupLocation!)
         
-        setDriverInitialLocation()
+        if let ride = YBClient.sharedInstance().ride {
+            
+            let state: RideViewControllerState = pullUpController.controllerState
+            var markerStatus: String? = nil
+            
+            switch (state) {
+            case .driverEnRoute:
+                markerStatus = DRIVER_EN_ROUTE_MARKER_TITLE
+                break
+                
+            case .driverArrived:
+                markerStatus = DRIVER_ARRIVED_MARKER_TITLE
+                break
+                
+            case .rideStart:
+                markerStatus = RIDE_STARTED_MARKER_TITLE
+                break
+                
+            case .rideEnd:
+                markerStatus = RIDE_END_MARKER_TITLE
+                break
+                
+            default:
+                break
+            }
+            
+            if let driverLoc = ride.driverLocation?.coordinate(), let markerStatus = markerStatus {
+                setDriverLocation(driverLoc,
+                                  status: markerStatus)
+            }
+        }
+        
         adjustGMSCameraFocus()
     }
     
@@ -64,6 +97,11 @@ class RideContentViewController: BaseYibbyViewController {
         
         // hide the back button
         self.navigationItem.setHidesBackButton(true, animated: false)
+        
+        cancelButtonOutlet.layer.cornerRadius = 10.0
+        cancelButtonOutlet.layer.borderWidth = 2.0
+        cancelButtonOutlet.layer.borderColor = UIColor.red.cgColor
+        cancelButtonOutlet.tintColor = UIColor.red
     }
     
     override func viewDidLoad() {
@@ -111,16 +149,16 @@ class RideContentViewController: BaseYibbyViewController {
             return
         }
         
-        let widthInset = ((driverLocMarker.icon?.size.width)! < (pickupMarker.icon?.size.width)!) ? driverLocMarker.icon?.size.width : pickupMarker.icon?.size.width
+        let heightInset = (driverLocMarker.icon?.size.height.isLess(than: (pickupMarker.icon?.size.height)!))! ? pickupMarker.icon?.size.height : driverLocMarker.icon?.size.height
         
-        let heightInset = (driverLocMarker.icon?.size.height.isLess(than: (pickupMarker.icon?.size.height)!))! ? driverLocMarker.icon?.size.height : pickupMarker.icon?.size.height
+        let widthInset = (driverLocMarker.icon?.size.width.isLess(than: (pickupMarker.icon?.size.width)!))! ? pickupMarker.icon?.size.width : driverLocMarker.icon?.size.width
         
         let screenSize: CGRect = UIScreen.main.bounds
         let pullupViewTargetHeight = RideBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
         
-        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + heightInset!/2,
+        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + (heightInset!/2) + 10.0,
                                   left: (widthInset!/2) + 10.0,
-                                  bottom: pullupViewTargetHeight + heightInset!/2,
+                                  bottom: pullupViewTargetHeight + (heightInset!/2) + 10.0,
                                   right: (widthInset!/2) + 10.0)
         
         mapFitCoordinates(coordinate1: pickupMarker.position, coordinate2: driverLocMarker.position, insets: insets)
@@ -155,41 +193,6 @@ class RideContentViewController: BaseYibbyViewController {
         gmsMapViewOutlet.animate(with: update!)
     }
     
-    func setDriverLocation (_ loc: CLLocationCoordinate2D) {
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(LocationService.DRIVER_LOC_FETCH_TIMER_INTERVAL)
-        driverLocMarker?.position = loc
-        CATransaction.commit()
-    
-        // if the distance between the driver and the rider is too less, adjust the map
-        
-    }
-    
-    func setDriverInitialLocation() {
-        
-        // TODO: REMOVE THIS ====================
-        let lat: CLLocationDegrees = 37.531631
-        let long: CLLocationDegrees = -122.263606
-        let loc: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
-        //  ==================== ====================
-        
-        driverLocMarker?.map = nil
-        self.driverLocLatLng = loc
-        
-        let dlmarker = GMSMarker(position: loc)
-        dlmarker.title = DRIVER_EN_ROUTE_MARKER_TITLE
-        dlmarker.map = gmsMapViewOutlet
-        
-        driverLocMarker = dlmarker
-        
-        driverLocMarker?.groundAnchor = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
-        
-        let markerImage = UIImage(named: InterfaceImage.DriverCar.rawValue)!
-        let imageData = UIImagePNGRepresentation(markerImage)!
-        driverLocMarker?.icon = UIImage(data: imageData, scale: 2.5)
-    }
-    
     // MARK: Notifications
     
     fileprivate func setupNotificationObservers() {
@@ -197,7 +200,7 @@ class RideContentViewController: BaseYibbyViewController {
         driverLocationObserver = NotificationObserver(notification: DriverLocationNotifications.newDriverLocation) { [unowned self] loc in
             DDLogVerbose("NotificationObserver newDriverLoc: \(loc)")
             
-            self.setDriverLocation(loc)
+            self.updateDriverLocation(loc)
         }
     }
     
@@ -208,11 +211,13 @@ class RideContentViewController: BaseYibbyViewController {
     // MARK: - Helpers
     
     func rideStartCallback() {
-        driverLocMarker?.title = RIDE_STARTED_MARKER_TITLE
+        let latLng = driverLocMarker?.position
+        setDriverLocation(latLng!, status: RIDE_STARTED_MARKER_TITLE)
     }
     
     func driverArrivedCallback() {
-        driverLocMarker?.title = DRIVER_ARRIVED_MARKER_TITLE
+        let latLng = driverLocMarker?.position
+        setDriverLocation(latLng!, status: DRIVER_ARRIVED_MARKER_TITLE)
     }
     
     func setPickupDetails (_ location: YBLocation) {
@@ -224,28 +229,42 @@ class RideContentViewController: BaseYibbyViewController {
         pumarker.groundAnchor = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
         pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
                                                                   title: location.name!,
-                                                                  andPinIcon: UIImage(named: "defaultMarker")!,
-                                                                  pickup: true)
+                                                                  type: .pickup)
         
         pickupMarker = pumarker
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    func updateDriverLocation (_ loc: CLLocationCoordinate2D) {
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(LocationService.DRIVER_LOC_FETCH_TIMER_INTERVAL)
+        driverLocMarker?.position = loc
+        CATransaction.commit()
+        
+        // if the distance between the driver and the rider is too less, adjust the map
+        
+    }
+    
+    func setDriverLocation(_ loc: CLLocationCoordinate2D, status: String) {
+        
+        // TODO: REMOVE THIS ====================
+//        let lat: CLLocationDegrees = 37.527466
+//        let long: CLLocationDegrees = -122.276797
+//        let loc: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
+        //  ==================== ====================
+        
+        driverLocMarker?.map = nil
+        self.driverLocLatLng = loc
+        
+        let dlmarker = GMSMarker(position: loc)
+        dlmarker.map = gmsMapViewOutlet
+        dlmarker.groundAnchor = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
 
+        dlmarker.icon = YibbyMapMarker.driverCarImageWithMarker(dlmarker,
+                                                                 title: status,
+                                                                 type: .driver)
+        
+        driverLocMarker = dlmarker
+    }
 }
-
-//extension RideContentViewController: GMSMapViewDelegate {
-//
-//    public func mapView(_ mapView: GMSMapView!, didChange position: GMSCameraPosition!) {
-//        
-//
-//    }
-//}

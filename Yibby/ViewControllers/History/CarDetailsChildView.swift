@@ -10,27 +10,18 @@ import UIKit
 
 class CarDetailsChildView: UIViewController {
 
-    
     @IBOutlet var carIV: UIImageView!
-    
-    
     @IBOutlet weak var carModel: YibbyPaddingLabel!
-    
     @IBOutlet weak var carNumber: YibbyPaddingLabel!
-    
     
     var carModelStr: String!
     var carNumberStr: String!
-
-    var transView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
-        
         setupUI()
-        
-        setupData()
+        configure()
         
         // Do any additional setup after loading the view.
     }
@@ -46,32 +37,25 @@ class CarDetailsChildView: UIViewController {
         carNumber.layer.borderWidth = 1.0
         carNumber.layer.cornerRadius = 5*/
         
-        carIV.layer.borderColor = UIColor.lightGray.cgColor
+        carIV.layer.borderColor = UIColor.appDarkGreen1().cgColor
         carIV.layer.borderWidth = 1.0
         carIV.layer.cornerRadius = carIV.frame.size.height/2-5
     }
-    
-    private func setupData() {
-        carModel.text = carModelStr
-        carNumber.text = carNumberStr
+
+    private func configure() {
+        carModel.text = carModelStr.capitalized
+        carNumber.text = carNumberStr.uppercased()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func closeBtnAction(_ sender: Any) {
-        transView.removeFromSuperview()
-        self.view.removeFromSuperview()
+        self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func backBtnAction(_ sender: Any) {
-        transView.removeFromSuperview()
-        self.view.removeFromSuperview()
-    }
-    
+
     /*
     // MARK: - Navigation
 

@@ -90,6 +90,12 @@ open class BraintreePaymentService: NSObject {
             if (error == nil) {
                 // add the payment method to the local list of payment methods
                 YBClient.sharedInstance().paymentMethods.append(paymentMethodModel!)
+                
+                if let isDefaultPM = paymentMethodModel?.isDefault {
+                    if (isDefaultPM) {
+                        YBClient.sharedInstance().defaultPaymentMethod = paymentMethodModel
+                    }
+                }
             }
             
             completionBlock(error)

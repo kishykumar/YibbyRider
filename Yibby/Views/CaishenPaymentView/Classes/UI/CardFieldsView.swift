@@ -278,6 +278,12 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
         addSubview(firstObjectInNib)
         
         cardImageView?.image = self.cardTypeImageStore.image(for: UnknownCardType())
+        numberInputTextField.layer.borderColor = UIColor.appDarkGreen1().cgColor
+        numberInputTextField.layer.borderColor = UIColor.appDarkGreen1().cgColor
+        monthTextField.layer.borderColor = UIColor.appDarkGreen1().cgColor
+        yearTextField.layer.borderColor = UIColor.appDarkGreen1().cgColor
+        cvcTextField.layer.borderColor = UIColor.appDarkGreen1().cgColor
+        postalCodeTextField.layer.borderColor = UIColor.appDarkGreen1().cgColor
         
 //        cardImageView?.layer.cornerRadius = 5.0
 //        cardImageView?.layer.shadowColor = UIColor.blackColor().cgColor
@@ -341,11 +347,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
         }
         
         cvcTextField?.deleteBackwardCallback = {_ -> Void in
-            if self.hideExpiryTextFields {
-                self.numberInputTextField.becomeFirstResponder()
-            } else {
-                self.yearTextField?.becomeFirstResponder()
-            }
+            self.yearTextField?.becomeFirstResponder()
         }
         
         postalCodeTextField?.deleteBackwardCallback = {_ -> Void in
@@ -514,9 +516,9 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
             monthTextField?.becomeFirstResponder()
         }
     }
-    
+
     // MARK: - Card
-    
+
     /**
      Displays the card image for the currently detected card type in the card text field's `cardImageView`.
      */

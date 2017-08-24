@@ -14,6 +14,7 @@ import StepSlider
 import AMPopTip
 import GoogleMaps
 import Braintree
+import ActionSheetPicker_3_0
 
 class RideEndViewController: BaseYibbyViewController {
 
@@ -61,7 +62,19 @@ class RideEndViewController: BaseYibbyViewController {
                 finalTipAmount = 5.0
                 break
             case 4:
-                // TODO: Pop up for customer tip
+                
+                ActionSheetStringPicker.show(withTitle: InterfaceString.ActionSheet.SelectTip, rows: ArrayUtil.Resource.StaticIntList1to50, initialSelection: 5, doneBlock: {
+                    picker, value, index in
+                    
+                    if let tipAmountInt = index as? Int {
+                        self.finalTipAmount = Double(tipAmountInt)
+                        
+                        // Other option is tip is at index=4
+                        self.tipSliderViewOutlet.labels[4] = "$\(tipAmountInt)"
+                    }
+                    
+                    return
+                }, cancel: { ActionStringCancelBlock in return }, origin: tipSliderViewOutlet)
                 
                 break
             default:
@@ -82,7 +95,7 @@ class RideEndViewController: BaseYibbyViewController {
         
         // Do any additional setup after loading the view.
         setupUI()
-        setupNavigationBar()
+        setupMenuButton()
     }
     
     func setupNavigationBar() {

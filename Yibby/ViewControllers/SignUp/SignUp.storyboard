@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ATC-WR-cwK">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ATC-WR-cwK">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-XT-wAP" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="16" y="271" width="288" height="48"/>
+                                <rect key="frame" x="16" y="290.5" width="288" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9cH-XT-wAP" secondAttribute="height" multiplier="6" id="Gby-Rl-c9z"/>
                                 </constraints>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyt-Pk-j7d" userLabel="Container View">
-                                <rect key="frame" x="16" y="40" width="288" height="206"/>
+                                <rect key="frame" x="16" y="59.5" width="288" height="206"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cce-Xu-IKG" userLabel="CredentialsSV">
                                         <rect key="frame" x="10" y="10" width="268" height="186"/>
@@ -46,7 +46,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="925-521-4585" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AwM-xB-sas">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="925-521-4585" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AwM-xB-sas" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
                                                 <rect key="frame" x="0.0" y="49" width="268" height="39"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -91,6 +91,12 @@
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="num-hm-WoR">
+                                <rect key="frame" x="16" y="30" width="288" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -98,17 +104,21 @@
                             <constraint firstItem="pWa-GR-brA" firstAttribute="top" secondItem="mbW-Z4-CeA" secondAttribute="bottom" id="CUY-Nz-r0H"/>
                             <constraint firstItem="mbW-Z4-CeA" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="H4U-Q0-2du"/>
                             <constraint firstItem="pWa-GR-brA" firstAttribute="centerX" secondItem="JGF-1f-FtY" secondAttribute="centerX" id="KO8-f4-Qwk"/>
-                            <constraint firstItem="Uyt-Pk-j7d" firstAttribute="top" secondItem="iFW-zz-HxR" secondAttribute="bottom" constant="20" id="KYU-J1-QoM"/>
+                            <constraint firstItem="Uyt-Pk-j7d" firstAttribute="top" secondItem="num-hm-WoR" secondAttribute="bottom" constant="10" id="Pu0-r7-Gt6"/>
+                            <constraint firstItem="num-hm-WoR" firstAttribute="top" secondItem="iFW-zz-HxR" secondAttribute="bottom" constant="10" id="Tfi-4t-UQq"/>
                             <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="pWa-GR-brA" secondAttribute="bottom" constant="-48" id="bxi-Cw-VQ3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="num-hm-WoR" secondAttribute="trailing" id="cMb-jw-bFq"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="top" secondItem="Uyt-Pk-j7d" secondAttribute="bottom" constant="25" id="cx3-rf-Dav"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="trailing" secondItem="JGF-1f-FtY" secondAttribute="trailingMargin" id="knr-I4-n3D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mbW-Z4-CeA" secondAttribute="trailing" id="mrd-3k-bRp"/>
+                            <constraint firstItem="num-hm-WoR" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="qOM-Cv-1ti"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="u1c-m4-0Ng"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="vSy-c5-KJI"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailAddressOutlet" destination="GI0-Ms-wLx" id="7ed-ey-QdZ"/>
+                        <outlet property="errorLabelOutlet" destination="num-hm-WoR" id="uAH-HJ-gRr"/>
                         <outlet property="nameOutlet" destination="Rky-lM-Pjf" id="a9p-qn-w3G"/>
                         <outlet property="passwordOutlet" destination="CMV-q2-Lbd" id="cys-f0-yLp"/>
                         <outlet property="phoneNumberOutlet" destination="AwM-xB-sas" id="Ztp-87-ZFz"/>

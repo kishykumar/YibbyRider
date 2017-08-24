@@ -15,14 +15,17 @@ import CocoaLumberjack
     func receiveRemoteNotification(_ application: UIApplication, notification:[AnyHashable: Any])
 }
 
+enum YBMessageType: String {
+    case offer = "OFFER"
+    case noOffers = "NO_OFFERS"
+    case rideStart = "RIDE_START"
+    case driverArrived = "DRIVER_ARRIVED"
+    case rideEnd = "RIDE_END"
+    case driverEnRoute = "DRIVER_EN_ROUTE"
+}
+
 open class PushController: NSObject, PushControllerProtocol {
     
-    let OFFER_MESSAGE_TYPE = "OFFER"
-    let NO_OFFERS_MESSAGE_TYPE = "NO_OFFERS"
-    let RIDE_START_MESSAGE_TYPE = "RIDE_START"
-    let RIDE_END_MESSAGE_TYPE = "RIDE_END"
-    let DRIVER_EN_ROUTE_MESSAGE_TYPE = "DRIVER_EN_ROUTE"
-
     let MESSAGE_JSON_FIELD_NAME = "message"
     let CUSTOM_JSON_FIELD_NAME = "custom"
     let BID_JSON_FIELD_NAME = "bid"
@@ -138,10 +141,11 @@ open class PushController: NSObject, PushControllerProtocol {
                 return;
             }
             
-            let messageType = (notification[MESSAGE_JSON_FIELD_NAME] as! String)
+            let messageTypeStr = (notification[MESSAGE_JSON_FIELD_NAME] as! String)
+            let messageType: YBMessageType = YBMessageType(rawValue: messageTypeStr)!
             
-            if (messageType == OFFER_MESSAGE_TYPE ||
-                messageType == NO_OFFERS_MESSAGE_TYPE) {
+            if (messageType == YBMessageType.offer ||
+                messageType == YBMessageType.noOffers) {
                 
                 let bid = Bid(JSONString: jsonCustomString)!
                 if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: bid.id)) {
@@ -152,7 +156,7 @@ open class PushController: NSObject, PushControllerProtocol {
                 
                 switch messageType {
                     
-                case OFFER_MESSAGE_TYPE:
+                case YBMessageType.offer:
                     
                     // -- THIS CODEPATH IS NOT EXECUTED --
                     assert(false)
@@ -164,7 +168,7 @@ open class PushController: NSObject, PushControllerProtocol {
                     let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
                     mmnvc.pushViewController(confirmRideViewController, animated: true)
                     
-                case NO_OFFERS_MESSAGE_TYPE:
+                case YBMessageType.noOffers:
                     DDLogDebug("NOOFFERS RCVD")
                     
                     // delete the saved state bid
@@ -172,6 +176,8 @@ open class PushController: NSObject, PushControllerProtocol {
                     
                     disableTimeoutCode()
                     
+                    // NOTE: The alert has to be shown after the popViewController is done.
+                    // Otherwise, iOS gives an error and doesn't pop the view controller
                     mmnvc.popViewController(animated: true)
                     AlertUtil.displayAlert("No offers from drivers.", message: "Your bid was not accepted by any driver")
                     
@@ -179,9 +185,10 @@ open class PushController: NSObject, PushControllerProtocol {
                     DDLogError("Weird message received during Bid1: \(messageType)")
                     break
                 }
-            } else if (messageType == DRIVER_EN_ROUTE_MESSAGE_TYPE ||
-                        messageType == RIDE_START_MESSAGE_TYPE ||
-                        messageType == RIDE_END_MESSAGE_TYPE) {
+            } else if (messageType == YBMessageType.driverEnRoute ||
+                        messageType == YBMessageType.rideStart ||
+                        messageType == YBMessageType.driverArrived ||
+                        messageType == YBMessageType.rideEnd) {
                 
                 let ride = Ride(JSONString: jsonCustomString)!
                 
@@ -198,7 +205,7 @@ open class PushController: NSObject, PushControllerProtocol {
                 
                 switch messageType {
 
-                case DRIVER_EN_ROUTE_MESSAGE_TYPE:
+                case YBMessageType.driverEnRoute:
                     DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
                     
                     disableTimeoutCode()
@@ -208,7 +215,7 @@ open class PushController: NSObject, PushControllerProtocol {
                     let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
                     mmnvc.pushViewController(rideViewController, animated: true)
                     
-                case RIDE_START_MESSAGE_TYPE:
+                case YBMessageType.rideStart:
                     DDLogDebug("RIDE_START_MESSAGE_TYPE")
 
                     // Publish the Ride started notification This will update the driver status in RideViewController.
@@ -219,7 +226,15 @@ open class PushController: NSObject, PushControllerProtocol {
 //                    let tripViewController = rideStoryboard.instantiateViewController(withIdentifier: "TripViewControllerIdentifier") as! TripViewController
 //                    mmnvc.pushViewController(tripViewController, animated: true)
                     
-                case RIDE_END_MESSAGE_TYPE:
+                case .driverArrived:
+                    DDLogDebug("DRIVER_ARRIVED_MESSAGE_TYPE")
+                    
+                    // Publish the Driver Arrived notification This will update the driver status in RideViewController.
+                    postNotification(RideNotifications.driverArrived, value: "")
+                    
+                    break
+                    
+                case YBMessageType.rideEnd:
                     DDLogDebug("RIDE_END_MESSAGE_TYPE")
                     postNotification(RideNotifications.rideEnd, value: "")
                     

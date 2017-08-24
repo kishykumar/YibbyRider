@@ -14,6 +14,7 @@ import BButton
 import CocoaLumberjack
 import Braintree
 import GooglePlaces
+import ActionSheetPicker_3_0
 
 // TODO:
 // 1. Create bid state that we save on the app
@@ -24,7 +25,11 @@ import GooglePlaces
 class MainViewController: BaseYibbyViewController,
                                 UITextFieldDelegate,
                                 DestinationDelegate,
-                                CLLocationManagerDelegate {
+                                CLLocationManagerDelegate,
+                                SelectPaymentViewControllerDelegate,
+                                GMSAutocompleteViewControllerDelegate,
+                                GMSMapViewDelegate,
+                                JOButtonMenuDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
@@ -59,6 +64,7 @@ class MainViewController: BaseYibbyViewController,
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
     
     var bidHigh: Float?
+    var numPeople: Int?
     
     var priceSliderViewHidden = false
     var miscPickerViewHidden = false
@@ -81,7 +87,6 @@ class MainViewController: BaseYibbyViewController,
     
     // MARK: - Actions
     
-    // MARK: Actions
     @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
         AlertUtil.displayAlert("Thanks for taking a ride with Yibby!", message: "Please come back.")
     }
@@ -153,10 +158,11 @@ class MainViewController: BaseYibbyViewController,
             let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
             
             // Initialize the view controller state 
-            confirmRideViewController.bidHigh = self.bidHigh
-            confirmRideViewController.pickupLocation = self.pickupLocation
-            confirmRideViewController.dropoffLocation = self.dropoffLocation
-            confirmRideViewController.currentPaymentMethod = self.selectedPaymentMethod
+            confirmRideViewController.bidHigh = self.bidHigh!
+            confirmRideViewController.pickupLocation = self.pickupLocation!
+            confirmRideViewController.dropoffLocation = self.dropoffLocation!
+            confirmRideViewController.currentPaymentMethod = self.selectedPaymentMethod!
+            confirmRideViewController.numPeople = self.numPeople!
             
             self.navigationController?.pushViewController(confirmRideViewController, animated: true)
         }
@@ -180,13 +186,17 @@ class MainViewController: BaseYibbyViewController,
         setupPersonsButtonMenuUI()
         
         setupNavigationBar()
-        setStatusBarColor()
+//        setStatusBarColor()
         setupMenuButton()
 
         // update card UI
         if let method = self.selectedPaymentMethod {
             updateSelectCardUI(paymentMethod: method)
         }
+        
+        // default number of people
+        self.peopleLabelOutlet.text = "1"
+        self.numPeople = 1
     }
     
     open override func viewWillLayoutSubviews() {
@@ -286,27 +296,6 @@ class MainViewController: BaseYibbyViewController,
 //        }
     }
     
-    func setStatusBarColor () {
-//        let app: UIApplication = UIApplication.sharedApplication()
-//        
-//        let statusBarView: UIView = UIView(frame:
-//            CGRectMake(0, -app.statusBarFrame.size.height,
-//                    self.view.bounds.size.width, app.statusBarFrame.size.height))
-//        
-//        statusBarView.backgroundColor = UIColor.appDarkGreen1()
-//        self.navigationController?.navigationBar.addSubview(statusBarView)
-
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-
-        if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
-            statusBar.backgroundColor = UIColor.appDarkGreen1()
-        }
-
-        // status bar text color
-        UIApplication.shared.statusBarStyle = .lightContent
-        UIApplication.shared.isStatusBarHidden = false   
-    }
-    
     func setupMap () {
         gmsMapViewOutlet.isMyLocationEnabled = true
         
@@ -331,7 +320,7 @@ class MainViewController: BaseYibbyViewController,
         bidHigh = 100
         
         self.setPickupDetails(YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"))
-        self.setDropoffDetails(YBLocation(lat: 37.348209, long: -121.993756, name: "3500 Granada Ave, Santa Clara, CA 95051"))
+        self.setDropoffDetails(YBLocation(lat: 37.787884, long: -122.407536, name: "Union Square, San Francisco"))
         
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
@@ -402,15 +391,9 @@ class MainViewController: BaseYibbyViewController,
             
             if let placeLikelihoodList = placeLikelihoodList {
                 let place = placeLikelihoodList.likelihoods.first?.place
-                if let place = place {
-                    print(place.formattedAddress)
-                 //   self.nameLabel.text = place.name
-                   // self.addressLabel.text = place.formattedAddress.componentsSeparatedByString(", ")
-                     //   .joinWithSeparator("\n")
-                }
             }
         } as! GMSPlaceLikelihoodListCallback)
-           }
+    }
     
     
     // MARK: - Helpers
@@ -419,7 +402,7 @@ class MainViewController: BaseYibbyViewController,
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
             
             if (error != nil) {
-                DDLogWarn("Error is: \(error)")
+                DDLogWarn("Error is: \(String(describing: error))")
             } else {
                 if let validPlacemark = placemarks?[0] {
                     if let placemark = validPlacemark as? CLPlacemark {
@@ -475,8 +458,7 @@ class MainViewController: BaseYibbyViewController,
         
         pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
                                                                  title: location.name!,
-                                                                 andPinIcon: UIImage(named: "defaultMarker")!,
-                                                                 pickup: true)
+                                                                 type: .pickup)
         
         pickupMarker = pumarker
         adjustGMSCameraFocus()
@@ -494,8 +476,7 @@ class MainViewController: BaseYibbyViewController,
         //        domarker.icon = UIImage(named: "Visa")
         domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
                                                                  title: location.name!,
-                                                                 andPinIcon: UIImage(named: "defaultMarker")!,
-                                                                 pickup: false)
+                                                                 type: .dropoff)
         
         dropoffMarker = domarker
         adjustGMSCameraFocus()
@@ -536,10 +517,6 @@ class MainViewController: BaseYibbyViewController,
         let update = GMSCameraUpdate.fit(bounds, with: insets)
         gmsMapViewOutlet.moveCamera(update)
     }
-}
-
-extension MainViewController: SelectPaymentViewControllerDelegate {
-    
 
     // MARK: - SelectPaymentViewControllerDelegate
     
@@ -645,14 +622,13 @@ extension MainViewController: SelectPaymentViewControllerDelegate {
     }
     
     #endif
-}
 
-extension MainViewController: GMSAutocompleteViewControllerDelegate {
+    // MARK: - GMSAutocompleteViewControllerDelegate
     
     public func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 
         DDLogVerbose("Place name: \(place.name)")
-        DDLogVerbose("Place address: \(place.formattedAddress)")
+        DDLogVerbose("Place address: \(String(describing: place.formattedAddress))")
         DDLogVerbose("Place attributions: (place.attributions)")
         
         let loc = YBLocation(coordinate: place.coordinate, name: place.formattedAddress!)
@@ -668,7 +644,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    public func viewController(_ viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: Error!) {
+    public func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
     
         // TODO: handle the error.
         DDLogWarn("Error: \((error as NSError).description)")
@@ -676,7 +652,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     }
     
     // User canceled the operation.
-    public func wasCancelled(_ viewController: GMSAutocompleteViewController!) {
+    public func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         cleanup()
         self.dismiss(animated: true, completion: nil)
     }
@@ -685,12 +661,10 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
         pickupFieldSelected = false
         dropoffFieldSelected = false
     }
-}
 
-extension MainViewController: GMSMapViewDelegate {
-    
     // MARK: - GMSMapViewDelegate
-    public func mapView(_ mapView: GMSMapView!, didTap marker: GMSMarker!) -> Bool {
+    
+    public func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         
         if (marker == pickupMarker) {
             pickupFieldSelected = true
@@ -707,14 +681,12 @@ extension MainViewController: GMSMapViewDelegate {
         // default marker action is false, but we don't want that.
         return true
     }
-}
 
-extension MainViewController: JOButtonMenuDelegate {
-    
     // MARK: - JOButtonMenuDelegate
     
     public func selectedOption(_ sender: JOButtonMenu, index: Int) {
         peopleLabelOutlet.text = peopleButtonOutlet.dataset[index].labelText
+        self.numPeople = Int(peopleLabelOutlet.text!)
     }
     
     public func canceledAction(_ sender: JOButtonMenu) {
