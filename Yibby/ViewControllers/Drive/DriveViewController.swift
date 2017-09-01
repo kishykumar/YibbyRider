@@ -19,20 +19,26 @@ class DriveViewController: UIViewController {
         let url = URL(string: "https://google.com")!
         UIApplication.shared.openURL(url)
     }
-    
+
     // MARK: - Setup
-     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupUI()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func setupUI() {
+        setupBackButton()
+    }
+
+    // MARK: - Helpers
 
     /*
     // MARK: - Navigation

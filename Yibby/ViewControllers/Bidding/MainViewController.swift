@@ -88,7 +88,7 @@ class MainViewController: BaseYibbyViewController,
     // MARK: - Actions
     
     @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
-        AlertUtil.displayAlert("Thanks for taking a ride with Yibby!", message: "Please come back.")
+        
     }
     
     @IBAction func leftSlideButtonTapped(_ sender: AnyObject) {
@@ -146,7 +146,8 @@ class MainViewController: BaseYibbyViewController,
             return;
         }
         
-        bidHigh = self.rangeSliderOutlet.value
+        let bidHighInt = Int(self.rangeSliderOutlet.value)
+        bidHigh = Float(bidHighInt)
         
         if (pickupLocation != nil &&
             dropoffLocation != nil && bidHigh != nil) {
@@ -197,16 +198,6 @@ class MainViewController: BaseYibbyViewController,
         // default number of people
         self.peopleLabelOutlet.text = "1"
         self.numPeople = 1
-    }
-    
-    open override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-    }
-    
-    open override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
     }
     
     func setupRangeSliderUI() {
@@ -509,7 +500,7 @@ class MainViewController: BaseYibbyViewController,
             (centerMarkersViewOutlet.superview?.convert(centerMarkersViewOutlet.frame.origin,
                 to: gmsMapViewOutlet))!
         
-        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + (pickupMarker.icon?.size.height)!,
+        let insets = UIEdgeInsets(top: self.topLayoutGuide.length + (pickupMarker.icon?.size.height)! + 10.0,
                                   left: ((pickupMarker.icon?.size.width)! / 2) + 10.0,
                                   bottom: gmsMapViewOutlet.frame.height - centerMarkersRelativeOrigin.y,
                                   right: ((pickupMarker.icon?.size.width)! / 2) + 10.0)

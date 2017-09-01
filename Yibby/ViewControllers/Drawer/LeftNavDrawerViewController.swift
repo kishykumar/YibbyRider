@@ -30,6 +30,8 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
     
+    fileprivate var profilePictureObserver: NotificationObserver?
+
     enum TableIndex: Int {
         case trips = 0
         case payment
@@ -80,22 +82,23 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     }
     
     @IBAction func onUpdateProfilePictureAction(_ sender: AnyObject) {
-        photoSaveCallback = { image in
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            ProfileService().updateUserProfilePicture(image,
-              success: { url in
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                
-                let userDefaults = UserDefaults.standard
-                userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
-                
-                self.profilePictureOutlet.image = image
-              },
-              failure: { _, _ in
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            })
-        }
-        openImagePicker()
+        
+//        photoSaveCallback = { image in
+//            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+//            ProfileService().updateUserProfilePicture(image,
+//              success: { url in
+//                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+//                
+//                userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
+//                
+//                self.profilePictureOutlet.image = image
+//              },
+//              failure: { _, _ in
+//                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+//            })
+//        }
+//        openImagePicker()
+        
     }
     
     @IBAction func onProfileButtonClick(sender: AnyObject) {
@@ -126,33 +129,18 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         
         // Do any additional setup after loading the view.
         setupUI()
-        setupViews()
+        setupNotificationObservers()
     }
-    
+
+    deinit {
+        removeNotificationObservers()
+    }
+
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Set tableview botton border in viewDidAppear because the tableView height is coming incorrect in viewDidLoad
         self.tableView.addBottomBorder()
-    }
-    
-    open override func viewWillAppear(_ animated: Bool) {
-        
-//        self.userRealNameLabelOutlet.text = YBClient.sharedInstance().getProfile()?.name
-//        self.getProfilePicture()
-        super.viewWillAppear(animated)
-    }
-    
-    
-    func getProfilePicture() {
-        if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
-            if (profilePic != "") {
-                if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
-                    
-                    profilePictureOutlet.pin_setImage(from: imageUrl)
-                }
-            }
-        }
     }
     
     open override func didReceiveMemoryWarning() {
@@ -181,25 +169,28 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
                 self.userRealNameLabelOutlet.text = "Yibby User"
             }
         }
-    }
-    
-    fileprivate func setupViews() {
-        setupDefaultValues()
-    }
-    
-    fileprivate func setupDefaultValues() {
-        let userDefaults = UserDefaults.standard
-        
+
         if let cachedImage = TemporaryCache.load(.coverImage) {
             profilePictureOutlet.image = cachedImage
         }
-        else if let imageURL = userDefaults.url(forKey: self.PROFILE_PICTURE_URL_KEY) {
+        else {
+            getProfilePicture()
+        }
+    }
+    
+    // MARK: Notifications
+    
+    fileprivate func removeNotificationObservers() {
+        profilePictureObserver?.removeObserver()
+    }
+    
+    
+    fileprivate func setupNotificationObservers() {
+        
+        profilePictureObserver = NotificationObserver(notification: ProfileNotifications.profilePictureUpdated) { [unowned self] comment in
+            DDLogVerbose("NotificationObserver profilePictureUpdated: \(comment)")
             
-            let client: BAAClient = BAAClient.shared()
-            
-            if let newUrl = client.getCompleteURL(withToken: imageURL) {
-                profilePictureOutlet.pin_setImage(from: newUrl)
-            }
+            self.refreshProfilePicture()
         }
     }
     
@@ -332,7 +323,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
             else {
                 // We continue the user session if Logout hits an error
                 if ((error as! NSError).domain == BaasBox.errorDomain()) {
-                    DDLogError("Error in logout: \(error)")
+                    DDLogError("Error in logout: \(String(describing: error))")
                     AlertUtil.displayAlert("Error Logging out. ", message: "This is...weird.")
                 }
                 else {
@@ -352,6 +343,21 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         
         if let alertViewController = alertViewController {
             present(alertViewController, animated: true, completion: .none)
+        }
+    }
+    
+    public func refreshProfilePicture() {
+        getProfilePicture()
+    }
+    
+    fileprivate func getProfilePicture() {
+        
+        if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
+            if (profilePic != "") {
+                if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
+                    profilePictureOutlet.pin_setImage(from: imageUrl)
+                }
+            }
         }
     }
     

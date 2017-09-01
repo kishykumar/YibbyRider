@@ -16,6 +16,10 @@ import Lightbox
 import BButton
 import SwiftValidator
 
+public struct ProfileNotifications {
+    static let profilePictureUpdated = TypedNotification<String>(name: "com.Yibby.Profile.updateProfilePicture")
+}
+
 class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, ValidationDelegate {
 
     // MARK: - Properties
@@ -43,8 +47,6 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     var addHomeSelected: Bool?
     var addWorkSelected: Bool?
     
-    var profileImgFileId: String?
-
     var emailEditInProgress = false
     
     let imagePickerController = ImagePickerController()
@@ -159,7 +161,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         setupImagePicker()
         setupValidator()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -200,7 +202,8 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         emailEditBtnOutlet.layer.borderWidth = 1.0
         emailEditBtnOutlet.layer.cornerRadius = 7.0
         
-        profileImageViewOutlet.makeRounded()
+        // Set rounded profile pic
+        profileImageViewOutlet.setRoundedWithBorder(UIColor.appDarkGreen1())
         
         addHomePlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
         addWorkPlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
@@ -209,6 +212,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         
         if let profile = YBClient.sharedInstance().profile {
             self.applyProfileModel(profile)
+            getProfilePicture()
         }
     }
     
@@ -317,6 +321,10 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     }
 
     func applyProfileModel(_ profile: YBProfile) {
+        
+        // update the global profile object first
+        YBClient.sharedInstance().profile = profile
+        
         self.emailAddress.text = profile.email
         self.phoneNo.text = profile.phoneNumber?.toPhoneNumber()
         
@@ -347,6 +355,8 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
                 self.addWorkBtnOutlet.setTitle(workLocName, for: UIControlState())
             }
         }
+        
+        getProfilePicture()
     }
 
     func addHomeDetails (_ location: YBLocation) {
@@ -497,17 +507,41 @@ extension SettingsViewController: ImagePickerDelegate {
             ImageService.sharedInstance().uploadImage(image,
               cacheKey: .profilePicture,
               success: { (url, fileId) in
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-
-                self.profileImgFileId = fileId
                 
                 // update UI here
                 self.profileImageViewOutlet.image = image
+                
+                let client: BAAClient = BAAClient.shared()
+                let dictionary = ["profilePicture": fileId]
+
+                client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+
+                    if let success = success {
+                        let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+                        
+                        if let profile = profileModel {
+                            self.applyProfileModel(profile)
+                            
+                            // post notification to update the profile picture in other view controllers
+                            postNotification(ProfileNotifications.profilePictureUpdated, value: "")
+                        }
+                        else {
+                            AlertUtil.displayAlert("Error in updating profile picture", message: error?.localizedDescription ?? "")
+                            DDLogError("Error in updating profilepic: \(String(describing: success))")
+                        }
+                    }
+                    else {
+                        AlertUtil.displayAlert("Error in updating profile picture", message: error?.localizedDescription ?? "")
+                        DDLogVerbose("addHomeDetails failed: \(String(describing: error))")
+                    }
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                })
+
+                
               },
               failure: { error in
                 DDLogError("Failure in uploading profile picture: \(error.description)")
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                
             })
         }
         

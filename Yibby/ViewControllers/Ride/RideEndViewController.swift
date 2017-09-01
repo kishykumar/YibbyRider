@@ -52,15 +52,19 @@ class RideEndViewController: BaseYibbyViewController {
             moreInfoButtonOutlet.isHidden = false
             
             switch (sender.index) {
+                
+            case 0:
+                assert(false) // zero handle in the else case
+                
             case 1:
                 finalTipAmount = 1.0
-                break
+
             case 2:
                 finalTipAmount = 2.0
-                break
+
             case 3:
                 finalTipAmount = 5.0
-                break
+
             case 4:
                 
                 ActionSheetStringPicker.show(withTitle: InterfaceString.ActionSheet.SelectTip, rows: ArrayUtil.Resource.StaticIntList1to50, initialSelection: 5, doneBlock: {
@@ -71,20 +75,25 @@ class RideEndViewController: BaseYibbyViewController {
                         
                         // Other option is tip is at index=4
                         self.tipSliderViewOutlet.labels[4] = "$\(tipAmountInt)"
+                        
+                        self.updateFinalFareWithTip()
                     }
                     
                     return
                 }, cancel: { ActionStringCancelBlock in return }, origin: tipSliderViewOutlet)
                 
-                break
             default:
-                
                 break
             }
+            
+            updateFinalFareWithTip()
             
         } else {
             rideFareLabel.textColor = UIColor.darkGray
             moreInfoButtonOutlet.isHidden = true
+            
+            finalTipAmount = 0.0
+            updateFinalFareWithTip()
         }
     }
     
@@ -96,10 +105,6 @@ class RideEndViewController: BaseYibbyViewController {
         // Do any additional setup after loading the view.
         setupUI()
         setupMenuButton()
-    }
-    
-    func setupNavigationBar() {
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setupUI() {
@@ -151,6 +156,11 @@ class RideEndViewController: BaseYibbyViewController {
         tripDestinationMapViewOutlet.layer.cornerRadius = tripDestinationMapViewOutlet.frame.size.width/2-4
 
         if let ride = YBClient.sharedInstance().ride {
+            DDLogVerbose("KKDBG_rideEnd ride: \(ride)")
+            dump(ride)
+            
+            let rideFareInt = Int(ride.fare!)
+            rideFareLabel.text = "$\(rideFareInt)"
             
             if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
                 let prettyDate = TimeUtil.prettyPrintDate1(rideDate)
@@ -182,7 +192,7 @@ class RideEndViewController: BaseYibbyViewController {
             }
             
             if let driverVehicle = ride.vehicle {
-                carNumberLbl.text = driverVehicle.licensePlate
+                carNumberLbl.text = driverVehicle.licensePlate?.uppercased()
                 
                 if let carPic = driverVehicle.vehiclePictureFileId {
                     if (carPic != "") {
@@ -194,7 +204,7 @@ class RideEndViewController: BaseYibbyViewController {
             }
         }
     }
-    
+
     @IBAction func finishBtnAction(_ sender: Any) {
         
         let rating = String(ratingViewOutlet.rating)
@@ -207,17 +217,22 @@ class RideEndViewController: BaseYibbyViewController {
                           "feedback": "Hello I am here",
                           "rating": rating,
                           "tip": String(finalTipAmount)]
-        
+
             client.postReview(BAASBOX_RIDER_STRING, jsonBody: reviewDict, completion:{(success, error) -> Void in
             if ((success) != nil) {
-                self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
-                DDLogVerbose("Review success: \(success)")
+                DDLogVerbose("Review success: \(String(describing: success))")
             }
             else {
-                self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
-                DDLogVerbose("Review failed: \(error)")
+                DDLogVerbose("Review failed: \(String(describing: error))")
             }
             
+            AlertUtil.displayAlert("Thanks for taking a ride with Yibby!",
+                message: "Please come back.",
+                completionBlock: {() -> Void in
+                    self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
+                })
+
+            YBClient.sharedInstance().removePersistedBidId()
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }
@@ -230,6 +245,18 @@ class RideEndViewController: BaseYibbyViewController {
     // MARK: - Cosmos Rating View
     
 
+    // MARK: - Helpers
+    
+    
+    func updateFinalFareWithTip() {
+        
+        if let ride = YBClient.sharedInstance().ride {
+            let rideFareInt = Int(ride.fare!)
+            let tipInt = Int(finalTipAmount)
+            
+            rideFareLabel.text = "$\(rideFareInt + tipInt)"
+        }
+    }
     
     // MARK: - Navigation
 

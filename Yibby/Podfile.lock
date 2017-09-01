@@ -5,7 +5,7 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - AMPopTip (2.1.6)
-  - BaasBoxSDK (0.9.11)
+  - BaasBoxSDK (0.9.12)
   - BButton (4.0.2)
   - Braintree (4.8.1):
     - Braintree/Card (= 4.8.1)
@@ -286,7 +286,7 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   AMPopTip: 81f57556ae12500d30ff595078b1b6d11076ced8
-  BaasBoxSDK: 1a885b4762159b4a0a1b712c8f232e56b493220f
+  BaasBoxSDK: c6c99a1dd5c7bfb685ed2f6dd04d2cb497ce7e49
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 9e63eeb60d34f54fa1aa8f3d75fe3976927c06d5
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443

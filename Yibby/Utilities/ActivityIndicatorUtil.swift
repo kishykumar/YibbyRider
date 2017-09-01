@@ -63,6 +63,23 @@ open class ActivityIndicatorUtil {
         }
     }
     
+    static func enableRegularActivityIndicator (_ view: UIView) {
+        
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        
+        //hud.contentColor = UIColor.black
+        
+        // Will look best, if we set a minimum size.
+        hud.minSize = CGSize(width: 10.0, height: 10.0)
+        
+        hud.bezelView.color = UIColor.clear
+        hud.bezelView.layer.borderColor = UIColor.clear.cgColor
+        
+        hud.backgroundView.color = UIColor(white: 0.0, alpha: 0.3)
+        hud.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+    }
+    
+    
 //    static func enableActivityIndicator (_ view: UIView) {
 //        ActivityIndicatorUtil.enableActivityIndicator(view, status: nil, mask: SVProgressHUDMaskType.black,
 //                                     maskColor: nil, style: SVProgressHUDStyle.dark)

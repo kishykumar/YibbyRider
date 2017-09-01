@@ -66,7 +66,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     self.navigationController!.popViewController(animated: true)
                                     AlertUtil.displayAlert("No drivers online.", message: "")
                                 } else {
-                                    DDLogVerbose("Unexpected Error: success var: \(success)")
+                                    DDLogVerbose("Unexpected Error: success var: \(String(describing: success))")
                                     
                                     // NOTE: The alert has to be shown after the popViewController is done.
                                     // Otherwise, iOS gives an error and doesn't pop the view controller
@@ -94,7 +94,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     userBid.people = (successData["people"] as? Int)
                                     userBid.creationTime = (successData["_creation_date"] as! String)
 
-                                    DDLogVerbose("KKDBG_bidID \(userBid.id)")
+                                    DDLogVerbose("KKDBG_bidID \(String(describing: userBid.id))")
                                     YBClient.sharedInstance().bid = userBid
 
                                     YBClient.sharedInstance().persistBidId(bid: userBid)

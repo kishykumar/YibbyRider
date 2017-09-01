@@ -191,24 +191,27 @@ open class PushController: NSObject, PushControllerProtocol {
                         messageType == YBMessageType.rideEnd) {
                 
                 let ride = Ride(JSONString: jsonCustomString)!
-                
+
                 if (!YBClient.sharedInstance().isSameAsOngoingBid(bidId: ride.bidId)) {
                     
                     if let ongoingBid = YBClient.sharedInstance().bid {
-                        DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(ride.bidId)")
+                        DDLogDebug("Ongoingbid is: \(ongoingBid.id). Incoming is \(String(describing: ride.bidId))")
                     } else {
-                        DDLogDebug("Ongoingbid is: nil. Incoming is \(ride.bidId)")
+                        DDLogDebug("Ongoingbid is: nil. Incoming is \(String(describing: ride.bidId))")
                     }
                     
                     return;
                 }
-                
+
                 switch messageType {
 
                 case YBMessageType.driverEnRoute:
                     DDLogDebug("DRIVER_EN_ROUTE_MESSAGE_TYPE")
                     
                     disableTimeoutCode()
+                    
+                    // Successful ride, save it. We only update the ride object during driver_en_route, and not during driverArrived/rideStart/End
+                    YBClient.sharedInstance().ride = ride
                     
                     let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
                     

@@ -61,10 +61,10 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         
         createCellHeightsArray()
         
-        //This block runs when the table view scrolled to the bottom
+        // This block runs when the table view scrolled to the bottom
         weak var weakSelf = self
         
-        //Don't forget to make weak pointer to self
+        // Don't forget to make weak pointer to self
         self.tableScrolledDownBlock = { () -> Void in
             
             // data loading logic
@@ -80,9 +80,8 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         self.nextPageToLoad = 0
         self.totalPages = 0
         
-        ActivityIndicatorUtil.enableBlurActivityIndicator(view, title: InterfaceString.ActivityIndicator.Loading)
-        self.perform(#selector(TripTableVC.loadNextPage),
-                     with:nil, afterDelay:0.0)
+//        ActivityIndicatorUtil.enableBlurActivityIndicator(view, title: InterfaceString.ActivityIndicator.Loading)
+//        self.perform(#selector(TripTableVC.loadNextPage), with:nil, afterDelay:0.0)
     }
     
     deinit {
@@ -118,7 +117,7 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     func reinit() {
         
         if (self.shownRides != 0) {
-            let topInset: CGFloat = 60
+            let topInset: CGFloat = 80
             TV.contentInset =  UIEdgeInsetsMake(topInset, 0, 0, 0);
         }
         
@@ -140,14 +139,10 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         
         let ride = self.ridesList[indexPath.row]
 
-        DDLogVerbose("Yibby.Ride at row=\(indexPath.row): \(ride as Any)")
-        dump(ride)
-        
         cell.myViewController = self
         cell.myTrip = ride
         
         cell.userNameLbl.text = ride.driver?.firstName
-        cell.totalPriceLbl.text = "$\(ride.fare!)"
         
         if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
             let prettyDate = TimeUtil.prettyPrintDate1(rideDate)
@@ -158,16 +153,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         cell.fromPlaceTF.text = ride.pickupLocation?.name
         cell.toPlaceTF.text = ride.dropoffLocation?.name
         
-        if let riderBidPrice = ride.riderBidPrice {
-            cell.ridePriceLbl.text = "$\(riderBidPrice)"
-        }
-        
-        if let tip = ride.tip {
+        if let tip = ride.tip, let totalFare = ride.fare {
+            cell.totalPriceLbl.text = "$\(totalFare + tip)"
             cell.tipPriceLbl.text = "$\(tip)"
-        }
-        
-        if let totalFare = ride.fare {
-            cell.totalFareLabelOutlet.text = "$\(totalFare)"
+            cell.totalFareLabelOutlet.text = "$\(totalFare + tip)"
+            cell.ridePriceLbl.text = "$\(totalFare)"
         }
         
         cell.cardDetailsBtnOutlet.tag = indexPath.row
@@ -180,9 +170,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
             // Markers for gmsMapViewOutlet
             
             let domarker = GMSMarker(position: dropoffCoordinate)
+            domarker.icon = UIImage(named: "famarker_green")
             domarker.map = cell.gmsMapViewOutlet
             
             let pumarker = GMSMarker(position: pickupCoordinate)
+            pumarker.icon = UIImage(named: "famarker_red")
             pumarker.map = cell.gmsMapViewOutlet
             
             adjustGMSCameraFocus(mapView: cell.gmsMapViewOutlet, pickupMarker: pumarker, dropoffMarker: domarker)
@@ -190,9 +182,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
             // Markers for gmsMapViewOpenOutlet
             
             let domarkerOpen = GMSMarker(position: dropoffCoordinate)
+            domarkerOpen.icon = UIImage(named: "famarker_green")
             domarkerOpen.map = cell.gmsMapViewOpenOutlet
             
             let pumarkerOpen = GMSMarker(position: pickupCoordinate)
+            pumarkerOpen.icon = UIImage(named: "famarker_red")
             pumarkerOpen.map = cell.gmsMapViewOpenOutlet
             
             adjustGMSCameraFocus(mapView: cell.gmsMapViewOpenOutlet, pickupMarker: pumarkerOpen, dropoffMarker: domarkerOpen)
@@ -251,6 +245,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     // MARK: - UITableView Delegate
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        if (self.shownRides == 0) {
+            return 0;
+        }
+        
         // Return the number of sections.
         return 1;
     }
@@ -357,15 +356,19 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     
     @objc fileprivate func loadNextPage() {
         self.isLoading = true
-        
+        DDLogVerbose("KKDBG_loadNextPage called")
         if (self.footerActivityIndicatorView() == nil &&
             nextPageToLoad != 0) {
             self.addFooterActivityIndicator(withHeight: 80.0)
         }
         
+        // Make nested webserver calls to get 
+        //   1. the total number of rides,  and 
+        //   2. the first page of rides
         if nextPageToLoad == 0 {
+        
+            ActivityIndicatorUtil.enableBlurActivityIndicator(self.view, title: InterfaceString.ActivityIndicator.Loading)
             
-            // make nested webserver calls to get 1. the total number of rides,  and 2. the first page of rides
             WebInterface.makeWebRequestAndHandleError(
                 self,
                 webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
@@ -397,7 +400,7 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                             // If non-zero total rides, then fetch the first batch
                             // TODO: Remove the delay later
                             self.perform(#selector(TripTableVC.loadNewRides),
-                                         with:nil, afterDelay:0.0)
+                                         with:nil, afterDelay:3.0)
                         }
                         else {
                             errorBlock(success, error)
@@ -432,6 +435,8 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     
     @objc fileprivate func loadNewRides() {
         
+        DDLogVerbose("KKDBG_loadNewRides called")
+        
         // load the new rides
         WebInterface.makeWebRequestAndHandleError(
             self,
@@ -440,18 +445,17 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                 let client: BAAClient = BAAClient.shared()
                 
                 client.getRides(BAASBOX_RIDER_STRING,
-                                 withParams: ["orderBy": "_creation_date%20desc", "recordsPerPage": self.NUM_FETCH_RIDE_ENTRIES,
+                                 withParams: ["orderBy": "_creation_date desc", "recordsPerPage": self.NUM_FETCH_RIDE_ENTRIES,
                                               "page": self.nextPageToLoad],
                                  completion: {(success, error) -> Void in
                                                         
                                     if (error == nil && success != nil) {
                                         
-                                        let loadedRides = Mapper<Ride>().mapArray(JSONObject: success) //Swift 3
+                                        let loadedRides = Mapper<Ride>().mapArray(JSONObject: success)
 
                                         if let loadedRides = loadedRides {
                                             
                                             let numRidesToShow = loadedRides.count
-                                            DDLogVerbose("numRidesToShow \(numRidesToShow)")
                                             
                                             if numRidesToShow != 0 {
                                                 // add the new rides to the existing set of rides
