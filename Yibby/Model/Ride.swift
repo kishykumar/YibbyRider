@@ -56,7 +56,7 @@ class Ride: Mappable {
         paymentMethodToken      <- map["paymentMethodToken"]
         paymentMethodBrand      <- map["paymentMethodBrand"]
         paymentMethodLast4      <- map["paymentMethodLast4"]
-        numPeople               <- map["numPeople"]
+        numPeople               <- map["people"]
         pickupLocation          <- map["pickupLocation"]
         rideTime                <- map["rideTime"]
         riderBidPrice           <- map["riderBidPrice"]

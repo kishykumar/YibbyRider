@@ -52,43 +52,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.33835299693554755" green="1" blue="0.96876954454940178" alpha="0.18074324324324326" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbd-tf-60k" userLabel="CenterMarkersView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="331.5" y="45" width="27.5" height="27.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qx1-fv-8Nk" userLabel="LocationArrowLabel">
-                                        <rect key="frame" x="5" y="5" width="17.5" height="17.5"/>
-                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Qx1-fv-8Nk" secondAttribute="trailing" priority="750" constant="5" id="42Q-Pq-xfw"/>
-                                    <constraint firstItem="Qx1-fv-8Nk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Tbd-tf-60k" secondAttribute="leading" constant="5" id="9wT-bQ-HeA"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qx1-fv-8Nk" secondAttribute="trailing" constant="5" id="Cyq-L3-qUZ"/>
-                                    <constraint firstAttribute="width" secondItem="Tbd-tf-60k" secondAttribute="height" id="FiR-Jg-Nic"/>
-                                    <constraint firstItem="Qx1-fv-8Nk" firstAttribute="top" secondItem="Tbd-tf-60k" secondAttribute="top" priority="750" constant="5" id="G9I-FW-h4g"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Qx1-fv-8Nk" secondAttribute="bottom" constant="5" id="TMz-un-erm"/>
-                                    <constraint firstItem="Qx1-fv-8Nk" firstAttribute="centerY" secondItem="Tbd-tf-60k" secondAttribute="centerY" id="WFw-5f-VWX"/>
-                                    <constraint firstItem="Qx1-fv-8Nk" firstAttribute="centerX" secondItem="Tbd-tf-60k" secondAttribute="centerX" id="bAy-Qz-UmZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Qx1-fv-8Nk" secondAttribute="bottom" priority="750" constant="5" id="fVu-IB-lDI"/>
-                                    <constraint firstItem="Qx1-fv-8Nk" firstAttribute="leading" secondItem="Tbd-tf-60k" secondAttribute="leading" priority="750" constant="5" id="hG4-u0-TW0"/>
-                                    <constraint firstItem="Qx1-fv-8Nk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Tbd-tf-60k" secondAttribute="top" constant="5" id="zRM-aw-Gg9"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="5df-Dv-Fkp" appends="YES" id="ZgS-OF-9Po"/>
-                                </connections>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKt-f5-OP4" userLabel="CancelButton" customClass="YibbyButton1">
                                 <rect key="frame" x="279" y="40" width="80" height="35"/>
                                 <constraints>
@@ -103,21 +66,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Tbd-tf-60k" secondAttribute="trailing" id="1iC-YY-6Et"/>
                             <constraint firstAttribute="trailing" secondItem="8JB-uI-IY8" secondAttribute="trailing" id="9Tl-eR-GVR"/>
                             <constraint firstItem="8JB-uI-IY8" firstAttribute="top" secondItem="hvx-XL-7F0" secondAttribute="top" id="DQn-JD-Evk"/>
-                            <constraint firstItem="Tbd-tf-60k" firstAttribute="width" secondItem="Tbd-tf-60k" secondAttribute="height" id="EBc-a6-GJF"/>
                             <constraint firstItem="Np1-e7-hWT" firstAttribute="top" secondItem="8JB-uI-IY8" secondAttribute="bottom" id="mHw-ym-tQh"/>
                             <constraint firstItem="MKt-f5-OP4" firstAttribute="top" secondItem="eRH-ra-mtl" secondAttribute="bottom" constant="20" id="oSl-We-ZHq"/>
                             <constraint firstItem="8JB-uI-IY8" firstAttribute="leading" secondItem="hvx-XL-7F0" secondAttribute="leading" id="pNE-cz-2vT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MKt-f5-OP4" secondAttribute="trailing" id="sgc-3G-l9b"/>
-                            <constraint firstItem="Tbd-tf-60k" firstAttribute="top" secondItem="eRH-ra-mtl" secondAttribute="bottom" constant="25" id="t6w-oU-IrA"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Tbd-tf-60k"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="cancelButtonOutlet" destination="MKt-f5-OP4" id="fDx-xD-LzK"/>
@@ -128,11 +83,6 @@
                 <tapGestureRecognizer id="eSh-LG-3jE" userLabel="BackButton Tap Gesture Recognizer">
                     <connections>
                         <action selector="onBackButtonImageViewClick:" destination="jeM-4y-XCU" id="clj-OP-h22"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="5df-Dv-Fkp" userLabel="CenterMarkersView Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="onCenterMarkersButtonClick:" destination="jeM-4y-XCU" id="zjb-yB-WRY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -154,30 +104,65 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="YYv-Wb-fEJ" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="8"/>
-                                        <color key="backgroundColor" red="0.16078431372549018" green="0.50196078431372548" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ld-28-sO0" userLabel="DriverStatusLabel" customClass="SpringLabel" customModule="Spring">
+                                                <rect key="frame" x="10" y="0.5" width="355" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="flash"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeX-6s-LJi" userLabel="CenterMarkersButton">
+                                                <rect key="frame" x="325" y="0.0" width="30" height="20"/>
+                                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                                                <state key="normal" title="">
+                                                    <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onCenterMarkersButtonTap:" destination="8U0-Aa-51S" eventType="touchUpInside" id="0hx-xc-lkB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="8" id="Kfy-Fk-L39"/>
+                                            <constraint firstAttribute="bottom" secondItem="zeX-6s-LJi" secondAttribute="bottom" id="Jee-OX-dTn"/>
+                                            <constraint firstAttribute="height" constant="20" id="Kfy-Fk-L39"/>
+                                            <constraint firstItem="zeX-6s-LJi" firstAttribute="top" secondItem="YYv-Wb-fEJ" secondAttribute="top" id="LtY-Aa-y7y"/>
+                                            <constraint firstAttribute="trailing" secondItem="0Ld-28-sO0" secondAttribute="trailing" constant="10" id="aai-G2-stl"/>
+                                            <constraint firstItem="0Ld-28-sO0" firstAttribute="leading" secondItem="YYv-Wb-fEJ" secondAttribute="leading" constant="10" id="gVi-xj-Yjr"/>
+                                            <constraint firstItem="0Ld-28-sO0" firstAttribute="centerY" secondItem="YYv-Wb-fEJ" secondAttribute="centerY" id="seG-wy-rD6"/>
+                                            <constraint firstAttribute="trailing" secondItem="zeX-6s-LJi" secondAttribute="trailing" constant="20" id="zXT-pY-y4u"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ETV-eB-2nS" userLabel="TripDetailsSV">
-                                        <rect key="frame" x="0.0" y="8" width="375" height="492"/>
+                                        <rect key="frame" x="0.0" y="20" width="375" height="480"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-pc-Kfm" userLabel="TopSV">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQr-gg-Jwt" userLabel="TopLeftView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="246"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="240"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AZB-ED-6Zf" userLabel="PaymentSV">
-                                                                <rect key="frame" x="18" y="121.5" width="75" height="79.5"/>
+                                                                <rect key="frame" x="18" y="116" width="75" height="78.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kA3-Dw-Y0A" userLabel="CardHintView" customClass="BTUICardHint">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="51"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="kNX-58-ak4"/>
+                                                                        </constraints>
                                                                     </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0418" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-Vd-R12" userLabel="CardNumberLabel">
-                                                                        <rect key="frame" x="18" y="59" width="39" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-Vd-R12" userLabel="CardNumberLabel">
+                                                                        <rect key="frame" x="13" y="58" width="49.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -188,10 +173,10 @@
                                                         <color key="backgroundColor" red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8RT-28-Sfa" userLabel="TopRightView">
-                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="246"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="240"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wvn-T2-ROX" userLabel="TotalFareSV">
-                                                                <rect key="frame" x="84.5" y="134.5" width="87" height="54.5"/>
+                                                                <rect key="frame" x="84.5" y="128.5" width="87" height="54.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Fare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Dm-D8g" userLabel="TotalFareLabel">
                                                                         <rect key="frame" x="0.0" y="0.0" width="87" height="23"/>
@@ -213,10 +198,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FFF-xf-YNc" userLabel="BottomSV">
-                                                <rect key="frame" x="0.0" y="246" width="375" height="246"/>
+                                                <rect key="frame" x="0.0" y="240" width="375" height="240"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKA-6M-Abp" userLabel="BottomLeftView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="246"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="240"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yLa-vw-khv" userLabel="PeopleSV">
                                                                 <rect key="frame" x="18" y="52" width="75" height="66"/>
@@ -239,10 +224,10 @@
                                                         <color key="backgroundColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vg-1g-Y1f" userLabel="BottomRightView">
-                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="246"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="240"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JEy-HI-VYW" userLabel="DriverDetailsSV">
-                                                                <rect key="frame" x="51" y="116.5" width="126.5" height="119.5"/>
+                                                                <rect key="frame" x="51" y="110.5" width="126.5" height="119.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Gic-vf-y4b" userLabel="ContactDriverSV">
                                                                         <rect key="frame" x="51.5" y="0.0" width="75" height="36"/>
@@ -337,20 +322,20 @@
                                         </constraints>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="driver_image_circle_4.0" translatesAutoresizingMaskIntoConstraints="NO" id="gs1-9g-Qaf" userLabel="OuterCircleImageView">
-                                        <rect key="frame" x="103" y="169.5" width="169" height="169"/>
+                                        <rect key="frame" x="103" y="175.5" width="169" height="169"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gs1-9g-Qaf" secondAttribute="height" multiplier="1:1" id="zRy-OG-xAI"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="yWx-LG-Qc9" userLabel="InnerCircleImageView">
-                                        <rect key="frame" x="153" y="219.5" width="69" height="69"/>
+                                        <rect key="frame" x="153" y="225.5" width="69" height="69"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.082004856418918914" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="yWx-LG-Qc9" secondAttribute="height" multiplier="1:1" id="haZ-l6-vmK"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57y-7u-F6g">
-                                        <rect key="frame" x="103" y="169.5" width="169" height="169"/>
+                                        <rect key="frame" x="103" y="175.5" width="169" height="169"/>
                                         <connections>
                                             <action selector="driverInfoBtnAction:" destination="8U0-Aa-51S" eventType="touchUpInside" id="QZM-JF-vOq"/>
                                         </connections>
@@ -419,6 +404,7 @@
                         <outlet property="driverCarModelLabelOutlet" destination="qup-cL-lLE" id="nRi-wG-jxu"/>
                         <outlet property="driverCarNumberLabelOutlet" destination="LHN-Js-wf0" id="1yl-Y5-5np"/>
                         <outlet property="driverStarsLabelOutlet" destination="HJT-rz-fpW" id="xQf-du-wLd"/>
+                        <outlet property="driverStatusLabelOutlet" destination="0Ld-28-sO0" id="ywI-3O-8Ic"/>
                         <outlet property="innerCircleImageViewOutlet" destination="yWx-LG-Qc9" id="tKW-iX-vYu"/>
                         <outlet property="outerCircleImageViewOutlet" destination="gs1-9g-Qaf" id="9Gf-2X-xBh"/>
                         <outlet property="peopleLabelOutlet" destination="VW5-FW-X93" id="rl6-nY-syP"/>
@@ -429,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WH7-oh-wkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5280.9375" y="1213.7323943661972"/>
+            <point key="canvasLocation" x="-5282.3999999999996" y="1213.4932533733133"/>
         </scene>
         <!--Driver InfoVC-->
         <scene sceneID="oYl-re-zMP">

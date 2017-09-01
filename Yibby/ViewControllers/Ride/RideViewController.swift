@@ -25,13 +25,21 @@ public enum RideViewControllerState: Int {
     case rideEnd
 }
 
+public enum DriverStateDescription: String {
+    case driverEnRoute = "En Route"
+    case driverArrived = "Driver Arrived"
+    case rideStarted = "Ride Started"
+    case rideEnded = "Ride has Ended"
+}
+
 class RideViewController: ISHPullUpViewController {
     
+    // MARK: - Properties
+
     fileprivate var rideStartObserver: NotificationObserver?
     fileprivate var rideEndObserver: NotificationObserver?
     fileprivate var driverArrivedObserver: NotificationObserver?
     
-    // MARK: - Properties
     public var controllerState: RideViewControllerState!
     
     // MARK: - Actions
@@ -81,10 +89,6 @@ class RideViewController: ISHPullUpViewController {
         removeNotificationObservers()
     }
     
-    func setupNavigationBar() {
-        self.navigationController?.isNavigationBarHidden = true
-    }
-    
     // MARK: Notifications
     
     fileprivate func setupNotificationObservers() {
@@ -115,6 +119,12 @@ class RideViewController: ISHPullUpViewController {
     
     // MARK: - Helpers
 
+    func centerMarkers() {
+        if let contentVC = contentViewController as? RideContentViewController {
+            contentVC.centerMarkers()
+        }
+    }
+    
     func updateControllerState(_ state: RideViewControllerState) {
         
         switch (state) {
@@ -159,9 +169,9 @@ class RideViewController: ISHPullUpViewController {
     func rideEndCallback() {
         controllerState = .rideEnd
 
-        let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+        let rideEndStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.RideEnd, bundle: nil)
 
-        let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
+        let rideEndViewController = rideEndStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
         self.navigationController?.pushViewController(rideEndViewController, animated: true)
     }
 }

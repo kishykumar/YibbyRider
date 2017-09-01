@@ -32,11 +32,11 @@ public struct ProfileService {
 //            myLocalFile.contentType = "image/png"
             myLocalFile.uploadFile(withPermissions: nil, completion: { (file, error) -> Void in
                 if error == nil {
-                    DDLogVerbose("File uploaded to Baasbox + \(file) + \((file as! BAAFile).fileURL())")
+                    DDLogVerbose("File uploaded to Baasbox + \(String(describing: file)) + \((file as! BAAFile).fileURL())")
                     success((file as! BAAFile).fileURL())
                 }
                 else {
-                    DDLogVerbose("error in uploading file \(error)")
+                    DDLogVerbose("error in uploading file \(String(describing: error))")
                     failure(error as! NSError, nil)
                 }
             })

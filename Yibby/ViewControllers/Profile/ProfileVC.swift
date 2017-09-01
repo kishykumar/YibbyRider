@@ -41,7 +41,7 @@ class ProfileVC: BaseYibbyViewController {
     }
     
     private func setupUI() {
-        setupBackButton()
+        //setupBackButton()
         
         /*customTextfieldProperty.setLeftViewImage(leftImageIcon: UIImage(named: "Visa")!, senderTextfield: self.emailAddress)
         

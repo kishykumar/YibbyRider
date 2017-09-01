@@ -34,7 +34,6 @@ var stringSocial = String ()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
- //-- we have removed this because we are not sending upstream messages via GCM
 
     // MARK: - Properties
     var window: UIWindow?
@@ -54,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     let BAASBOX_APPCODE = "1234567890"
-//    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    let BAASBOX_URL = "http://2445e6bb.ngrok.io"
+    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+    //let BAASBOX_URL = "http://2445e6bb.ngrok.io"
     var centerContainer: MMDrawerController?
     
     var pushController: PushController =  PushController()
@@ -171,6 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func syncApp() {
         let client: BAAClient = BAAClient.shared()
         
+//        YBClient.sharedInstance().removePersistedBidId()
         let bidId = YBClient.sharedInstance().getPersistedBidId()
         client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
             

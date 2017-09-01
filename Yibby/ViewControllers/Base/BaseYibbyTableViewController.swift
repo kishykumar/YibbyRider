@@ -14,8 +14,7 @@ class BaseYibbyTableViewController: UITableViewController {
 
     // MARK: - Properties
     
-//    let MENU_BUTTON_TAG = 6368 // MENU on number pad
-//    let BACK_BUTTON_TAG = 2225 // BACK on number pad
+    
     
     // MARK: - Actions
     
@@ -43,6 +42,8 @@ class BaseYibbyTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        super.scrollViewDidScroll(scrollView)
         
         for subview in self.view.subviews {
             

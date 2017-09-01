@@ -165,10 +165,10 @@ class PaymentsViewController: BaseYibbyViewController,
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
                 
                 if (error == nil) {
-                    DDLogVerbose("makeDefaultPaymentMethod in successfully \(error)")
+                    DDLogVerbose("makeDefaultPaymentMethod in successfully \(String(describing: error))")
                     self.reloadTable()
                 } else {
-                    DDLogVerbose("Error makeDefaultPaymentMethod in: \(error)")
+                    DDLogVerbose("Error makeDefaultPaymentMethod in: \(String(describing: error))")
                 }
             })
 

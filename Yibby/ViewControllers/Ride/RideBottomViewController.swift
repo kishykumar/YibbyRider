@@ -19,6 +19,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     
     @IBOutlet weak var rootViewOutlet: UIView!
     @IBOutlet weak var topViewOutlet: UIView!
+    @IBOutlet weak var driverStatusLabelOutlet: SpringLabel!
 
     @IBOutlet weak var cardHintViewOutlet: BTUICardHint!
     @IBOutlet weak var cardNumberLabelOutlet: UILabel!
@@ -57,6 +58,10 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         myDriver.call()
     }
 
+    @IBAction func onCenterMarkersButtonTap(_ sender: UIButton) {
+        pullUpController.centerMarkers()
+    }
+    
     @IBAction func sendTextMessageButtonTapped(_ sender: UIButton) {
 
         guard let ride = YBClient.sharedInstance().ride, let myDriver = ride.driver, let phoneNumber = myDriver.phoneNumber else {
@@ -95,14 +100,15 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     }
     
     func setupUI() {
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         topViewOutlet.addGestureRecognizer(tapGesture)
         
         let screenSize: CGRect = UIScreen.main.bounds
         pullupViewTargetHeight = RideBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
         
-        // TODO: FIX
-//        driverStatusLabelOutlet.text = "Driver on the way"
+        driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
+        driverStatusLabelOutlet.repeatCount = .infinity
         
         if let ride = YBClient.sharedInstance().ride {
             
@@ -113,10 +119,20 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
                 BraintreeCardUtil.paymentMethodTypeFromBrand(ride.paymentMethodBrand)
             cardHintViewOutlet.setCardType(paymentMethodType, animated: false)
             
-            cardNumberLabelOutlet.text = ride.paymentMethodLast4
+            if let last4 = ride.paymentMethodLast4 {
+                cardNumberLabelOutlet.text = "*\(last4)"
+            }
             
             totalFareLabelOutlet.text = "$\(String(describing: ride.fare!))"
-            peopleLabelOutlet.text = String(describing: ride.numPeople)
+            
+            if let people = ride.numPeople {
+                
+                if people == 1 {
+                    peopleLabelOutlet.text = "\(String(describing: people)) person"
+                } else {
+                    peopleLabelOutlet.text = "\(String(describing: people)) persons"
+                }
+            }
             
             if let myDriver = ride.driver {
                 driverStarsLabelOutlet.text = "\(String(describing: myDriver.rating!))"
@@ -170,13 +186,11 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     // MARK: - Helpers
     
     func rideStartCallback() {
-        // TODO: FIX
-//        driverStatusLabelOutlet.text = "Your Ride has started."
+        driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
     }
     
     func driverArrivedCallback() {
-        // TODO: FIX
-//        driverStatusLabelOutlet.text = "Your Driver has arrived."
+        driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
     }
     
     // MARK: - ISHPullUpSizingDelegate

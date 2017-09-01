@@ -119,6 +119,11 @@ extension YBClient {
         userDefaults.setValue(bid.id, forKey: APP_BID_ID_KEY)
     }
     
+    func removePersistedBidId() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.removeObject(forKey: APP_BID_ID_KEY)
+    }
+    
     func getPersistedBidId() -> String? {
         let userDefaults = UserDefaults.standard
         let bidId = userDefaults.object(forKey: APP_BID_ID_KEY) as? String

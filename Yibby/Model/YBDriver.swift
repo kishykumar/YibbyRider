@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import ObjectMapper
+import CocoaLumberjack
 
 class YBDriver: Mappable {
     
@@ -40,8 +41,11 @@ class YBDriver: Mappable {
 extension YBDriver {
     
     func call() {
-        let phoneURLString = "tel:\(self.phoneNumber)"
-        let phoneURL = URL(string: phoneURLString)!
-        UIApplication.shared.openURL(phoneURL)
+        
+        if let phoneNumber = self.phoneNumber {
+            let phoneURLString = "tel:\(phoneNumber)"
+            let phoneURL = URL(string: phoneURLString)!
+            UIApplication.shared.openURL(phoneURL)
+        }
     }
 }

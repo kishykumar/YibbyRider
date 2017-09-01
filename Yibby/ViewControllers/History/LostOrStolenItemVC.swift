@@ -46,9 +46,6 @@ class LostOrStolenItemVC: BaseYibbyViewController {
         callLbl.layer.cornerRadius = 2
         emailLbl.layer.cornerRadius = 2
     }
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
