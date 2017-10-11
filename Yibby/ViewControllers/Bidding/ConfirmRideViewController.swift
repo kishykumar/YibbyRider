@@ -96,8 +96,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
 
                                     DDLogVerbose("KKDBG_bidID \(String(describing: userBid.id))")
                                     YBClient.sharedInstance().bid = userBid
-
-                                    YBClient.sharedInstance().persistBidId(bid: userBid)
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {

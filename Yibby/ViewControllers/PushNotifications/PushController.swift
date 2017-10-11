@@ -172,7 +172,7 @@ open class PushController: NSObject, PushControllerProtocol {
                     DDLogDebug("NOOFFERS RCVD")
                     
                     // delete the saved state bid
-                    YBClient.sharedInstance().resetBid()
+                    YBClient.sharedInstance().bid = nil
                     
                     disableTimeoutCode()
                     
@@ -216,6 +216,7 @@ open class PushController: NSObject, PushControllerProtocol {
                     let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
                     
                     let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                    rideViewController.controllerState = .driverEnRoute
                     mmnvc.pushViewController(rideViewController, animated: true)
                     
                 case YBMessageType.rideStart:
@@ -223,11 +224,6 @@ open class PushController: NSObject, PushControllerProtocol {
 
                     // Publish the Ride started notification This will update the driver status in RideViewController.
                     postNotification(RideNotifications.rideStart, value: "")
-                    
-//                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-//                    
-//                    let tripViewController = rideStoryboard.instantiateViewController(withIdentifier: "TripViewControllerIdentifier") as! TripViewController
-//                    mmnvc.pushViewController(tripViewController, animated: true)
                     
                 case .driverArrived:
                     DDLogDebug("DRIVER_ARRIVED_MESSAGE_TYPE")
@@ -240,11 +236,6 @@ open class PushController: NSObject, PushControllerProtocol {
                 case YBMessageType.rideEnd:
                     DDLogDebug("RIDE_END_MESSAGE_TYPE")
                     postNotification(RideNotifications.rideEnd, value: "")
-                    
-//                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-//                    
-//                    let rideEndViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
-//                    mmnvc.pushViewController(rideEndViewController, animated: true)
                     
                 default:
                     DDLogError("Weird message received during Bid2: \(messageType)")

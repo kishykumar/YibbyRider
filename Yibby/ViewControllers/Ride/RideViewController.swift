@@ -22,14 +22,12 @@ public enum RideViewControllerState: Int {
     case driverEnRoute = 0
     case driverArrived
     case rideStart
-    case rideEnd
 }
 
 public enum DriverStateDescription: String {
     case driverEnRoute = "En Route"
     case driverArrived = "Driver Arrived"
     case rideStarted = "Ride Started"
-    case rideEnded = "Ride has Ended"
 }
 
 class RideViewController: ISHPullUpViewController {
@@ -40,7 +38,7 @@ class RideViewController: ISHPullUpViewController {
     fileprivate var rideEndObserver: NotificationObserver?
     fileprivate var driverArrivedObserver: NotificationObserver?
     
-    public var controllerState: RideViewControllerState!
+    public var controllerState: RideViewControllerState = .driverEnRoute
     
     // MARK: - Actions
     
@@ -57,7 +55,6 @@ class RideViewController: ISHPullUpViewController {
     }
     
     private func commonInit() {
-        controllerState = .driverEnRoute
         
         let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
         
@@ -76,6 +73,8 @@ class RideViewController: ISHPullUpViewController {
         stateDelegate = bottomVC
         
 //        contentDelegate = contentVC
+        
+        LocationService.sharedInstance().startFetchingDriverLocation()
     }
     
     override func viewDidLoad() {
@@ -96,19 +95,19 @@ class RideViewController: ISHPullUpViewController {
         rideStartObserver = NotificationObserver(notification: RideNotifications.rideStart) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideStart: \(comment)")
             
-            self.updateControllerState(RideViewControllerState.rideStart)
+            self.updateControllerState(state: .rideStart)
         }
         
         rideEndObserver = NotificationObserver(notification: RideNotifications.rideEnd) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideEnd: \(comment)")
             
-            self.updateControllerState(RideViewControllerState.rideEnd)
+            self.rideEndCallback()
         }
         
         driverArrivedObserver = NotificationObserver(notification: RideNotifications.driverArrived) { [unowned self] comment in
             DDLogVerbose("NotificationObserver driverArrived: \(comment)")
             
-            self.updateControllerState(RideViewControllerState.driverArrived)
+            self.updateControllerState(state: .driverArrived)
         }
     }
     
@@ -119,31 +118,29 @@ class RideViewController: ISHPullUpViewController {
     
     // MARK: - Helpers
 
+    func updateControllerState(state: RideViewControllerState) {
+        
+        self.controllerState = state
+        
+        switch (state) {
+        case .driverArrived:
+            driverArrivedCallback()
+            
+        case .rideStart:
+            rideStartCallback()
+            
+        default:
+            break;
+        }
+    }
+    
     func centerMarkers() {
         if let contentVC = contentViewController as? RideContentViewController {
             contentVC.centerMarkers()
         }
     }
     
-    func updateControllerState(_ state: RideViewControllerState) {
-        
-        switch (state) {
-        case .driverArrived:
-            driverArrivedCallback()
-            
-        case .rideEnd:
-            rideEndCallback()
-            
-        case .rideStart:
-            rideStartCallback()
-            
-        default:
-            assert(false)
-        }
-    }
-    
-    func rideStartCallback() {
-        controllerState = .rideStart
+    fileprivate func rideStartCallback() {
         
         if let contentVC = contentViewController as? RideContentViewController,
             let bottomVC = bottomViewController as? RideBottomViewController {
@@ -154,8 +151,7 @@ class RideViewController: ISHPullUpViewController {
         }
     }
     
-    func driverArrivedCallback() {
-        controllerState = .driverArrived
+    fileprivate func driverArrivedCallback() {
 
         if let contentVC = contentViewController as? RideContentViewController,
             let bottomVC = bottomViewController as? RideBottomViewController {
@@ -166,9 +162,10 @@ class RideViewController: ISHPullUpViewController {
         }
     }
     
-    func rideEndCallback() {
-        controllerState = .rideEnd
+    fileprivate func rideEndCallback() {
 
+        LocationService.sharedInstance().stopFetchingDriverLocation()
+        
         let rideEndStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.RideEnd, bundle: nil)
 
         let rideEndViewController = rideEndStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController

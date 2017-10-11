@@ -80,20 +80,10 @@ class MainViewController: BaseYibbyViewController,
     
 #endif
     
-    @IBAction func onDrawerSlideButtonClick(_ sender: UITapGestureRecognizer) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
-    }
-    
     // MARK: - Actions
     
     @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
         
-    }
-    
-    @IBAction func leftSlideButtonTapped(_ sender: AnyObject) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
     }
     
     @IBAction func onPaymentSelectAction(_ sender: UITapGestureRecognizer) {
@@ -430,15 +420,15 @@ class MainViewController: BaseYibbyViewController,
         })
     }
     
-    func choseDestination(_ location: String) {
+    internal func choseDestination(_ location: String) {
         dismiss(animated: true, completion: nil)
     }
     
-    func setCurrentLocationDetails (_ location: YBLocation) {
+    fileprivate func setCurrentLocationDetails (_ location: YBLocation) {
         self.curLocation = location
     }
     
-    func setPickupDetails (_ location: YBLocation) {
+    fileprivate func setPickupDetails (_ location: YBLocation) {
         
         pickupMarker?.map = nil
         
@@ -455,7 +445,7 @@ class MainViewController: BaseYibbyViewController,
         adjustGMSCameraFocus()
     }
     
-    func setDropoffDetails (_ location: YBLocation) {
+    fileprivate func setDropoffDetails (_ location: YBLocation) {
         
         dropoffMarker?.map = nil
         
@@ -473,7 +463,7 @@ class MainViewController: BaseYibbyViewController,
         adjustGMSCameraFocus()
     }
     
-    func adjustGMSCameraFocus() {
+    fileprivate func adjustGMSCameraFocus() {
         
         guard let pickupMarker = pickupMarker else {
             

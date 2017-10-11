@@ -67,16 +67,6 @@
 		1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8131D289D6700A7EEAF /* UIImagePickerController.swift */; };
 		1201B8161D289D6700A7EEAF /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */; };
 		1201B8191D28AA0C00A7EEAF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8181D28AA0C00A7EEAF /* Colors.swift */; };
-		1201B8251D28ADC800A7EEAF /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B81B1D28ADC800A7EEAF /* AlertAction.swift */; };
-		1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B81C1D28ADC800A7EEAF /* AlertCell.swift */; };
-		1201B8271D28ADC800A7EEAF /* AlertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1201B81D1D28ADC800A7EEAF /* AlertCell.xib */; };
-		1201B8281D28ADC800A7EEAF /* AlertCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B81E1D28ADC800A7EEAF /* AlertCellPresenter.swift */; };
-		1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B81F1D28ADC800A7EEAF /* AlertHeaderView.swift */; };
-		1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1201B8201D28ADC800A7EEAF /* AlertHeaderView.xib */; };
-		1201B82B1D28ADC800A7EEAF /* AlertPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8211D28ADC800A7EEAF /* AlertPresentationController.swift */; };
-		1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8221D28ADC800A7EEAF /* AlertViewController.swift */; };
-		1201B82D1D28ADC800A7EEAF /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1201B8231D28ADC800A7EEAF /* AlertViewController.xib */; };
-		1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8241D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift */; };
 		1201B8321D28E22B00A7EEAF /* ElloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B82F1D28E22B00A7EEAF /* ElloButton.swift */; };
 		1201B8331D28E22B00A7EEAF /* ElloLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8301D28E22B00A7EEAF /* ElloLabel.swift */; };
 		1201B8341D28E22B00A7EEAF /* ElloTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1201B8311D28E22B00A7EEAF /* ElloTextField.swift */; };
@@ -99,6 +89,20 @@
 		1204788F1D93CEF4009E1B16 /* JOButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */; };
 		120478911D93CEFF009E1B16 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120478901D93CEFF009E1B16 /* SelectorView.swift */; };
 		120682391CBE277C004A34BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120682381CBE277C004A34BB /* SystemConfiguration.framework */; };
+		1208266C1F5D49A600BA38E9 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826681F5D49A600BA38E9 /* Box.swift */; };
+		1208266D1F5D49A600BA38E9 /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826691F5D49A600BA38E9 /* BoxType.swift */; };
+		1208266E1F5D49A600BA38E9 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1208266A1F5D49A600BA38E9 /* LICENSE.txt */; };
+		1208266F1F5D49A600BA38E9 /* MutableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208266B1F5D49A600BA38E9 /* MutableBox.swift */; };
+		1208267B1F5D4A5B00BA38E9 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826711F5D4A5B00BA38E9 /* AlertAction.swift */; };
+		1208267C1F5D4A5B00BA38E9 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826721F5D4A5B00BA38E9 /* AlertCell.swift */; };
+		1208267D1F5D4A5B00BA38E9 /* AlertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120826731F5D4A5B00BA38E9 /* AlertCell.xib */; };
+		1208267E1F5D4A5B00BA38E9 /* AlertCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826741F5D4A5B00BA38E9 /* AlertCellPresenter.swift */; };
+		1208267F1F5D4A5B00BA38E9 /* AlertHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826751F5D4A5B00BA38E9 /* AlertHeaderView.swift */; };
+		120826801F5D4A5B00BA38E9 /* AlertHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120826761F5D4A5B00BA38E9 /* AlertHeaderView.xib */; };
+		120826811F5D4A5B00BA38E9 /* AlertPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826771F5D4A5B00BA38E9 /* AlertPresentationController.swift */; };
+		120826821F5D4A5B00BA38E9 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120826781F5D4A5B00BA38E9 /* AlertViewController.swift */; };
+		120826831F5D4A5B00BA38E9 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120826791F5D4A5B00BA38E9 /* AlertViewController.xib */; };
+		120826841F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208267A1F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift */; };
 		12085F5D1F213B0F00DBC91F /* DriverInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F581F213B0F00DBC91F /* DriverInfoVC.swift */; };
 		12085F5E1F213B0F00DBC91F /* Ride.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12085F591F213B0F00DBC91F /* Ride.storyboard */; };
 		12085F5F1F213B0F00DBC91F /* RideBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F5A1F213B0F00DBC91F /* RideBottomViewController.swift */; };
@@ -127,10 +131,6 @@
 		1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */; };
 		1236AA5F1D76A5C500A36AC0 /* CardHolderNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */; };
 		123D41751D63011500475614 /* TypedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41741D63011500475614 /* TypedNotifications.swift */; };
-		123D417C1D6302BF00475614 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41781D6302BF00475614 /* Box.swift */; };
-		123D417D1D6302BF00475614 /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41791D6302BF00475614 /* BoxType.swift */; };
-		123D417E1D6302BF00475614 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 123D417A1D6302BF00475614 /* LICENSE.txt */; };
-		123D417F1D6302BF00475614 /* MutableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D417B1D6302BF00475614 /* MutableBox.swift */; };
 		124B7A1B1E1B946E007C330F /* YBDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B7A1A1E1B946E007C330F /* YBDriver.swift */; };
 		124B7A1F1E1B9C05007C330F /* YBVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B7A1E1E1B9C05007C330F /* YBVehicle.swift */; };
 		124B7A211E1CD7A5007C330F /* YBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B7A201E1CD7A5007C330F /* YBClient.swift */; };
@@ -343,16 +343,6 @@
 		1201B8131D289D6700A7EEAF /* UIImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImagePickerController.swift; sourceTree = "<group>"; };
 		1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		1201B8181D28AA0C00A7EEAF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		1201B81B1D28ADC800A7EEAF /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
-		1201B81C1D28ADC800A7EEAF /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
-		1201B81D1D28ADC800A7EEAF /* AlertCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertCell.xib; sourceTree = "<group>"; };
-		1201B81E1D28ADC800A7EEAF /* AlertCellPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellPresenter.swift; sourceTree = "<group>"; };
-		1201B81F1D28ADC800A7EEAF /* AlertHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHeaderView.swift; sourceTree = "<group>"; };
-		1201B8201D28ADC800A7EEAF /* AlertHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertHeaderView.xib; sourceTree = "<group>"; };
-		1201B8211D28ADC800A7EEAF /* AlertPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresentationController.swift; sourceTree = "<group>"; };
-		1201B8221D28ADC800A7EEAF /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
-		1201B8231D28ADC800A7EEAF /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
-		1201B8241D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewControllerKeyboardExtension.swift; sourceTree = "<group>"; };
 		1201B82F1D28E22B00A7EEAF /* ElloButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElloButton.swift; sourceTree = "<group>"; };
 		1201B8301D28E22B00A7EEAF /* ElloLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElloLabel.swift; sourceTree = "<group>"; };
 		1201B8311D28E22B00A7EEAF /* ElloTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElloTextField.swift; sourceTree = "<group>"; };
@@ -375,6 +365,20 @@
 		1204788E1D93CEF4009E1B16 /* JOButtonMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JOButtonMenu.swift; sourceTree = "<group>"; };
 		120478901D93CEFF009E1B16 /* SelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
 		120682381CBE277C004A34BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		120826681F5D49A600BA38E9 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Box.swift; path = Yibby/ThirdParty/Box/Box.swift; sourceTree = SOURCE_ROOT; };
+		120826691F5D49A600BA38E9 /* BoxType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoxType.swift; path = Yibby/ThirdParty/Box/BoxType.swift; sourceTree = SOURCE_ROOT; };
+		1208266A1F5D49A600BA38E9 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = Yibby/ThirdParty/Box/LICENSE.txt; sourceTree = SOURCE_ROOT; };
+		1208266B1F5D49A600BA38E9 /* MutableBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MutableBox.swift; path = Yibby/ThirdParty/Box/MutableBox.swift; sourceTree = SOURCE_ROOT; };
+		120826711F5D4A5B00BA38E9 /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		120826721F5D4A5B00BA38E9 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
+		120826731F5D4A5B00BA38E9 /* AlertCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertCell.xib; sourceTree = "<group>"; };
+		120826741F5D4A5B00BA38E9 /* AlertCellPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellPresenter.swift; sourceTree = "<group>"; };
+		120826751F5D4A5B00BA38E9 /* AlertHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHeaderView.swift; sourceTree = "<group>"; };
+		120826761F5D4A5B00BA38E9 /* AlertHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertHeaderView.xib; sourceTree = "<group>"; };
+		120826771F5D4A5B00BA38E9 /* AlertPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresentationController.swift; sourceTree = "<group>"; };
+		120826781F5D4A5B00BA38E9 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		120826791F5D4A5B00BA38E9 /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
+		1208267A1F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewControllerKeyboardExtension.swift; sourceTree = "<group>"; };
 		12085F581F213B0F00DBC91F /* DriverInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverInfoVC.swift; sourceTree = "<group>"; };
 		12085F591F213B0F00DBC91F /* Ride.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ride.storyboard; sourceTree = "<group>"; };
 		12085F5A1F213B0F00DBC91F /* RideBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideBottomViewController.swift; sourceTree = "<group>"; };
@@ -402,10 +406,6 @@
 		1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostalCodeTextField.swift; sourceTree = "<group>"; };
 		1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHolderNameTextField.swift; sourceTree = "<group>"; };
 		123D41741D63011500475614 /* TypedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedNotifications.swift; sourceTree = "<group>"; };
-		123D41781D6302BF00475614 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
-		123D41791D6302BF00475614 /* BoxType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxType.swift; sourceTree = "<group>"; };
-		123D417A1D6302BF00475614 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		123D417B1D6302BF00475614 /* MutableBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableBox.swift; sourceTree = "<group>"; };
 		124B7A1A1E1B946E007C330F /* YBDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBDriver.swift; sourceTree = "<group>"; };
 		124B7A1E1E1B9C05007C330F /* YBVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBVehicle.swift; sourceTree = "<group>"; };
 		124B7A201E1CD7A5007C330F /* YBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBClient.swift; sourceTree = "<group>"; };
@@ -630,7 +630,6 @@
 				12A4B11B1F4EC25100B53054 /* Drive */,
 				1201B74C1D23A85F00A7EEAF /* Help */,
 				1201B74E1D23A85F00A7EEAF /* History */,
-				1201B7501D23A85F00A7EEAF /* Intro */,
 				1201B7511D23A85F00A7EEAF /* Login */,
 				12A4B11C1F4EC25100B53054 /* Notifications */,
 				1201B7531D23A85F00A7EEAF /* Payment */,
@@ -795,13 +794,6 @@
 			path = History;
 			sourceTree = "<group>";
 		};
-		1201B7501D23A85F00A7EEAF /* Intro */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Intro;
-			sourceTree = "<group>";
-		};
 		1201B7511D23A85F00A7EEAF /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,24 +930,6 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
-		1201B81A1D28ADC800A7EEAF /* Alerts */ = {
-			isa = PBXGroup;
-			children = (
-				1201B81B1D28ADC800A7EEAF /* AlertAction.swift */,
-				1201B81C1D28ADC800A7EEAF /* AlertCell.swift */,
-				1201B81D1D28ADC800A7EEAF /* AlertCell.xib */,
-				1201B81E1D28ADC800A7EEAF /* AlertCellPresenter.swift */,
-				1201B81F1D28ADC800A7EEAF /* AlertHeaderView.swift */,
-				1201B8201D28ADC800A7EEAF /* AlertHeaderView.xib */,
-				1201B8211D28ADC800A7EEAF /* AlertPresentationController.swift */,
-				1201B8221D28ADC800A7EEAF /* AlertViewController.swift */,
-				1201B8231D28ADC800A7EEAF /* AlertViewController.xib */,
-				1201B8241D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift */,
-			);
-			name = Alerts;
-			path = ViewControllers/Alerts;
-			sourceTree = "<group>";
-		};
 		120478891D93CC08009E1B16 /* JOButtonMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -963,6 +937,23 @@
 				120478901D93CEFF009E1B16 /* SelectorView.swift */,
 			);
 			path = JOButtonMenu;
+			sourceTree = "<group>";
+		};
+		120826701F5D4A5B00BA38E9 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				120826711F5D4A5B00BA38E9 /* AlertAction.swift */,
+				120826721F5D4A5B00BA38E9 /* AlertCell.swift */,
+				120826731F5D4A5B00BA38E9 /* AlertCell.xib */,
+				120826741F5D4A5B00BA38E9 /* AlertCellPresenter.swift */,
+				120826751F5D4A5B00BA38E9 /* AlertHeaderView.swift */,
+				120826761F5D4A5B00BA38E9 /* AlertHeaderView.xib */,
+				120826771F5D4A5B00BA38E9 /* AlertPresentationController.swift */,
+				120826781F5D4A5B00BA38E9 /* AlertViewController.swift */,
+				120826791F5D4A5B00BA38E9 /* AlertViewController.xib */,
+				1208267A1F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		121C3C371D9CFFAB0027738D /* Alerts */ = {
@@ -1269,10 +1260,10 @@
 		123D41771D6302BF00475614 /* Box */ = {
 			isa = PBXGroup;
 			children = (
-				123D41781D6302BF00475614 /* Box.swift */,
-				123D41791D6302BF00475614 /* BoxType.swift */,
-				123D417A1D6302BF00475614 /* LICENSE.txt */,
-				123D417B1D6302BF00475614 /* MutableBox.swift */,
+				120826681F5D49A600BA38E9 /* Box.swift */,
+				120826691F5D49A600BA38E9 /* BoxType.swift */,
+				1208266A1F5D49A600BA38E9 /* LICENSE.txt */,
+				1208266B1F5D49A600BA38E9 /* MutableBox.swift */,
 			);
 			path = Box;
 			sourceTree = "<group>";
@@ -1532,6 +1523,7 @@
 				1201B73C1D23A3AD00A7EEAF /* Extensions */,
 				12F3CCE11C41EFC800F79A26 /* Info.plist */,
 				12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */,
+				120826701F5D4A5B00BA38E9 /* Alerts */,
 				1201B8171D28A9EC00A7EEAF /* Style */,
 				1201B78B1D23B0B900A7EEAF /* Main.storyboard */,
 				1201B7331D239D7F00A7EEAF /* Model */,
@@ -1541,7 +1533,6 @@
 				1201B7821D23ADB600A7EEAF /* Storyboards */,
 				12EB18131C59FA980037EB86 /* Supporting Files */,
 				1201B73D1D23A45C00A7EEAF /* Utilities */,
-				1201B81A1D28ADC800A7EEAF /* Alerts */,
 				1201B7391D23A23D00A7EEAF /* ViewControllers */,
 				1201B73A1D23A24500A7EEAF /* Views */,
 			);
@@ -1720,13 +1711,12 @@
 				1201B7F41D2500EA00A7EEAF /* Payment.storyboard in Resources */,
 				1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */,
 				126C4AD21D796276005EC5FF /* Media.xcassets in Resources */,
+				1208266E1F5D49A600BA38E9 /* LICENSE.txt in Resources */,
 				1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */,
 				1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */,
 				125B39061DBC97180041E0D7 /* Profile.storyboard in Resources */,
 				1201B7EA1D25002700A7EEAF /* About.storyboard in Resources */,
 				B1BFB3761E8A2DF600E86F11 /* DigitsKitResources.bundle in Resources */,
-				1201B82A1D28ADC800A7EEAF /* AlertHeaderView.xib in Resources */,
-				1201B82D1D28ADC800A7EEAF /* AlertViewController.xib in Resources */,
 				124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */,
 				1201B7E21D24F65B00A7EEAF /* Bidding.storyboard in Resources */,
 				1201B7E61D24FFAA00A7EEAF /* RideEnd.storyboard in Resources */,
@@ -1734,14 +1724,15 @@
 				1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */,
 				1201B7DD1D24EE8F00A7EEAF /* SignUp.storyboard in Resources */,
 				126C4AFB1D796276005EC5FF /* Info.plist in Resources */,
-				123D417E1D6302BF00475614 /* LICENSE.txt in Resources */,
-				1201B8271D28ADC800A7EEAF /* AlertCell.xib in Resources */,
+				120826801F5D4A5B00BA38E9 /* AlertHeaderView.xib in Resources */,
 				1201B7F21D2500D200A7EEAF /* History.storyboard in Resources */,
 				12F3CCE01C41EFC800F79A26 /* LaunchScreen.storyboard in Resources */,
 				12F3CCDD1C41EFC700F79A26 /* Assets.xcassets in Resources */,
 				120188221CF2A677005EF075 /* SplashScreen.xib in Resources */,
 				12A6BF4D1D8001B6008BEFC1 /* YibbyMapMarker.xib in Resources */,
+				1208267D1F5D4A5B00BA38E9 /* AlertCell.xib in Resources */,
 				1201B7EC1D25005300A7EEAF /* Help.storyboard in Resources */,
+				120826831F5D4A5B00BA38E9 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1869,27 +1860,29 @@
 				125B39041DBC96F80041E0D7 /* EditProfileViewController.swift in Sources */,
 				126C4AF11D796276005EC5FF /* CardInfoTextFieldDelegate.swift in Sources */,
 				08C15C5D1E60E38C007F1411 /* TripTableCell.swift in Sources */,
+				1208266D1F5D49A600BA38E9 /* BoxType.swift in Sources */,
 				12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */,
-				1201B8261D28ADC800A7EEAF /* AlertCell.swift in Sources */,
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
 				12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
 				12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */,
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
+				120826821F5D4A5B00BA38E9 /* AlertViewController.swift in Sources */,
 				1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */,
 				1201B7691D23A85F00A7EEAF /* LoginViewController.swift in Sources */,
 				1201B83E1D28E90000A7EEAF /* ScreenExtensions.swift in Sources */,
 				1236AA4E1D72DC0100A36AC0 /* CardFieldsView.swift in Sources */,
 				0838263D1E917B1C006DCE73 /* EmergencyContactTVC.swift in Sources */,
 				1201B7361D239E4A00A7EEAF /* Ride.swift in Sources */,
-				123D417D1D6302BF00475614 /* BoxType.swift in Sources */,
 				1201B77A1D23AB6700A7EEAF /* UITableViewController+ENFooterActivityIndicatorView.m in Sources */,
+				1208267C1F5D4A5B00BA38E9 /* AlertCell.swift in Sources */,
 				126C4AE11D796276005EC5FF /* CharacterExtension.swift in Sources */,
 				126C4AE21D796276005EC5FF /* CardNumberFormatter.swift in Sources */,
 				1201B8341D28E22B00A7EEAF /* ElloTextField.swift in Sources */,
 				121096931D1142E000D7174F /* LocationService.swift in Sources */,
 				1254E13A1D66DB77007067BC /* JoinViewController.swift in Sources */,
+				1208267B1F5D4A5B00BA38E9 /* AlertAction.swift in Sources */,
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
 				126C4AD71D796276005EC5FF /* AmericanExpress.swift in Sources */,
@@ -1910,6 +1903,7 @@
 				12A6BF5A1D894476008BEFC1 /* YibbyFloatLabelTextField.swift in Sources */,
 				1201B7721D23A85F00A7EEAF /* SignupViewController.swift in Sources */,
 				12F092A91D3DF37C00F158BB /* AddCardTableCell.swift in Sources */,
+				120826841F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
 				12085F601F213B0F00DBC91F /* RideContentViewController.swift in Sources */,
@@ -1925,7 +1919,7 @@
 				1201B8441D28EA7200A7EEAF /* NSObjectClassName.swift in Sources */,
 				126C4AEF1D796276005EC5FF /* StylizedTextField.swift in Sources */,
 				1201B8501D2A075C00A7EEAF /* CGSizeExtensions.swift in Sources */,
-				1201B8291D28ADC800A7EEAF /* AlertHeaderView.swift in Sources */,
+				1208267F1F5D4A5B00BA38E9 /* AlertHeaderView.swift in Sources */,
 				126C4AEB1D796276005EC5FF /* CardTypeImageStore.swift in Sources */,
 				1220F98D1DB3772000390E44 /* YibbyPaddingLabel.swift in Sources */,
 				12A4B1281F4EC2BA00B53054 /* DriveViewController.swift in Sources */,
@@ -1942,7 +1936,6 @@
 				126C4AD41D796276005EC5FF /* CardType.swift in Sources */,
 				1201B8521D2B471800A7EEAF /* RideService.swift in Sources */,
 				1201B7F81D25036C00A7EEAF /* RideDetailViewController.swift in Sources */,
-				1201B8251D28ADC800A7EEAF /* AlertAction.swift in Sources */,
 				126C4AE41D796276005EC5FF /* StringExtension.swift in Sources */,
 				080349C21E7DB17A006C1E8A /* pickImageClass.swift in Sources */,
 				1201B83C1D28E8AE00A7EEAF /* Keyboard.swift in Sources */,
@@ -1968,6 +1961,7 @@
 				126C4AE31D796276005EC5FF /* Localization.swift in Sources */,
 				126C4AFE1D796607005EC5FF /* CardFieldsViewDelegate.swift in Sources */,
 				126C4AEE1D796276005EC5FF /* NumberInputTextFieldDelegate.swift in Sources */,
+				1208266F1F5D49A600BA38E9 /* MutableBox.swift in Sources */,
 				1236AA5F1D76A5C500A36AC0 /* CardHolderNameTextField.swift in Sources */,
 				1201B7731D23A85F00A7EEAF /* SplashViewController.swift in Sources */,
 				1201B8161D289D6700A7EEAF /* UIImageViewExtensions.swift in Sources */,
@@ -1985,7 +1979,6 @@
 				126C4AE01D796276005EC5FF /* Number.swift in Sources */,
 				1204788F1D93CEF4009E1B16 /* JOButtonMenu.swift in Sources */,
 				1201B8481D28EC6900A7EEAF /* Array.swift in Sources */,
-				1201B8281D28ADC800A7EEAF /* AlertCellPresenter.swift in Sources */,
 				126C4AD61D796276005EC5FF /* CVC.swift in Sources */,
 				1236AA531D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */,
 				08F790DE1E8ADAFE00CF53C0 /* TripObject.swift in Sources */,
@@ -1999,21 +1992,21 @@
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
 				1228B8781EE7DDC800524062 /* YBLeftImageTextField.swift in Sources */,
 				12A4B1161F42C93F00B53054 /* YBValidPaymentFieldRule.swift in Sources */,
+				120826811F5D4A5B00BA38E9 /* AlertPresentationController.swift in Sources */,
 				126C4AEA1D796276005EC5FF /* CardTextFieldDelegate.swift in Sources */,
 				126C4AF41D796276005EC5FF /* AutoCompletingTextField.swift in Sources */,
 				121531721D441E3100C28C73 /* TimeUtil.swift in Sources */,
 				1253F2CE1EFA39FA00C50BB5 /* PaymentsViewController.swift in Sources */,
 				1201B8191D28AA0C00A7EEAF /* Colors.swift in Sources */,
 				12A4B1221F4EC25100B53054 /* NotificationTVC.swift in Sources */,
-				123D417C1D6302BF00475614 /* Box.swift in Sources */,
 				126C4AE81D796276005EC5FF /* CardTextField+ViewAnimations.swift in Sources */,
 				12EF49721C95276800C07FAE /* Offer.swift in Sources */,
 				1201B8321D28E22B00A7EEAF /* ElloButton.swift in Sources */,
 				12A4B1121F40427C00B53054 /* UITextFieldExtensions.swift in Sources */,
 				12A4B1241F4EC25100B53054 /* NotificationTVC2.swift in Sources */,
+				1208267E1F5D4A5B00BA38E9 /* AlertCellPresenter.swift in Sources */,
 				124B7A1B1E1B946E007C330F /* YBDriver.swift in Sources */,
 				1201B76A1D23A85F00A7EEAF /* PaymentViewController.swift in Sources */,
-				1201B82B1D28ADC800A7EEAF /* AlertPresentationController.swift in Sources */,
 				1201B8331D28E22B00A7EEAF /* ElloLabel.swift in Sources */,
 				126C4AED1D796276005EC5FF /* NumberInputTextField.swift in Sources */,
 				124FD5CF1D362CFD002A4AB2 /* StripeBackendAPI.swift in Sources */,
@@ -2025,13 +2018,11 @@
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
 				1254E1431D69B4B9007067BC /* BaseYibbyTableViewController.swift in Sources */,
-				123D417F1D6302BF00475614 /* MutableBox.swift in Sources */,
 				126C4B041D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift in Sources */,
 				12F092AB1D3E156700F158BB /* StripePaymentService.swift in Sources */,
 				124B7A231E1CEFAF007C330F /* YBLocation.swift in Sources */,
 				1219433B1EEA90830001BD00 /* InterfaceError.swift in Sources */,
 				1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */,
-				1201B82C1D28ADC800A7EEAF /* AlertViewController.swift in Sources */,
 				126C4AF51D796276005EC5FF /* TextFieldValidation.swift in Sources */,
 				12085F631F21DBB500DBC91F /* MessageComposer.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
@@ -2045,10 +2036,10 @@
 				1253F2CC1EFA18E300C50BB5 /* IntrinsicTableView.swift in Sources */,
 				12085F5D1F213B0F00DBC91F /* DriverInfoVC.swift in Sources */,
 				0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */,
-				1201B82E1D28ADC800A7EEAF /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				12085F5F1F213B0F00DBC91F /* RideBottomViewController.swift in Sources */,
 				1201B8151D289D6700A7EEAF /* UIImagePickerController.swift in Sources */,
 				B193074C1E9977D800C3AF59 /* UIButtonExtensions.swift in Sources */,
+				1208266C1F5D49A600BA38E9 /* Box.swift in Sources */,
 				B193074A1E98A36E00C3AF59 /* PaymentDetailsObject.swift in Sources */,
 				1254E13D1D693063007067BC /* YibbyTextField.swift in Sources */,
 			);

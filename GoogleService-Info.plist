@@ -2,10 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
 	<string>362032360237-28c69fu8k2dh31amc25d8n3lqv3ec5q8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.362032360237-28c69fu8k2dh31amc25d8n3lqv3ec5q8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDTugvkndN_yac5VcfW_o5HetuproVXACo</string>
 	<key>GCM_SENDER_ID</key>
 	<string>362032360237</string>
 	<key>PLIST_VERSION</key>
@@ -14,8 +20,10 @@
 	<string>com.yibby.app.user</string>
 	<key>PROJECT_ID</key>
 	<string>yibbyapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yibbyapp.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
@@ -26,5 +34,7 @@
 	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:362032360237:ios:0bf60252c20344c4</string>
+	<key>DATABASE_URL</key>
+	<string>https://yibbyapp.firebaseio.com</string>
 </dict>
 </plist>

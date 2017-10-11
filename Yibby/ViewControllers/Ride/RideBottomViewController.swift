@@ -97,18 +97,44 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         super.viewDidLoad()
         
         setupUI()
+        rideSetup()
     }
     
-    func setupUI() {
+    fileprivate func rideSetup() {
+        
+        let state: RideViewControllerState = pullUpController.controllerState
+        
+        switch (state) {
+        case .driverEnRoute:
+            
+            driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
+            
+            break
+            
+        case .driverArrived:
+            driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
+
+            break
+            
+        case .rideStart:
+            driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
+
+            break
+            
+        default:
+            break
+        }
+        
+        driverStatusLabelOutlet.repeatCount = .infinity
+    }
+    
+    fileprivate func setupUI() {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         topViewOutlet.addGestureRecognizer(tapGesture)
         
         let screenSize: CGRect = UIScreen.main.bounds
         pullupViewTargetHeight = RideBottomViewController.PULLUP_VIEW_PERCENT_OF_SCREEN * screenSize.height
-        
-        driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
-        driverStatusLabelOutlet.repeatCount = .infinity
         
         if let ride = YBClient.sharedInstance().ride {
             

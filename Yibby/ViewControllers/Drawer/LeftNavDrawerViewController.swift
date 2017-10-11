@@ -14,7 +14,9 @@ import PINRemoteImage
 import Crashlytics
 
 
-open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewDataSource, UITableViewDelegate {
+open class LeftNavDrawerViewController: BaseYibbyViewController,
+                                        UITableViewDataSource,
+                                        UITableViewDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -27,8 +29,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
     
     let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "PROFILE", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
     let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
-    
-    let PROFILE_PICTURE_URL_KEY = "PROFILE_PICTURE_URL_KEY"
     
     fileprivate var profilePictureObserver: NotificationObserver?
 
@@ -155,13 +155,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController, UITableViewData
         
         // Set rounded profile pic
         self.profilePictureOutlet.setRoundedWithWhiteBorder()
-        
-//        self.profilePictureOutlet.layer.cornerRadius = self.profilePictureOutlet.frame.size.height / 2;
-//        self.profilePictureOutlet.layer.borderWidth = 2.0
-//        self.profilePictureOutlet.layer.borderColor = UIColor.white.cgColor
-//        self.profilePictureOutlet.layer.masksToBounds = true
-//        self.profilePictureOutlet.clipsToBounds = true
-        
+
         if let userRealName = YBClient.sharedInstance().profile?.name {
             if (userRealName != "") {
                 self.userRealNameLabelOutlet.text = userRealName

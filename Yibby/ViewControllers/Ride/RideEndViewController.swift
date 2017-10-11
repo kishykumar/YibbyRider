@@ -104,7 +104,6 @@ class RideEndViewController: BaseYibbyViewController {
         
         // Do any additional setup after loading the view.
         setupUI()
-        setupMenuButton()
     }
     
     private func setupUI() {
@@ -232,7 +231,7 @@ class RideEndViewController: BaseYibbyViewController {
                     self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
                 })
 
-            YBClient.sharedInstance().removePersistedBidId()
+            YBClient.sharedInstance().bid = nil
             ActivityIndicatorUtil.disableActivityIndicator(self.view)
         })
     }

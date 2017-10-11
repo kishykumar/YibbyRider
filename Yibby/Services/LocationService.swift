@@ -25,7 +25,6 @@ open class LocationService: NSObject, CLLocationManagerDelegate {
     var locationManager:CLLocationManager!
     
     fileprivate var lastLocUpdateTS = 0.0
-    fileprivate var curLocation: CLLocation!
     
     fileprivate let UPDATES_AGE_TIME: TimeInterval = 120
     fileprivate let DESIRED_HORIZONTAL_ACCURACY = 200.0

@@ -14,8 +14,8 @@ open class BaseYibbyViewController: UIViewController {
 
     // MARK: - Properties
     
-    let MENU_BUTTON_TAG = 6368 // MENU on number pad
-    let BACK_BUTTON_TAG = 2225 // BACK on number pad
+//    let MENU_BUTTON_TAG = 6368 // MENU on number pad
+//    let BACK_BUTTON_TAG = 2225 // BACK on number pad
     
     // MARK: - Actions
     
