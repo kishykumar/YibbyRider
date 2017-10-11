@@ -24,7 +24,17 @@ open class YBClient {
     private static let myInstance = YBClient()
     
     var status: YBClientStatus
-    var bid: Bid?
+    
+    var bid: Bid? {
+        didSet {
+            if (self.bid == nil) {
+                removePersistedBidId()
+            } else {
+                persistBidId()
+            }
+        }
+    }
+    
     var ride: Ride?
     var profile: YBProfile?
     var paymentMethods = [YBPaymentMethod]()
@@ -54,13 +64,6 @@ open class YBClient {
 //    
 //    func setPaymentMethods (_ pms: [PaymentMethod]) { self.paymentMethods = pms }
 //    func getPaymentMethods () -> [PaymentMethod]? { return self.paymentMethods }
-}
-
-extension YBClient {
-
-    func resetBid () {
-        bid = nil
-    }
     
     func isOngoingBid () -> Bool {
         return (bid != nil)
@@ -114,12 +117,13 @@ extension YBClient {
         assert(self.defaultPaymentMethod != nil)
     }
     
-    func persistBidId(bid: Bid) {
+    fileprivate func persistBidId() {
+        let bidId = self.bid?.id
         let userDefaults = UserDefaults.standard
-        userDefaults.setValue(bid.id, forKey: APP_BID_ID_KEY)
+        userDefaults.setValue(bidId, forKey: APP_BID_ID_KEY)
     }
     
-    func removePersistedBidId() {
+    fileprivate func removePersistedBidId() {
         let userDefaults = UserDefaults.standard
         userDefaults.removeObject(forKey: APP_BID_ID_KEY)
     }

@@ -77,7 +77,7 @@ class LoginViewController: BaseYibbyViewController,
                                 errorLabel: self.errorLabelOutlet,
                                 rules: [RequiredRule(message: "Phone number is required"),
                                         MinLengthRule(length: MAX_PHONE_NUMBER_TEXTFIELD_LENGTH,
-                                                      message: "Must be at least 9 characters long")])
+                                                      message: "Must be at least 10 characters long")])
         
         validator.registerField(password,
                                 errorLabel: self.errorLabelOutlet,
@@ -92,10 +92,6 @@ class LoginViewController: BaseYibbyViewController,
         setupUI()
         setupValidator()
         self.hideKeyboardWhenTappedAround()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

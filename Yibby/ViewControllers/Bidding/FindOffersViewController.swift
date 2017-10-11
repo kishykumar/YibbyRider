@@ -71,8 +71,6 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         progressImageOutlet.progressImage = UIImage(named: "green-yibby-logo.png")
         progressImageOutlet.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
         progressImageOutlet.drawGreyscaleBackground = true
-        
-        setupDelegates()
     }
     
     func setupDelegates() {
@@ -84,7 +82,9 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
 
         // Do any additional setup after loading the view.
         setupUI()
-        
+     
+        setupDelegates()
+
         // start the timer
         startOfferTimer()
         
@@ -126,8 +126,9 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         // TODO: Rather than aborting the bid, query the webserver for bidDetails and show the result
         
         DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
+        
         // delete the saved state bid
-        YBClient.sharedInstance().resetBid()
+        YBClient.sharedInstance().bid = nil
         
         // pop the view controller
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate

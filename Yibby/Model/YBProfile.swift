@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Braintree
 import ObjectMapper
 
 class YBProfile: Mappable {

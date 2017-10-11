@@ -20,13 +20,13 @@ class RideContentViewController: BaseYibbyViewController {
     
     weak var pullUpController: RideViewController!
     
-    var driverLocLatLng: CLLocationCoordinate2D?
     var driverLocMarker: GMSMarker?
+    var curDriverMarkerStatusDescription: String = DriverStateDescription.driverEnRoute.rawValue
     
     var pickupMarker: GMSMarker?
     var dropoffMarker: GMSMarker?
     
-    var bid: Bid!
+    fileprivate var bid: Bid!
     
     fileprivate var driverLocationObserver: NotificationObserver?
 
@@ -44,46 +44,41 @@ class RideContentViewController: BaseYibbyViewController {
         self.bid = (YBClient.sharedInstance().bid)!
     }
     
-    func rideBeginSetup() {
-        LocationService.sharedInstance().startFetchingDriverLocation()
-        
-        // Add marker to the pickup location
-        setPickupDetails(bid.pickupLocation!)
+    func rideSetup() {
         
         if let ride = YBClient.sharedInstance().ride {
             
             let state: RideViewControllerState = pullUpController.controllerState
-            var markerStatus: DriverStateDescription = DriverStateDescription.driverEnRoute
+            var driverMarkerStatus: DriverStateDescription = DriverStateDescription.driverEnRoute
             
             switch (state) {
             case .driverEnRoute:
-                markerStatus = DriverStateDescription.driverEnRoute
+                
+                setPickupMarker(bid.pickupLocation!)
+                driverMarkerStatus = DriverStateDescription.driverEnRoute
+                
                 break
                 
             case .driverArrived:
-                markerStatus = DriverStateDescription.driverArrived
+                setDropoffMarker(bid.dropoffLocation!)
+                driverMarkerStatus = DriverStateDescription.driverArrived
                 break
                 
             case .rideStart:
-                markerStatus = DriverStateDescription.rideStarted
+                setDropoffMarker(bid.dropoffLocation!)
+                driverMarkerStatus = DriverStateDescription.rideStarted
                 break
-                
-            case .rideEnd:
-                markerStatus = DriverStateDescription.rideEnded
-                break
-                
+
             default:
-                markerStatus = DriverStateDescription.driverEnRoute
+                driverMarkerStatus = DriverStateDescription.driverEnRoute
                 break
             }
             
             if let driverLoc = ride.driverLocation?.coordinate() {
-                setDriverLocation(driverLoc,
-                                  status: markerStatus.rawValue)
+                updateDriverLocation(driverLoc,
+                                     status: driverMarkerStatus.rawValue)
             }
         }
-        
-        adjustGMSCameraFocus(marker1: pickupMarker, marker2: driverLocMarker)
     }
     
     func setupUI () {
@@ -103,7 +98,7 @@ class RideContentViewController: BaseYibbyViewController {
         // Do any additional setup after loading the view.
         initProperties()
         setupUI()
-        rideBeginSetup()
+        rideSetup()
         setupNotificationObservers()
     }
     
@@ -191,9 +186,8 @@ class RideContentViewController: BaseYibbyViewController {
     fileprivate func setupNotificationObservers() {
         
         driverLocationObserver = NotificationObserver(notification: DriverLocationNotifications.newDriverLocation) { [unowned self] loc in
-            DDLogVerbose("NotificationObserver newDriverLoc: \(loc)")
             
-            self.updateDriverLocation(loc)
+            self.updateDriverLocation(loc, status: self.curDriverMarkerStatusDescription)
         }
     }
     
@@ -207,28 +201,49 @@ class RideContentViewController: BaseYibbyViewController {
         adjustGMSCameraFocus(marker1: pickupMarker ?? dropoffMarker, marker2: driverLocMarker)
     }
     
+    // This callback is called from 2 places: 
+    // 1. Ride start notification
+    // 2. Sync codepath
     func rideStartCallback() {
-        let latLng = driverLocMarker?.position
-        setDriverLocation(latLng!, status: DriverStateDescription.rideStarted.rawValue)
+        
+        // When the ride starts, we want to create the new dropoff marker if it's not there
+        if let bid = self.bid {
+            if (self.dropoffMarker == nil) {
+                setDropoffMarker(bid.dropoffLocation!)
+            }
+        }
+        
+        // Update the driver location marker.
+        // It's unnecessary here because the driver location is being updated in the background by the location notification observer.
+        // But, we have the folllowing code just to make the update right away!
+        if let latLng = driverLocMarker?.position {
+            updateDriverLocation(latLng, status: DriverStateDescription.rideStarted.rawValue)
+        }
     }
     
     func driverArrivedCallback() {
-        let latLng = driverLocMarker?.position
         
-        clearPickupDetails()
+        // When the driver arrives, we want to clear the pickup marker and add the dropoff marker.
+        clearPickupMarker()
         
-        setDriverLocation(latLng!, status: DriverStateDescription.driverArrived.rawValue)
-        setDropoffDetails(bid.dropoffLocation!)
-        
-        adjustGMSCameraFocus(marker1: dropoffMarker, marker2: driverLocMarker)
+        if let bid = self.bid {
+            setDropoffMarker(bid.dropoffLocation!)
+        }
+
+        // Update the driver location marker
+        // It's unnecessary here because the driver location is being updated in the background by the location notification observer.
+        // But, we have the folllowing code just to make the update right away!
+        if let latLng = driverLocMarker?.position {
+            updateDriverLocation(latLng, status: DriverStateDescription.driverArrived.rawValue)
+        }
     }
     
-    func clearPickupDetails() {
+    fileprivate func clearPickupMarker() {
         pickupMarker?.map = nil
         pickupMarker = nil
     }
     
-    func setPickupDetails (_ location: YBLocation) {
+    fileprivate func setPickupMarker (_ location: YBLocation) {
         
         pickupMarker?.map = nil
         
@@ -241,7 +256,7 @@ class RideContentViewController: BaseYibbyViewController {
         pickupMarker = pumarker
     }
     
-    func setDropoffDetails (_ location: YBLocation) {
+    func setDropoffMarker (_ location: YBLocation) {
         
         dropoffMarker?.map = nil
         
@@ -254,35 +269,45 @@ class RideContentViewController: BaseYibbyViewController {
         dropoffMarker = domarker
     }
     
-    func updateDriverLocation (_ loc: CLLocationCoordinate2D) {
+    func updateDriverLocation (_ loc: CLLocationCoordinate2D, status: String) {
         
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(LocationService.DRIVER_LOC_FETCH_TIMER_INTERVAL)
-        driverLocMarker?.position = loc
-        CATransaction.commit()
+        // If marker hasn't been created yet, create it.
+        //     OR
+        // Marker already existed.
+        // If the marker states are different, create a new marker.
         
-        // if the distance between the driver and the rider is too less, adjust the map
-        
-    }
-    
-    func setDriverLocation(_ loc: CLLocationCoordinate2D, status: String) {
-        
-        // TODO: REMOVE THIS ====================
-//        let lat: CLLocationDegrees = 37.527466
-//        let long: CLLocationDegrees = -122.276797
-//        let loc: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
-        //  ==================== ====================
-        
-        driverLocMarker?.map = nil
-        self.driverLocLatLng = loc
-        
-        let dlmarker = GMSMarker(position: loc)
-        dlmarker.map = gmsMapViewOutlet
+        if (driverLocMarker == nil || (self.curDriverMarkerStatusDescription != status)) {
+            driverLocMarker?.map = nil
+            
+            let dlmarker = GMSMarker(position: loc)
+            dlmarker.map = gmsMapViewOutlet
+            
+            dlmarker.icon = YibbyMapMarker.driverCarImageWithMarker(dlmarker,
+                                                                    title: status,
+                                                                    type: .driver)
+            
+            driverLocMarker = dlmarker
+            
+        } else {
+            
+            // If it's the same status and different location, apply the animation update
+            if let driverLocMarker = self.driverLocMarker { // marker should be initialized here.
+                
+                if ((driverLocMarker.position.latitude != loc.latitude) ||
+                    (driverLocMarker.position.longitude != loc.longitude)) {
+                    
+                    CATransaction.begin()
+                    CATransaction.setAnimationDuration(LocationService.DRIVER_LOC_FETCH_TIMER_INTERVAL)
+                    driverLocMarker.position = loc
+                    CATransaction.commit()
+                    
+                }
+            }
+        }
 
-        dlmarker.icon = YibbyMapMarker.driverCarImageWithMarker(dlmarker,
-                                                                 title: status,
-                                                                 type: .driver)
+        self.curDriverMarkerStatusDescription = status
         
-        driverLocMarker = dlmarker
+        // TODO: adjust the map only if the distance between the driver and the rider is too less
+        adjustGMSCameraFocus(marker1: pickupMarker ?? dropoffMarker, marker2: driverLocMarker)
     }
 }

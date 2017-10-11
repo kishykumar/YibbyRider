@@ -59,7 +59,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8C0-We-YaR" userLabel="UserPlusImageLabel">
-                                                <rect key="frame" x="14" y="7" width="23" height="20.5"/>
+                                                <rect key="frame" x="14" y="7.5" width="23" height="20"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jj-7V-LLr" userLabel="CreditCardImageLabel">
-                                                <rect key="frame" x="15" y="43.5" width="21.5" height="20.5"/>
+                                                <rect key="frame" x="15" y="44" width="21.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                 <rect key="frame" x="233" y="419.5" width="71" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7b-Gs-qT1" userLabel="DollarImageLabel">
-                                        <rect key="frame" x="26" y="17.5" width="20" height="36"/>
+                                        <rect key="frame" x="25.5" y="18" width="20" height="35"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -217,7 +217,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPp-0n-lyz" userLabel="DotsLabel">
-                                                                <rect key="frame" x="94.5" y="34" width="4.5" height="20.5"/>
+                                                                <rect key="frame" x="94.5" y="34" width="4.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -280,13 +280,13 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Il-hE-5tw" userLabel="PersonImageLabel">
-                                                                        <rect key="frame" x="14.5" y="15.5" width="21.5" height="20.5"/>
+                                                                        <rect key="frame" x="14.5" y="16" width="21.5" height="20"/>
                                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p68-hJ-QQF" userLabel="PersonLabel">
-                                                                        <rect key="frame" x="0.0" y="52" width="50" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="51.5" width="50" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -304,7 +304,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8b-D3-JeZ" userLabel="DotsLabel">
-                                                                <rect key="frame" x="90.5" y="34" width="4.5" height="20.5"/>
+                                                                <rect key="frame" x="90.5" y="34" width="4.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -365,10 +365,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-oe-11F" userLabel="CenterMarkersView" customClass="YibbyBorderedUIView" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="276.5" y="273.5" width="27.5" height="27.5"/>
+                                <rect key="frame" x="277" y="274" width="27" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-S8-o2k" userLabel="LocationArrowLabel">
-                                        <rect key="frame" x="5" y="5" width="17.5" height="17.5"/>
+                                        <rect key="frame" x="5" y="5" width="17" height="17"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -429,16 +429,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="AaQ-aw-lab">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="azS-YQ-Zkf">
-                            <connections>
-                                <action selector="leftSlideButtonTapped:" destination="BYZ-38-t0r" id="NCH-6K-WKn"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Second" id="zWj-es-ELX">
-                            <inset key="imageInsets" minX="0.0" minY="20" maxX="20" maxY="0.0"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="AaQ-aw-lab"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -477,11 +468,6 @@
                 <tapGestureRecognizer id="rhh-wc-0x1" userLabel="CenterMarkersView Tap Gesture Recognizer">
                     <connections>
                         <action selector="onCenterMarkersButtonClick:" destination="BYZ-38-t0r" id="CeV-Jd-Adq"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="asS-Mb-2LY" userLabel="DrawerSlide Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="onDrawerSlideButtonClick:" destination="BYZ-38-t0r" id="OhV-ch-zgS"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -526,7 +512,7 @@
                             <constraint firstItem="PpQ-DN-1nx" firstAttribute="leading" secondItem="cTT-JY-D9f" secondAttribute="leading" id="7lh-ZI-wMP"/>
                             <constraint firstItem="wTQ-cA-doC" firstAttribute="leading" secondItem="cTT-JY-D9f" secondAttribute="leadingMargin" id="KPQ-Wo-lIU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wTQ-cA-doC" secondAttribute="trailing" id="LKK-Fm-yMs"/>
-                            <constraint firstItem="PpQ-DN-1nx" firstAttribute="top" secondItem="J3Y-b7-HC7" secondAttribute="bottom" id="bDo-lv-ghz"/>
+                            <constraint firstItem="PpQ-DN-1nx" firstAttribute="top" secondItem="J3Y-b7-HC7" secondAttribute="bottom" id="cs7-l1-MEx"/>
                             <constraint firstItem="2oS-tQ-PZY" firstAttribute="centerX" secondItem="cTT-JY-D9f" secondAttribute="centerX" id="vSv-yr-Dob"/>
                             <constraint firstItem="wTQ-cA-doC" firstAttribute="centerY" secondItem="cTT-JY-D9f" secondAttribute="centerY" id="wQf-9m-ipU"/>
                             <constraint firstItem="2oS-tQ-PZY" firstAttribute="centerY" secondItem="cTT-JY-D9f" secondAttribute="centerY" multiplier="0.6" id="yvk-IQ-1o3"/>

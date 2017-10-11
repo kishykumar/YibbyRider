@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     let BAASBOX_APPCODE = "1234567890"
-    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    //let BAASBOX_URL = "http://2445e6bb.ngrok.io"
+    //let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+    let BAASBOX_URL = "http://052ee98a.ngrok.io"
     var centerContainer: MMDrawerController?
     
     var pushController: PushController =  PushController()
@@ -170,7 +170,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func syncApp() {
         let client: BAAClient = BAAClient.shared()
         
-//        YBClient.sharedInstance().removePersistedBidId()
+        //YBClient.sharedInstance().bid = nil
+        
         let bidId = YBClient.sharedInstance().getPersistedBidId()
         client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
             
@@ -457,6 +458,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             // token to enable reception of notifications
             
             GGLInstanceID.sharedInstance().start(with: instanceIDConfig)
+        
             registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken as AnyObject,
                 kGGLInstanceIDAPNSServerTypeSandboxOption:true as AnyObject]
 
@@ -558,8 +560,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         self.pushController.receiveRemoteNotification(application, notification: userInfo)
 
-            // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
-            handler(UIBackgroundFetchResult.noData);
+        // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
+        handler(UIBackgroundFetchResult.noData);
     }
 
     func willSendDataMessage(withID messageID: String!, error: NSError!) {
