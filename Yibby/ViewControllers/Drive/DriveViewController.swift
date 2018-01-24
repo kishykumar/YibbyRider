@@ -16,7 +16,7 @@ class DriveViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func onMoreInfoButtonClick(_ sender: UIButton) {
-        let url = URL(string: "https://google.com")!
+        let url = URL(string: "http://yibbyapp.com")!
         UIApplication.shared.openURL(url)
     }
 

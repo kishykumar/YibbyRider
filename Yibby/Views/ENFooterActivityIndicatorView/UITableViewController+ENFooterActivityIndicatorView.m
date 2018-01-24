@@ -35,7 +35,6 @@ static void * ENFooterActivityIndicatorViewBlockKey = &ENFooterActivityIndicator
     UIEdgeInsets inset = scrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     CGFloat distance = y - size.height;
-    //NSLog(@"KKDBG_tableViewdidScroll y=%f off=%f bounds=%f bottom=%f szht=%f", y, offset.y, bounds.size.height, inset.bottom, size.height);
     //if (distance > 0.f && size.height != 0.0) {
     if (distance > 0.f) {
         [[self footerActivityIndicatorView] updateForTableBottomOffset:distance];

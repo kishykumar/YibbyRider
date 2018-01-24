@@ -1253,8 +1253,7 @@
 			children = (
 				123D41771D6302BF00475614 /* Box */,
 			);
-			name = ThirdParty;
-			path = ViewControllers/Alerts/ThirdParty;
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		123D41771D6302BF00475614 /* Box */ = {

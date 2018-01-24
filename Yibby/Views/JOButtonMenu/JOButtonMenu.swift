@@ -246,7 +246,8 @@ open class JOButtonMenu: UIButton {
 
                 UIView.animate(withDuration: 0.2, delay: 0.1, options: UIViewAnimationOptions(), animations: { () -> Void in
 
-                    option.center = CGPoint(x: (CGFloat(i+1) * self.spacing) + (self.size * CGFloat(i)) + (self.size / 2),
+                    let xVal = (CGFloat(i+1) * self.spacing) + (self.size * CGFloat(i)) + (self.size / 2)
+                    option.center = CGPoint(x: xVal,
                                             y: -self.options.frame.height + (self.size / 2))
                     
                     }, completion:  { (finished) -> Void in

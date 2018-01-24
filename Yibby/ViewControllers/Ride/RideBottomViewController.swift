@@ -138,9 +138,6 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         
         if let ride = YBClient.sharedInstance().ride {
             
-            DDLogVerbose("KKDBG ride:")
-            dump(ride)
-            
             let paymentMethodType: BTUIPaymentOptionType =
                 BraintreeCardUtil.paymentMethodTypeFromBrand(ride.paymentMethodBrand)
             cardHintViewOutlet.setCardType(paymentMethodType, animated: false)
@@ -149,7 +146,10 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
                 cardNumberLabelOutlet.text = "*\(last4)"
             }
             
-            totalFareLabelOutlet.text = "$\(String(describing: ride.fare!))"
+            if let fare = ride.fare {
+                let fareInt = Int(fare)
+                totalFareLabelOutlet.text = "$\(String(describing: fareInt))"
+            }
             
             if let people = ride.numPeople {
                 

@@ -66,7 +66,6 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         progressBarOutlet.indeterminate = true
 
         let screenSize: CGRect = UIScreen.main.bounds
-        DDLogVerbose("KKDBG_width: \(progressBarOutlet.frame.width) \(screenSize.width)")
         
         progressImageOutlet.progressImage = UIImage(named: "green-yibby-logo.png")
         progressImageOutlet.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight

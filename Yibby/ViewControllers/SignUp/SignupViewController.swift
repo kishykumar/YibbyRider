@@ -14,12 +14,14 @@ import Braintree
 import DigitsKit
 import SwiftValidator
 import PhoneNumberKit
+import AccountKit
 
 class SignupViewController: BaseYibbyViewController,
                             IndicatorInfoProvider,
                             ValidationDelegate,
                             SignupPaymentViewControllerDelegate,
-                            UITextFieldDelegate {
+                            UITextFieldDelegate,
+                            AKFViewControllerDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var nameOutlet: UITextField!
@@ -31,12 +33,15 @@ class SignupViewController: BaseYibbyViewController,
     @IBOutlet weak var errorLabelOutlet: UILabel!
     
     // flag to test creating the same user without calling the webserver.
-    let testMode = false
+    fileprivate let testMode = false
     
-    let MAX_PHONE_NUMBER_TEXTFIELD_LENGTH = 14 // includes 10 digits, 1 paranthesis "()", 1 hyphen "-", and 1 space " "
+    fileprivate let MAX_PHONE_NUMBER_TEXTFIELD_LENGTH = 14 // includes 10 digits, 1 paranthesis "()", 1 hyphen "-", and 1 space " "
 
-    let validator = Validator()
+    fileprivate let validator = Validator()
 
+    fileprivate var accountKit: AKFAccountKit!
+    fileprivate var formattedPhoneNumber: String?
+    
     // MARK: - Actions
     
     @IBAction func submitFormButton(_ sender: UIButton) {
@@ -58,6 +63,8 @@ class SignupViewController: BaseYibbyViewController,
                             NSFontAttributeName : UIFont.boldSystemFont(ofSize: 12.0),
                             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue])
         tandcButtonOutlet.setAttributedTitle(attrTitle, for: UIControlState())
+        
+        phoneNumberOutlet.defaultRegion = "US"
     }
     
     func setupDelegates() {
@@ -98,17 +105,22 @@ class SignupViewController: BaseYibbyViewController,
                                 errorLabel: self.errorLabelOutlet,
                                 rules: [RequiredRule(message: "Phone number is required"),
                                         MinLengthRule(length: MAX_PHONE_NUMBER_TEXTFIELD_LENGTH,
-                                                      message: "Must be at least 9 characters long")])
+                                                      message: "Must be at least 10 characters long")])
         
         validator.registerField(passwordOutlet,
                                 errorLabel: self.errorLabelOutlet,
                                 rules: [RequiredRule(message: "Password is required"), YBPasswordRule()])
     }
 
+    fileprivate func initProperties() {
+        self.accountKit = AKFAccountKit(responseType: .accessToken)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        initProperties()
         setupDelegates()
         setupUI()
         setupValidator()
@@ -144,44 +156,71 @@ class SignupViewController: BaseYibbyViewController,
         formattedPhoneNumber =
             formattedPhoneNumber?.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
         
-        let digits = Digits.sharedInstance()
-        let configuration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
-        // configuration?.phoneNumber = self.txtPhone.text!
+        self.formattedPhoneNumber = formattedPhoneNumber
+        verifyPhoneNumber(formattedPhoneNumber!)
         
-        let digitsAppearance = DGTAppearance()
-        
-        digitsAppearance.accentColor = UIColor.appDarkGreen1()
-        digitsAppearance.applyUIAppearanceColors()
-        configuration?.appearance = digitsAppearance
-        configuration?.phoneNumber = formattedPhoneNumber
-        
-        digits.authenticate(with: nil, configuration: configuration!) { session, error in
-            
-            if((error?.localizedDescription) != nil) {
-                digits.logOut()
-            }
-            else {
-                digits.logOut()
-                
-                // self.phoneNumberOutlet.text =  (session?.phoneNumber)!
-                
-                self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!,
-                                phoneNumberi: formattedPhoneNumber!, passwordi: self.passwordOutlet.text!)
-            }
-            // Country selector will be set to Spain and phone number field will be set to 5555555555
-        }
+//        let digits = Digits.sharedInstance()
+//        let configuration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
+//        // configuration?.phoneNumber = self.txtPhone.text!
+//
+//        let digitsAppearance = DGTAppearance()
+//
+//        digitsAppearance.accentColor = UIColor.appDarkGreen1()
+//        digitsAppearance.applyUIAppearanceColors()
+//        configuration?.appearance = digitsAppearance
+//        configuration?.phoneNumber = formattedPhoneNumber
+//
+//        digits.authenticate(with: nil, configuration: configuration!) { session, error in
+//
+//            if((error?.localizedDescription) != nil) {
+//                digits.logOut()
+//            }
+//            else {
+//                digits.logOut()
+//
+//                // self.phoneNumberOutlet.text =  (session?.phoneNumber)!
+//
+//                self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!,
+//                                phoneNumberi: formattedPhoneNumber!, passwordi: self.passwordOutlet.text!)
+//            }
+//            // Country selector will be set to Spain and phone number field will be set to 5555555555
+//        }
     }
     
     func validationFailed(_ errors:[(Validatable, ValidationError)]) {
         
-        let (_, validationError) = errors[0]
+        var errorDict: [UITextField:ValidationError] = [:]
+        var errorTextField: UITextField = self.nameOutlet
+        var verror: ValidationError?
         
-        validationError.errorLabel?.isHidden = false
-        validationError.errorLabel?.text = validationError.errorMessage
-        
-        if let textField = validationError.field as? UITextField {
-            textField.setBottomBorder(UIColor.red)
+        // put the array elements in a dictionary
+        for error in errors {
+            
+            let (_, validationError) = error
+            
+            if let textField = validationError.field as? UITextField {
+                errorDict[textField] = validationError
+            }
         }
+        
+        if let validationError = errorDict[nameOutlet] {
+            errorTextField = nameOutlet
+            verror = validationError
+        } else if let validationError = errorDict[self.phoneNumberOutlet] {
+            errorTextField = self.phoneNumberOutlet
+            verror = validationError
+        } else if let validationError = errorDict[self.emailAddressOutlet] {
+            errorTextField = self.emailAddressOutlet
+            verror = validationError
+        } else if let validationError = errorDict[self.passwordOutlet] {
+            errorTextField = self.passwordOutlet
+            verror = validationError
+        }
+        
+        verror!.errorLabel?.isHidden = false
+        verror!.errorLabel?.text = verror!.errorMessage
+        
+        errorTextField.setBottomBorder(UIColor.red)
     }
 
     /*
@@ -197,6 +236,25 @@ class SignupViewController: BaseYibbyViewController,
     
     // MARK: - Helper Functions
     
+    fileprivate func verifyPhoneNumber(_ formattedPhoneNumber: String) {
+        
+        let prefillPhoneNumber = AKFPhoneNumber(countryCode: "+1", phoneNumber: formattedPhoneNumber)
+        let inputState: String = UUID().uuidString
+        
+        if let viewController = self.accountKit.viewControllerForPhoneLogin(with: prefillPhoneNumber, state: inputState) as? AKFViewController {
+            prepareLoginViewController(viewController)
+            
+            if let viewController = viewController as? UIViewController {
+                present(viewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    fileprivate func prepareLoginViewController(_ loginViewController: AKFViewController) {
+        loginViewController.delegate = self
+        loginViewController.enableGetACall = true
+    }
+    
     func submitForm() {
         validator.validate(self)
     }
@@ -204,81 +262,39 @@ class SignupViewController: BaseYibbyViewController,
     // BaasBox create user
     
     func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        self.signupButtonOutlet.isUserInteractionEnabled = false
-
-        let client: BAAClient = BAAClient.shared()
         
-        client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
-            if (success || self.testMode) {
-                DDLogVerbose("Success signing up: \(success)")
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
-                // if login is successful, save username, password, token in keychain
-                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
-                
-                let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-                let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
-                
-                apViewController.signupDelegate = self
-                apViewController.isSignup = true
-                
-                self.navigationController!.pushViewController(apViewController, animated: true)
-            }
-            else {
-                DDLogVerbose("Signup failed: \(error)")
-                
-                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+
+            let client: BAAClient = BAAClient.shared()
+            
+            client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
+                if (success || self.testMode) {
+                    DDLogVerbose("Success signing up: \(success)")
                     
-                    // check for authentication error and redirect the user to Login page
-                    AlertUtil.displayAlert("Signup failed.", message: "Please try again.")
+                    // if login is successful, save username, password, token in keychain
+                    LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
+                    
+                    let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
+                    let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
+                    
+                    apViewController.signupDelegate = self
+                    apViewController.isSignup = true
+                    
+                    self.navigationController!.pushViewController(apViewController, animated: true)
                 }
                 else {
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    DDLogVerbose("Signup failed: \(String(describing: error))")
+                    errorBlock(success, error)
                 }
-                
                 self.signupButtonOutlet.isUserInteractionEnabled = true
-            }
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            })
         })
     }
-    
-    /*{
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
-        let client: BAAClient = BAAClient.shared()
-        
-        client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
-            if (success || self.testMode) {
-                DDLogVerbose("Success signing up: \(success)")
-                
-                // if login is successful, save username, password, token in keychain
-                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
-                
-                let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-                let apViewController = paymentStoryboard.instantiateViewController(withIdentifier: "AddPaymentViewControllerIdentifier") as! AddPaymentViewController
-                
-                apViewController.signupDelegate = self
-                apViewController.isSignup = true
-                
-                self.navigationController!.pushViewController(apViewController, animated: true)
-            }
-            else {
-                DDLogVerbose("Signup failed: \(error)")
-                
-                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-                    
-                    // check for authentication error and redirect the user to Login page
-                    AlertUtil.displayAlert("Signup failed.", message: "Please try again.")
-                }
-                else {
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                }
-            }
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-        })
-    }*/
 
     // MARK: - IndicatorInfoProvider
  
@@ -353,5 +369,26 @@ class SignupViewController: BaseYibbyViewController,
         }
         
         return true
+    }
+    
+    // MARK: - AKFViewControllerDelegate extension
+    
+    func viewController(_ viewController: UIViewController!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
+        // login success
+        DDLogVerbose("Login Success")
+        
+        accountKit.logOut()
+        
+        // disable login button
+        self.signupButtonOutlet.isUserInteractionEnabled = false
+        
+        self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!,
+                        phoneNumberi: self.formattedPhoneNumber!, passwordi: self.passwordOutlet.text!)
+    }
+    
+    func viewController(_ viewController: UIViewController!, didFailWithError error: Error!) {
+        // login failed
+        DDLogVerbose("\(viewController) did fail with error: \(error)")
+        accountKit.logOut()
     }
 }

@@ -47,6 +47,12 @@ class RideEndViewController: BaseYibbyViewController {
     
     @IBAction func onTipSliderValueChange(_ sender: StepSlider) {
         
+        // TODO: if the ride was more than 2 days old, sorry you can't tip now!
+        // if let ride = YBClient.sharedInstance().ride {
+        // if (rideDate > 2 days) {
+        //  return;
+        // } }
+
         if (sender.index != 0) {
             rideFareLabel.textColor = UIColor.appDarkGreen1()
             moreInfoButtonOutlet.isHidden = false
@@ -155,8 +161,6 @@ class RideEndViewController: BaseYibbyViewController {
         tripDestinationMapViewOutlet.layer.cornerRadius = tripDestinationMapViewOutlet.frame.size.width/2-4
 
         if let ride = YBClient.sharedInstance().ride {
-            DDLogVerbose("KKDBG_rideEnd ride: \(ride)")
-            dump(ride)
             
             let rideFareInt = Int(ride.fare!)
             rideFareLabel.text = "$\(rideFareInt)"
@@ -167,6 +171,11 @@ class RideEndViewController: BaseYibbyViewController {
             }
 
             tipSliderViewOutlet.sliderCircleImage = BraintreeCardUtil.paymentMethodImageFromBrand(ride.paymentMethodBrand)
+            
+            // TODO: if the ride was more than 2 days old, sorry you can't tip now!
+            // if (rideDate > 2 days) {
+            // tipSliderViewOutlet.isEnabled = false
+            // }
             
             if let dropoffCoordinate = ride.dropoffLocation?.coordinate() {
                 let domarker = GMSMarker(position: dropoffCoordinate)
@@ -208,31 +217,39 @@ class RideEndViewController: BaseYibbyViewController {
         
         let rating = String(ratingViewOutlet.rating)
         
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
-        let client: BAAClient = BAAClient.shared()
-        
-        let reviewDict = ["bidId": YBClient.sharedInstance().bid!.id!,
-                          "feedback": "Hello I am here",
-                          "rating": rating,
-                          "tip": String(finalTipAmount)]
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
+                
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+            
+            let client: BAAClient = BAAClient.shared()
+            
+            let reviewDict = ["bidId": YBClient.sharedInstance().bid!.id!,
+                              "feedback": "Hello I am here",
+                              "rating": rating,
+                              "tip": String(finalTipAmount)]
 
             client.postReview(BAASBOX_RIDER_STRING, jsonBody: reviewDict, completion:{(success, error) -> Void in
+
+            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+
             if ((success) != nil) {
                 DDLogVerbose("Review success: \(String(describing: success))")
+                
+                AlertUtil.displayAlert("Thanks for taking a ride with Yibby!",
+                                       message: "Please come back.",
+                                       completionBlock: {() -> Void in
+                                        self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
+                })
+                
+                YBClient.sharedInstance().bid = nil
             }
             else {
                 DDLogVerbose("Review failed: \(String(describing: error))")
+                errorBlock(success, error)
             }
-            
-            AlertUtil.displayAlert("Thanks for taking a ride with Yibby!",
-                message: "Please come back.",
-                completionBlock: {() -> Void in
-                    self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
-                })
-
-            YBClient.sharedInstance().bid = nil
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            })
         })
     }
 

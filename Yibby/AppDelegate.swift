@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Example
+//  Yibby
 //
 //  Created by Kishy Kumar on 1/9/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
+    var isSandbox = false
+    
     var connectedToGCM = false
     var subscribedToTopic = false
     var gcmSenderID: String?
@@ -53,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     let BAASBOX_APPCODE = "1234567890"
-    //let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    let BAASBOX_URL = "http://052ee98a.ngrok.io"
+    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+    //let BAASBOX_URL = "https://0d8bd861.ngrok.io"
     var centerContainer: MMDrawerController?
     
     var pushController: PushController =  PushController()
@@ -185,9 +187,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                     BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
                         if (error == nil) {
 
-                            YBClient.sharedInstance().syncClient(syncData)
+                            DDLogVerbose("syncApp syncdata for bidid: \(String(describing: bidId))")
+                            dump(syncData)
 
-                            DDLogVerbose("KKDBG syncapp status \(YBClient.sharedInstance().status)")
+                            YBClient.sharedInstance().syncClient(syncData)
 
                             self.initializeMainViewController()
                             if let centerNav = self.centerContainer?.centerViewController as? UINavigationController {
@@ -195,6 +198,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
                                 switch (YBClient.sharedInstance().status) {
                                 case .looking:
+                                    
+                                    // Remove the bid if it existed
+                                    if (bidId != nil) {
+                                        YBClient.sharedInstance().bid = nil
+                                    }
                                     
                                     // nothing to do here. MainViewController will be shown.
                                     break
@@ -458,9 +466,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             // token to enable reception of notifications
             
             GGLInstanceID.sharedInstance().start(with: instanceIDConfig)
-        
+
             registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken as AnyObject,
-                kGGLInstanceIDAPNSServerTypeSandboxOption:true as AnyObject]
+                kGGLInstanceIDAPNSServerTypeSandboxOption: isSandbox as AnyObject]
 
             sendGCMTokenToServer()
 
