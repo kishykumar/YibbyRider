@@ -94,7 +94,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     userBid.people = (successData["people"] as? Int)
                                     userBid.creationTime = (successData["_creation_date"] as! String)
 
-                                    DDLogVerbose("KKDBG_bidID \(String(describing: userBid.id))")
+                                    DDLogVerbose("createBid received bidID: \(String(describing: userBid.id))")
                                     YBClient.sharedInstance().bid = userBid
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
@@ -108,8 +108,9 @@ class ConfirmRideViewController: BaseYibbyViewController {
                             }
                         }
                         else {
-                            errorBlock(success, error)
+                            // pop the view controller first to show the alert later
                             self.navigationController!.popViewController(animated: true)
+                            errorBlock(success, error)
                         }
                 })
         })

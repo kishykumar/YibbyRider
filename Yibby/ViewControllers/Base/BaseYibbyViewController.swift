@@ -25,7 +25,6 @@ open class BaseYibbyViewController: UIViewController {
         super.viewDidLoad()
 
 //        let app: UIApplication = UIApplication.shared
-//        DDLogVerbose("KKDBG_status bar frame \(app.statusBarFrame.size.height)")
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.appBackgroundColor1();
@@ -39,7 +38,6 @@ open class BaseYibbyViewController: UIViewController {
 
 //    func statusBarFrameChanged() {
 //        let app: UIApplication = UIApplication.shared
-//        DDLogVerbose("KKDBG_status bar changed \(app.statusBarFrame.size.height)")
 //    }
     
     override open func didReceiveMemoryWarning() {

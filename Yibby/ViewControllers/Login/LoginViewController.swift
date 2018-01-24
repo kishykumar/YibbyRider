@@ -50,6 +50,7 @@ class LoginViewController: BaseYibbyViewController,
     
     func setupUI() {
         loginButtonOutlet.color = UIColor.appDarkGreen1()
+        phoneNumberTextFieldOutlet.defaultRegion = "US"
     }
     
     func setupValidator() {
@@ -188,46 +189,34 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     func loginUser(_ usernamei: String, passwordi: String) {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-
-        let client: BAAClient = BAAClient.shared()
-        client.authenticateCaber(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
-            
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            // Also disable the login button interaction
-            self.loginButtonOutlet.isUserInteractionEnabled = false
-
-            if (success) {
-                DDLogVerbose("user logged in successfully \(success)")
-                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
-                // if login is successful, save username, password, token in keychain
-                LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+
+            let client: BAAClient = BAAClient.shared()
+            client.authenticateCaber(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
                 
-//                if (self.onStartup) {
-                    // switch to Main View Controller
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+
+                if (success) {
+                    DDLogVerbose("user logged in successfully \(success)")
+                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    
+                    // if login is successful, save username, password, token in keychain
+                    LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
                     appDelegate.initializeApp()
-//                } else {
-//                    appDelegate.sendGCMTokenToServer()
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-            }
-            else {
-                DDLogVerbose("Error logging in: \(String(describing: error))")
-
-                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-
-                    // check for authentication error and redirect the user to Login page
-                    AlertUtil.displayAlert("Username/password incorrect", message: "Please reenter user credentials and try again.")
                 }
                 else {
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    errorBlock(success, error)
                 }
                 
                 // enable the login button interaction if error
                 self.loginButtonOutlet.isUserInteractionEnabled = true
-            }
+
+            })
         })
     }
     
@@ -235,12 +224,12 @@ class LoginViewController: BaseYibbyViewController,
         if user != nil {
             
             
-            let userId:NSString = user.userID as NSString                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName:NSString = user.profile.name as NSString
-         
-            let email:NSString = user.profile.email as NSString
-            let img =   user.profile.imageURL(withDimension: 200)
+//            let userId:NSString = user.userID as NSString                  // For client-side use only!
+//            let idToken = user.authentication.idToken // Safe to send to the server
+//            let fullName:NSString = user.profile.name as NSString
+//
+//            let email:NSString = user.profile.email as NSString
+//            let img =   user.profile.imageURL(withDimension: 200)
          
          
             // WebserviceForSocialRes(id: userId , reg: "s", email: email, userNmae: fullName)
@@ -269,7 +258,9 @@ class LoginViewController: BaseYibbyViewController,
     
     @IBAction func facebookAction(_ sender: Any) {
         
-        AlertUtil.displayAlert("Coming Soon!", message: "Please use our regular login flow.")
+        AlertUtil.displayAlertOnVC(self,
+                                   title: "Coming Soon!",
+                                   message: "Please use our regular login flow.")
         return;
         
         stringSocial = "facebook"
@@ -288,7 +279,9 @@ class LoginViewController: BaseYibbyViewController,
     
     @IBAction func GoogleAction(_ sender: Any) {
         
-        AlertUtil.displayAlert("Coming Soon!", message: "Please use our regular login flow.")
+        AlertUtil.displayAlertOnVC(self,
+                                   title: "Coming Soon!",
+                                   message: "Please use our regular login flow.")
         return;
         
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -352,21 +345,42 @@ class LoginViewController: BaseYibbyViewController,
             formattedPhoneNumber?.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
 
         if let phoneNumber = formattedPhoneNumber {
-            DDLogVerbose("KKDBG_ \(phoneNumber)")
+            
+            // disable the login button interaction
+            self.loginButtonOutlet.isUserInteractionEnabled = false
+
             loginUser(phoneNumber, passwordi: password.text!)
         }
     }
     
     func validationFailed(_ errors:[(Validatable, ValidationError)]) {
         
-        let (_, validationError) = errors[0]
+        var errorDict: [UITextField:ValidationError] = [:]
+        var errorTextField: UITextField = self.phoneNumberTextFieldOutlet
+        var verror: ValidationError?
         
-        validationError.errorLabel?.isHidden = false
-        validationError.errorLabel?.text = validationError.errorMessage
-        
-        if let textField = validationError.field as? UITextField {
-            textField.setBottomBorder(UIColor.red)
+        // put the array elements in a dictionary
+        for error in errors {
+            
+            let (_, validationError) = error
+            
+            if let textField = validationError.field as? UITextField {
+                errorDict[textField] = validationError
+            }
         }
+        
+        if let validationError = errorDict[phoneNumberTextFieldOutlet] {
+            errorTextField = phoneNumberTextFieldOutlet
+            verror = validationError
+        } else if let validationError = errorDict[self.password] {
+            errorTextField = self.password
+            verror = validationError
+        }
+        
+        verror!.errorLabel?.isHidden = false
+        verror!.errorLabel?.text = verror!.errorMessage
+        
+        errorTextField.setBottomBorder(UIColor.red)
     }
     
     // MARK: - UITextFieldDelegate

@@ -21,28 +21,42 @@ open class WebInterface {
         webRequest({ (success, error) -> Void in
             
             if let myNSError = error as NSError? {
-                switch (myNSError.code) {
-                case WebInterface.BAASBOX_AUTHENTICATION_ERROR:
+                
+                if (myNSError.domain == BaasBox.errorDomain()) {
+                    switch (myNSError.code) {
+                    case WebInterface.BAASBOX_AUTHENTICATION_ERROR:
+                        
+                        // check for authentication error and redirect the user to Login page (if its not already on the login page)
+                        if let loginVC = vc as? LoginViewController {
+                            AlertUtil.displayAlertOnVC(loginVC, title: myNSError.localizedDescription, message: "")
+                        } else {
+                            DDLogVerbose("Error in webRequest1: \(String(describing: error))")
+                            let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                                                                              bundle: nil)
+                            
+                            vc.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
+                        }
+                        
+                        break
                     
-                    // check for authentication error and redirect the user to Login page
+                    case WebInterface.BAASBOX_INTERNAL_ERROR:
+                        DDLogVerbose("Internal Error in webRequest2: \(String(describing: error))")
+                        AlertUtil.displayAlertOnVC(vc, title: myNSError.localizedDescription, message: "")
+                        break
                     
-                    DDLogVerbose("Error in webRequest1: \(String(describing: error))")
-                    let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
-                        bundle: nil)
-                    
-                    vc.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
-                    break
-                    
-                case WebInterface.BAASBOX_INTERNAL_ERROR:
-                    DDLogVerbose("Internal Server Error in webRequest2: \(String(describing: error))")
-                    AlertUtil.displayAlert(myNSError.localizedDescription, message: "Please check back again in some time.")
-                    break
-                    
-                default:
-                    DDLogVerbose("Error in webRequest3: \(String(describing: error))")
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    default:
+                        DDLogVerbose("Error in webRequest3: \(String(describing: error))")
+                        AlertUtil.displayAlertOnVC(vc, title: "Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    }
+                } else {
+                    DDLogVerbose("Error in webRequest4: \(String(describing: error))")
+                    AlertUtil.displayAlertOnVC(vc, title: myNSError.localizedDescription, message: "")
                 }
             }
         })
+    }
+    
+    static func makeWebRequestAndDiscardError (_ webRequest:() -> Void) {
+        webRequest()
     }
 }

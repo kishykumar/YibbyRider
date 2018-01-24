@@ -293,30 +293,34 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     
     func updateEmail() {
         
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
-        let client: BAAClient = BAAClient.shared()
-        
-        let dictionary: [String: String] = ["email": emailAddress.text!]
-        
-        client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
-            if let success = success {
-                let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
-                if let profile = profileModel {
-                    self.applyProfileModel(profile)
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
+            let client: BAAClient = BAAClient.shared()
+            
+            let dictionary: [String: String] = ["email": emailAddress.text!]
+            
+            client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                if let success = success {
+                    let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+                    
+                    if let profile = profileModel {
+                        self.applyProfileModel(profile)
+                    }
+                    else {
+                        AlertUtil.displayAlert("Error in Updating User Profile", message: error?.localizedDescription ?? "")
+                        DDLogError("Error in updating Profile: \(String(describing: success))")
+                    }
                 }
                 else {
-                    AlertUtil.displayAlert("Error in Updating User Profile", message: error?.localizedDescription ?? "")
-                    DDLogError("Error in updating Profile: \(String(describing: success))")
+                    DDLogVerbose("updateProfile failed: \(String(describing: error))")
+                    errorBlock(success, error)
                 }
-            }
-            else {
-                AlertUtil.displayAlert("Error in Updating User Profile", message: error?.localizedDescription ?? "")
-                DDLogVerbose("updateProfile failed: \(String(describing: error))")
-            }
-            
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+            })
         })
     }
 
@@ -365,37 +369,40 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         
         addHomeBtnOutlet.setTitle(location.name!, for: UIControlState())
         
-        if location.name!.isEqual(YBClient.sharedInstance().profile?.homeLocation?.name)
-        {
+        if location.name!.isEqual(YBClient.sharedInstance().profile?.homeLocation?.name) {
             
         }
-        else
-        {
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            
-            let client: BAAClient = BAAClient.shared()
-                
-            let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
-            let dictionary = ["homeLocation": dict]
-            
-            client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
-                if let success = success {
-                    let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+        else {
+            WebInterface.makeWebRequestAndHandleError(
+                self,
+                webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                     
-                    if let profile = profileModel {
-                        self.applyProfileModel(profile)
+                ActivityIndicatorUtil.enableActivityIndicator(self.view)
+                
+                let client: BAAClient = BAAClient.shared()
+                    
+                let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
+                let dictionary = ["homeLocation": dict]
+                
+                client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                    if let success = success {
+                        let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+                        
+                        if let profile = profileModel {
+                            self.applyProfileModel(profile)
+                        }
+                        else {
+                            AlertUtil.displayAlert("Error in Updating Home", message: error?.localizedDescription ?? "")
+                            DDLogError("Error in updating home: \(String(describing: success))")
+                        }
                     }
                     else {
-                        AlertUtil.displayAlert("Error in Updating Home", message: error?.localizedDescription ?? "")
-                        DDLogError("Error in updating home: \(String(describing: success))")
+                        DDLogVerbose("addHomeDetails failed: \(String(describing: error))")
+                        errorBlock(success, error)
                     }
-                }
-                else {
-                    AlertUtil.displayAlert("Error in Updating Home", message: error?.localizedDescription ?? "")
-                    DDLogVerbose("addHomeDetails failed: \(String(describing: error))")
-                }
-                
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                    
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                })
             })
         }
     }
@@ -403,39 +410,41 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     func addWorkDetails (_ location: YBLocation) {
         addWorkBtnOutlet.setTitle(location.name!, for: UIControlState())
         
-        if location.name!.isEqual(YBClient.sharedInstance().profile?.workLocation?.name)
-        {
+        if location.name!.isEqual(YBClient.sharedInstance().profile?.workLocation?.name) {
             
         }
-        else
-        {
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            
-            let client: BAAClient = BAAClient.shared()
-            let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
-            let dictionary = ["workLocation": dict]
-            
-            client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
-                if let success = success {
-                    let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+        else {
+            WebInterface.makeWebRequestAndHandleError(
+                self,
+                webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                     
-                    if let profile = profileModel {
-                        self.applyProfileModel(profile)
+                ActivityIndicatorUtil.enableActivityIndicator(self.view)
+                
+                let client: BAAClient = BAAClient.shared()
+                let dict = ["latitude":location.latitude!, "longitude":location.longitude!, "name":location.name!] as [String : Any]
+                let dictionary = ["workLocation": dict]
+                
+                client.updateProfile(BAASBOX_RIDER_STRING, jsonBody: dictionary, completion:{(success, error) -> Void in
+                    if let success = success {
+                        let profileModel = Mapper<YBProfile>().map(JSONObject: success)
+                        
+                        if let profile = profileModel {
+                            self.applyProfileModel(profile)
+                        }
+                        else {
+                            AlertUtil.displayAlert("Error in Updating Work", message: error?.localizedDescription ?? "")
+                            DDLogError("Error in updating Work: \(String(describing: success))")
+                        }
                     }
                     else {
-                        AlertUtil.displayAlert("Error in Updating Work", message: error?.localizedDescription ?? "")
-                        DDLogError("Error in updating Work: \(String(describing: success))")
+                        DDLogVerbose("addWorkDetails failed: \(String(describing: error))")
+                        errorBlock(success, error)
                     }
-                }
-                else {
-                    AlertUtil.displayAlert("Error in Updating Work", message: error?.localizedDescription ?? "")
-                    DDLogVerbose("addWorkDetails failed: \(String(describing: error))")
-                }
-                
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                    
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                })
             })
         }
-
     }
 }
 
@@ -540,6 +549,7 @@ extension SettingsViewController: ImagePickerDelegate {
                 
               },
               failure: { error in
+                AlertUtil.displayAlert("Upload failed", message: "Failure in uploading profile picture : \(error.description)")
                 DDLogError("Failure in uploading profile picture: \(error.description)")
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })

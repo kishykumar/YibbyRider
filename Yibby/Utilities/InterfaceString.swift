@@ -144,8 +144,8 @@ public struct InterfaceString {
     
     public struct SignOut {
         static let SignOut = NSLocalizedString("Sign Out", comment: "SignOut")
-        static let ConfirmSignOutTitle = NSLocalizedString("Are you sure", comment: "Are you sure?")
-        static let ConfirmSignOutMessage = NSLocalizedString("You want to sign out?", comment: "You want to sign out?")
+        static let ConfirmSignOutTitle = NSLocalizedString("Are you sure you want to sign out?", comment: "Are you sure?")
+        //static let ConfirmSignOutMessage = NSLocalizedString("You want to sign out?", comment: "You want to sign out?")
     }
     
     public struct Join {

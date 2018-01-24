@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
-//  Example
+//  MainViewController.swift
+//  Yibby
 //
 //  Created by Kishy Kumar on 1/9/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -75,7 +75,6 @@ class MainViewController: BaseYibbyViewController,
     
 #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
     
-    //var selectedPaymentMethod: BTPaymentMethodNonce?
     var selectedPaymentMethod: YBPaymentMethod?
     
 #endif
@@ -142,7 +141,7 @@ class MainViewController: BaseYibbyViewController,
         if (pickupLocation != nil &&
             dropoffLocation != nil && bidHigh != nil) {
             
-            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidHigh: \(bidHigh)")
+            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidHigh: \(String(describing: bidHigh))")
             
             let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
             

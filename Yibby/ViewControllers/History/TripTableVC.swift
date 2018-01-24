@@ -356,7 +356,7 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     
     @objc fileprivate func loadNextPage() {
         self.isLoading = true
-        DDLogVerbose("KKDBG_loadNextPage called")
+
         if (self.footerActivityIndicatorView() == nil &&
             nextPageToLoad != 0) {
             self.addFooterActivityIndicator(withHeight: 80.0)
@@ -373,37 +373,17 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                 self,
                 webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                     
-                    let client: BAAClient = BAAClient.shared()
-                    client.fetchCount(forRides: {(success, error) -> Void in
+                let client: BAAClient = BAAClient.shared()
+                client.fetchCount(forRides: nil, completion: {(success, error) -> Void in
+                    
+                    if (error == nil) {
                         
-                        if (error == nil) {
-                            
-                            // parse the result to get the total number of rides
-                            DDLogVerbose("Success in fetching ridecount: \(success)")
-                            self.totalRides = success
-                            
-                            // If zero total rides, then return and remove the activity indicator
-                            if self.totalRides == 0 {
-                                
-                                // The DNZ Empty container view will be shown automatically
-                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                
-                                if (self.footerActivityIndicatorView() != nil) {
-                                    self.removeFooterActivityIndicator()
-                                }
-                                
-                                self.isLoading = false
-                                self.reinit()
-                                return;
-                            }
-                            
-                            // If non-zero total rides, then fetch the first batch
-                            // TODO: Remove the delay later
-                            self.perform(#selector(TripTableVC.loadNewRides),
-                                         with:nil, afterDelay:3.0)
-                        }
-                        else {
-                            errorBlock(success, error)
+                        // parse the result to get the total number of rides
+                        DDLogVerbose("Success in fetching ridecount: \(success)")
+                        self.totalRides = success
+                        
+                        // If zero total rides, then return and remove the activity indicator
+                        if self.totalRides == 0 {
                             
                             // The DNZ Empty container view will be shown automatically
                             ActivityIndicatorUtil.disableActivityIndicator(self.view)
@@ -416,7 +396,22 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                             self.reinit()
                             return;
                         }
-                    })
+                    }
+                    else {
+                        errorBlock(success, error)
+                        
+                        // The DNZ Empty container view will be shown automatically
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        
+                        if (self.footerActivityIndicatorView() != nil) {
+                            self.removeFooterActivityIndicator()
+                        }
+                        
+                        self.isLoading = false
+                        self.reinit()
+                        return;
+                    }
+                })
             })
             
             return;
@@ -434,8 +429,6 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     }
     
     @objc fileprivate func loadNewRides() {
-        
-        DDLogVerbose("KKDBG_loadNewRides called")
         
         // load the new rides
         WebInterface.makeWebRequestAndHandleError(

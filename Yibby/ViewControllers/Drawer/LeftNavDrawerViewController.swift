@@ -65,7 +65,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     @IBAction func onSignOutButtonClick(_ sender: AnyObject) {
         
-        let alertController = UIAlertController(title: InterfaceString.SignOut.ConfirmSignOutTitle, message: InterfaceString.SignOut.ConfirmSignOutMessage, preferredStyle:UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: InterfaceString.SignOut.ConfirmSignOutTitle, message: "", preferredStyle:UIAlertControllerStyle.alert)
         
         alertController.addAction(UIAlertAction(title: InterfaceString.Cancel.uppercased(), style: UIAlertActionStyle.default)
         { action -> Void in
@@ -287,43 +287,42 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     // BaasBox logout user
     func logoutUser() {
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
         
-        let client: BAAClient = BAAClient.shared()
-        client.logoutCaber(withCompletion: BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
+                
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
             
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-            
-            if (success || ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
+            let client: BAAClient = BAAClient.shared()
+            client.logoutCaber(withCompletion: BAASBOX_RIDER_STRING, completion: {(success, error) -> Void in
                 
-                // pop all the view controllers so that user starts fresh :)
-                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-                    mmnvc.popToRootViewController(animated: false)
-                }
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
                 
-                DDLogInfo("user logged out successfully \(success)")
-                // if logout is successful, remove username, password from keychain
-                LoginViewController.removeLoginKeyChainKeys()
-                
-                // Show the Signup/LoginViewController View
-                
-                let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
-                                                                  bundle: nil)
-                
-                self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
-            }
-            else {
-                // We continue the user session if Logout hits an error
-                if ((error as! NSError).domain == BaasBox.errorDomain()) {
-                    DDLogError("Error in logout: \(String(describing: error))")
-                    AlertUtil.displayAlert("Error Logging out. ", message: "This is...weird.")
+                if (success || ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+                    WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
+                    
+                    // pop all the view controllers so that user starts fresh :)
+                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
+                        mmnvc.popToRootViewController(animated: false)
+                    }
+                    
+                    DDLogInfo("user logged out successfully \(success)")
+                    // if logout is successful, remove username, password from keychain
+                    LoginViewController.removeLoginKeyChainKeys()
+                    
+                    // Show the Signup/LoginViewController View
+                    
+                    let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,
+                                                                      bundle: nil)
+                    
+                    self.present(signupStoryboard.instantiateInitialViewController()!, animated: false, completion: nil)
                 }
                 else {
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    errorBlock(success, error)
                 }
-            }
+            })
         })
     }
     
