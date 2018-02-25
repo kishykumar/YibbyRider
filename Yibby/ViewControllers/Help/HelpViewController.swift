@@ -16,7 +16,7 @@ class HelpViewController: BaseYibbyViewController {
     // MARK: - Properties
     
     @IBOutlet weak var containerViewUserImageOutlet: UIView!
-    @IBOutlet var userImage: UIImageView!
+    @IBOutlet var userImage: SwiftyAvatar!
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
     
@@ -84,20 +84,9 @@ class HelpViewController: BaseYibbyViewController {
     
     // MARK: Helpers
     
-    func setPicture(imageView: UIImageView, ride: Ride, fileId: String) {
-        
-        if (fileId == "") {
-            return;
-        }
-        
-        if let newUrl = BAAFile.getCompleteURL(withToken: fileId) {
-            imageView.pin_setImage(from: newUrl)
-        }
-    }
-    
     func updateLastRideUI() {
         
-        if let ride = lastRide {
+        if let ride = lastRide, let myDriver = ride.driver, let myVehicle = ride.vehicle {
             
             lastTripPrice.text = "$\(ride.fare!)"
             
@@ -106,13 +95,21 @@ class HelpViewController: BaseYibbyViewController {
                 lastTripTime.text = prettyDate
             }
             
-            if let profilePictureFileId = ride.driver?.profilePictureFileId {
-                setPicture(imageView: userImage, ride: ride, fileId: profilePictureFileId)
+            self.userImage.setImageForName(string: myDriver.firstName!,
+                                           backgroundColor: nil,
+                                           circular: true,
+                                           textAttributes: nil)
+
+            if let profilePictureFileId = myDriver.profilePictureFileId {
+                
+                if (profilePictureFileId != "") {
+                    if let newUrl = BAAFile.getCompleteURL(withToken: profilePictureFileId) {
+                        self.userImage.pin_setImage(from: newUrl)
+                    }
+                }
             }
             
-            if let vehicle = ride.vehicle {
-                vehicleMakeModelLabelOutlet.text = "\(vehicle.make!.capitalized) \(vehicle.model!.capitalized)"
-            }
+            vehicleMakeModelLabelOutlet.text = "\(myVehicle.make!.capitalized) \(myVehicle.model!.capitalized)"
         }
     }
     

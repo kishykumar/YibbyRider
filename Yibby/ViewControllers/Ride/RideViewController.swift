@@ -3,7 +3,7 @@
 //  Yibby
 //
 //  Created by Kishy Kumar on 3/26/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -11,12 +11,6 @@ import BaasBoxSDK
 import CocoaLumberjack
 import GoogleMaps
 import ISHPullUp
-
-public struct RideNotifications {
-    static let rideStart = TypedNotification<String>(name: "com.Yibby.Ride.RideStart")
-    static let driverArrived = TypedNotification<String>(name: "com.Yibby.Ride.DriverArrived")
-    static let rideEnd = TypedNotification<String>(name: "com.Yibby.Ride.RideEnd")
-}
 
 public enum RideViewControllerState: Int {
     case driverEnRoute = 0
@@ -56,14 +50,15 @@ class RideViewController: ISHPullUpViewController {
     
     private func commonInit() {
         
+        DDLogVerbose("Fired init")
         let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
         
         let contentVC = rideStoryboard.instantiateViewController(withIdentifier: "RideContentViewControllerIdentifier") as! RideContentViewController
         
         let bottomVC = rideStoryboard.instantiateViewController(withIdentifier: "RideBottomViewControllerIdentifier") as! RideBottomViewController
         
-        contentViewController = contentVC
-        bottomViewController = bottomVC
+        self.contentViewController = contentVC
+        self.bottomViewController = bottomVC
         dimmingColor = nil
         
         contentVC.pullUpController = self
@@ -72,46 +67,63 @@ class RideViewController: ISHPullUpViewController {
         sizingDelegate = bottomVC
         stateDelegate = bottomVC
         
+        setupNotificationObservers()
 //        contentDelegate = contentVC
-        
-        LocationService.sharedInstance().startFetchingDriverLocation()
+    }
+
+    deinit {
+        DDLogVerbose("Fired deinit")
+        removeNotificationObservers()
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        DDLogVerbose("KKDBG_RVC appear")
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        DDLogVerbose("KKDBG_RVC disappear")
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotificationObservers()
         setupMenuButton()
-    }
-    
-    deinit {
-        removeNotificationObservers()
+        LocationService.sharedInstance().startFetchingDriverLocation()
     }
     
     // MARK: Notifications
     
     fileprivate func setupNotificationObservers() {
 
+        DDLogVerbose("setup notifications observers")
+        
         rideStartObserver = NotificationObserver(notification: RideNotifications.rideStart) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideStart: \(comment)")
             
+            YBClient.sharedInstance().status = .onRide
             self.updateControllerState(state: .rideStart)
         }
         
         rideEndObserver = NotificationObserver(notification: RideNotifications.rideEnd) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideEnd: \(comment)")
             
+            YBClient.sharedInstance().status = .pendingRating
             self.rideEndCallback()
         }
         
         driverArrivedObserver = NotificationObserver(notification: RideNotifications.driverArrived) { [unowned self] comment in
             DDLogVerbose("NotificationObserver driverArrived: \(comment)")
             
+            YBClient.sharedInstance().status = .driverArrived
             self.updateControllerState(state: .driverArrived)
         }
     }
     
     fileprivate func removeNotificationObservers() {
+        DDLogVerbose("removing notifications observers")
+
         rideStartObserver?.removeObserver()
         rideEndObserver?.removeObserver()
     }

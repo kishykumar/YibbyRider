@@ -17,9 +17,9 @@ import GooglePlaces
 import ActionSheetPicker_3_0
 
 // TODO:
-// 1. Create bid state that we save on the app
+// 1. Don't let user bid for 5 mins
 // 2.
-// 3. When bid timer expires on the app, save the state of the bid so that it doesn't conflict with the incoming push message.
+// 3.
 // 4. 
 
 class MainViewController: BaseYibbyViewController,
@@ -79,6 +79,9 @@ class MainViewController: BaseYibbyViewController,
     
 #endif
     
+    fileprivate var offerRejectedObserver: NotificationObserver? // for offer reject
+    fileprivate var rideObserver: NotificationObserver? // for driver en route message
+    
     // MARK: - Actions
     
     @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
@@ -119,16 +122,25 @@ class MainViewController: BaseYibbyViewController,
         adjustGMSCameraFocus()
     }
     
+    @IBAction func getCurrentPlace(sender: UIButton) {
+        
+        placesClient?.currentPlace(callback: {
+            (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            //  self.nameLabel.text = "No current place"
+            //self.addressLabel.text = ""
+            
+            if let placeLikelihoodList = placeLikelihoodList {
+                let place = placeLikelihoodList.likelihoods.first?.place
+            }
+            } as! GMSPlaceLikelihoodListCallback)
+    }
+    
     @IBAction func onBidButtonClick(_ sender: AnyObject) {
 
-        // TODO: REMOVE
-//        let driverEnRouteStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.DriverEnRoute, bundle: nil)
-//        
-//        let derVC = driverEnRouteStoryboard.instantiateViewController(withIdentifier: "DriverEnRouteViewControllerIdentifier") as! DriverEnRouteViewController
-//        self.navigationController?.pushViewController(derVC, animated: true)
-//        return;
-        ///////////////////////////        ///////////////////////////
-        
         // Make sure user has a payment method selected
         if (self.selectedPaymentMethod == nil) {
             displaySelectCardView()
@@ -141,10 +153,9 @@ class MainViewController: BaseYibbyViewController,
         if (pickupLocation != nil &&
             dropoffLocation != nil && bidHigh != nil) {
             
-            DDLogVerbose("Made the bid: pickupLoc: \(pickupLocation), dropoffLoc: \(dropoffLocation), bidHigh: \(String(describing: bidHigh))")
+            DDLogVerbose("Made the bid: pickupLoc: \(String(describing: pickupLocation)), dropoffLoc: \(String(describing: dropoffLocation)), bidHigh: \(String(describing: bidHigh))")
             
             let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
-            
             let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
             
             // Initialize the view controller state 
@@ -154,7 +165,15 @@ class MainViewController: BaseYibbyViewController,
             confirmRideViewController.currentPaymentMethod = self.selectedPaymentMethod!
             confirmRideViewController.numPeople = self.numPeople!
             
-            self.navigationController?.pushViewController(confirmRideViewController, animated: true)
+            // if an alert was already displayed, dismiss it
+            if let presentedVC = self.presentedViewController {
+                if (presentedVC.isMember(of: UIAlertController.self)) {
+                    self.dismiss(animated: false, completion: nil)
+                }
+            }
+            
+            let navController = UINavigationController(rootViewController: confirmRideViewController)
+            self.navigationController?.present(navController, animated: true, completion: nil)
         }
     }
     
@@ -315,6 +334,26 @@ class MainViewController: BaseYibbyViewController,
 
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        DDLogVerbose("Fired init")
+        setupNotificationObservers()
+    }
+    
+    deinit {
+        DDLogVerbose("Fired deinit")
+        removeNotificationObservers()
+    }
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -342,10 +381,6 @@ class MainViewController: BaseYibbyViewController,
         dollarHintViewOutlet.setRoundedWithWhiteBorder()
     }
     
-    override open func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.isNavigationBarHidden = true
-    }
-    
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -357,24 +392,46 @@ class MainViewController: BaseYibbyViewController,
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Notifications
     
-    @IBAction func getCurrentPlace(sender: UIButton) {
+    fileprivate func removeNotificationObservers() {
         
-        placesClient?.currentPlace(callback: {
-            (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
-            }
-          //  self.nameLabel.text = "No current place"
-            //self.addressLabel.text = ""
-            
-            if let placeLikelihoodList = placeLikelihoodList {
-                let place = placeLikelihoodList.likelihoods.first?.place
-            }
-        } as! GMSPlaceLikelihoodListCallback)
+        offerRejectedObserver?.removeObserver()
+        rideObserver?.removeObserver()
     }
     
+    fileprivate func setupNotificationObservers() {
+        
+        offerRejectedObserver = NotificationObserver(notification: BidNotifications.noOffers) { [unowned self] bid in
+            
+            YBClient.sharedInstance().status = .looking
+
+            // Clear the locally persisted bid
+            YBClient.sharedInstance().bid = nil
+            AlertUtil.displayAlert("No offers from drivers.",
+                                   message: "Your bid was not accepted by any driver",
+                                   completionBlock: {() -> Void in
+                                    self.dismiss(animated: true, completion: nil)
+            })
+        }
+        
+        rideObserver = NotificationObserver(notification: RideNotifications.driverEnRoute) { [unowned self] ride in
+            
+            YBClient.sharedInstance().status = .driverEnRoute
+
+            // Successful ride, save it. We only update the ride object during driver_en_route, and not during driverArrived/rideStart/End
+            YBClient.sharedInstance().ride = ride
+            
+            // dismiss the currently presented offerViewController
+            self.dismiss(animated: true, completion: nil)
+
+            let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+            let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+            rideViewController.controllerState = .driverEnRoute
+            self.navigationController?.pushViewController(rideViewController, animated: true)
+        }
+    }
+
     
     // MARK: - Helpers
     

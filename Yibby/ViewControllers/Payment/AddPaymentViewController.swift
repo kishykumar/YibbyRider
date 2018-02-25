@@ -400,8 +400,6 @@ class AddPaymentViewController: BaseYibbyViewController,
     
     func saveCard() {
         
-        ActivityIndicatorUtil.enableActivityIndicator(self.view)
-        
         let number = cardFieldsViewOutlet.numberInputTextField.text
         let expMonth = cardFieldsViewOutlet.monthTextField.text
         let expYear = cardFieldsViewOutlet.yearTextField.text
@@ -409,6 +407,74 @@ class AddPaymentViewController: BaseYibbyViewController,
         let postalcard = cardFieldsViewOutlet.postalCodeTextField.text
         let name = cardFieldsViewOutlet.cardHolderNameTextField.text
 
+        // Define the closure for adding the card
+        let addCardCodeBlock = { () -> Void in
+            
+            let cardClient: BTCardClient = BTCardClient(apiClient: BraintreePaymentService.sharedInstance().apiClient!)
+            
+            let card: BTCard = BTCard(number: number!,
+                                      expirationMonth: expMonth!,
+                                      expirationYear: expYear!,
+                                      cvv: cvc!
+            )
+            
+            card.postalCode = postalcard
+            card.cardholderName = name
+            
+            cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
+                
+                if (tokenized != nil) {
+                    
+                    if let error = error {
+                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        self.handleCardTokenError(error as NSError)
+                    }
+                    else {
+                        
+                        // TODO: We save the zipcode
+                        if self.isEditCard == true {
+                            
+                            self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didCreateNewNonce: tokenized!,
+                                 oldPaymentMethod: self.paymentMethodToEdit, completion: {(error: NSError?) -> Void in
+                                    
+                                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                    if let error = error {
+                                        self.handleCardTokenError(error)
+                                    }
+                            })
+                            
+                        }
+                        else if self.isSignup == true {
+                            self.signupDelegate?.signupPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
+                                
+                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                if let error = error {
+                                    self.handleCardTokenError(error)
+                                }
+                            })
+                        } else {
+                            
+                            self.addDelegate?.addPaymentViewController(addPaymentViewController: self,
+                                                                       didCreateNonce: tokenized!,
+                                                                       completion: {(error: NSError?) -> Void in
+                                                                        
+                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                
+                                if let error = error {
+                                    self.handleCardTokenError(error)
+                                }
+                            })
+                        }
+                    }
+                }
+                else {
+                    
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                }
+            })
+        }
+        
         #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
             let apiClient = StripePaymentService.sharedInstance().apiClient!
@@ -451,84 +517,22 @@ class AddPaymentViewController: BaseYibbyViewController,
             })
         #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
             
-            let cardClient: BTCardClient = BTCardClient(apiClient: BraintreePaymentService.sharedInstance().apiClient!)
-            
-            let card: BTCard = BTCard(number: number!,
-                                      expirationMonth: expMonth!,
-                                      expirationYear: expYear!,
-                                      cvv: cvc!
-                                      )
+            ActivityIndicatorUtil.enableActivityIndicator(self.view)
 
-            card.postalCode = postalcard
-            card.cardholderName = name
-
-            cardClient.tokenizeCard(card, completion: {(tokenized: BTCardNonce?, error: Error?) -> Void in
-                
-                if (tokenized != nil) {
+            if BraintreePaymentService.sharedInstance().apiClient != nil {
+                addCardCodeBlock()
+            } else {
+   
+                BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
                     
-                    if let error = error {
-                        ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                        self.handleCardTokenError(error as NSError)
+                    if (error != nil) {
+                        DDLogError("Error in Braintree setup: \(String(describing: error))")
+                        AlertUtil.displayAlert("Payment Setup Error", message: (error?.localizedDescription) ?? "")
+                    } else {
+                        addCardCodeBlock()
                     }
-                    else {
-                        
-                        // TODO: We save the zipcode
-                        if self.isEditCard == true {
-                            
-                            self.editDelegate?.editPaymentViewController(editPaymentViewController: self, didCreateNewNonce: tokenized!,
-                                                                         oldPaymentMethod: self.paymentMethodToEdit, completion: {(error: NSError?) -> Void in
-                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                if let error = error {
-                                    self.handleCardTokenError(error)
-                                }
-                            })
-                            
-                          //  self.updatePaymentCard(nonce: (tokenized?.nonce)!)
-                            
-                            
-                        }
-                        else if self.isSignup == true {
-                            self.signupDelegate?.signupPaymentViewController(addPaymentViewController: self, didCreateNonce: tokenized!, completion: {(error: NSError?) -> Void in
-                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                if let error = error {
-                                    self.handleCardTokenError(error)
-                                }
-                            })
-                        } else {
-                            
-                            self.addDelegate?.addPaymentViewController(addPaymentViewController: self,
-                                                                       didCreateNonce: tokenized!,
-                                                                       completion: {(error: NSError?) -> Void in
-                                
-                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                                
-                                if (error != nil) {
-                                    DDLogVerbose("Error PaymentMethod in: \(error)")
-                                    
-                                    if (error?.domain == BaasBox.errorDomain() && error?.code ==
-                                        WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-                                        
-                                        // check for authentication error and redirect the user to Login page
-                                    }
-                                    else {
-                                        AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                                    }
-                                }
-                                else
-                                {
-                                    DDLogVerbose("PaymentMethod added successfully ")
-                                }
-                            })
-                        }
-                    }
-                }
-                else {
-                    
-                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                }
-            })
-            
+                })
+            }
         #endif
     }
 }

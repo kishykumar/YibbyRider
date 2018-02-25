@@ -31,10 +31,10 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBOutlet weak var driverCarModelLabelOutlet: UILabel!
     @IBOutlet weak var driverCarNumberLabelOutlet: YibbyPaddingLabel!
     @IBOutlet weak var outerCircleImageViewOutlet: UIImageView!
-    @IBOutlet weak var innerCircleImageViewOutlet: UIImageView!
+    @IBOutlet weak var innerCircleImageViewOutlet: SwiftyAvatar!
     
     private var firstAppearanceCompleted = false
-    weak var pullUpController: RideViewController!
+    weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
     private var currentHeight = CGFloat(0)
     
@@ -44,6 +44,25 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     let messageComposer = MessageComposer()
     
     // MARK: - Actions
+    
+    @IBAction func driverInfoBtnAction(_ sender: Any) {
+        
+        guard let ride = YBClient.sharedInstance().ride,
+            let myDriver = ride.driver,
+            let myDriverVehicle = ride.vehicle else {
+                
+                DDLogError("Ride details not present. Dump state: ")
+                dump(YBClient.sharedInstance())
+                return;
+        }
+        
+        let driverInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverInfoVC") as! DriverInfoVC
+        
+        driverInfoViewController.myDriver = myDriver
+        driverInfoViewController.myDriverVehicle = myDriverVehicle
+        
+        _ = self.navigationController?.pushViewController(driverInfoViewController, animated: true)
+    }
     
     @IBAction func onCallButtonTap(_ sender: UIButton) {
         
@@ -59,7 +78,9 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     }
 
     @IBAction func onCenterMarkersButtonTap(_ sender: UIButton) {
-        pullUpController.centerMarkers()
+        if let puVC = pullUpController {
+            puVC.centerMarkers()
+        }
     }
     
     @IBAction func sendTextMessageButtonTapped(_ sender: UIButton) {
@@ -88,7 +109,9 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     }
     
     private dynamic func handleTapGesture(gesture: UITapGestureRecognizer) {
-        pullUpController.toggleState(animated: true)
+        if let puVC = pullUpController {
+            puVC.toggleState(animated: true)
+        }
     }
     
     // MARK: - Setup Functions
@@ -100,32 +123,56 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         rideSetup()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        DDLogVerbose("Fired init")
+        setupNotificationObservers()
+    }
+    
+    deinit {
+        DDLogVerbose("Fired deinit")
+        removeNotificationObservers()
+    }
+    
     fileprivate func rideSetup() {
         
-        let state: RideViewControllerState = pullUpController.controllerState
-        
-        switch (state) {
-        case .driverEnRoute:
-            
-            driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
-            
-            break
-            
-        case .driverArrived:
-            driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
+        if let puVC = pullUpController {
 
-            break
+            let state: RideViewControllerState = puVC.controllerState
             
-        case .rideStart:
-            driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
+            switch (state) {
+            case .driverEnRoute:
+                
+                driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
+                
+                break
+                
+            case .driverArrived:
+                driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
 
-            break
+                break
+                
+            case .rideStart:
+                driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
+
+                break
+            }
             
-        default:
-            break
+            startDriverStatusAnimation()
         }
-        
-        driverStatusLabelOutlet.repeatCount = .infinity
+    }
+    
+    @objc fileprivate func appBecameActive() {
+        startDriverStatusAnimation()
     }
     
     fileprivate func setupUI() {
@@ -163,23 +210,28 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             if let myDriver = ride.driver {
                 driverStarsLabelOutlet.text = "\(String(describing: myDriver.rating!))"
                 
-                if let driverRatingStr = myDriver.rating, let driverRating = Double(driverRatingStr) {
+                 if let driverRatingStr = myDriver.rating, let driverRating = Double(driverRatingStr) {
                     switch (driverRating) {
                     case 4.0 :
-                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_4.0")
+                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_4_0")
                         break
                     case 4.5 :
-                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_4.5")
+                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_4_5")
                         break
                     case 5.0 :
-                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_5.0")
+                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_5_0")
                         break
                     default:
-                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_4.5")
+                        outerCircleImageViewOutlet.image = UIImage(named: "driver_image_circle_4_5")
                         break
                     }
                 }
                 
+                innerCircleImageViewOutlet.setImageForName(string: myDriver.firstName!,
+                                                           backgroundColor: nil,
+                                                           circular: true,
+                                                           textAttributes: nil)
+            
                 if let driverProfilePic = myDriver.profilePictureFileId {
                     if (driverProfilePic != "") {
                         if let imageUrl  = BAAFile.getCompleteURL(withToken: driverProfilePic) {
@@ -200,7 +252,10 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         firstAppearanceCompleted = true
-        pullUpController.setState(.expanded, animated: false)
+        
+        if let puVC = pullUpController {
+            puVC.setState(.expanded, animated: false)
+        }
         currentHeight = pullupViewTargetHeight
     }
     
@@ -209,7 +264,33 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: - Notifications
+    
+    fileprivate func removeNotificationObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    fileprivate func setupNotificationObservers() {
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(RideBottomViewController.appBecameActive),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+    }
+    
     // MARK: - Helpers
+    
+    fileprivate func startDriverStatusAnimation() {
+        driverStatusLabelOutlet.animation = "flash"
+        driverStatusLabelOutlet.duration = 1.5
+        driverStatusLabelOutlet.repeatCount = .infinity
+        driverStatusLabelOutlet.animate()
+    }
+    
+    fileprivate func stopDriverStatusAnimation() {
+        driverStatusLabelOutlet.layer.removeAllAnimations()
+    }
     
     func rideStartCallback() {
         driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
@@ -266,12 +347,6 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     func pullUpViewController(_ pullUpViewController: ISHPullUpViewController, didChangeTo state: ISHPullUpState) {
 //        topLabel.text = textForState(state);
     }
-
-    @IBAction func driverInfoBtnAction(_ sender: Any) {        
-        let DriverInfoNVC = self.storyboard?.instantiateViewController(withIdentifier: "DriverInfoVC") as! DriverInfoVC
-        _ = self.navigationController?.pushViewController(DriverInfoNVC, animated: true)
-    }
-    
     
     /*
     // MARK: - Navigation

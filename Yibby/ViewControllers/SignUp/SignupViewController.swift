@@ -306,7 +306,7 @@ class SignupViewController: BaseYibbyViewController,
 
     func signupPaymentViewControllerDidSkip(_ addPaymentViewController: AddPaymentViewController) {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.initializeApp()
+        appDelegate.initializeApp(true)
     }
     
     func signupPaymentViewController(addPaymentViewController: AddPaymentViewController,
@@ -320,7 +320,7 @@ class SignupViewController: BaseYibbyViewController,
             
             if (error == nil) {
                 let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.initializeApp()
+                appDelegate.initializeApp(false)
             }
         })
     }

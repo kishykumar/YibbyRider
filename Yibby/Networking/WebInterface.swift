@@ -16,7 +16,8 @@ open class WebInterface {
     static let BAASBOX_AUTHENTICATION_ERROR = -22222
     static let BAASBOX_INTERNAL_ERROR = -22223
     
-    static func makeWebRequestAndHandleError (_ vc: UIViewController, webRequest:(_ errorBlock: @escaping(BAAObjectResultBlock)) -> Void) {
+    static func makeWebRequestAndHandleError (_ vc: UIViewController,
+                                              webRequest:(_ errorBlock: @escaping(BAAObjectResultBlock)) -> Void) {
         
         webRequest({ (success, error) -> Void in
             

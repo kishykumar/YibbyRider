@@ -12,6 +12,8 @@ import CocoaLumberjack
 enum YBClientStatus: String {
     case looking = "LOOKING"
     case ongoingBid = "BID_IN_PROCESS"
+    case failedNoOffers = "FAILED_NO_OFFERS"
+    case failedHighOffers = "FAILED_HIGH_OFFERS"
     case driverEnRoute = "DRIVER_EN_ROUTE"
     case driverArrived = "DRIVER_ARRIVED"
     case onRide = "RIDE_START"

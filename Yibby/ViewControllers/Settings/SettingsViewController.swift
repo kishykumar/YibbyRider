@@ -26,7 +26,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     
     @IBOutlet weak var emailAddress: YibbyTextField!
     @IBOutlet weak var phoneNo: UITextField!
-    @IBOutlet weak var profileImageViewOutlet: UIImageView!
+    @IBOutlet weak var profileImageViewOutlet: SwiftyAvatar!
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
     @IBOutlet var VW2: UIView!
@@ -202,8 +202,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         emailEditBtnOutlet.layer.borderWidth = 1.0
         emailEditBtnOutlet.layer.cornerRadius = 7.0
         
-        // Set rounded profile pic
-        profileImageViewOutlet.setRoundedWithBorder(UIColor.appDarkGreen1())
+        profileImageViewOutlet.borderColor = UIColor.appDarkGreen1()
         
         addHomePlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
         addWorkPlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
@@ -212,7 +211,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         
         if let profile = YBClient.sharedInstance().profile {
             self.applyProfileModel(profile)
-            getProfilePicture()
+            setProfilePicture()
         }
     }
     
@@ -249,7 +248,13 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     
     // MARK: - Helpers
     
-    func getProfilePicture() {
+    func setProfilePicture() {
+        
+        profileImageViewOutlet.setImageForName(string: YBClient.sharedInstance().profile!.name!,
+                                               backgroundColor: UIColor.appDarkGreen1(),
+                                               circular: true,
+                                               textAttributes: nil)
+        
         if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
             if (profilePic != "") {
                 if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
@@ -360,7 +365,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
             }
         }
         
-        getProfilePicture()
+        setProfilePicture()
     }
 
     func addHomeDetails (_ location: YBLocation) {
@@ -517,9 +522,6 @@ extension SettingsViewController: ImagePickerDelegate {
               cacheKey: .profilePicture,
               success: { (url, fileId) in
                 
-                // update UI here
-                self.profileImageViewOutlet.image = image
-                
                 let client: BAAClient = BAAClient.shared()
                 let dictionary = ["profilePicture": fileId]
 
@@ -530,6 +532,9 @@ extension SettingsViewController: ImagePickerDelegate {
                         
                         if let profile = profileModel {
                             self.applyProfileModel(profile)
+                            
+                            // update UI here
+                            self.profileImageViewOutlet.image = image
                             
                             // post notification to update the profile picture in other view controllers
                             postNotification(ProfileNotifications.profilePictureUpdated, value: "")
@@ -545,11 +550,9 @@ extension SettingsViewController: ImagePickerDelegate {
                     }
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
                 })
-
-                
               },
               failure: { error in
-                AlertUtil.displayAlert("Upload failed", message: "Failure in uploading profile picture : \(error.description)")
+                AlertUtil.displayAlert("Upload failed", message: error.localizedDescription)
                 DDLogError("Failure in uploading profile picture: \(error.description)")
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })

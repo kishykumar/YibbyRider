@@ -51,6 +51,8 @@ class LoginViewController: BaseYibbyViewController,
     func setupUI() {
         loginButtonOutlet.color = UIColor.appDarkGreen1()
         phoneNumberTextFieldOutlet.defaultRegion = "US"
+        phoneNumberTextFieldOutlet.text = "6505062136"
+        password.text = "Abcdef$123"
     }
     
     func setupValidator() {
@@ -97,7 +99,7 @@ class LoginViewController: BaseYibbyViewController,
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        loginButtonOutlet.isUserInteractionEnabled = true
+        self.loginButtonOutlet.isUserInteractionEnabled = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -199,22 +201,22 @@ class LoginViewController: BaseYibbyViewController,
             let client: BAAClient = BAAClient.shared()
             client.authenticateCaber(BAASBOX_RIDER_STRING, username: usernamei, password: passwordi, completion: {(success, error) -> Void in
                 
-                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-
                 if (success) {
                     DDLogVerbose("user logged in successfully \(success)")
                     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                     
                     // if login is successful, save username, password, token in keychain
                     LoginViewController.setLoginKeyChainKeys(usernamei, password: passwordi)
-                    appDelegate.initializeApp()
+                    appDelegate.initializeApp(true)
                 }
                 else {
                     errorBlock(success, error)
+                    
+                    // enable the login button interaction if error
+                    self.loginButtonOutlet.isUserInteractionEnabled = true
                 }
                 
-                // enable the login button interaction if error
-                self.loginButtonOutlet.isUserInteractionEnabled = true
+                ActivityIndicatorUtil.disableActivityIndicator(self.view)
 
             })
         })

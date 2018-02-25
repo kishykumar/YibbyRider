@@ -396,6 +396,8 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                             self.reinit()
                             return;
                         }
+                        
+                        self.perform(#selector(TripTableVC.loadNewRides), with:nil, afterDelay:1.0)
                     }
                     else {
                         errorBlock(success, error)
@@ -412,16 +414,15 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                         return;
                     }
                 })
-            })
-            
-            return;
+            })            
         }
         
-        // Add ENFooterActivityIndicatorView to tableView's footer
+        // Get more rides
         if shownRides < totalRides {
             self.perform(#selector(TripTableVC.loadNewRides), with:nil, afterDelay:5.0)
         }
         else {
+            // remove ENFooterActivityIndicatorView to tableView's footer
             if (self.footerActivityIndicatorView() != nil) {
                 self.removeFooterActivityIndicator()
             }

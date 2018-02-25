@@ -42,9 +42,6 @@ extension CardFieldsView: CardInfoTextFieldDelegate {
                 nextTextField = cvcTextField
             }
         } else if textField == cvcTextField {
-            print("select prefillText: hit postal")
-            print(Thread.callStackSymbols)
-
             nextTextField = postalCodeTextField
         }
 
