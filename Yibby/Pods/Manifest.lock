@@ -6,7 +6,7 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - AMPopTip (2.1.6)
-  - BaasBoxSDK (0.9.14)
+  - BaasBoxSDK (0.9.15)
   - BButton (4.0.2)
   - Braintree (4.8.1):
     - Braintree/Card (= 4.8.1)
@@ -289,7 +289,7 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   AMPopTip: 81f57556ae12500d30ff595078b1b6d11076ced8
-  BaasBoxSDK: d2601bff1f28a8658902b0e018e93ef33ab76ee5
+  BaasBoxSDK: 8023c692ae190c4f4321a304921bb2babdf7bdfd
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 9e63eeb60d34f54fa1aa8f3d75fe3976927c06d5
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
@@ -345,6 +345,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 9e5cce561ea39c75b86e9d3637601727a67e8b23
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: c3e253a7b89334fecbf0fccd603af6289c90d7cf
+PODFILE CHECKSUM: b6125e8307ca9c622469d1f479d0360781a15da4
 
 COCOAPODS: 1.2.0.beta.1

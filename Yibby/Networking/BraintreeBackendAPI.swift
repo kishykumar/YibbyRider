@@ -110,16 +110,12 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
         let client: BAAClient = BAAClient.shared()
         client.getPaymentClientToken(BAASBOX_RIDER_STRING,completion: {(success, error) -> Void in
             
-            
-            if (error == nil)
-            {
-                completionBlock(success as? String, error as NSError?)
+            if (error == nil) {
+                completionBlock(success as? String, nil)
             }
-            else
-            {
+            else {
                 completionBlock(nil, error as NSError?)
             }
-            
         })
     }
     

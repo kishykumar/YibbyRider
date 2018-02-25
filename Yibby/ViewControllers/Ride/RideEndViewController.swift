@@ -105,6 +105,25 @@ class RideEndViewController: BaseYibbyViewController {
     
     // MARK: - Setup
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        
+        DDLogVerbose("KKDBG_REVC init")
+    }
+    
+    deinit {
+        DDLogVerbose("KKDBG_REVC DE-init")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -221,34 +240,37 @@ class RideEndViewController: BaseYibbyViewController {
             self,
             webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
                 
-            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            
-            let client: BAAClient = BAAClient.shared()
-            
-            let reviewDict = ["bidId": YBClient.sharedInstance().bid!.id!,
-                              "feedback": "Hello I am here",
-                              "rating": rating,
-                              "tip": String(finalTipAmount)]
-
-            client.postReview(BAASBOX_RIDER_STRING, jsonBody: reviewDict, completion:{(success, error) -> Void in
-
-            ActivityIndicatorUtil.disableActivityIndicator(self.view)
-
-            if ((success) != nil) {
-                DDLogVerbose("Review success: \(String(describing: success))")
+                ActivityIndicatorUtil.enableActivityIndicator(self.view)
                 
-                AlertUtil.displayAlert("Thanks for taking a ride with Yibby!",
-                                       message: "Please come back.",
-                                       completionBlock: {() -> Void in
-                                        self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
-                })
+                let client: BAAClient = BAAClient.shared()
                 
-                YBClient.sharedInstance().bid = nil
-            }
-            else {
-                DDLogVerbose("Review failed: \(String(describing: error))")
-                errorBlock(success, error)
-            }
+                let reviewDict = ["bidId": YBClient.sharedInstance().bid!.id!,
+                                  "feedback": "Hello I am here",
+                                  "rating": rating,
+                                  "tip": String(finalTipAmount)]
+
+                client.postReview(BAASBOX_RIDER_STRING, jsonBody: reviewDict, completion:{(success, error) -> Void in
+
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+
+                    if ((success) != nil) {
+                        DDLogVerbose("Review success: \(String(describing: success))")
+                        
+                        AlertUtil.displayAlert("Thanks for taking a ride with Yibby!",
+                                               message: "Please come back.",
+                                               completionBlock: {() -> Void in
+                                                
+                                                // Trigger unwind segue to MainViewController
+                                                self.performSegue(withIdentifier: "unwindToMainViewController1", sender: self)
+                        })
+                        
+                        YBClient.sharedInstance().status = .looking
+                        YBClient.sharedInstance().bid = nil
+                    }
+                    else {
+                        DDLogVerbose("Review failed: \(String(describing: error))")
+                        errorBlock(success, error)
+                    }
             })
         })
     }
@@ -272,20 +294,5 @@ class RideEndViewController: BaseYibbyViewController {
             
             rideFareLabel.text = "$\(rideFareInt + tipInt)"
         }
-    }
-    
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        super.prepare(for: segue, sender: sender)
-        
-        guard let button = sender as? UIButton, button === finishBtn else {
-            DDLogVerbose("The finish button was not pressed, cancelling")
-            return
-        }
-        DDLogVerbose("The finish button was pressed, success")
     }
 }

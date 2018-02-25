@@ -10,6 +10,8 @@ import UIKit
 import CocoaLumberjack
 import LTMorphingLabel
 import M13ProgressSuite
+import BaasBoxSDK
+import ObjectMapper
 
 class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate {
 
@@ -38,25 +40,48 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         return morphingLabelTextArray[morphingLabelTextArrayIndex]
     }
     
-    var offerTimer: Timer?
-    var progressTimer: Timer?
+    fileprivate var offerTimer: Timer?
+    fileprivate var progressTimer: Timer?
     
-    let OFFER_TIMER_INTERVAL = 35.0 // TODO: Change this to 30 seconds
-    let OFFER_TIMER_EXPIRE_MSG_TITLE = "No offers received."
-    let OFFER_TIMER_EXPIRE_MSG_CONTENT = "Reason: Drivers didn't respond."
+    fileprivate let OFFER_TIMER_INTERVAL = 5.0 // Timer fires every 5 seconds
+    fileprivate let OFFER_TIMER_EXPIRE_MSG_TITLE = "No offers received."
+    fileprivate let OFFER_TIMER_EXPIRE_MSG_CONTENT = "Reason: Drivers didn't respond."
 
-    let PROGRESS_TIMER_INTERVAL: Float = 0.3 // this is the default image progress view animation time
+    fileprivate let PROGRESS_TIMER_INTERVAL: Float = 0.3 // this is the default image progress view animation time
 
-    var sampleProgress: Int = 1
-    var progressTimeSum: Int = 0
-    var logoImageProgress: Int = 1
-    var logoImageProgressDirection: Bool = true
+    fileprivate var offerTimeSum: Int = 0
+    fileprivate var sampleProgress: Int = 1
+    fileprivate var progressTimeSum: Int = 0
+    fileprivate var logoImageProgress: Int = 1
+    fileprivate var logoImageProgressDirection: Bool = true
     
-//    var savedBgTimestamp: Date?
-
+    fileprivate var offerObserver: NotificationObserver?
+    fileprivate var rideObserver: NotificationObserver?
+    
     // MARK: - Setup Functions
 
-    func setupUI () {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        DDLogVerbose("Fired init")
+        setupNotificationObservers()
+    }
+    
+    deinit {
+        DDLogVerbose("Fired deinit")
+        stopOfferTimer()
+        removeNotificationObservers()
+    }
+    
+    fileprivate func setupUI () {
         
         // hide the back button
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -65,14 +90,14 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         progressBarOutlet.showPercentage = false
         progressBarOutlet.indeterminate = true
 
-        let screenSize: CGRect = UIScreen.main.bounds
+        //let screenSize: CGRect = UIScreen.main.bounds
         
         progressImageOutlet.progressImage = UIImage(named: "green-yibby-logo.png")
         progressImageOutlet.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
         progressImageOutlet.drawGreyscaleBackground = true
     }
     
-    func setupDelegates() {
+    fileprivate func setupDelegates() {
         morphingLabelOutlet.delegate = self
     }
     
@@ -100,17 +125,38 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Helper
+    // MARK: - Notifications
     
-    func startOfferTimer() {
-        offerTimer = Timer.scheduledTimer(timeInterval: OFFER_TIMER_INTERVAL,
-                                                            target: self,
-                                                            selector: #selector(FindOffersViewController.bidWaitTimeoutCb),
-                                                            userInfo: nil,
-                                                            repeats: false)
+    fileprivate func removeNotificationObservers() {
+        
+        offerObserver?.removeObserver()
+        rideObserver?.removeObserver()
     }
     
-    func stopOfferTimer() {
+    fileprivate func setupNotificationObservers() {
+        
+        offerObserver = NotificationObserver(notification: BidNotifications.noOffers) { [unowned self] bid in
+            self.stopOfferTimer()
+        }
+        
+        rideObserver = NotificationObserver(notification: RideNotifications.driverEnRoute) { [unowned self] ride in
+            self.stopOfferTimer()
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    // MARK: - OfferTimer functions
+    
+    fileprivate func startOfferTimer() {
+        offerTimer = Timer.scheduledTimer(timeInterval: OFFER_TIMER_INTERVAL,
+                                                            target: self,
+                                                            selector: #selector(FindOffersViewController.bidWaitTimeoutCallback),
+                                                            userInfo: nil,
+                                                            repeats: true)
+    }
+    
+    fileprivate func stopOfferTimer() {
         if let offerTimer = self.offerTimer {
             offerTimer.invalidate()
         }
@@ -119,77 +165,82 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         stopProgressTimer()
     }
     
-    func bidWaitTimeoutCb() {
-        DDLogVerbose("Called")
+    @objc fileprivate func bidWaitTimeoutCallback() {
+        
+        // called every 5 seconds
+        offerTimeSum += 5
+        DDLogVerbose("Incremented timer \(offerTimeSum)")
+        
+        // check if it's more than 35 seconds
+        if (offerTimeSum >= 35 && offerTimeSum < 120) {
+        
+            DDLogVerbose("Fired")
+            let bidId = YBClient.sharedInstance().bid!.id
+            
+            let client: BAAClient = BAAClient.shared()
+            client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
+                
+                if let success = success {
+                    let syncModel = Mapper<YBSync>().map(JSONObject: success)
+                    if let syncData = syncModel {
+                        
+                        DDLogVerbose("syncApp syncdata for bidId: \(String(describing: bidId))")
+                        dump(syncData)
+                        
+                        // Sync the local client
+                        YBClient.sharedInstance().syncClient(syncData)
+                        
+                        switch (YBClient.sharedInstance().status) {
 
-        // TODO: Rather than aborting the bid, query the webserver for bidDetails and show the result
-        
-        DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
-        
-        // delete the saved state bid
-        YBClient.sharedInstance().bid = nil
-        
-        // pop the view controller
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
-            mmnvc.popViewController(animated: true)
-            AlertUtil.displayAlert(OFFER_TIMER_EXPIRE_MSG_TITLE, message: OFFER_TIMER_EXPIRE_MSG_CONTENT)
+                        case .driverEnRoute:
+
+                            self.stopOfferTimer()
+                            postNotification(RideNotifications.driverEnRoute, value: YBClient.sharedInstance().ride!)
+                            
+                        case .failedHighOffers:
+                            fallthrough
+                        case .failedNoOffers:
+
+                            self.stopOfferTimer()
+                            postNotification(BidNotifications.noOffers, value: YBClient.sharedInstance().bid!)
+
+                            break
+                            
+                        case .ongoingBid:
+                            // We have to continue with the timer
+                            
+                            break
+                        default:
+                            break
+                        }
+                    }
+                }
+            })
+        } else if (offerTimeSum >= 120) {
+
+            self.stopOfferTimer()
+            
+            // if (timeout is more than 2 minutes, cancel the ride)
+            DDLogDebug("Resetting the bidState in bidWaitTimeoutCb")
+            postNotification(BidNotifications.noOffers, value: YBClient.sharedInstance().bid!)
         }
     }
 
     // MARK: Progress view functions
     
-    func startProgressTimer () {
+    fileprivate func startProgressTimer () {
         progressTimer = Timer.scheduledTimer(timeInterval: TimeInterval(PROGRESS_TIMER_INTERVAL), target: self,
                                              selector: #selector(FindOffersViewController.progress),
                                              userInfo: nil, repeats: true)
     }
     
-    func stopProgressTimer() {
+    fileprivate func stopProgressTimer() {
         if let progressTimer = self.progressTimer {
             progressTimer.invalidate()
         }
     }
-    
-//    func saveProgressTimer () {
-//        DDLogVerbose("Called")
-//        
-//        // if there is an active bid, save the current time
-//        if (YBClient.sharedInstance().isOngoingBid()) {
-//            let curTime = Date()
-//            DDLogDebug("Setting bgtime \(curTime))")
-//            savedBgTimestamp = curTime
-//        }
-//    }
-//    
-//    func restoreProgressTimer () {
-//        DDLogVerbose("Called")
-//        
-//        if (YBClient.sharedInstance().isOngoingBid()) {
-//            
-//            if let appBackgroundedTime = savedBgTimestamp {
-//                
-//                let elapsedTime = TimeInterval(Int(TimeUtil.diffFromCurTime(appBackgroundedTime))) // seconds
-//                
-//                DDLogDebug("bgtime \(appBackgroundedTime) bumpUpTime \(elapsedTime))")
-//                
-//                var progress: Float = self.progressView.progress
-//                if progress < 1.0 {
-//                    progress += Float(1.0 / (OFFER_TIMER_INTERVAL / elapsedTime))
-//                    
-//                    if progress > 1.0 {
-//                       progress = 1.0
-//                    }
-//                    
-//                    self.progressView.setProgress(progress, animated: true)
-//                }
-//                savedBgTimestamp = nil
-//            }
-//        }
-//    }
 
-    func progress() {
+    @objc fileprivate func progress() {
         
         progressTimeSum += 3 // sum by 0.3s
         
@@ -201,7 +252,7 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
         // A Bad NOTE:
         // Lot of hard coded variables have been used here! :(
         // This is to avoid floating point computations.
-        // Can you believe I was getting (0.1 < 0.1) is true?
+        // Can you believe I was getting (0.1 < 0.1 = true)?
         //
         // 0.3s is the animation time for the logo image view and
         // I have chosen that to be the progress timer interval to
@@ -238,33 +289,4 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
             }
         }
     }
-    
-//    func progressView(_ progressView: ASProgressPopUpView, stringForProgress progress: Float) -> String? {
-//        var s: String?
-//        if progress < 0.2 {
-//            s = "Drivers got your bid"
-//        }
-//        else if progress > 0.4 && progress < 0.6 {
-//            s = "We are negotiating heavily"
-//        }
-//        else if progress > 0.75 && progress < 1.0 {
-//            s = "Almost there"
-//        }
-//        else if progress >= 1.0 {
-//            s = "Done"
-//        }
-//        
-//        return s;
-//    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -123,6 +123,9 @@
 		1220F9891DB2A90F00390E44 /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1220F9881DB2A90300390E44 /* fontello.ttf */; };
 		1220F98B1DB2AD3500390E44 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1220F98A1DB2AD2D00390E44 /* ionicons.ttf */; };
 		1220F98D1DB3772000390E44 /* YibbyPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1220F98C1DB3772000390E44 /* YibbyPaddingLabel.swift */; };
+		1228A0B1203162F500AF6801 /* SwiftyAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228A0B0203162F500AF6801 /* SwiftyAvatar.swift */; };
+		1228A0B320316A9400AF6801 /* YBRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228A0B220316A9400AF6801 /* YBRoundedView.swift */; };
+		1228A0B520316BA000AF6801 /* InitialsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228A0B420316BA000AF6801 /* InitialsImageView.swift */; };
 		1228B8781EE7DDC800524062 /* YBLeftImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B8771EE7DDC800524062 /* YBLeftImageTextField.swift */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		1236AA4E1D72DC0100A36AC0 /* CardFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */; };
@@ -131,6 +134,8 @@
 		1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */; };
 		1236AA5F1D76A5C500A36AC0 /* CardHolderNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */; };
 		123D41751D63011500475614 /* TypedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41741D63011500475614 /* TypedNotifications.swift */; };
+		12439384201E7E330057DA63 /* YBNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12439383201E7E330057DA63 /* YBNotifications.swift */; };
+		12439386201EFE470057DA63 /* DispatchQueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12439385201EFE470057DA63 /* DispatchQueueExtensions.swift */; };
 		124B7A1B1E1B946E007C330F /* YBDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B7A1A1E1B946E007C330F /* YBDriver.swift */; };
 		124B7A1F1E1B9C05007C330F /* YBVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B7A1E1E1B9C05007C330F /* YBVehicle.swift */; };
 		124B7A211E1CD7A5007C330F /* YBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B7A201E1CD7A5007C330F /* YBClient.swift */; };
@@ -398,6 +403,9 @@
 		1220F9881DB2A90300390E44 /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontello.ttf; sourceTree = "<group>"; };
 		1220F98A1DB2AD2D00390E44 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 		1220F98C1DB3772000390E44 /* YibbyPaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyPaddingLabel.swift; sourceTree = "<group>"; };
+		1228A0B0203162F500AF6801 /* SwiftyAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyAvatar.swift; sourceTree = "<group>"; };
+		1228A0B220316A9400AF6801 /* YBRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBRoundedView.swift; sourceTree = "<group>"; };
+		1228A0B420316BA000AF6801 /* InitialsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsImageView.swift; sourceTree = "<group>"; };
 		1228B8771EE7DDC800524062 /* YBLeftImageTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBLeftImageTextField.swift; sourceTree = "<group>"; };
 		123524921C894660004307EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1236AA4D1D72DC0100A36AC0 /* CardFieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFieldsView.swift; path = Yibby/Views/CaishenPaymentView/Classes/UI/CardFieldsView.swift; sourceTree = SOURCE_ROOT; };
@@ -406,6 +414,8 @@
 		1236AA5A1D75804900A36AC0 /* PostalCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostalCodeTextField.swift; sourceTree = "<group>"; };
 		1236AA5E1D76A5C400A36AC0 /* CardHolderNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHolderNameTextField.swift; sourceTree = "<group>"; };
 		123D41741D63011500475614 /* TypedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedNotifications.swift; sourceTree = "<group>"; };
+		12439383201E7E330057DA63 /* YBNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBNotifications.swift; sourceTree = "<group>"; };
+		12439385201EFE470057DA63 /* DispatchQueueExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtensions.swift; sourceTree = "<group>"; };
 		124B7A1A1E1B946E007C330F /* YBDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBDriver.swift; sourceTree = "<group>"; };
 		124B7A1E1E1B9C05007C330F /* YBVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBVehicle.swift; sourceTree = "<group>"; };
 		124B7A201E1CD7A5007C330F /* YBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBClient.swift; sourceTree = "<group>"; };
@@ -663,6 +673,9 @@
 				1201B7741D23AB6700A7EEAF /* ENFooterActivityIndicatorView */,
 				1254E13C1D693063007067BC /* YibbyTextField.swift */,
 				1220F98C1DB3772000390E44 /* YibbyPaddingLabel.swift */,
+				1228A0B0203162F500AF6801 /* SwiftyAvatar.swift */,
+				1228A0B420316BA000AF6801 /* InitialsImageView.swift */,
+				1228A0B220316A9400AF6801 /* YBRoundedView.swift */,
 				1253F2CB1EFA18E300C50BB5 /* IntrinsicTableView.swift */,
 				12B8A36A1F32EA8E00EC07B9 /* YBMenuButton.swift */,
 			);
@@ -699,6 +712,7 @@
 				1201B8141D289D6700A7EEAF /* UIImageViewExtensions.swift */,
 				1215316B1D3F5CBC00C28C73 /* NSStringExtensions.swift */,
 				129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */,
+				12439385201EFE470057DA63 /* DispatchQueueExtensions.swift */,
 				12A4B1111F40427C00B53054 /* UITextFieldExtensions.swift */,
 			);
 			path = Extensions;
@@ -723,6 +737,7 @@
 				12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */,
 				12A4B1131F40FBD000B53054 /* YBPasswordRule.swift */,
 				12A4B1151F42C93F00B53054 /* YBValidPaymentFieldRule.swift */,
+				12439383201E7E330057DA63 /* YBNotifications.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1881,6 +1896,7 @@
 				1201B8341D28E22B00A7EEAF /* ElloTextField.swift in Sources */,
 				121096931D1142E000D7174F /* LocationService.swift in Sources */,
 				1254E13A1D66DB77007067BC /* JoinViewController.swift in Sources */,
+				1228A0B520316BA000AF6801 /* InitialsImageView.swift in Sources */,
 				1208267B1F5D4A5B00BA38E9 /* AlertAction.swift in Sources */,
 				1201B7681D23A85F00A7EEAF /* HistoryViewController.swift in Sources */,
 				12F3CCD61C41EFC700F79A26 /* AppDelegate.swift in Sources */,
@@ -1905,12 +1921,14 @@
 				120826841F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift in Sources */,
 				1201B7461D23A84500A7EEAF /* FindOffersViewController.swift in Sources */,
 				12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */,
+				12439384201E7E330057DA63 /* YBNotifications.swift in Sources */,
 				12085F601F213B0F00DBC91F /* RideContentViewController.swift in Sources */,
 				126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */,
 				12A6BF4A1D7FFACD008BEFC1 /* UIColorExtensions.swift in Sources */,
 				126C4AE91D796276005EC5FF /* CardTextField.swift in Sources */,
 				1236AA5B1D75804900A36AC0 /* PostalCodeTextField.swift in Sources */,
 				126C4ADF1D796276005EC5FF /* Expiry.swift in Sources */,
+				12439386201EFE470057DA63 /* DispatchQueueExtensions.swift in Sources */,
 				08C15C5F1E60EB0B007F1411 /* LostOrStolenItemVC.swift in Sources */,
 				126C4ADA1D796276005EC5FF /* Discover.swift in Sources */,
 				1201B7671D23A85F00A7EEAF /* HelpViewController.swift in Sources */,
@@ -1926,6 +1944,7 @@
 				1201B7471D23A84500A7EEAF /* MainViewController.swift in Sources */,
 				123D41751D63011500475614 /* TypedNotifications.swift in Sources */,
 				12A4B1141F40FBD000B53054 /* YBPasswordRule.swift in Sources */,
+				1228A0B320316A9400AF6801 /* YBRoundedView.swift in Sources */,
 				12A67D9E1C94CE7F005E3F9F /* AlertUtil.swift in Sources */,
 				B12CC9BF1EA9D5F100172B2D /* YBPaymentMethod.swift in Sources */,
 				126C4AE61D796276005EC5FF /* CardTextField+InterfaceBuilder.swift in Sources */,
@@ -1988,6 +2007,7 @@
 				124E3CB11F00E2830081FDFD /* YBSync.swift in Sources */,
 				B12CC9C11EA9D60E00172B2D /* YBPaymentMethods.swift in Sources */,
 				126C4AF81D796276005EC5FF /* CardValidationResult.swift in Sources */,
+				1228A0B1203162F500AF6801 /* SwiftyAvatar.swift in Sources */,
 				1201B7701D23A85F00A7EEAF /* TripViewController.swift in Sources */,
 				1228B8781EE7DDC800524062 /* YBLeftImageTextField.swift in Sources */,
 				12A4B1161F42C93F00B53054 /* YBValidPaymentFieldRule.swift in Sources */,

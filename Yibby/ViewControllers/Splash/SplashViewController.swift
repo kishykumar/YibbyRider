@@ -19,7 +19,9 @@ public enum AppInitReturnCode: Int {
 }
 
 public struct AppInitNotifications {
-    static let pushStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.SplashViewController.pushSuccess")
+    //static let pushStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.AppInit.Push")
+    //static let syncStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.AppInit.Sync")
+    static let initStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.AppInit.Init")
 }
 
 class SplashViewController: UIViewController {
@@ -34,7 +36,7 @@ class SplashViewController: UIViewController {
     var launchScreenVC: LaunchScreenViewController?
     var snapshot: UIImage?
     var imageView: UIImageView?
-    fileprivate var pushStatusObserver: NotificationObserver?
+    fileprivate var initStatusObserver: NotificationObserver?
 
 //    var syncAPIResponseArrived: Bool = false
 //    var paymentsSetupCompleted: Bool = false
@@ -47,30 +49,44 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initSplash()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        DDLogVerbose("Fired init")
         setupNotificationObservers()
     }
     
     deinit {
-        DDLogVerbose("SplashViewController Deinit")
+        DDLogVerbose("Fired deinit")
         removeNotificationObservers()
     }
     
     fileprivate func setupNotificationObservers() {
         
-        pushStatusObserver = NotificationObserver(notification: AppInitNotifications.pushStatus) { [unowned self] returnCode in
-            DDLogVerbose("pushStatusObserver status: \(returnCode)")
+        initStatusObserver = NotificationObserver(notification: AppInitNotifications.initStatus) { [unowned self] returnCode in
+            DDLogVerbose("initStatusObserver status: \(returnCode)")
             
             switch (returnCode) {
             case .error:
-                self.pushRegistrationErrorCallback()
+                self.initErrorCallback()
                 break
                 
             case .success:
-                self.pushRegistrationSuccessCallback()
+                self.initSuccessCallback()
                 break
                 
             case .loginError:
-                self.pushLoginErrorCallback()
+                self.initLoginErrorCallback()
                 break
                 
             default: break
@@ -79,7 +95,7 @@ class SplashViewController: UIViewController {
     }
     
     fileprivate func removeNotificationObservers() {
-        pushStatusObserver?.removeObserver()
+        initStatusObserver?.removeObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +141,7 @@ class SplashViewController: UIViewController {
         if client.isAuthenticated() {
             DDLogVerbose("User already authenticated");
             
-            appDelegate.initializeApp()
+            appDelegate.initializeApp(true)
             
         } else {
             DDLogVerbose("User NOT authenticated");
@@ -177,6 +193,9 @@ class SplashViewController: UIViewController {
         // Initialize the status bar before we show the first screen
         setStatusBar()
         
+        // remove the notification observers
+        self.removeNotificationObservers()
+        
         let v: UIView = self.launchScreenVC!.view!
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut,
                        animations: {() -> Void in
@@ -189,39 +208,19 @@ class SplashViewController: UIViewController {
         )
     }
 
-    func pushRegistrationSuccessCallback() {
+    func initSuccessCallback() {
         DDLogDebug("pushRegistrationSuccessCallback Called")
-
-//        BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
-//            if (error == nil) {
-//            } else {
-//            }
-//        })
-//
-//        // wait for requests to finish
-//        let timeoutDate: Date = Date(timeIntervalSinceNow: 10.0)
-//        
-//        while (self.syncAPIResponseArrived == false ||
-//            self.paymentsSetupCompleted == false ||
-//            SplashViewController.pushRegisterResponseArrived == false) &&
-//            (timeoutDate.timeIntervalSinceNow > 0) {
-//                
-//                CFRunLoopRunInMode(CFRunLoopMode.defaultMode, 0.1, false)
-//        }
         removeSplash()
     }
 
-    func pushRegistrationErrorCallback() {
+    func initErrorCallback() {
 
         let v: UIView = self.launchScreenVC!.view!
         let label: UITextView = v.viewWithTag(ERROR_TEXTVIEW_TAG) as! UITextView
         label.isHidden = false
-        
-        // earlier we were removing the splash, now just showing the error
-        //        removeSplash()
     }
     
-    func pushLoginErrorCallback() {
+    func initLoginErrorCallback() {
         removeSplash()
         
         let signupStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.SignUp,

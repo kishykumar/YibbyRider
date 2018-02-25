@@ -18,7 +18,7 @@ class RideContentViewController: BaseYibbyViewController {
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     @IBOutlet weak var cancelButtonOutlet: YibbyButton1!
     
-    weak var pullUpController: RideViewController!
+    weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
     var driverLocMarker: GMSMarker?
     var curDriverMarkerStatusDescription: String = DriverStateDescription.driverEnRoute.rawValue
@@ -35,7 +35,9 @@ class RideContentViewController: BaseYibbyViewController {
     // MARK: - Actions
     
     @IBAction func onBackButtonImageViewClick(_ sender: Any) {
-        _ = pullUpController.navigationController?.popViewController(animated: true)
+        if let puVC = pullUpController {
+            _ = puVC.navigationController?.popViewController(animated: true)
+        }
     }
     
     // MARK: - Setup functions
@@ -46,26 +48,26 @@ class RideContentViewController: BaseYibbyViewController {
     
     func rideSetup() {
         
-        if let ride = YBClient.sharedInstance().ride {
+        if let ride = YBClient.sharedInstance().ride, let puVC = pullUpController {
             
-            let state: RideViewControllerState = pullUpController.controllerState
+            let state: RideViewControllerState = puVC.controllerState
             var driverMarkerStatus: DriverStateDescription = DriverStateDescription.driverEnRoute
             
             switch (state) {
             case .driverEnRoute:
                 
-                setPickupMarker(bid.pickupLocation!)
+                setPickupMarker(self.bid.pickupLocation!)
                 driverMarkerStatus = DriverStateDescription.driverEnRoute
                 
                 break
                 
             case .driverArrived:
-                setDropoffMarker(bid.dropoffLocation!)
+                setDropoffMarker(self.bid.dropoffLocation!)
                 driverMarkerStatus = DriverStateDescription.driverArrived
                 break
                 
             case .rideStart:
-                setDropoffMarker(bid.dropoffLocation!)
+                setDropoffMarker(self.bid.dropoffLocation!)
                 driverMarkerStatus = DriverStateDescription.rideStarted
                 break
 
@@ -99,10 +101,25 @@ class RideContentViewController: BaseYibbyViewController {
         initProperties()
         setupUI()
         rideSetup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        DDLogVerbose("Fired init")
         setupNotificationObservers()
     }
     
     deinit {
+        DDLogVerbose("Fired deinit")
         removeNotificationObservers()
     }
     
@@ -207,10 +224,8 @@ class RideContentViewController: BaseYibbyViewController {
     func rideStartCallback() {
         
         // When the ride starts, we want to create the new dropoff marker if it's not there
-        if let bid = self.bid {
-            if (self.dropoffMarker == nil) {
-                setDropoffMarker(bid.dropoffLocation!)
-            }
+        if (self.dropoffMarker == nil) {
+            setDropoffMarker(self.bid.dropoffLocation!)
         }
         
         // Update the driver location marker.
@@ -226,9 +241,7 @@ class RideContentViewController: BaseYibbyViewController {
         // When the driver arrives, we want to clear the pickup marker and add the dropoff marker.
         clearPickupMarker()
         
-        if let bid = self.bid {
-            setDropoffMarker(bid.dropoffLocation!)
-        }
+        setDropoffMarker(self.bid.dropoffLocation!)
 
         // Update the driver location marker
         // It's unnecessary here because the driver location is being updated in the background by the location notification observer.

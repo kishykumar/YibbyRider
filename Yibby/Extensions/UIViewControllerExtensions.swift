@@ -2,7 +2,7 @@
 //  UIViewControllerExtensions.swift
 //  Yibby
 //
-//  Created by Rahul Mehndiratta on 12/03/17.
+//  Created by Kishy Kumar on 12/03/17.
 //  Copyright © 2017 Yibby. All rights reserved.
 //
 

@@ -7,20 +7,28 @@
 //
 
 import UIKit
+import BaasBoxSDK
 
 class DriverInfoVC: BaseYibbyViewController {
 
-    @IBOutlet var driverImage: UIImageView!
+    // MARK: - Properties
+
+    @IBOutlet var driverImage: SwiftyAvatar!
     @IBOutlet var carImage: UIImageView!
 
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
-    
-    @IBOutlet var driverNameBtn: UIButton!
-    @IBOutlet var driverRatingBtn: UIButton!
-    @IBOutlet var carNameBtn: UIButton!
-    @IBOutlet var carNumberBtn: UIButton!
 
+    @IBOutlet weak var driverNameLabel: YibbyPaddingLabel!
+    @IBOutlet weak var driverRatingLabel: UILabel!
+
+    @IBOutlet weak var carNameLabel: UILabel!
+    @IBOutlet weak var carNumberLabel: UILabel!
+
+    var myDriver: YBDriver! // driver details have to be set
+    var myDriverVehicle: YBVehicle! // driver details have to be set
+    // MARK: - Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +41,12 @@ class DriverInfoVC: BaseYibbyViewController {
         
         setupBackButton()
         
+        driverNameLabel.text = myDriver.firstName!
+        driverRatingLabel.text = myDriver.rating!
+
+        carNameLabel.text = "\(myDriverVehicle.make!) \(myDriverVehicle.model!)"
+        carNumberLabel.text = myDriverVehicle.licensePlate!
+        
         VW.layer.borderColor = UIColor.borderColor().cgColor
         VW.layer.borderWidth = 1.0
         VW.layer.cornerRadius = 7
@@ -40,24 +54,24 @@ class DriverInfoVC: BaseYibbyViewController {
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
         
-        driverImage.layer.borderColor = UIColor.borderColor().cgColor
-        driverImage.layer.borderWidth = 1.0
-        driverImage.layer.cornerRadius = 25
         carImage.layer.borderColor = UIColor.borderColor().cgColor
         carImage.layer.borderWidth = 1.0
         carImage.layer.cornerRadius = 45
         
-        driverNameBtn.layer.borderColor = UIColor.borderColor().cgColor
-        driverNameBtn.layer.borderWidth = 1.0
-        driverNameBtn.layer.cornerRadius = 7
-        carNameBtn.layer.borderColor = UIColor.borderColor().cgColor
-        carNameBtn.layer.borderWidth = 1.0
-        carNameBtn.layer.cornerRadius = 7
-        carNumberBtn.layer.borderColor = UIColor.borderColor().cgColor
-        carNumberBtn.layer.borderWidth = 1.0
-        carNumberBtn.layer.cornerRadius = 7
+        self.driverImage.setImageForName(string: myDriver.firstName!,
+                                         backgroundColor: nil,
+                                         circular: true,
+                                         textAttributes: nil)
+        
+        if let profilePictureFileId = myDriver.profilePictureFileId {
+            
+            if (profilePictureFileId != "") {
+                if let newUrl = BAAFile.getCompleteURL(withToken: profilePictureFileId) {
+                    self.driverImage.pin_setImage(from: newUrl)
+                }
+            }
+        }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

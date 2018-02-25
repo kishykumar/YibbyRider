@@ -17,7 +17,6 @@ import IQKeyboardManagerSwift
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FoldingCell
-import DigitsKit
 import GooglePlaces
 import ObjectMapper
 import KSCrash
@@ -26,9 +25,10 @@ import KSCrash
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
 // 2. Bug: Fix the SVProgressHUD (singleton) issue where pressing back button and then Trips again pops off the HUD early. 
 // 3. Segue freezing in iOS9. Test using static data instead of dynamic.
-// 4: Check for "TODO:" in the entire projet
+// 4: **** Check for "TODO:" in the entire project ****
 // 5: Need to rethink the Initial Setup. For eg. when to send push token to webserver. Why to enable push if user is not authenticated?
 // 6: Add the swipe down code using IQKeyboardManagerSwift
+// 7: Integrate KSCrash
 
 var stringSocial = String ()
 
@@ -38,34 +38,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
-    var isSandbox = false
+    fileprivate var isSandbox = true
     
-    var connectedToGCM = false
-    var subscribedToTopic = false
-    var gcmSenderID: String?
-    var registrationToken: String?
-    var registrationOptions = [String: AnyObject]()
+    fileprivate var connectedToGCM = false
+    fileprivate var subscribedToTopic = false
+    fileprivate var gcmSenderID: String?
+    fileprivate var registrationToken: String?
+    fileprivate var registrationOptions = [String: AnyObject]()
     
-    let registrationKey = "onRegistrationCompleted"
-    let messageKey = "onMessageReceived"
-    let subscriptionTopic = "/topics/global"
-    let APP_FIRST_RUN = "FIRST_RUN"
+    fileprivate let registrationKey = "onRegistrationCompleted"
+    fileprivate let messageKey = "onMessageReceived"
+    fileprivate let subscriptionTopic = "/topics/global"
+    fileprivate let APP_FIRST_RUN = "FIRST_RUN"
 
-    let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
+    fileprivate let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
     
-    let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
-    let BAASBOX_APPCODE = "1234567890"
-    let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    //let BAASBOX_URL = "https://0d8bd861.ngrok.io"
-    var centerContainer: MMDrawerController?
+    fileprivate let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
+    fileprivate let BAASBOX_APPCODE = "1234567890"
+    //fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+    fileprivate let BAASBOX_URL = "https://870f1005.ngrok.io"
     
-    var pushController: PushController =  PushController()
-
+    fileprivate var pushController: PushController =  PushController()
+    
+    // App initialization variables
+    fileprivate var appInitDispatchGroup: DispatchGroup?
+    fileprivate var pushError: Error? = nil
+    fileprivate var syncError: Error? = nil
+    fileprivate var loginError: Error? = nil
+    fileprivate var handlePushStatusCodeBlock: ((_ isSuccess: Bool, _ error: Error?) -> Void)?
+    
     var initialized: Bool = false
+    var centerContainer: MMDrawerController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Fabric.with([Crashlytics.self, Digits.self])
+        Fabric.with([Crashlytics.self])
 
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
@@ -134,192 +141,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
     }
     
-    // Register for remote notifications
-    func registerForPushNotifications () {
-        PushController.registerForPushNotifications()
-    }
-    
-    func initializeApp() {
-        setupLocationService()
-
-        // register for push notification
-        registerForPushNotifications()
-    }
-    
-    func setupLocationService() {
-        LocationService.sharedInstance().setupLocationManager()
-    }
-    
-    func initializeMainViewController () {
-        DDLogVerbose("Initializing MainViewController");
-        
-        let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
-        
-        let centerController = biddingStoryboard.instantiateViewController(withIdentifier: "MainViewControllerIdentifier") as! MainViewController;
-        
-        let centerNav = UINavigationController(rootViewController: centerController)
-        
-        let drawerStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
-        
-        let leftController = drawerStoryboard.instantiateViewController(withIdentifier: "LeftNavDrawerViewControllerIdentifier") as! LeftNavDrawerViewController;
-        
-        centerContainer = MMDrawerController(center: centerNav, leftDrawerViewController: leftController)
-        
-        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode()
-        centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.all
-    }
-    
-    func syncApp() {
-        let client: BAAClient = BAAClient.shared()
-        
-        //YBClient.sharedInstance().bid = nil
-        
-        let bidId = YBClient.sharedInstance().getPersistedBidId()
-        client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
-            
-            if let success = success {
-                
-                let syncModel = Mapper<YBSync>().map(JSONObject: success)
-
-                if let syncData = syncModel {
-
-                    // TODO: Do the Braintree setup as part of sync
-                    BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
-                        if (error == nil) {
-
-                            DDLogVerbose("syncApp syncdata for bidid: \(String(describing: bidId))")
-                            dump(syncData)
-
-                            YBClient.sharedInstance().syncClient(syncData)
-
-                            self.initializeMainViewController()
-                            if let centerNav = self.centerContainer?.centerViewController as? UINavigationController {
-                                var controllers = centerNav.viewControllers
-
-                                switch (YBClient.sharedInstance().status) {
-                                case .looking:
-                                    
-                                    // Remove the bid if it existed
-                                    if (bidId != nil) {
-                                        YBClient.sharedInstance().bid = nil
-                                    }
-                                    
-                                    // nothing to do here. MainViewController will be shown.
-                                    break
-                                    
-                                case .ongoingBid:
-                                    
-                                    let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
-
-                                    let findOffersViewController = biddingStoryboard.instantiateViewController(withIdentifier: "FindOffersViewControllerIdentifier") as! FindOffersViewController
-                                    controllers.append(findOffersViewController)
-                                    break
-                                    
-                                case .driverEnRoute:
-                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                                    
-                                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
-                                    
-                                    rideViewController.controllerState = .driverEnRoute
-                                    
-                                    controllers.append(rideViewController)
-                                    
-                                    break
-                                    
-                                case .driverArrived:
-                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                                    
-                                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
-                                    
-                                    rideViewController.controllerState = .driverArrived
-                                    
-                                    controllers.append(rideViewController)
-                                    
-                                    break
-                                    
-                                case .onRide:
-                                    let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
-                                    
-                                    let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
-                                    
-                                    rideViewController.controllerState = .rideStart
-                                        
-                                    controllers.append(rideViewController)
-                                    
-                                    break
-                                    
-                                case .pendingRating:
-                                    
-                                    let rideEndStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.RideEnd, bundle: nil)
-                                    
-                                    let rideEndViewController = rideEndStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
-                                    controllers.append(rideEndViewController)
-
-                                    break
-                                    
-                                default:
-                                    // nothing to do here. MainViewController will be shown.
-                                    break
-                                }
-
-                                centerNav.setViewControllers(controllers, animated: true)
-                                self.window!.visibleViewController?.present(self.centerContainer!, animated: true, completion: nil)
-                                
-                                // Post the notification to the caller View Controller
-                                postNotification(AppInitNotifications.pushStatus,
-                                                 value: AppInitReturnCode.success)
-                                
-                                self.initialized = true
-                            }
-                        } else {
-                            DDLogError("Error in Braintree setup: \(String(describing: error))")
-                            self.handleAppInitializationError(error)
-                        }
-                    })
-                }
-                else {
-                    DDLogError("Error in parsing sync data: \(String(describing: error))")
-                    self.handleAppInitializationError(error)
-                }
-            } else {
-                // TODO: Show the alert with error
-                DDLogVerbose("syncClient failed: \(String(describing: error))")
-                self.handleAppInitializationError(error)
-            }
-        })
-    }
-    
-    func handleAppInitializationError(_ error: Error?) {
-
-        // If it's authentication error, show the logic view controller
-        if ((error! as NSError).code == WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-            postNotification(AppInitNotifications.pushStatus,
-                             value: AppInitReturnCode.loginError)
-            
-            DDLogVerbose("Error in webRequest1: \(String(describing: error))")
-        } else {
-        
-            // Post the notification to the Caller ViewController that registration was not successful
-            postNotification(AppInitNotifications.pushStatus,
-                             value: AppInitReturnCode.error)
-        }
-    }
-
-    // BaasBox login user
-    func loginUser(_ usernamei: String, passwordi: String) {
-        let client: BAAClient = BAAClient.shared()
-        DDLogVerbose("Logging in user with username \(usernamei)")
-
-        client.authenticateUser(usernamei, password: passwordi, completion: {(success, error) -> Void in
-            if (success) {
-                DDLogVerbose("logged in automatically in else case: \(success)")
-            }
-            else {
-                DDLogVerbose("error in logging in user automatically\(error)")
-            }
-        })
-    }
-    
     func subscribeToTopic() {
         // If the app has a registration token and is connected to GCM, proceed to subscribe to the
         // topic
@@ -372,8 +193,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                 return GIDSignIn.sharedInstance().handle(url,
                                                          sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                          annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-                
-                
                 
             } else {
                 
@@ -436,12 +255,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                 // [END_EXCLUDE]
             }
         })
-        
-//        if let vvc = window!.visibleViewController as? FindOffersViewController {
-//            DDLogVerbose("Restoring the timer")
-//            vvc.restoreProgressTimer()
-//        }
-        
+
         // process a saved notification, if any
         pushController.processSavedNotification()
     }
@@ -454,25 +268,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // [START receive_apns_token]
     func application( _ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
         deviceToken: Data ) {
-            DDLogDebug("Application device token \(deviceToken)");
+        
+        DDLogDebug("Application device token \(deviceToken)");
 
-            self.pushController.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken)
+        // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
+        let instanceIDConfig = GGLInstanceIDConfig.default()
+        instanceIDConfig?.delegate = self
+        
+        // Start the GGLInstanceID shared instance with that config and request a registration
+        // token to enable reception of notifications
+        
+        GGLInstanceID.sharedInstance().start(with: instanceIDConfig)
 
-            // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
-            let instanceIDConfig = GGLInstanceIDConfig.default()
-            instanceIDConfig?.delegate = self
-            
-            // Start the GGLInstanceID shared instance with that config and request a registration
-            // token to enable reception of notifications
-            
-            GGLInstanceID.sharedInstance().start(with: instanceIDConfig)
+        registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken as AnyObject,
+            kGGLInstanceIDAPNSServerTypeSandboxOption: isSandbox as AnyObject]
 
-            registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken as AnyObject,
-                kGGLInstanceIDAPNSServerTypeSandboxOption: isSandbox as AnyObject]
+        sendGCMTokenToServer()
 
-            sendGCMTokenToServer()
-
-            // [END get_gcm_reg_token]
+        // [END get_gcm_reg_token]
+    }
+    
+    // [START receive_apns_token_error]
+    func application( _ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError
+        error: Error ) {
+        DDLogWarn("Registration for remote notification failed with error: \(error.localizedDescription)")
+        
+        // [END receive_apns_token_error]
+        //        let userInfo = ["error": error.localizedDescription]
+        //        NSNotificationCenter.defaultCenter().postNotificationName(
+        //            registrationKey, object: nil, userInfo: userInfo)
+        
+        self.pushStatusCallback(isSuccess: false, error: error)
+    }
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        DDLogVerbose("User gave notificationSettings: \(notificationSettings)")
     }
     
     fileprivate func enablePushNotificationsFromServer (_ gcmToken: String) {
@@ -482,28 +312,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             if (success) {
                 DDLogVerbose("enabled push notifications: Success")
                 
-                self.syncApp()
+                self.pushStatusCallback(isSuccess: true, error: nil)
             }
             else {
-                DDLogWarn("Error: enabling push notifications: \(error)")
+                DDLogWarn("Error: enabling push notifications: \(String(describing: error))")
                 
-                self.handleAppInitializationError(error)
+                self.pushStatusCallback(isSuccess: false, error: error)
             }
         })
     }
     
-    // [START receive_apns_token_error]
-    func application( _ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError
-        error: Error ) {
-        DDLogWarn("Registration for remote notification failed with error: \(error.localizedDescription)")
-        // [END receive_apns_token_error]
-//        let userInfo = ["error": error.localizedDescription]
-//        NSNotificationCenter.defaultCenter().postNotificationName(
-//            registrationKey, object: nil, userInfo: userInfo)
+    fileprivate func pushStatusCallback(isSuccess: Bool, error: Error?) {
         
-        self.handleAppInitializationError(error)
+        DispatchQueue.main.async {
+        
+            if (self.handlePushStatusCodeBlock != nil) {
+                
+                if let codeBlock = self.handlePushStatusCodeBlock {
+                    codeBlock(isSuccess, error)
+                }
+                
+                self.appInitDispatchGroup?.leave()
+            }
+            
+            // This callback should be called just once.
+            // There's a bug in iOS 10 that push registration callback is called twice.
+            self.handlePushStatusCodeBlock = nil
+        }
     }
-    
+
     // GCM Registration Handler
     func registrationHandler(_ registrationToken: String?, error: Error?) {
 
@@ -513,18 +350,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             // enable push notification
             enablePushNotificationsFromServer(registrationToken)
 
-            DDLogDebug("Registration Token: \(registrationToken)")
+            DDLogDebug("Registration Token: \(registrationToken) \(Thread.isMainThread)")
             //            self.subscribeToTopic()
             let userInfo = ["registrationToken": registrationToken]
             NotificationCenter.default.post(
                 name: Notification.Name(rawValue: self.registrationKey), object: nil, userInfo: userInfo)
         } else {
-            DDLogWarn("Registration to GCM failed with error: \((error as? NSError)?.localizedDescription)")
-            let userInfo = ["error": (error as? NSError)?.localizedDescription]
-            NotificationCenter.default.post(
-                name: Notification.Name(rawValue: self.registrationKey), object: nil, userInfo: userInfo)
-            
-            self.handleAppInitializationError(error)
+            DDLogWarn("Registration to GCM failed with error: \(String(describing: (error as NSError?)?.localizedDescription))")
+            if let ns_error = error {
+                let userInfo = ["error": (ns_error as NSError).localizedDescription]
+                NotificationCenter.default.post(
+                    name: Notification.Name(rawValue: self.registrationKey), object: nil, userInfo: userInfo)
+                
+                self.pushStatusCallback(isSuccess: false, error: error)
+            }
         }
     }
     
@@ -534,7 +373,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         sendGCMTokenToServer()
     }
     
-    func sendGCMTokenToServer() {
+    fileprivate func sendGCMTokenToServer() {
         GGLInstanceID.sharedInstance().token(withAuthorizedEntity: gcmSenderID,
             scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
     }
@@ -590,6 +429,265 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // because the TTL expired. The client should notify the app server of this, so that the app
         // server can resend those messages.
     }
+    
+    // MARK: - App initialization
+    
+    func initializeApp(_ doPaymentSetup: Bool) {
+        
+        // LocationService
+        self.setupLocationService()
+        
+        self.appInitDispatchGroup = DispatchGroup()
+        
+        if let dispatchGroup = self.appInitDispatchGroup {
+            
+            self.pushError = nil
+            self.syncError = nil
+            
+            // PushNotifications
+            dispatchGroup.enter()
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                // Initialize a callback to be called just once in response to push success, as
+                // there's a bug in iOS 10 that push registration callback is called twice.
+                self.handlePushStatusCodeBlock = { (isSuccess: Bool, error: Error?) -> Void in
+                    
+                    if (isSuccess) {
+                        
+                    } else {
+                        self.pushError = error
+                    }
+                }
+                
+                self.registerForPushNotifications()
+            }
+            
+            // Payment,Sync
+            dispatchGroup.enter()
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.setupWebserver(doPaymentSetup)
+            }
+            
+            // Notify the main thread when initialization is done.
+            dispatchGroup.notify(queue: .main) {
+                
+                // Check for errors
+                if (self.pushError != nil) {
+                    
+                    DDLogVerbose("Push Error during init \(String(describing: self.pushError))")
+                    self.handleAppInitError(self.pushError)
+                    return;
+                    
+                } else if (self.syncError != nil) {
+                    
+                    DDLogVerbose("Sync Error during init \(String(describing: self.syncError))")
+                    self.handleAppInitError(self.syncError)
+                    return;
+                    
+                }
+                
+                DDLogVerbose("App Initialization successfully complete")
+                
+                self.initializeMainViewController()
+                if let centerNav = self.centerContainer?.centerViewController as? UINavigationController {
+                    var controllers = centerNav.viewControllers
+                    
+                    switch (YBClient.sharedInstance().status) {
+                    case .looking:
+                        
+                        // Remove the bid if it existed
+                        let bidId = YBClient.sharedInstance().getPersistedBidId()
+                        if (bidId != nil) {
+                            YBClient.sharedInstance().bid = nil
+                        }
+                        
+                        // nothing to do here. MainViewController will be shown.
+                        break
+                        
+                    case .ongoingBid:
+                        
+                        let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
+                        
+                        let findOffersViewController = biddingStoryboard.instantiateViewController(withIdentifier: "FindOffersViewControllerIdentifier") as! FindOffersViewController
+                        controllers.append(findOffersViewController)
+                        break
+                        
+                    case .driverEnRoute:
+                        let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                        
+                        let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                        
+                        rideViewController.controllerState = .driverEnRoute
+                        
+                        controllers.append(rideViewController)
+                        
+                        break
+                        
+                    case .driverArrived:
+                        let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                        
+                        let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                        
+                        rideViewController.controllerState = .driverArrived
+                        
+                        controllers.append(rideViewController)
+                        
+                        break
+                        
+                    case .onRide:
+                        let rideStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Ride, bundle: nil)
+                        
+                        let rideViewController = rideStoryboard.instantiateViewController(withIdentifier: "RideViewControllerIdentifier") as! RideViewController
+                        
+                        rideViewController.controllerState = .rideStart
+                        
+                        controllers.append(rideViewController)
+                        
+                        break
+                        
+                    case .pendingRating:
+                        
+                        let rideEndStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.RideEnd, bundle: nil)
+                        
+                        let rideEndViewController = rideEndStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
+                        controllers.append(rideEndViewController)
+                        
+                        break
+                        
+                        
+                    case .failedNoOffers:
+                        fallthrough
+                    case .failedHighOffers:
+                        
+                        break
+                    }
+                    
+                    centerNav.setViewControllers(controllers, animated: true)
+                    self.window!.visibleViewController?.present(self.centerContainer!, animated: true, completion: nil)
+                    
+                    // Post the notification to the caller View Controller
+                    postNotification(AppInitNotifications.initStatus,
+                                     value: AppInitReturnCode.success)
+                    
+                    self.initialized = true
+                }
+            }
+        }
+    }
+    
+    // Register for remote notifications
+    fileprivate func registerForPushNotifications () {
+        PushController.registerForPushNotifications()
+    }
+    
+    fileprivate func setupLocationService() {
+        LocationService.sharedInstance().setupLocationManager()
+    }
+    
+    fileprivate func initializeMainViewController () {
+        DDLogVerbose("Initializing MainViewController");
+        
+        let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
+        let centerController = biddingStoryboard.instantiateViewController(withIdentifier: "MainViewControllerIdentifier") as! MainViewController;
+        let centerNav = UINavigationController(rootViewController: centerController)
+        let drawerStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
+        let leftController = drawerStoryboard.instantiateViewController(withIdentifier: "LeftNavDrawerViewControllerIdentifier") as! LeftNavDrawerViewController;
+        
+        self.centerContainer = MMDrawerController(center: centerNav, leftDrawerViewController: leftController)
+        
+        self.centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode()
+        self.centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.all
+    }
+    
+    fileprivate func setupWebserver(_ doPaymentSetup: Bool) {
+        
+        let client: BAAClient = BAAClient.shared()
+        let syncDispatchGroup: DispatchGroup = DispatchGroup()
+        
+        if (doPaymentSetup) {
+            
+            // 1. Braintree.setupConfiguration
+            syncDispatchGroup.enter()
+            
+            // TODO: Do the Braintree setup in the sync call itself to avoid two calls
+            BraintreePaymentService.sharedInstance().setupConfiguration({ (error: NSError?) -> Void in
+                if (error == nil) {
+                    
+                } else {
+                    DDLogError("Error in Braintree setup: \(String(describing: error))")
+                    self.syncError = error
+                }
+                syncDispatchGroup.leave()
+            })
+            
+            syncDispatchGroup.wait()
+
+            if (self.syncError != nil) {
+                self.appInitDispatchGroup?.leave()
+                return;
+            }
+        }
+        
+        // 2. BAAClient.syncClient
+        syncDispatchGroup.enter()
+
+        //YBClient.sharedInstance().bid = nil // do this to remove app's bid state
+        let bidId = YBClient.sharedInstance().getPersistedBidId()
+        client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
+
+            if let success = success {
+                let syncModel = Mapper<YBSync>().map(JSONObject: success)
+
+                if let syncData = syncModel {
+
+                    DDLogVerbose("syncApp syncdata for bidid: \(String(describing: bidId))")
+                    dump(syncData)
+
+                    YBClient.sharedInstance().syncClient(syncData)
+                    
+                } else {
+                    DDLogError("Error in parsing sync data: \(String(describing: error))")
+                    self.syncError = error
+                }
+            } else {
+                DDLogVerbose("syncClient failed: \(String(describing: error))")
+                self.syncError = error
+            }
+
+            syncDispatchGroup.leave()
+        })
+        
+        syncDispatchGroup.wait()
+        
+        if (self.syncError != nil) {
+            self.appInitDispatchGroup?.leave()
+            return;
+        }
+        
+        DDLogVerbose("Success in SetupWebserver")
+        self.appInitDispatchGroup?.leave()
+    }
+    
+    fileprivate func handleAppInitError(_ error: Error?) {
+        
+        if let myNSError = error as NSError? {
+            
+            // If it's authentication error, show the logic view controller
+            if (myNSError.domain == BaasBox.errorDomain() &&
+                myNSError.code == WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+                
+                postNotification(AppInitNotifications.initStatus,
+                                 value: AppInitReturnCode.loginError)
+                
+                DDLogVerbose("Error in webRequest1: \(String(describing: error))")
+            } else {
+                
+                // Post the notification that registration was not successful
+                postNotification(AppInitNotifications.initStatus,
+                                 value: AppInitReturnCode.error)
+            }
+        }
+    }
 }
  
 public extension UIWindow {
@@ -614,7 +712,7 @@ public extension UIWindow {
        }
    }
 }
- 
+
 extension UIViewController {
    func hideKeyboardWhenTappedAround() {
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,

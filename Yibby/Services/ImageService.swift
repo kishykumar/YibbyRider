@@ -43,22 +43,24 @@ public class ImageService: NSObject, UIImagePickerControllerDelegate {
         }, failure: failure)
     }
 
-    fileprivate func uploadImageInt(_ image: UIImage, permissions: Dictionary<String, Any>?, success: @escaping ImageUploadSuccessCompletion, failure: @escaping ImageUploadFailureCompletion) {
+    fileprivate func uploadImageInt(_ image: UIImage, permissions: Dictionary<String, Any>?,
+                                    success: @escaping ImageUploadSuccessCompletion, failure: @escaping ImageUploadFailureCompletion) {
         
         if let data = UIImageJPEGRepresentation(image, 0.8) {
             
             let myLocalFile: BAAFile = BAAFile(data: data)
             
             myLocalFile.uploadFile(withPermissions: permissions, completion: { (file, error) -> Void in
+                
                 if error == nil {
-                    DDLogVerbose("File uploaded to Baasbox + \(file) + \((file as! BAAFile).fileURL())")
+                    DDLogVerbose("File uploaded to Baasbox + \(String(describing: file)) + \((file as! BAAFile).fileURL())")
                     
                     let uploadFile = file as! BAAFile
                     success(uploadFile.fileURL(), uploadFile.fileId)
                 }
                 else {
-                    DDLogVerbose("error in uploading file \(error)")
-                    failure(error as! NSError)
+                    DDLogVerbose("error in uploading file \(String(describing: error))")
+                    failure(error! as NSError)
                 }
             })
         }

@@ -13,14 +13,14 @@ import CocoaLumberjack
 import PINRemoteImage
 import Crashlytics
 
-
 open class LeftNavDrawerViewController: BaseYibbyViewController,
                                         UITableViewDataSource,
                                         UITableViewDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var profilePictureOutlet: UIImageView!
+    @IBOutlet weak var profilePictureOutlet: SwiftyAvatar!
+    
     @IBOutlet weak var userRealNameLabelOutlet: UILabel!
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     @IBOutlet weak var signOutButtonOutlet: UIButton!
@@ -81,30 +81,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
         
     }
     
-    @IBAction func onUpdateProfilePictureAction(_ sender: AnyObject) {
-        
-//        photoSaveCallback = { image in
-//            ActivityIndicatorUtil.enableActivityIndicator(self.view)
-//            ProfileService().updateUserProfilePicture(image,
-//              success: { url in
-//                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-//                
-//                userDefaults.set(url, forKey: self.PROFILE_PICTURE_URL_KEY)
-//                
-//                self.profilePictureOutlet.image = image
-//              },
-//              failure: { _, _ in
-//                ActivityIndicatorUtil.disableActivityIndicator(self.view)
-//            })
-//        }
-//        openImagePicker()
-        
-    }
-    
-    @IBAction func onProfileButtonClick(sender: AnyObject) {
-        
-//        let profileStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.ProfileStoryboard, bundle: nil)
-//        let profileViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewControllerIdentifier") as! ProfileVC
+    @IBAction func onProfileButtonClick(_ sender: UIButton) {
         
         let settingsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Settings, bundle: nil)
         let settingsViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsViewControllerIdentifier") as! SettingsViewController
@@ -113,7 +90,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
         
         if let mmnvc = appDelegate.centerContainer!.centerViewController as? UINavigationController {
             
-//            mmnvc.isNavigationBarHidden = false
             mmnvc.pushViewController(settingsViewController, animated: true)
             appDelegate.centerContainer!.toggle(MMDrawerSide.left, animated: true, completion: nil)
             
@@ -129,10 +105,25 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
         
         // Do any additional setup after loading the view.
         setupUI()
-        setupNotificationObservers()
     }
 
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        DDLogVerbose("Fired init")
+        setupNotificationObservers()
+    }
+    
     deinit {
+        DDLogVerbose("Fired deinit")
         removeNotificationObservers()
     }
 
@@ -154,7 +145,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
         self.view.backgroundColor = UIColor.appDarkGreen1();
         
         // Set rounded profile pic
-        self.profilePictureOutlet.setRoundedWithWhiteBorder()
+        //self.profilePictureOutlet.setRoundedWithWhiteBorder()
 
         if let userRealName = YBClient.sharedInstance().profile?.name {
             if (userRealName != "") {
@@ -168,7 +159,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
             profilePictureOutlet.image = cachedImage
         }
         else {
-            getProfilePicture()
+            setProfilePicture()
         }
     }
     
@@ -288,6 +279,13 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     // BaasBox logout user
     func logoutUser() {
         
+        // cleanup current state if any
+        
+        // Involved in a ride, stop fetching driver location
+        if (YBClient.sharedInstance().ride != nil) {
+            LocationService.sharedInstance().stopFetchingDriverLocation()
+        }
+        
         WebInterface.makeWebRequestAndHandleError(
             self,
             webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
@@ -299,8 +297,9 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
                 
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
                 
-                if (success || ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                    WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
+                if (success ||
+                    ((error! as NSError).domain == BaasBox.errorDomain() &&
+                        (error! as NSError).code == WebInterface.BAASBOX_AUTHENTICATION_ERROR)) {
                     
                     // pop all the view controllers so that user starts fresh :)
                     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -328,6 +327,22 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     // MARK: - Helpers
     
+    fileprivate func setProfilePicture() {
+        
+        profilePictureOutlet.setImageForName(string: YBClient.sharedInstance().profile!.name!,
+                                             backgroundColor: UIColor.appDarkBlue1(),
+                                             circular: true,
+                                             textAttributes: nil)
+        
+        if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
+            if (profilePic != "") {
+                if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
+                    profilePictureOutlet.pin_setImage(from: imageUrl)
+                }
+            }
+        }
+    }
+    
     fileprivate func openImagePicker() {
         let alertViewController = UIImagePickerController.alertControllerForImagePicker { imagePicker in
             imagePicker.delegate = self
@@ -340,18 +355,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     }
     
     public func refreshProfilePicture() {
-        getProfilePicture()
-    }
-    
-    fileprivate func getProfilePicture() {
-        
-        if let profilePic = YBClient.sharedInstance().profile?.profilePicture {
-            if (profilePic != "") {
-                if let imageUrl  = BAAFile.getCompleteURL(withToken: profilePic) {
-                    profilePictureOutlet.pin_setImage(from: imageUrl)
-                }
-            }
-        }
+        setProfilePicture()
     }
     
     /*
@@ -369,7 +373,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
 extension LeftNavDrawerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             DDLogVerbose("Success")

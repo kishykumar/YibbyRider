@@ -30,7 +30,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
     // MARK: - Actions
     
     @IBAction func onCancelButtonClick(_ sender: AnyObject) {
-        self.navigationController!.popViewController(animated: true)
+        self.navigationController!.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onAcceptButtonClick(_ sender: AnyObject) {
@@ -55,23 +55,26 @@ class ConfirmRideViewController: BaseYibbyViewController {
                         
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
-                            // check the error codes
+                            // check the internal error codes even if it's success as we may not have any drivers
                             if let bbCode = (success as AnyObject)["bb_code"] as? String {
                                 if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
                                     
-                                    // TODO: display alert that no drivers are online
+                                    AlertUtil.displayAlertOnVC(self,
+                                                               title: "No drivers online.",
+                                                               message: "", completionBlock: {
+                                          
+                                        self.navigationController!.dismiss(animated: true, completion: nil)
+                                    })
                                     
-                                    // NOTE: The alert has to be shown after the popViewController is done. 
-                                    // Otherwise, iOS gives an error and doesn't pop the view controller
-                                    self.navigationController!.popViewController(animated: true)
-                                    AlertUtil.displayAlert("No drivers online.", message: "")
                                 } else {
                                     DDLogVerbose("Unexpected Error: success var: \(String(describing: success))")
                                     
-                                    // NOTE: The alert has to be shown after the popViewController is done.
-                                    // Otherwise, iOS gives an error and doesn't pop the view controller
-                                    self.navigationController!.popViewController(animated: true)
-                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
+                                    AlertUtil.displayAlertOnVC(self,
+                                                               title: "Unexpected error. Please be patient and try again.",
+                                                               message: "", completionBlock: {
+                                                                
+                                        self.navigationController!.dismiss(animated: true, completion: nil)
+                                    })
                                 }
                             } else {
                                 
@@ -95,21 +98,24 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     userBid.creationTime = (successData["_creation_date"] as! String)
 
                                     DDLogVerbose("createBid received bidID: \(String(describing: userBid.id))")
+                                    YBClient.sharedInstance().status = .ongoingBid
                                     YBClient.sharedInstance().bid = userBid
+                                    
                                     
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {
                                     
-                                    // NOTE: The alert has to be shown after the popViewController is done.
-                                    // Otherwise, iOS gives an error and doesn't pop the view controller
-                                    self.navigationController!.popViewController(animated: true)
-                                    AlertUtil.displayAlert("Unexpected error. Please be patient.", message: "")
+                                    AlertUtil.displayAlertOnVC(self,
+                                                               title: "Unexpected error. Please be patient and try again.",
+                                                               message: "", completionBlock: {
+                                                                
+                                        self.navigationController!.dismiss(animated: true, completion: nil)
+                                    })
                                 }
                             }
                         }
                         else {
-                            // pop the view controller first to show the alert later
-                            self.navigationController!.popViewController(animated: true)
+                            
                             errorBlock(success, error)
                         }
                 })
@@ -138,7 +144,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
