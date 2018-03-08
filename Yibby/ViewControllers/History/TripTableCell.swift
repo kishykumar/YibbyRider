@@ -111,7 +111,7 @@ class TripTableCell: FoldingCell {
         let carDetailsViewController = historyStoryboard.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
         
         // loginSubView.selectedIndex = sender.tag
-        carDetailsViewController.carModelStr = myTrip.vehicle?.make
+        carDetailsViewController.carModelStr = "\(myTrip.vehicle!.make!) \(myTrip.vehicle!.model!)"
         carDetailsViewController.carNumberStr = myTrip.vehicle?.licensePlate
         carDetailsViewController.view.backgroundColor = .clear
         

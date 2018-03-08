@@ -66,6 +66,7 @@ def shared_pods
     pod 'Google/SignIn'
     pod 'GooglePlaces'
     pod 'AccountKit'
+    pod 'OHHTTPStubs/Swift'
     
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     

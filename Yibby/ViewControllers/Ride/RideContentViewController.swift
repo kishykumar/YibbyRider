@@ -16,7 +16,7 @@ class RideContentViewController: BaseYibbyViewController {
 
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
-    @IBOutlet weak var cancelButtonOutlet: YibbyButton1!
+    @IBOutlet weak var nextButtonOutlet: YibbyButton1!
     
     weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
@@ -37,6 +37,25 @@ class RideContentViewController: BaseYibbyViewController {
     @IBAction func onBackButtonImageViewClick(_ sender: Any) {
         if let puVC = pullUpController {
             _ = puVC.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    @IBAction func onNextButtonClick(_ sender: YibbyButton1) {
+        
+        if (MockMain.isMocked) {
+            if let puVC = pullUpController {
+                let state: RideViewControllerState = puVC.controllerState
+                switch (state) {
+                case .driverEnRoute:
+                    MockMain.shared.notifyDriverArrived()
+
+                case .driverArrived:
+                    MockMain.shared.notifyRideStart()
+                    
+                case .rideStart:
+                    MockMain.shared.notifyRideEnd()
+                }
+            }
         }
     }
     
@@ -88,12 +107,17 @@ class RideContentViewController: BaseYibbyViewController {
         // hide the back button
         self.navigationItem.setHidesBackButton(true, animated: false)
         
-        cancelButtonOutlet.layer.cornerRadius = 10.0
-        cancelButtonOutlet.layer.borderWidth = 2.0
-        cancelButtonOutlet.layer.borderColor = UIColor.red.cgColor
-        cancelButtonOutlet.tintColor = UIColor.red
+        if (MockMain.isMocked) {
+            nextButtonOutlet.isHidden = false
+            nextButtonOutlet.layer.cornerRadius = 10.0
+            nextButtonOutlet.layer.borderWidth = 2.0
+            nextButtonOutlet.layer.borderColor = UIColor.blue.cgColor
+            nextButtonOutlet.tintColor = UIColor.red
+        } else {
+            nextButtonOutlet.isHidden = true
+        }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

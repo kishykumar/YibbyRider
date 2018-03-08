@@ -109,6 +109,10 @@
 		12085F601F213B0F00DBC91F /* RideContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F5B1F213B0F00DBC91F /* RideContentViewController.swift */; };
 		12085F611F213B0F00DBC91F /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F5C1F213B0F00DBC91F /* RideViewController.swift */; };
 		12085F631F21DBB500DBC91F /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12085F621F21DBB500DBC91F /* MessageComposer.swift */; };
+		120C6966204922CB00B43BFE /* createbidresp1.json in Resources */ = {isa = PBXBuildFile; fileRef = 120C6964204922CB00B43BFE /* createbidresp1.json */; };
+		120C6967204922CB00B43BFE /* createbidresp2.json in Resources */ = {isa = PBXBuildFile; fileRef = 120C6965204922CB00B43BFE /* createbidresp2.json */; };
+		120C69692049230C00B43BFE /* MockMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C69682049230C00B43BFE /* MockMain.swift */; };
+		120C696B204934EC00B43BFE /* endrideresp.json in Resources */ = {isa = PBXBuildFile; fileRef = 120C696A204934EC00B43BFE /* endrideresp.json */; };
 		121096931D1142E000D7174F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096921D1142E000D7174F /* LocationService.swift */; };
 		1210969D1D13D15C00D7174F /* HistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121096951D13CA6300D7174F /* HistoryTableCell.swift */; };
 		1215316A1D3F476E00C28C73 /* DefaultPaymentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */; };
@@ -390,6 +394,10 @@
 		12085F5B1F213B0F00DBC91F /* RideContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideContentViewController.swift; sourceTree = "<group>"; };
 		12085F5C1F213B0F00DBC91F /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		12085F621F21DBB500DBC91F /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
+		120C6964204922CB00B43BFE /* createbidresp1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createbidresp1.json; sourceTree = "<group>"; };
+		120C6965204922CB00B43BFE /* createbidresp2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createbidresp2.json; sourceTree = "<group>"; };
+		120C69682049230C00B43BFE /* MockMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMain.swift; sourceTree = "<group>"; };
+		120C696A204934EC00B43BFE /* endrideresp.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = endrideresp.json; sourceTree = "<group>"; };
 		121096921D1142E000D7174F /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		121096951D13CA6300D7174F /* HistoryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableCell.swift; sourceTree = "<group>"; };
 		121531691D3F476E00C28C73 /* DefaultPaymentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPaymentTableCell.swift; sourceTree = "<group>"; };
@@ -755,9 +763,9 @@
 			isa = PBXGroup;
 			children = (
 				1201B7E11D24F65B00A7EEAF /* Bidding.storyboard */,
+				1201B7431D23A84500A7EEAF /* MainViewController.swift */,
 				1201B7411D23A84500A7EEAF /* ConfirmRideViewController.swift */,
 				1201B7421D23A84500A7EEAF /* FindOffersViewController.swift */,
-				1201B7431D23A84500A7EEAF /* MainViewController.swift */,
 				08B437001E8D972200469897 /* DriversOffer.swift */,
 				08032C151E66102B00E876A5 /* CancelRideVC.swift */,
 			);
@@ -969,6 +977,17 @@
 				1208267A1F5D4A5B00BA38E9 /* AlertViewControllerKeyboardExtension.swift */,
 			);
 			path = Alerts;
+			sourceTree = "<group>";
+		};
+		120C6963204922CB00B43BFE /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				120C6964204922CB00B43BFE /* createbidresp1.json */,
+				120C6965204922CB00B43BFE /* createbidresp2.json */,
+				120C696A204934EC00B43BFE /* endrideresp.json */,
+				120C69682049230C00B43BFE /* MockMain.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		121C3C371D9CFFAB0027738D /* Alerts */ = {
@@ -1536,6 +1555,7 @@
 				12F3CCDC1C41EFC700F79A26 /* Assets.xcassets */,
 				1201B73C1D23A3AD00A7EEAF /* Extensions */,
 				12F3CCE11C41EFC800F79A26 /* Info.plist */,
+				120C6963204922CB00B43BFE /* Mock */,
 				12F3CCDE1C41EFC800F79A26 /* LaunchScreen.storyboard */,
 				120826701F5D4A5B00BA38E9 /* Alerts */,
 				1201B8171D28A9EC00A7EEAF /* Style */,
@@ -1673,6 +1693,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 9ESLPLTZVR;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1712,6 +1733,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				120C696B204934EC00B43BFE /* endrideresp.json in Resources */,
 				12C38CF31E2783450003DCB5 /* FontAwesome.ttf in Resources */,
 				1220F98B1DB2AD3500390E44 /* ionicons.ttf in Resources */,
 				1220F9891DB2A90F00390E44 /* fontello.ttf in Resources */,
@@ -1726,6 +1748,7 @@
 				1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */,
 				126C4AD21D796276005EC5FF /* Media.xcassets in Resources */,
 				1208266E1F5D49A600BA38E9 /* LICENSE.txt in Resources */,
+				120C6967204922CB00B43BFE /* createbidresp2.json in Resources */,
 				1201B7EE1D25008700A7EEAF /* Promotions.storyboard in Resources */,
 				1236AA511D72DD4900A36AC0 /* CardFieldsView.xib in Resources */,
 				125B39061DBC97180041E0D7 /* Profile.storyboard in Resources */,
@@ -1733,6 +1756,7 @@
 				B1BFB3761E8A2DF600E86F11 /* DigitsKitResources.bundle in Resources */,
 				124F99C81CB1C40E00A701FC /* GoogleService-Info.plist in Resources */,
 				1201B7E21D24F65B00A7EEAF /* Bidding.storyboard in Resources */,
+				120C6966204922CB00B43BFE /* createbidresp1.json in Resources */,
 				1201B7E61D24FFAA00A7EEAF /* RideEnd.storyboard in Resources */,
 				12F3CCF61C4B9C0C00F79A26 /* Podfile in Resources */,
 				1201B7F01D2500AD00A7EEAF /* Settings.storyboard in Resources */,
@@ -2001,6 +2025,7 @@
 				1236AA531D7384AD00A36AC0 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */,
 				08F790DE1E8ADAFE00CF53C0 /* TripObject.swift in Sources */,
 				1201B84E1D29125300A7EEAF /* TemporaryCache.swift in Sources */,
+				120C69692049230C00B43BFE /* MockMain.swift in Sources */,
 				12A4B1211F4EC25100B53054 /* NotificationsVC.swift in Sources */,
 				12085F611F213B0F00DBC91F /* RideViewController.swift in Sources */,
 				126C4AF61D796276005EC5FF /* YearInputTextField.swift in Sources */,
@@ -2241,6 +2266,7 @@
 				CODE_SIGN_ENTITLEMENTS = Yibby/Yibby.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 9ESLPLTZVR;
 				ENABLE_BITCODE = NO;
@@ -2258,6 +2284,7 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
 				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2273,6 +2300,7 @@
 				CODE_SIGN_ENTITLEMENTS = Yibby/Yibby.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9ESLPLTZVR;
 				ENABLE_BITCODE = NO;
@@ -2289,6 +2317,7 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Yibby;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Yibby/BridgingHeader.h;
 				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = 1;

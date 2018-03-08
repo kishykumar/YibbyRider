@@ -24,14 +24,15 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     @IBOutlet weak var userRealNameLabelOutlet: UILabel!
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     @IBOutlet weak var signOutButtonOutlet: UIButton!
+    @IBOutlet weak var fakeRideSwitchOutlet: UISwitch!
     
-    var photoSaveCallback: ((UIImage) -> Void)?
+    fileprivate var photoSaveCallback: ((UIImage) -> Void)?
     
-    let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "PROFILE", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
-    let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
+    fileprivate let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "PROFILE", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
+    fileprivate let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
     
     fileprivate var profilePictureObserver: NotificationObserver?
-
+    
     enum TableIndex: Int {
         case trips = 0
         case payment
@@ -43,6 +44,14 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     }
     
     // MARK: - Actions
+    
+    @IBAction func onSwitchPress(_ sender: UISwitch) {
+        if (sender.isOn) {
+            MockMain.shared.setup()
+        } else {
+            MockMain.shared.destroy()
+        }
+    }
     
     @IBAction func onAboutButtonClick(_ sender: AnyObject) {
         
