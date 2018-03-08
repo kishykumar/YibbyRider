@@ -256,8 +256,8 @@ class RideEndViewController: BaseYibbyViewController {
                     if ((success) != nil) {
                         DDLogVerbose("Review success: \(String(describing: success))")
                         
-                        AlertUtil.displayAlert("Thanks for taking a ride with Yibby!",
-                                               message: "Please come back.",
+                        AlertUtil.displayAlert("Thanks for taking a ride with Yibby.",
+                                               message: "See you again!",
                                                completionBlock: {() -> Void in
                                                 
                                                 // Trigger unwind segue to MainViewController

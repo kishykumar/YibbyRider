@@ -51,8 +51,8 @@ class LoginViewController: BaseYibbyViewController,
     func setupUI() {
         loginButtonOutlet.color = UIColor.appDarkGreen1()
         phoneNumberTextFieldOutlet.defaultRegion = "US"
-        phoneNumberTextFieldOutlet.text = "6505062136"
-        password.text = "Abcdef$123"
+        //phoneNumberTextFieldOutlet.text = "6505062136"
+        //password.text = "Abcdef$123"
     }
     
     func setupValidator() {

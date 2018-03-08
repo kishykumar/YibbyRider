@@ -9,7 +9,6 @@
 import UIKit
 import GoogleMaps
 import MMDrawerController
-import BaasBoxSDK
 import BButton
 import CocoaLumberjack
 import Braintree
@@ -318,9 +317,9 @@ class MainViewController: BaseYibbyViewController,
     func initProperties() {
         bidHigh = 100
         
-        self.setPickupDetails(YBLocation(lat: 37.531631, long: -122.263606, name: "420 Oracle Pkwy, Redwood City, CA 94065"))
-        self.setDropoffDetails(YBLocation(lat: 37.787884, long: -122.407536, name: "Union Square, San Francisco"))
-        
+        self.setPickupDetails(YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA"))
+        self.setDropoffDetails(YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department"))
+                
 #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
             
         self.selectedPaymentMethod = self.selectedPaymentMethod ??

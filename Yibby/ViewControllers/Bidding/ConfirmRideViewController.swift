@@ -10,6 +10,7 @@ import UIKit
 import CocoaLumberjack
 import BaasBoxSDK
 import GoogleMaps
+import OHHTTPStubs
 
 class ConfirmRideViewController: BaseYibbyViewController {
 
@@ -115,7 +116,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
                             }
                         }
                         else {
-                            
                             errorBlock(success, error)
                         }
                 })
@@ -124,7 +124,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
 
     // MARK: - Setup
     
-    func setupUI() {
+    fileprivate func setupUI() {
         self.cancelButtonOutlet.color = UIColor.red
         self.acceptButtonOutlet.color = UIColor.appDarkGreen1()
     }

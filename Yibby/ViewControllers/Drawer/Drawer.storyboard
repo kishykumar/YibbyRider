@@ -6,7 +6,6 @@
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -42,6 +41,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jvy-EU-gux" userLabel="ArtContainerView">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="35.5"/>
                                         <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ozg-qr-yFl" userLabel="FakeRideSwitch">
+                                                <rect key="frame" x="28.5" y="2.5" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="onSwitchPress:" destination="7sx-5o-6K7" eventType="valueChanged" id="CmV-Zz-pP7"/>
+                                                </connections>
+                                            </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1b2-Og-VOR" userLabel="Cloud1">
                                                 <rect key="frame" x="87.5" y="0.0" width="24.5" height="26"/>
                                                 <fontDescription key="fontDescription" name="Ionicons" family="Ionicons" pointSize="26"/>
@@ -69,7 +75,9 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="aqz-Wt-mlI" secondAttribute="trailing" id="3NO-Vd-CQG"/>
+                                            <constraint firstItem="1b2-Og-VOR" firstAttribute="leading" secondItem="Ozg-qr-yFl" secondAttribute="trailing" constant="10" id="UOz-FH-3z0"/>
                                             <constraint firstItem="aqz-Wt-mlI" firstAttribute="top" secondItem="Jvy-EU-gux" secondAttribute="top" id="VGs-xV-PRc"/>
+                                            <constraint firstItem="Ozg-qr-yFl" firstAttribute="centerY" secondItem="Jvy-EU-gux" secondAttribute="centerY" id="Vx5-0x-26V"/>
                                             <constraint firstItem="scr-Ms-At3" firstAttribute="centerY" secondItem="Jvy-EU-gux" secondAttribute="centerY" id="adl-JJ-dVk"/>
                                             <constraint firstAttribute="bottom" secondItem="6pC-k5-2Qg" secondAttribute="bottom" id="dcF-Zm-Ywl"/>
                                             <constraint firstItem="1b2-Og-VOR" firstAttribute="top" secondItem="Jvy-EU-gux" secondAttribute="top" id="de8-dY-2aW"/>
@@ -230,8 +238,8 @@
                             <constraint firstItem="rbC-l6-JHX" firstAttribute="height" secondItem="J7q-IK-fCC" secondAttribute="height" multiplier="3.5" id="BBV-lM-vmZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="J7q-IK-fCC" secondAttribute="trailingMargin" id="HVk-Nr-eWN"/>
                             <constraint firstItem="nAD-Wq-zCi" firstAttribute="trailing" secondItem="EYK-hZ-1jX" secondAttribute="trailing" id="IG4-pS-2D4"/>
-                            <constraint firstItem="rbC-l6-JHX" firstAttribute="top" secondItem="J7q-IK-fCC" secondAttribute="bottomMargin" constant="10" id="Nv9-3I-E1w"/>
-                            <constraint firstItem="J7q-IK-fCC" firstAttribute="topMargin" secondItem="mS2-v0-Bkl" secondAttribute="bottom" constant="20" id="Oq1-yJ-0iL"/>
+                            <constraint firstItem="rbC-l6-JHX" firstAttribute="top" secondItem="J7q-IK-fCC" secondAttribute="bottom" constant="10" id="Nv9-3I-E1w"/>
+                            <constraint firstItem="J7q-IK-fCC" firstAttribute="top" secondItem="mS2-v0-Bkl" secondAttribute="bottom" constant="20" id="Oq1-yJ-0iL"/>
                             <constraint firstItem="nAD-Wq-zCi" firstAttribute="bottom" secondItem="EYK-hZ-1jX" secondAttribute="bottom" id="Rc0-SN-H8P"/>
                             <constraint firstItem="nAD-Wq-zCi" firstAttribute="leading" secondItem="EYK-hZ-1jX" secondAttribute="leading" id="Rca-V4-Ftm"/>
                             <constraint firstItem="ur0-Nu-eEl" firstAttribute="top" secondItem="rbC-l6-JHX" secondAttribute="bottom" id="UJ1-sW-gkS"/>
@@ -252,6 +260,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="aboutButtonOutlet" destination="wkh-ib-Vio" id="jQ3-B3-sW1"/>
+                        <outlet property="fakeRideSwitchOutlet" destination="Ozg-qr-yFl" id="Bip-9B-Iea"/>
                         <outlet property="profilePictureOutlet" destination="IQy-EO-Faz" id="lWx-hs-lFj"/>
                         <outlet property="signOutButtonOutlet" destination="y76-KH-v8Q" id="qhA-Gl-teP"/>
                         <outlet property="tableView" destination="rbC-l6-JHX" id="lg7-sY-bgK"/>
@@ -320,7 +329,7 @@
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-A5-KSQ">
-                                                            <rect key="frame" x="190" y="41.5" width="100" height="33"/>
+                                                            <rect key="frame" x="190" y="42" width="100" height="33"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="sFc-uI-kYU"/>
                                                             </constraints>

@@ -20,6 +20,7 @@ import FoldingCell
 import GooglePlaces
 import ObjectMapper
 import KSCrash
+import OHHTTPStubs
 
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
@@ -58,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     //fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
     fileprivate let BAASBOX_URL = "https://870f1005.ngrok.io"
     
-    fileprivate var pushController: PushController =  PushController()
+    var pushController: PushController =  PushController()
     
     // App initialization variables
     fileprivate var appInitDispatchGroup: DispatchGroup?
@@ -79,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         setupLogger()
         setupKeyboardManager()
-
+        
         let kSCrashInstallationEmail = KSCrashInstallationEmail.sharedInstance()
         kSCrashInstallationEmail?.recipients = ["kishykumar@gmail.com"]
         
@@ -113,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         return true
     }
 
-    func setupLogger() {
+    fileprivate func setupLogger() {
         
         // setup logger
         if #available(iOS 10.0, *) {
@@ -133,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         DDLog.add(fileLogger)
     }
     
-    func setupKeyboardManager() {
+    fileprivate func setupKeyboardManager() {
         
         // Setup IQKeyboardManager
         IQKeyboardManager.sharedManager().enable = true
@@ -689,7 +690,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         }
     }
 }
- 
+
 public extension UIWindow {
    public var visibleViewController: UIViewController? {
        return UIWindow.getVisibleViewControllerFrom(self.rootViewController)

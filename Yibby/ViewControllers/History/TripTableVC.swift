@@ -142,7 +142,7 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         cell.myViewController = self
         cell.myTrip = ride
         
-        cell.userNameLbl.text = ride.driver?.firstName
+        cell.userNameLbl.text = ride.driver?.firstName?.capitalized
         
         if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
             let prettyDate = TimeUtil.prettyPrintDate1(rideDate)

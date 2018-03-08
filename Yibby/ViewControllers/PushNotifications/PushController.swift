@@ -99,7 +99,7 @@ open class PushController: NSObject, PushControllerProtocol {
     
     func processNotification (_ notification: [AnyHashable: Any]) {
         DDLogVerbose("Called")
-
+        
         // handle offer
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
@@ -128,7 +128,7 @@ open class PushController: NSObject, PushControllerProtocol {
         }
         
         let jsonCustom = notification[CUSTOM_JSON_FIELD_NAME]
-        
+
         guard let jsonCustomString = jsonCustom as? String else {
             DDLogVerbose("Returning because of JSON custom string: \(String(describing: jsonCustom))")
             return;
