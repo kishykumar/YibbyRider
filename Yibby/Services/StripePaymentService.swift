@@ -69,36 +69,36 @@ open class StripePaymentService: NSObject {
         self.apiClient = STPAPIClient(configuration: configuration!)
     }
 
-    func loadCustomerDetails(_ completionBlock: @escaping CustomerLoadCompletionBlock) {
-        
-        apiAdapter.retrieveCustomer({(customer: STPCustomer?, error: Error?) -> Void in
-            
-            if error != nil {
-                // TODO: handle error
-                AlertUtil.displayAlert(error!.localizedDescription, message: "")
-            }
-            else {
-                if let customer = customer {
-                    
-                    self.paymentMethods.removeAll()
-                    self.defaultPaymentMethod = nil
-                    
-                    for source: STPSourceProtocol in customer.sources {
-                        if (source is STPCard) {
-                            let card: STPCard = (source as! STPCard)
-                            self.paymentMethods.append(card)
-                            
-                            if (card.stripeID == customer.defaultSource?.stripeID) {
-                                self.defaultPaymentMethod = card
-                            }
-                        }
-                    }
-                    
-                    completionBlock()
-                }
-            }
-        })
-    }
+//    func loadCustomerDetails(_ completionBlock: @escaping CustomerLoadCompletionBlock) {
+//
+//        apiAdapter.retrieveCustomer({(customer: STPCustomer?, error: Error?) -> Void in
+//
+//            if error != nil {
+//                // TODO: handle error
+//                AlertUtil.displayAlert(error!.localizedDescription, message: "")
+//            }
+//            else {
+//                if let customer = customer {
+//
+//                    self.paymentMethods.removeAll()
+//                    self.defaultPaymentMethod = nil
+//
+//                    for source: STPSourceProtocol in customer.sources {
+//                        if (source is STPCard) {
+//                            let card: STPCard = (source as! STPCard)
+//                            self.paymentMethods.append(card)
+//
+//                            if (card.stripeID == customer.defaultSource?.stripeID) {
+//                                self.defaultPaymentMethod = card
+//                            }
+//                        }
+//                    }
+//
+//                    completionBlock()
+//                }
+//            }
+//        })
+//    }
     
     func attachSourceToCustomer(_ source: STPSource, completionBlock: @escaping AttachSourceCompletionBlock) {
         apiAdapter.attachSource(toCustomer: source, completion: {(error: Error?) -> Void in

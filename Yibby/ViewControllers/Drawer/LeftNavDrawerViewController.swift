@@ -74,20 +74,13 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     @IBAction func onSignOutButtonClick(_ sender: AnyObject) {
         
-        let alertController = UIAlertController(title: InterfaceString.SignOut.ConfirmSignOutTitle, message: "", preferredStyle:UIAlertControllerStyle.alert)
-        
-        alertController.addAction(UIAlertAction(title: InterfaceString.Cancel.uppercased(), style: UIAlertActionStyle.default)
-        { action -> Void in
-            // Put your code here
-        })
-        
-        alertController.addAction(UIAlertAction(title: InterfaceString.SignOut.SignOut.uppercased(), style: UIAlertActionStyle.default)
-        { action -> Void in
-            // Put your code here
-            self.logoutUser()
-        })
-        self.present(alertController, animated: true, completion: nil)
-        
+        AlertUtil.displayAlertOnVC(self, title: InterfaceString.SignOut.ConfirmSignOutTitle,
+                                   message: "",
+                                   action1: InterfaceString.SignOut.SignOut,
+                                   style1: .destructive,
+                                   action2: InterfaceString.Cancel,
+                                   style2: .cancel,
+                                   completionBlock: { action -> Void in self.logoutUser() })
     }
     
     @IBAction func onProfileButtonClick(_ sender: UIButton) {

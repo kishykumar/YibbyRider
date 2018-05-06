@@ -21,7 +21,7 @@ class Ride: Mappable {
     var dropoffLocation: YBLocation?
     var fare: Float?
     var id: String?
-    var miles: Float?
+    var tripDistance: Float?
     var paymentMethodToken: String?
     var paymentMethodBrand: String?
     var paymentMethodLast4: String?
@@ -52,7 +52,7 @@ class Ride: Mappable {
         dropoffLocation         <- map["dropoffLocation"]
         fare                    <- map["fare"]
         id                      <- map["id"]
-        miles                   <- map["miles"]
+        tripDistance            <- map["tripDistance"]
         paymentMethodToken      <- map["paymentMethodToken"]
         paymentMethodBrand      <- map["paymentMethodBrand"]
         paymentMethodLast4      <- map["paymentMethodLast4"]

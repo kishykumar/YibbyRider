@@ -40,6 +40,15 @@ class LoginViewController: BaseYibbyViewController,
     
     let testMode = false
     
+    // MARK: - Actions
+    @IBAction func loginAction(_ sender: UIButton) {
+        submitLoginForm()
+    }
+    
+    @IBAction func onForgotPasswordClick(_ sender: UIButton) {
+        showForgotPasswordAlert()
+    }
+    
     // MARK: - Setup functions
     
     func setupDelegates() {
@@ -112,11 +121,6 @@ class LoginViewController: BaseYibbyViewController,
         return IndicatorInfo(title: InterfaceString.Join.Login)
     }
     
-    // MARK: - Actions
-    @IBAction func loginAction(_ sender: AnyObject) {
-        submitLoginForm()
-    }
-    
     // MARK: - KeyChain functions
     static func setLoginKeyChainKeys (_ username: String, password: String) {
         KeychainWrapper.standard.set(username, forKey: LoginViewController.PHONE_NUMBER_KEY_NAME)
@@ -135,6 +139,75 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     // MARK: - Helper functions
+    
+    fileprivate func showForgotPasswordAlert() {
+        
+        let alertVC = PMAlertController(title: "Enter your phone number", description: "We will send an email associated to your account to reset your password.", image: nil, style: .alert)
+        
+        alertVC.addPhoneNumberTextField { (textField) in
+            textField?.placeholder = "Phone Number"
+            textField?.keyboardType = .phonePad
+        }
+        
+        alertVC.addAction(PMAlertAction(title: "Cancel", style: .cancel, action: { () in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        alertVC.addAction(PMAlertAction(title: "Send", style: .default, action: { () in
+            
+            var phoneNumberFound = false
+            if let phoneNumber = alertVC.textFields[0].text {
+
+                if (phoneNumber != "") {
+                    
+                    phoneNumberFound = true
+                    
+                    self.dismiss(animated: true, completion: { () in
+                        
+                        let strippedPhoneNumber: String = phoneNumber.stripPhoneNumber()
+                        
+                        ActivityIndicatorUtil.enableActivityIndicator(self.view)
+                        
+                        let client: BAAClient = BAAClient.shared()
+                        let user: BAAUser = BAAUser(dictionary: ["user":
+                            ["name": strippedPhoneNumber,
+                             "roles" : [],
+                             "status": "",
+                             "visibleByAnonymousUsers": [],
+                             "visibleByRegisteredUsers": []
+                            ]
+                            ])
+                        client.resetPassword(for: user, withCompletion: {(success, error) -> Void in
+                            
+                            if (success) {
+                                AlertUtil.displayAlertOnVC(self, title: "Check your email!", message: "An email has been sent to the email address associated with this phone number.")
+                            }
+                            else {
+                                AlertUtil.displayAlertOnVC(self, title: "Error!", message: (error?.localizedDescription) ?? "Please try again!")
+                            }
+                            
+                            ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                        })
+                    })
+                }
+            }
+            
+            if (phoneNumberFound == false) {
+                // Underline the error
+                alertVC.textFields[0].setBottomBorder(UIColor.red)
+            }
+            
+        }))
+        
+        alertVC.gravityDismissAnimation = false
+        alertVC.dismissWithBackgroudTouch = true
+        
+        self.present(alertVC, animated: true, completion: { () -> Void in
+            
+            // Show the keyboard as soon as the textfield alert is presented.
+            alertVC.textFields[0].becomeFirstResponder()
+        })
+    }
     
     func submitLoginForm() {
 //        emailAddress.text = "1111111111"
@@ -335,23 +408,12 @@ class LoginViewController: BaseYibbyViewController,
     // MARK: - ValidationDelegate Methods
     
     func validationSuccessful() {
-        var formattedPhoneNumber = self.phoneNumberTextFieldOutlet.text
+        if let formattedPhoneNumber = self.phoneNumberTextFieldOutlet.text?.stripPhoneNumber() {
         
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: "(", with: "", options: .literal, range: nil)
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: ")", with: "", options: .literal, range: nil)
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
-
-        if let phoneNumber = formattedPhoneNumber {
-            
             // disable the login button interaction
             self.loginButtonOutlet.isUserInteractionEnabled = false
 
-            loginUser(phoneNumber, passwordi: password.text!)
+            loginUser(formattedPhoneNumber, passwordi: password.text!)
         }
     }
     

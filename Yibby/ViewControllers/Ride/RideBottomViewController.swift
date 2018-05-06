@@ -253,10 +253,12 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         super.viewDidAppear(animated)
         firstAppearanceCompleted = true
         
+        // Set the current state of the pullUp view
         if let puVC = pullUpController {
-            puVC.setState(.expanded, animated: false)
+            puVC.setState(.collapsed, animated: false)
         }
-        currentHeight = pullupViewTargetHeight
+        
+        currentHeight = pullupViewTargetHeight/4
     }
     
     override func didReceiveMemoryWarning() {

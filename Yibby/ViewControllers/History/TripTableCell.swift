@@ -121,16 +121,15 @@ class TripTableCell: FoldingCell {
     @IBAction func onLostStolenButtonClick(_ sender: UIButton) {
         
         let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
-        let emergencyContactsNVC = historyStoryboard.instantiateViewController(withIdentifier: "LostOrStolenItemVC") as! LostOrStolenItemVC
-        _ = myViewController.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
+        let lostViewController = historyStoryboard.instantiateViewController(withIdentifier: "LostItemViewControllerIdentifier") as! LostItemViewController
+        lostViewController.myTrip = self.myTrip
+        _ = myViewController.navigationController?.pushViewController(lostViewController, animated: true)
     }
     
     @IBAction func onFareOrRideIssueButtonClick(_ sender: UIButton) {
-        print("fareOrRideIssueBtn tap")
     }
     
     @IBAction func onOtherIssueButtonClick(_ sender: UIButton) {
-        print("otherIssueBtn tap")
     }
     
     // MARK: - Setup
@@ -148,8 +147,7 @@ class TripTableCell: FoldingCell {
         containerView.layer.borderWidth = 1.0
         containerView.layer.masksToBounds = true
         
-        containerView.layer.borderColor = UIColor.borderColor()
-            .cgColor
+        containerView.layer.borderColor = UIColor.borderColor().cgColor
         
         super.awakeFromNib()
     }

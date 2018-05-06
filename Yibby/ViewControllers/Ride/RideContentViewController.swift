@@ -20,17 +20,19 @@ class RideContentViewController: BaseYibbyViewController {
     
     weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
-    var driverLocMarker: GMSMarker?
-    var curDriverMarkerStatusDescription: String = DriverStateDescription.driverEnRoute.rawValue
+    fileprivate var driverLocMarker: GMSMarker?
+    fileprivate var curDriverMarkerStatusDescription: String = DriverStateDescription.driverEnRoute.rawValue
     
-    var pickupMarker: GMSMarker?
-    var dropoffMarker: GMSMarker?
+    fileprivate var pickupMarker: GMSMarker?
+    fileprivate var dropoffMarker: GMSMarker?
+    fileprivate var lastETAUpdateTime = Date(timeIntervalSinceReferenceDate: 0)
     
     fileprivate var bid: Bid!
     
     fileprivate var driverLocationObserver: NotificationObserver?
 
-    let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
+    fileprivate let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
+    fileprivate let DRIVER_ETA_UPDATE_THRESH: TimeInterval = (60)  // 60 seconds
     
     // MARK: - Actions
     
@@ -57,6 +59,8 @@ class RideContentViewController: BaseYibbyViewController {
                 }
             }
         }
+        
+        
     }
     
     // MARK: - Setup functions
@@ -65,7 +69,7 @@ class RideContentViewController: BaseYibbyViewController {
         self.bid = (YBClient.sharedInstance().bid)!
     }
     
-    func rideSetup() {
+    fileprivate func rideSetup() {
         
         if let ride = YBClient.sharedInstance().ride, let puVC = pullUpController {
             
@@ -77,7 +81,6 @@ class RideContentViewController: BaseYibbyViewController {
                 
                 setPickupMarker(self.bid.pickupLocation!)
                 driverMarkerStatus = DriverStateDescription.driverEnRoute
-                
                 break
                 
             case .driverArrived:
@@ -89,10 +92,7 @@ class RideContentViewController: BaseYibbyViewController {
                 setDropoffMarker(self.bid.dropoffLocation!)
                 driverMarkerStatus = DriverStateDescription.rideStarted
                 break
-
-            default:
-                driverMarkerStatus = DriverStateDescription.driverEnRoute
-                break
+                
             }
             
             if let driverLoc = ride.driverLocation?.coordinate() {
@@ -293,7 +293,7 @@ class RideContentViewController: BaseYibbyViewController {
         pickupMarker = pumarker
     }
     
-    func setDropoffMarker (_ location: YBLocation) {
+    fileprivate func setDropoffMarker (_ location: YBLocation) {
         
         dropoffMarker?.map = nil
         
@@ -306,7 +306,7 @@ class RideContentViewController: BaseYibbyViewController {
         dropoffMarker = domarker
     }
     
-    func updateDriverLocation (_ loc: CLLocationCoordinate2D, status: String) {
+    fileprivate func updateDriverLocation (_ loc: CLLocationCoordinate2D, status: String) {
         
         // If marker hasn't been created yet, create it.
         //     OR
@@ -344,7 +344,27 @@ class RideContentViewController: BaseYibbyViewController {
 
         self.curDriverMarkerStatusDescription = status
         
-        // TODO: adjust the map only if the distance between the driver and the rider is too less
-        adjustGMSCameraFocus(marker1: pickupMarker ?? dropoffMarker, marker2: driverLocMarker)
+        // update ETA every DRIVER_ETA_UPDATE_THRESH minutes
+        if (TimeUtil.diffFromCurTime(lastETAUpdateTime) > DRIVER_ETA_UPDATE_THRESH) {
+            
+            let status = YBClient.sharedInstance().status
+            var toLoc = self.bid.pickupLocation!.coordinate()
+            if (status != .driverEnRoute) {
+                toLoc = self.bid.dropoffLocation!.coordinate()
+            }
+
+            DirectionsService.shared.getEta(from: loc, to: toLoc,
+                                            completionBlock: { (eta) -> Void in
+                                              
+                // TODO: Show the ETA on the UI
+                
+                
+                self.lastETAUpdateTime = Date()
+            })
+            
+            // TODO: adjust the map only if the distance between the driver and the rider is too less.
+            // Today, we adjust it every one minute
+            adjustGMSCameraFocus(marker1: pickupMarker ?? dropoffMarker, marker2: driverLocMarker)
+        }
     }
 }

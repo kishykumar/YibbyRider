@@ -48,8 +48,7 @@ class HelpCenterVC: BaseYibbyViewController {
     }
     
     @IBAction func lostStolenItemBtnAction(_ sender: Any) {
-        let emergencyContactsNVC = self.storyboard?.instantiateViewController(withIdentifier: "LostOrStolenItemVC") as! LostOrStolenItemVC
-        _ = self.navigationController?.pushViewController(emergencyContactsNVC, animated: true)
+        
     }
     
     

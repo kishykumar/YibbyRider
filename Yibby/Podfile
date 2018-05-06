@@ -3,7 +3,7 @@ source 'https://github.com/ello/cocoapod-specs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 project '../Yibby'
 
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 
 def testing_pods
@@ -36,7 +36,7 @@ def shared_pods
     pod 'Cosmos', '~> 11.0'
     pod 'StepSlider'
     pod 'AMPopTip'
-    pod 'CRToast', '~> 0.0.7'
+    #pod 'CRToast', '~> 0.0.7'
     pod 'LTMorphingLabel'
     pod 'M13ProgressSuite'
 
@@ -55,7 +55,6 @@ def shared_pods
     pod 'Braintree'
     pod 'CardIO'
     pod 'XLPagerTabStrip', '~> 6.0'
-    pod 'FDStackView', '~> 1.0'
     pod 'IQKeyboardManagerSwift'
     pod 'SwiftKeychainWrapper'
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
@@ -67,7 +66,9 @@ def shared_pods
     pod 'GooglePlaces'
     pod 'AccountKit'
     pod 'OHHTTPStubs/Swift'
-    
+    pod 'SwiftMessages'
+    pod 'PasswordTextField'
+
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     
     #pod 'ECSlidingViewController', '~> 2.0.3'

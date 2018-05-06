@@ -78,9 +78,8 @@ class RideViewController: ISHPullUpViewController {
     
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
-//        DDLogVerbose("KKDBG_RVC appear")
 //    }
-//
+
 //    override func viewDidDisappear(_ animated: Bool) {
 //        super.viewDidDisappear(animated)
 //        DDLogVerbose("KKDBG_RVC disappear")
@@ -91,6 +90,16 @@ class RideViewController: ISHPullUpViewController {
         
         setupMenuButton()
         LocationService.sharedInstance().startFetchingDriverLocation()
+        
+        if (controllerState == .driverEnRoute) {
+            ToastUtil.displayToastOnVC(self,
+                                       title: "Bid Accepted!",
+                                       body: "Your driver is on his way.",
+                                       theme: .success,
+                                       presentationStyle: .center,
+                                       duration: .forever,
+                                       windowLevel: UIWindowLevelNormal)
+        }
     }
     
     // MARK: Notifications
@@ -130,7 +139,7 @@ class RideViewController: ISHPullUpViewController {
     
     // MARK: - Helpers
 
-    func updateControllerState(state: RideViewControllerState) {
+    fileprivate func updateControllerState(state: RideViewControllerState) {
         
         self.controllerState = state
         
@@ -160,6 +169,13 @@ class RideViewController: ISHPullUpViewController {
             contentVC.rideStartCallback()
             bottomVC.rideStartCallback()
             
+            ToastUtil.displayToastOnVC(self,
+                                       title: "Ride Started!",
+                                       body: "Your driver has started the ride.",
+                                       theme: .success,
+                                       presentationStyle: .center,
+                                       duration: .forever,
+                                       windowLevel: UIWindowLevelNormal)
         }
     }
     
@@ -171,6 +187,13 @@ class RideViewController: ISHPullUpViewController {
             contentVC.driverArrivedCallback()
             bottomVC.driverArrivedCallback()
             
+            ToastUtil.displayToastOnVC(self,
+                                       title: "Driver Arrived!",
+                                       body: "Your driver is waiting at pickup location.",
+                                       theme: .success,
+                                       presentationStyle: .center,
+                                       duration: .forever,
+                                       windowLevel: UIWindowLevelNormal)
         }
     }
     

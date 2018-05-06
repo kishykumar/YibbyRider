@@ -14,6 +14,8 @@ import CocoaLumberjack
 import Braintree
 import GooglePlaces
 import ActionSheetPicker_3_0
+import BaasBoxSDK
+import ObjectMapper
 
 // TODO:
 // 1. Don't let user bid for 5 mins
@@ -152,7 +154,7 @@ class MainViewController: BaseYibbyViewController,
         if (pickupLocation != nil &&
             dropoffLocation != nil && bidHigh != nil) {
             
-            DDLogVerbose("Made the bid: pickupLoc: \(String(describing: pickupLocation)), dropoffLoc: \(String(describing: dropoffLocation)), bidHigh: \(String(describing: bidHigh))")
+            DDLogVerbose("Going to bid: pickupLoc: \(String(describing: pickupLocation)), dropoffLoc: \(String(describing: dropoffLocation)), bidHigh: \(String(describing: bidHigh))")
             
             let biddingStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Bidding, bundle: nil)
             let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
@@ -407,7 +409,7 @@ class MainViewController: BaseYibbyViewController,
 
             // Clear the locally persisted bid
             YBClient.sharedInstance().bid = nil
-            AlertUtil.displayAlert("No offers from drivers.",
+            AlertUtil.displayAlertOnVC(self, title: "No offers from drivers.",
                                    message: "Your bid was not accepted by any driver",
                                    completionBlock: {() -> Void in
                                     self.dismiss(animated: true, completion: nil)
@@ -430,9 +432,36 @@ class MainViewController: BaseYibbyViewController,
             self.navigationController?.pushViewController(rideViewController, animated: true)
         }
     }
-
     
     // MARK: - Helpers
+    
+    fileprivate func getNearestDriverEta(loc: YBLocation) {
+   
+        let client: BAAClient = BAAClient.shared()
+        client.getNearestDriverEta(["latitude": loc.latitude!, "longitude": loc.longitude!],
+            completion: {(success, error) -> Void in
+                
+                if (error == nil && success != nil) {
+                    
+                    let loadedEtas = Mapper<DriverEta>().mapArray(JSONObject: success)
+                    if let loadedEtas = loadedEtas {
+                        
+                        var lowestEta: Int = Int.max // seconds
+                        for item in loadedEtas {
+                            if let eta = item.eta {
+                                if (eta < lowestEta) {
+                                    lowestEta = eta
+                                }
+                            }
+                        }
+                        
+                        DDLogVerbose("KKDBG_getNearestDriverEta \(lowestEta)")
+                    }
+                } else {
+                    DDLogVerbose("Error in getNearestDriverEta \(error)")
+                }
+        })
+    }
     
     func updateCurrentLocation (_ userLocation: CLLocation) {
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
@@ -483,38 +512,64 @@ class MainViewController: BaseYibbyViewController,
         self.curLocation = location
     }
     
-    fileprivate func setPickupDetails (_ location: YBLocation) {
+    fileprivate func drawMarker(_ location: YBLocation, isPickup: Bool) -> GMSMarker {
         
-        pickupMarker?.map = nil
+        let marker = GMSMarker(position: location.coordinate())
+        marker.map = gmsMapViewOutlet
+        marker.icon = YibbyMapMarker.annotationImageWithMarker(marker,
+                                                               title: location.name!,
+                                                               type: isPickup ? .pickup : .dropoff)
+        return marker
+    }
+    
+    fileprivate func setPickupDetails (_ location: YBLocation) {
         
         self.pickupLocation = location
         
-        let pumarker = GMSMarker(position: location.coordinate())
-        pumarker.map = gmsMapViewOutlet
+        // 1. clear the map
+        gmsMapViewOutlet.clear()
         
-        pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
-                                                                 title: location.name!,
-                                                                 type: .pickup)
+        // 2. draw the route
+        if let dropoffLoc = self.dropoffLocation {
+            DirectionsService.shared.drawRoute(mapView: gmsMapViewOutlet,
+                                               loc1: location.coordinate(),
+                                               loc2: dropoffLoc.coordinate())
+        }
         
-        pickupMarker = pumarker
+        // 3. Draw pickup and dropoff markers
+        pickupMarker = drawMarker(location, isPickup: true)
+        
+        if let dropoffLoc = self.dropoffLocation {
+            dropoffMarker = drawMarker(dropoffLoc, isPickup: false)
+        }
+        
         adjustGMSCameraFocus()
+        
+        // get the driver's ETA for this pickup location
+        getNearestDriverEta(loc: location)
     }
     
     fileprivate func setDropoffDetails (_ location: YBLocation) {
         
-        dropoffMarker?.map = nil
-        
         self.dropoffLocation = location
         
-        let domarker = GMSMarker(position: location.coordinate())
-        domarker.map = gmsMapViewOutlet
+        // 1. clear the map
+        gmsMapViewOutlet.clear()
         
-        //        domarker.icon = UIImage(named: "Visa")
-        domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
-                                                                 title: location.name!,
-                                                                 type: .dropoff)
+        // 2. draw the route
+        if let pickupLoc = self.pickupLocation {
+            DirectionsService.shared.drawRoute(mapView: gmsMapViewOutlet,
+                                               loc1: pickupLoc.coordinate(),
+                                               loc2: location.coordinate())
+        }
         
-        dropoffMarker = domarker
+        // 3. Draw pickup and dropoff markers
+        dropoffMarker = drawMarker(location, isPickup: false)
+        
+        if let pickupLoc = self.pickupLocation {
+            pickupMarker = drawMarker(pickupLoc, isPickup: true)
+        }
+        
         adjustGMSCameraFocus()
     }
     

@@ -71,7 +71,8 @@ class AddPaymentViewController: BaseYibbyViewController,
         } else {
             
             // Raise an alert to confirm if the user actually wants to perform the action
-            AlertUtil.displayChoiceAlert("Are you sure you want to delete the card?",
+            AlertUtil.displayChoiceAlertOnVC(self,
+                 title: "Are you sure you want to delete the card?",
                  message: "",
                  completionActionString: InterfaceString.OK,
                  completionBlock: { () -> Void in
@@ -124,7 +125,9 @@ class AddPaymentViewController: BaseYibbyViewController,
         
         // if camera is disabled, display alert.
         if (CardIOUtilities.canReadCardWithCamera() == false) {
-            AlertUtil.displayAlert("Camera disabled.", message: "Please give Camera permission to Yibby.")
+            AlertUtil.displayAlertOnVC(self,
+                                       title: "Camera disabled.",
+                                       message: "Please give Camera permission to Yibby.")
             return;
         }
         
@@ -395,7 +398,7 @@ class AddPaymentViewController: BaseYibbyViewController,
     // MARK: - Helper functions
     
     func handleCardTokenError(_ error: NSError) {
-        AlertUtil.displayAlert(error.localizedDescription, message: error.localizedFailureReason ?? "")
+        AlertUtil.displayAlertOnVC(self, title: error.localizedDescription, message: error.localizedFailureReason ?? "")
     }
     
     func saveCard() {
@@ -470,7 +473,7 @@ class AddPaymentViewController: BaseYibbyViewController,
                 else {
                     
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+                    AlertUtil.displayAlertOnVC(self, title: "Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
                 }
             })
         }
@@ -527,7 +530,7 @@ class AddPaymentViewController: BaseYibbyViewController,
                     
                     if (error != nil) {
                         DDLogError("Error in Braintree setup: \(String(describing: error))")
-                        AlertUtil.displayAlert("Payment Setup Error", message: (error?.localizedDescription) ?? "")
+                        AlertUtil.displayAlertOnVC(self, title: "Payment Setup Error", message: (error?.localizedDescription) ?? "")
                     } else {
                         addCardCodeBlock()
                     }

@@ -201,7 +201,13 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
             setPicture(imageView: cell.carIV, ride: ride, fileId: vehiclePictureFileId)
         }
         
-        if let milesTravelled = ride.miles {
+        if let metresTravelled = ride.tripDistance {
+            var milesTravelled = metresTravelled / 1609.34
+            
+            if (milesTravelled == 0) {
+                milesTravelled = 1
+            }
+            
             cell.distanceInMilesLbl.text = "\(String(describing: milesTravelled)) miles"
         }
         
