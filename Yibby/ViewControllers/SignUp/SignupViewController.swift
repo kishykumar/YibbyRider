@@ -144,21 +144,11 @@ class SignupViewController: BaseYibbyViewController,
     // MARK: - ValidationDelegate Methods
     
     func validationSuccessful() {
+        if let formattedPhoneNumber = self.phoneNumberOutlet.text?.stripPhoneNumber() {
+            self.formattedPhoneNumber = formattedPhoneNumber
+            verifyPhoneNumber(formattedPhoneNumber)
+        }
 
-        var formattedPhoneNumber = self.phoneNumberOutlet.text
-        
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: "(", with: "", options: .literal, range: nil)
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: ")", with: "", options: .literal, range: nil)
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
-        formattedPhoneNumber =
-            formattedPhoneNumber?.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
-        
-        self.formattedPhoneNumber = formattedPhoneNumber
-        verifyPhoneNumber(formattedPhoneNumber!)
-        
 //        let digits = Digits.sharedInstance()
 //        let configuration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
 //        // configuration?.phoneNumber = self.txtPhone.text!

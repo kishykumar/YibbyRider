@@ -1,9 +1,9 @@
 //
-//  Util.swift
+//  AlertUtil.swift
 //  Yibby
 //
 //  Created by Kishy Kumar on 3/12/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -19,7 +19,7 @@ open class AlertUtil {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .cancel, handler: { (action) -> Void in
         }))
         
         vc.present(alert, animated: true, completion: nil)
@@ -30,65 +30,87 @@ open class AlertUtil {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .cancel, handler: { (action) -> Void in
             completionBlock()
         }))
         
         vc.present(alert, animated: true, completion: nil)
     }
     
-    static func displayAlert(_ title: String,
-                             message: String) {
+    static func displayAlertOnVC(_ vc: UIViewController, title: String, message: String,
+                                 action1: String,
+                                 style1: UIAlertActionStyle,
+                                 action2: String,
+                                 style2: UIAlertActionStyle,
+                                 completionBlock: @escaping AlertUtilCompletionCallback) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // Add action1
+        alert.addAction(UIAlertAction(title: action1,
+                                      style: style1,
+                                      handler: { (action) -> Void in
+                                        completionBlock()
+        }))
+        
+        // Add action2
+        alert.addAction(UIAlertAction(title: action2, style: style2,
+                                      handler: { (action) -> Void in
+        }))
+        
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
+//    static func displayAlert(_ title: String,
+//                             message: String) {
+//
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//
+//        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .cancel, handler: { (action) -> Void in
+//        }))
+//
+//        if let vvc = appDelegate.window?.visibleViewController {
+//            vvc.present(alert, animated: true, completion: nil)
+//        }
+//    }
+//
+//    static func displayAlert(_ title: String,
+//                             message: String,
+//                             completionBlock: @escaping AlertUtilCompletionCallback) {
+//
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//
+//        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .cancel, handler: { (action) -> Void in
+//            completionBlock()
+//        }))
+//
+//        if let vvc = appDelegate.window?.visibleViewController {
+//            vvc.present(alert, animated: true, completion: nil)
+//        }
+//    }
 
-        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .default, handler: { (action) -> Void in
-        }))
-        
-        if let vvc = appDelegate.window?.visibleViewController {
-            vvc.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    static func displayAlert(_ title: String,
-                             message: String,
-                             completionBlock: @escaping AlertUtilCompletionCallback) {
-        
+    // An alert that shows an action and cancel with completionBlock
+    static func displayChoiceAlertOnVC(_ vc: UIViewController, title: String, message: String,
+                                       completionActionString: String,
+                                       completionBlock: @escaping AlertUtilCompletionCallback) {
+
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .default, handler: { (action) -> Void in
-            completionBlock()
-        }))
-        
-        if let vvc = appDelegate.window?.visibleViewController {
-            vvc.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    static func displayChoiceAlert(_ title: String, message: String,
-                                   completionActionString: String,
-                                   completionBlock: @escaping AlertUtilCompletionCallback) {
-        
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
+
         // Add OK
         alert.addAction(UIAlertAction(title: completionActionString,
                                     style: .default,
                                     handler: { (action) -> Void in
             completionBlock()
         }))
-        
+
         // Add Cancel
-        alert.addAction(UIAlertAction(title: InterfaceString.Cancel, style: .default,
+        alert.addAction(UIAlertAction(title: InterfaceString.Cancel, style: .cancel,
                                     handler: { (action) -> Void in
         }))
         
-        if let vvc = appDelegate.window?.visibleViewController {
-            vvc.present(alert, animated: true, completion: nil)
-        }
+        vc.present(alert, animated: true, completion: nil)
     }
     
     static func displaySettingsAlert(_ title: String, message: String) {
@@ -101,7 +123,7 @@ open class AlertUtil {
         }))
         
         // Add OK
-        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: InterfaceString.OK, style: .cancel, handler: { (action) -> Void in
         }))
         
         if let vvc = appDelegate.window?.visibleViewController {

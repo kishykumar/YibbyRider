@@ -284,13 +284,13 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
                     self.applyProfileModel(profile)
                 }
                 else {
-                    AlertUtil.displayAlert("Error in Fetching User Profile", message: error?.localizedDescription ?? "")
+                    AlertUtil.displayAlertOnVC(self, title: "Error in Fetching User Profile", message: error?.localizedDescription ?? "")
                     DDLogVerbose("getProfile failed1: \(String(describing: success))")
                 }
                 
             } else {
                 // TODO: Show the alert with error
-                AlertUtil.displayAlert("Error in Fetching User Profile", message: error?.localizedDescription ?? "")
+                AlertUtil.displayAlertOnVC(self, title: "Error in Fetching User Profile", message: error?.localizedDescription ?? "")
                 DDLogVerbose("getProfile failed2: \(String(describing: error))")
             }
         })
@@ -315,7 +315,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
                         self.applyProfileModel(profile)
                     }
                     else {
-                        AlertUtil.displayAlert("Error in Updating User Profile", message: error?.localizedDescription ?? "")
+                        AlertUtil.displayAlertOnVC(self, title: "Error in Updating User Profile", message: error?.localizedDescription ?? "")
                         DDLogError("Error in updating Profile: \(String(describing: success))")
                     }
                 }
@@ -397,7 +397,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
                             self.applyProfileModel(profile)
                         }
                         else {
-                            AlertUtil.displayAlert("Error in Updating Home", message: error?.localizedDescription ?? "")
+                            AlertUtil.displayAlertOnVC(self, title: "Error in Updating Home", message: error?.localizedDescription ?? "")
                             DDLogError("Error in updating home: \(String(describing: success))")
                         }
                     }
@@ -437,7 +437,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
                             self.applyProfileModel(profile)
                         }
                         else {
-                            AlertUtil.displayAlert("Error in Updating Work", message: error?.localizedDescription ?? "")
+                            AlertUtil.displayAlertOnVC(self, title: "Error in Updating Work", message: error?.localizedDescription ?? "")
                             DDLogError("Error in updating Work: \(String(describing: success))")
                         }
                     }
@@ -540,19 +540,19 @@ extension SettingsViewController: ImagePickerDelegate {
                             postNotification(ProfileNotifications.profilePictureUpdated, value: "")
                         }
                         else {
-                            AlertUtil.displayAlert("Error in updating profile picture", message: error?.localizedDescription ?? "")
+                            AlertUtil.displayAlertOnVC(self, title: "Error in updating profile picture", message: error?.localizedDescription ?? "")
                             DDLogError("Error in updating profilepic: \(String(describing: success))")
                         }
                     }
                     else {
-                        AlertUtil.displayAlert("Error in updating profile picture", message: error?.localizedDescription ?? "")
+                        AlertUtil.displayAlertOnVC(self, title: "Error in updating profile picture", message: error?.localizedDescription ?? "")
                         DDLogVerbose("addHomeDetails failed: \(String(describing: error))")
                     }
                     ActivityIndicatorUtil.disableActivityIndicator(self.view)
                 })
               },
               failure: { error in
-                AlertUtil.displayAlert("Upload failed", message: error.localizedDescription)
+                AlertUtil.displayAlertOnVC(self, title: "Upload failed", message: error.localizedDescription)
                 DDLogError("Failure in uploading profile picture: \(error.description)")
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
             })

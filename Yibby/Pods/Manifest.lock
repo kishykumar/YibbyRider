@@ -6,7 +6,7 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - AMPopTip (2.1.6)
-  - BaasBoxSDK (0.9.15)
+  - BaasBoxSDK (0.9.16)
   - BButton (4.0.2)
   - Braintree (4.8.1):
     - Braintree/Card (= 4.8.1)
@@ -39,7 +39,6 @@ PODS:
   - Cosmos (11.0.3)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - CRToast (0.0.9)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.11)
   - FBSnapshotTestCase (2.1.4):
@@ -47,7 +46,6 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - FDStackView (1.0)
   - FLAnimatedImage (1.0.12)
   - FoldingCell (2.0.5)
   - Font-Awesome-Swift (1.6.2)
@@ -201,6 +199,7 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (6.1.0)
   - OHHTTPStubs/Swift (6.1.0):
     - OHHTTPStubs/Default
+  - PasswordTextField (1.1.0)
   - PhoneNumberKit (1.3.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 1.3.0)
     - PhoneNumberKit/UIKit (= 1.3.0)
@@ -221,6 +220,7 @@ PODS:
   - StepSlider (1.0.2)
   - Stripe (10.1.0)
   - SwiftKeychainWrapper (3.0.1)
+  - SwiftMessages (4.1.0)
   - SwiftValidator (4.0.0)
   - SwiftyJSON (3.1.4)
   - TextFieldEffects (1.3.2)
@@ -239,10 +239,8 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift (from `https://github.com/CocoaLumberjack/CocoaLumberjack`, branch `swift_3`)
   - Cosmos (~> 11.0)
   - Crashlytics
-  - CRToast (~> 0.0.7)
   - DZNEmptyDataSet
   - Fabric
-  - FDStackView (~> 1.0)
   - FoldingCell
   - Font-Awesome-Swift (~> 1.6.2)
   - Google/CloudMessaging
@@ -262,6 +260,7 @@ DEPENDENCIES:
   - Nimble (~> 5.0.0)
   - Nimble-Snapshots
   - OHHTTPStubs/Swift
+  - PasswordTextField
   - PhoneNumberKit (~> 1.3)
   - PINRemoteImage
   - Presentr
@@ -270,6 +269,7 @@ DEPENDENCIES:
   - StepSlider
   - Stripe
   - SwiftKeychainWrapper
+  - SwiftMessages
   - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch `master`)
   - SwiftyJSON
   - TextFieldEffects
@@ -303,18 +303,16 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   AMPopTip: 81f57556ae12500d30ff595078b1b6d11076ced8
-  BaasBoxSDK: 8023c692ae190c4f4321a304921bb2babdf7bdfd
+  BaasBoxSDK: 2a9eb4b87f77f8a20ade4b75f4ad80899ea05fc8
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 9e63eeb60d34f54fa1aa8f3d75fe3976927c06d5
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   CocoaLumberjack: 0d0a04bbec1e5d9c58d311750e42c85fc51a84ef
   Cosmos: eb506859929f4add2d2aec822a27efb2f718a95d
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
-  FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FoldingCell: fb189fc746e95b722a1debf8ef455006b70cae2e
   Font-Awesome-Swift: 4dc96df73b5f32aaccdee50a454c3ec253ee4977
@@ -322,7 +320,7 @@ SPEC CHECKSUMS:
   Google: d536877ec602555b755cc28ce6fed104825c693c
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleAuthUtilities: ccad2e0a9284699973ff57c0dd24c3893657fda4
-  GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
+  GoogleCloudMessaging: 2f503711dac162dc08c0c418643210793335eca2
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
@@ -346,6 +344,7 @@ SPEC CHECKSUMS:
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
   ObjectMapper: '042708195cc46c20871cbcbec0453826398273fd'
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
+  PasswordTextField: 35ee7f34448c3de061136cf2556a967f1a287476
   PhoneNumberKit: '08aaf1968ea41a114327e9223cbb0391d76ae145'
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
@@ -355,11 +354,12 @@ SPEC CHECKSUMS:
   StepSlider: 67b0c59519e253df9de599043bc76397d68310b2
   Stripe: 1c7aa951a075cced500a919d92b687b35d410705
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftValidator: 25ded5ca1f10c05adf57f6ac82a72d28ac8d91af
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TextFieldEffects: 9e5cce561ea39c75b86e9d3637601727a67e8b23
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: 673062b87a6ac8bebe44ea7bc522e58b05081d77
+PODFILE CHECKSUM: c7037cbadafc01fc544a31d2d62ef6c50bcb8da8
 
 COCOAPODS: 1.2.0.beta.1

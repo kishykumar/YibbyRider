@@ -76,34 +76,34 @@ class BraintreeBackendAPI: NSObject, BraintreeBackendAPIAdapter {
 //        }
 //    }
     
-    func addPaymentCard(nonce: AnyObject)
-    {
-        
-        let client: BAAClient = BAAClient.shared()
-        
-        client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: nonce as! String, completion: {(success, error) -> Void in
-            
-            print(success as Any)
-            
-            if ((success) != nil) {
-                DDLogVerbose("PaymentMethod added successfully \(success)")
-                
-                //back
-            }
-            else {
-                DDLogVerbose("Error PaymentMethod in: \(error)")
-                
-                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
-                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-                    
-                    // check for authentication error and redirect the user to Login page
-                }
-                else {
-                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
-                }
-            }
-        })
-    }
+//    func addPaymentCard(nonce: AnyObject)
+//    {
+//
+//        let client: BAAClient = BAAClient.shared()
+//
+//        client.addPaymentMethod(BAASBOX_RIDER_STRING, paymentMethodNonce: nonce as! String, completion: {(success, error) -> Void in
+//
+//            print(success as Any)
+//
+//            if ((success) != nil) {
+//                DDLogVerbose("PaymentMethod added successfully \(success)")
+//
+//                //back
+//            }
+//            else {
+//                DDLogVerbose("Error PaymentMethod in: \(error)")
+//
+//                if ((error as! NSError).domain == BaasBox.errorDomain() && (error as! NSError).code ==
+//                    WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+//
+//                    // check for authentication error and redirect the user to Login page
+//                }
+//                else {
+//                    AlertUtil.displayAlert("Connectivity or Server Issues.", message: "Please check your internet connection or wait for some time.")
+//                }
+//            }
+//        })
+//    }
 
     func fetchClientToken(_ completionBlock: @escaping TokenFetchCompletionBlock) {
 
