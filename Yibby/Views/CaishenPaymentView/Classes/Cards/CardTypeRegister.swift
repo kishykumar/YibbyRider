@@ -9,15 +9,15 @@
 import UIKit
 
 /// A `CardTypeRegister` is used to maintain the range of accepted card types. You can provide different card type registers for different CardTextField's and customize the range of accepted card types individually.
-public class CardTypeRegister {
+open class CardTypeRegister {
     
     /**
      The default card type register, shared among all CardTextFields.
      */
-    public static let sharedCardTypeRegister = CardTypeRegister(registeredCardTypes: CardTypeRegister.defaultCardTypes)
+    open static let sharedCardTypeRegister = CardTypeRegister(registeredCardTypes: CardTypeRegister.defaultCardTypes)
     
     /// An array of all registered card types. You can edit this array with `registerCardType`, `unregisterCardType` or `setRegisteredCardTypes`.
-    public private(set) var registeredCardTypes: [CardType]
+    open private(set) var registeredCardTypes: [CardType]
     
     /**
      Creates a new `CardTypeRegister` that accepts no card types.
@@ -37,7 +37,7 @@ public class CardTypeRegister {
     }
 
     /// An array with the default card types provided by Caishen.
-    public static let defaultCardTypes: [CardType] = [
+    open static let defaultCardTypes: [CardType] = [
             AmericanExpress(),
             ChinaUnionPay(),
             DinersClub(),
@@ -52,7 +52,7 @@ public class CardTypeRegister {
      
      - parameter cardType: The card type that should be contained in this card type register.
      */
-    public func register(cardType: CardType) {
+    open func register(cardType: CardType) {
         if registeredCardTypes.contains(where: { $0.isEqual(to: cardType) }) {
             return
         }
@@ -65,7 +65,7 @@ public class CardTypeRegister {
      
      - parameter cardType: The card type that should be removed from this card type register.
      */
-    public func unregister(cardType: CardType) {
+    open func unregister(cardType: CardType) {
         registeredCardTypes = registeredCardTypes.filter { !$0.isEqual(to: cardType) }
     }
     
@@ -74,7 +74,7 @@ public class CardTypeRegister {
      
      - parameter cardTypes: The new range of card types contained in this card type register.
      */
-    public func setRegisteredCardTypes<T: Sequence>(_ cardTypes: T) where T.Iterator.Element == CardType {
+    open func setRegisteredCardTypes<T: Sequence>(_ cardTypes: T) where T.Iterator.Element == CardType {
         registeredCardTypes = [CardType]()
         registeredCardTypes.append(contentsOf: cardTypes)
     }
@@ -88,7 +88,7 @@ public class CardTypeRegister {
      
      - returns: An instance of UnknownCardType, if no card type matches the Issuer Identification Number of the provided card number or any other card type that matches the card number.
      */
-    public func cardType(for number: Number) -> CardType {
+    open func cardType(for number: Number) -> CardType {
         for i in (0...min(number.length, 6)).reversed() {
             if let substring = number.rawValue[0,i], let substringAsNumber = Int(substring) {
                 if let firstMatchingCardType = registeredCardTypes.filter({

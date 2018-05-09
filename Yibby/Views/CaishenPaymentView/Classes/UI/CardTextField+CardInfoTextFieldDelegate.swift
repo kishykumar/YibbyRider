@@ -10,7 +10,7 @@ import UIKit
 
 extension CardTextField: CardInfoTextFieldDelegate {
 
-    public func textField(_ textField: UITextField, didEnterValidInfo: String) {
+    open func textField(_ textField: UITextField, didEnterValidInfo: String) {
         updateNumberColor()
         notifyDelegate()
         if expirationDateIsValid() {
@@ -18,12 +18,12 @@ extension CardTextField: CardInfoTextFieldDelegate {
         }
     }
     
-    public func textField(_ textField: UITextField, didEnterPartiallyValidInfo: String) {
+    open func textField(_ textField: UITextField, didEnterPartiallyValidInfo: String) {
         updateNumberColor()
         notifyDelegate()
     }
     
-    public func textField(_ textField: UITextField, didEnterOverflowInfo overFlowDigits: String) {
+    open func textField(_ textField: UITextField, didEnterOverflowInfo overFlowDigits: String) {
         updateNumberColor()
         select(textField, prefillText: overFlowDigits)
     }

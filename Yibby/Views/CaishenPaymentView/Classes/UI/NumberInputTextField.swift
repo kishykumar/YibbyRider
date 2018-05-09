@@ -12,7 +12,7 @@ import UIKit
  This kind of text field only allows entering card numbers and provides means to customize the appearance of entered card numbers by changing the card number group separator.
  */
 @IBDesignable
-public class NumberInputTextField: StylizedTextField {
+open class NumberInputTextField: StylizedTextField {
 
     // MARK: - Variables
     
@@ -21,21 +21,21 @@ public class NumberInputTextField: StylizedTextField {
      
      - note: This card number may be incomplete and invalid while the user is entering a card number. Be sure to validate it against a proper card type before assuming it is valid.
      */
-    public var cardNumber: Number {
+    open var cardNumber: Number {
         let textFieldTextUnformatted = cardNumberFormatter.unformat(cardNumber: text ?? "")
         return Number(rawValue: textFieldTextUnformatted)
     }
     
     /**
      */
-    @IBOutlet public weak var numberInputTextFieldDelegate: NumberInputTextFieldDelegate?
+    @IBOutlet open weak var numberInputTextFieldDelegate: NumberInputTextFieldDelegate?
     
     /**
      The string that is used to separate different groups in a card number.
      */
-    @IBInspectable public var cardNumberSeparator: String = "-"
+    @IBInspectable open var cardNumberSeparator: String = "-"
     
-    public override var accessibilityValue: String? {
+    open override var accessibilityValue: String? {
         get {
             // In order to read digits of the card number one by one, return them as "4 1 1 ..." separated by single spaces and commas inbetween groups for pauses
             var singleDigits: [Character] = []
@@ -64,7 +64,7 @@ public class NumberInputTextField: StylizedTextField {
     
     /// Variable to store the text color of this text field. The actual property `textColor` (as inherited from UITextField) will change based on whether or not the entered card number was invalid and may be `invalidInputColor` in this case. In order to always set and retreive the actual text color for this text field, it is saved and retreived to and from this private property.
     private var _textColor: UIColor?
-    override public var textColor: UIColor? {
+    override open var textColor: UIColor? {
         get {
             return _textColor
         }
@@ -78,7 +78,7 @@ public class NumberInputTextField: StylizedTextField {
     /**
      The card type register that holds information about which card types are accepted and which ones are not.
      */
-    public var cardTypeRegister: CardTypeRegister = CardTypeRegister.sharedCardTypeRegister
+    open var cardTypeRegister: CardTypeRegister = CardTypeRegister.sharedCardTypeRegister
     
     /**
      A card number formatter used to format the input
@@ -89,7 +89,7 @@ public class NumberInputTextField: StylizedTextField {
     
     // MARK: - UITextFieldDelegate
     
-    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    open override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Current text in text field, formatted and unformatted:
         let textFieldTextFormatted = NSString(string: textField.text ?? "")
         // Text in text field after applying changes, formatted and unformatted:
@@ -142,9 +142,9 @@ public class NumberInputTextField: StylizedTextField {
     /**
      Prefills the card number. The entered card number will only be prefilled if it is at least partially valid and will be displayed formatted.
      
-     - parameter cardNumber: The card number which should be displayed in `self`.
+     - parameter text: The card number which should be displayed in `self`.
      */
-    public func prefill(_ text: String) {
+    open func prefill(_ text: String) {
         let unformattedCardNumber = String(text.characters.filter({$0.isNumeric()}))
         let cardNumber = Number(rawValue: unformattedCardNumber)
         let type = cardTypeRegister.cardType(for: cardNumber)
@@ -152,6 +152,8 @@ public class NumberInputTextField: StylizedTextField {
         
         if numberPartiallyValid {
             // Set text and apply text color changes if the prefilled card type is unknown
+            self.text = text
+
             _ = textField(self,
                           shouldChangeCharactersIn: NSRange(location: 0, length: text.characters.count),
                           replacementString: cardNumber.rawValue)
@@ -189,7 +191,7 @@ public class NumberInputTextField: StylizedTextField {
      
      - returns: The CGRect in `self` that contains the last group of the card number.
      */
-    public func rectForLastGroup() -> CGRect? {
+    open func rectForLastGroup() -> CGRect? {
         guard let lastGroupLength = text?.components(separatedBy: cardNumberFormatter.separator).last?.characters.count else {
             return nil
         }

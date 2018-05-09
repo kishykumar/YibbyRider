@@ -9,19 +9,13 @@
 import UIKit
 
 /// A text field which can be used to enter CVCs and provides validation of the same.
-public class CVCInputTextField: DetailInputTextField {
+open class CVCInputTextField: DetailInputTextField {
     
     /// The card type for the CVC that should be entered. The length of a CVC can vary based on this card type.
-    public var cardType: CardType?
+    open var cardType: CardType?
     override var expectedInputLength: Int {
-        
-        let length = cardType?.CVCLength
-        if (length == nil || length == 0) {
-            return 3
-        }
-        return length!
+        return cardType?.CVCLength ?? 3
     }
-    
     /**
      Checks the validity of the entered card validation code.
      
@@ -36,8 +30,7 @@ public class CVCInputTextField: DetailInputTextField {
         
         let cvc = CVC(rawValue: cvcString)
         return (cardType?.validate(cvc: cvc) == .Valid)
-            || (partiallyValid &&
-                    ((cardType?.validate(cvc: cvc) == .CVCIncomplete) || (cardType?.validate(cvc: cvc) == .UnknownType)))
+            || partiallyValid && (cardType?.validate(cvc: cvc) == .CVCIncomplete)
     }
 
 }

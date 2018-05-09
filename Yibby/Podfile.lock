@@ -178,7 +178,7 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
-  - Nimble (5.0.0)
+  - Nimble (7.1.1)
   - Nimble-Snapshots (4.4.0):
     - Nimble-Snapshots/Core (= 4.4.0)
   - Nimble-Snapshots/Core (4.4.0):
@@ -257,7 +257,7 @@ DEPENDENCIES:
   - M13ProgressSuite
   - MBProgressHUD
   - MMDrawerController (~> 0.5.7)
-  - Nimble (~> 5.0.0)
+  - Nimble
   - Nimble-Snapshots
   - OHHTTPStubs/Swift
   - PasswordTextField
@@ -340,7 +340,7 @@ SPEC CHECKSUMS:
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
-  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
   ObjectMapper: '042708195cc46c20871cbcbec0453826398273fd'
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
@@ -360,6 +360,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 9e5cce561ea39c75b86e9d3637601727a67e8b23
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b
 
-PODFILE CHECKSUM: c7037cbadafc01fc544a31d2d62ef6c50bcb8da8
+PODFILE CHECKSUM: 841a782a400fcf603214d4e1344475f188dc120d
 
 COCOAPODS: 1.2.0.beta.1

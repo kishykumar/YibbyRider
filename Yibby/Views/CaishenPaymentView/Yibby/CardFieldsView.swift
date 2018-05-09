@@ -330,28 +330,28 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
      */
     private func setupTextFieldAttributes() {
         
-        cardHolderNameTextField.textFieldReturnCallback = {_ -> Void in
-            self.numberInputTextField?.becomeFirstResponder()
+        cardHolderNameTextField.textFieldReturnCallback = { [weak self] _ in
+            self?.numberInputTextField?.becomeFirstResponder()
         }
         
-        numberInputTextField?.deleteBackwardCallback = {_ -> Void in
-            self.cardHolderNameTextField?.becomeFirstResponder()
+        numberInputTextField?.deleteBackwardCallback = { [weak self] _ in
+            self?.cardHolderNameTextField?.becomeFirstResponder()
+        }
+
+        monthTextField?.deleteBackwardCallback = { [weak self] _ in
+            self?.numberInputTextField?.becomeFirstResponder()
         }
         
-        monthTextField?.deleteBackwardCallback = {_ -> Void in
-            self.numberInputTextField?.becomeFirstResponder()
+        yearTextField?.deleteBackwardCallback = { [weak self] _ in
+            self?.monthTextField?.becomeFirstResponder()
         }
         
-        yearTextField?.deleteBackwardCallback = {_ -> Void in
-            self.monthTextField?.becomeFirstResponder()
+        cvcTextField?.deleteBackwardCallback = { [weak self] _ in
+            self?.yearTextField?.becomeFirstResponder()
         }
         
-        cvcTextField?.deleteBackwardCallback = {_ -> Void in
-            self.yearTextField?.becomeFirstResponder()
-        }
-        
-        postalCodeTextField?.deleteBackwardCallback = {_ -> Void in
-            self.cvcTextField?.becomeFirstResponder()
+        postalCodeTextField?.deleteBackwardCallback = { [weak self] _ in
+            self?.cvcTextField?.becomeFirstResponder()
         }
         
 //        // Set the text alignment of cvc and month text field manually, as there is no
@@ -522,7 +522,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      Displays the card image for the currently detected card type in the card text field's `cardImageView`.
      */
-    internal func showCardImage() {
+    @objc internal func showCardImage() {
         let cardType = cardTypeRegister.cardType(for: numberInputTextField.cardNumber)
         let cardTypeImage = cardTypeImageStore.image(for: cardType)
         
@@ -532,7 +532,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     /**
      Displays the CVC image for the currently detected card type in the card text field's `cardImageView`.
      */
-    internal func showCVCImage() {
+    @objc internal func showCVCImage() {
         let cardType = cardTypeRegister.cardType(for: numberInputTextField.cardNumber)
         let cvcImage = cardTypeImageStore.cvcImage(for: cardType)
         

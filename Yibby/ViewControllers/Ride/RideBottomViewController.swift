@@ -108,7 +108,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         }
     }
     
-    private dynamic func handleTapGesture(gesture: UITapGestureRecognizer) {
+    @objc private dynamic func handleTapGesture(gesture: UITapGestureRecognizer) {
         if let puVC = pullUpController {
             puVC.toggleState(animated: true)
         }

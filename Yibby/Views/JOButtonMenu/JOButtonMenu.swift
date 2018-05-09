@@ -113,7 +113,7 @@ open class JOButtonMenu: UIButton {
         active = false
     }
     
-    func singleTapEvent(){
+    @objc func singleTapEvent(){
         if !active {
             activate()
         } else {
@@ -121,7 +121,7 @@ open class JOButtonMenu: UIButton {
         }
     }
     
-    func buttonTapEvent(_ sender: UITapGestureRecognizer) {
+    @objc func buttonTapEvent(_ sender: UITapGestureRecognizer) {
         let selectedView = sender.view
         selectIndex(selectedView!.tag)
         self.deActivate(selectedItem)

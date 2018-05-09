@@ -15,6 +15,8 @@ public class CardHolderNameTextField: DetailInputTextField {
         return 50
     }
     
+    public var textFieldReturnCallback: ((UITextField) -> Void)?
+
     /**
      Checks the validity of the entered card validation code.
      
@@ -28,7 +30,7 @@ public class CardHolderNameTextField: DetailInputTextField {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        self.textFieldReturnCallback?()
+        self.textFieldReturnCallback?(self)
         
         return false // We do not want UITextField to insert line-breaks.
     }

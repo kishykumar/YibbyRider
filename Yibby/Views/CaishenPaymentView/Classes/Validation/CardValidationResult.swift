@@ -112,8 +112,7 @@ extension CardValidationResult: CustomStringConvertible {
         }
 
         if isSuperset(of: .LuhnTestFailed) {
-            //strings.append("Luhn test failed for card number")
-            strings.append("Invalid card number")
+            strings.append("Luhn test failed for card number")
         }
 
         if isSuperset(of: .NumberIncomplete) {

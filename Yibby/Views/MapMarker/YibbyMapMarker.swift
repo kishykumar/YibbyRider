@@ -163,7 +163,7 @@ open class YibbyMapMarker: UIView {
         infoWindow.titleYPadding = 5.0
         
         let labelString = infoWindow.text! as NSString
-        let labelStringSize: CGSize = labelString.size(attributes: [NSFontAttributeName: infoWindow.font!])
+        let labelStringSize: CGSize = labelString.size(withAttributes: [NSAttributedStringKey.font: infoWindow.font!])
         let labelStringWidth: CGFloat = labelStringSize.width;
         
         infoWindowWidth = labelStringWidth + 30.0
