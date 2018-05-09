@@ -13,24 +13,22 @@ import UIKit
  You can subclass `DetailInputTextField` and override `isInputValid` to specify the validation routine.
  The default implementation accepts any input.
  */
-public class DetailInputTextField: StylizedTextField {
+open class DetailInputTextField: StylizedTextField, TextFieldValidation, AutoCompletingTextField {
     
-    public var cardInfoTextFieldDelegate: CardInfoTextFieldDelegate?
+    open weak var cardInfoTextFieldDelegate: CardInfoTextFieldDelegate?
     
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    open func textFieldDidBeginEditing(_ textField: UITextField) {
         if (textField.text ?? "").isEmpty {
-            // NOTE: The following line has been commented out because it messes up
-            // textField.text = UITextField.emptyTextFieldCharacter
+            textField.text = UITextField.emptyTextFieldCharacter
         }
     }
     
-    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    open override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newText = NSString(string: (textField.text ?? "")).replacingCharacters(in: range, with: string).replacingOccurrences(of: UITextField.emptyTextFieldCharacter, with: "")
         
         let deletingLastCharacter = !(textField.text ?? "").isEmpty && textField.text != UITextField.emptyTextFieldCharacter && newText.isEmpty
         if deletingLastCharacter {
-            // textField.text = UITextField.emptyTextFieldCharacter
-            textField.text = ""
+            textField.text = UITextField.emptyTextFieldCharacter
             cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: newText)
             return false
         }
@@ -38,6 +36,7 @@ public class DetailInputTextField: StylizedTextField {
         let autoCompletedNewText = autocomplete(newText)
         
         let (currentTextFieldText, overflowTextFieldText) = split(autoCompletedNewText)
+        
         if isInputValid(currentTextFieldText, partiallyValid: true) {
             textField.text = currentTextFieldText
             if isInputValid(currentTextFieldText, partiallyValid: false) {
@@ -54,31 +53,16 @@ public class DetailInputTextField: StylizedTextField {
         return false
     }
     
-    public func prefill(_ text: String) {
+    open func prefill(_ text: String) {
         if isInputValid(text, partiallyValid: false) {
+            self.text = text
             cardInfoTextFieldDelegate?.textField(self, didEnterValidInfo: text)
         } else if isInputValid(text, partiallyValid: true) {
+            self.text = text
             cardInfoTextFieldDelegate?.textField(self, didEnterPartiallyValidInfo: text)
         }
     }
-    
-    private func split(_ text: String) -> (currentText: String, overflowText: String) {
-        let hasOverflow = text.characters.count > expectedInputLength
-        let index = (hasOverflow) ?
-            text.characters.index(text.startIndex, offsetBy: expectedInputLength) :
-            text.characters.index(text.startIndex, offsetBy: text.characters.count)
-        return (text.substring(to: index), text.substring(from: index))
-    }
-}
 
-extension DetailInputTextField: AutoCompletingTextField {
-
-    func autocomplete(_ text: String) -> String {
-        return text
-    }
-}
-
-extension DetailInputTextField: TextFieldValidation {
     /**
      Default number of expected digits for MonthInputTextField and YearInputTextField
      */
@@ -88,5 +72,17 @@ extension DetailInputTextField: TextFieldValidation {
 
     func isInputValid(_ input: String, partiallyValid: Bool) -> Bool {
         return true
+    }
+
+    func autocomplete(_ text: String) -> String {
+        return text
+    }
+    
+    private func split(_ text: String) -> (currentText: String, overflowText: String) {
+        let hasOverflow = text.characters.count > expectedInputLength
+        let index = (hasOverflow) ?
+            text.characters.index(text.startIndex, offsetBy: expectedInputLength) :
+            text.characters.index(text.startIndex, offsetBy: text.characters.count)
+        return (String(text[..<index]), String(text[index...]))
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension CardTextField {
+extension CardTextField {
     
     /**
      Fills all form fields of this card text field with the information provided and moves to card detail, if the provided card number was valid.
@@ -18,7 +18,7 @@ public extension CardTextField {
      - parameter year:       The year that should be shown in the year input field.
      - parameter cvc:        The CVC that should be shown in the CVC input field.
      */
-    public func prefill(_ number: String?, month: Int?, year: Int?, cvc: String?) {
+    open func prefill(_ number: String?, month: Int?, year: Int?, cvc: String?) {
         if let year = year {
             var trimmedYear = year
             if year > 100 {
@@ -45,7 +45,7 @@ public extension CardTextField {
         
         OperationQueue().addOperation({
             Thread.sleep(forTimeInterval: 0.5)
-            OperationQueue.main.addOperation({ [weak self] _ in
+            OperationQueue.main.addOperation({ [weak self] in
                 self?.moveCardNumberOutAnimated()
             })
         })

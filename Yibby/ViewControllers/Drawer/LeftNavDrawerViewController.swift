@@ -80,7 +80,9 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
                                    style1: .destructive,
                                    action2: InterfaceString.Cancel,
                                    style2: .cancel,
-                                   completionBlock: { action -> Void in self.logoutUser() })
+                                   completionBlock: { () -> Void in
+                                    self.logoutUser()
+        })
     }
     
     @IBAction func onProfileButtonClick(_ sender: UIButton) {
@@ -342,17 +344,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
                     profilePictureOutlet.pin_setImage(from: imageUrl)
                 }
             }
-        }
-    }
-    
-    fileprivate func openImagePicker() {
-        let alertViewController = UIImagePickerController.alertControllerForImagePicker { imagePicker in
-            imagePicker.delegate = self
-            self.present(imagePicker, animated: true, completion: .none)
-        }
-        
-        if let alertViewController = alertViewController {
-            present(alertViewController, animated: true, completion: .none)
         }
     }
     

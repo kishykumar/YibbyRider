@@ -14,7 +14,7 @@ import UIKit
 public final class CardNumberFormatter {
 
     /// The separator which is used to separate different groups of a card number.
-    public let separator: String
+    open let separator: String
     
     /// The card type register which is used to access accepted card types. Formatting will only take place for card numbers whose card type can be found in this property.
     private var cardTypeRegister: CardTypeRegister
@@ -36,7 +36,7 @@ public final class CardNumberFormatter {
      
      - returns: The unformatted card number string representation.
      */
-    public func unformat(cardNumber: String) -> String {
+    open func unformat(cardNumber: String) -> String {
         return cardNumber.replacingOccurrences(of: self.separator, with: "")
     }
 
@@ -47,7 +47,7 @@ public final class CardNumberFormatter {
      
      - returns: Formatted card number string.
      */
-    public func format(cardNumber: String) -> String {
+    open func format(cardNumber: String) -> String {
         let regex: NSRegularExpression
 
         let cardType = cardTypeRegister.cardType(for: Number(rawValue: cardNumber))
@@ -77,7 +77,7 @@ public final class CardNumberFormatter {
      
      - returns: The index of the cursor position or nil, if no selected text was found.
      */
-    public func cursorPositionAfterUnformatting(_ text: String, in textField: UITextField) -> Int? {
+    open func cursorPositionAfterUnformatting(_ text: String, in textField: UITextField) -> Int? {
         guard let selectedRange = textField.selectedTextRange else {
             return nil
         }
@@ -162,7 +162,7 @@ public final class CardNumberFormatter {
      - parameter textField: The text field whose text should be changed.
      - parameter string:    The new string. This might be unformatted or badly formatted and will be formatted properly before being inserted into `textField`.
      */
-    public func format(range: NSRange, inTextField textField: UITextField, andReplaceWith string: String) {
+    open func format(range: NSRange, inTextField textField: UITextField, andReplaceWith string: String) {
         let newValueUnformatted = unformat(cardNumber: NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string))
         let oldValueUnformatted = unformat(cardNumber: textField.text ?? "")
 
@@ -199,7 +199,7 @@ public final class CardNumberFormatter {
         
         matches.forEach {
             for i in 1..<$0.numberOfRanges {
-                let range = $0.rangeAt(i)
+                let range = $0.range(at: i)
                 
                 if range.length > 0 {
                     result.append(NSString(string: string).substring(with: range))

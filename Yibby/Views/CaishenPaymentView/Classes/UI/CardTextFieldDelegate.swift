@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol CardTextFieldDelegate {
+public protocol CardTextFieldDelegate: class {
     
     /**
      Callback for a CardTextField, which is called whenever the entered Card information has changed.
@@ -46,7 +46,7 @@ public protocol CardTextFieldDelegate {
 }
 
 public extension CardTextFieldDelegate {
-    public func cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(_ cardTextField: CardTextField) -> String? {
+    func cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(_ cardTextField: CardTextField) -> String? {
         return Localization.AccessoryButtonAccessibilityLabel.localizedStringWithComment("Accessibility label for accessory button")
     }
 }
