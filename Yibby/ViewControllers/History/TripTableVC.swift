@@ -230,10 +230,10 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
 
         cell.backgroundColor = UIColor.clear
         
-        if cellHeights[(indexPath as NSIndexPath).row] == kCloseCellHeight {
-            cell.selectedAnimation(false, animated: false, completion:nil)
+        if cellHeights[indexPath.row] == kCloseCellHeight {
+            cell.unfold(false, animated: false, completion: nil)
         } else {
-            cell.selectedAnimation(true, animated: false, completion: nil)
+            cell.unfold(true, animated: false, completion: nil)
         }
         
         cell.number = indexPath.row
@@ -269,13 +269,14 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         }
         
         var duration = 0.0
-        if cellHeights[(indexPath as NSIndexPath).row] == kCloseCellHeight { // open cell
-            cellHeights[(indexPath as NSIndexPath).row] = kOpenCellHeight
-            cell.selectedAnimation(true, animated: true, completion: nil)
+        let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
+        if cellIsCollapsed {
+            cellHeights[indexPath.row] = kOpenCellHeight
+            cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
-        } else {// close cell
-            cellHeights[(indexPath as NSIndexPath).row] = kCloseCellHeight
-            cell.selectedAnimation(false, animated: true, completion: nil)
+        } else {
+            cellHeights[indexPath.row] = kCloseCellHeight
+            cell.unfold(false, animated: true, completion: nil)
             duration = 0.8
         }
         

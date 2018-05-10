@@ -24,6 +24,8 @@ extension NSString {
             return "Unknown"
         case STPCardBrand.visa:
             return "Visa"
+        case .unionPay:
+            return "Union Pay"
         }
     }
     
