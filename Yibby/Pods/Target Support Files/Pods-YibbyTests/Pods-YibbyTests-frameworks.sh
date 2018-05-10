@@ -96,6 +96,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/BButton/BButton.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BaasBoxSDK/BaasBoxSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Braintree/Braintree.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Cache/Cache.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Cosmos/Cosmos.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
@@ -106,6 +107,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ISHPullUp/ISHPullUp.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ImagePicker/ImagePicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Imaginary/Imaginary.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KSCrash/KSCrash.framework"
   install_framework "$BUILT_PRODUCTS_DIR/LTMorphingLabel/LTMorphingLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/LaunchScreen/LaunchScreen.framework"
@@ -129,10 +131,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TextFieldEffects/TextFieldEffects.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XLPagerTabStrip/XLPagerTabStrip.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBSnapshotTestCase/FBSnapshotTestCase.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble-Snapshots/Nimble_Snapshots.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Quick/Quick.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/iOSSnapshotTestCase/FBSnapshotTestCase.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AMPopTip/AMPopTip.framework"
@@ -142,6 +144,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/BButton/BButton.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BaasBoxSDK/BaasBoxSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Braintree/Braintree.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Cache/Cache.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Cosmos/Cosmos.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
@@ -152,6 +155,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ISHPullUp/ISHPullUp.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ImagePicker/ImagePicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Imaginary/Imaginary.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KSCrash/KSCrash.framework"
   install_framework "$BUILT_PRODUCTS_DIR/LTMorphingLabel/LTMorphingLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/LaunchScreen/LaunchScreen.framework"
@@ -175,10 +179,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TextFieldEffects/TextFieldEffects.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XLPagerTabStrip/XLPagerTabStrip.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBSnapshotTestCase/FBSnapshotTestCase.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble-Snapshots/Nimble_Snapshots.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Quick/Quick.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/iOSSnapshotTestCase/FBSnapshotTestCase.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -12,6 +12,10 @@ import BaasBoxSDK
 import CocoaLumberjack
 import Alamofire
 
+// ********************************************************* //
+//  THS CODE IS NOT USED TODAY BECAUSE YIBBY USES BRAINTREE
+// ********************************************************* //
+
 public protocol StripeBackendAPIAdapter : STPBackendAPIAdapter {
     func deleteSourceFromCustomer(_ source: STPSource, completion: @escaping STPErrorBlock)
     func updateSourceForCustomer(_ source: STPSource, oldSource: STPSource, completion: @escaping STPErrorBlock)
@@ -89,14 +93,16 @@ class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
             }
         )
     }
-    @objc func retrieveCustomer(_ completion: @escaping STPCustomerCompletionBlock) {
+    
+    @objc func retrieveCustomer(_ completion: STPCustomerCompletionBlock?) {
         
         let client: BAAClient = BAAClient.shared()
         guard let baseURL = client.baseURL, let customerID = customerID else {
             
             let customer = STPCustomer(stripeID: "cus_test", defaultSource: self.defaultSource, sources: self.sources)
-            completion(customer, nil)
-            
+            if let completionBlock = completion {
+                completionBlock(customer, nil)
+            }
             DDLogError("Customer ID nil for Stripe Client.")
             return;
         }
@@ -109,11 +115,11 @@ class StripeBackendAPI: NSObject, StripeBackendAPIAdapter {
                 let deserializer = STPCustomerDeserializer(data: response.data,
                                                            urlResponse: response.response,
                                                            error: response.error)
-                if let error = deserializer.error {
-                    completion(nil, error)
-                    return
-                } else if let customer = deserializer.customer {
-                    completion(customer, nil)
+                if let error = deserializer.error, let completionBlock = completion {
+                    completionBlock(nil, error)
+                    return;
+                } else if let customer = deserializer.customer, let completionBlock = completion {
+                    completionBlock(customer, nil)
                 }
             }
     }
