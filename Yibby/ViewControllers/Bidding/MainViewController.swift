@@ -27,26 +27,19 @@ class MainViewController: BaseYibbyViewController,
                                 UITextFieldDelegate,
                                 DestinationDelegate,
                                 CLLocationManagerDelegate,
-                                SelectPaymentViewControllerDelegate,
                                 GMSAutocompleteViewControllerDelegate,
-                                GMSMapViewDelegate,
-                                JOButtonMenuDelegate {
+                                GMSMapViewDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
-    @IBOutlet weak var rangeSliderOutlet: ASValueTrackingSlider!
-    @IBOutlet weak var bidButton: YibbyButton1!
-    @IBOutlet weak var cardLabelOutlet: UILabel!
-    @IBOutlet weak var maxBidLabelOutlet: UILabel!
+//    @IBOutlet weak var rangeSliderOutlet: ASValueTrackingSlider!
+    @IBOutlet weak var bidButton: UIButton!
     @IBOutlet weak var priceSliderViewOutlet: YibbyBorderedUIView!
-    @IBOutlet weak var miscPickerViewOutlet: YibbyBorderedUIView!
-    @IBOutlet weak var peopleButtonOutlet: JOButtonMenu!
-    @IBOutlet weak var peopleLabelOutlet: UILabel!
-    @IBOutlet weak var cardHintOutlet: BTUICardHint!
     @IBOutlet weak var centerMarkersViewOutlet: YibbyBorderedUIView!
-    @IBOutlet weak var miscHintViewOutlet: UIView!
-    @IBOutlet weak var dollarHintViewOutlet: UIView!
-    
+    @IBOutlet weak var bidSliderOutlet: YBSlider!
+    @IBOutlet weak var driverETALabelOutlet: UILabel!
+    @IBOutlet weak var userBidLabelOutlet: UILabel!
+    @IBOutlet weak var suggestedBidLabelOutlet: UILabel!
     
     var placesClient: GMSPlacesClient?
     let regionRadius: CLLocationDistance = 1000
@@ -54,44 +47,23 @@ class MainViewController: BaseYibbyViewController,
     var dropoffFieldSelected: Bool?
     
     var curLocation: YBLocation?
-    
     var pickupLocation: YBLocation?
     var pickupMarker: GMSMarker?
-    
     var dropoffLocation: YBLocation?
     var dropoffMarker: GMSMarker?
-    
     var locationManager:CLLocationManager!
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
     
     var bidHigh: Float?
-    var numPeople: Int?
-    
+    fileprivate var suggestedBid: Int = 0
+
     var priceSliderViewHidden = false
     var miscPickerViewHidden = false
-    
-#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    
-    var selectedPaymentMethod: STPPaymentMethod?
-    
-#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-    
-    var selectedPaymentMethod: YBPaymentMethod?
-    
-#endif
     
     fileprivate var offerRejectedObserver: NotificationObserver? // for offer reject
     fileprivate var rideObserver: NotificationObserver? // for driver en route message
     
     // MARK: - Actions
-    
-    @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func onPaymentSelectAction(_ sender: UITapGestureRecognizer) {
-        displaySelectCardView()
-    }
     
     @IBAction func onDollarImageClickAction(_ sender: AnyObject) {
         
@@ -106,17 +78,12 @@ class MainViewController: BaseYibbyViewController,
         }
     }
     
-    @IBAction func onMiscPickerImageClickAction(_ sender: AnyObject) {
+    // RideEndViewController uses this to unwind to MainViewController
+    @IBAction func unwindToMainViewController(_ segue:UIStoryboardSegue) {
         
-        if (miscPickerViewHidden) {
-            miscPickerViewOutlet.animation = "fadeIn"
-            miscPickerViewOutlet.animate()
-            miscPickerViewHidden = false
-        } else {
-            miscPickerViewOutlet.animation = "fadeOut"
-            miscPickerViewOutlet.animate()
-            miscPickerViewHidden = true
-        }
+        // Always clear the bid when coming back to Main View Controller
+        YBClient.sharedInstance().status = .looking
+        YBClient.sharedInstance().bid = nil
     }
     
     @IBAction func onCenterMarkersButtonClick(_ sender: AnyObject) {
@@ -143,12 +110,12 @@ class MainViewController: BaseYibbyViewController,
     @IBAction func onBidButtonClick(_ sender: AnyObject) {
 
         // Make sure user has a payment method selected
-        if (self.selectedPaymentMethod == nil) {
-            displaySelectCardView()
+        if (YBClient.sharedInstance().defaultPaymentMethod == nil) {
+            AlertUtil.displayAlertOnVC(self, title: "No Default Payment Method", message: "Please add a payment method in the Payment Menu.")
             return;
         }
         
-        let bidHighInt = Int(self.rangeSliderOutlet.value)
+        let bidHighInt = Int(self.bidSliderOutlet.value)
         bidHigh = Float(bidHighInt)
         
         if (pickupLocation != nil &&
@@ -160,11 +127,10 @@ class MainViewController: BaseYibbyViewController,
             let confirmRideViewController = biddingStoryboard.instantiateViewController(withIdentifier: "ConfirmRideViewControllerIdentifier") as! ConfirmRideViewController
             
             // Initialize the view controller state 
-            confirmRideViewController.bidHigh = self.bidHigh!
+            confirmRideViewController.bidPrice = self.bidHigh!
             confirmRideViewController.pickupLocation = self.pickupLocation!
             confirmRideViewController.dropoffLocation = self.dropoffLocation!
-            confirmRideViewController.currentPaymentMethod = self.selectedPaymentMethod!
-            confirmRideViewController.numPeople = self.numPeople!
+            confirmRideViewController.currentPaymentMethod = YBClient.sharedInstance().defaultPaymentMethod!
             
             // if an alert was already displayed, dismiss it
             if let presentedVC = self.presentedViewController {
@@ -178,122 +144,29 @@ class MainViewController: BaseYibbyViewController,
         }
     }
     
+    @IBAction func onBidSliderValueChange(_ sender: YBSlider) {
+        
+        let curUserBid = Int(sender.value)
+        userBidLabelOutlet.text = "$\(curUserBid)"
+        
+        if (self.suggestedBid > curUserBid) {
+            self.bidSliderOutlet.minimumTrackTintColor = UIColor.bidSliderRed()
+        } else {
+            self.bidSliderOutlet.minimumTrackTintColor = UIColor.bidSliderGreen()
+        }
+    }
+    
     // MARK: - Setup
     
     func setupDelegates() {
         gmsMapViewOutlet.delegate = self
-        peopleButtonOutlet.delegate = self
     }
     
     func setupUI() {
-        // bidButton
-        bidButton.color = UIColor.appDarkGreen1()
-        bidButton.addAwesomeIcon(FAIcon.FAGavel, beforeTitle: true)
-        
         // currency range slider
-        setupRangeSliderUI()
-        
-        setupPersonsButtonMenuUI()
-        
-        setupNavigationBar()
-//        setStatusBarColor()
         setupMenuButton()
-
-        // update card UI
-        if let method = self.selectedPaymentMethod {
-            updateSelectCardUI(paymentMethod: method)
-        }
         
-        // default number of people
-        self.peopleLabelOutlet.text = "1"
-        self.numPeople = 1
-    }
-    
-    func setupRangeSliderUI() {
-        let screenSize: CGRect = UIScreen.main.bounds
-
-        let formatter: NumberFormatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.currency
-        
-        self.rangeSliderOutlet.showPopUpView(animated: false)
-        
-        self.rangeSliderOutlet.maximumValue = 100
-        self.rangeSliderOutlet.numberFormatter = formatter
-        self.rangeSliderOutlet.setMaxFractionDigitsDisplayed(0)
-        
-        self.rangeSliderOutlet.font = UIFont.boldSystemFont(ofSize: screenSize.size.height * 0.026)
-        
-        self.rangeSliderOutlet.popUpViewArrowLength = screenSize.size.height * 0.010
-        
-        self.rangeSliderOutlet.popUpViewAnimatedColors = [UIColor.red,
-                                                          UIColor.appDarkGreen1()]
-        
-        let thumbImage = UIImage(named: "defaultSlider")
-        self.rangeSliderOutlet.setThumbImage(thumbImage, for: UIControlState())
-    }
-    
-    func setupPersonsButtonMenuUI() {
-        
-        peopleButtonOutlet.dataset = [
-            JOButtonMenuOption(labelText: "1"),
-            JOButtonMenuOption(labelText: "2"),
-            JOButtonMenuOption(labelText: "3"),
-            JOButtonMenuOption(labelText: "4")
-        ]
-    }
-    
-    func setupNavigationBar() {
-//        let app: UIApplication = UIApplication.shared
-
-//        let image : UIImage? = UIImage.init(named: "menu_icon_green")!.withRenderingMode(.alwaysOriginal)
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
-//        self.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsetsMake(app.statusBarFrame.size.height-4, -8, -(app.statusBarFrame.size.height-4), 8)
-        
-//        self.navigationController?.isNavigationBarHidden = true
-
-        // set nav bar color
-//        self.navigationController?.navigationBar.barTintColor = UIColor.appDarkGreen1()
-//        self.navigationController?.navigationBar.tintColor = UIColor.appDarkGreen1()
-
-        // Make nav bar transparent
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-
-//        if let navigationController = self.navigationController {
-        
-            // RIGHT Bar Button Item
-//            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-//                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-//                NSForegroundColorAttributeName: UIColor.blue],
-//                for: UIControlState())
-//            
-//            self.navigationItem.rightBarButtonItem?.title =
-//                String.fa_string(forFontAwesomeIcon: FAIcon.FALightbulbO)
-//            
-//            self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(-5.0, 20.0),
-//                                                                               for: UIBarMetrics.default)
-//            
-            // LEFT Bar Button Item
-//            self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
-//                NSFontAttributeName: UIFont(name: "FontAwesome", size: 24.0)!,
-//                NSForegroundColorAttributeName: UIColor.yellow],
-//                for: UIControlState())
-//            
-//            self.navigationItem.leftBarButtonItem?.title =
-//                String.fa_string(forFontAwesomeIcon: FAIcon.FABars)
-//            
-//            self.navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(UIOffsetMake(5.0, 20.0),
-//                                                                              for: UIBarMetrics.default)
-        
-        // Set Title Font, Font size, Font color
-//        self.navigationController?.navigationBar.titleTextAttributes = [
-//            NSFontAttributeName : UIFont.systemFontOfSize(18.0),
-//            NSForegroundColorAttributeName : UIColor.whiteColor()
-//        ]
-
-//
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-//        }
+        self.bidSliderOutlet.minimumTrackTintColor = UIColor.bidSliderGreen()
     }
     
     func setupMap () {
@@ -317,22 +190,8 @@ class MainViewController: BaseYibbyViewController,
     }
     
     func initProperties() {
-        bidHigh = 100
-        
         self.setPickupDetails(YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA"))
         self.setDropoffDetails(YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department"))
-                
-#if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-            
-        self.selectedPaymentMethod = self.selectedPaymentMethod ??
-                                    StripePaymentService.sharedInstance().defaultPaymentMethod
-    
-#elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-
-        self.selectedPaymentMethod = YBClient.sharedInstance().defaultPaymentMethod
-    
-#endif
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -357,8 +216,8 @@ class MainViewController: BaseYibbyViewController,
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
-        
         // init properties *should* be called before any setup function
         initProperties()
         
@@ -366,9 +225,6 @@ class MainViewController: BaseYibbyViewController,
         setupUI()
         setupMap()
         setupMapClient()
-                
-        // check for location services
-//        AlertUtil.displayLocationAlert()
     }
     
     open override func viewDidLayoutSubviews() {
@@ -378,8 +234,8 @@ class MainViewController: BaseYibbyViewController,
         // Moved the rounding circle code here because the circling wasn't happening correctly.
         // Please refer here for why this solution has been picked:
         // http://stackoverflow.com/questions/29685055/ios-frame-size-width-2-doesnt-produce-a-circle-on-every-device
-        miscHintViewOutlet.setRoundedWithWhiteBorder()
-        dollarHintViewOutlet.setRoundedWithWhiteBorder()
+        //miscHintViewOutlet.setRoundedWithWhiteBorder()
+        //dollarHintViewOutlet.setRoundedWithWhiteBorder()
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -407,12 +263,15 @@ class MainViewController: BaseYibbyViewController,
             
             YBClient.sharedInstance().status = .looking
 
+            // dismiss the currently presented offerViewController
+            self.dismiss(animated: true, completion: nil)
+
             // Clear the locally persisted bid
             YBClient.sharedInstance().bid = nil
             AlertUtil.displayAlertOnVC(self, title: "No offers from drivers.",
                                    message: "Your bid was not accepted by any driver",
                                    completionBlock: {() -> Void in
-                                    self.dismiss(animated: true, completion: nil)
+                                    //self.dismiss(animated: true, completion: nil)
             })
         }
         
@@ -444,21 +303,41 @@ class MainViewController: BaseYibbyViewController,
                 if (error == nil && success != nil) {
                     
                     let loadedEtas = Mapper<DriverEta>().mapArray(JSONObject: success)
-                    if let loadedEtas = loadedEtas {
+                    if var loadedEtas = loadedEtas {
                         
-                        var lowestEta: Int = Int.max // seconds
-                        for item in loadedEtas {
-                            if let eta = item.eta {
-                                if (eta < lowestEta) {
-                                    lowestEta = eta
-                                }
+                        loadedEtas.sort {
+                            if ($0.eta! < $1.eta!) {
+                                return true
+                            } else {
+                                return false
                             }
                         }
                         
-                        DDLogVerbose("KKDBG_getNearestDriverEta \(lowestEta)")
+                        // Convert seconds to minutes and round up
+                        var minEtaMins = (loadedEtas.first!.eta! + 59) / 60
+                        var maxEtaMins = (loadedEtas.last!.eta! + 59) / 60
+                        
+                        if (minEtaMins == 0) {
+                            minEtaMins = 1
+                        }
+                        
+                        if (maxEtaMins == 0) {
+                            maxEtaMins = 1
+                        }
+                        
+                        DDLogVerbose("KKDBG_getNearestDriverEta \(minEtaMins) \(maxEtaMins)")
+                        
+                        if (minEtaMins == maxEtaMins) {
+                            self.driverETALabelOutlet.text = "\(minEtaMins) mins"
+                        } else {
+                            self.driverETALabelOutlet.text = "\(minEtaMins)-\(maxEtaMins) mins"
+                        }
+                    } else {
+                        self.driverETALabelOutlet.text = "No Drivers"
                     }
                 } else {
-                    DDLogVerbose("Error in getNearestDriverEta \(error)")
+                    self.driverETALabelOutlet.text = "No Drivers"
+                    DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
                 }
         })
     }
@@ -534,6 +413,8 @@ class MainViewController: BaseYibbyViewController,
             DirectionsService.shared.drawRoute(mapView: gmsMapViewOutlet,
                                                loc1: location.coordinate(),
                                                loc2: dropoffLoc.coordinate())
+            
+            setSuggestedBid(pickupLoc: location, dropoffLoc: dropoffLoc)
         }
         
         // 3. Draw pickup and dropoff markers
@@ -561,6 +442,8 @@ class MainViewController: BaseYibbyViewController,
             DirectionsService.shared.drawRoute(mapView: gmsMapViewOutlet,
                                                loc1: pickupLoc.coordinate(),
                                                loc2: location.coordinate())
+            
+            setSuggestedBid(pickupLoc: pickupLoc, dropoffLoc: location)
         }
         
         // 3. Draw pickup and dropoff markers
@@ -573,6 +456,44 @@ class MainViewController: BaseYibbyViewController,
         adjustGMSCameraFocus()
     }
     
+    fileprivate func setSuggestedBid(pickupLoc: YBLocation, dropoffLoc: YBLocation) {
+        
+//        Uber and Lyft San Francisco fares:
+//        Base Fare: $2.20
+//        Per Minute: $0.24
+//        Per Mile: $1.33
+//        Cancellation Fee: $5
+//        Service Fees: $2.20
+//        Minimum Fare: $7.20
+        
+        DirectionsService.shared.getEta(from: pickupLoc.coordinate(), to: dropoffLoc.coordinate(),
+            completionBlock: { (etaSeconds, distanceMeters) -> Void in
+
+                // All base calculations in cents, meters, seconds
+                let bookingFeesCents: Int = 0
+                let serviceFeesCents: Int = 100
+                let perMinuteCents: Int = 24
+                let perMileCents: Int = 133
+
+                let timeFees = (perMinuteCents * Int(etaSeconds)) / 60
+                let distanceFees = Int((Double(perMileCents) * distanceMeters) / 1609.34)
+
+                let maxBidCents: Int = bookingFeesCents + serviceFeesCents + timeFees + distanceFees
+
+                let maxBidDollars: Int = maxBidCents / 100
+                let suggestedBidDollars: Int = (maxBidDollars * 9)/10
+                let lowBidDollars: Int = (maxBidDollars * 8) / 10
+
+                self.suggestedBidLabelOutlet.text = "$\(suggestedBidDollars)"
+                self.suggestedBid = suggestedBidDollars
+                self.userBidLabelOutlet.text = "$\(suggestedBidDollars)"
+
+                self.bidSliderOutlet.maximumValue = Float(maxBidDollars)
+                self.bidSliderOutlet.minimumValue = Float(lowBidDollars)
+                self.bidSliderOutlet.value = Float(suggestedBidDollars)
+        })
+    }
+
     fileprivate func adjustGMSCameraFocus() {
         
         guard let pickupMarker = pickupMarker else {
@@ -608,111 +529,6 @@ class MainViewController: BaseYibbyViewController,
         let update = GMSCameraUpdate.fit(bounds, with: insets)
         gmsMapViewOutlet.moveCamera(update)
     }
-
-    // MARK: - SelectPaymentViewControllerDelegate
-    
-    func selectPaymentViewControllerDidCancel(_ selectPaymentViewController: PaymentsViewController) {
-//        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    
-    func selectPaymentViewController(selectPaymentViewController: PaymentViewController,
-                                    didSelectPaymentMethod method: STPPaymentMethod,
-                                    controllerType: PaymentViewControllerType) {
-        
-        if (controllerType == PaymentViewControllerType.PickForRide) {
-        
-            // modify the selected payment method
-            self.selectedPaymentMethod = method
-            
-            // remove the view controller
-            self.navigationController?.popViewControllerAnimated(true)
-    
-            // update the card UI
-            updateSelectCardUI(method)
-        }
-    }
-    
-    #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-    
-//    func selectPaymentViewController(selectPaymentViewController: PaymentsViewController,
-//                                     didSelectPaymentMethod method: BTPaymentMethodNonce,
-//                                                            controllerType: PaymentsViewControllerType) {
-//        
-//        if (controllerType == PaymentsViewControllerType.pickForRide) {
-//            
-//            // modify the selected payment method
-//            //self.selectedPaymentMethod = method
-//            
-//            // remove the view controller
-//            self.navigationController?.popViewController(animated: true)
-//            
-//            // update the card UI
-//           // updateSelectCardUI(paymentMethod: method)
-//        }
-//    }
-    
-    func selectPaymentViewController(selectPaymentViewController: PaymentsViewController,
-                                     didSelectPaymentMethod method: YBPaymentMethod) {
-        
-//        if (controllerType == PaymentsViewControllerType.pickForRide) {
-        
-            // modify the selected payment method
-            self.selectedPaymentMethod = method
-            
-            // remove the view controller
-            self.navigationController?.popViewController(animated: true)
-            
-            // update the card UI
-            updateSelectCardUI(paymentMethod: method)
-//        }
-    }
-    #endif
-    
-    func displaySelectCardView () {
-        
-        // Display the select card view
-        let paymentStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Payment, bundle: nil)
-        
-        let selectPaymentViewController = paymentStoryboard.instantiateViewController(withIdentifier: "PaymentsViewControllerIdentifier") as! PaymentsViewController
-        
-        selectPaymentViewController.controllerType = PaymentsViewControllerType.pickForRide
-        selectPaymentViewController.delegate = self
-        
-        selectPaymentViewController.selectedPaymentMethod = self.selectedPaymentMethod
-        
-//        self.navigationController?.presentViewController(selectPaymentViewController, animated: true, completion: nil)
-        self.navigationController?.pushViewController(selectPaymentViewController, animated: true)        
-    }
-    
-    #if YIBBY_USE_STRIPE_PAYMENT_SERVICE
-    
-    func updateSelectCardUI (paymentMethod: STPPaymentMethod) {
-    
-        if let card = paymentMethod as? STPCard {
-            self.cardLabelOutlet.text = card.last4()
-        } else {
-            self.cardLabelOutlet.text = paymentMethod.label
-        }
-    }
-    
-    #elseif YIBBY_USE_BRAINTREE_PAYMENT_SERVICE
-    
-    func updateSelectCardUI (paymentMethod: YBPaymentMethod) {
-        
-        
-        let paymentMethodType: BTUIPaymentOptionType =
-            BraintreeCardUtil.paymentMethodTypeFromBrand(paymentMethod.type)
-        self.cardHintOutlet.setCardType(paymentMethodType, animated: false)
-        self.cardLabelOutlet.text = paymentMethod.last4
-        
-        //        self.cardLabelOutlet.font = UIFont(name: "FontAwesome", size: 17)
-        //        self.cardLabelOutlet.text = String(format: "%C", 0xf042)
-    }
-    
-    #endif
 
     // MARK: - GMSAutocompleteViewControllerDelegate
     
@@ -771,16 +587,5 @@ class MainViewController: BaseYibbyViewController,
         
         // default marker action is false, but we don't want that.
         return true
-    }
-
-    // MARK: - JOButtonMenuDelegate
-    
-    public func selectedOption(_ sender: JOButtonMenu, index: Int) {
-        peopleLabelOutlet.text = peopleButtonOutlet.dataset[index].labelText
-        self.numPeople = Int(peopleLabelOutlet.text!)
-    }
-    
-    public func canceledAction(_ sender: JOButtonMenu) {
-        print("User cancelled selection")
     }
 }

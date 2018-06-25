@@ -87,6 +87,7 @@ public enum InterfaceImage: String {
     case PlusSmall = "plussmall"
     case CheckSmall = "checksmall"
     case AngleBracket = "abracket"
+    case Lock = "lock"
 
     // Embeds
     case AudioPlay = "embetter_audio_play"

@@ -18,12 +18,6 @@ public enum AppInitReturnCode: Int {
     case loginError
 }
 
-public struct AppInitNotifications {
-    //static let pushStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.AppInit.Push")
-    //static let syncStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.AppInit.Sync")
-    static let initStatus = TypedNotification<AppInitReturnCode>(name: "com.Yibby.AppInit.Init")
-}
-
 class SplashViewController: UIViewController {
     
     // MARK: - Properties
@@ -36,66 +30,12 @@ class SplashViewController: UIViewController {
     var launchScreenVC: LaunchScreenViewController?
     var snapshot: UIImage?
     var imageView: UIImageView?
-    fileprivate var initStatusObserver: NotificationObserver?
-
-//    var syncAPIResponseArrived: Bool = false
-//    var paymentsSetupCompleted: Bool = false
-//    static var pushRegisterResponseArrived: Bool = false
-//    static var pushSuccessful: Bool = false
-    
     
     // MARK: - Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initSplash()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        DDLogVerbose("Fired init")
-        setupNotificationObservers()
-    }
-    
-    deinit {
-        DDLogVerbose("Fired deinit")
-        removeNotificationObservers()
-    }
-    
-    fileprivate func setupNotificationObservers() {
-        
-        initStatusObserver = NotificationObserver(notification: AppInitNotifications.initStatus) { [unowned self] returnCode in
-            DDLogVerbose("initStatusObserver status: \(returnCode)")
-            
-            switch (returnCode) {
-            case .error:
-                self.initErrorCallback()
-                break
-                
-            case .success:
-                self.initSuccessCallback()
-                break
-                
-            case .loginError:
-                self.initLoginErrorCallback()
-                break
-                
-            default: break
-            }
-        }
-    }
-    
-    fileprivate func removeNotificationObservers() {
-        initStatusObserver?.removeObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,7 +81,31 @@ class SplashViewController: UIViewController {
         if client.isAuthenticated() {
             DDLogVerbose("User already authenticated");
             
-            appDelegate.initializeApp(true)
+            // Do the initialization on a background thread, not Main thread.
+            DispatchQueue.global(qos: .userInitiated).async {
+
+                let error = appDelegate.initializeApp(true)
+                DispatchQueue.main.async {
+                    if (error != nil) {
+
+                        if let myNSError = error as NSError? {
+
+                            DDLogVerbose("Error in webRequest1: \(String(describing: myNSError))")
+                            self.initLoginErrorCallback()
+
+//                            if (myNSError.domain == BaasBox.errorDomain() &&
+//                                myNSError.code == WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
+//
+//                                self.initLoginErrorCallback()
+//                            } else {
+//                                self.initErrorCallback()
+//                            }
+                        }
+                    } else {
+                        self.initSuccessCallback()
+                    }
+                }
+            }
             
         } else {
             DDLogVerbose("User NOT authenticated");
@@ -193,9 +157,6 @@ class SplashViewController: UIViewController {
         // Initialize the status bar before we show the first screen
         setStatusBar()
         
-        // remove the notification observers
-        self.removeNotificationObservers()
-        
         let v: UIView = self.launchScreenVC!.view!
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut,
                        animations: {() -> Void in
@@ -209,7 +170,7 @@ class SplashViewController: UIViewController {
     }
 
     func initSuccessCallback() {
-        DDLogDebug("pushRegistrationSuccessCallback Called")
+        DDLogDebug("initSuccessCallback Called")
         removeSplash()
     }
 

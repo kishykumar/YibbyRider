@@ -21,4 +21,5 @@ public struct RideNotifications {
     static let rideStart = TypedNotification<String>(name: "com.Yibby.Ride.RideStart")
     static let driverArrived = TypedNotification<String>(name: "com.Yibby.Ride.DriverArrived")
     static let rideEnd = TypedNotification<String>(name: "com.Yibby.Ride.RideEnd")
+    static let rideCancelled = TypedNotification<String>(name: "com.Yibby.Ride.RideCancelled")
 }

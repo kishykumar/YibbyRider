@@ -180,6 +180,11 @@ public struct InterfaceString {
     
     public struct ActionSheet {
         static let SelectTip = NSLocalizedString("Select Tip", comment: "Select Tip")
+        static let CancelReason = NSLocalizedString("Cancel Reason", comment: "Cancel Reason")
+        static let DriverFarReason = NSLocalizedString("Driver Too Far", comment: "DriverFarReason")
+        static let PlansChangedReason = NSLocalizedString("Plans Changed", comment: "PlansChangedReason")
+        static let EmergencyReason = NSLocalizedString("Emergency", comment: "EmergencyReason")
+        static let CancellationFee = NSLocalizedString("($5 fee))", comment: "CancellationFee")
     }
     
     public struct Ride {

@@ -13,13 +13,21 @@ import Braintree
 import BaasBoxSDK
 import Spring
 
+// The following enum values have to match the values on the webserver
+enum RideCancellationReason: Int {
+    case riderDriverTooFar = 1
+    case riderEmergency = 2
+    case riderPlansChanged = 3
+}
+
 class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate, ISHPullUpStateDelegate {
 
     // MARK: - Properties
     
+    @IBOutlet weak var handleViewOutlet: ISHPullUpHandleView!
     @IBOutlet weak var rootViewOutlet: UIView!
     @IBOutlet weak var topViewOutlet: UIView!
-    @IBOutlet weak var driverStatusLabelOutlet: SpringLabel!
+    //@IBOutlet weak var driverStatusLabelOutlet: SpringLabel!
 
     @IBOutlet weak var cardHintViewOutlet: BTUICardHint!
     @IBOutlet weak var cardNumberLabelOutlet: UILabel!
@@ -33,6 +41,8 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBOutlet weak var outerCircleImageViewOutlet: UIImageView!
     @IBOutlet weak var innerCircleImageViewOutlet: SwiftyAvatar!
     
+    fileprivate let RIDE_CANCEL_THRESH: TimeInterval = (140)  // ~2 minutes, precisely 140 seconds
+
     private var firstAppearanceCompleted = false
     weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
@@ -44,6 +54,56 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     let messageComposer = MessageComposer()
     
     // MARK: - Actions
+    
+    @IBAction func onCancelRideClick(_ sender: UIButton) {
+        
+        // dismiss the keyboard if it's visible
+        self.view.endEditing(true)
+        
+        let ride = YBClient.sharedInstance().ride!
+        if (TimeUtil.diffFromCurTimeISO((ride.datetime)!)! < RIDE_CANCEL_THRESH) {
+            
+            let driverFarAction = UIAlertAction(title: InterfaceString.ActionSheet.DriverFarReason, style: .default) { _ in
+                self.cancelRide(with: .riderDriverTooFar)
+            }
+            
+            let emergencyAction = UIAlertAction(title: InterfaceString.ActionSheet.EmergencyReason, style: .default) { _ in
+                self.cancelRide(with: .riderEmergency)
+            }
+            
+            let plansChangedAction = UIAlertAction(title: "\(InterfaceString.ActionSheet.PlansChangedReason) \(InterfaceString.ActionSheet.CancellationFee)", style: .destructive) { _ in
+                self.cancelRide(with: .riderPlansChanged)
+            }
+            
+            let cancelAction = UIAlertAction(title: InterfaceString.Cancel, style: .cancel)
+            
+            let controller = UIAlertController(title: InterfaceString.ActionSheet.CancelReason,
+                                               message: "Cancel within 2 minutes to avoid a $5 fee.",
+                                               preferredStyle: .actionSheet)
+            
+            for action in [driverFarAction, emergencyAction, plansChangedAction, cancelAction] {
+                controller.addAction(action)
+            }
+            present(controller, animated: true, completion: nil)
+            
+        } else {
+            
+            let plansChangedAction = UIAlertAction(title: "\(InterfaceString.ActionSheet.PlansChangedReason) \(InterfaceString.ActionSheet.CancellationFee)", style: .destructive) { _ in
+                self.cancelRide(with: .riderPlansChanged)
+            }
+            
+            let cancelAction = UIAlertAction(title: InterfaceString.Cancel, style: .cancel)
+            
+            let controller = UIAlertController(title: InterfaceString.ActionSheet.CancelReason,
+                                               message: "You will be charged a $5 fee for cancelling the ride.",
+                                               preferredStyle: .actionSheet)
+            
+            for action in [plansChangedAction, cancelAction] {
+                controller.addAction(action)
+            }
+            present(controller, animated: true, completion: nil)
+        }
+    }
     
     @IBAction func driverInfoBtnAction(_ sender: Any) {
         
@@ -67,10 +127,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBAction func onCallButtonTap(_ sender: UIButton) {
         
         guard let ride = YBClient.sharedInstance().ride, let myDriver = ride.driver else {
-            
-            let errorAlert = UIAlertView(title: "Cannot Send Text Message", message: "Your device is not able to send text messages.", delegate: self, cancelButtonTitle: "OK")
-            errorAlert.show()
-            
+            AlertUtil.displayAlertOnVC(self, title: "Unexpected Error", message: "Cannot make a call")
             return;
         }
         
@@ -86,10 +143,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBAction func sendTextMessageButtonTapped(_ sender: UIButton) {
 
         guard let ride = YBClient.sharedInstance().ride, let myDriver = ride.driver, let phoneNumber = myDriver.phoneNumber else {
-            
-            let errorAlert = UIAlertView(title: "Unexpected Error.", message: "We are working on resolving this error for you. Sincere apology for the inconvenience.", delegate: self, cancelButtonTitle: "OK")
-            errorAlert.show()
-            
+            AlertUtil.displayAlertOnVC(self, title: "Unexpected Error", message: "Cannot Send Text Message")
             return;
         }
         
@@ -103,8 +157,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             self.present(messageComposeVC, animated: true, completion: nil)
             
         } else {
-            let errorAlert = UIAlertView(title: "Unexpected Error.", message: "We are working on resolving this error for you. Sincere apology for the inconvenience.", delegate: self, cancelButtonTitle: "OK")
-            errorAlert.show()
+            AlertUtil.displayAlertOnVC(self, title: "Unexpected Error", message: "Cannot Send Text Message")
         }
     }
     
@@ -152,17 +205,17 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             switch (state) {
             case .driverEnRoute:
                 
-                driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
+                //driverStatusLabelOutlet.text = DriverStateDescription.driverEnRoute.rawValue
                 
                 break
                 
             case .driverArrived:
-                driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
+                //driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
 
                 break
                 
             case .rideStart:
-                driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
+                //driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
 
                 break
             }
@@ -193,7 +246,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
                 cardNumberLabelOutlet.text = "*\(last4)"
             }
             
-            if let fare = ride.fare {
+            if let fare = ride.bidPrice {
                 let fareInt = Int(fare)
                 totalFareLabelOutlet.text = "$\(String(describing: fareInt))"
             }
@@ -201,9 +254,9 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             if let people = ride.numPeople {
                 
                 if people == 1 {
-                    peopleLabelOutlet.text = "\(String(describing: people)) person"
+                    peopleLabelOutlet.text = "Max \(String(describing: people)) person"
                 } else {
-                    peopleLabelOutlet.text = "\(String(describing: people)) persons"
+                    peopleLabelOutlet.text = "Max \(String(describing: people)) persons"
                 }
             }
             
@@ -283,23 +336,65 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     
     // MARK: - Helpers
     
+    fileprivate func cancelRide(with reason: RideCancellationReason) {
+        WebInterface.makeWebRequestAndHandleError(
+            self,
+            webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
+                
+                ActivityIndicatorUtil.enableActivityIndicator(self.view,
+                                                              title: "Cancelling Ride")
+                
+                let client: BAAClient = BAAClient.shared()
+                client.cancelRiderRide(YBClient.sharedInstance().bid?.id,
+                                       cancelCode: reason.rawValue as NSNumber,
+                                       completion: {(success, error) -> Void in
+                                        
+                    ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                    
+                    if (success != nil) {
+                        
+                        LocationService.sharedInstance().stopFetchingDriverLocation()
+                        
+                        // Set the client state
+                        YBClient.sharedInstance().status = .looking
+                        YBClient.sharedInstance().bid = nil
+                        
+                        AlertUtil.displayAlertOnVC(self, title: "Ride successfully cancelled",
+                                                   message: "Hope to see you again!",
+                                                   completionBlock: {() -> Void in
+                                                    
+                                                    // Trigger unwind segue to MainViewController
+                                                    self.performSegue(withIdentifier: "unwindToMainViewControllerFromRideBottomViewController", sender: self)
+                        })
+                        
+                    } else {
+                        DDLogVerbose("Ride Cancel failed: \(String(describing: error))")
+                        errorBlock(success, error)
+                    }
+                })
+        })
+    }
+    
     fileprivate func startDriverStatusAnimation() {
-        driverStatusLabelOutlet.animation = "flash"
-        driverStatusLabelOutlet.duration = 1.5
-        driverStatusLabelOutlet.repeatCount = .infinity
-        driverStatusLabelOutlet.animate()
+        
+//        if let driverStatusLabel = self.driverStatusLabelOutlet {
+//            driverStatusLabel.animation = "flash"
+//            driverStatusLabel.duration = 1.5
+//            driverStatusLabel.repeatCount = .infinity
+//            driverStatusLabel.animate()
+//        }
     }
     
     fileprivate func stopDriverStatusAnimation() {
-        driverStatusLabelOutlet.layer.removeAllAnimations()
+        //driverStatusLabelOutlet.layer.removeAllAnimations()
     }
     
     func rideStartCallback() {
-        driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
+        //driverStatusLabelOutlet.text = DriverStateDescription.rideStarted.rawValue
     }
     
     func driverArrivedCallback() {
-        driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
+        //driverStatusLabelOutlet.text = DriverStateDescription.driverArrived.rawValue
     }
     
     // MARK: - ISHPullUpSizingDelegate
@@ -348,6 +443,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     
     func pullUpViewController(_ pullUpViewController: ISHPullUpViewController, didChangeTo state: ISHPullUpState) {
 //        topLabel.text = textForState(state);
+        handleViewOutlet.setState(ISHPullUpHandleView.handleState(for: state), animated: firstAppearanceCompleted)
     }
     
     /*

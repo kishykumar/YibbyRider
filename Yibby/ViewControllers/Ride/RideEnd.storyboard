@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,74 +14,6 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Trip View Controller-->
-        <scene sceneID="Q7u-iU-DaH">
-            <objects>
-                <viewController storyboardIdentifier="TripViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ff-sZ-eBe" customClass="TripViewController" customModule="Yibby" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WhE-EU-thc"/>
-                        <viewControllerLayoutGuide type="bottom" id="azC-7q-ukB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="20b-Nb-pzR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgZ-HC-sHG" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
-                                <color key="backgroundColor" red="0.37458121776580811" green="0.9735558032989502" blue="0.9732670783996582" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip in Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dab-Sc-eAR">
-                                <rect key="frame" x="128.5" y="437" width="119" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hZ-4C-3cz">
-                                <rect key="frame" x="228" y="518" width="82" height="30"/>
-                                <state key="normal" title="Cancel Ride"/>
-                                <connections>
-                                    <action selector="cancelRideAction:" destination="9Ff-sZ-eBe" eventType="touchUpInside" id="cNN-il-Ose"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H8o-hi-GlQ">
-                                <rect key="frame" x="44" y="466" width="232" height="21"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETA: 13 mins " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQ5-0c-U4h">
-                                <rect key="frame" x="27" y="501" width="102" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="PgZ-HC-sHG" firstAttribute="centerX" secondItem="Dab-Sc-eAR" secondAttribute="centerX" id="3I1-z0-aAZ"/>
-                            <constraint firstItem="Dab-Sc-eAR" firstAttribute="top" secondItem="PgZ-HC-sHG" secondAttribute="bottom" constant="8" symbolic="YES" id="KwH-ye-4d3"/>
-                            <constraint firstItem="7hZ-4C-3cz" firstAttribute="top" secondItem="H8o-hi-GlQ" secondAttribute="bottom" constant="31" id="NG4-rq-5hM"/>
-                            <constraint firstItem="XQ5-0c-U4h" firstAttribute="top" secondItem="H8o-hi-GlQ" secondAttribute="bottom" constant="14" id="RIf-qX-nnS"/>
-                            <constraint firstItem="PgZ-HC-sHG" firstAttribute="leading" secondItem="20b-Nb-pzR" secondAttribute="leading" id="UlL-bJ-ShB"/>
-                            <constraint firstItem="H8o-hi-GlQ" firstAttribute="top" secondItem="20b-Nb-pzR" secondAttribute="top" constant="466" id="Y7g-xL-bx4"/>
-                            <constraint firstItem="H8o-hi-GlQ" firstAttribute="top" secondItem="Dab-Sc-eAR" secondAttribute="bottom" constant="8" symbolic="YES" id="Yom-kw-jvm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7hZ-4C-3cz" secondAttribute="trailing" constant="49" id="fRq-6d-JgE"/>
-                            <constraint firstItem="PgZ-HC-sHG" firstAttribute="top" secondItem="20b-Nb-pzR" secondAttribute="top" id="sH9-rH-TbA"/>
-                            <constraint firstAttribute="trailing" secondItem="PgZ-HC-sHG" secondAttribute="trailing" id="tQg-Ah-x1F"/>
-                            <constraint firstItem="Dab-Sc-eAR" firstAttribute="centerX" secondItem="H8o-hi-GlQ" secondAttribute="centerX" constant="27.5" id="u2S-lH-GMx"/>
-                            <constraint firstItem="XQ5-0c-U4h" firstAttribute="leading" secondItem="20b-Nb-pzR" secondAttribute="leadingMargin" constant="11" id="vQD-rs-ZhV"/>
-                            <constraint firstAttribute="bottom" secondItem="7hZ-4C-3cz" secondAttribute="bottom" constant="119" id="wgg-dn-9lx"/>
-                            <constraint firstItem="H8o-hi-GlQ" firstAttribute="leading" secondItem="20b-Nb-pzR" secondAttribute="leadingMargin" constant="28" id="ybD-mb-hC8"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="driverLocMapViewOutlet" destination="PgZ-HC-sHG" id="9gF-fA-j3f"/>
-                        <outlet property="etaLabelOutlet" destination="XQ5-0c-U4h" id="rlu-7q-iAo"/>
-                        <outlet property="tripProgressLabelOutlet" destination="Dab-Sc-eAR" id="S46-uw-acr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkp-kY-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1705" y="492"/>
-        </scene>
         <!--Ride End View Controller-->
         <scene sceneID="0lZ-0x-uA6">
             <objects>
@@ -238,7 +169,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="MYd-M2-fgU" secondAttribute="bottom" id="qG6-Xr-L8Z"/>
                                                                 </constraints>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="C3s-Ku-TqT">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account1" translatesAutoresizingMaskIntoConstraints="NO" id="C3s-Ku-TqT">
                                                                 <rect key="frame" x="137.5" y="0.0" width="80" height="80"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="80" id="H2o-xd-dWG"/>
@@ -409,7 +340,7 @@
     </scenes>
     <resources>
         <image name="Unknown" width="32" height="20"/>
-        <image name="account" width="128" height="128"/>
+        <image name="account1" width="82" height="82"/>
         <image name="driver_car" width="64" height="64"/>
     </resources>
 </document>

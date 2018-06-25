@@ -22,8 +22,8 @@ class ConfirmRideViewController: BaseYibbyViewController {
     var pickupLocation: YBLocation!
     var dropoffLocation: YBLocation!
     
-    var bidHigh: Float!
-    var numPeople: Int!
+    var bidPrice: Float!
+    var numPeople: Int = 4
     var currentPaymentMethod: YBPaymentMethod!
     
     let NO_DRIVERS_FOUND_ERROR_CODE = 20099
@@ -44,15 +44,18 @@ class ConfirmRideViewController: BaseYibbyViewController {
                 
                 let client: BAAClient = BAAClient.shared()
 
-                client.createBid(self.bidHigh as NSNumber!, bidLow: 0, etaHigh: 0, etaLow: 0, pickupLat: self.pickupLocation.latitude as NSNumber!,
-                    pickupLong: self.pickupLocation.longitude as NSNumber!, pickupLoc: self.pickupLocation.name!,
-                    dropoffLat: self.dropoffLocation.latitude as NSNumber!, dropoffLong: self.dropoffLocation.longitude as NSNumber!,
-                    dropoffLoc: self.dropoffLocation.name!,
-                    paymentMethodToken: currentPaymentMethod.token!,
-                    paymentMethodBrand: currentPaymentMethod.type!,
-                    paymentMethodLast4: currentPaymentMethod.last4!,
-                    numPeople: numPeople as NSNumber!,
-                    completion: {(success, error) -> Void in
+                client.createBid(self.bidPrice as NSNumber?,
+                                 pickupLat: self.pickupLocation.latitude as NSNumber?,
+                                 pickupLong: self.pickupLocation.longitude as NSNumber?,
+                                 pickupLoc: self.pickupLocation.name!,
+                                 dropoffLat: self.dropoffLocation.latitude as NSNumber?,
+                                 dropoffLong: self.dropoffLocation.longitude as NSNumber?,
+                                 dropoffLoc: self.dropoffLocation.name!,
+                                 paymentMethodToken: currentPaymentMethod.token!,
+                                 paymentMethodBrand: currentPaymentMethod.type!,
+                                 paymentMethodLast4: currentPaymentMethod.last4!,
+                                 numPeople: numPeople as NSNumber?,
+                                 completion: {(success, error) -> Void in
                         
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
@@ -92,7 +95,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     // set the bid state
                                     let userBid = Bid()
                                     userBid.id = (successData["id"] as! String)
-                                    userBid.bidHigh = (successData["bidHigh"] as! Double)
+                                    userBid.bidPrice = (successData["bidPrice"] as! Double)
                                     userBid.pickupLocation = pickupLoc
                                     userBid.dropoffLocation = dropoffLoc
                                     userBid.people = (successData["people"] as? Int)

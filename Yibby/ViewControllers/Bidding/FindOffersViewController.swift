@@ -136,10 +136,12 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
     fileprivate func setupNotificationObservers() {
         
         offerObserver = NotificationObserver(notification: BidNotifications.noOffers) { [unowned self] bid in
+            DDLogVerbose("Stopped offer timer")
             self.stopOfferTimer()
         }
         
         rideObserver = NotificationObserver(notification: RideNotifications.driverEnRoute) { [unowned self] ride in
+            DDLogVerbose("Stopped offer timer")
             self.stopOfferTimer()
         }
     }
@@ -150,10 +152,10 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
     
     fileprivate func startOfferTimer() {
         offerTimer = Timer.scheduledTimer(timeInterval: OFFER_TIMER_INTERVAL,
-                                                            target: self,
-                                                            selector: #selector(FindOffersViewController.bidWaitTimeoutCallback),
-                                                            userInfo: nil,
-                                                            repeats: true)
+                            target: self,
+                            selector: #selector(FindOffersViewController.bidWaitTimeoutCallback),
+                            userInfo: nil,
+                            repeats: true)
     }
     
     fileprivate func stopOfferTimer() {
@@ -180,6 +182,10 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
             let client: BAAClient = BAAClient.shared()
             client.syncClient(BAASBOX_RIDER_STRING, bidId: bidId, completion: { (success, error) -> Void in
                 
+                if (YBClient.sharedInstance().status != .ongoingBid) {
+                    return;
+                }
+                
                 if let success = success {
                     let syncModel = Mapper<YBSync>().map(JSONObject: success)
                     if let syncData = syncModel {
@@ -192,8 +198,12 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
                         
                         switch (YBClient.sharedInstance().status) {
 
+                        // TODO: Fix me! Bug when driver reaches ride_end, driver_Arrived etc, and rider opens the app at the end.
+                        case .onRide:
+                            fallthrough
+                        case .pendingRating:
+                            fallthrough
                         case .driverEnRoute:
-
                             self.stopOfferTimer()
                             postNotification(RideNotifications.driverEnRoute, value: YBClient.sharedInstance().ride!)
                             

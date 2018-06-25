@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     fileprivate let BAASBOX_APPCODE = "1234567890"
     //fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    fileprivate let BAASBOX_URL = "http://3e67cdcf.ngrok.io"
+    fileprivate let BAASBOX_URL = "http://b21de12e.ngrok.io"
 
     var pushController: PushController =  PushController()
     
@@ -433,10 +433,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     // MARK: - App initialization
     
-    func initializeApp(_ doPaymentSetup: Bool) {
-        
-        // LocationService
-        self.setupLocationService()
+    func initializeApp(_ doPaymentSetup: Bool) -> Error? {
         
         self.appInitDispatchGroup = DispatchGroup()
         
@@ -460,7 +457,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                     }
                 }
                 
-                self.registerForPushNotifications()
+                DispatchQueue.main.async {
+                    self.registerForPushNotifications()
+                }
             }
             
             // Payment,Sync
@@ -469,25 +468,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                 self.setupWebserver(doPaymentSetup)
             }
             
-            // Notify the main thread when initialization is done.
-            dispatchGroup.notify(queue: .main) {
+            dispatchGroup.wait()
+            
+            // Check for errors
+            if (self.pushError != nil) {
+                DDLogVerbose("Push Error during init \(String(describing: self.pushError))")
                 
-                // Check for errors
-                if (self.pushError != nil) {
-                    
-                    DDLogVerbose("Push Error during init \(String(describing: self.pushError))")
-                    self.handleAppInitError(self.pushError)
-                    return;
-                    
-                } else if (self.syncError != nil) {
-                    
-                    DDLogVerbose("Sync Error during init \(String(describing: self.syncError))")
-                    self.handleAppInitError(self.syncError)
-                    return;
-                    
-                }
+                return self.pushError;
+                //let customizedError = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Failed to initialize app"])
+                //return customizedError;
+                
+            } else if (self.syncError != nil) {
+                DDLogVerbose("Sync Error during init \(String(describing: self.syncError))")
+                return self.syncError;
+            }
+            
+            // Schedule on the main thread synchronously
+            DispatchQueue.main.sync {
                 
                 DDLogVerbose("App Initialization successfully complete")
+                
+                // LocationService
+                self.setupLocationService()
                 
                 self.initializeMainViewController()
                 if let centerNav = self.centerContainer?.centerViewController as? UINavigationController {
@@ -555,6 +557,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                         
                         break
                         
+                    case .rideDriverCancelled:
+                        
+                        // Remove the bid if it existed
+                        let bidId = YBClient.sharedInstance().getPersistedBidId()
+                        if (bidId != nil) {
+                            YBClient.sharedInstance().bid = nil
+                        }
+                        
+                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "Unfortunately, your ride has been cancelled by the driver.",
+                                                   message: "Please send another bid.",
+                                                   completionBlock: {() -> Void in
+                                                    
+                        })
+                        
+                    case .rideRiderCancelled:
+                        
+                        // Remove the bid if it existed
+                        let bidId = YBClient.sharedInstance().getPersistedBidId()
+                        if (bidId != nil) {
+                            YBClient.sharedInstance().bid = nil
+                        }
+                        
+                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "You had cancelled the previous ride.",
+                                                   message: "Hope to see you again!",
+                                                   completionBlock: {() -> Void in
+                                                    
+                        })
                         
                     case .failedNoOffers:
                         fallthrough
@@ -566,14 +595,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                     centerNav.setViewControllers(controllers, animated: true)
                     self.window!.visibleViewController?.present(self.centerContainer!, animated: true, completion: nil)
                     
-                    // Post the notification to the caller View Controller
-                    postNotification(AppInitNotifications.initStatus,
-                                     value: AppInitReturnCode.success)
-                    
                     self.initialized = true
                 }
             }
         }
+        
+        return nil
     }
     
     // Register for remote notifications
@@ -667,27 +694,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         DDLogVerbose("Success in SetupWebserver")
         self.appInitDispatchGroup?.leave()
-    }
-    
-    fileprivate func handleAppInitError(_ error: Error?) {
-        
-        if let myNSError = error as NSError? {
-            
-            // If it's authentication error, show the logic view controller
-            if (myNSError.domain == BaasBox.errorDomain() &&
-                myNSError.code == WebInterface.BAASBOX_AUTHENTICATION_ERROR) {
-                
-                postNotification(AppInitNotifications.initStatus,
-                                 value: AppInitReturnCode.loginError)
-                
-                DDLogVerbose("Error in webRequest1: \(String(describing: error))")
-            } else {
-                
-                // Post the notification that registration was not successful
-                postNotification(AppInitNotifications.initStatus,
-                                 value: AppInitReturnCode.error)
-            }
-        }
     }
 }
 

@@ -30,13 +30,17 @@ private struct YibbyColors {
     static let textFieldTextColor1: UIColor = UIColor.black
     static let textFieldBackgroundColor1: UIColor = UIColor.white
     
-    static let appDarkGreen1: UIColor = UIColor(netHex: 0x2ECC71)
+    static let appDarkGreen1: UIColor = UIColor(netHex: 0x28BE45)
+    static let appDarkGreen2: UIColor = UIColor(netHex: 0x2ECC71)
     
     static let navyblue1: UIColor = UIColor(netHex: 0x000080)
     
     static let borderColor: UIColor = UIColor(netHex: 0x31A343)
     
     static let appDarkBlue1: UIColor = UIColor(netHex: 0x4181B5)
+
+    static let bidSliderGreen: UIColor = UIColor(netHex: 0x009051)
+    static let bidSliderRed: UIColor = UIColor(netHex: 0xE9513B)
 }
 
 public extension UIColor {
@@ -97,5 +101,8 @@ public extension UIColor {
     
     class func borderColor() -> UIColor { return YibbyColors.borderColor }
     
-    class func appDarkBlue1() -> UIColor { return YibbyColors.appDarkBlue1 }    
+    class func appDarkBlue1() -> UIColor { return YibbyColors.appDarkBlue1 }
+
+    class func bidSliderGreen() -> UIColor { return YibbyColors.bidSliderGreen }
+    class func bidSliderRed() -> UIColor { return YibbyColors.bidSliderRed }
 }

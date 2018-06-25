@@ -13,7 +13,7 @@ class Bid: Mappable {
     
     // MARK: - Properties
     var id: String?
-    var bidHigh: Double?
+    var bidPrice: Double?
     
     var pickupLocation: YBLocation?
     var dropoffLocation: YBLocation?
@@ -35,7 +35,7 @@ class Bid: Mappable {
     // Mappable
     func mapping(map: Map) {
         id                  <- map["id"]
-        bidHigh             <- map["bidHigh"]
+        bidPrice             <- map["bidPrice"]
         pickupLocation      <- map["pickupLocation"]
         dropoffLocation     <- map["dropoffLocation"]
         people              <- map["people"]
