@@ -11,6 +11,7 @@ import BaasBoxSDK
 import CocoaLumberjack
 import GoogleMaps
 import ISHPullUp
+import ActionSheetPicker_3_0
 
 class RideContentViewController: BaseYibbyViewController {
 
@@ -33,14 +34,8 @@ class RideContentViewController: BaseYibbyViewController {
 
     fileprivate let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
     fileprivate let DRIVER_ETA_UPDATE_THRESH: TimeInterval = (60)  // 60 seconds
-    
+
     // MARK: - Actions
-    
-    @IBAction func onBackButtonImageViewClick(_ sender: Any) {
-        if let puVC = pullUpController {
-            _ = puVC.navigationController?.popViewController(animated: true)
-        }
-    }
 
     @IBAction func onNextButtonClick(_ sender: YibbyButton1) {
         
@@ -59,8 +54,6 @@ class RideContentViewController: BaseYibbyViewController {
                 }
             }
         }
-        
-        
     }
     
     // MARK: - Setup functions
@@ -84,6 +77,7 @@ class RideContentViewController: BaseYibbyViewController {
                 break
                 
             case .driverArrived:
+                
                 setDropoffMarker(self.bid.dropoffLocation!)
                 driverMarkerStatus = DriverStateDescription.driverArrived
                 break
@@ -102,17 +96,21 @@ class RideContentViewController: BaseYibbyViewController {
         }
     }
     
-    func setupUI () {
+    fileprivate func setupUI () {
         
+        gmsMapViewOutlet.isMyLocationEnabled = true
+
         // hide the back button
         self.navigationItem.setHidesBackButton(true, animated: false)
         
+        nextButtonOutlet.layer.cornerRadius = 10.0
+        
         if (MockMain.isMocked) {
             nextButtonOutlet.isHidden = false
-            nextButtonOutlet.layer.cornerRadius = 10.0
-            nextButtonOutlet.layer.borderWidth = 2.0
+
             nextButtonOutlet.layer.borderColor = UIColor.blue.cgColor
             nextButtonOutlet.tintColor = UIColor.red
+            nextButtonOutlet.setTitle("Next", for: .normal)
         } else {
             nextButtonOutlet.isHidden = true
         }
@@ -236,16 +234,12 @@ class RideContentViewController: BaseYibbyViewController {
         driverLocationObserver?.removeObserver()
     }
     
-    // MARK: - Helpers
+    // MARK: - Ride Callbacks
     
-    func centerMarkers() {
-        adjustGMSCameraFocus(marker1: pickupMarker ?? dropoffMarker, marker2: driverLocMarker)
-    }
-    
-    // This callback is called from 2 places: 
+    // This callback is called from 2 places:
     // 1. Ride start notification
     // 2. Sync codepath
-    func rideStartCallback() {
+    public func rideStartCallback() {
         
         // When the ride starts, we want to create the new dropoff marker if it's not there
         if (self.dropoffMarker == nil) {
@@ -260,13 +254,13 @@ class RideContentViewController: BaseYibbyViewController {
         }
     }
     
-    func driverArrivedCallback() {
-        
+    public func driverArrivedCallback() {
+
         // When the driver arrives, we want to clear the pickup marker and add the dropoff marker.
         clearPickupMarker()
         
         setDropoffMarker(self.bid.dropoffLocation!)
-
+        
         // Update the driver location marker
         // It's unnecessary here because the driver location is being updated in the background by the location notification observer.
         // But, we have the folllowing code just to make the update right away!
@@ -274,6 +268,12 @@ class RideContentViewController: BaseYibbyViewController {
             updateDriverLocation(latLng, status: DriverStateDescription.driverArrived.rawValue)
         }
     }
+    
+    public func centerMarkers() {
+        adjustGMSCameraFocus(marker1: pickupMarker ?? dropoffMarker, marker2: driverLocMarker)
+    }
+    
+    // MARK: - Helpers
     
     fileprivate func clearPickupMarker() {
         pickupMarker?.map = nil
@@ -307,6 +307,10 @@ class RideContentViewController: BaseYibbyViewController {
     }
     
     fileprivate func updateDriverLocation (_ loc: CLLocationCoordinate2D, status: String) {
+        
+        if (self.viewIfLoaded == nil) {
+            return;
+        }
         
         // If marker hasn't been created yet, create it.
         //     OR
@@ -354,7 +358,7 @@ class RideContentViewController: BaseYibbyViewController {
             }
 
             DirectionsService.shared.getEta(from: loc, to: toLoc,
-                                            completionBlock: { (eta) -> Void in
+                                            completionBlock: { (etaSeconds, distanceMeters) -> Void in
                                               
                 // TODO: Show the ETA on the UI
                 

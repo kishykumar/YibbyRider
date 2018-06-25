@@ -50,7 +50,7 @@ class SignupViewController: BaseYibbyViewController,
     
     @IBAction func tncButtonAction(_ sender: AnyObject) {
         let url = URL(string: "https://google.com")!
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     // MARK: - Setup functions
@@ -226,18 +226,28 @@ class SignupViewController: BaseYibbyViewController,
     
     // MARK: - Helper Functions
     
+    fileprivate func initFromSignup() {
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            let error = appDelegate.initializeApp(true)
+            DispatchQueue.main.async {
+                if (error != nil) {
+                    AlertUtil.displayAlertOnVC((self.navigationController?.visibleViewController)!,
+                                               title: error!.localizedDescription, message: "Try again.")
+                }
+            }
+        }
+    }
+    
     fileprivate func verifyPhoneNumber(_ formattedPhoneNumber: String) {
         
         let prefillPhoneNumber = AKFPhoneNumber(countryCode: "+1", phoneNumber: formattedPhoneNumber)
         let inputState: String = UUID().uuidString
         
-        if let viewController = self.accountKit.viewControllerForPhoneLogin(with: prefillPhoneNumber, state: inputState) as? AKFViewController {
-            prepareLoginViewController(viewController)
-            
-            if let viewController = viewController as? UIViewController {
-                present(viewController, animated: true, completion: nil)
-            }
-        }
+        let viewController = self.accountKit.viewControllerForPhoneLogin(with: prefillPhoneNumber, state: inputState)
+        prepareLoginViewController(viewController)
+        present(viewController, animated: true, completion: nil)
     }
     
     fileprivate func prepareLoginViewController(_ loginViewController: AKFViewController) {
@@ -295,26 +305,24 @@ class SignupViewController: BaseYibbyViewController,
     // MARK: - SignupPaymentViewControllerDelegate
 
     func signupPaymentViewControllerDidSkip(_ addPaymentViewController: AddPaymentViewController) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.initializeApp(true)
+        self.initFromSignup()
     }
     
     func signupPaymentViewController(addPaymentViewController: AddPaymentViewController,
                                      didCreateNonce paymentMethod: BTPaymentMethodNonce, completion: @escaping BTErrorBlock) {
 
-        
         BraintreePaymentService.sharedInstance().attachSourceToCustomer(paymentMethod, completionBlock: {(error: NSError?) -> Void in
             
             // execute the completion block first
             completion(error)
             
             if (error == nil) {
-                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.initializeApp(false)
+                // TODO: Major issue when init fails here!!!!! (@_@)
+                self.initFromSignup()
             }
         })
     }
-
+    
     // MARK: - UITextFieldDelegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -349,11 +357,12 @@ class SignupViewController: BaseYibbyViewController,
         if (textField == phoneNumberOutlet) {
             if var str = textField.text {
                 str = str + string
-                if str.characters.count <= MAX_PHONE_NUMBER_TEXTFIELD_LENGTH {
+                if str.count <= MAX_PHONE_NUMBER_TEXTFIELD_LENGTH {
                     return true
                 }
                 
-                textField.text = str.substring(to: str.index(str.startIndex, offsetBy: MAX_PHONE_NUMBER_TEXTFIELD_LENGTH))
+                let index = str.index(str.startIndex, offsetBy: MAX_PHONE_NUMBER_TEXTFIELD_LENGTH)
+                textField.text = String(str[..<index])
                 return false
             }
         }
@@ -363,7 +372,8 @@ class SignupViewController: BaseYibbyViewController,
     
     // MARK: - AKFViewControllerDelegate extension
     
-    func viewController(_ viewController: UIViewController!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
+    func viewController(_ viewController: (UIViewController & AKFViewController)!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
+    
         // login success
         DDLogVerbose("Login Success")
         
@@ -376,7 +386,7 @@ class SignupViewController: BaseYibbyViewController,
                         phoneNumberi: self.formattedPhoneNumber!, passwordi: self.passwordOutlet.text!)
     }
     
-    func viewController(_ viewController: UIViewController!, didFailWithError error: Error!) {
+    func viewController(_ viewController: (UIViewController & AKFViewController)!, didFailWithError error: Error!) {
         // login failed
         DDLogVerbose("\(viewController) did fail with error: \(error)")
         accountKit.logOut()

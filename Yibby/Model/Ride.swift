@@ -3,12 +3,18 @@
 //  Yibby
 //
 //  Created by Kishy Kumar on 6/17/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
 import Braintree
 import ObjectMapper
+
+enum RideCancelled: Int {
+    case notCancelled = 0
+    case cancelledByRider = 1
+    case cancelledByDriver = 2
+}
 
 class Ride: Mappable {
     
@@ -16,10 +22,9 @@ class Ride: Mappable {
     var bidId: String?
     var datetime: String?
     var driver: YBDriver?
-    var driverBidPrice: Float?
+    var bidPrice: Float?
     var driverLocation: YBLocation?
     var dropoffLocation: YBLocation?
-    var fare: Float?
     var id: String?
     var tripDistance: Float?
     var paymentMethodToken: String?
@@ -28,9 +33,10 @@ class Ride: Mappable {
     var numPeople: Int?
     var pickupLocation: YBLocation?
     var rideTime: Int?
-    var riderBidPrice: Float?
     var tip: Float?
+    var otherFees: Float?
     var vehicle: YBVehicle?
+    var cancelled: Int?
     
     // MARK: Initialization
     
@@ -47,10 +53,9 @@ class Ride: Mappable {
         bidId                   <- map["bidId"]
         datetime                <- map["datetime"]
         driver                  <- map["driver"]
-        driverBidPrice          <- map["driverBidPrice"]
+        bidPrice                <- map["bidPrice"]
         driverLocation          <- map["driverLocation"]
         dropoffLocation         <- map["dropoffLocation"]
-        fare                    <- map["fare"]
         id                      <- map["id"]
         tripDistance            <- map["tripDistance"]
         paymentMethodToken      <- map["paymentMethodToken"]
@@ -59,8 +64,8 @@ class Ride: Mappable {
         numPeople               <- map["people"]
         pickupLocation          <- map["pickupLocation"]
         rideTime                <- map["rideTime"]
-        riderBidPrice           <- map["riderBidPrice"]
         tip                     <- map["tip"]
         vehicle                 <- map["vehicle"]
+        cancelled               <- map["cancelled"]
     }
 }

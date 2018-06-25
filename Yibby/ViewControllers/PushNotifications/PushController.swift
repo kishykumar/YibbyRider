@@ -22,6 +22,7 @@ enum YBMessageType: String {
     case driverArrived = "DRIVER_ARRIVED"
     case rideEnd = "RIDE_END"
     case driverEnRoute = "DRIVER_EN_ROUTE"
+    case rideCancelled = "RIDE_CANCELLED"
 }
 
 open class PushController: NSObject, PushControllerProtocol {
@@ -171,7 +172,8 @@ open class PushController: NSObject, PushControllerProtocol {
         } else if (messageType == YBMessageType.driverEnRoute ||
                     messageType == YBMessageType.rideStart ||
                     messageType == YBMessageType.driverArrived ||
-                    messageType == YBMessageType.rideEnd) {
+                    messageType == YBMessageType.rideEnd ||
+                    messageType == YBMessageType.rideCancelled) {
             
             let ride = Ride(JSONString: jsonCustomString)!
 
@@ -211,6 +213,10 @@ open class PushController: NSObject, PushControllerProtocol {
             case .rideEnd:
                 DDLogDebug("RIDE_END_MESSAGE_TYPE")
                 postNotification(RideNotifications.rideEnd, value: "")
+                
+            case .rideCancelled:
+                DDLogDebug("RIDE_CANCELLED_MESSAGE_TYPE")
+                postNotification(RideNotifications.rideCancelled, value: "")
                 
             default:
                 DDLogError("Weird message received during Bid2: \(messageType)")

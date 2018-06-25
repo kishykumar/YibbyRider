@@ -3,7 +3,7 @@
 //  Yibby
 //
 //  Created by Kishy Kumar on 6/14/16.
-//  Copyright © 2016 MyComp. All rights reserved.
+//  Copyright © 2016 Yibby. All rights reserved.
 //
 
 import UIKit
@@ -181,7 +181,7 @@ class RideEndViewController: BaseYibbyViewController {
 
         if let ride = YBClient.sharedInstance().ride {
             
-            let rideFareInt = Int(ride.fare!)
+            let rideFareInt = Int(ride.bidPrice!)
             rideFareLabel.text = "$\(rideFareInt)"
             
             if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
@@ -208,7 +208,7 @@ class RideEndViewController: BaseYibbyViewController {
             }
             
             if let myDriver = ride.driver {
-                
+            
                 if let driverProfilePic = myDriver.profilePictureFileId {
                     if (driverProfilePic != "") {
                         if let imageUrl  = BAAFile.getCompleteURL(withToken: driverProfilePic) {
@@ -289,7 +289,7 @@ class RideEndViewController: BaseYibbyViewController {
     func updateFinalFareWithTip() {
         
         if let ride = YBClient.sharedInstance().ride {
-            let rideFareInt = Int(ride.fare!)
+            let rideFareInt = Int(ride.bidPrice!)
             let tipInt = Int(finalTipAmount)
             
             rideFareLabel.text = "$\(rideFareInt + tipInt)"

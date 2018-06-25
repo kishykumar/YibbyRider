@@ -48,7 +48,8 @@ class DirectionsService {
         }
     }
     
-    func getEta(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D, completionBlock: @escaping (_ eta: TimeInterval) -> Void) {
+    func getEta(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D,
+                completionBlock: @escaping (_ etaSeconds: TimeInterval, _ distanceMeters: CLLocationDistance) -> Void) {
         directionsAPI.from = PXLocation.coordinateLocation(from)
         directionsAPI.to = PXLocation.coordinateLocation(to)
         directionsAPI.mode = PXGoogleDirectionsMode.driving
@@ -67,7 +68,7 @@ class DirectionsService {
                 case let .success(request, routes):
                     
                     DDLogVerbose("Success: \(request) \(routes)")
-                    completionBlock(routes[0].totalDuration)
+                    completionBlock(routes[0].totalDuration, routes[0].totalDistance)
                 }
             })
         }

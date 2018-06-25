@@ -18,6 +18,8 @@ enum YBClientStatus: String {
     case driverArrived = "DRIVER_ARRIVED"
     case onRide = "RIDE_START"
     case pendingRating = "RIDE_END"
+    case rideDriverCancelled = "RIDE_DRIVER_CANCELLED"
+    case rideRiderCancelled = "RIDE_RIDER_CANCELLED"
 }
 
 // BidState singleton

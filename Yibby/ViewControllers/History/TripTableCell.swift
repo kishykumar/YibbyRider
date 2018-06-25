@@ -22,6 +22,7 @@ class TripTableCell: FoldingCell {
     @IBOutlet weak var totalPriceLbl: UILabel!
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     @IBOutlet weak var userIV: UIImageView!
+    @IBOutlet weak var cancelledLabelOutlet: UILabel!
     
     @IBOutlet weak var dateAndTimeLbl1: UILabel!
     @IBOutlet weak var distanceInMilesLbl: UILabel!
@@ -41,8 +42,8 @@ class TripTableCell: FoldingCell {
     @IBOutlet weak var cardDetailsBtnOutlet: UIButton!
     @IBOutlet weak var gmsMapViewOpenOutlet: GMSMapView!
     
-    var myTrip: Ride!
-    var myViewController: TripTableVC!
+    weak var myTrip: Ride?
+    weak var myViewController: TripTableVC?
 
     var number: Int = 0 {
         didSet {
@@ -100,7 +101,7 @@ class TripTableCell: FoldingCell {
             otherIssueBtn.layer.shadowOpacity = 0.5
             otherIssueBtn.layer.shadowRadius = 2
             otherIssueBtn.layer.shadowColor = UIColor.gray.cgColor
-            otherIssueBtn.layer.shadowOffset = CGSize(width: -2, height: -1)
+            otherIssueBtn.layer.shadowOffset = CGSize(width: -2, height: -1)            
         }
     }
     
@@ -110,10 +111,11 @@ class TripTableCell: FoldingCell {
         let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
         let carDetailsViewController = historyStoryboard.instantiateViewController(withIdentifier: "CarDetailsChildView") as! CarDetailsChildView
         
-        // loginSubView.selectedIndex = sender.tag
-        carDetailsViewController.carModelStr = "\(myTrip.vehicle!.make!) \(myTrip.vehicle!.model!)"
-        carDetailsViewController.carNumberStr = myTrip.vehicle?.licensePlate
-        carDetailsViewController.view.backgroundColor = .clear
+        if let ride = self.myTrip {
+            carDetailsViewController.carModelStr = "\(ride.vehicle!.make!) \(ride.vehicle!.model!)"
+            carDetailsViewController.carNumberStr = ride.vehicle?.licensePlate
+            carDetailsViewController.view.backgroundColor = .clear
+        }
         
         presentTopHalfController(vc: carDetailsViewController)
     }
@@ -123,7 +125,10 @@ class TripTableCell: FoldingCell {
         let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
         let lostViewController = historyStoryboard.instantiateViewController(withIdentifier: "LostItemViewControllerIdentifier") as! LostItemViewController
         lostViewController.myTrip = self.myTrip
-        _ = myViewController.navigationController?.pushViewController(lostViewController, animated: true)
+        
+        if let vc = self.myViewController {
+            _ = vc.navigationController?.pushViewController(lostViewController, animated: true)
+        }
     }
     
     @IBAction func onFareOrRideIssueButtonClick(_ sender: UIButton) {
@@ -161,15 +166,18 @@ class TripTableCell: FoldingCell {
     // MARK: - Helpers
     
     fileprivate func presentTopHalfController(vc: UIViewController) {
-        let presenter = myViewController.presenter
         
-        presenter.presentationType = .topHalf
-        presenter.transitionType = nil
-        presenter.dismissTransitionType = nil
-        presenter.dismissAnimated = true
-        presenter.dismissOnSwipe = true
-        presenter.dismissOnSwipeDirection = .top
-        myViewController.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        if let vc = self.myViewController {
+            let presenter = vc.presenter
+            
+            presenter.presentationType = .topHalf
+            presenter.transitionType = nil
+            presenter.dismissTransitionType = nil
+            presenter.dismissAnimated = true
+            presenter.dismissOnSwipe = true
+            presenter.dismissOnSwipeDirection = .top
+            vc.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        }
     }
 }
 

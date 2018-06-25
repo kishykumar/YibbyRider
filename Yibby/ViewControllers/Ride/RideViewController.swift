@@ -28,6 +28,7 @@ class RideViewController: ISHPullUpViewController {
     
     // MARK: - Properties
 
+    fileprivate var rideCancelObserver: NotificationObserver?
     fileprivate var rideStartObserver: NotificationObserver?
     fileprivate var rideEndObserver: NotificationObserver?
     fileprivate var driverArrivedObserver: NotificationObserver?
@@ -108,6 +109,12 @@ class RideViewController: ISHPullUpViewController {
 
         DDLogVerbose("setup notifications observers")
         
+        rideCancelObserver = NotificationObserver(notification: RideNotifications.rideCancelled) { [unowned self] comment in
+            DDLogVerbose("NotificationObserver rideCancel: \(comment)")
+            
+            self.driverCancelledRideCallback()
+        }
+        
         rideStartObserver = NotificationObserver(notification: RideNotifications.rideStart) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideStart: \(comment)")
             
@@ -134,7 +141,9 @@ class RideViewController: ISHPullUpViewController {
         DDLogVerbose("removing notifications observers")
 
         rideStartObserver?.removeObserver()
+        rideCancelObserver?.removeObserver()
         rideEndObserver?.removeObserver()
+        driverArrivedObserver?.removeObserver()
     }
     
     // MARK: - Helpers
@@ -205,5 +214,21 @@ class RideViewController: ISHPullUpViewController {
 
         let rideEndViewController = rideEndStoryboard.instantiateViewController(withIdentifier: "RideEndViewControllerIdentifier") as! RideEndViewController
         self.navigationController?.pushViewController(rideEndViewController, animated: true)
+    }
+    
+    fileprivate func driverCancelledRideCallback() {
+        
+        LocationService.sharedInstance().stopFetchingDriverLocation()
+        
+        YBClient.sharedInstance().status = .looking
+        YBClient.sharedInstance().bid = nil
+        
+        AlertUtil.displayAlertOnVC(self, title: "Unfortunately, your ride has been cancelled by the driver.",
+                                   message: "Please send another bid.",
+                                   completionBlock: {() -> Void in
+                                    
+            // Trigger unwind segue to MainViewController
+            self.performSegue(withIdentifier: "unwindToMainViewControllerFromRideViewController", sender: self)
+        })
     }
 }

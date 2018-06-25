@@ -153,11 +153,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         cell.fromPlaceTF.text = ride.pickupLocation?.name
         cell.toPlaceTF.text = ride.dropoffLocation?.name
         
-        if let tip = ride.tip, let totalFare = ride.fare {
-            cell.totalPriceLbl.text = "$\(totalFare + tip)"
+        if let tip = ride.tip, let ridePrice = ride.bidPrice {
+            cell.totalPriceLbl.text = "$\(ridePrice + tip)"
             cell.tipPriceLbl.text = "$\(tip)"
-            cell.totalFareLabelOutlet.text = "$\(totalFare + tip)"
-            cell.ridePriceLbl.text = "$\(totalFare)"
+            cell.totalFareLabelOutlet.text = "$\(ridePrice + tip)"
+            cell.ridePriceLbl.text = "$\(ridePrice)"
         }
         
         cell.cardDetailsBtnOutlet.tag = indexPath.row
@@ -170,11 +170,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
             // Markers for gmsMapViewOutlet
             
             let domarker = GMSMarker(position: dropoffCoordinate)
-            domarker.icon = UIImage(named: "famarker_green")
+            domarker.icon = UIImage(named: "famarker_red")
             domarker.map = cell.gmsMapViewOutlet
             
             let pumarker = GMSMarker(position: pickupCoordinate)
-            pumarker.icon = UIImage(named: "famarker_red")
+            pumarker.icon = UIImage(named: "famarker_green")
             pumarker.map = cell.gmsMapViewOutlet
             
             adjustGMSCameraFocus(mapView: cell.gmsMapViewOutlet, pickupMarker: pumarker, dropoffMarker: domarker)
@@ -182,11 +182,11 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
             // Markers for gmsMapViewOpenOutlet
             
             let domarkerOpen = GMSMarker(position: dropoffCoordinate)
-            domarkerOpen.icon = UIImage(named: "famarker_green")
+            domarkerOpen.icon = UIImage(named: "famarker_red")
             domarkerOpen.map = cell.gmsMapViewOpenOutlet
             
             let pumarkerOpen = GMSMarker(position: pickupCoordinate)
-            pumarkerOpen.icon = UIImage(named: "famarker_red")
+            pumarkerOpen.icon = UIImage(named: "famarker_green")
             pumarkerOpen.map = cell.gmsMapViewOpenOutlet
             
             adjustGMSCameraFocus(mapView: cell.gmsMapViewOpenOutlet, pickupMarker: pumarkerOpen, dropoffMarker: domarkerOpen)
@@ -202,7 +202,7 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         }
         
         if let metresTravelled = ride.tripDistance {
-            var milesTravelled = metresTravelled / 1609.34
+            var milesTravelled: Int = (Int(metresTravelled) + 1608) / 1609
             
             if (milesTravelled == 0) {
                 milesTravelled = 1
@@ -212,7 +212,8 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         }
         
         if let rideTime = ride.rideTime {
-            cell.timeLbl.text = "\(String(describing: rideTime)) mins"
+            let rideMins: Int = (rideTime + 59) / 60
+            cell.timeLbl.text = "\(String(describing: rideMins)) mins"
         }
         
         if let paymentMethodBrand = ride.paymentMethodBrand, let paymentMethodLast4 = ride.paymentMethodLast4 {
@@ -228,6 +229,10 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
             cell.cardNumberLbl.text = "*9999"
         }
 
+        if (ride.cancelled != RideCancelled.notCancelled.rawValue) {
+            cell.cancelledLabelOutlet.isHidden = false
+        }
+        
         cell.backgroundColor = UIColor.clear
         
         if cellHeights[indexPath.row] == kCloseCellHeight {

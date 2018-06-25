@@ -6,7 +6,7 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
   - AMPopTip (3.2.1)
-  - BaasBoxSDK (0.9.16)
+  - BaasBoxSDK (0.9.17)
   - BButton (4.0.2)
   - Braintree (4.15.0):
     - Braintree/Card (= 4.15.0)
@@ -276,6 +276,71 @@ DEPENDENCIES:
   - TextFieldEffects
   - XLPagerTabStrip
 
+SPEC REPOS:
+  https://bitbucket.org/kishykumar/yibbypods:
+    - BaasBoxSDK
+  https://github.com/cocoapods/specs.git:
+    - AccountKit
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - AlamofireObjectMapper
+    - AMPopTip
+    - BButton
+    - Braintree
+    - Cache
+    - CardIO
+    - CocoaLumberjack
+    - Cosmos
+    - Crashlytics
+    - DZNEmptyDataSet
+    - Fabric
+    - FLAnimatedImage
+    - FoldingCell
+    - Font-Awesome-Swift
+    - GGLInstanceID
+    - Google
+    - GoogleAppUtilities
+    - GoogleAuthUtilities
+    - GoogleCloudMessaging
+    - GoogleInterchangeUtilities
+    - GoogleIPhoneUtilities
+    - GoogleMaps
+    - GoogleNetworkingUtilities
+    - GooglePlaces
+    - GoogleSignIn
+    - GoogleSymbolUtilities
+    - GoogleUtilities
+    - Hue
+    - ImagePicker
+    - Imaginary
+    - iOSSnapshotTestCase
+    - IQKeyboardManagerSwift
+    - ISHPullUp
+    - KSCrash
+    - LaunchScreen
+    - Lightbox
+    - LTMorphingLabel
+    - M13ProgressSuite
+    - MBProgressHUD
+    - MMDrawerController
+    - Nimble
+    - Nimble-Snapshots
+    - ObjectMapper
+    - OHHTTPStubs
+    - PasswordTextField
+    - PhoneNumberKit
+    - PINCache
+    - PINRemoteImage
+    - Presentr
+    - Quick
+    - StepSlider
+    - Stripe
+    - SwiftKeychainWrapper
+    - SwiftMessages
+    - SwiftyJSON
+    - TextFieldEffects
+    - XLPagerTabStrip
+
 EXTERNAL SOURCES:
   Spring:
     :git: https://github.com/MengTo/Spring.git
@@ -297,7 +362,7 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   AMPopTip: 31251008f2c00cbc0a3d2b18520f277c5b5ab4da
-  BaasBoxSDK: 2a9eb4b87f77f8a20ade4b75f4ad80899ea05fc8
+  BaasBoxSDK: 808108361294303536cb9098f2bf6c028b271201
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   Braintree: 5f10816f455ffd79c411e6d22a177846971f3677
   Cache: f28f8dd64b632155aabf9b3906b036a659048251
@@ -345,7 +410,7 @@ SPEC CHECKSUMS:
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
-  Quick: '03278013f71aa05fe9ecabc94fbcc6835f1ee76f'
+  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
   Spring: 3c7666eccefdeb87140008dc81043f89f8dbb787
   StepSlider: f0754da9b5bd112420f9d647f90114a9af3007e2
   Stripe: 542f2c4493ce31a99fa041fe4973206e8c868f29
@@ -356,6 +421,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: ff9c77e6adc9bfc86e312790ee540348b6dd0a40
+PODFILE CHECKSUM: c9aaec45c820e788f1f4e856b6090b9a5e8a22fb
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.5.3

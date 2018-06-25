@@ -65,7 +65,7 @@ open class YibbyMapMarker: UIView {
         let screenSize: CGRect = UIScreen.main.bounds
 
         let infoWindowHeight = referenceIcon.size.height * 1.1
-        let infoWindowWidth = screenSize.width * 0.50
+        let infoWindowWidth = screenSize.width * 0.60
         
         let infoWindow = YibbyFloatLabelTextField(frame: CGRect(x: 0, y: 0,
                                                                 width: infoWindowWidth,
@@ -117,7 +117,8 @@ open class YibbyMapMarker: UIView {
             infoWindow.titleTextColour = UIColor.red
             
             label.textColor = UIColor.red
-            
+            infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.red, backgroundColor: .clear, size: nil)
+
         } else if (type == .dropoff) {
             
             infoWindow.placeholder = InterfaceString.Ride.Dropoff
@@ -125,7 +126,7 @@ open class YibbyMapMarker: UIView {
             infoWindow.titleTextColour = UIColor.appDarkGreen1()
             
             label.textColor = UIColor.appDarkGreen1()
-            
+            infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.appDarkGreen1(), backgroundColor: .clear, size: nil)
         }
 
         containerView.addSubview(label)
