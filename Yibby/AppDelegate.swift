@@ -56,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     fileprivate let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     fileprivate let BAASBOX_APPCODE = "1234567890"
-    //fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    fileprivate let BAASBOX_URL = "http://b21de12e.ngrok.io"
+    fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
+   // fileprivate let BAASBOX_URL = "http://b21de12e.ngrok.io"
 
     var pushController: PushController =  PushController()
     
@@ -619,7 +619,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         let centerController = biddingStoryboard.instantiateViewController(withIdentifier: "MainViewControllerIdentifier") as! MainViewController;
         let centerNav = UINavigationController(rootViewController: centerController)
         let drawerStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Drawer, bundle: nil)
-        let leftController = drawerStoryboard.instantiateViewController(withIdentifier: "LeftNavDrawerViewControllerIdentifier") as! LeftNavDrawerViewController;
+        let leftController = drawerStoryboard.instantiateViewController(withIdentifier: "LeftNavDrawerViewControllerIdentifier") as! UINavigationController
         
         self.centerContainer = MMDrawerController(center: centerNav, leftDrawerViewController: leftController)
         

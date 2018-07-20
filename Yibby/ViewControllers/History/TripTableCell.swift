@@ -132,9 +132,25 @@ class TripTableCell: FoldingCell {
     }
     
     @IBAction func onFareOrRideIssueButtonClick(_ sender: UIButton) {
+        
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let lostViewController = historyStoryboard.instantiateViewController(withIdentifier: "LostItemViewControllerIdentifier") as! LostItemViewController
+        lostViewController.myTrip = self.myTrip
+        
+        if let vc = self.myViewController {
+            _ = vc.navigationController?.pushViewController(lostViewController, animated: true)
+        }
     }
     
     @IBAction func onOtherIssueButtonClick(_ sender: UIButton) {
+        
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let lostViewController = historyStoryboard.instantiateViewController(withIdentifier: "LostItemViewControllerIdentifier") as! LostItemViewController
+        lostViewController.myTrip = self.myTrip
+        
+        if let vc = self.myViewController {
+            _ = vc.navigationController?.pushViewController(lostViewController, animated: true)
+        }
     }
     
     // MARK: - Setup
@@ -166,17 +182,15 @@ class TripTableCell: FoldingCell {
     // MARK: - Helpers
     
     fileprivate func presentTopHalfController(vc: UIViewController) {
-        
-        if let vc = self.myViewController {
-            let presenter = vc.presenter
-            
+        if let customVc = self.myViewController {
+            let presenter = customVc.presenter
             presenter.presentationType = .topHalf
             presenter.transitionType = nil
             presenter.dismissTransitionType = nil
             presenter.dismissAnimated = true
             presenter.dismissOnSwipe = true
             presenter.dismissOnSwipeDirection = .top
-            vc.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+            customVc.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
         }
     }
 }
