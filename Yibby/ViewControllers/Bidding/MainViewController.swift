@@ -60,6 +60,13 @@ class MainViewController: BaseYibbyViewController,
     var priceSliderViewHidden = false
     var miscPickerViewHidden = false
     
+    //15 sec timer
+    var timer:Timer?
+    var isTimerRunning:Bool = false
+    //60 sec timer
+    var minTimer:Timer?
+    var isMinTimerRunning:Bool = false
+    
     fileprivate var offerRejectedObserver: NotificationObserver? // for offer reject
     fileprivate var rideObserver: NotificationObserver? // for driver en route message
     
@@ -332,10 +339,32 @@ class MainViewController: BaseYibbyViewController,
                         } else {
                             self.driverETALabelOutlet.text = "\(minEtaMins)-\(maxEtaMins) mins"
                         }
+                        //invalidate 15 sec timer and fire 60 sec timer
+                        if self.isMinTimerRunning==false{
+                            self.invalidateTimer()
+                            self.minTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (_) in
+                                self.getNearestDriverEta(loc: loc)
+                                self.isMinTimerRunning = true
+                                DDLogVerbose("60 sec timer fired")
+                            })
+                            
+                        }
                     } else {
                         self.driverETALabelOutlet.text = "No Drivers"
+                        //invalidate 60 sec timer and run 15 sec timer
+                        if self.isTimerRunning==false{
+                            self.invalidateTimerOfMinute()
+                            self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { (_) in
+                                self.getNearestDriverEta(loc: loc)
+                                self.isTimerRunning = true
+                                DDLogVerbose("15 sec timer fired")
+                            })
+                            
+                        }
                     }
                 } else {
+                    self.invalidateTimer()
+                    self.invalidateTimerOfMinute()
                     self.driverETALabelOutlet.text = "No Drivers"
                     DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
                 }
@@ -425,6 +454,8 @@ class MainViewController: BaseYibbyViewController,
         }
         
         adjustGMSCameraFocus()
+        invalidateTimer()
+        invalidateTimerOfMinute()
         
         // get the driver's ETA for this pickup location
         getNearestDriverEta(loc: location)
@@ -567,6 +598,19 @@ class MainViewController: BaseYibbyViewController,
     func cleanup () {
         pickupFieldSelected = false
         dropoffFieldSelected = false
+    }
+    
+    //invalidate timers
+    func invalidateTimer(){
+        timer?.invalidate()
+        isTimerRunning=false
+        DDLogVerbose("15 sec timer invalidated")
+    }
+    
+    func invalidateTimerOfMinute(){
+        minTimer?.invalidate()
+        isMinTimerRunning = false
+        DDLogVerbose("60 sec timer invalidated")
     }
 
     // MARK: - GMSMapViewDelegate

@@ -106,9 +106,13 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isTranslucent = false
         // Do any additional setup after loading the view.
         setupUI()
+    }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -147,7 +151,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
         
         // Modify the background color because we don't want to show the regular gray one.
         self.view.backgroundColor = UIColor.appDarkGreen1();
-        
+        self.navigationController?.navigationBar.isHidden = true
         // Set rounded profile pic
         //self.profilePictureOutlet.setRoundedWithWhiteBorder()
 
