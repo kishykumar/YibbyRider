@@ -113,20 +113,20 @@ open class YibbyMapMarker: UIView {
         if (type == .pickup) {
         
             infoWindow.placeholder = InterfaceString.Ride.Pickup
-            infoWindow.borderColor = UIColor.red
-            infoWindow.titleTextColour = UIColor.red
-            
-            label.textColor = UIColor.red
-            infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.red, backgroundColor: .clear, size: nil)
-
-        } else if (type == .dropoff) {
-            
-            infoWindow.placeholder = InterfaceString.Ride.Dropoff
             infoWindow.borderColor = UIColor.appDarkGreen1()
             infoWindow.titleTextColour = UIColor.appDarkGreen1()
             
             label.textColor = UIColor.appDarkGreen1()
-            infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.appDarkGreen1(), backgroundColor: .clear, size: nil)
+           // infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.red, backgroundColor: .clear, size: nil)
+
+        } else if (type == .dropoff) {
+            
+            infoWindow.placeholder = InterfaceString.Ride.Dropoff
+            infoWindow.borderColor = UIColor.red
+            infoWindow.titleTextColour = UIColor.red
+            
+            label.textColor = UIColor.red
+           // infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.appDarkGreen1(), backgroundColor: .clear, size: nil)
         }
 
         containerView.addSubview(label)

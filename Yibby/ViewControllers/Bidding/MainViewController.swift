@@ -17,6 +17,7 @@ import ActionSheetPicker_3_0
 import BaasBoxSDK
 import ObjectMapper
 
+
 // TODO:
 // 1. Don't let user bid for 5 mins
 // 2.
@@ -37,6 +38,8 @@ class MainViewController: BaseYibbyViewController,
     @IBOutlet weak var priceSliderViewOutlet: YibbyBorderedUIView!
     @IBOutlet weak var centerMarkersViewOutlet: YibbyBorderedUIView!
     @IBOutlet weak var bidSliderOutlet: YBSlider!
+    @IBOutlet weak var etaStackView: UIStackView!
+    @IBOutlet weak var etaLabelStackView: UIStackView!
     @IBOutlet weak var driverETALabelOutlet: UILabel!
     @IBOutlet weak var userBidLabelOutlet: UILabel!
     @IBOutlet weak var suggestedBidLabelOutlet: UILabel!
@@ -66,6 +69,9 @@ class MainViewController: BaseYibbyViewController,
     //60 sec timer
     var minTimer:Timer?
     var isMinTimerRunning:Bool = false
+    //ETAIndicator
+    var driverEtaIndicator:UIActivityIndicatorView?
+
     
     fileprivate var offerRejectedObserver: NotificationObserver? // for offer reject
     fileprivate var rideObserver: NotificationObserver? // for driver en route message
@@ -172,7 +178,9 @@ class MainViewController: BaseYibbyViewController,
     func setupUI() {
         // currency range slider
         setupMenuButton()
-        
+        let myView = UIView(frame: CGRect(x: 10, y: 0, width: 20, height: 20.5))
+        driverEtaIndicator = ActivityIndicatorUtil.myIndicator(myView)
+        etaLabelStackView.addArrangedSubview(myView)
         self.bidSliderOutlet.minimumTrackTintColor = UIColor.bidSliderGreen()
     }
     
@@ -353,6 +361,7 @@ class MainViewController: BaseYibbyViewController,
                         self.driverETALabelOutlet.text = "No Drivers"
                         //invalidate 60 sec timer and run 15 sec timer
                         if self.isTimerRunning==false{
+                            self.driverEtaIndicator?.startAnimating()
                             self.invalidateTimerOfMinute()
                             self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { (_) in
                                 self.getNearestDriverEta(loc: loc)
@@ -510,10 +519,14 @@ class MainViewController: BaseYibbyViewController,
                 let distanceFees = Int((Double(perMileCents) * distanceMeters) / 1609.34)
 
                 let maxBidCents: Int = bookingFeesCents + serviceFeesCents + timeFees + distanceFees
-
+                //Suggested Bid is 75% of max dollars
+                //low Bid is 50% of max dollars
                 let maxBidDollars: Int = maxBidCents / 100
-                let suggestedBidDollars: Int = (maxBidDollars * 9)/10
-                let lowBidDollars: Int = (maxBidDollars * 8) / 10
+                let suggestedBidDollars: Int = (maxBidDollars * 75)/100
+                let lowBidDollars: Int = (maxBidDollars * 5) / 10
+                DDLogVerbose("max bid dollars \(maxBidDollars)")
+                DDLogVerbose("min bid dollars \(lowBidDollars)")
+                DDLogVerbose("suggested bid dollars \(suggestedBidDollars)")
 
                 self.suggestedBidLabelOutlet.text = "$\(suggestedBidDollars)"
                 self.suggestedBid = suggestedBidDollars
@@ -604,6 +617,7 @@ class MainViewController: BaseYibbyViewController,
     func invalidateTimer(){
         timer?.invalidate()
         isTimerRunning=false
+        driverEtaIndicator?.stopAnimating()
         DDLogVerbose("15 sec timer invalidated")
     }
     
