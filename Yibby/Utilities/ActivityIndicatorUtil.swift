@@ -79,7 +79,7 @@ open class ActivityIndicatorUtil {
         hud.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
     }
     
-    static func indicator()->MBProgressHUD{
+    static func indicator() -> MBProgressHUD{
         let hud = MBProgressHUD.init(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         hud.bezelView.color = UIColor.clear
         hud.bezelView.layer.borderColor = UIColor.clear.cgColor
@@ -88,16 +88,14 @@ open class ActivityIndicatorUtil {
         hud.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
         hud.show(animated: true)
         return hud
-        
     }
     
-    static func myIndicator(_ view: UIView)->UIActivityIndicatorView{
+    static func addActivityIndicatorToView(_ view: UIView) -> UIActivityIndicatorView{
         let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         indicator.activityIndicatorViewStyle = .white
         indicator.center = view.center
         view.addSubview(indicator)
         return indicator
-        
     }
     
     

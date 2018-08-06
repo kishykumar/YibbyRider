@@ -135,6 +135,7 @@
 		1228A0B320316A9400AF6801 /* YBRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228A0B220316A9400AF6801 /* YBRoundedView.swift */; };
 		1228A0B520316BA000AF6801 /* InitialsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228A0B420316BA000AF6801 /* InitialsImageView.swift */; };
 		1228B8781EE7DDC800524062 /* YBLeftImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B8771EE7DDC800524062 /* YBLeftImageTextField.swift */; };
+		12340311210F2CCD00B4CFDB /* FareIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12340310210F2CCD00B4CFDB /* FareIssueViewController.swift */; };
 		12346D9720A206F900810CA4 /* CardTextField+PrefillInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12346D5720A206F900810CA4 /* CardTextField+PrefillInformation.swift */; };
 		12346D9820A206F900810CA4 /* StylizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12346D5820A206F900810CA4 /* StylizedTextField.swift */; };
 		12346D9920A206F900810CA4 /* CardTextField+CardInfoTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12346D5920A206F900810CA4 /* CardTextField+CardInfoTextFieldDelegate.swift */; };
@@ -208,6 +209,7 @@
 		126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */; };
 		126C4B041D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */; };
 		126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */; };
+		12724AA52112E94F006F01B4 /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12724AA42112E94F006F01B4 /* LocalNotificationService.swift */; };
 		1275200B2057A448007FA4EB /* DriverEta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1275200A2057A448007FA4EB /* DriverEta.swift */; };
 		12839D96206A14E60033B7EA /* ToastUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12839D95206A14E60033B7EA /* ToastUtil.swift */; };
 		129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */; };
@@ -430,6 +432,7 @@
 		1228A0B220316A9400AF6801 /* YBRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBRoundedView.swift; sourceTree = "<group>"; };
 		1228A0B420316BA000AF6801 /* InitialsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsImageView.swift; sourceTree = "<group>"; };
 		1228B8771EE7DDC800524062 /* YBLeftImageTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBLeftImageTextField.swift; sourceTree = "<group>"; };
+		12340310210F2CCD00B4CFDB /* FareIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareIssueViewController.swift; sourceTree = "<group>"; };
 		12346D5420A206F900810CA4 /* Caishen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Caishen.h; sourceTree = "<group>"; };
 		12346D5720A206F900810CA4 /* CardTextField+PrefillInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardTextField+PrefillInformation.swift"; sourceTree = "<group>"; };
 		12346D5820A206F900810CA4 /* StylizedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylizedTextField.swift; sourceTree = "<group>"; };
@@ -509,6 +512,7 @@
 		126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
+		12724AA42112E94F006F01B4 /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
 		1275200A2057A448007FA4EB /* DriverEta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverEta.swift; sourceTree = "<group>"; };
 		12814FB91E0D23B400F08CFF /* Yibby.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yibby.entitlements; sourceTree = "<group>"; };
 		12839D95206A14E60033B7EA /* ToastUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtil.swift; sourceTree = "<group>"; };
@@ -719,6 +723,7 @@
 				12B174801D54574100BD0B87 /* BraintreePaymentService.swift */,
 				085FBBDD1E8302AC00002F4D /* ImageService.swift */,
 				1240D3F7205A3CFF006A336A /* DirectionsService.swift */,
+				12724AA42112E94F006F01B4 /* LocalNotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				1201B74F1D23A85F00A7EEAF /* HistoryViewController.swift */,
 				1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */,
 				08032C111E6600A100E876A5 /* CarDetailsChildView.swift */,
+				12340310210F2CCD00B4CFDB /* FareIssueViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -2332,6 +2338,7 @@
 				12085F631F21DBB500DBC91F /* MessageComposer.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
+				12724AA52112E94F006F01B4 /* LocalNotificationService.swift in Sources */,
 				121958DC205A381400E184FA /* PXGoogleDirectionsDuration.swift in Sources */,
 				121958DA205A381400E184FA /* PXGoogleDirections.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
@@ -2341,6 +2348,7 @@
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */,
 				1253F2CC1EFA18E300C50BB5 /* IntrinsicTableView.swift in Sources */,
+				12340311210F2CCD00B4CFDB /* FareIssueViewController.swift in Sources */,
 				12085F5D1F213B0F00DBC91F /* DriverInfoVC.swift in Sources */,
 				0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */,
 				12346DA420A206F900810CA4 /* TextFieldValidation.swift in Sources */,
