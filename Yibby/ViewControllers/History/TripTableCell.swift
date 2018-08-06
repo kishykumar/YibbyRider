@@ -134,22 +134,20 @@ class TripTableCell: FoldingCell {
     @IBAction func onFareOrRideIssueButtonClick(_ sender: UIButton) {
         
         let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
-        let lostViewController = historyStoryboard.instantiateViewController(withIdentifier: "LostItemViewControllerIdentifier") as! LostItemViewController
-        lostViewController.myTrip = self.myTrip
+        let fareIssueViewController = historyStoryboard.instantiateViewController(withIdentifier: "FareIssueViewController") as! FareIssueViewController
         
         if let vc = self.myViewController {
-            _ = vc.navigationController?.pushViewController(lostViewController, animated: true)
+            _ = vc.navigationController?.pushViewController(fareIssueViewController, animated: true)
         }
     }
     
     @IBAction func onOtherIssueButtonClick(_ sender: UIButton) {
         
         let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
-        let lostViewController = historyStoryboard.instantiateViewController(withIdentifier: "LostItemViewControllerIdentifier") as! LostItemViewController
-        lostViewController.myTrip = self.myTrip
+        let fareIssueViewController = historyStoryboard.instantiateViewController(withIdentifier: "FareIssueViewController") as! FareIssueViewController
         
         if let vc = self.myViewController {
-            _ = vc.navigationController?.pushViewController(lostViewController, animated: true)
+            _ = vc.navigationController?.pushViewController(fareIssueViewController, animated: true)
         }
     }
     
