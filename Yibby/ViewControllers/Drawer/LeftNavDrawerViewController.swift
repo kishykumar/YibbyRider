@@ -106,7 +106,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = false
         // Do any additional setup after loading the view.
         setupUI()
     }

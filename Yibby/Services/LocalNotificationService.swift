@@ -10,9 +10,8 @@ import Foundation
 import UserNotifications
 import CocoaLumberjack
 
-class LocalNotification{
+class LocalNotificationService{
    
-    
     static func notificationSetUpCheck(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
             if success{
@@ -25,7 +24,7 @@ class LocalNotification{
     
     static func sendNotification(title:String, subtitle:String, body:String){
         let notification = UNMutableNotificationContent()
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         notification.title = title
         notification.subtitle = subtitle
         notification.body = body
@@ -35,8 +34,5 @@ class LocalNotification{
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
     }
-    
-    
-    
     
 }

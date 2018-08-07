@@ -365,7 +365,6 @@ class MainViewController: BaseYibbyViewController,
                     }
                 } else {
                     self.runNoDriversTimer(loc: loc)
-                    self.invalidateTimerOfMinute()
                     self.driverETALabelOutlet.text = "No Drivers"
                     DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
                 }
