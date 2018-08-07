@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import MMDrawerController
 import CocoaLumberjack
+import UserNotifications
 
 @objc public protocol PushControllerProtocol {
     func receiveRemoteNotification(_ application: UIApplication, notification:[AnyHashable: Any])
@@ -25,7 +26,7 @@ enum YBMessageType: String {
     case rideCancelled = "RIDE_CANCELLED"
 }
 
-open class PushController: NSObject, PushControllerProtocol {
+open class PushController: NSObject, PushControllerProtocol, UNUserNotificationCenterDelegate {
     
     let MESSAGE_JSON_FIELD_NAME = "message"
     let CUSTOM_JSON_FIELD_NAME = "custom"
@@ -73,6 +74,7 @@ open class PushController: NSObject, PushControllerProtocol {
             // save the most recent push message
             savedNotification = [AnyHashable: Any]()
             savedNotification = notification // copies over the dictionary
+            // it displays local notification when app is in background
             processNotification(savedNotification!, isForeground: false)
         }
         //know ride is ending or start
@@ -91,7 +93,7 @@ open class PushController: NSObject, PushControllerProtocol {
         if let notification = savedNotification {
             DDLogDebug("Processing saved notification: \(notification)")
 
-            processNotification(notification, isForeground: false)
+            processNotification(notification, isForeground: true)
             
             // remove the savedNotification
             savedNotification = nil
@@ -101,7 +103,6 @@ open class PushController: NSObject, PushControllerProtocol {
     }
     
     func processNotification (_ notification: [AnyHashable: Any], isForeground:Bool) {
-        //is foreground argument
         DDLogVerbose("Called")
         
         // handle offer
@@ -170,7 +171,7 @@ open class PushController: NSObject, PushControllerProtocol {
                     postNotification(BidNotifications.noOffers, value: bid)
                 }
                 else{
-                   LocalNotification.sendNotification(title: YBMessageType.noOffers.rawValue, subtitle: "", body: "Your Bid was not accepted by any driver")
+                   LocalNotificationService.sendNotification(title: YBMessageType.noOffers.rawValue, subtitle: "", body: "Your Bid was not accepted by any driver")
                 }
             default:
                 DDLogError("Weird message received during Bid1: \(messageType)")
@@ -199,12 +200,11 @@ open class PushController: NSObject, PushControllerProtocol {
             case YBMessageType.driverEnRoute:
                 
                 if (YBClient.sharedInstance().status == .ongoingBid) {
-                    DDLogDebug("2 \(isForeground)")
-                    if isForeground == true{
+                    if isForeground == true {
                         postNotification(RideNotifications.driverEnRoute, value: ride)
                     }
                     else{
-                        LocalNotification.sendNotification(title: YBMessageType.driverEnRoute.rawValue, subtitle: "", body: "Your driver is on his way.")
+                        LocalNotificationService.sendNotification(title: YBMessageType.driverEnRoute.rawValue, subtitle: "", body: "Your driver is on his way.")
                     }
                 }
                 
@@ -212,11 +212,11 @@ open class PushController: NSObject, PushControllerProtocol {
                 DDLogDebug("RIDE_START_MESSAGE_TYPE")
 
                 // Publish the Ride started notification This will update the driver status in RideViewController.
-                if isForeground == true{
+                if isForeground == true {
                     postNotification(RideNotifications.rideStart, value: "")
                 }
                 else{
-                    LocalNotification.sendNotification(title: YBMessageType.rideStart.rawValue, subtitle: "", body: "Your ride has been started")
+                    LocalNotificationService.sendNotification(title: YBMessageType.rideStart.rawValue, subtitle: "", body: "Your ride has been started")
                     //code for bg handling
                 }
                 
@@ -224,10 +224,10 @@ open class PushController: NSObject, PushControllerProtocol {
                 DDLogDebug("DRIVER_ARRIVED_MESSAGE_TYPE")
                 
                 // Publish the Driver Arrived notification This will update the driver status in RideViewController.
-                if isForeground == true{
+                if isForeground == true {
                     postNotification(RideNotifications.driverArrived, value: "")
                 }else{
-                    LocalNotification.sendNotification(title: YBMessageType.driverArrived.rawValue, subtitle: "", body: "Your Driver has arrived at pick up location")
+                    LocalNotificationService.sendNotification(title: YBMessageType.driverArrived.rawValue, subtitle: "", body: "Your Driver has arrived at pick up location")
                     //code for bg handling
                 }
 
@@ -235,17 +235,18 @@ open class PushController: NSObject, PushControllerProtocol {
                 
             case .rideEnd:
                 DDLogDebug("RIDE_END_MESSAGE_TYPE")
-                postNotification(RideNotifications.rideEnd, value: "")
+                if isForeground == true {
+                    postNotification(RideNotifications.rideEnd, value: "")
+                }
                 
             case .rideCancelled:
                 DDLogDebug("RIDE_CANCELLED_MESSAGE_TYPE")
-                if isForeground == true{
+                if isForeground == true {
                     postNotification(RideNotifications.rideCancelled, value: "")
                 }else{
-                   LocalNotification.sendNotification(title: YBMessageType.rideCancelled.rawValue, subtitle: "", body: "Your ride was cancelled")
+                   LocalNotificationService.sendNotification(title: YBMessageType.rideCancelled.rawValue, subtitle: "", body: "Your ride was cancelled")
                 }
-                
-                
+
             default:
                 DDLogError("Weird message received during Bid2: \(messageType)")
                 break
@@ -260,15 +261,23 @@ open class PushController: NSObject, PushControllerProtocol {
     open static func registerForPushNotifications() {
         
         let application: UIApplication = UIApplication.shared
-        
-        if #available(iOS 8.0, *) {
-            
-            let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
+        let appDelegate: UIApplicationDelegate = UIApplication.shared.delegate  as! AppDelegate
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = appDelegate as? UNUserNotificationCenterDelegate
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (bool, error) in
+                if let error = error{
+                    DDLogVerbose("Error in authorization \(error.localizedDescription)")
+                } else {
+                    application.registerForRemoteNotifications()
+                }
+            }
         } else {
             // Fallback
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
             
             let types: UIRemoteNotificationType = [.alert, .badge, .sound]
             application.registerForRemoteNotifications(matching: types)

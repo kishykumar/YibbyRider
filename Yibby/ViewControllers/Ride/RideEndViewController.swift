@@ -54,8 +54,8 @@ class RideEndViewController: BaseYibbyViewController {
         // } }
 
         if (sender.index != 0) {
-            rideFareLabel.textColor = UIColor.appDarkGreen1()
-            moreInfoButtonOutlet.isHidden = false
+            //rideFareLabel.textColor = UIColor.appDarkGreen1()
+            moreInfoButtonOutlet.isHidden = true
             
             switch (sender.index) {
                 
@@ -290,9 +290,8 @@ class RideEndViewController: BaseYibbyViewController {
         
         if let ride = YBClient.sharedInstance().ride {
             let rideFareInt = Int(ride.bidPrice!)
-            let tipInt = Int(finalTipAmount)
-            
-            rideFareLabel.text = "$\(rideFareInt + tipInt)"
+            _ = Int(finalTipAmount)
+            rideFareLabel.text = "$\(rideFareInt)"
         }
     }
 }
