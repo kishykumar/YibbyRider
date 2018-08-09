@@ -21,6 +21,7 @@ import GooglePlaces
 import ObjectMapper
 import KSCrash
 import OHHTTPStubs
+import Instabug
 
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
@@ -39,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
-    fileprivate var isSandbox = true
+    fileprivate var isSandbox = false
     
     fileprivate var connectedToGCM = false
     fileprivate var subscribedToTopic = false
@@ -56,8 +57,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     fileprivate let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     fileprivate let BAASBOX_APPCODE = "1234567890"
-    //fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-    fileprivate let BAASBOX_URL = "http://b21de12e.ngrok.io"
+    
+    fileprivate var BAASBOX_URL: String {
+        return
+            ((self.isSandbox) ?
+            ("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
+            ("http://api.yibbyapp.com"))
+    }
+
+    //fileprivate let BAASBOX_URL = "http://42f3eb3a.ngrok.io"
 
     var pushController: PushController =  PushController()
     
@@ -77,7 +85,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
-
+        
+        // Configure Instabug
+        Instabug.start(withToken: "c7bb77a6db6b6fe82390717dd5ae1906", invocationEvent: .shake)
+        
         setupLogger()
         setupKeyboardManager()
         

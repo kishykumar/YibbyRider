@@ -91,6 +91,12 @@ PODS:
   - ImagePicker (3.0.0)
   - Imaginary (3.0.3):
     - Cache (~> 4.0)
+  - Instabug (7.14.5):
+    - Instabug/Instabug (= 7.14.5)
+    - Instabug/InstabugCore (= 7.14.5)
+  - Instabug/Instabug (7.14.5):
+    - Instabug/InstabugCore
+  - Instabug/InstabugCore (7.14.5)
   - iOSSnapshotTestCase (3.0.0):
     - iOSSnapshotTestCase/SwiftSupport (= 3.0.0)
   - iOSSnapshotTestCase/Core (3.0.0)
@@ -249,6 +255,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - ImagePicker
+  - Instabug
   - IQKeyboardManagerSwift
   - ISHPullUp
   - KSCrash
@@ -313,6 +320,7 @@ SPEC REPOS:
     - Hue
     - ImagePicker
     - Imaginary
+    - Instabug
     - iOSSnapshotTestCase
     - IQKeyboardManagerSwift
     - ISHPullUp
@@ -391,6 +399,7 @@ SPEC CHECKSUMS:
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   ImagePicker: 973953c25960fe04729a7082a56194321c6762d2
   Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
+  Instabug: 7a7fea34bdc40735e8961750a2f9f34b7a8fae4a
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
   IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   ISHPullUp: eaa91bef06270264e1f923bc764705173d341495
@@ -421,6 +430,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: c9aaec45c820e788f1f4e856b6090b9a5e8a22fb
+PODFILE CHECKSUM: 0cd3ab836115de9f9b707d6f33ed81db25d837c7
 
 COCOAPODS: 1.5.3
