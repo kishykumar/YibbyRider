@@ -33,7 +33,7 @@ open class LocationService: NSObject, CLLocationManagerDelegate {
     fileprivate var currentLocation: CLLocation?
     
     var driverLocationFetchTimer: Timer?
-    static let DRIVER_LOC_FETCH_TIMER_INTERVAL = 5.0
+    static let DRIVER_LOC_FETCH_TIMER_INTERVAL = 15.0
 
     let LATITUDE_JSON_FIELD_NAME = "latitude"
     let LONGITUDE_JSON_FIELD_NAME = "longitude"
