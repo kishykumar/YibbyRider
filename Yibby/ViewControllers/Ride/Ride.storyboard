@@ -206,16 +206,16 @@
                                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="230"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wvn-T2-ROX" userLabel="CancelRideSV">
-                                                                <rect key="frame" x="11" y="20" width="156.5" height="23"/>
+                                                                <rect key="frame" x="11" y="20" width="156.5" height="63"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't Cancel Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Dm-D8g" userLabel="CancelRideTextLabel">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="156.5" height="23"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Dm-D8g" userLabel="CancelRideTextLabel">
+                                                                        <rect key="frame" x="25.5" y="0.0" width="105.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuJ-S4-OaX" userLabel="CancelRideButton">
-                                                                        <rect key="frame" x="63.5" y="-60" width="30" height="0.0"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuJ-S4-OaX" userLabel="CancelRideButton">
+                                                                        <rect key="frame" x="63.5" y="23" width="30" height="40"/>
                                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
                                                                         <state key="normal" title="x">
                                                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -243,16 +243,16 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="230"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yLa-vw-khv" userLabel="PeopleSV">
-                                                                <rect key="frame" x="20" y="148" width="126" height="62"/>
+                                                                <rect key="frame" x="20" y="144" width="126" height="66"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn6-I8-4b3" userLabel="PeopleImage">
-                                                                        <rect key="frame" x="48" y="0.0" width="30" height="29"/>
+                                                                        <rect key="frame" x="47" y="0.0" width="32.5" height="33"/>
                                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="28"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max 4 Persons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VW5-FW-X93" userLabel="PeopleCountLabel">
-                                                                        <rect key="frame" x="0.0" y="39" width="126" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="43" width="126" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -269,13 +269,13 @@
                                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="230"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JEy-HI-VYW" userLabel="DriverDetailsSV">
-                                                                <rect key="frame" x="10" y="94" width="157.5" height="116"/>
+                                                                <rect key="frame" x="10" y="90.5" width="157.5" height="119.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Gic-vf-y4b" userLabel="ContactDriverSV">
-                                                                        <rect key="frame" x="82.5" y="0.0" width="75" height="33"/>
+                                                                        <rect key="frame" x="82.5" y="0.0" width="75" height="36"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dn-62-p69" userLabel="PhoneButton">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="33"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
                                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                                 <state key="normal" title="">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -285,7 +285,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zo-HE-wVT" userLabel="SMSButton">
-                                                                                <rect key="frame" x="45" y="0.0" width="30" height="33"/>
+                                                                                <rect key="frame" x="45" y="0.0" width="30" height="36"/>
                                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                                 <state key="normal" title="">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -297,16 +297,16 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KlP-Ia-dfK" userLabel="StarsSV">
-                                                                        <rect key="frame" x="92.5" y="41" width="65" height="23"/>
+                                                                        <rect key="frame" x="92.5" y="44" width="65" height="23.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJT-rz-fpW" userLabel="DriverStarsLabel">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="27.5" height="23"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="27.5" height="23.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKp-YL-9PM" userLabel="StarFALabel">
-                                                                                <rect key="frame" x="37.5" y="0.0" width="27.5" height="23"/>
+                                                                                <rect key="frame" x="37.5" y="0.0" width="27.5" height="23.5"/>
                                                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
                                                                                 <color key="textColor" red="0.94509803921568625" green="0.76862745098039209" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -314,7 +314,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="OMd-ER-djl" userLabel="DriverCarDetailsSV">
-                                                                        <rect key="frame" x="31" y="72" width="126.5" height="44"/>
+                                                                        <rect key="frame" x="31" y="75.5" width="126.5" height="44"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="B5e-sN-LUT" userLabel="CarMakeModelSV">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
@@ -352,8 +352,8 @@
                                                         <color key="backgroundColor" red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="JEy-HI-VYW" secondAttribute="trailing" constant="20" id="XMV-Dx-tSl"/>
-                                                            <constraint firstAttribute="bottom" secondItem="JEy-HI-VYW" secondAttribute="bottom" constant="20" id="fku-tA-S2H"/>
                                                             <constraint firstItem="JEy-HI-VYW" firstAttribute="leading" secondItem="7Vg-1g-Y1f" secondAttribute="leading" constant="10" id="hUD-gW-AKu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="JEy-HI-VYW" secondAttribute="bottom" constant="20" id="wub-8y-PzA"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -455,7 +455,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WH7-oh-wkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qly-3G-mwC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5282.3999999999996" y="1213.4932533733133"/>
+            <point key="canvasLocation" x="-5271" y="1185"/>
         </scene>
         <!--Driver InfoVC-->
         <scene sceneID="oYl-re-zMP">
