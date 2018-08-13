@@ -275,15 +275,13 @@ class RideEndViewController: BaseYibbyViewController {
     
     // MARK: - Cosmos Rating View
     
-
-    // MARK: - Helpers
     
+    // MARK: - Helpers
     
     func updateFinalFareWithTip() {
         
         if let ride = YBClient.sharedInstance().ride {
             let rideFareInt = Int(ride.bidPrice!)
-            _ = Int(finalTipAmount)
             rideFareLabel.text = "$\(rideFareInt)"
         }
     }

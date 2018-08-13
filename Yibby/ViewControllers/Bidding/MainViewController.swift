@@ -350,7 +350,7 @@ class MainViewController: BaseYibbyViewController,
                         }
                         //invalidate 15 sec timer and fire 60 sec timer
                         if self.isEtaRefreshFetchTimerRunning == false{
-                            self.invalidateTimer()
+                            self.invalidateEtaNoDriversFetchTimer()
                             self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
                                 self.getNearestDriverEta(loc: loc)
                                 self.isEtaRefreshFetchTimerRunning = true
@@ -454,8 +454,8 @@ class MainViewController: BaseYibbyViewController,
         }
         
         adjustGMSCameraFocus()
-        invalidateTimer()
-        invalidateTimerOfMinute()
+        invalidateEtaNoDriversFetchTimer()
+        invalidateEtaRefreshFetchTimer()
         
         // get the driver's ETA for this pickup location
         getNearestDriverEta(loc: location)
@@ -608,7 +608,7 @@ class MainViewController: BaseYibbyViewController,
     func runNoDriversTimer(loc: YBLocation){
         if self.isEtaNoDriversFetchTimerRunning==false{
             self.driverEtaIndicator?.startAnimating()
-            self.invalidateTimerOfMinute()
+            self.invalidateEtaRefreshFetchTimer()
             self.etaNoDriversFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_NO_DRIVERS_FETCH_INTERVAL, repeats: true, block: { (_) in
                 self.getNearestDriverEta(loc: loc)
                 self.isEtaNoDriversFetchTimerRunning = true
@@ -619,14 +619,14 @@ class MainViewController: BaseYibbyViewController,
     }
     
     //invalidate timers
-    func invalidateTimer(){
+    func invalidateEtaNoDriversFetchTimer(){
         etaNoDriversFetchTimer?.invalidate()
         isEtaNoDriversFetchTimerRunning=false
         driverEtaIndicator?.stopAnimating()
         DDLogVerbose("15 sec timer invalidated")
     }
     
-    func invalidateTimerOfMinute(){
+    func invalidateEtaRefreshFetchTimer(){
         etaRefreshFetchTimer?.invalidate()
         isEtaRefreshFetchTimerRunning = false
         DDLogVerbose("60 sec timer invalidated")

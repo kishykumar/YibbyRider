@@ -220,24 +220,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-hk-5wW">
-                                <rect key="frame" x="10" y="80" width="300" height="165"/>
+                                <rect key="frame" x="10" y="80" width="300" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ty6-tq-acG">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="Sre-e6-RMH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" title="How to use Yibby">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="useYibbyBtnAction:" destination="oXH-fA-SqM" eventType="touchUpInside" id="bYF-zg-fne"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omc-SM-GKe">
-                                        <rect key="frame" x="0.0" y="60" width="300" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="vS4-MN-3hQ"/>
@@ -250,42 +236,26 @@
                                             <action selector="lostStolenItemBtnAction:" destination="oXH-fA-SqM" eventType="touchUpInside" id="HhK-ac-etX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3RZ-Zp-p9K">
-                                        <rect key="frame" x="0.0" y="120" width="300" height="45"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="pvC-Bw-B8A"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" title="Frequently Asked Questions">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="questionsBtnAction:" destination="oXH-fA-SqM" eventType="touchUpInside" id="IvC-xL-Nja"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="jom-wn-2lg"/>
+                                    <constraint firstAttribute="height" constant="45" id="5on-V6-Cpq"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="sRL-hk-5wW" firstAttribute="leading" secondItem="dfL-YX-Mhs" secondAttribute="leading" constant="10" id="Bg1-uv-DIa"/>
-                            <constraint firstItem="sRL-hk-5wW" firstAttribute="top" secondItem="M6k-Cw-kp4" secondAttribute="bottom" constant="60" id="QnK-cu-JgP"/>
-                            <constraint firstAttribute="trailing" secondItem="sRL-hk-5wW" secondAttribute="trailing" constant="10" id="apr-lF-363"/>
+                            <constraint firstItem="sRL-hk-5wW" firstAttribute="leading" secondItem="dfL-YX-Mhs" secondAttribute="leading" constant="10" id="LLI-2p-nxe"/>
+                            <constraint firstItem="sRL-hk-5wW" firstAttribute="top" secondItem="M6k-Cw-kp4" secondAttribute="bottom" constant="60" id="hNv-pZ-AvS"/>
+                            <constraint firstAttribute="trailing" secondItem="sRL-hk-5wW" secondAttribute="trailing" constant="10" id="sHC-bS-uJX"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="lostStolenItemBtn" destination="Omc-SM-GKe" id="4LP-Cg-nnw"/>
-                        <outlet property="questionsBtn" destination="3RZ-Zp-p9K" id="LFp-dq-swg"/>
-                        <outlet property="useYibbyBtn" destination="Ty6-tq-acG" id="MQW-hp-tkh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6T-SU-UVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3152" y="-813"/>
+            <point key="canvasLocation" x="3143" y="-813"/>
         </scene>
         <!--LegalVC-->
         <scene sceneID="FiN-o7-oyU">
