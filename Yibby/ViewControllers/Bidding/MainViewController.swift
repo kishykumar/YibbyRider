@@ -426,7 +426,7 @@ class MainViewController: BaseYibbyViewController,
         marker.map = gmsMapViewOutlet
         marker.icon = YibbyMapMarker.annotationImageWithMarker(marker,
                                                                title: location.name!,
-                                                               type: isPickup ? .pickup : .dropoff)
+                                                               type: isPickup ? .pickup : .dropoff, isShowArrow: true)
         return marker
     }
     

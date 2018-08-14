@@ -58,7 +58,7 @@ open class YibbyMapMarker: UIView {
     
     class func annotationImageWithMarker(_ marker: GMSMarker,
                                          title: String,
-                                         type: markerType) -> UIImage {
+                                         type: markerType, isShowArrow:Bool) -> UIImage {
         
         let referenceIcon = UIImage(named: "defaultMarker")!
         
@@ -117,6 +117,9 @@ open class YibbyMapMarker: UIView {
             infoWindow.titleTextColour = UIColor.appDarkGreen1()
             
             label.textColor = UIColor.appDarkGreen1()
+            if isShowArrow == true {
+               infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.appDarkGreen1(), backgroundColor: .clear, size: nil)
+            }
            // infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.red, backgroundColor: .clear, size: nil)
 
         } else if (type == .dropoff) {
@@ -126,6 +129,9 @@ open class YibbyMapMarker: UIView {
             infoWindow.titleTextColour = UIColor.red
             
             label.textColor = UIColor.red
+            if isShowArrow == true{
+                infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.red, backgroundColor: .clear, size: nil)
+            }
            // infoWindow.setRightViewFAIcon(icon: .FAChevronRight, rightViewMode: .always, orientation: .up, textColor: UIColor.appDarkGreen1(), backgroundColor: .clear, size: nil)
         }
 
