@@ -275,7 +275,9 @@ open class PushController: NSObject, PushControllerProtocol, UNUserNotificationC
                 if let error = error{
                     DDLogVerbose("Error in authorization \(error.localizedDescription)")
                 } else {
-                    application.registerForRemoteNotifications()
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
                 }
             }
         } else {
