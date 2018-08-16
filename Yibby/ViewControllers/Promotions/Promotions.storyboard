@@ -74,9 +74,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s89-sP-MQU" userLabel="rideOffLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="296" height="70"/>
-                                        <string key="text">$5 off your first 5 rides.
-(paid through Venmo to your phone number)</string>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                        <string key="text">$5 off your first 5 rides
+(paid through Venmo)</string>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -127,7 +127,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="9aP-kc-luv"/>
                                         </constraints>
-                                        <string key="text">Get $5 in YibbY Credit!
+                                        <string key="text">Get $5 for each referral
 (paid through Venmo)</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,11 +145,10 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r07-Xc-ejT">
                                         <rect key="frame" x="47" y="105" width="206" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Ger-Pz-VXr"/>
                                         </constraints>
-                                        <state key="normal" title="Contact Yibby for Referal"/>
+                                        <state key="normal" title="Contact Yibby for Referral"/>
                                         <connections>
                                             <action selector="contactYibbyButtonAction:" destination="PvL-O4-9sa" eventType="touchUpInside" id="trx-aE-1c3"/>
                                         </connections>
@@ -203,12 +202,12 @@
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hvF-QS-C9M" firstAttribute="top" secondItem="TFE-Yu-0fQ" secondAttribute="bottom" constant="50" id="6KD-hw-g2e"/>
-                            <constraint firstItem="4qq-kB-7AU" firstAttribute="top" secondItem="UY5-dW-s6A" secondAttribute="bottom" constant="-468" id="EtK-Cz-hSZ"/>
                             <constraint firstItem="UY5-dW-s6A" firstAttribute="top" secondItem="TFE-Yu-0fQ" secondAttribute="bottom" constant="542" id="JVt-II-6Jy"/>
                             <constraint firstItem="4qq-kB-7AU" firstAttribute="leading" secondItem="eoz-gd-ZI8" secondAttribute="leading" constant="10" id="S8w-V8-PYV"/>
                             <constraint firstAttribute="trailing" secondItem="UY5-dW-s6A" secondAttribute="trailing" constant="12" id="TtX-FO-ICI"/>
                             <constraint firstAttribute="trailing" secondItem="4qq-kB-7AU" secondAttribute="trailing" constant="10" id="e2p-Y7-prX"/>
                             <constraint firstItem="UY5-dW-s6A" firstAttribute="leading" secondItem="eoz-gd-ZI8" secondAttribute="leading" constant="8" id="hf7-5V-iUs"/>
+                            <constraint firstItem="4qq-kB-7AU" firstAttribute="top" secondItem="hvF-QS-C9M" secondAttribute="bottom" constant="24" id="ni2-CJ-osG"/>
                             <constraint firstItem="hvF-QS-C9M" firstAttribute="leading" secondItem="eoz-gd-ZI8" secondAttribute="leading" constant="12" id="pMB-P8-JbP"/>
                             <constraint firstAttribute="trailing" secondItem="hvF-QS-C9M" secondAttribute="trailing" constant="12" id="xbP-Ee-L9P"/>
                         </constraints>
