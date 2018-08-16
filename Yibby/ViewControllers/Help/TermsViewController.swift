@@ -1,21 +1,22 @@
 //
-//  FareIssueViewController.swift
+//  TermsViewController.swift
 //  Yibby
 //
-//  Created by Prabhdeep Singh on 7/30/18.
+//  Created by Prabhdeep Singh on 8/16/18.
 //  Copyright © 2018 Yibby. All rights reserved.
 //
 
 import UIKit
 
-class FareIssueViewController: UIViewController {
+class TermsViewController: UIViewController {
     
-    @IBOutlet weak var emailYibbyOutlet: YibbyButton1!
     
-
+    @IBOutlet weak var termsTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setUpUI()
+
         // Do any additional setup after loading the view.
     }
 
@@ -24,19 +25,13 @@ class FareIssueViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupUI() {
+    func setUpUI(){
         setupBackButton()
-        emailYibbyOutlet.buttonCornerRadius = 5.0
-        emailYibbyOutlet.color = UIColor.appDarkGreen1()
+        
+        termsTextView.layer.borderColor = UIColor.borderColor().cgColor
+        termsTextView.layer.borderWidth = 1.0
+        termsTextView.layer.cornerRadius = 7.0
     }
-    
-    @IBAction func onClickYibbyEmail(_ sender: YibbyButton1) {
-        let email = "support@yibby.zohodesk.com"
-        if let url = URL(string: "mailto:\(email)") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-    }
-    
 
     /*
     // MARK: - Navigation

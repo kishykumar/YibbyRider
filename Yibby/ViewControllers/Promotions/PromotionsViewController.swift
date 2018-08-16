@@ -8,21 +8,22 @@
 
 import UIKit
 import CocoaLumberjack
+import MessageUI
 
-class PromotionsViewController: BaseYibbyViewController {
+class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var yebbyCodeTF: UITextField!
     @IBOutlet weak var emailAddressTF: UITextField!
     
     @IBOutlet weak var rideOffView: YibbyBorderedUIView!
-    
     @IBOutlet weak var contactYibbyButtonOutlet: UIButton!
-    
     
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
     
     @IBOutlet var accessContactsBtn: UIButton!
+    
+    let EMAIL_BODY:String = "Referrer details: <Your name> <Your phone number> \n - is referring my friend - \n\n Friend details: <Your friend's name> <Your friend's phone number> \n\n Yibby will make $5 payment to you via Venmo once your friend takes a ride with us. \n\n Please provide your venmo id: <Referrer venmo id>"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +46,6 @@ class PromotionsViewController: BaseYibbyViewController {
         accessContactsBtn.layer.borderWidth = 1.0
         accessContactsBtn.layer.cornerRadius = 7
         
-        contactYibbyButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
-        contactYibbyButtonOutlet.layer.borderWidth = 1.0
-        contactYibbyButtonOutlet.layer.cornerRadius = 7
-        
         /*let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y:  yebbyCodeTF.frame.height - 1, width: yebbyCodeTF.frame.width, height: 1.0)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
@@ -68,7 +65,32 @@ class PromotionsViewController: BaseYibbyViewController {
     }
     
     @IBAction func contactYibbyButtonAction(_ sender: UIButton) {
+//        let email = "support@yibby.zohodesk.com"
+//        if let url = URL(string: "mailto:\(email)") {
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
+        sendEmail()
     }
+    
+    func sendEmail(){
+        if !MFMailComposeViewController.canSendMail(){
+            DDLogVerbose("Mail services are not available")
+            return
+        }
+        let composeVc = MFMailComposeViewController()
+        composeVc.mailComposeDelegate = self
+        composeVc.setToRecipients(["support@yibby.zohodesk.com"])
+        composeVc.setSubject("Yibby Referral")
+        composeVc.setMessageBody(EMAIL_BODY, isHTML: false)
+        self.present(composeVc, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    //body
+
     
     
     /*
