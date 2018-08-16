@@ -12,16 +12,6 @@ import CocoaLumberjack
 
 class LocalNotificationService{
    
-    static func notificationSetUpCheck(){
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
-            if success{
-              DDLogVerbose("Persmission granted to display local notification")
-            }else{
-              DDLogVerbose("Permisssion denied for local notifications \(String(describing: error?.localizedDescription))")
-            }
-        }
-    }
-    
     static func sendNotification(title:String, subtitle:String, body:String){
         let notification = UNMutableNotificationContent()
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)

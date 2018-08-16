@@ -10,6 +10,7 @@ import UIKit
 import CocoaLumberjack
 import Crashlytics
 import Braintree
+import SwiftMessages
 
 protocol SelectPaymentViewControllerDelegate {
     
@@ -160,15 +161,28 @@ class PaymentsViewController: BaseYibbyViewController,
             
             // Change the default Payment Method at the server
             ActivityIndicatorUtil.enableActivityIndicator(self.view)
-            
             BraintreePaymentService.sharedInstance().selectDefaultCustomerSource(defaultPaymentMethod, completionBlock: { (error: NSError?) -> Void in
                 ActivityIndicatorUtil.disableActivityIndicator(self.view)
                 
                 if (error == nil) {
                     DDLogVerbose("makeDefaultPaymentMethod in successfully \(String(describing: error))")
+                    ToastUtil.displayToastOnVC(self,
+                                               title: "Payment Method changed",
+                                               body: "Your default payment method has been changed.",
+                                               theme: .success,
+                                               presentationStyle: .bottom,
+                                               duration: .seconds(seconds: 2),
+                                               windowLevel: UIWindowLevelNormal)
                     self.reloadTable()
                 } else {
                     DDLogVerbose("Error makeDefaultPaymentMethod in: \(String(describing: error))")
+                    ToastUtil.displayToastOnVC(self,
+                                               title: "Error",
+                                               body: "There was some error in changing payment method. Please try again",
+                                               theme: .error,
+                                               presentationStyle: .bottom,
+                                               duration: .seconds(seconds: 2),
+                                               windowLevel: UIWindowLevelNormal)
                 }
             })
 

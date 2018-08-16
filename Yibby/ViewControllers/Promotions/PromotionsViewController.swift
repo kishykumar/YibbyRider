@@ -14,6 +14,11 @@ class PromotionsViewController: BaseYibbyViewController {
     @IBOutlet weak var yebbyCodeTF: UITextField!
     @IBOutlet weak var emailAddressTF: UITextField!
     
+    @IBOutlet weak var rideOffView: YibbyBorderedUIView!
+    
+    @IBOutlet weak var contactYibbyButtonOutlet: UIButton!
+    
+    
     @IBOutlet var VW: UIView!
     @IBOutlet var VW1: UIView!
     
@@ -40,6 +45,10 @@ class PromotionsViewController: BaseYibbyViewController {
         accessContactsBtn.layer.borderWidth = 1.0
         accessContactsBtn.layer.cornerRadius = 7
         
+        contactYibbyButtonOutlet.layer.borderColor = UIColor.borderColor().cgColor
+        contactYibbyButtonOutlet.layer.borderWidth = 1.0
+        contactYibbyButtonOutlet.layer.cornerRadius = 7
+        
         /*let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y:  yebbyCodeTF.frame.height - 1, width: yebbyCodeTF.frame.width, height: 1.0)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
@@ -56,6 +65,9 @@ class PromotionsViewController: BaseYibbyViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func contactYibbyButtonAction(_ sender: UIButton) {
     }
     
     
