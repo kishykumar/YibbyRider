@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     fileprivate let BAASBOX_APPCODE = "1234567890"
     fileprivate let BAASBOX_URL = "http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com"
-   // fileprivate let BAASBOX_URL = "http://b21de12e.ngrok.io"
+    //fileprivate let BAASBOX_URL = "http://b21de12e.ngrok.io"
 
     var pushController: PushController =  PushController()
     
@@ -110,10 +110,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
-        
-        //Ask user to display local notifications
-        //LocalNotification.notificationSetUpCheck() remove this
-        
 
         return true
     }

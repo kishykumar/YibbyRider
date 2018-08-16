@@ -28,9 +28,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBOutlet weak var rootViewOutlet: UIView!
     @IBOutlet weak var topViewOutlet: UIView!
     //@IBOutlet weak var driverStatusLabelOutlet: SpringLabel!
-    
-    @IBOutlet weak var cantCancelRideOutlet: UILabel!
-    
+        
     @IBOutlet weak var cardHintViewOutlet: BTUICardHint!
     @IBOutlet weak var cardNumberLabelOutlet: UILabel!
     @IBOutlet weak var totalFareLabelOutlet: UILabel!
