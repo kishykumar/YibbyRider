@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
-    fileprivate var isSandbox = false
+    fileprivate var isSandbox = true
     
     fileprivate var connectedToGCM = false
     fileprivate var subscribedToTopic = false
@@ -61,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate var BAASBOX_URL: String {
         return
             ((self.isSandbox) ?
-            ("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
+            //("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
+            ("http://35c8cde8.ngrok.io") :
             ("http://api.yibbyapp.com"))
     }
 
@@ -576,11 +577,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                             YBClient.sharedInstance().bid = nil
                         }
                         
-                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "Unfortunately, your ride has been cancelled by the driver.",
-                                                   message: "Please send another bid.",
-                                                   completionBlock: {() -> Void in
-                                                    
-                        })
+//                        Can't show an Alert
+//                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "Unfortunately, your ride has been cancelled by the driver.",
+//                                                   message: "Please send another bid.",
+//                                                   completionBlock: {() -> Void in
+//
+//                        })
                         
                     case .rideRiderCancelled:
                         
@@ -590,11 +592,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                             YBClient.sharedInstance().bid = nil
                         }
                         
-                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "You had cancelled the previous ride.",
-                                                   message: "Hope to see you again!",
-                                                   completionBlock: {() -> Void in
-                                                    
-                        })
+//                        Can't show an Alert
+//                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "You had cancelled the previous ride.",
+//                                                   message: "Hope to see you again!",
+//                                                   completionBlock: {() -> Void in
+//
+//                        })
                         
                     case .failedNoOffers:
                         fallthrough

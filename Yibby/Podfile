@@ -61,6 +61,7 @@ def shared_pods
     pod 'SwiftMessages'
     pod 'PasswordTextField'
     pod 'Instabug'
+    pod 'AIFlatSwitch'
 
     #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     #pod 'ECSlidingViewController', '~> 2.0.3'
