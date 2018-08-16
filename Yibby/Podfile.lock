@@ -1,6 +1,7 @@
 PODS:
   - AccountKit (4.31.0)
   - ActionSheetPicker-3.0 (2.3.0)
+  - AIFlatSwitch (1.0.2)
   - Alamofire (4.7.2)
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
@@ -236,6 +237,7 @@ PODS:
 DEPENDENCIES:
   - AccountKit
   - ActionSheetPicker-3.0
+  - AIFlatSwitch
   - Alamofire
   - AlamofireObjectMapper
   - AMPopTip
@@ -289,6 +291,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AccountKit
     - ActionSheetPicker-3.0
+    - AIFlatSwitch
     - Alamofire
     - AlamofireObjectMapper
     - AMPopTip
@@ -367,6 +370,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AccountKit: f3e48047e6fb1c433dff37c61158fd32bbc482cf
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  AIFlatSwitch: 5ab22806eeff3e09d585c2f13d22bfa6e3427191
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   AMPopTip: 31251008f2c00cbc0a3d2b18520f277c5b5ab4da
@@ -430,6 +434,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: 0cd3ab836115de9f9b707d6f33ed81db25d837c7
+PODFILE CHECKSUM: 59c7fe8ed12693656b46cb57250b3a3d71ec1abe
 
 COCOAPODS: 1.5.3

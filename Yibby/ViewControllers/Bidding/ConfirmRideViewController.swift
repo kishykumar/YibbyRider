@@ -60,8 +60,8 @@ class ConfirmRideViewController: BaseYibbyViewController {
                         ActivityIndicatorUtil.disableActivityIndicator(self.view)
                         if (error == nil) {
                             // check the internal error codes even if it's success as we may not have any drivers
-                            if let bbCode = (success as AnyObject)["bb_code"] as? String {
-                                if (Int(bbCode) == self.NO_DRIVERS_FOUND_ERROR_CODE) {
+                            if let bbCode = (success as AnyObject)["bb_code"] as? Int {
+                                if (bbCode == self.NO_DRIVERS_FOUND_ERROR_CODE) {
                                     
                                     AlertUtil.displayAlertOnVC(self,
                                                                title: "No drivers online.",

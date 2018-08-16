@@ -198,7 +198,7 @@ class FindOffersViewController: BaseYibbyViewController, LTMorphingLabelDelegate
                         
                         switch (YBClient.sharedInstance().status) {
 
-                        // TODO: Fix me! Bug when driver reaches ride_end, driver_Arrived etc, and rider opens the app at the end.
+                        // TODO: Fix me! Bug when driver reaches ride_end, driver_Arrived etc, and rider opens the app at the end, then the state is messed up and we just open driver en route controller.
                         case .onRide:
                             fallthrough
                         case .pendingRating:
