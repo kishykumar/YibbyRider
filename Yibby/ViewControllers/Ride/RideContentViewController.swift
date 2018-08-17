@@ -288,7 +288,7 @@ class RideContentViewController: BaseYibbyViewController {
         pumarker.map = gmsMapViewOutlet
         pumarker.icon = YibbyMapMarker.annotationImageWithMarker(pumarker,
                                                                   title: location.name!,
-                                                                  type: .pickup)
+                                                                  type: .pickup, isShowArrow: false)
         
         pickupMarker = pumarker
     }
@@ -301,7 +301,7 @@ class RideContentViewController: BaseYibbyViewController {
         domarker.map = gmsMapViewOutlet
         domarker.icon = YibbyMapMarker.annotationImageWithMarker(domarker,
                                                                  title: location.name!,
-                                                                 type: .dropoff)
+                                                                 type: .dropoff, isShowArrow: false)
         
         dropoffMarker = domarker
     }

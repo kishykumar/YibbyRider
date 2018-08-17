@@ -106,11 +106,10 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         setupUI()
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -147,7 +146,6 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
         
         // Modify the background color because we don't want to show the regular gray one.
         self.view.backgroundColor = UIColor.appDarkGreen1();
-        
         // Set rounded profile pic
         //self.profilePictureOutlet.setRoundedWithWhiteBorder()
 

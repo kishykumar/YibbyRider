@@ -132,9 +132,23 @@ class TripTableCell: FoldingCell {
     }
     
     @IBAction func onFareOrRideIssueButtonClick(_ sender: UIButton) {
+        
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let fareIssueViewController = historyStoryboard.instantiateViewController(withIdentifier: "FareIssueViewController") as! FareIssueViewController
+        
+        if let vc = self.myViewController {
+            _ = vc.navigationController?.pushViewController(fareIssueViewController, animated: true)
+        }
     }
     
     @IBAction func onOtherIssueButtonClick(_ sender: UIButton) {
+        
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let fareIssueViewController = historyStoryboard.instantiateViewController(withIdentifier: "FareIssueViewController") as! FareIssueViewController
+        
+        if let vc = self.myViewController {
+            _ = vc.navigationController?.pushViewController(fareIssueViewController, animated: true)
+        }
     }
     
     // MARK: - Setup
@@ -166,17 +180,15 @@ class TripTableCell: FoldingCell {
     // MARK: - Helpers
     
     fileprivate func presentTopHalfController(vc: UIViewController) {
-        
-        if let vc = self.myViewController {
-            let presenter = vc.presenter
-            
+        if let customVc = self.myViewController {
+            let presenter = customVc.presenter
             presenter.presentationType = .topHalf
             presenter.transitionType = nil
             presenter.dismissTransitionType = nil
             presenter.dismissAnimated = true
             presenter.dismissOnSwipe = true
             presenter.dismissOnSwipeDirection = .top
-            vc.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+            customVc.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
         }
     }
 }
