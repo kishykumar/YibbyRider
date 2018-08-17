@@ -28,7 +28,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBOutlet weak var rootViewOutlet: UIView!
     @IBOutlet weak var topViewOutlet: UIView!
     //@IBOutlet weak var driverStatusLabelOutlet: SpringLabel!
-
+        
     @IBOutlet weak var cardHintViewOutlet: BTUICardHint!
     @IBOutlet weak var cardNumberLabelOutlet: UILabel!
     @IBOutlet weak var totalFareLabelOutlet: UILabel!
@@ -229,7 +229,6 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     }
     
     fileprivate func setupUI() {
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         topViewOutlet.addGestureRecognizer(tapGesture)
         

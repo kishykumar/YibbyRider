@@ -17,6 +17,7 @@ import ActionSheetPicker_3_0
 import BaasBoxSDK
 import ObjectMapper
 
+
 // TODO:
 // 1. Don't let user bid for 5 mins
 // 2.
@@ -37,6 +38,8 @@ class MainViewController: BaseYibbyViewController,
     @IBOutlet weak var priceSliderViewOutlet: YibbyBorderedUIView!
     @IBOutlet weak var centerMarkersViewOutlet: YibbyBorderedUIView!
     @IBOutlet weak var bidSliderOutlet: YBSlider!
+    @IBOutlet weak var etaStackView: UIStackView!
+    @IBOutlet weak var etaLabelStackView: UIStackView!
     @IBOutlet weak var driverETALabelOutlet: UILabel!
     @IBOutlet weak var userBidLabelOutlet: UILabel!
     @IBOutlet weak var suggestedBidLabelOutlet: UILabel!
@@ -60,6 +63,17 @@ class MainViewController: BaseYibbyViewController,
     var priceSliderViewHidden = false
     var miscPickerViewHidden = false
     
+    //15 sec timer
+    var etaNoDriversFetchTimer:Timer?
+    var isEtaNoDriversFetchTimerRunning:Bool = false
+    let ETA_NO_DRIVERS_FETCH_INTERVAL:Double = 15
+    //60 sec timer
+    var etaRefreshFetchTimer:Timer?
+    var isEtaRefreshFetchTimerRunning:Bool = false
+    let ETA_REFRESH_FETCH_INTERVAL:Double = 60
+    //ETAIndicator
+    var driverEtaIndicator:UIActivityIndicatorView?
+
     fileprivate var offerRejectedObserver: NotificationObserver? // for offer reject
     fileprivate var rideObserver: NotificationObserver? // for driver en route message
     
@@ -165,7 +179,9 @@ class MainViewController: BaseYibbyViewController,
     func setupUI() {
         // currency range slider
         setupMenuButton()
-        
+        let myView = UIView(frame: CGRect(x: 10, y: 0, width: 20, height: 20.5))
+        driverEtaIndicator = ActivityIndicatorUtil.addActivityIndicatorToView(myView)
+        etaLabelStackView.addArrangedSubview(myView)
         self.bidSliderOutlet.minimumTrackTintColor = UIColor.bidSliderGreen()
     }
     
@@ -332,10 +348,23 @@ class MainViewController: BaseYibbyViewController,
                         } else {
                             self.driverETALabelOutlet.text = "\(minEtaMins)-\(maxEtaMins) mins"
                         }
+                        //invalidate 15 sec timer and fire 60 sec timer
+                        if self.isEtaRefreshFetchTimerRunning == false{
+                            self.invalidateEtaNoDriversFetchTimer()
+                            self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
+                                self.getNearestDriverEta(loc: loc)
+                                self.isEtaRefreshFetchTimerRunning = true
+                                DDLogVerbose("60 sec timer fired")
+                            })
+                            
+                        }
                     } else {
                         self.driverETALabelOutlet.text = "No Drivers"
+                        //invalidate 60 sec timer and run 15 sec timer
+                        self.runNoDriversTimer(loc: loc)
                     }
                 } else {
+                    self.runNoDriversTimer(loc: loc)
                     self.driverETALabelOutlet.text = "No Drivers"
                     DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
                 }
@@ -397,7 +426,7 @@ class MainViewController: BaseYibbyViewController,
         marker.map = gmsMapViewOutlet
         marker.icon = YibbyMapMarker.annotationImageWithMarker(marker,
                                                                title: location.name!,
-                                                               type: isPickup ? .pickup : .dropoff)
+                                                               type: isPickup ? .pickup : .dropoff, isShowArrow: true)
         return marker
     }
     
@@ -425,6 +454,8 @@ class MainViewController: BaseYibbyViewController,
         }
         
         adjustGMSCameraFocus()
+        invalidateEtaNoDriversFetchTimer()
+        invalidateEtaRefreshFetchTimer()
         
         // get the driver's ETA for this pickup location
         getNearestDriverEta(loc: location)
@@ -479,10 +510,14 @@ class MainViewController: BaseYibbyViewController,
                 let distanceFees = Int((Double(perMileCents) * distanceMeters) / 1609.34)
 
                 let maxBidCents: Int = bookingFeesCents + serviceFeesCents + timeFees + distanceFees
-
+                //Suggested Bid is 75% of max dollars
+                //low Bid is 50% of max dollars
                 let maxBidDollars: Int = maxBidCents / 100
-                let suggestedBidDollars: Int = (maxBidDollars * 9)/10
-                let lowBidDollars: Int = (maxBidDollars * 8) / 10
+                let suggestedBidDollars: Int = (maxBidDollars * 75)/100
+                let lowBidDollars: Int = (maxBidDollars * 5) / 10
+                DDLogVerbose("max bid dollars \(maxBidDollars)")
+                DDLogVerbose("min bid dollars \(lowBidDollars)")
+                DDLogVerbose("suggested bid dollars \(suggestedBidDollars)")
 
                 self.suggestedBidLabelOutlet.text = "$\(suggestedBidDollars)"
                 self.suggestedBid = suggestedBidDollars
@@ -567,6 +602,34 @@ class MainViewController: BaseYibbyViewController,
     func cleanup () {
         pickupFieldSelected = false
         dropoffFieldSelected = false
+    }
+    
+    //run 15 sec timer
+    func runNoDriversTimer(loc: YBLocation){
+        if self.isEtaNoDriversFetchTimerRunning==false{
+            self.driverEtaIndicator?.startAnimating()
+            self.invalidateEtaRefreshFetchTimer()
+            self.etaNoDriversFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_NO_DRIVERS_FETCH_INTERVAL, repeats: true, block: { (_) in
+                self.getNearestDriverEta(loc: loc)
+                self.isEtaNoDriversFetchTimerRunning = true
+                DDLogVerbose("15 sec timer fired")
+            })
+            
+        }
+    }
+    
+    //invalidate timers
+    func invalidateEtaNoDriversFetchTimer(){
+        etaNoDriversFetchTimer?.invalidate()
+        isEtaNoDriversFetchTimerRunning=false
+        driverEtaIndicator?.stopAnimating()
+        DDLogVerbose("15 sec timer invalidated")
+    }
+    
+    func invalidateEtaRefreshFetchTimer(){
+        etaRefreshFetchTimer?.invalidate()
+        isEtaRefreshFetchTimerRunning = false
+        DDLogVerbose("60 sec timer invalidated")
     }
 
     // MARK: - GMSMapViewDelegate

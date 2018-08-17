@@ -124,17 +124,17 @@ class MockMain: NSObject {
     // Post notifications
     func notifyDriverArrived() {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.pushController.processNotification(driverArrivedNotification!)
+        appDelegate.pushController.processNotification(driverArrivedNotification!, isForeground: true)
     }
     
     func notifyRideStart() {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.pushController.processNotification(rideStartNotification!)
+        appDelegate.pushController.processNotification(rideStartNotification!, isForeground: true)
     }
     
     func notifyRideEnd() {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.pushController.processNotification(rideEndNotification!)
+        appDelegate.pushController.processNotification(rideEndNotification!, isForeground: true)
     }
     
     // MARK: - Mock Timer functions
@@ -156,6 +156,6 @@ class MockMain: NSObject {
     
     @objc fileprivate func bidWaitTimeoutCallback() {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.pushController.processNotification(driverEnRouteNotification!)
+        appDelegate.pushController.processNotification(driverEnRouteNotification!, isForeground: true)
     }
 }

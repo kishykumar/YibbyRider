@@ -10,9 +10,7 @@ import UIKit
 
 class HelpCenterVC: BaseYibbyViewController {
 
-    @IBOutlet var useYibbyBtn: UIButton!
     @IBOutlet var lostStolenItemBtn: UIButton!
-    @IBOutlet var questionsBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +22,11 @@ class HelpCenterVC: BaseYibbyViewController {
 
     private func setupUI() {
         setupBackButton()
-        
-        useYibbyBtn.layer.borderColor = UIColor.borderColor().cgColor
-        useYibbyBtn.layer.borderWidth = 1.0
-        useYibbyBtn.layer.cornerRadius = 7
-        
+
         lostStolenItemBtn.layer.borderColor = UIColor.borderColor().cgColor
         lostStolenItemBtn.layer.borderWidth = 1.0
         lostStolenItemBtn.layer.cornerRadius = 7
-        
-        questionsBtn.layer.borderColor = UIColor.borderColor().cgColor
-        questionsBtn.layer.borderWidth = 1.0
-        questionsBtn.layer.cornerRadius = 7
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,17 +34,14 @@ class HelpCenterVC: BaseYibbyViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func useYibbyBtnAction(_ sender: Any) {
-    }
     
     @IBAction func lostStolenItemBtnAction(_ sender: Any) {
+        let historyStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.History, bundle: nil)
+        let fareIssueViewController = historyStoryboard.instantiateViewController(withIdentifier: "FareIssueViewController") as! FareIssueViewController
+        self.navigationController?.pushViewController(fareIssueViewController, animated: true)
         
     }
     
-    
-    @IBAction func questionsBtnAction(_ sender: Any) {
-    }
     
     /*
     // MARK: - Navigation

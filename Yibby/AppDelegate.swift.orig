@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
-    fileprivate var isSandbox = true
+    fileprivate var isSandbox = false
     
     fileprivate var connectedToGCM = false
     fileprivate var subscribedToTopic = false
@@ -61,12 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate var BAASBOX_URL: String {
         return
             ((self.isSandbox) ?
-            //("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
-            ("http://3a15b3cb.ngrok.io") :
+            ("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
             ("http://api.yibbyapp.com"))
     }
 
     //fileprivate let BAASBOX_URL = "http://42f3eb3a.ngrok.io"
+
 
     var pushController: PushController =  PushController()
     
@@ -82,11 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Configure Instabug
-        Instabug.start(withToken: "c7bb77a6db6b6fe82390717dd5ae1906", invocationEvent: .shake)
-        
+        Fabric.with([Crashlytics.self])
+
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
+        
+        // Configure Instabug
+        Instabug.start(withToken: "c7bb77a6db6b6fe82390717dd5ae1906", invocationEvent: .shake)
         
         setupLogger()
         setupKeyboardManager()
@@ -120,10 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
-
-        // NOTE: Setup Crashlytics the last
-        Fabric.with([Crashlytics.self])
-        Fabric.sharedSDK().debug = true
 
         return true
     }
@@ -579,12 +577,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                             YBClient.sharedInstance().bid = nil
                         }
                         
-//                        Can't show an Alert
-//                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "Unfortunately, your ride has been cancelled by the driver.",
-//                                                   message: "Please send another bid.",
-//                                                   completionBlock: {() -> Void in
-//
-//                        })
+                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "Unfortunately, your ride has been cancelled by the driver.",
+                                                   message: "Please send another bid.",
+                                                   completionBlock: {() -> Void in
+                                                    
+                        })
                         
                     case .rideRiderCancelled:
                         
@@ -594,12 +591,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                             YBClient.sharedInstance().bid = nil
                         }
                         
-//                        Can't show an Alert
-//                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "You had cancelled the previous ride.",
-//                                                   message: "Hope to see you again!",
-//                                                   completionBlock: {() -> Void in
-//
-//                        })
+                        AlertUtil.displayAlertOnVC(centerNav.topViewController!, title: "You had cancelled the previous ride.",
+                                                   message: "Hope to see you again!",
+                                                   completionBlock: {() -> Void in
+                                                    
+                        })
                         
                     case .failedNoOffers:
                         fallthrough

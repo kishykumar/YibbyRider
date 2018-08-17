@@ -191,6 +191,8 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         
         setupBackButton()
         
+        VW2.isHidden = true
+        
         VW.layer.borderColor = UIColor.appDarkGreen1().cgColor
         VW1.layer.borderColor = UIColor.appDarkGreen1().cgColor
         VW2.layer.borderColor = UIColor.appDarkGreen1().cgColor
