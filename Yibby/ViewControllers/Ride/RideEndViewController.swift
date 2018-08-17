@@ -42,7 +42,7 @@ class RideEndViewController: BaseYibbyViewController {
     
     // MARK: - Actions
     @IBAction func onTipViewClick(_ sender: UIButton) {
-        popTip.show(text: "New price includes tip", direction: .right, maxWidth: 200, in: innerContentViewOutlet, from: moreInfoButtonOutlet.frame)
+        popTip.show(text: "This price does not include tip", direction: .right, maxWidth: 200, in: innerContentViewOutlet, from: moreInfoButtonOutlet.frame)
     }
     
     @IBAction func onTipSliderValueChange(_ sender: StepSlider) {
@@ -54,8 +54,6 @@ class RideEndViewController: BaseYibbyViewController {
         // } }
 
         if (sender.index != 0) {
-            rideFareLabel.textColor = UIColor.appDarkGreen1()
-            moreInfoButtonOutlet.isHidden = false
             
             switch (sender.index) {
                 
@@ -95,9 +93,6 @@ class RideEndViewController: BaseYibbyViewController {
             updateFinalFareWithTip()
             
         } else {
-            rideFareLabel.textColor = UIColor.darkGray
-            moreInfoButtonOutlet.isHidden = true
-            
             finalTipAmount = 0.0
             updateFinalFareWithTip()
         }
@@ -135,9 +130,7 @@ class RideEndViewController: BaseYibbyViewController {
         
         setupMenuButton()
         
-        rideFareLabel.textColor = UIColor.darkGray
-        
-        moreInfoButtonOutlet.isHidden = true
+        rideFareLabel.textColor = UIColor.appDarkGreen1()
         
         carImage.layer.borderColor = UIColor.borderColor().cgColor
         carImage.layer.borderWidth = 2.0
@@ -282,17 +275,14 @@ class RideEndViewController: BaseYibbyViewController {
     
     // MARK: - Cosmos Rating View
     
-
-    // MARK: - Helpers
     
+    // MARK: - Helpers
     
     func updateFinalFareWithTip() {
         
         if let ride = YBClient.sharedInstance().ride {
             let rideFareInt = Int(ride.bidPrice!)
-            let tipInt = Int(finalTipAmount)
-            
-            rideFareLabel.text = "$\(rideFareInt + tipInt)"
+            rideFareLabel.text = "$\(rideFareInt)"
         }
     }
 }
