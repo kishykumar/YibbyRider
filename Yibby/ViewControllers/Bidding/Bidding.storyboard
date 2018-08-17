@@ -68,13 +68,18 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="83H-WQ-z4o" userLabel="ETASV">
                                                         <rect key="frame" x="0.0" y="0.0" width="93.5" height="49.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXq-Zo-3CC" userLabel="ETATextLabel">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6YK-3s-E5O">
                                                                 <rect key="frame" x="0.0" y="0.0" width="93.5" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No drivers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGn-sn-jlw" userLabel="ETALabel">
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXq-Zo-3CC" userLabel="ETATextLabel">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No drivers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nGn-sn-jlw" userLabel="ETALabel">
                                                                 <rect key="frame" x="0.0" y="25.5" width="93.5" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                 <color key="textColor" red="0.0" green="0.56470588235294117" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -224,6 +229,8 @@
                         <outlet property="bidSliderOutlet" destination="cA7-uG-FYJ" id="qY3-HF-XA4"/>
                         <outlet property="centerMarkersViewOutlet" destination="sFe-oe-11F" id="IZo-uY-m8I"/>
                         <outlet property="driverETALabelOutlet" destination="nGn-sn-jlw" id="Tne-Sy-rTm"/>
+                        <outlet property="etaLabelStackView" destination="6YK-3s-E5O" id="0Fn-Ta-X0H"/>
+                        <outlet property="etaStackView" destination="83H-WQ-z4o" id="4YF-vY-bhC"/>
                         <outlet property="gmsMapViewOutlet" destination="MUC-c9-zdZ" id="4bw-jc-0fZ"/>
                         <outlet property="priceSliderViewOutlet" destination="0Cv-8g-cTx" id="ZLd-sY-auZ"/>
                         <outlet property="suggestedBidLabelOutlet" destination="Vhg-7V-5Wl" id="fVt-0p-P7W"/>

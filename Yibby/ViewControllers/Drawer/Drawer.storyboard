@@ -249,6 +249,7 @@
                             <constraint firstItem="rbC-l6-JHX" firstAttribute="leading" secondItem="13G-8U-ZeC" secondAttribute="leading" id="oSq-2y-lMI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2gO-gM-8J1"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -266,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0D-aV-1Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2412" y="-295.50224887556226"/>
+            <point key="canvasLocation" x="3399" y="-307"/>
         </scene>
         <!--NotificationsVC-->
         <scene sceneID="9Sl-Ox-x3b">
@@ -508,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kob-7a-TCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3097.5" y="-307.3943661971831"/>
+            <point key="canvasLocation" x="4095" y="-307.3943661971831"/>
         </scene>
     </scenes>
 </document>

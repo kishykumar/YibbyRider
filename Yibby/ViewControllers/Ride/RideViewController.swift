@@ -11,6 +11,7 @@ import BaasBoxSDK
 import CocoaLumberjack
 import GoogleMaps
 import ISHPullUp
+import SwiftMessages
 
 public enum RideViewControllerState: Int {
     case driverEnRoute = 0
@@ -98,7 +99,7 @@ class RideViewController: ISHPullUpViewController {
                                        body: "Your driver is on his way.",
                                        theme: .success,
                                        presentationStyle: .center,
-                                       duration: .forever,
+                                       duration: .automatic,
                                        windowLevel: UIWindowLevelNormal)
         }
     }

@@ -27,7 +27,7 @@ class LostItemViewController: BaseYibbyViewController {
     @IBAction func onEmailYibbyClick(_ sender: YibbyButton1) {
         let email = "support@yibby.zohodesk.com"
         if let url = URL(string: "mailto:\(email)") {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

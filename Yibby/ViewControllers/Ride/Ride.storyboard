@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -206,18 +206,18 @@
                                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="230"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wvn-T2-ROX" userLabel="CancelRideSV">
-                                                                <rect key="frame" x="62" y="20" width="105.5" height="59"/>
+                                                                <rect key="frame" x="11" y="20" width="156.5" height="59"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Dm-D8g" userLabel="CancelRideTextLabel">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="23"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Dm-D8g" userLabel="CancelRideTextLabel">
+                                                                        <rect key="frame" x="25.5" y="0.0" width="105.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuJ-S4-OaX" userLabel="CancelRideButton">
-                                                                        <rect key="frame" x="38" y="23" width="30" height="36"/>
+                                                                        <rect key="frame" x="63.5" y="23" width="30" height="36"/>
                                                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                                                                        <state key="normal" title="">
+                                                                        <state key="normal" title="x">
                                                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
                                                                         <connections>
@@ -231,6 +231,7 @@
                                                         <constraints>
                                                             <constraint firstItem="wvn-T2-ROX" firstAttribute="top" secondItem="8RT-28-Sfa" secondAttribute="top" constant="20" id="Oz6-Vy-c7x"/>
                                                             <constraint firstAttribute="trailing" secondItem="wvn-T2-ROX" secondAttribute="trailing" constant="20" id="VZ2-zd-U0S"/>
+                                                            <constraint firstItem="wvn-T2-ROX" firstAttribute="leading" secondItem="8RT-28-Sfa" secondAttribute="leading" constant="11" id="laU-Nw-9Iv"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -351,8 +352,8 @@
                                                         <color key="backgroundColor" red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="JEy-HI-VYW" secondAttribute="trailing" constant="20" id="XMV-Dx-tSl"/>
-                                                            <constraint firstAttribute="bottom" secondItem="JEy-HI-VYW" secondAttribute="bottom" constant="20" id="fku-tA-S2H"/>
                                                             <constraint firstItem="JEy-HI-VYW" firstAttribute="leading" secondItem="7Vg-1g-Y1f" secondAttribute="leading" constant="10" id="hUD-gW-AKu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="JEy-HI-VYW" secondAttribute="bottom" constant="20" id="wub-8y-PzA"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -453,7 +454,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WH7-oh-wkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qly-3G-mwC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5282.3999999999996" y="1213.4932533733133"/>
+            <point key="canvasLocation" x="-5271" y="1185"/>
         </scene>
         <!--Driver InfoVC-->
         <scene sceneID="oYl-re-zMP">
