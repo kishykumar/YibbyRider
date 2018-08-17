@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         return
             ((self.isSandbox) ?
             //("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
-            ("http://35c8cde8.ngrok.io") :
+            ("http://3a15b3cb.ngrok.io") :
             ("http://api.yibbyapp.com"))
     }
 
@@ -82,13 +82,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Fabric.with([Crashlytics.self])
-
-        // Configure Baasbox
-        BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
-        
         // Configure Instabug
         Instabug.start(withToken: "c7bb77a6db6b6fe82390717dd5ae1906", invocationEvent: .shake)
+        
+        // Configure Baasbox
+        BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
         
         setupLogger()
         setupKeyboardManager()
@@ -122,6 +120,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
+
+        // NOTE: Setup Crashlytics the last
+        Fabric.with([Crashlytics.self])
+        Fabric.sharedSDK().debug = true
 
         return true
     }
