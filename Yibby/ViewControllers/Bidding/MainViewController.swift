@@ -197,6 +197,15 @@ class MainViewController: BaseYibbyViewController,
                 DispatchQueue.main.async {
                     self.updateCurrentLocation(curLocation)
                 }
+                
+            } else {
+                // if current location is not available then set pick up location from user defaults.
+                let pickDetail = Defaults.getPickUpLocation()
+                if pickDetail.isEmpty {
+                    self.setPickupDetails(YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA"))
+                } else {
+                    self.setPickupDetails(YBLocation(lat: pickDetail["latitude"] as! CLLocationDegrees, long: pickDetail["longitude"] as! CLLocationDegrees, name: pickDetail["name"] as! String))
+                }
             }
         }
     }
@@ -206,8 +215,12 @@ class MainViewController: BaseYibbyViewController,
     }
     
     func initProperties() {
-        self.setPickupDetails(YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA"))
-        self.setDropoffDetails(YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department"))
+        let DropDetail = Defaults.getDropLocation()
+        if DropDetail.isEmpty {
+            self.setDropoffDetails(YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department"))
+        } else {
+            self.setDropoffDetails(YBLocation(lat: DropDetail["latitude"] as! CLLocationDegrees, long: DropDetail["longitude"] as! CLLocationDegrees, name: DropDetail["name"] as! String))
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

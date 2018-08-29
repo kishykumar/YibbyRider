@@ -15,6 +15,7 @@ import DigitsKit
 import SwiftValidator
 import PhoneNumberKit
 import AccountKit
+import AIFlatSwitch
 
 class SignupViewController: BaseYibbyViewController,
                             IndicatorInfoProvider,
@@ -31,6 +32,10 @@ class SignupViewController: BaseYibbyViewController,
     @IBOutlet weak var signupButtonOutlet: YibbyButton1!
     @IBOutlet weak var tandcButtonOutlet: UIButton!
     @IBOutlet weak var errorLabelOutlet: UILabel!
+    @IBOutlet weak var termsStackView: UIStackView!
+    @IBOutlet weak var tandcLabelOutlet: UILabel!
+    
+    var flatSwitch = AIFlatSwitch(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
     
     // flag to test creating the same user without calling the webserver.
     fileprivate let testMode = false
@@ -42,10 +47,18 @@ class SignupViewController: BaseYibbyViewController,
     fileprivate var accountKit: AKFAccountKit!
     fileprivate var formattedPhoneNumber: String?
     
+    fileprivate let MESSAGE_FOR_NOT_ACCEPTING_TANDC = "Terms Of Service must be accepted before proceeding further."
+    fileprivate var userCheckedTandCBox: Bool = false
+    
     // MARK: - Actions
     
     @IBAction func submitFormButton(_ sender: UIButton) {
-        submitForm()
+        if userCheckedTandCBox == true {
+            submitForm()
+        } else {
+            self.errorLabelOutlet.text = MESSAGE_FOR_NOT_ACCEPTING_TANDC
+            errorLabelOutlet.isHidden = false
+        }
     }
     
     @IBAction func tncButtonAction(_ sender: AnyObject) {
@@ -56,13 +69,23 @@ class SignupViewController: BaseYibbyViewController,
     // MARK: - Setup functions
     
     func setupUI() {
+        flatSwitch.lineWidth = 2
+        flatSwitch.strokeColor = UIColor.appDarkGreen1()
+        flatSwitch.trailStrokeColor = UIColor.appDarkGreen1()
+        flatSwitch.backgroundColor = UIColor.white
+        flatSwitch.layer.masksToBounds = false
+        flatSwitch.layer.cornerRadius = flatSwitch.frame.size.width/2
+        flatSwitch.clipsToBounds = true
+        
+        termsStackView.addSubview(flatSwitch)
+        
         signupButtonOutlet.color = UIColor.appDarkGreen1()
         
         let attrTitle = NSAttributedString(string: InterfaceString.Button.TANDC,
                             attributes: [NSAttributedStringKey.foregroundColor : UIColor.appDarkGreen1(),
-                            NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 12.0),
+                            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15.0),
                             NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
-        tandcButtonOutlet.setAttributedTitle(attrTitle, for: UIControlState())
+        tandcLabelOutlet.attributedText = attrTitle
         
         phoneNumberOutlet.defaultRegion = "US"
     }
@@ -124,6 +147,8 @@ class SignupViewController: BaseYibbyViewController,
         setupDelegates()
         setupUI()
         setupValidator()
+        flatSwitch.isSelected = false
+        flatSwitch.addTarget(self, action: #selector(self.handleTandCSwitchStateChanged), for: UIControlEvents.valueChanged)
         self.hideKeyboardWhenTappedAround()
     }
 
@@ -390,5 +415,15 @@ class SignupViewController: BaseYibbyViewController,
         // login failed
         DDLogVerbose("\(viewController) did fail with error: \(error)")
         accountKit.logOut()
+    }
+    
+    @objc func handleTandCSwitchStateChanged(){
+        if userCheckedTandCBox == false{
+            flatSwitch.setSelected(true, animated: true)
+            userCheckedTandCBox = true
+        } else {
+            flatSwitch.setSelected(false, animated: true)
+            userCheckedTandCBox = false
+        }
     }
 }
