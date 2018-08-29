@@ -40,6 +40,9 @@ class LegalVC: BaseYibbyViewController {
     
 
     @IBAction func privacyPolicyBtnAction(_ sender: Any) {
+        let helpStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Help, bundle: nil)
+        let termsViewController = helpStoryboard.instantiateViewController(withIdentifier: "TermsViewController") as! TermsViewController
+        self.navigationController?.pushViewController(termsViewController, animated: true)
     }
     
     @IBAction func termsOfServiceBtnAction(_ sender: Any) {

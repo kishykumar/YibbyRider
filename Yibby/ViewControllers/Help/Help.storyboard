@@ -270,7 +270,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Tn0-wq-hy9">
-                                <rect key="frame" x="10" y="80" width="300" height="105"/>
+                                <rect key="frame" x="10" y="80" width="300" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EsN-J0-X0q">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
@@ -286,8 +286,8 @@
                                             <action selector="termsOfServiceBtnAction:" destination="6xF-fR-xYl" eventType="touchUpInside" id="ILY-0q-AhU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjF-jI-kTs">
-                                        <rect key="frame" x="0.0" y="60" width="300" height="45"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjF-jI-kTs">
+                                        <rect key="frame" x="0.0" y="-80" width="300" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="JYA-mf-AVZ"/>
@@ -301,9 +301,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="105" id="HpN-uS-vGf"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -346,7 +343,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-rt-pRY">
                                         <rect key="frame" x="0.0" y="50.5" width="288" height="406.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <mutableString key="text"> Yibby Terms of Service
+                                        <string key="text"> Yibby Terms of Service
 
 These terms of service constitute a legally binding agreement (the “Agreement”) between you and
 Yibby, Inc. (“Yibby,” “we,” “us” or “our”) governing your use of the Yibby application, website,
@@ -1176,7 +1173,7 @@ about our privacy practices. As long as you use the Yibby Platform, you are agre
 Privacy Policy and any updates we make to it.
 Contact Information. Feel free to contact us at any time with any questions or comments about
 this Privacy Policy, your personal information, our use and sharing practices, or your consent
-choices by contacting our Help Center.</mutableString>
+choices by contacting our Help Center.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
