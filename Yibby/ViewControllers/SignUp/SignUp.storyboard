@@ -102,16 +102,27 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5aB-27-7g9" userLabel="TermsStack">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5aB-27-7g9" userLabel="TermsStack">
                                 <rect key="frame" x="16" y="361" width="288" height="25"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gR7-sZ-Mpz">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-TS-zAQ" customClass="AIFlatSwitch" customModule="AIFlatSwitch">
                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="DEg-Mw-xc5"/>
-                                            <constraint firstAttribute="width" constant="25" id="cFK-Tw-hym"/>
+                                            <constraint firstAttribute="height" constant="25" id="08O-p1-2JR"/>
+                                            <constraint firstAttribute="width" constant="25" id="cXm-1u-fRL"/>
                                         </constraints>
-                                    </button>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                <color key="value" red="0.1764705882" green="0.70588235290000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="trailStrokeColor">
+                                                <color key="value" red="0.1764705882" green="0.70588235290000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-n6-7uJ">
                                         <rect key="frame" x="27" y="0.0" width="55" height="25"/>
                                         <constraints>
@@ -164,6 +175,7 @@
                         <outlet property="signupButtonOutlet" destination="9cH-XT-wAP" id="SA3-Fo-NoH"/>
                         <outlet property="tandcButtonOutlet" destination="pWa-GR-brA" id="6IJ-WE-Oju"/>
                         <outlet property="tandcLabelOutlet" destination="o8o-UC-1nL" id="mAf-54-kGL"/>
+                        <outlet property="tandcSwitch" destination="wEg-TS-zAQ" id="ho0-cq-6bp"/>
                         <outlet property="termsStackView" destination="5aB-27-7g9" id="fGE-SQ-dJO"/>
                     </connections>
                 </viewController>
@@ -174,7 +186,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2202" y="-286"/>
+            <point key="canvasLocation" x="2201.25" y="-286.25"/>
         </scene>
         <!--YibbY-->
         <scene sceneID="jsr-Fu-8Wz">
