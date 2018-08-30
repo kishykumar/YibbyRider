@@ -104,7 +104,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     DDLogVerbose("createBid received bidID: \(String(describing: userBid.id))")
                                     YBClient.sharedInstance().status = .ongoingBid
                                     YBClient.sharedInstance().bid = userBid
-                                    self.setLocationDefaults()
+                                    
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {
                                     
@@ -147,11 +147,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setLocationDefaults(){
-        
-        Defaults.setPickUpLocation(pickUpLat: (self.pickupLocation?.latitude)!, pickUpLong: (self.pickupLocation?.longitude)!, pickUpName: (self.pickupLocation?.name)!)
-        Defaults.setDropLocation(dropLat: (self.dropoffLocation?.latitude)!, dropLong: (self.dropoffLocation?.longitude)!, dropName: (self.dropoffLocation?.name)!)
-    }
 
     /*
     // MARK: - Navigation
