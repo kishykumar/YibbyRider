@@ -200,12 +200,8 @@ class MainViewController: BaseYibbyViewController,
             } else {
                 DispatchQueue.main.async {
                     // if current location is not available then set pick up location from user defaults.
-                    let pickDetail = Defaults.getYibbyPickLocation()
-                    if let pickObject = YBLocation(JSONString: pickDetail){
-                        self.setPickupDetails(YBLocation(lat: pickObject.latitude!, long: pickObject.longitude!, name: pickObject.name!))
-                    } else {
-                        self.setPickupDetails(YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA"))
-                    }
+                    let pickUpDetail = Defaults.getYibbyPickLocation()
+                    self.setPickupDetails(pickUpDetail)
                 }
             }
         }
@@ -217,11 +213,7 @@ class MainViewController: BaseYibbyViewController,
     
     func initProperties() {
         let dropDetail = Defaults.getYibbyDropLocation()
-        if let dropObject = YBLocation(JSONString: dropDetail){
-            self.setDropoffDetails(YBLocation(lat: dropObject.latitude!, long: dropObject.longitude!, name: dropObject.name!))
-        } else {
-            self.setDropoffDetails(YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department"))
-        }
+        self.setDropoffDetails(dropDetail)
 
     }
     
@@ -475,8 +467,7 @@ class MainViewController: BaseYibbyViewController,
         invalidateEtaRefreshFetchTimer()
         
         //save pickup location in user defaults
-        let jsonString = location.toJSONString()
-        Defaults.setYibbyPickLocation(pickLocation: jsonString!)
+        Defaults.setYibbyPickLocation(pickLocation: location)
         // get the driver's ETA for this pickup location
         getNearestDriverEta(loc: location)
     }
@@ -505,8 +496,7 @@ class MainViewController: BaseYibbyViewController,
         }
         
         //save drop location to user defaults
-        let jsonString = location.toJSONString()
-        Defaults.setYibbyDropLocation(dropLocation: jsonString!)
+        Defaults.setYibbyDropLocation(dropLocation: location)
         adjustGMSCameraFocus()
     }
     
