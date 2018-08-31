@@ -7,33 +7,36 @@
 //
 
 import Foundation
+import ObjectMapper
 
 open class Defaults{
     
     static let defaults = UserDefaults.standard
     
-    static func setYibbyPickLocation(pickLocation: String) {
-        defaults.set(pickLocation, forKey: "yibbyPickLocation")
+    static func setYibbyPickLocation(pickLocation: YBLocation) {
+        let jsonString = pickLocation.toJSONString()
+        defaults.set(jsonString, forKey: "yibbyPickLocation")
     }
     
-    static func getYibbyPickLocation() -> String {
+    static func getYibbyPickLocation() -> YBLocation {
         if let pick = defaults.string(forKey: "yibbyPickLocation"){
-            return pick
+            return YBLocation(JSONString: pick)!
         } else {
-            return "no pick location"
+            return YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA")
         }
         
     }
     
-    static func setYibbyDropLocation(dropLocation: String) {
-        defaults.set(dropLocation, forKey: "yibbyDropLocation")
+    static func setYibbyDropLocation(dropLocation: YBLocation) {
+        let jsonString = dropLocation.toJSONString()
+        defaults.set(jsonString, forKey: "yibbyDropLocation")
     }
     
-    static func getYibbyDropLocation() -> String {
+    static func getYibbyDropLocation() -> YBLocation {
         if let drop = defaults.string(forKey: "yibbyDropLocation"){
-            return drop
+            return YBLocation(JSONString: drop)!
         } else {
-            return "no drop location"
+            return YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department")
         }
     }
 

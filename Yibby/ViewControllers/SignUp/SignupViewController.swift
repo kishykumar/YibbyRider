@@ -36,7 +36,6 @@ class SignupViewController: BaseYibbyViewController,
     @IBOutlet weak var tandcLabelOutlet: UILabel!
     @IBOutlet weak var tandcSwitch: AIFlatSwitch!
     
-    
     // flag to test creating the same user without calling the webserver.
     fileprivate let testMode = false
     
