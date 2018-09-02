@@ -105,7 +105,6 @@ class ConfirmRideViewController: BaseYibbyViewController {
                                     YBClient.sharedInstance().status = .ongoingBid
                                     YBClient.sharedInstance().bid = userBid
                                     
-                                    
                                     self.performSegue(withIdentifier: "findOffersSegue", sender: nil)
                                 } else {
                                     
@@ -147,6 +146,7 @@ class ConfirmRideViewController: BaseYibbyViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     /*
     // MARK: - Navigation

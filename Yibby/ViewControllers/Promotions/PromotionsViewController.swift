@@ -9,6 +9,7 @@
 import UIKit
 import CocoaLumberjack
 import MessageUI
+import SwiftMessages
 
 class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewControllerDelegate {
     
@@ -75,6 +76,7 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
     func sendEmail(){
         if !MFMailComposeViewController.canSendMail(){
             DDLogVerbose("Mail services are not available")
+            ToastUtil.displayToastOnVC(self, title: "Mail account not configured", body: "Mail Services are not available. Please configure a mail account to send Referrals", theme: .warning, presentationStyle: .center, duration: .seconds(seconds: 5), windowLevel: UIWindowLevelNormal)
             return
         }
         let composeVc = MFMailComposeViewController()
