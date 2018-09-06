@@ -68,9 +68,11 @@ class MainViewController: BaseYibbyViewController,
     var isEtaNoDriversFetchTimerRunning:Bool = false
     let ETA_NO_DRIVERS_FETCH_INTERVAL:Double = 15
     //60 sec timer
-    var etaRefreshFetchTimer:Timer?
-    var isEtaRefreshFetchTimerRunning:Bool = false
-    let ETA_REFRESH_FETCH_INTERVAL:Double = 60
+    var twoSecTimer:Timer?
+    let TWO_SEC_TIMER_INTERVAL:Int = 2
+//    var etaRefreshFetchTimer:Timer?
+//    var isEtaRefreshFetchTimerRunning:Bool = false
+//    let ETA_REFRESH_FETCH_INTERVAL:Double = 60
     //ETAIndicator
     var driverEtaIndicator:UIActivityIndicatorView?
 
@@ -154,6 +156,7 @@ class MainViewController: BaseYibbyViewController,
             }
             
             let navController = UINavigationController(rootViewController: confirmRideViewController)
+            //self.etaNoDriversFetchTimer?.invalidate()
             self.navigationController?.present(navController, animated: true, completion: nil)
         }
     }
@@ -250,6 +253,18 @@ class MainViewController: BaseYibbyViewController,
         setupMapClient()
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("view appeared")
+        let pickUpDetail = Defaults.getYibbyPickLocation()
+        self.setPickupDetails(pickUpDetail)
+        //timer starts
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("view disappeared")
+        invalidateEtaNoDriversFetchTimer()
     }
     
     open override func viewDidLayoutSubviews() {
@@ -357,16 +372,18 @@ class MainViewController: BaseYibbyViewController,
                         } else {
                             self.driverETALabelOutlet.text = "\(minEtaMins)-\(maxEtaMins) mins"
                         }
+                        self.driverEtaIndicator?.stopAnimating()
+                        self.runNoDriversTimer(loc: loc)
                         //invalidate 15 sec timer and fire 60 sec timer
-                        if self.isEtaRefreshFetchTimerRunning == false{
-                            self.invalidateEtaNoDriversFetchTimer()
-                            self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
-                                self.getNearestDriverEta(loc: loc)
-                                self.isEtaRefreshFetchTimerRunning = true
-                                DDLogVerbose("60 sec timer fired")
-                            })
-                            
-                        }
+//                        if self.isEtaRefreshFetchTimerRunning == false{
+//                            self.invalidateEtaNoDriversFetchTimer()
+//                            self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
+//                                self.getNearestDriverEta(loc: loc)
+//                                self.isEtaRefreshFetchTimerRunning = true
+//                                DDLogVerbose("60 sec timer fired")
+//                            })
+//
+//                        }
                     } else {
                         self.driverETALabelOutlet.text = "No Drivers"
                         //invalidate 60 sec timer and run 15 sec timer
@@ -378,6 +395,12 @@ class MainViewController: BaseYibbyViewController,
                     DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
                 }
         })
+    }
+    
+    @objc func stopIndicator(){
+        self.driverEtaIndicator?.startAnimating()
+          DDLogVerbose("2 sec timer fired")
+        
     }
     
     func updateCurrentLocation (_ userLocation: CLLocation) {
@@ -620,6 +643,8 @@ class MainViewController: BaseYibbyViewController,
     //run 15 sec timer
     func runNoDriversTimer(loc: YBLocation){
         if self.isEtaNoDriversFetchTimerRunning==false{
+        self.twoSecTimer = Timer.scheduledTimer(timeInterval: 13, target: self, selector: #selector(self.stopIndicator), userInfo: nil, repeats: true)
+           // self.driverEtaIndicator?.stopAnimating()
             self.driverEtaIndicator?.startAnimating()
             self.invalidateEtaRefreshFetchTimer()
             self.etaNoDriversFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_NO_DRIVERS_FETCH_INTERVAL, repeats: true, block: { (_) in
@@ -640,8 +665,8 @@ class MainViewController: BaseYibbyViewController,
     }
     
     func invalidateEtaRefreshFetchTimer(){
-        etaRefreshFetchTimer?.invalidate()
-        isEtaRefreshFetchTimerRunning = false
+       // etaRefreshFetchTimer?.invalidate()
+        //isEtaRefreshFetchTimerRunning = false
         DDLogVerbose("60 sec timer invalidated")
     }
 
