@@ -204,6 +204,12 @@ class MainViewController: BaseYibbyViewController,
                 DispatchQueue.main.async {
                     self.updateCurrentLocation(curLocation)
                 }
+            } else {
+                DispatchQueue.main.async {
+                    // if current location is not available then set pick up location from user defaults.
+                    let pickUpDetail = Defaults.getYibbyPickLocation()
+                    self.setPickupDetails(pickUpDetail)
+                }
             }
         }
     }
@@ -213,8 +219,9 @@ class MainViewController: BaseYibbyViewController,
     }
     
     func initProperties() {
-        self.setPickupDetails(YBLocation(lat: 37.422094, long: -122.084068, name: "Googleplex, Amphitheatre Parkway, Mountain View, CA"))
-        self.setDropoffDetails(YBLocation(lat: 37.430033, long: -122.173335, name: "Stanford Computer Science Department"))
+        let dropDetail = Defaults.getYibbyDropLocation()
+        self.setDropoffDetails(dropDetail)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -248,6 +255,8 @@ class MainViewController: BaseYibbyViewController,
         setupUI()
         setupMap()
         setupMapClient()
+        
+        
     }
     
     open override func viewDidLayoutSubviews() {
@@ -477,6 +486,8 @@ class MainViewController: BaseYibbyViewController,
         invalidateEtaNoDriversFetchTimer()
         invalidateEtaRefreshFetchTimer()
         
+        //save pickup location in user defaults
+        Defaults.setYibbyPickLocation(pickLocation: location)
         // get the driver's ETA for this pickup location
         getNearestDriverEta(loc: location)
     }
@@ -511,6 +522,8 @@ class MainViewController: BaseYibbyViewController,
             }
         }
         
+        //save drop location to user defaults
+        Defaults.setYibbyDropLocation(dropLocation: location)
         adjustGMSCameraFocus()
     }
     

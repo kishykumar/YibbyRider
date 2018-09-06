@@ -315,6 +315,7 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
                     
                     if let profile = profileModel {
                         self.applyProfileModel(profile)
+                        ToastUtil.displayToastOnVC(self, title: "Email has been successfully changed", body: "", theme: .success, presentationStyle: .bottom, duration: .seconds(seconds: 5), windowLevel: UIWindowLevelNormal)
                     }
                     else {
                         AlertUtil.displayAlertOnVC(self, title: "Error in Updating User Profile", message: error?.localizedDescription ?? "")

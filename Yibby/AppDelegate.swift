@@ -59,8 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate var BAASBOX_URL: String {
         return
             ((self.isSandbox) ?
-            //("http://custom-env.cjamdz6ejx.us-west-1.elasticbeanstalk.com") :
-            ("http://3a15b3cb.ngrok.io") :
+            ("http://test.yibbyapp.com") :
+           // ("http://3a15b3cb.ngrok.io") :
             ("http://api.yibbyapp.com"))
     }
 

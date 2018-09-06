@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -88,37 +89,64 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Ze-uPT" userLabel="TnC Button Outlet">
-                                <rect key="frame" x="34.5" y="413" width="251" height="27"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                <state key="normal" title="TERMS OF SERVICE AND PRIVACY POLICY"/>
-                                <connections>
-                                    <action selector="tncButtonAction:" destination="HCu-Oe-ib8" eventType="touchUpInside" id="8uA-Lh-6wd"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BY CONTINUING, YOU AGREE TO OUR " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyn-Xi-eu5" userLabel="Signup Label">
-                                <rect key="frame" x="0.0" y="399" width="320" height="13.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5aB-27-7g9" userLabel="TermsStack">
+                                <rect key="frame" x="16" y="361" width="288" height="25"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-TS-zAQ" customClass="AIFlatSwitch" customModule="AIFlatSwitch">
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="08O-p1-2JR"/>
+                                            <constraint firstAttribute="width" constant="25" id="cXm-1u-fRL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                <color key="value" red="0.1764705882" green="0.70588235290000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="trailStrokeColor">
+                                                <color key="value" red="0.1764705882" green="0.70588235290000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-n6-7uJ">
+                                        <rect key="frame" x="27" y="0.0" width="55" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="55" id="4ab-Q8-hIj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8o-UC-1nL">
+                                        <rect key="frame" x="84" y="0.0" width="204" height="25"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="2kr-wA-Dvq" appends="YES" id="C5L-NG-0g1"/>
+                                        </connections>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="trailing" secondItem="JGF-1f-FtY" secondAttribute="trailingMargin" id="4Ij-fA-SJB"/>
-                            <constraint firstAttribute="trailing" secondItem="Hyn-Xi-eu5" secondAttribute="trailing" id="8zR-fQ-2hZ"/>
-                            <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="5bv-Ze-uPT" secondAttribute="bottom" constant="40" id="IzM-SO-Rfs"/>
-                            <constraint firstItem="5bv-Ze-uPT" firstAttribute="centerX" secondItem="JGF-1f-FtY" secondAttribute="centerX" id="N7F-PJ-6Al"/>
+                            <constraint firstAttribute="centerX" secondItem="JGF-1f-FtY" secondAttribute="centerX" id="KO8-f4-Qwk"/>
+                            <constraint firstItem="5aB-27-7g9" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="Koj-CO-kiy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5aB-27-7g9" secondAttribute="trailing" id="Kqb-ae-9dP"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="top" secondItem="num-hm-WoR" secondAttribute="bottom" constant="10" id="Pu0-r7-Gt6"/>
                             <constraint firstItem="num-hm-WoR" firstAttribute="top" secondItem="iFW-zz-HxR" secondAttribute="bottom" constant="10" id="Tfi-4t-UQq"/>
-                            <constraint firstItem="Hyn-Xi-eu5" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leading" id="V1Q-7h-SS4"/>
+                            <constraint firstItem="QiB-1n-zja" firstAttribute="top" secondItem="5aB-27-7g9" secondAttribute="bottom" constant="94" id="arG-7u-f67"/>
                             <constraint firstAttribute="trailingMargin" secondItem="num-hm-WoR" secondAttribute="trailing" id="cMb-jw-bFq"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="top" secondItem="Uyt-Pk-j7d" secondAttribute="bottom" constant="25" id="cx3-rf-Dav"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="trailing" secondItem="JGF-1f-FtY" secondAttribute="trailingMargin" id="knr-I4-n3D"/>
                             <constraint firstItem="num-hm-WoR" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="qOM-Cv-1ti"/>
                             <constraint firstItem="9cH-XT-wAP" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="u1c-m4-0Ng"/>
                             <constraint firstItem="Uyt-Pk-j7d" firstAttribute="leading" secondItem="JGF-1f-FtY" secondAttribute="leadingMargin" id="vSy-c5-KJI"/>
-                            <constraint firstItem="5bv-Ze-uPT" firstAttribute="top" secondItem="Hyn-Xi-eu5" secondAttribute="bottom" id="yWQ-Oe-Vz6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -128,12 +156,19 @@
                         <outlet property="passwordOutlet" destination="CMV-q2-Lbd" id="cys-f0-yLp"/>
                         <outlet property="phoneNumberOutlet" destination="AwM-xB-sas" id="Ztp-87-ZFz"/>
                         <outlet property="signupButtonOutlet" destination="9cH-XT-wAP" id="SA3-Fo-NoH"/>
-                        <outlet property="tandcButtonOutlet" destination="5bv-Ze-uPT" id="pyk-dY-Rza"/>
+                        <outlet property="tandcLabelOutlet" destination="o8o-UC-1nL" id="mAf-54-kGL"/>
+                        <outlet property="tandcSwitch" destination="wEg-TS-zAQ" id="ho0-cq-6bp"/>
+                        <outlet property="termsStackView" destination="5aB-27-7g9" id="fGE-SQ-dJO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJS-3b-2i2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2kr-wA-Dvq">
+                    <connections>
+                        <action selector="tncButtonAction:" destination="HCu-Oe-ib8" id="qKc-m9-mBc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2202" y="-286"/>
+            <point key="canvasLocation" x="2201.25" y="-286.25"/>
         </scene>
         <!--YibbY-->
         <scene sceneID="jsr-Fu-8Wz">

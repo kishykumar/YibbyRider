@@ -208,6 +208,7 @@
 		126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */; };
 		126C4B041D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */; };
 		126C4B061D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */; };
+		126D718D212AB30300DBCF18 /* FareIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126D718C212AB30200DBCF18 /* FareIssueViewController.swift */; };
 		1275200B2057A448007FA4EB /* DriverEta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1275200A2057A448007FA4EB /* DriverEta.swift */; };
 		12839D96206A14E60033B7EA /* ToastUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12839D95206A14E60033B7EA /* ToastUtil.swift */; };
 		129AC2D61DB3ABB800E70FAE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AC2D51DB3ABB800E70FAE /* UIViewExtensions.swift */; };
@@ -257,12 +258,12 @@
 		12A6BF631D8E700A008BEFC1 /* YibbyBorderedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */; };
 		12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */; };
 		12B174811D54574100BD0B87 /* BraintreePaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B174801D54574100BD0B87 /* BraintreePaymentService.swift */; };
-		12B30317212921C8001026D7 /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B30316212921C8001026D7 /* LocalNotificationService.swift */; };
-		12B30319212922B2001026D7 /* FareIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B30318212922B2001026D7 /* FareIssueViewController.swift */; };
-		12B3031B212922E3001026D7 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3031A212922E3001026D7 /* TermsViewController.swift */; };
+		12B5817A21341E150061415F /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B5817921341E150061415F /* LocalNotificationService.swift */; };
+		12B5817C213424980061415F /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B5817B213424980061415F /* TermsViewController.swift */; };
 		12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */; };
 		12B8A36B1F32EA8E00EC07B9 /* YBMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B8A36A1F32EA8E00EC07B9 /* YBMenuButton.swift */; };
 		12C38CF31E2783450003DCB5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12C38CF21E2781440003DCB5 /* FontAwesome.ttf */; };
+		12CA639F2135394A0017DA42 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA639E2135394A0017DA42 /* UserDefaults.swift */; };
 		12CA794820A20A6600CF2DB7 /* CaishenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12346D8A20A206F900810CA4 /* CaishenTests.swift */; };
 		12CA794920A20A7000CF2DB7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12346D8B20A206F900810CA4 /* Info.plist */; };
 		12EEF0D41DB110DF00F28A17 /* QuickExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */; };
@@ -506,6 +507,7 @@
 		126C4B011D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B031D7B9D8C005EC5FF /* EditPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		126C4B051D7B9EAC005EC5FF /* SignupPaymentViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPaymentViewControllerDelegate.swift; sourceTree = "<group>"; };
+		126D718C212AB30200DBCF18 /* FareIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FareIssueViewController.swift; sourceTree = "<group>"; };
 		1275200A2057A448007FA4EB /* DriverEta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverEta.swift; sourceTree = "<group>"; };
 		12814FB91E0D23B400F08CFF /* Yibby.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yibby.entitlements; sourceTree = "<group>"; };
 		12839D95206A14E60033B7EA /* ToastUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtil.swift; sourceTree = "<group>"; };
@@ -558,12 +560,12 @@
 		12A6BF621D8E7009008BEFC1 /* YibbyBorderedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YibbyBorderedUIView.swift; sourceTree = "<group>"; };
 		12B1747E1D5456DA00BD0B87 /* BraintreeBackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeBackendAPI.swift; sourceTree = "<group>"; };
 		12B174801D54574100BD0B87 /* BraintreePaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreePaymentService.swift; sourceTree = "<group>"; };
-		12B30316212921C8001026D7 /* LocalNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
-		12B30318212922B2001026D7 /* FareIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FareIssueViewController.swift; sourceTree = "<group>"; };
-		12B3031A212922E3001026D7 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		12B5817921341E150061415F /* LocalNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
+		12B5817B213424980061415F /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		12B58A3F1D97A40B008ECACB /* BraintreeCardUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraintreeCardUtil.swift; sourceTree = "<group>"; };
 		12B8A36A1F32EA8E00EC07B9 /* YBMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBMenuButton.swift; sourceTree = "<group>"; };
 		12C38CF21E2781440003DCB5 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		12CA639E2135394A0017DA42 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickExtensions.swift; sourceTree = "<group>"; };
 		12EF49711C95276800C07FAE /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -713,6 +715,7 @@
 				121096921D1142E000D7174F /* LocationService.swift */,
 				12F092AA1D3E156700F158BB /* StripePaymentService.swift */,
 				12B174801D54574100BD0B87 /* BraintreePaymentService.swift */,
+				12B5817921341E150061415F /* LocalNotificationService.swift */,
 				085FBBDD1E8302AC00002F4D /* ImageService.swift */,
 				1240D3F7205A3CFF006A336A /* DirectionsService.swift */,
 			);
@@ -762,6 +765,7 @@
 				12A4B1131F40FBD000B53054 /* YBPasswordRule.swift */,
 				12A4B1151F42C93F00B53054 /* YBValidPaymentFieldRule.swift */,
 				12439383201E7E330057DA63 /* YBNotifications.swift */,
+				12CA639E2135394A0017DA42 /* UserDefaults.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -814,6 +818,7 @@
 				1201B7EB1D25005300A7EEAF /* Help.storyboard */,
 				1201B74D1D23A85F00A7EEAF /* HelpViewController.swift */,
 				08FE49591E7416C60044ACBF /* HelpCenterVC.swift */,
+				12B5817B213424980061415F /* TermsViewController.swift */,
 				08FE495A1E7416C60044ACBF /* LegalVC.swift */,
 			);
 			path = Help;
@@ -831,6 +836,7 @@
 				1201B74F1D23A85F00A7EEAF /* HistoryViewController.swift */,
 				1201B7F71D25036C00A7EEAF /* RideDetailViewController.swift */,
 				08032C111E6600A100E876A5 /* CarDetailsChildView.swift */,
+				126D718C212AB30200DBCF18 /* FareIssueViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -2183,6 +2189,7 @@
 				1201B7451D23A84500A7EEAF /* ConfirmRideViewController.swift in Sources */,
 				121958E7205A381400E184FA /* PXGoogleDirectionsTransitLine.swift in Sources */,
 				1254E1411D69B4A8007067BC /* BaseYibbyTabViewController.swift in Sources */,
+				12CA639F2135394A0017DA42 /* UserDefaults.swift in Sources */,
 				1201B7691D23A85F00A7EEAF /* LoginViewController.swift in Sources */,
 				12346D9D20A206F900810CA4 /* CardTextFieldDelegate.swift in Sources */,
 				1201B83E1D28E90000A7EEAF /* ScreenExtensions.swift in Sources */,
@@ -2335,6 +2342,7 @@
 				12B3031B212922E3001026D7 /* TermsViewController.swift in Sources */,
 				12346DB920A206F900810CA4 /* CardNumberFormatter.swift in Sources */,
 				126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */,
+				12B5817C213424980061415F /* TermsViewController.swift in Sources */,
 				1201B7441D23A84500A7EEAF /* AboutViewController.swift in Sources */,
 				1201B7861D23AE4200A7EEAF /* LeftNavDrawerTableViewCell.swift in Sources */,
 				12346DC220A206F900810CA4 /* CardFieldsView.swift in Sources */,
@@ -2352,6 +2360,7 @@
 				12085F631F21DBB500DBC91F /* MessageComposer.swift in Sources */,
 				1201B7841D23ADD700A7EEAF /* StoryboardIdentifiers.swift in Sources */,
 				1254E13F1D694E26007067BC /* BaseYibbyViewController.swift in Sources */,
+				12B5817A21341E150061415F /* LocalNotificationService.swift in Sources */,
 				121958DC205A381400E184FA /* PXGoogleDirectionsDuration.swift in Sources */,
 				121958DA205A381400E184FA /* PXGoogleDirections.swift in Sources */,
 				1201B7811D23AD0300A7EEAF /* WebInterface.swift in Sources */,
@@ -2361,6 +2370,7 @@
 				12B1747F1D5456DA00BD0B87 /* BraintreeBackendAPI.swift in Sources */,
 				08FE495C1E7416C60044ACBF /* LegalVC.swift in Sources */,
 				1253F2CC1EFA18E300C50BB5 /* IntrinsicTableView.swift in Sources */,
+				126D718D212AB30300DBCF18 /* FareIssueViewController.swift in Sources */,
 				12085F5D1F213B0F00DBC91F /* DriverInfoVC.swift in Sources */,
 				0825BB4F1E563EB300A18145 /* ProfileVC.swift in Sources */,
 				12346DA420A206F900810CA4 /* TextFieldValidation.swift in Sources */,
