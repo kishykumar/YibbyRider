@@ -41,7 +41,7 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     @IBOutlet weak var outerCircleImageViewOutlet: UIImageView!
     @IBOutlet weak var innerCircleImageViewOutlet: SwiftyAvatar!
     
-    fileprivate let RIDE_CANCEL_THRESH: TimeInterval = (140)  // ~2 minutes, precisely 140 seconds
+    fileprivate let RIDE_CANCEL_THRESH: TimeInterval = (140)  // ~2 minutes, precisely 140 seconds (grace period of 20 seconds on top of 2 minutes)
 
     private var firstAppearanceCompleted = false
     weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
@@ -52,6 +52,10 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     private var pullupViewTargetHeight: CGFloat!
     
     let messageComposer = MessageComposer()
+    let DRIVER_CANCELLED_BB_CODE = 20098
+
+    public var isDriverCancellingRide = false
+    public var isRiderCancellingRide = false
     
     // MARK: - Actions
     
@@ -59,6 +63,11 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         
         // dismiss the keyboard if it's visible
         self.view.endEditing(true)
+        
+        // Don't let the rider press the cancel button as ride is being cancelled by driver
+        if (isDriverCancellingRide) {
+            return;
+        }
         
         let ride = YBClient.sharedInstance().ride!
         if (TimeUtil.diffFromCurTimeISO((ride.datetime)!)! < RIDE_CANCEL_THRESH) {
@@ -150,8 +159,14 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
         // Make sure the device can send text messages
         if (messageComposer.canSendText()) {
             
+            let fullName = YBClient.sharedInstance().profile!.name!
+            let fullNameArr = fullName.components(separatedBy: " ")
+            let firstName: String = fullNameArr[0]
+            
             // Obtain a configured MFMessageComposeViewController
-            let messageComposeVC = messageComposer.configuredMessageComposeViewController(phoneNumber: phoneNumber)
+            let messageComposeVC =
+                messageComposer.configuredMessageComposeViewController(phoneNumber: phoneNumber,
+                                                                       body: "Hi. Your Yibby rider (\(firstName)) here! ")
             
             // Present the configured MFMessageComposeViewController instance
             self.present(messageComposeVC, animated: true, completion: nil)
@@ -294,8 +309,8 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
             }
             
             if let driverVehicle = ride.vehicle {
-                driverCarMakeLabelOutlet.text = driverVehicle.make
-                driverCarModelLabelOutlet.text = driverVehicle.model
+                driverCarMakeLabelOutlet.text = driverVehicle.make?.capitalized
+                driverCarModelLabelOutlet.text = driverVehicle.model?.capitalized
                 driverCarNumberLabelOutlet.text = driverVehicle.licensePlate?.uppercased()
             }
         }
@@ -336,6 +351,14 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
     // MARK: - Helpers
     
     fileprivate func cancelRide(with reason: RideCancellationReason) {
+        
+        // Check the driver cancelled flag at cancel time
+        if (isDriverCancellingRide) {
+            return;
+        }
+        
+        self.isRiderCancellingRide = true
+
         WebInterface.makeWebRequestAndHandleError(
             self,
             webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
@@ -362,13 +385,34 @@ class RideBottomViewController: BaseYibbyViewController, ISHPullUpSizingDelegate
                                                    message: "Hope to see you again!",
                                                    completionBlock: {() -> Void in
                                                     
-                                                    // Trigger unwind segue to MainViewController
-                                                    self.performSegue(withIdentifier: "unwindToMainViewControllerFromRideBottomViewController", sender: self)
+                            // Trigger unwind segue to MainViewController
+                            self.performSegue(withIdentifier: "unwindToMainViewControllerFromRideBottomViewController", sender: self)
                         })
                         
                     } else {
                         DDLogVerbose("Ride Cancel failed: \(String(describing: error))")
-                        errorBlock(success, error)
+
+                        if let bbCode = (error! as NSError).userInfo["bb_code"] as? String {
+                            
+                            if (Int(bbCode) == self.DRIVER_CANCELLED_BB_CODE) {
+                                
+                                LocationService.sharedInstance().stopFetchingDriverLocation()
+
+                                AlertUtil.displayAlertOnVC(self, title: (error! as NSError).localizedDescription,
+                                                           message: "",
+                                                           completionBlock: {() -> Void in
+                                                            
+                                    // Trigger unwind segue to MainViewController
+                                    self.performSegue(withIdentifier: "unwindToMainViewControllerFromRideBottomViewController", sender: self)
+                                })
+                                
+                            } else {
+                                errorBlock(success, error)
+                            }
+                            
+                        } else {
+                            errorBlock(success, error)
+                        }
                     }
                 })
         })

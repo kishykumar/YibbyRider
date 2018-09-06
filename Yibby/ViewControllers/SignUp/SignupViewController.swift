@@ -11,7 +11,6 @@ import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
 import Braintree
-import DigitsKit
 import SwiftValidator
 import PhoneNumberKit
 import AccountKit
@@ -49,7 +48,7 @@ class SignupViewController: BaseYibbyViewController,
     }
     
     @IBAction func tncButtonAction(_ sender: AnyObject) {
-        let url = URL(string: "https://google.com")!
+        let url = URL(string: "https://www.yibbyapp.com/privacy-policy.html")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     

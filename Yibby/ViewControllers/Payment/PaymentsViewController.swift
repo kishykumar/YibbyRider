@@ -8,7 +8,6 @@
 
 import UIKit
 import CocoaLumberjack
-import Crashlytics
 import Braintree
 import SwiftMessages
 
@@ -171,7 +170,7 @@ class PaymentsViewController: BaseYibbyViewController,
                                                body: "Your default payment method has been changed.",
                                                theme: .success,
                                                presentationStyle: .bottom,
-                                               duration: .seconds(seconds: 2),
+                                               duration: .seconds(seconds: 5),
                                                windowLevel: UIWindowLevelNormal)
                     self.reloadTable()
                 } else {
@@ -181,7 +180,7 @@ class PaymentsViewController: BaseYibbyViewController,
                                                body: "There was some error in changing payment method. Please try again",
                                                theme: .error,
                                                presentationStyle: .bottom,
-                                               duration: .seconds(seconds: 2),
+                                               duration: .seconds(seconds: 5),
                                                windowLevel: UIWindowLevelNormal)
                 }
             })

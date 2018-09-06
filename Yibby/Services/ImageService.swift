@@ -35,7 +35,21 @@ public class ImageService: NSObject, UIImagePickerControllerDelegate {
             permissions = ["read" : ["roles" : roles] ]
         }
         
-        uploadImageInt(image, permissions: permissions, success: { (url, fileId) in
+        var filename: String = ""
+        if let phoneNumber = YBClient.sharedInstance().profile?.phoneNumber {
+            filename = "\(UUID().uuidString)_\(phoneNumber)"
+        } else {
+            filename = UUID().uuidString
+        }
+        
+        switch (cacheKey) {
+        case .coverImage:
+            filename = "\(filename)_coverImage"
+        case .profilePicture:
+            filename = "\(filename)_profilePicture"
+        }
+        
+        uploadImageInt(image, permissions: permissions, filename: filename, success: { (url, fileId) in
             
             TemporaryCache.save(cacheKey, image: image)
             success(url, fileId)
@@ -44,13 +58,14 @@ public class ImageService: NSObject, UIImagePickerControllerDelegate {
     }
 
     fileprivate func uploadImageInt(_ image: UIImage, permissions: Dictionary<String, Any>?,
+                                    filename: String,
                                     success: @escaping ImageUploadSuccessCompletion, failure: @escaping ImageUploadFailureCompletion) {
         
         if let data = UIImageJPEGRepresentation(image, 0.8) {
             
             let myLocalFile: BAAFile = BAAFile(data: data)
             
-            myLocalFile.uploadFile(withPermissions: permissions, completion: { (file, error) -> Void in
+            myLocalFile.uploadFile(withPermissions: permissions, filename: filename, completion: { (file, error) -> Void in
                 
                 if error == nil {
                     DDLogVerbose("File uploaded to Baasbox + \(String(describing: file)) + \((file as! BAAFile).fileURL())")

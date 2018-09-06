@@ -142,96 +142,7 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
         cell.myViewController = self
         cell.myTrip = ride
         
-        cell.userNameLbl.text = ride.driver?.firstName?.capitalized
-        
-        if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
-            let prettyDate = TimeUtil.prettyPrintDate1(rideDate)
-            cell.dateAndTimeLbl1.text = prettyDate
-            cell.dateAndTimeLbl.text = prettyDate
-        }
-        
-        cell.fromPlaceTF.text = ride.pickupLocation?.name
-        cell.toPlaceTF.text = ride.dropoffLocation?.name
-        
-        if let tip = ride.tip, let ridePrice = ride.bidPrice {
-            cell.totalPriceLbl.text = "$\(ridePrice + tip)"
-            cell.tipPriceLbl.text = "$\(tip)"
-            cell.totalFareLabelOutlet.text = "$\(ridePrice + tip)"
-            cell.ridePriceLbl.text = "$\(ridePrice)"
-        }
-        
-        cell.cardDetailsBtnOutlet.tag = indexPath.row
-        cell.gmsMapViewOutlet.clear()
-        cell.gmsMapViewOpenOutlet.clear()
-        
-        if let dropoffCoordinate = ride.dropoffLocation?.coordinate(),
-            let pickupCoordinate = ride.pickupLocation?.coordinate() {
-            
-            // Markers for gmsMapViewOutlet
-            
-            let domarker = GMSMarker(position: dropoffCoordinate)
-            domarker.icon = UIImage(named: "famarker_red")
-            domarker.map = cell.gmsMapViewOutlet
-            
-            let pumarker = GMSMarker(position: pickupCoordinate)
-            pumarker.icon = UIImage(named: "famarker_green")
-            pumarker.map = cell.gmsMapViewOutlet
-            
-            adjustGMSCameraFocus(mapView: cell.gmsMapViewOutlet, pickupMarker: pumarker, dropoffMarker: domarker)
-            
-            // Markers for gmsMapViewOpenOutlet
-            
-            let domarkerOpen = GMSMarker(position: dropoffCoordinate)
-            domarkerOpen.icon = UIImage(named: "famarker_red")
-            domarkerOpen.map = cell.gmsMapViewOpenOutlet
-            
-            let pumarkerOpen = GMSMarker(position: pickupCoordinate)
-            pumarkerOpen.icon = UIImage(named: "famarker_green")
-            pumarkerOpen.map = cell.gmsMapViewOpenOutlet
-            
-            adjustGMSCameraFocus(mapView: cell.gmsMapViewOpenOutlet, pickupMarker: pumarkerOpen, dropoffMarker: domarkerOpen)
-        }
-
-        if let profilePictureFileId = ride.driver?.profilePictureFileId {
-            setPicture(imageView: cell.userIV, ride: ride, fileId: profilePictureFileId)
-            setPicture(imageView: cell.userIV1, ride: ride, fileId: profilePictureFileId)
-        }
-        
-        if let vehiclePictureFileId = ride.vehicle?.vehiclePictureFileId {
-            setPicture(imageView: cell.carIV, ride: ride, fileId: vehiclePictureFileId)
-        }
-        
-        if let metresTravelled = ride.tripDistance {
-            var milesTravelled: Int = (Int(metresTravelled) + 1608) / 1609
-            
-            if (milesTravelled == 0) {
-                milesTravelled = 1
-            }
-            
-            cell.distanceInMilesLbl.text = "\(String(describing: milesTravelled)) miles"
-        }
-        
-        if let rideTime = ride.rideTime {
-            let rideMins: Int = (rideTime + 59) / 60
-            cell.timeLbl.text = "\(String(describing: rideMins)) mins"
-        }
-        
-        if let paymentMethodBrand = ride.paymentMethodBrand, let paymentMethodLast4 = ride.paymentMethodLast4 {
-            cell.cardNumberLbl.text = "*\(paymentMethodLast4)"
-            
-            let paymentMethodType: BTUIPaymentOptionType =
-                BraintreeCardUtil.paymentMethodTypeFromBrand(paymentMethodBrand)
-            cell.cardHintOutlet.setCardType(paymentMethodType, animated: false)
-        } else {
-            let paymentMethodType: BTUIPaymentOptionType =
-                BraintreeCardUtil.paymentMethodTypeFromBrand("Visa")
-            cell.cardHintOutlet.setCardType(paymentMethodType, animated: false)
-            cell.cardNumberLbl.text = "*9999"
-        }
-
-        if (ride.cancelled != RideCancelled.notCancelled.rawValue) {
-            cell.cancelledLabelOutlet.isHidden = false
-        }
+        cell.configure(ride)
         
         cell.backgroundColor = UIColor.clear
         
@@ -245,7 +156,12 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TripTableCellIdentifier", for: indexPath)
+        
+        if let tripCell = cell as? TripTableCell {
+            tripCell.resetAllContent()
+        }
+        
         return cell
     }
 
@@ -489,32 +405,5 @@ class TripTableVC: BaseYibbyTableViewController, DZNEmptyDataSetSource, DZNEmpty
                                     self.isLoading = false
                 })
         })
-    }
-
-    fileprivate func adjustGMSCameraFocus(mapView: GMSMapView, pickupMarker: GMSMarker, dropoffMarker: GMSMarker) {
-        
-        let bounds = GMSCoordinateBounds(coordinate: (pickupMarker.position),
-                                         coordinate: (dropoffMarker.position))
-        
-//        if let markerHeight = pickupMarker.icon?.size.height, let markerWidth = pickupMarker.icon?.size.width {
-            let insets = UIEdgeInsets(top: 50.0,
-                                  left: 10.0,
-                                  bottom: 20.0,
-                                  right: 10.0)
-            
-            let update = GMSCameraUpdate.fit(bounds, with: insets)
-            mapView.moveCamera(update)
-//        }
-    }
-    
-    func setPicture(imageView: UIImageView, ride: Ride, fileId: String) {
-        
-        if (fileId == "") {
-            return;
-        }
-        
-        if let newUrl = BAAFile.getCompleteURL(withToken: fileId) {
-            imageView.pin_setImage(from: newUrl)
-        }
     }
 }

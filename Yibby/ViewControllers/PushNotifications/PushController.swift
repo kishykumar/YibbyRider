@@ -204,7 +204,7 @@ open class PushController: NSObject, PushControllerProtocol, UNUserNotificationC
                         DDLogDebug("FG driver enroute \(YBMessageType.driverEnRoute)")
                     }
                     else{
-                        LocalNotificationService.sendNotification(title: YBMessageType.driverEnRoute.rawValue, subtitle: "", body: "Your driver is on his way.")
+                        LocalNotificationService.sendNotification(title: "Yibby: Your driver is on the way", subtitle: "", body: "")
                         DDLogDebug("BG driver enroute \(YBMessageType.driverEnRoute)")
                     }
                 }
@@ -218,7 +218,7 @@ open class PushController: NSObject, PushControllerProtocol, UNUserNotificationC
                     DDLogDebug("FG \(YBMessageType.rideStart)")
                 }
                 else{
-                    LocalNotificationService.sendNotification(title: YBMessageType.rideStart.rawValue, subtitle: "", body: "Your ride has been started")
+                    LocalNotificationService.sendNotification(title: "Yibby: Your ride has been started", subtitle: "", body: "")
                     DDLogDebug("BG \(YBMessageType.rideStart)")
                 }
                 
@@ -228,10 +228,10 @@ open class PushController: NSObject, PushControllerProtocol, UNUserNotificationC
                 // Publish the Driver Arrived notification This will update the driver status in RideViewController.
                 if isForeground == true {
                     postNotification(RideNotifications.driverArrived, value: "")
-                     DDLogDebug("FG \(YBMessageType.driverArrived)")
+                    DDLogDebug("FG \(YBMessageType.driverArrived)")
                 }else{
-                    LocalNotificationService.sendNotification(title: YBMessageType.driverArrived.rawValue, subtitle: "", body: "Your Driver has arrived at pick up location")
-                     DDLogDebug("BG \(YBMessageType.driverArrived)")
+                    LocalNotificationService.sendNotification(title: "Yibby: Your driver has arrived at the pickup location", subtitle: "", body: "")
+                    DDLogDebug("BG \(YBMessageType.driverArrived)")
                 }
 
                 break
@@ -240,17 +240,17 @@ open class PushController: NSObject, PushControllerProtocol, UNUserNotificationC
                 DDLogDebug("RIDE_END_MESSAGE_TYPE")
                 if isForeground == true {
                     postNotification(RideNotifications.rideEnd, value: "")
-                     DDLogDebug("FG \(YBMessageType.rideEnd)")
+                    DDLogDebug("FG \(YBMessageType.rideEnd)")
                 }
                 
             case .rideCancelled:
                 DDLogDebug("RIDE_CANCELLED_MESSAGE_TYPE")
                 if isForeground == true {
                     postNotification(RideNotifications.rideCancelled, value: "")
-                     DDLogDebug("FG \(YBMessageType.rideCancelled)")
+                    DDLogDebug("FG \(YBMessageType.rideCancelled)")
                 }else{
-                   LocalNotificationService.sendNotification(title: YBMessageType.rideCancelled.rawValue, subtitle: "", body: "Your ride was cancelled")
-                   DDLogDebug("BG \(YBMessageType.rideCancelled)")
+                    LocalNotificationService.sendNotification(title: "Yibby: Your ride has been cancelled", subtitle: "", body: "")
+                    DDLogDebug("BG \(YBMessageType.rideCancelled)")
                 }
 
             default:
