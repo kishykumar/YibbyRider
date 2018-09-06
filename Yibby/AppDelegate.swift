@@ -14,8 +14,6 @@ import CocoaLumberjack
 import Fabric
 import Crashlytics
 import IQKeyboardManagerSwift
-import FBSDKCoreKit
-import FBSDKLoginKit
 import FoldingCell
 import GooglePlaces
 import ObjectMapper
@@ -84,22 +82,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         
         // Configure Instabug
         Instabug.start(withToken: "c7bb77a6db6b6fe82390717dd5ae1906", invocationEvent: .shake)
-        
+
         // Configure Baasbox
         BaasBox.setBaseURL(BAASBOX_URL, appCode: BAASBOX_APPCODE)
-        
+
         setupLogger()
         setupKeyboardManager()
-        
+
         let kSCrashInstallationEmail = KSCrashInstallationEmail.sharedInstance()
         kSCrashInstallationEmail?.recipients = ["kishykumar@gmail.com"]
-        
+
         DDLogDebug("LaunchOptions \(String(describing: launchOptions))");
-        
+
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(GOOGLE_API_KEY_IOS)
         GMSPlacesClient.provideAPIKey(GMS_Places_API_KEY_IOS)
-        
+
         // [START_EXCLUDE]
         // Configure the Google context: parses the GoogleService-Info.plist, and initializes
         // the services that have entries in the file
@@ -108,22 +106,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
         // [END_EXCLUDE]
-        
+
         // [START start_gcm_service]
         let gcmConfig = GCMConfig.default()
         gcmConfig?.receiverDelegate = self
         GCMService.sharedInstance().start(with: gcmConfig)
         // [END start_gcm_service]
-        
+
         // Init facebook login
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+        //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
 
         // NOTE: Setup Crashlytics the last
         Fabric.with([Crashlytics.self])
-        Fabric.sharedSDK().debug = true
+        //Fabric.sharedSDK().debug = true
 
         return true
     }
@@ -186,44 +184,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     }
     
     // [END disconnect_handler]
-    func application(_ application: UIApplication,
-                     open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
-        
-        if stringSocial == "facebook"
-        {
-            if #available(iOS 9.0, *) {
-                return FBSDKApplicationDelegate.sharedInstance().application(
-                    application,
-                    open: url as URL!,
-                    sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
-                    annotation: options[UIApplicationOpenURLOptionsKey.annotation]
-                )
-            } else {
-                // Fallback on earlier versions
-            }
-            
-        }
-        else{
-            if #available(iOS 9.0, *) {
-                return GIDSignIn.sharedInstance().handle(url,
-                                                         sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                         annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-                
-            } else {
-                
-                // Fallback on earlier versions
-            }
-        }
-               return true
-    }
-    
-    public func application(_ application: UIApplication, open url1: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(
-            application,
-            open: url1 as URL!,
-            sourceApplication: sourceApplication,
-            annotation: annotation)
-    }
+//    func application(_ application: UIApplication,
+//                     open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+//
+//        if stringSocial == "facebook"
+//        {
+//            if #available(iOS 9.0, *) {
+//                return FBSDKApplicationDelegate.sharedInstance().application(
+//                    application,
+//                    open: url as URL!,
+//                    sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
+//                    annotation: options[UIApplicationOpenURLOptionsKey.annotation]
+//                )
+//            } else {
+//                // Fallback on earlier versions
+//            }
+//
+//        }
+//        else{
+//            if #available(iOS 9.0, *) {
+//                return GIDSignIn.sharedInstance().handle(url,
+//                                                         sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+//                                                         annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+//
+//            } else {
+//
+//                // Fallback on earlier versions
+//            }
+//        }
+//               return true
+//    }
+//
+//    public func application(_ application: UIApplication, open url1: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        return FBSDKApplicationDelegate.sharedInstance().application(
+//            application,
+//            open: url1 as URL!,
+//            sourceApplication: sourceApplication,
+//            annotation: annotation)
+//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         DDLogDebug("Called");
@@ -688,6 +686,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                     dump(syncData)
 
                     YBClient.sharedInstance().syncClient(syncData)
+                    
+                    // Initialize Crashlytics username, email, identifier
+                    Crashlytics.sharedInstance().setUserName(client.currentUser.username())
+                    Crashlytics.sharedInstance().setUserEmail(syncData.profile?.email)
+                    Crashlytics.sharedInstance().setUserIdentifier(client.currentUser.authenticationToken)
+                    Crashlytics.sharedInstance().setObjectValue(bidId, forKey: "APP_BID_ID")
+                    Crashlytics.sharedInstance().setObjectValue(syncData.status?.rawValue, forKey: "CLIENT_STATUS")
                     
                 } else {
                     DDLogError("Error in parsing sync data: \(String(describing: error))")

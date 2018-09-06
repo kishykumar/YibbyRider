@@ -73,4 +73,11 @@ extension YBLocation {
     func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(self.latitude!, self.longitude!)
     }
+    
+    func equalsLatLng(_ inLoc: YBLocation) -> Bool {
+        if ((self.latitude == inLoc.latitude) && (self.longitude == inLoc.longitude)) {
+            return true
+        }
+        return false
+    }
 }
