@@ -113,7 +113,12 @@ class RideViewController: ISHPullUpViewController {
         rideCancelObserver = NotificationObserver(notification: RideNotifications.rideCancelled) { [unowned self] comment in
             DDLogVerbose("NotificationObserver rideCancel: \(comment)")
             
-            self.driverCancelledRideCallback()
+            if let bottomVC = self.bottomViewController as? RideBottomViewController {
+                if (!bottomVC.isRiderCancellingRide) {
+                    bottomVC.isDriverCancellingRide = true
+                    self.driverCancelledRideCallback()
+                }
+            }
         }
         
         rideStartObserver = NotificationObserver(notification: RideNotifications.rideStart) { [unowned self] comment in
@@ -225,7 +230,7 @@ class RideViewController: ISHPullUpViewController {
         YBClient.sharedInstance().bid = nil
         
         AlertUtil.displayAlertOnVC(self, title: "Unfortunately, your ride has been cancelled by the driver.",
-                                   message: "Please send another bid.",
+                                   message: "Please request a new ride.",
                                    completionBlock: {() -> Void in
                                     
             // Trigger unwind segue to MainViewController

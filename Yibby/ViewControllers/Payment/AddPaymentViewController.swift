@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 import BButton
 import Braintree
 import Stripe

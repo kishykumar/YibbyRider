@@ -67,17 +67,22 @@ class MainViewController: BaseYibbyViewController,
     var etaNoDriversFetchTimer:Timer?
     var isEtaNoDriversFetchTimerRunning:Bool = false
     let ETA_NO_DRIVERS_FETCH_INTERVAL:Double = 15
+    
     //60 sec timer
-    var twoSecTimer:Timer?
-    let TWO_SEC_TIMER_INTERVAL:Int = 2
-//    var etaRefreshFetchTimer:Timer?
-//    var isEtaRefreshFetchTimerRunning:Bool = false
-//    let ETA_REFRESH_FETCH_INTERVAL:Double = 60
+    var etaRefreshFetchTimer:Timer?
+    var isEtaRefreshFetchTimerRunning:Bool = false
+    let ETA_REFRESH_FETCH_INTERVAL:Double = 60
+    
     //ETAIndicator
     var driverEtaIndicator:UIActivityIndicatorView?
 
     fileprivate var offerRejectedObserver: NotificationObserver? // for offer reject
     fileprivate var rideObserver: NotificationObserver? // for driver en route message
+    
+    fileprivate let YB_SAME_LOCATION_MARKER_DIFF = 0.0001
+    
+    fileprivate let MIN_MAX_BID_DOLLARS = 10 // $10 minimum to show on slider max
+    fileprivate let MIN_LOW_BID_DOLLARS = 5 // $5 minimum to show on slider min
     
     // MARK: - Actions
     
@@ -372,24 +377,27 @@ class MainViewController: BaseYibbyViewController,
                         } else {
                             self.driverETALabelOutlet.text = "\(minEtaMins)-\(maxEtaMins) mins"
                         }
-                        self.driverEtaIndicator?.stopAnimating()
-                        self.runNoDriversTimer(loc: loc)
+                        
                         //invalidate 15 sec timer and fire 60 sec timer
-//                        if self.isEtaRefreshFetchTimerRunning == false{
-//                            self.invalidateEtaNoDriversFetchTimer()
-//                            self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
-//                                self.getNearestDriverEta(loc: loc)
-//                                self.isEtaRefreshFetchTimerRunning = true
-//                                DDLogVerbose("60 sec timer fired")
-//                            })
-//
-//                        }
+                        if self.isEtaRefreshFetchTimerRunning == false{
+                            
+                            self.invalidateEtaNoDriversFetchTimer()
+                            
+                            self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
+                                self.getNearestDriverEta(loc: loc)
+                                self.isEtaRefreshFetchTimerRunning = true
+                            })
+                        }
+                        
                     } else {
+                        
                         self.driverETALabelOutlet.text = "No Drivers"
                         //invalidate 60 sec timer and run 15 sec timer
                         self.runNoDriversTimer(loc: loc)
+                        
                     }
                 } else {
+                    
                     self.runNoDriversTimer(loc: loc)
                     self.driverETALabelOutlet.text = "No Drivers"
                     DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
@@ -482,7 +490,15 @@ class MainViewController: BaseYibbyViewController,
         pickupMarker = drawMarker(location, isPickup: true)
         
         if let dropoffLoc = self.dropoffLocation {
-            dropoffMarker = drawMarker(dropoffLoc, isPickup: false)
+            
+            if (location.equalsLatLng(dropoffLoc)) {
+                let _dropoffLoc = YBLocation(lat: dropoffLoc.latitude! + YB_SAME_LOCATION_MARKER_DIFF,
+                                             long: dropoffLoc.longitude! + YB_SAME_LOCATION_MARKER_DIFF,
+                                             name: dropoffLoc.name!)
+                dropoffMarker = drawMarker(_dropoffLoc, isPickup: false)
+            } else {
+                dropoffMarker = drawMarker(dropoffLoc, isPickup: false)
+            }
         }
         
         adjustGMSCameraFocus()
@@ -515,7 +531,14 @@ class MainViewController: BaseYibbyViewController,
         dropoffMarker = drawMarker(location, isPickup: false)
         
         if let pickupLoc = self.pickupLocation {
-            pickupMarker = drawMarker(pickupLoc, isPickup: true)
+            if (location.equalsLatLng(pickupLoc)) {
+                let _pickupLoc = YBLocation(lat: pickupLoc.latitude! + YB_SAME_LOCATION_MARKER_DIFF,
+                                            long: pickupLoc.longitude! + YB_SAME_LOCATION_MARKER_DIFF,
+                                            name: pickupLoc.name!)
+                pickupMarker = drawMarker(_pickupLoc, isPickup: true)
+            } else {
+                pickupMarker = drawMarker(pickupLoc, isPickup: true)
+            }
         }
         
         //save drop location to user defaults
@@ -544,13 +567,23 @@ class MainViewController: BaseYibbyViewController,
 
                 let timeFees = (perMinuteCents * Int(etaSeconds)) / 60
                 let distanceFees = Int((Double(perMileCents) * distanceMeters) / 1609.34)
-
                 let maxBidCents: Int = bookingFeesCents + serviceFeesCents + timeFees + distanceFees
+                
                 //Suggested Bid is 75% of max dollars
                 //low Bid is 50% of max dollars
-                let maxBidDollars: Int = maxBidCents / 100
+                var maxBidDollars: Int = maxBidCents / 100
+                var lowBidDollars: Int = (maxBidDollars * 50) / 100
+                
+                if (maxBidDollars < self.MIN_MAX_BID_DOLLARS) {
+                    maxBidDollars = self.MIN_MAX_BID_DOLLARS
+                }
+                
+                if (lowBidDollars < self.MIN_LOW_BID_DOLLARS) {
+                    lowBidDollars = self.MIN_LOW_BID_DOLLARS
+                }
+                
                 let suggestedBidDollars: Int = (maxBidDollars * 75)/100
-                let lowBidDollars: Int = (maxBidDollars * 5) / 10
+                
                 DDLogVerbose("max bid dollars \(maxBidDollars)")
                 DDLogVerbose("min bid dollars \(lowBidDollars)")
                 DDLogVerbose("suggested bid dollars \(suggestedBidDollars)")
@@ -558,7 +591,7 @@ class MainViewController: BaseYibbyViewController,
                 self.suggestedBidLabelOutlet.text = "$\(suggestedBidDollars)"
                 self.suggestedBid = suggestedBidDollars
                 self.userBidLabelOutlet.text = "$\(suggestedBidDollars)"
-
+                
                 self.bidSliderOutlet.maximumValue = Float(maxBidDollars)
                 self.bidSliderOutlet.minimumValue = Float(lowBidDollars)
                 self.bidSliderOutlet.value = Float(suggestedBidDollars)
@@ -642,17 +675,16 @@ class MainViewController: BaseYibbyViewController,
     
     //run 15 sec timer
     func runNoDriversTimer(loc: YBLocation){
-        if self.isEtaNoDriversFetchTimerRunning==false{
-        self.twoSecTimer = Timer.scheduledTimer(timeInterval: 13, target: self, selector: #selector(self.stopIndicator), userInfo: nil, repeats: true)
-           // self.driverEtaIndicator?.stopAnimating()
+        
+        if self.isEtaNoDriversFetchTimerRunning == false {
+            
             self.driverEtaIndicator?.startAnimating()
             self.invalidateEtaRefreshFetchTimer()
+            
             self.etaNoDriversFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_NO_DRIVERS_FETCH_INTERVAL, repeats: true, block: { (_) in
                 self.getNearestDriverEta(loc: loc)
                 self.isEtaNoDriversFetchTimerRunning = true
-                DDLogVerbose("15 sec timer fired")
             })
-            
         }
     }
     
@@ -661,13 +693,11 @@ class MainViewController: BaseYibbyViewController,
         etaNoDriversFetchTimer?.invalidate()
         isEtaNoDriversFetchTimerRunning=false
         driverEtaIndicator?.stopAnimating()
-        DDLogVerbose("15 sec timer invalidated")
     }
     
     func invalidateEtaRefreshFetchTimer(){
-       // etaRefreshFetchTimer?.invalidate()
-        //isEtaRefreshFetchTimerRunning = false
-        DDLogVerbose("60 sec timer invalidated")
+        etaRefreshFetchTimer?.invalidate()
+        isEtaRefreshFetchTimerRunning = false
     }
 
     // MARK: - GMSMapViewDelegate

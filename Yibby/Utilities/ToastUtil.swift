@@ -29,7 +29,7 @@ class ToastUtil {
         var successConfig = SwiftMessages.defaultConfig
         successConfig.presentationStyle = presentationStyle
         successConfig.dimMode = .gray(interactive: true)
-        successConfig.duration = duration
+        successConfig.duration = .seconds(seconds: 5)
         successConfig.presentationContext = .window(windowLevel: windowLevel)
         
         SwiftMessages.show(config: successConfig, view: success)
