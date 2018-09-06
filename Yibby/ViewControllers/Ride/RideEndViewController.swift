@@ -55,6 +55,9 @@ class RideEndViewController: BaseYibbyViewController {
 
         if (sender.index != 0) {
             
+            tipSliderViewOutlet.trackColor = UIColor.darkGray
+            tipSliderViewOutlet.tintColor = UIColor.appDarkGreen1()
+            
             switch (sender.index) {
                 
             case 0:
@@ -93,6 +96,10 @@ class RideEndViewController: BaseYibbyViewController {
             updateFinalFareWithTip()
             
         } else {
+            
+            tipSliderViewOutlet.trackColor = UIColor.darkGray
+            tipSliderViewOutlet.tintColor = UIColor.darkGray
+
             finalTipAmount = 0.0
             updateFinalFareWithTip()
         }
@@ -157,6 +164,8 @@ class RideEndViewController: BaseYibbyViewController {
         tipSliderViewOutlet.labels = ["No tip", "$1", "$2", "$5", "Other"]
         tipSliderViewOutlet.labelOrientation = .up
         tipSliderViewOutlet.labelFont = UIFont.boldSystemFont(ofSize: 16.0)
+        
+        tipSliderViewOutlet.trackColor = UIColor.darkGray
         
         popTip.bubbleColor = .clear
         popTip.textColor = .lightGray

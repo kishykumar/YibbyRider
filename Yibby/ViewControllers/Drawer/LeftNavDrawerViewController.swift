@@ -11,7 +11,6 @@ import MMDrawerController
 import BaasBoxSDK
 import CocoaLumberjack
 import PINRemoteImage
-import Crashlytics
 
 open class LeftNavDrawerViewController: BaseYibbyViewController,
                                         UITableViewDataSource,
@@ -28,7 +27,7 @@ open class LeftNavDrawerViewController: BaseYibbyViewController,
     
     fileprivate var photoSaveCallback: ((UIImage) -> Void)?
     
-    fileprivate let menuItems: [String] =           ["TRIPS",   "PAYMENT",  "PROFILE", "NOTIFICATIONS",    "SUPPORT",      "PROMOTIONS",   "DRIVE"]
+    fileprivate let menuItems: [String] =           ["Trips",   "Payment",  "Profile", "Notifications",    "Support",      "Promotions",   "Drive"]
     fileprivate let menuItemsIconFAFormat: [Int] =  [0xf1ba,    0xf283,     0xf085,     0xf0f3,             0xf1cd,         0xf0a3,         0xf0e4]
     
     fileprivate var profilePictureObserver: NotificationObserver?

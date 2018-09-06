@@ -11,7 +11,6 @@ import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
 import Braintree
-import DigitsKit
 import SwiftValidator
 import PhoneNumberKit
 import AccountKit
@@ -30,7 +29,6 @@ class SignupViewController: BaseYibbyViewController,
     @IBOutlet weak var phoneNumberOutlet: PhoneNumberTextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     @IBOutlet weak var signupButtonOutlet: YibbyButton1!
-    @IBOutlet weak var tandcButtonOutlet: UIButton!
     @IBOutlet weak var errorLabelOutlet: UILabel!
     @IBOutlet weak var termsStackView: UIStackView!
     @IBOutlet weak var tandcLabelOutlet: UILabel!
@@ -60,7 +58,7 @@ class SignupViewController: BaseYibbyViewController,
     }
     
     @IBAction func tncButtonAction(_ sender: AnyObject) {
-        let url = URL(string: "https://google.com")!
+        let url = URL(string: "https://www.yibbyapp.com/privacy-policy.html")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     

@@ -11,8 +11,6 @@ import BaasBoxSDK
 import CocoaLumberjack
 import XLPagerTabStrip
 import SwiftKeychainWrapper
-import FBSDKCoreKit
-import FBSDKLoginKit
 import SwiftValidator
 import PhoneNumberKit
 
@@ -345,24 +343,24 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     @IBAction func facebookAction(_ sender: Any) {
-        
+
         AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
                                    message: "Please use our regular login flow.")
         return;
         
-        stringSocial = "facebook"
-        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
-            if (error == nil){
-                let fbloginresult : FBSDKLoginManagerLoginResult = result!
-                if(fbloginresult.grantedPermissions.contains("email"))
-                {
-                    self.getFBUserData()
-                    fbLoginManager.logOut()
-                }
-            }
-        }
+//        stringSocial = "facebook"
+//        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+//        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
+//            if (error == nil){
+//                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+//                if(fbloginresult.grantedPermissions.contains("email"))
+//                {
+//                    self.getFBUserData()
+//                    fbLoginManager.logOut()
+//                }
+//            }
+//        }
     }
     
     @IBAction func GoogleAction(_ sender: Any) {
@@ -372,51 +370,51 @@ class LoginViewController: BaseYibbyViewController,
                                    message: "Please use our regular login flow.")
         return;
         
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
-        
-        GIDSignIn.sharedInstance().signIn()
+//        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance().delegate = self
+//
+//        GIDSignIn.sharedInstance().signIn()
 
     }
     
-    func getFBUserData(){
-        if((FBSDKAccessToken.current()) != nil){
-            
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
-                (connection, result, error) -> Void in
-                if (error == nil){
-                    
-                  //  self.stotLoader()
-                    let resultdict = result as! NSDictionary
-                    
-                    print(result)
-                    let params = [
-                        "name": resultdict.value(forKey: "name") as! String,
-                        "social_id": resultdict.value(forKey: "id") as! String ,
-                        "Email": resultdict.value(forKey: "email") as! String,
-                        //"lat": self.strLat,
-                      //  "long": self.strLong,
-                        "social_username": resultdict.value(forKey: "name") as! String,
-                        "social_type": "facebook",
-                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
-                       // "location": self.location,
-                        "deviceid":"12345678"
-                    ]
-                    print(params)
-                   // let url = URLBASE + URLSOCIALLOGIN
-                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
-                    
-                }
-                else
-                {
-                   // self.stotLoader()
-                    
-                }
-            })
-            
-            
-        }
-    }
+//    func getFBUserData(){
+//        if((FBSDKAccessToken.current()) != nil){
+//
+//            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
+//                (connection, result, error) -> Void in
+//                if (error == nil){
+//
+//                  //  self.stotLoader()
+//                    let resultdict = result as! NSDictionary
+//
+//                    print(result)
+//                    let params = [
+//                        "name": resultdict.value(forKey: "name") as! String,
+//                        "social_id": resultdict.value(forKey: "id") as! String ,
+//                        "Email": resultdict.value(forKey: "email") as! String,
+//                        //"lat": self.strLat,
+//                      //  "long": self.strLong,
+//                        "social_username": resultdict.value(forKey: "name") as! String,
+//                        "social_type": "facebook",
+//                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
+//                       // "location": self.location,
+//                        "deviceid":"12345678"
+//                    ]
+//                    print(params)
+//                   // let url = URLBASE + URLSOCIALLOGIN
+//                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
+//
+//                }
+//                else
+//                {
+//                   // self.stotLoader()
+//
+//                }
+//            })
+//
+//
+//        }
+//    }
     
     // MARK: - ValidationDelegate Methods
     
