@@ -18,18 +18,19 @@ class LostItemViewController: BaseYibbyViewController {
 
     // MARK: - Actions
     
-    @IBAction func onCallDriverClick(_ sender: YibbyButton1) {
+    @IBAction func onClickContactDriverView(_ sender: UITapGestureRecognizer) {
         if let myDriver = myTrip.driver {
             myDriver.call()
         }
     }
-
-    @IBAction func onEmailYibbyClick(_ sender: YibbyButton1) {
+    
+    @IBAction func onClickContactYibbyView(_ sender: UITapGestureRecognizer) {
         let email = "support@yibby.zohodesk.com"
         if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
     
     // MARK: - Setup
     

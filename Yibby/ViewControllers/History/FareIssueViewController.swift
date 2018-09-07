@@ -30,12 +30,14 @@ class FareIssueViewController: UIViewController {
         emailYibbyOutlet.color = UIColor.appDarkGreen1()
     }
     
-    @IBAction func onClickYibbyEmail(_ sender: YibbyButton1) {
+    @IBAction func onClickContactYibbyView(_ sender: UITapGestureRecognizer) {
         let email = "support@yibby.zohodesk.com"
         if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
+    
     
 
     /*
