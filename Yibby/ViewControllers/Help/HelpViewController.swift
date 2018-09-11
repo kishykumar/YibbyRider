@@ -147,7 +147,6 @@ class HelpViewController: BaseYibbyViewController {
                         else {
                             errorBlock(success, error)
                         }
-                        
                         ActivityIndicatorUtil.disableActivityIndicator(self.VW)
                 })
         })

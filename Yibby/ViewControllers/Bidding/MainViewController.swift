@@ -66,13 +66,7 @@ class MainViewController: BaseYibbyViewController,
     //15 sec timer
     var etaNoDriversFetchTimer:Timer?
     var isEtaNoDriversFetchTimerRunning:Bool = false
-    var viewloadedFirstTime:Bool = false
     let ETA_NO_DRIVERS_FETCH_INTERVAL:Double = 15
-    
-    //60 sec timer
-  //  var etaRefreshFetchTimer:Timer?
-   // var isEtaRefreshFetchTimerRunning:Bool = false
-   // let ETA_REFRESH_FETCH_INTERVAL:Double = 60
     
     //ETAIndicator
     var driverEtaIndicator:UIActivityIndicatorView?
@@ -162,7 +156,6 @@ class MainViewController: BaseYibbyViewController,
             }
             
             let navController = UINavigationController(rootViewController: confirmRideViewController)
-            //self.etaNoDriversFetchTimer?.invalidate()
             self.navigationController?.present(navController, animated: true, completion: nil)
         }
     }
@@ -258,8 +251,6 @@ class MainViewController: BaseYibbyViewController,
         setupUI()
         setupMap()
         setupMapClient()
-        
-        viewloadedFirstTime = true
     }
     
 
@@ -286,8 +277,6 @@ class MainViewController: BaseYibbyViewController,
         if self.curLocation != nil {
             self.runNoDriversTimer(loc: pickUpDetail)
         }
-        //self.runNoDriversTimer(loc: pickUpDetail)
-        
         adjustGMSCameraFocus()
     }
     
@@ -381,26 +370,11 @@ class MainViewController: BaseYibbyViewController,
                         }
                            self.driverEtaIndicator?.stopAnimating()
                         
-                        //invalidate 15 sec timer and fire 60 sec timer
-//                        if self.isEtaRefreshFetchTimerRunning == false{
-//
-//                            self.invalidateEtaNoDriversFetchTimer()
-//
-//                            self.etaRefreshFetchTimer = Timer.scheduledTimer(withTimeInterval: self.ETA_REFRESH_FETCH_INTERVAL, repeats: true, block: { (_) in
-//                                self.getNearestDriverEta(loc: loc)
-//                                self.isEtaRefreshFetchTimerRunning = true
-//                            })
-//                        }
-                        
                     } else {
                         self.driverETALabelOutlet.text = "No Drivers"
-                        //invalidate 60 sec timer and run 15 sec timer
-                        //self.runNoDriversTimer(loc: loc)
-                        
                     }
                  
                 } else {
-                   // self.runNoDriversTimer(loc: loc)
                     self.driverETALabelOutlet.text = "No Drivers"
                     DDLogVerbose("Error in getNearestDriverEta \(String(describing: error))")
                 }
@@ -500,7 +474,6 @@ class MainViewController: BaseYibbyViewController,
         }
         
         adjustGMSCameraFocus()
-      //  invalidateEtaNoDriversFetchTimer()
         
         //save pickup location in user defaults
         Defaults.setYibbyPickLocation(pickLocation: location)
@@ -670,7 +643,7 @@ class MainViewController: BaseYibbyViewController,
         dropoffFieldSelected = false
     }
     
-    //run 15 sec timer
+    //run 15 sec timer to refresh driver eta
     func runNoDriversTimer(loc: YBLocation){
         
         if self.isEtaNoDriversFetchTimerRunning == false {
@@ -690,11 +663,6 @@ class MainViewController: BaseYibbyViewController,
         driverEtaIndicator?.stopAnimating()
         DDLogVerbose("Driver Eta Timer invalidated")
     }
-//
-//    func invalidateEtaRefreshFetchTimer(){
-//        etaRefreshFetchTimer?.invalidate()
-//        isEtaRefreshFetchTimerRunning = false
-//    }
 
     // MARK: - GMSMapViewDelegate
     

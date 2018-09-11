@@ -24,6 +24,5 @@ open class YibbyButton1: BButton {
     func sharedSetup() {
         self.setType(BButtonType.default)
         buttonCornerRadius = 10.0
-        self.layer.borderColor = UIColor.appDarkGreen1().cgColor
     }
 }
