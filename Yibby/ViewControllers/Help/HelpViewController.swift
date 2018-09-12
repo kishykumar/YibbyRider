@@ -137,7 +137,6 @@ class HelpViewController: BaseYibbyViewController {
                                 let numRidesToShow = loadedRides.count
                                 
                                 if numRidesToShow != 0 {
-                                    
                                     assert(numRidesToShow == 1)
                                     self.lastRide = loadedRides[0]
                                     self.updateLastRideUI()
