@@ -68,6 +68,9 @@ class MainViewController: BaseYibbyViewController,
     var isEtaNoDriversFetchTimerRunning:Bool = false
     let ETA_NO_DRIVERS_FETCH_INTERVAL:Double = 15
     
+    //just created the variable to ensure that driver eta timer runs even when current location is not available
+    var currentLocationAvailability = 0
+    
     //ETAIndicator
     var driverEtaIndicator:UIActivityIndicatorView?
 
@@ -205,6 +208,7 @@ class MainViewController: BaseYibbyViewController,
                     let pickUpDetail = Defaults.getYibbyPickLocation()
                     self.setPickupDetails(pickUpDetail)
                     self.runNoDriversTimer(loc: pickUpDetail)
+                    self.currentLocationAvailability = 2
                 }
             }
         }
@@ -274,7 +278,8 @@ class MainViewController: BaseYibbyViewController,
         super.viewDidAppear(animated)
         let pickUpDetail = Defaults.getYibbyPickLocation()
         self.setPickupDetails(pickUpDetail)
-        if self.curLocation != nil {
+        if self.curLocation != nil || currentLocationAvailability==2 {
+            DDLogVerbose("View did appear")
             self.runNoDriversTimer(loc: pickUpDetail)
         }
         adjustGMSCameraFocus()
