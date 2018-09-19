@@ -307,16 +307,15 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
-        if user != nil {
+        if user != nil && error != nil {
             
             
-//            let userId:NSString = user.userID as NSString                  // For client-side use only!
-//            let idToken = user.authentication.idToken // Safe to send to the server
-//            let fullName:NSString = user.profile.name as NSString
-//
-//            let email:NSString = user.profile.email as NSString
+            let userId:NSString = user.userID as NSString                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName:NSString = user.profile.name as NSString
+            let email:NSString = user.profile.email as NSString
 //            let img =   user.profile.imageURL(withDimension: 200)
-         
+         DDLogVerbose("details are \(idToken,fullName,email)")
          
             // WebserviceForSocialRes(id: userId , reg: "s", email: email, userNmae: fullName)
         /*    let params = [
@@ -335,6 +334,8 @@ class LoginViewController: BaseYibbyViewController,
             let url = URLBASE + URLSOCIALLOGIN
             self.WebserviceForSignIn(params as NSDictionary, url: url)*/
             
+        } else {
+            DDLogVerbose("error signing in using google \(error.localizedDescription)")
         }
     }
     
@@ -364,15 +365,13 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     @IBAction func GoogleAction(_ sender: Any) {
-        
+//
         AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
                                    message: "Please use our regular login flow.")
         return;
-        
 //        GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().delegate = self
-//
 //        GIDSignIn.sharedInstance().signIn()
 
     }

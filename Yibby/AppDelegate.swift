@@ -52,9 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate let APP_FIRST_RUN = "FIRST_RUN"
 
     fileprivate let GOOGLE_API_KEY_IOS = "AIzaSyAYFgM-PEhhVdXjO3jm0dWhkhHirSXKu9s"
-    
+
     fileprivate let GMS_Places_API_KEY_IOS = "AIzaSyAWERnbH-gsqbtz3fXE7WEUH3tNGJTpRLI"
     fileprivate let BAASBOX_APPCODE = "1234567890"
+    
+    fileprivate let GOOGLE_CLIENT_ID = "362032360237-28c69fu8k2dh31amc25d8n3lqv3ec5q8.apps.googleusercontent.com"
     
     fileprivate var BAASBOX_URL: String {
         return
@@ -118,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
-
+        GIDSignIn.sharedInstance().clientID = GOOGLE_CLIENT_ID
         // NOTE: Setup Crashlytics the last
         Fabric.with([Crashlytics.self])
         //Fabric.sharedSDK().debug = true
@@ -177,9 +179,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-            
+//            let userId = user.userID                        //for client side use only
+//            let idToken = user.authentication.idToken       // safe to send to server
+//            let fullName = user.profile.name
+//            let givenName = user.profile.givenName
+//            let familyName = user.profile.familyName
+//            let email = user.profile.email
+//            DDLogVerbose("Details are \(idToken,fullName,givenName,email)")
         } else {
-            print("\(error.localizedDescription)")
+            DDLogVerbose("error while logging in using google\(error.localizedDescription)")
         }
     }
     

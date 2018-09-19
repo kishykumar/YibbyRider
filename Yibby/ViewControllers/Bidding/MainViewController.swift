@@ -56,6 +56,7 @@ class MainViewController: BaseYibbyViewController,
     var dropoffMarker: GMSMarker?
     var locationManager:CLLocationManager!
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
+    let filter = GMSAutocompleteFilter() //fliter to show only certain region and areas
     
     var bidHigh: Float?
     fileprivate var suggestedBid: Int = 0
@@ -70,6 +71,11 @@ class MainViewController: BaseYibbyViewController,
     
     //just created the variable to ensure that driver eta timer runs even when current location is not available
     var currentLocationAvailability = 0
+    //California and San Fran Bounds
+    //San Francisco Bounds so that controller shows only address of san francisco
+    let SanFranBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 37.929824, longitude: -122.281780), coordinate: CLLocationCoordinate2D(latitude: 37.639830, longitude: -123.173825))
+    //California Bounds so that controller shows only addressess of California
+    let CaliforniaBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 42.009517, longitude: -114.131211), coordinate: CLLocationCoordinate2D(latitude: 32.528832, longitude: -124.482003))
     
     //ETAIndicator
     var driverEtaIndicator:UIActivityIndicatorView?
@@ -672,17 +678,18 @@ class MainViewController: BaseYibbyViewController,
     // MARK: - GMSMapViewDelegate
     
     public func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        
-        if (marker == pickupMarker) {
-            pickupFieldSelected = true
-        }
-        else if (marker == dropoffMarker) {
-            dropoffFieldSelected = true
-        }
-        
         // This view controller lets a user pick address
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
+        
+        if (marker == pickupMarker) {
+            pickupFieldSelected = true
+            autocompleteController.autocompleteBounds = SanFranBounds
+        }
+        else if (marker == dropoffMarker) {
+            dropoffFieldSelected = true
+            autocompleteController.autocompleteBounds = CaliforniaBounds
+        }
         self.present(autocompleteController, animated: true, completion: nil)
         
         // default marker action is false, but we don't want that.

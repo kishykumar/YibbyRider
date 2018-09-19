@@ -40,6 +40,15 @@
 				<string>com.googleusercontent.apps.678839221785-7u0fu0d0kjd0mb4dlahm8shfos9veis9</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.yibby.app.user</string>
+				<string>com.googleusercontent.apps.362032360237-28c69fu8k2dh31amc25d8n3lqv3ec5q8</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>20</string>
