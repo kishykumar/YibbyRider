@@ -26,6 +26,7 @@ class LoginViewController: BaseYibbyViewController,
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButtonOutlet: YibbyButton1!
     @IBOutlet weak var errorLabelOutlet: UILabel!
+    @IBOutlet weak var googleSignInButton: GIDSignInButton!
     
     static let PASSWORD_KEY_NAME = "PASSWORD"
     static let PHONE_NUMBER_KEY_NAME = "PHONE_NUMBER"
@@ -52,7 +53,7 @@ class LoginViewController: BaseYibbyViewController,
     func setupDelegates() {
         phoneNumberTextFieldOutlet.delegate = self
         password.delegate = self
-        
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     func setupUI() {

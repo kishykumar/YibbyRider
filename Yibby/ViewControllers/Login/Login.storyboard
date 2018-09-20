@@ -109,6 +109,10 @@
                                             <action selector="GoogleAction:" destination="JUq-dg-2vG" eventType="touchUpInside" id="gNc-l1-CZs"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6c-tN-TKl" customClass="GIDSignInButton">
+                                        <rect key="frame" x="343" y="0.0" width="0.0" height="57"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gcp-IZ-8co" secondAttribute="height" multiplier="6" id="IZ7-zh-NIy"/>
@@ -146,6 +150,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="errorLabelOutlet" destination="XA4-aW-brk" id="J4W-jL-dIr"/>
+                        <outlet property="googleSignInButton" destination="V6c-tN-TKl" id="UnE-bD-5sJ"/>
                         <outlet property="loginButtonOutlet" destination="fFa-HI-x7V" id="dSC-jk-zwT"/>
                         <outlet property="password" destination="6MP-sn-LvO" id="jv7-Ce-2Jt"/>
                         <outlet property="phoneNumberTextFieldOutlet" destination="Odw-c0-M2g" id="kJt-dn-MqB"/>
