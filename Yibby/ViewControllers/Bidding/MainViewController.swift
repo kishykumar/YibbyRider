@@ -73,7 +73,7 @@ class MainViewController: BaseYibbyViewController,
     var currentLocationAvailability = 0
     //California and San Fran Bounds
     //San Francisco Bounds so that controller shows only address of san francisco
-    let SanFranBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 37.929824, longitude: -122.281780), coordinate: CLLocationCoordinate2D(latitude: 37.639830, longitude: -123.173825))
+    let SanFranBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 37.804361, longitude: -122.545430), coordinate: CLLocationCoordinate2D(latitude: 37.705654, longitude: -122.292474))
     //California Bounds so that controller shows only addressess of California
     let CaliforniaBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 42.009517, longitude: -114.131211), coordinate: CLLocationCoordinate2D(latitude: 32.528832, longitude: -124.482003))
     
@@ -227,6 +227,7 @@ class MainViewController: BaseYibbyViewController,
     func initProperties() {
         let dropDetail = Defaults.getYibbyDropLocation()
         self.setDropoffDetails(dropDetail)
+        //filter.type = .region
 
     }
     
@@ -681,6 +682,8 @@ class MainViewController: BaseYibbyViewController,
         // This view controller lets a user pick address
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
+        autocompleteController.autocompleteBoundsMode = .restrict
+        autocompleteController.autocompleteFilter = filter
         
         if (marker == pickupMarker) {
             pickupFieldSelected = true

@@ -21,6 +21,7 @@ import KSCrash
 import OHHTTPStubs
 import Instabug
 
+
 // TODO:
 // 1. Bug: Remove the 35 seconds timeout code to make a sync call to webserver
 // 2. Bug: Fix the SVProgressHUD (singleton) issue where pressing back button and then Trips again pops off the HUD early. 
@@ -61,8 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate var BAASBOX_URL: String {
         return
             ((self.isSandbox) ?
-            ("http://test.yibbyapp.com") :
-            //("http://3a15b3cb.ngrok.io") :
+            //("http://test.yibbyapp.com") :
+            ("http://3a15b3cb.ngrok.io") :
             ("http://api.yibbyapp.com"))
     }
 
@@ -179,21 +180,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-//            let userId = user.userID                        //for client side use only
-//            let idToken = user.authentication.idToken       // safe to send to server
-//            let fullName = user.profile.name
-//            let givenName = user.profile.givenName
-//            let familyName = user.profile.familyName
-//            let email = user.profile.email
-//            DDLogVerbose("Details are \(idToken,fullName,givenName,email)")
+            let userId = user.userID                        //for client side use only
+            let idToken = user.authentication.idToken       // safe to send to server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            DDLogVerbose("Details are \(idToken,fullName,givenName,email)")
         } else {
-            DDLogVerbose("error while logging in using google\(error.localizedDescription)")
+            DDLogVerbose("appdelegate func ran ,error while logging in using googlein\(error.localizedDescription)")
         }
     }
     
     // [END disconnect_handler]
-//    func application(_ application: UIApplication,
-//                     open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+    func application(_ application: UIApplication,
+                     open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
 //
 //        if stringSocial == "facebook"
 //        {
@@ -221,7 +222,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 //            }
 //        }
 //               return true
-//    }
+        return GIDSignIn.sharedInstance().handle(url,                                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+    
+    }
 //
 //    public func application(_ application: UIApplication, open url1: URL, sourceApplication: String?, annotation: Any) -> Bool {
 //        return FBSDKApplicationDelegate.sharedInstance().application(
