@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         return
             ((self.isSandbox) ?
             ("http://test.yibbyapp.com") :
-           // ("http://3a15b3cb.ngrok.io") :
+            //("http://3a15b3cb.ngrok.io") :
             ("http://api.yibbyapp.com"))
     }
 

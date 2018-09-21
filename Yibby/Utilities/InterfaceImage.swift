@@ -21,7 +21,7 @@ public enum InterfaceImage: String {
 
     case ElloLogo = "ello_logo"
 
-    case DriverCar = "driver_car"
+    case DriverCar = "driver_map_marker"
     
     // Markers
     case DefaultMarker = "defaultMarker"
