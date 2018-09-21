@@ -20,6 +20,8 @@ import ObjectMapper
 import KSCrash
 import OHHTTPStubs
 import Instabug
+import GoogleSignIn
+import FBSDKCoreKit
 
 
 // TODO:
@@ -62,8 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate var BAASBOX_URL: String {
         return
             ((self.isSandbox) ?
-            //("http://test.yibbyapp.com") :
-            ("http://3a15b3cb.ngrok.io") :
+            ("http://test.yibbyapp.com") :
+            //("http://3a15b3cb.ngrok.io") :
             ("http://api.yibbyapp.com"))
     }
 
@@ -117,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // [END start_gcm_service]
 
         // Init facebook login
-        //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
@@ -196,20 +198,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func application(_ application: UIApplication,
                      open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
 //
-//        if stringSocial == "facebook"
-//        {
+        if stringSocial == "facebook" {
 //            if #available(iOS 9.0, *) {
-//                return FBSDKApplicationDelegate.sharedInstance().application(
-//                    application,
-//                    open: url as URL!,
-//                    sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
-//                    annotation: options[UIApplicationOpenURLOptionsKey.annotation]
-//                )
-//            } else {
-//                // Fallback on earlier versions
+                return FBSDKApplicationDelegate.sharedInstance().application(
+                    application,
+                    open: url as URL?,
+                    sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
+                    annotation: options[UIApplicationOpenURLOptionsKey.annotation]
+                )
 //            }
-//
-//        }
+
+        } else {
+            return GIDSignIn.sharedInstance().handle(url,                                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        }
 //        else{
 //            if #available(iOS 9.0, *) {
 //                return GIDSignIn.sharedInstance().handle(url,
@@ -222,7 +223,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
 //            }
 //        }
 //               return true
-        return GIDSignIn.sharedInstance().handle(url,                                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: options[UIApplicationOpenURLOptionsKey.annotation])
     
     }
 //
