@@ -153,7 +153,7 @@ class SplashViewController: UIViewController {
     }
     
     func removeSplash () {
-        
+
         // Initialize the status bar before we show the first screen
         setStatusBar()
         
@@ -174,12 +174,12 @@ class SplashViewController: UIViewController {
         removeSplash()
     }
 
-    func initErrorCallback() {
-
-        let v: UIView = self.launchScreenVC!.view!
-        let label: UITextView = v.viewWithTag(ERROR_TEXTVIEW_TAG) as! UITextView
-        label.isHidden = false
-    }
+//    func initErrorCallback() {
+//
+//        let v: UIView = self.launchScreenVC!.view!
+//        let label: UITextView = v.viewWithTag(ERROR_TEXTVIEW_TAG) as! UITextView
+//        label.isHidden = false
+//    }
     
     func initLoginErrorCallback() {
         removeSplash()

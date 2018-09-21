@@ -323,8 +323,10 @@ class RideContentViewController: BaseYibbyViewController {
             let dlmarker = GMSMarker(position: loc)
             dlmarker.map = gmsMapViewOutlet
             
+            let ride = YBClient.sharedInstance().ride
             dlmarker.icon = YibbyMapMarker.driverCarImageWithMarker(dlmarker,
                                                                     title: status,
+                                                                    driverName: ride?.driver?.firstName ?? InterfaceString.Ride.Driver,
                                                                     type: .driver)
             
             driverLocMarker = dlmarker

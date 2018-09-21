@@ -711,7 +711,6 @@
 		1201B73B1D23A32900A7EEAF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				12B30316212921C8001026D7 /* LocalNotificationService.swift */,
 				121096921D1142E000D7174F /* LocationService.swift */,
 				12F092AA1D3E156700F158BB /* StripePaymentService.swift */,
 				12B174801D54574100BD0B87 /* BraintreePaymentService.swift */,
@@ -814,7 +813,6 @@
 		1201B74C1D23A85F00A7EEAF /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				12B3031A212922E3001026D7 /* TermsViewController.swift */,
 				1201B7EB1D25005300A7EEAF /* Help.storyboard */,
 				1201B74D1D23A85F00A7EEAF /* HelpViewController.swift */,
 				08FE49591E7416C60044ACBF /* HelpCenterVC.swift */,
@@ -827,7 +825,6 @@
 		1201B74E1D23A85F00A7EEAF /* History */ = {
 			isa = PBXGroup;
 			children = (
-				12B30318212922B2001026D7 /* FareIssueViewController.swift */,
 				1201B7F11D2500D200A7EEAF /* History.storyboard */,
 				08C15C5A1E60E35C007F1411 /* TripTableVC.swift */,
 				08C15C5C1E60E38C007F1411 /* TripTableCell.swift */,
@@ -2182,7 +2179,6 @@
 				12346DAD20A206F900810CA4 /* CardType.swift in Sources */,
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
 				12A6BF601D8A831F008BEFC1 /* ASValuePopUpView.m in Sources */,
-				12B30317212921C8001026D7 /* LocalNotificationService.swift in Sources */,
 				1201B76C1D23A85F00A7EEAF /* PushController.swift in Sources */,
 				12B58A401D97A40B008ECACB /* BraintreeCardUtil.swift in Sources */,
 				12346DC120A206F900810CA4 /* PostalCodeTextField.swift in Sources */,
@@ -2315,7 +2311,6 @@
 				12085F611F213B0F00DBC91F /* RideViewController.swift in Sources */,
 				121958EB205A381400E184FA /* PXUtils.swift in Sources */,
 				12346DB120A206F900810CA4 /* ChinaUnionPay.swift in Sources */,
-				12B30319212922B2001026D7 /* FareIssueViewController.swift in Sources */,
 				124E3CB11F00E2830081FDFD /* YBSync.swift in Sources */,
 				B12CC9C11EA9D60E00172B2D /* YBPaymentMethods.swift in Sources */,
 				1228A0B1203162F500AF6801 /* SwiftyAvatar.swift in Sources */,
@@ -2339,7 +2334,6 @@
 				08FE495B1E7416C60044ACBF /* HelpCenterVC.swift in Sources */,
 				12FA8FCA20A9130600E9C6C5 /* YBSlider.swift in Sources */,
 				1201B77E1D23ACDD00A7EEAF /* LogFormatter.swift in Sources */,
-				12B3031B212922E3001026D7 /* TermsViewController.swift in Sources */,
 				12346DB920A206F900810CA4 /* CardNumberFormatter.swift in Sources */,
 				126C4B021D7B9D19005EC5FF /* AddPaymentViewControllerDelegate.swift in Sources */,
 				12B5817C213424980061415F /* TermsViewController.swift in Sources */,

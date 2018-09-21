@@ -148,19 +148,20 @@ open class YibbyMapMarker: UIView {
     
     class func driverCarImageWithMarker(_ marker: GMSMarker,
                                          title: String,
+                                         driverName: String,
                                          type: markerType) -> UIImage {
-        
-        let referenceIcon = UIImage(named: "defaultMarker")!
-        
+
+        let referenceIcon = UIImage(named: "driver_map_marker")!
+
         let screenSize: CGRect = UIScreen.main.bounds
-        
-        let infoWindowHeight = referenceIcon.size.height * 1.1
+
+        let infoWindowHeight = referenceIcon.size.height * 0.90
         var infoWindowWidth = screenSize.width * 0.50
-        
+
         let infoWindow = YibbyFloatLabelTextField(frame: CGRect(x: 0, y: 0,
                                                                 width: infoWindowWidth,
                                                                 height: infoWindowHeight))
-        
+
         infoWindow.font = UIFont.systemFont(ofSize: 12.5)
         infoWindow.text = title
         infoWindow.backgroundColor = UIColor.white
@@ -168,49 +169,49 @@ open class YibbyMapMarker: UIView {
         infoWindow.cornerRadius = 10.0
         infoWindow.textAlignment = NSTextAlignment.center
         infoWindow.titleYPadding = 5.0
-        
-        let labelString = infoWindow.text! as NSString
-        let labelStringSize: CGSize = labelString.size(withAttributes: [NSAttributedStringKey.font: infoWindow.font!])
-        let labelStringWidth: CGFloat = labelStringSize.width;
-        
-        infoWindowWidth = labelStringWidth + 30.0
+
+        let infoWindowString = infoWindow.text! as NSString
+        let infoWindowStringSize: CGSize = infoWindowString.size(withAttributes: [NSAttributedStringKey.font: infoWindow.font!])
+        let infoWindowStringWidth: CGFloat = infoWindowStringSize.width;
+
+        infoWindowWidth = infoWindowStringWidth + 30.0
         infoWindow.frame = CGRect(x: infoWindow.frame.x,
                                   y: infoWindow.frame.y,
                                   width: infoWindowWidth,
                                   height: infoWindow.frame.height)
-        
+
         // Create container view
         let containerView = UIView(frame: CGRect(x: 0, y: 0,
                                                 width: infoWindowWidth,
                                                 height: referenceIcon.size.height + infoWindowHeight))
-        
+
         containerView.addSubview(infoWindow)
-        
-        infoWindow.placeholder = InterfaceString.Ride.Driver
+
+        infoWindow.placeholder = driverName
         infoWindow.borderColor = UIColor.blue
         infoWindow.titleTextColour = UIColor.blue
-        
+
         // Create icon image, and center it below the view
         let carIcon = UIImage(named: InterfaceImage.DriverCar.rawValue)!
         let imageData = UIImagePNGRepresentation(carIcon)!
-        let finalMarkerImage = UIImage(data: imageData, scale: 2.5)!
-        
+        let finalMarkerImage = UIImage(data: imageData, scale: 1)!
+
         let iconImageView = UIImageView(image: finalMarkerImage)
         iconImageView.backgroundColor = UIColor.clear
-        
+
         iconImageView.frame = CGRect(x: (infoWindow.frame.size.width - finalMarkerImage.size.width) / 2,
                                      y: infoWindow.frame.size.height,
                                      width: iconImageView.frame.width,
                                      height: iconImageView.frame.height)
-        
+
         containerView.addSubview(iconImageView)
-        
+
         // Render image
         UIGraphicsBeginImageContextWithOptions(containerView.frame.size, false, UIScreen.main.scale)
         containerView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return image!
     }
 }
