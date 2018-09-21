@@ -448,6 +448,7 @@ class MainViewController: BaseYibbyViewController,
         
         let marker = GMSMarker(position: location.coordinate())
         marker.map = gmsMapViewOutlet
+        
         marker.icon = YibbyMapMarker.annotationImageWithMarker(marker,
                                                                title: location.name!,
                                                                type: isPickup ? .pickup : .dropoff, isShowArrow: true)
@@ -542,6 +543,7 @@ class MainViewController: BaseYibbyViewController,
             completionBlock: { (etaSeconds, distanceMeters) -> Void in
 
                 // All base calculations in cents, meters, seconds
+                let baseFareCents: Int = 220
                 let bookingFeesCents: Int = 0
                 let serviceFeesCents: Int = 100
                 let perMinuteCents: Int = 24
@@ -549,7 +551,7 @@ class MainViewController: BaseYibbyViewController,
 
                 let timeFees = (perMinuteCents * Int(etaSeconds)) / 60
                 let distanceFees = Int((Double(perMileCents) * distanceMeters) / 1609.34)
-                let maxBidCents: Int = bookingFeesCents + serviceFeesCents + timeFees + distanceFees
+                let maxBidCents: Int = baseFareCents + bookingFeesCents + serviceFeesCents + timeFees + distanceFees
                 
                 //Suggested Bid is 75% of max dollars
                 //low Bid is 50% of max dollars

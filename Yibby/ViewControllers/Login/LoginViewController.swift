@@ -13,6 +13,8 @@ import XLPagerTabStrip
 import SwiftKeychainWrapper
 import SwiftValidator
 import PhoneNumberKit
+import GoogleSignIn
+import FBSDKLoginKit
 
 class LoginViewController: BaseYibbyViewController,
                             IndicatorInfoProvider,
@@ -308,15 +310,14 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
-        if user != nil && error != nil {
-            
-            
-            let userId:NSString = user.userID as NSString                  // For client-side use only!
+        if user != nil && error == nil {
+
+            let userId:NSString = user.userID as NSString      // For client-side use only!
             let idToken = user.authentication.idToken // Safe to send to the server
             let fullName:NSString = user.profile.name as NSString
             let email:NSString = user.profile.email as NSString
-//            let img =   user.profile.imageURL(withDimension: 200)
-         DDLogVerbose("details are \(idToken,fullName,email)")
+            let img =   user.profile.imageURL(withDimension: 200)
+            DDLogVerbose("details are \(userId,fullName,email,img)")
          
             // WebserviceForSocialRes(id: userId , reg: "s", email: email, userNmae: fullName)
         /*    let params = [
@@ -345,7 +346,7 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     @IBAction func facebookAction(_ sender: Any) {
-
+//
         AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
                                    message: "Please use our regular login flow.")
@@ -377,44 +378,44 @@ class LoginViewController: BaseYibbyViewController,
 
     }
     
-//    func getFBUserData(){
-//        if((FBSDKAccessToken.current()) != nil){
-//
-//            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
-//                (connection, result, error) -> Void in
-//                if (error == nil){
-//
-//                  //  self.stotLoader()
-//                    let resultdict = result as! NSDictionary
-//
-//                    print(result)
-//                    let params = [
-//                        "name": resultdict.value(forKey: "name") as! String,
-//                        "social_id": resultdict.value(forKey: "id") as! String ,
-//                        "Email": resultdict.value(forKey: "email") as! String,
-//                        //"lat": self.strLat,
-//                      //  "long": self.strLong,
-//                        "social_username": resultdict.value(forKey: "name") as! String,
-//                        "social_type": "facebook",
-//                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
-//                       // "location": self.location,
-//                        "deviceid":"12345678"
-//                    ]
-//                    print(params)
-//                   // let url = URLBASE + URLSOCIALLOGIN
-//                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
-//
-//                }
-//                else
-//                {
-//                   // self.stotLoader()
-//
-//                }
-//            })
-//
-//
-//        }
-//    }
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
+                (connection, result, error) -> Void in
+                if (error == nil){
+
+                  //  self.stotLoader()
+                    let resultdict = result as! NSDictionary
+
+                    print(result)
+                    let params = [
+                        "name": resultdict.value(forKey: "name") as! String,
+                        "social_id": resultdict.value(forKey: "id") as! String ,
+                        "Email": resultdict.value(forKey: "email") as! String,
+                        //"lat": self.strLat,
+                      //  "long": self.strLong,
+                        "social_username": resultdict.value(forKey: "name") as! String,
+                        "social_type": "facebook",
+                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
+                       // "location": self.location,
+                        "deviceid":"12345678"
+                    ]
+                    print("facebook results",params)
+                   // let url = URLBASE + URLSOCIALLOGIN
+                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
+
+                }
+                else
+                {
+                   // self.stotLoader()
+
+                }
+            })
+
+
+        }
+    }
     
     // MARK: - ValidationDelegate Methods
     
