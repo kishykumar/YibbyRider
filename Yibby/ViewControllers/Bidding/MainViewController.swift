@@ -74,8 +74,8 @@ class MainViewController: BaseYibbyViewController,
     //California and San Fran Bounds
     //San Francisco Bounds so that controller shows only address of san francisco
     let SanFranBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 37.804361, longitude: -122.545430), coordinate: CLLocationCoordinate2D(latitude: 37.705654, longitude: -122.292474))
-    //California Bounds so that controller shows only addressess of California
-    let CaliforniaBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 42.009517, longitude: -114.131211), coordinate: CLLocationCoordinate2D(latitude: 32.528832, longitude: -124.482003))
+    //dropoff Bounds so that controller shows only addressess of francisco bay area
+    let DropOffBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 38.241076, longitude: -121.716740), coordinate: CLLocationCoordinate2D(latitude: 37.182249, longitude: -123.196429))
     
     //ETAIndicator
     var driverEtaIndicator:UIActivityIndicatorView?
@@ -228,7 +228,6 @@ class MainViewController: BaseYibbyViewController,
         let dropDetail = Defaults.getYibbyDropLocation()
         self.setDropoffDetails(dropDetail)
         //filter.type = .region
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -693,7 +692,7 @@ class MainViewController: BaseYibbyViewController,
         }
         else if (marker == dropoffMarker) {
             dropoffFieldSelected = true
-            autocompleteController.autocompleteBounds = CaliforniaBounds
+            autocompleteController.autocompleteBounds = DropOffBounds
         }
         self.present(autocompleteController, animated: true, completion: nil)
         
