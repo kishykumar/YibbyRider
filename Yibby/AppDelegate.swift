@@ -22,6 +22,7 @@ import OHHTTPStubs
 import Instabug
 import GoogleSignIn
 import FBSDKCoreKit
+import FBSDKLoginKit
 
 
 // TODO:
@@ -193,6 +194,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             DDLogVerbose("appdelegate func ran ,error while logging in using googlein\(error.localizedDescription)")
         }
     }
+    
+    
     
     // [END disconnect_handler]
     func application(_ application: UIApplication,

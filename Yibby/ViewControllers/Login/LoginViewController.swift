@@ -15,6 +15,7 @@ import SwiftValidator
 import PhoneNumberKit
 import GoogleSignIn
 import FBSDKLoginKit
+import Alamofire
 
 class LoginViewController: BaseYibbyViewController,
                             IndicatorInfoProvider,
@@ -347,21 +348,22 @@ class LoginViewController: BaseYibbyViewController,
     
     @IBAction func facebookAction(_ sender: Any) {
 //
-        AlertUtil.displayAlertOnVC(self,
+       AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
-                                   message: "Please use our regular login flow.")
-        return;
+                                 message: "Please use our regular login flow.")
+       return;
         
 //        stringSocial = "facebook"
 //        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+//        fbLoginManager.logOut()
 //        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
 //            if (error == nil){
 //                let fbloginresult : FBSDKLoginManagerLoginResult = result!
-//                if(fbloginresult.grantedPermissions.contains("email"))
-//                {
+//                //if(fbloginresult.grantedPermissions.contains("email"))
+//                //{
 //                    self.getFBUserData()
-//                    fbLoginManager.logOut()
-//                }
+//                    //fbLoginManager.logOut()
+//                //}
 //            }
 //        }
     }
@@ -402,6 +404,19 @@ class LoginViewController: BaseYibbyViewController,
                         "deviceid":"12345678"
                     ]
                     print("facebook results",params)
+                    print("token is", FBSDKAccessToken.current().tokenString)
+//                    let user: BAAUser = BAAUser.init()
+//                    user.linkToFacebook(withToken: FBSDKAccessToken.current().tokenString, completion: { (_, error) in
+//                        if let error = error {
+//                            DDLogVerbose("error while loging to bassbox using facebook \(error.localizedDescription)")
+//                            return
+//                        }
+//
+//                        let client: BAAClient = BAAClient.shared()
+//                        DDLogVerbose("logged in with facebook \(client.currentUser)")
+//
+//
+//                    })
                    // let url = URLBASE + URLSOCIALLOGIN
                     //self.WebserviceForSignIn(params as NSDictionary, url: url)
 
