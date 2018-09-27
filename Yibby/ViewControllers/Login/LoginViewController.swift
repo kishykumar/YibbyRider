@@ -318,8 +318,16 @@ class LoginViewController: BaseYibbyViewController,
             let fullName:NSString = user.profile.name as NSString
             let email:NSString = user.profile.email as NSString
             let img =   user.profile.imageURL(withDimension: 200)
-            DDLogVerbose("details are \(userId,fullName,email,img)")
-         
+            DDLogVerbose("google details are \(idToken,fullName,email,img)")
+            BAAUser.login(withGoogleToken: idToken!) { (_, error) in
+                if let error = error {
+                    DDLogVerbose("Error login in using google \(error.localizedDescription)")
+                    return
+                }
+                let client: BAAClient = BAAClient.shared()
+                DDLogVerbose("Logged in with google \(client.currentUser) \(client.currentUser.username())")
+                
+            }
             // WebserviceForSocialRes(id: userId , reg: "s", email: email, userNmae: fullName)
         /*    let params = [
                 "name": givenName ,
@@ -347,23 +355,22 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     @IBAction func facebookAction(_ sender: Any) {
-//
+
        AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
                                  message: "Please use our regular login flow.")
        return;
-        
+//
 //        stringSocial = "facebook"
 //        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-//        fbLoginManager.logOut()
 //        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
 //            if (error == nil){
 //                let fbloginresult : FBSDKLoginManagerLoginResult = result!
-//                //if(fbloginresult.grantedPermissions.contains("email"))
-//                //{
+//                if(fbloginresult.grantedPermissions.contains("email"))
+//                {
 //                    self.getFBUserData()
 //                    //fbLoginManager.logOut()
-//                //}
+//                }
 //            }
 //        }
     }
@@ -389,8 +396,7 @@ class LoginViewController: BaseYibbyViewController,
 
                   //  self.stotLoader()
                     let resultdict = result as! NSDictionary
-
-                    print(result)
+                    DDLogVerbose("\(String(describing: result))")
                     let params = [
                         "name": resultdict.value(forKey: "name") as! String,
                         "social_id": resultdict.value(forKey: "id") as! String ,
@@ -403,20 +409,15 @@ class LoginViewController: BaseYibbyViewController,
                        // "location": self.location,
                         "deviceid":"12345678"
                     ]
-                    print("facebook results",params)
-                    print("token is", FBSDKAccessToken.current().tokenString)
-//                    let user: BAAUser = BAAUser.init()
-//                    user.linkToFacebook(withToken: FBSDKAccessToken.current().tokenString, completion: { (_, error) in
-//                        if let error = error {
-//                            DDLogVerbose("error while loging to bassbox using facebook \(error.localizedDescription)")
-//                            return
-//                        }
-//
-//                        let client: BAAClient = BAAClient.shared()
-//                        DDLogVerbose("logged in with facebook \(client.currentUser)")
-//
-//
-//                    })
+                    DDLogVerbose("facebook params \(params)")
+                    BAAUser.login(withFacebookToken: FBSDKAccessToken.current().tokenString!, completion: { (_, error) in
+                        if let error = error {
+                            DDLogVerbose("error login in with facebook \(error.localizedDescription)")
+                            return
+                        }
+                        let client: BAAClient = BAAClient.shared()
+                        DDLogVerbose("Logged in with facebook \(client.currentUser) \(client.currentUser.username())")
+                    })
                    // let url = URLBASE + URLSOCIALLOGIN
                     //self.WebserviceForSignIn(params as NSDictionary, url: url)
 

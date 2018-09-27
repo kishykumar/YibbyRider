@@ -56,7 +56,6 @@ class MainViewController: BaseYibbyViewController,
     var dropoffMarker: GMSMarker?
     var locationManager:CLLocationManager!
     let GMS_DEFAULT_CAMERA_ZOOM: Float = 14.0
-    let filter = GMSAutocompleteFilter() //fliter to show only certain region and areas
     
     var bidHigh: Float?
     fileprivate var suggestedBid: Int = 0
@@ -70,8 +69,8 @@ class MainViewController: BaseYibbyViewController,
     let ETA_NO_DRIVERS_FETCH_INTERVAL:Double = 15
     
     //just created the variable to ensure that driver eta timer runs even when current location is not available
-    var currentLocationAvailability = 0
-    //California and San Fran Bounds
+    var currentLocationAvailability = true
+    //DropOff and San Fran Bounds
     //San Francisco Bounds so that controller shows only address of san francisco
     let SanFranBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(latitude: 37.804361, longitude: -122.545430), coordinate: CLLocationCoordinate2D(latitude: 37.705654, longitude: -122.292474))
     //dropoff Bounds so that controller shows only addressess of francisco bay area
@@ -214,7 +213,7 @@ class MainViewController: BaseYibbyViewController,
                     let pickUpDetail = Defaults.getYibbyPickLocation()
                     self.setPickupDetails(pickUpDetail)
                     self.runNoDriversTimer(loc: pickUpDetail)
-                    self.currentLocationAvailability = 2
+                    self.currentLocationAvailability = false
                 }
             }
         }
@@ -227,7 +226,6 @@ class MainViewController: BaseYibbyViewController,
     func initProperties() {
         let dropDetail = Defaults.getYibbyDropLocation()
         self.setDropoffDetails(dropDetail)
-        //filter.type = .region
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -282,10 +280,10 @@ class MainViewController: BaseYibbyViewController,
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let pickUpDetail = Defaults.getYibbyPickLocation()
-        self.setPickupDetails(pickUpDetail)
-        if self.curLocation != nil || currentLocationAvailability==2 {
+        if self.curLocation != nil || currentLocationAvailability == false {
             DDLogVerbose("View did appear")
+            let pickUpDetail = Defaults.getYibbyPickLocation()
+            self.setPickupDetails(pickUpDetail)
             self.runNoDriversTimer(loc: pickUpDetail)
         }
         adjustGMSCameraFocus()
@@ -684,7 +682,6 @@ class MainViewController: BaseYibbyViewController,
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         autocompleteController.autocompleteBoundsMode = .restrict
-        autocompleteController.autocompleteFilter = filter
         
         if (marker == pickupMarker) {
             pickupFieldSelected = true

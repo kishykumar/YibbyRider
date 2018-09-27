@@ -90,7 +90,7 @@ class SplashViewController: UIViewController {
 
                         if let myNSError = error as NSError? {
 
-                            DDLogVerbose("Error in webRequest1: \(String(describing: myNSError))")
+                            DDLogVerbose("Error in webRequest19: \(String(describing: myNSError.localizedDescription))")
                             self.initLoginErrorCallback()
 
 //                            if (myNSError.domain == BaasBox.errorDomain() &&
