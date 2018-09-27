@@ -200,16 +200,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // [END disconnect_handler]
     func application(_ application: UIApplication,
                      open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
-//
+
         if stringSocial == "facebook" {
-//            if #available(iOS 9.0, *) {
                 return FBSDKApplicationDelegate.sharedInstance().application(
                     application,
                     open: url as URL?,
                     sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
                     annotation: options[UIApplicationOpenURLOptionsKey.annotation]
                 )
-//            }
 
         } else {
             return GIDSignIn.sharedInstance().handle(url,                                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: options[UIApplicationOpenURLOptionsKey.annotation])
