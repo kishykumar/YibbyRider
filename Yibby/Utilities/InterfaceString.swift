@@ -175,7 +175,7 @@ public struct InterfaceString {
     }
     
     public struct Button {
-        static let TANDC = NSLocalizedString("Terms Of Service", comment: "TANDC")
+        static let TANDC = NSLocalizedString("Terms of Service", comment: "TANDC")
     }
     
     public struct ActionSheet {

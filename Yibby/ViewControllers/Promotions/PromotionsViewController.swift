@@ -66,10 +66,6 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
     }
     
     @IBAction func contactYibbyButtonAction(_ sender: UIButton) {
-//        let email = "support@yibby.zohodesk.com"
-//        if let url = URL(string: "mailto:\(email)") {
-//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//        }
         sendEmail()
     }
     
