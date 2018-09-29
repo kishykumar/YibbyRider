@@ -147,11 +147,11 @@
                                     <constraint firstAttribute="height" constant="21" id="PUS-YI-gMp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.1764705882" green="0.70588235290000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0 @ 2017 Yibby" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNR-GP-jTQ">
-                                <rect key="frame" x="26" y="463" width="117" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0 @ 2018 Yibby" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNR-GP-jTQ">
+                                <rect key="frame" x="26" y="463" width="118" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hhO-cy-aYN"/>
                                 </constraints>
@@ -222,7 +222,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-hk-5wW">
                                 <rect key="frame" x="10" y="80" width="300" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omc-SM-GKe">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omc-SM-GKe" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -332,7 +332,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="oJg-i4-8Cw">
-                                <rect key="frame" x="16" y="53" width="288" height="457"/>
+                                <rect key="frame" x="16" y="53" width="288" height="495"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms Of Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBe-B4-nM2">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="20.5"/>
@@ -341,7 +341,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-rt-pRY">
-                                        <rect key="frame" x="0.0" y="50.5" width="288" height="406.5"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="288" height="444.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text"> Yibby Terms of Service
 
@@ -1179,13 +1179,13 @@ choices by contacting our Help Center.</string>
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="456.5" id="Eon-tA-h34"/>
                                     <constraint firstItem="nA4-rt-pRY" firstAttribute="top" secondItem="dBe-B4-nM2" secondAttribute="bottom" constant="30" id="gOP-4I-gRr"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="nqQ-p2-qbC" firstAttribute="top" secondItem="oJg-i4-8Cw" secondAttribute="bottom" constant="20" id="4bt-cB-UbY"/>
                             <constraint firstItem="oJg-i4-8Cw" firstAttribute="top" secondItem="C9F-RF-Ar1" secondAttribute="bottom" constant="33" id="4wm-KW-cdw"/>
                             <constraint firstItem="oJg-i4-8Cw" firstAttribute="leading" secondItem="FA3-GG-yKf" secondAttribute="leadingMargin" id="8vn-8x-JUt"/>
                             <constraint firstItem="oJg-i4-8Cw" firstAttribute="trailing" secondItem="FA3-GG-yKf" secondAttribute="trailingMargin" id="Fp4-UP-9fJ"/>
