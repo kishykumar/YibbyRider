@@ -13,6 +13,9 @@ import XLPagerTabStrip
 import SwiftKeychainWrapper
 import SwiftValidator
 import PhoneNumberKit
+import GoogleSignIn
+import FBSDKLoginKit
+import Alamofire
 
 class LoginViewController: BaseYibbyViewController,
                             IndicatorInfoProvider,
@@ -26,6 +29,7 @@ class LoginViewController: BaseYibbyViewController,
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButtonOutlet: YibbyButton1!
     @IBOutlet weak var errorLabelOutlet: UILabel!
+    @IBOutlet weak var googleSignInButton: GIDSignInButton!
     
     static let PASSWORD_KEY_NAME = "PASSWORD"
     static let PHONE_NUMBER_KEY_NAME = "PHONE_NUMBER"
@@ -52,7 +56,7 @@ class LoginViewController: BaseYibbyViewController,
     func setupDelegates() {
         phoneNumberTextFieldOutlet.delegate = self
         password.delegate = self
-        
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     func setupUI() {
@@ -307,17 +311,23 @@ class LoginViewController: BaseYibbyViewController,
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
-        if user != nil {
-            
-            
-//            let userId:NSString = user.userID as NSString                  // For client-side use only!
-//            let idToken = user.authentication.idToken // Safe to send to the server
-//            let fullName:NSString = user.profile.name as NSString
-//
-//            let email:NSString = user.profile.email as NSString
-//            let img =   user.profile.imageURL(withDimension: 200)
-         
-         
+        if user != nil && error == nil {
+
+            let userId:NSString = user.userID as NSString      // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName:NSString = user.profile.name as NSString
+            let email:NSString = user.profile.email as NSString
+            let img =   user.profile.imageURL(withDimension: 200)
+            DDLogVerbose("google details are \(idToken,fullName,email,img)")
+            BAAUser.login(withGoogleToken: idToken!) { (_, error) in
+                if let error = error {
+                    DDLogVerbose("Error login in using google \(error.localizedDescription)")
+                    return
+                }
+                let client: BAAClient = BAAClient.shared()
+                DDLogVerbose("Logged in with google \(client.currentUser) \(client.currentUser.username())")
+                
+            }
             // WebserviceForSocialRes(id: userId , reg: "s", email: email, userNmae: fullName)
         /*    let params = [
                 "name": givenName ,
@@ -335,6 +345,8 @@ class LoginViewController: BaseYibbyViewController,
             let url = URLBASE + URLSOCIALLOGIN
             self.WebserviceForSignIn(params as NSDictionary, url: url)*/
             
+        } else {
+            DDLogVerbose("error signing in using google \(error.localizedDescription)")
         }
     }
     
@@ -344,11 +356,11 @@ class LoginViewController: BaseYibbyViewController,
     
     @IBAction func facebookAction(_ sender: Any) {
 
-        AlertUtil.displayAlertOnVC(self,
+       AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
-                                   message: "Please use our regular login flow.")
-        return;
-        
+                                 message: "Please use our regular login flow.")
+       return;
+//
 //        stringSocial = "facebook"
 //        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
 //        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
@@ -357,64 +369,69 @@ class LoginViewController: BaseYibbyViewController,
 //                if(fbloginresult.grantedPermissions.contains("email"))
 //                {
 //                    self.getFBUserData()
-//                    fbLoginManager.logOut()
+//                    //fbLoginManager.logOut()
 //                }
 //            }
 //        }
     }
     
     @IBAction func GoogleAction(_ sender: Any) {
-        
+//
         AlertUtil.displayAlertOnVC(self,
                                    title: "Coming Soon!",
                                    message: "Please use our regular login flow.")
         return;
-        
 //        GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().delegate = self
-//
 //        GIDSignIn.sharedInstance().signIn()
 
     }
     
-//    func getFBUserData(){
-//        if((FBSDKAccessToken.current()) != nil){
-//
-//            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
-//                (connection, result, error) -> Void in
-//                if (error == nil){
-//
-//                  //  self.stotLoader()
-//                    let resultdict = result as! NSDictionary
-//
-//                    print(result)
-//                    let params = [
-//                        "name": resultdict.value(forKey: "name") as! String,
-//                        "social_id": resultdict.value(forKey: "id") as! String ,
-//                        "Email": resultdict.value(forKey: "email") as! String,
-//                        //"lat": self.strLat,
-//                      //  "long": self.strLong,
-//                        "social_username": resultdict.value(forKey: "name") as! String,
-//                        "social_type": "facebook",
-//                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
-//                       // "location": self.location,
-//                        "deviceid":"12345678"
-//                    ]
-//                    print(params)
-//                   // let url = URLBASE + URLSOCIALLOGIN
-//                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
-//
-//                }
-//                else
-//                {
-//                   // self.stotLoader()
-//
-//                }
-//            })
-//
-//
-//        }
-//    }
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
+                (connection, result, error) -> Void in
+                if (error == nil){
+
+                  //  self.stotLoader()
+                    let resultdict = result as! NSDictionary
+                    DDLogVerbose("\(String(describing: result))")
+                    let params = [
+                        "name": resultdict.value(forKey: "name") as! String,
+                        "social_id": resultdict.value(forKey: "id") as! String ,
+                        "Email": resultdict.value(forKey: "email") as! String,
+                        //"lat": self.strLat,
+                      //  "long": self.strLong,
+                        "social_username": resultdict.value(forKey: "name") as! String,
+                        "social_type": "facebook",
+                        "social_pic": resultdict.value(forKeyPath: "picture.data.url") as! String,
+                       // "location": self.location,
+                        "deviceid":"12345678"
+                    ]
+                    DDLogVerbose("facebook params \(params)")
+                    BAAUser.login(withFacebookToken: FBSDKAccessToken.current().tokenString!, completion: { (_, error) in
+                        if let error = error {
+                            DDLogVerbose("error login in with facebook \(error.localizedDescription)")
+                            return
+                        }
+                        let client: BAAClient = BAAClient.shared()
+                        DDLogVerbose("Logged in with facebook \(client.currentUser) \(client.currentUser.username())")
+                    })
+                   // let url = URLBASE + URLSOCIALLOGIN
+                    //self.WebserviceForSignIn(params as NSDictionary, url: url)
+
+                }
+                else
+                {
+                   // self.stotLoader()
+
+                }
+            })
+
+
+        }
+    }
     
     // MARK: - ValidationDelegate Methods
     
