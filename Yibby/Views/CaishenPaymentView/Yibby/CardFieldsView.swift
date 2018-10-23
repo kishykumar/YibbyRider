@@ -263,7 +263,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
         guard let nib = getNibBundle().loadNibNamed(getNibName(), owner: self, options: nil), let firstObjectInNib = nib.first as? UIView else {
             fatalError("The nib is expected to contain a UIView as root element.")
         }
-        
+    
         numberInputTextField.contentMode = UIViewContentMode.redraw
         
         clipsToBounds = true
@@ -308,7 +308,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
 //            showCardNumberSwipeRecognizer.direction = isRightToLeftLanguage ? .Left : .Right
 //            $0?.addGestureRecognizer(showCardNumberSwipeRecognizer)
 //        })
-        
+        setAutocapalizationOfFirstWordofTextfields()
         setupTextFieldDelegates()
         setupTextFieldAttributes()
         setupTargetsForEditinBegin()
@@ -323,6 +323,10 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
         yearTextField?.cardInfoTextFieldDelegate = self
         cvcTextField?.cardInfoTextFieldDelegate = self
         postalCodeTextField?.cardInfoTextFieldDelegate = self
+    }
+    
+    private func setAutocapalizationOfFirstWordofTextfields() {
+        cardHolderNameTextField?.autocapitalizationType = .words
     }
     
     /**

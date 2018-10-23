@@ -215,6 +215,12 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
             self.applyProfileModel(profile)
             setProfilePicture()
         }
+        
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.setTitle("Change image", for: .normal)
+        
+        profileImageViewOutlet.addSubview(button)
     }
     
     // MARK: - ValidationDelegate Methods
