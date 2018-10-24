@@ -326,7 +326,7 @@ public class CardFieldsView: UIView, NumberInputTextFieldDelegate {
     }
     
     private func setAutocapalizationOfFirstWordofTextfields() {
-        cardHolderNameTextField?.autocapitalizationType = .words
+        self.cardHolderNameTextField?.autocapitalizationType = .words
     }
     
     /**
