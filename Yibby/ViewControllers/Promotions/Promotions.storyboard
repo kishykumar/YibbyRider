@@ -234,20 +234,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How Invites Work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAI-CJ-VMN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Invites Work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAI-CJ-VMN">
                                 <rect key="frame" x="10" y="55" width="300" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLp-lF-QUy">
+                                <rect key="frame" x="10" y="95" width="300" height="463"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">When friends sign up with your invite code, their first ride will be free. Once a friend has ridden with Uber, your next ride in any city that shares your signup city's national currency will be free. 
+
+You can share your code by tapping Invite Friends and selecting one of the options available. These include text, email, sharing on social media or copying your personal invite code. 
+
+Personal invite codes should only be used for personal and non-commercial purposes. This means you can share your invite link with your personal connections via social media as long as you are the primary content owner. </mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="yLp-lF-QUy" secondAttribute="trailing" constant="-6" id="67R-NX-R3o"/>
+                            <constraint firstItem="JAI-CJ-VMN" firstAttribute="top" secondItem="vH8-8c-odK" secondAttribute="bottom" constant="35" id="O53-Ve-hOc"/>
+                            <constraint firstItem="JAI-CJ-VMN" firstAttribute="leading" secondItem="aHt-1I-mqq" secondAttribute="leading" constant="10" id="aB4-ZA-D8G"/>
+                            <constraint firstItem="5kb-6A-ReS" firstAttribute="top" secondItem="yLp-lF-QUy" secondAttribute="bottom" constant="10" id="b0p-ge-Pyq"/>
+                            <constraint firstAttribute="trailing" secondItem="JAI-CJ-VMN" secondAttribute="trailing" constant="10" id="cF0-HR-adL"/>
+                            <constraint firstItem="yLp-lF-QUy" firstAttribute="top" secondItem="JAI-CJ-VMN" secondAttribute="bottom" constant="10" id="fAG-Qg-Twa"/>
+                            <constraint firstItem="yLp-lF-QUy" firstAttribute="leading" secondItem="aHt-1I-mqq" secondAttribute="leadingMargin" constant="-6" id="tJS-En-Yj6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inviteDescriptionTextView" destination="yLp-lF-QUy" id="5kd-TW-ry3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NhT-Jo-EoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4052" y="-1086"/>
+            <point key="canvasLocation" x="4051.875" y="-1086.9718309859154"/>
         </scene>
     </scenes>
     <resources>

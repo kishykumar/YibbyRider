@@ -9,6 +9,9 @@
 import UIKit
 
 class ReferFriendsInformationViewController: UIViewController {
+    
+    @IBOutlet weak var inviteDescriptionTextView: UITextView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +25,10 @@ class ReferFriendsInformationViewController: UIViewController {
     }
     
     private func setupUI() {
-         setupBackButton()
+        setupBackButton()
+        inviteDescriptionTextView.layer.borderColor = UIColor.borderColor().cgColor
+        inviteDescriptionTextView.layer.borderWidth = 1.0
+        inviteDescriptionTextView.layer.cornerRadius = 7
     }
     
 
@@ -37,3 +43,4 @@ class ReferFriendsInformationViewController: UIViewController {
     */
 
 }
+
