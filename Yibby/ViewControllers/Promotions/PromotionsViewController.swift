@@ -13,27 +13,20 @@ import SwiftMessages
 import Font_Awesome_Swift
 
 class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewControllerDelegate {
-    
 
-    
     @IBOutlet weak var rideOffView: YibbyBorderedUIView!
-    
     @IBOutlet weak var inviteCodeLabel: UILabel!
-
     @IBOutlet var VW1: UIView!
-    
     //@IBOutlet var accessContactsBtn: UIButton!
-    
     @IBOutlet weak var shareIcon: UILabel!
     
     
     let EMAIL_BODY:String = "Referrer details: <Your name> <Your phone number> \n - is referring my friend - \n\n Friend details: <Your friend's name> <Your friend's phone number> \n\n Yibby will make $5 payment to you via Venmo once your friend takes a ride with us. \n\n Please provide your venmo id: <Referrer venmo id>"
+    let YIBBY_LINK:String = "https://www.google.co.in/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
-        
         // Do any additional setup after loading the view.
     }
     private func setupUI() {
@@ -71,7 +64,7 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
         shareInviteCode()
     }
     
-    
+
     @IBAction func onInfoClick(_ sender: UIButton) {
         
         let promotionsStoryboard: UIStoryboard = UIStoryboard(name: InterfaceString.StoryboardName.Promotions, bundle: nil)
@@ -87,7 +80,7 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
     }
     
     
-    
+    //yibby referall via email
     func sendEmail(){
         if !MFMailComposeViewController.canSendMail(){
             DDLogVerbose("Mail services are not available")
@@ -108,14 +101,12 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
     
     func shareInviteCode() {
         if let inviteCode = inviteCodeLabel.text {
-            let text = "Your invite code is \(inviteCode.capitalized)"
-            if let appLink = NSURL(string:"Download Yibby Here") {
+            let text = "Your invite code is \(inviteCode.capitalized)\n\nDownload Yibby here\n"
+            if let appLink = NSURL(string:YIBBY_LINK) {
                 let objectsToShare = [text,appLink] as [Any]
                 let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
             }
-        } else {
-           // AlertUtil.displayAlertOnVC(self, title: "", message: "Please insert invite code to share it.")
         }
     }
 
