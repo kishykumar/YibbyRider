@@ -40,6 +40,10 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
     
     @IBOutlet weak var errorLabelOutlet: UILabel!
     
+    @IBOutlet weak var editLabelOutlet: UILabel!
+    
+    @IBOutlet weak var profileImageContainerViewOutlet: UIView!
+    
     
     var addWorkLocation: YBLocation?
     var addHomeLocation: YBLocation?
@@ -209,12 +213,18 @@ class SettingsViewController: BaseYibbyViewController, UITextFieldDelegate, Vali
         addHomePlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
         addWorkPlusButtonOutlet.setTitleColor(UIColor.appDarkGreen1(), for: .normal)
         
+        emailAddress.adjustsFontSizeToFitWidth = true
         emailAddress.removeFormatting()
         
         if let profile = YBClient.sharedInstance().profile {
             self.applyProfileModel(profile)
             setProfilePicture()
         }
+        
+        profileImageContainerViewOutlet.layer.cornerRadius = profileImageContainerViewOutlet.frame.size.height/2
+        profileImageContainerViewOutlet.layer.masksToBounds = true
+        profileImageContainerViewOutlet.clipsToBounds = true
+        
     }
     
     // MARK: - ValidationDelegate Methods
