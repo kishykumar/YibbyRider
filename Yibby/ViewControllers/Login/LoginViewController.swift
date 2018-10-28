@@ -356,23 +356,23 @@ class LoginViewController: BaseYibbyViewController,
     
     @IBAction func facebookAction(_ sender: Any) {
 
-       AlertUtil.displayAlertOnVC(self,
-                                   title: "Coming Soon!",
-                                 message: "Please use our regular login flow.")
-       return;
+//       AlertUtil.displayAlertOnVC(self,
+//                                   title: "Coming Soon!",
+//                                 message: "Please use our regular login flow.")
+//       return;
 //
-//        stringSocial = "facebook"
-//        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-//        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
-//            if (error == nil){
-//                let fbloginresult : FBSDKLoginManagerLoginResult = result!
-//                if(fbloginresult.grantedPermissions.contains("email"))
-//                {
-//                    self.getFBUserData()
-//                    //fbLoginManager.logOut()
-//                }
-//            }
-//        }
+        stringSocial = "facebook"
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                if(fbloginresult.grantedPermissions.contains("email"))
+                {
+                    self.getFBUserData()
+                    //fbLoginManager.logOut()
+                }
+            }
+        }
     }
     
     @IBAction func GoogleAction(_ sender: Any) {
@@ -415,6 +415,24 @@ class LoginViewController: BaseYibbyViewController,
                             DDLogVerbose("error login in with facebook \(error.localizedDescription)")
                             return
                         }
+                        DDLogVerbose("user logged in successfully with facebook")
+                        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            
+                            let error = appDelegate.initializeApp(true)
+                            
+                            DispatchQueue.main.async {
+                                
+                                if (error != nil) {
+                                    AlertUtil.displayAlertOnVC(self,
+                                                               title: error!.localizedDescription, message: "Try again with logging in")
+                                }
+                                
+                                ActivityIndicatorUtil.disableActivityIndicator(self.view)
+                                self.loginButtonOutlet.isUserInteractionEnabled = true
+                            }
+                        }
+
                         let client: BAAClient = BAAClient.shared()
                         DDLogVerbose("Logged in with facebook \(client.currentUser) \(client.currentUser.username())")
                     })

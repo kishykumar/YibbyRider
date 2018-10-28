@@ -266,6 +266,7 @@
 		12CA639F2135394A0017DA42 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA639E2135394A0017DA42 /* UserDefaults.swift */; };
 		12CA794820A20A6600CF2DB7 /* CaishenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12346D8A20A206F900810CA4 /* CaishenTests.swift */; };
 		12CA794920A20A7000CF2DB7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12346D8B20A206F900810CA4 /* Info.plist */; };
+		12CD25432178B0AF00B776E5 /* ReferFriendsInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD25422178B0AF00B776E5 /* ReferFriendsInformationViewController.swift */; };
 		12EEF0D41DB110DF00F28A17 /* QuickExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */; };
 		12EF49721C95276800C07FAE /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF49711C95276800C07FAE /* Offer.swift */; };
 		12F092A31D378A7B00F158BB /* CardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F092A21D378A7B00F158BB /* CardTableCell.swift */; };
@@ -566,6 +567,7 @@
 		12B8A36A1F32EA8E00EC07B9 /* YBMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBMenuButton.swift; sourceTree = "<group>"; };
 		12C38CF21E2781440003DCB5 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		12CA639E2135394A0017DA42 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		12CD25422178B0AF00B776E5 /* ReferFriendsInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferFriendsInformationViewController.swift; sourceTree = "<group>"; };
 		12EB18161C5A00780037EB86 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		12EEF0D31DB110DF00F28A17 /* QuickExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickExtensions.swift; sourceTree = "<group>"; };
 		12EF49711C95276800C07FAE /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -879,6 +881,7 @@
 			isa = PBXGroup;
 			children = (
 				1201B7ED1D25008700A7EEAF /* Promotions.storyboard */,
+				12CD25422178B0AF00B776E5 /* ReferFriendsInformationViewController.swift */,
 				1201B7571D23A85F00A7EEAF /* PromotionsViewController.swift */,
 			);
 			path = Promotions;
@@ -2195,6 +2198,7 @@
 				12346DB820A206F900810CA4 /* CharacterExtension.swift in Sources */,
 				1208266D1F5D49A600BA38E9 /* BoxType.swift in Sources */,
 				12A6BF611D8A831F008BEFC1 /* ASValueTrackingSlider.m in Sources */,
+				12CD25432178B0AF00B776E5 /* ReferFriendsInformationViewController.swift in Sources */,
 				1201B7791D23AB6700A7EEAF /* ENFooterActivityIndicatorView.m in Sources */,
 				12346DAD20A206F900810CA4 /* CardType.swift in Sources */,
 				1201B7D81D23BAE200A7EEAF /* InterfaceString.swift in Sources */,
