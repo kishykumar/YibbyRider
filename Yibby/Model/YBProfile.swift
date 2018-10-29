@@ -18,6 +18,7 @@ class YBProfile: Mappable {
     var profilePicture: String?
     var homeLocation: YBLocation?
     var workLocation: YBLocation?
+    var referralCode:String?
     
     // MARK: Initialization
     
@@ -37,6 +38,6 @@ class YBProfile: Mappable {
         profilePicture      <- map["profilePicture"]
         homeLocation        <- map["homeLocation"]
         workLocation        <- map["workLocation"]
-        
+        referralCode        <- map["referralCode"]
     }
 }
