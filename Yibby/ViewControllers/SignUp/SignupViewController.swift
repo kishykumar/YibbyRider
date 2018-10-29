@@ -28,6 +28,7 @@ class SignupViewController: BaseYibbyViewController,
     @IBOutlet weak var emailAddressOutlet: UITextField!
     @IBOutlet weak var phoneNumberOutlet: PhoneNumberTextField!
     @IBOutlet weak var passwordOutlet: UITextField!
+    @IBOutlet weak var inviteCodeOutlet: UITextField!
     @IBOutlet weak var signupButtonOutlet: YibbyButton1!
     @IBOutlet weak var errorLabelOutlet: UILabel!
     @IBOutlet weak var termsStackView: UIStackView!
@@ -81,6 +82,7 @@ class SignupViewController: BaseYibbyViewController,
         emailAddressOutlet.delegate = self
         phoneNumberOutlet.delegate = self
         passwordOutlet.delegate = self
+        inviteCodeOutlet.delegate = self
     }
     
     func setupValidator() {

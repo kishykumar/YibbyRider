@@ -65,6 +65,7 @@ class ProfileVC: BaseYibbyViewController {
         lastNameLbl.layer.borderColor = UIColor.lightGray.cgColor
         lastNameLbl.layer.borderWidth = 1.0
         lastNameLbl.layer.cornerRadius = 5
+
     }
     
     func getProfile() {
