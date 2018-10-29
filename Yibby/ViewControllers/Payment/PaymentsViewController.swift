@@ -177,7 +177,7 @@ class PaymentsViewController: BaseYibbyViewController,
                     DDLogVerbose("Error makeDefaultPaymentMethod in: \(String(describing: error))")
                     ToastUtil.displayToastOnVC(self,
                                                title: "Error",
-                                               body: "There was some error in changing payment method. Please try again",
+                                               body: error!.localizedDescription,
                                                theme: .error,
                                                presentationStyle: .bottom,
                                                duration: .seconds(seconds: 5),

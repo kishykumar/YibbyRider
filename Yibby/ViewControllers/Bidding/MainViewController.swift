@@ -152,6 +152,10 @@ class MainViewController: BaseYibbyViewController,
             
             // Initialize the view controller state 
             confirmRideViewController.bidPrice = self.bidHigh!
+            confirmRideViewController.bidRangeLowPrice = self.bidSliderOutlet.minimumValue
+            confirmRideViewController.bidRangeHighPrice = self.bidSliderOutlet.maximumValue
+            confirmRideViewController.bidSuggestedPrice = self.suggestedBid
+            
             confirmRideViewController.pickupLocation = self.pickupLocation!
             confirmRideViewController.dropoffLocation = self.dropoffLocation!
             confirmRideViewController.currentPaymentMethod = YBClient.sharedInstance().defaultPaymentMethod!

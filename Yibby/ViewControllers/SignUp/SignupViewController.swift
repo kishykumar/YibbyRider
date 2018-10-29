@@ -273,6 +273,8 @@ class SignupViewController: BaseYibbyViewController,
     
     func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
         
+        let inviteCode: String? = nil
+        
         WebInterface.makeWebRequestAndHandleError(
             self,
             webRequest: {(errorBlock: @escaping (BAAObjectResultBlock)) -> Void in
@@ -281,7 +283,8 @@ class SignupViewController: BaseYibbyViewController,
 
             let client: BAAClient = BAAClient.shared()
             
-            client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, completion:{(success, error) -> Void in
+                client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, inviteCode: inviteCode, completion:{(success, error) -> Void in
+                    
                 if (success || self.testMode) {
                     DDLogVerbose("Success signing up: \(success)")
                     

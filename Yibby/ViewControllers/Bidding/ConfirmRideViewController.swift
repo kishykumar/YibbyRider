@@ -23,6 +23,10 @@ class ConfirmRideViewController: BaseYibbyViewController {
     var dropoffLocation: YBLocation!
     
     var bidPrice: Float!
+    var bidRangeLowPrice: Float!
+    var bidRangeHighPrice: Float!
+    var bidSuggestedPrice: Int!
+    
     var numPeople: Int = 4
     var currentPaymentMethod: YBPaymentMethod!
     
@@ -45,6 +49,9 @@ class ConfirmRideViewController: BaseYibbyViewController {
                 let client: BAAClient = BAAClient.shared()
 
                 client.createBid(self.bidPrice as NSNumber?,
+                                 bidRangeLowPrice: self.bidRangeLowPrice as NSNumber?,
+                                 bidRangeHighPrice: self.bidRangeHighPrice as NSNumber?,
+                                 bidSuggestedPrice: self.bidSuggestedPrice as NSNumber?,
                                  pickupLat: self.pickupLocation.latitude as NSNumber?,
                                  pickupLong: self.pickupLocation.longitude as NSNumber?,
                                  pickupLoc: self.pickupLocation.name!,

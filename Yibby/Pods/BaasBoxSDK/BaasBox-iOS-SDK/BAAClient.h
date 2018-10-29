@@ -56,6 +56,7 @@
                     email: (NSString *)email
                     phoneNumber: (NSString *)phoneNumber
                     password:(NSString *)password
+                    inviteCode:(NSString *)inviteCode
                     completion:(BAABooleanResultBlock)completionBlock;
 
 
@@ -171,6 +172,9 @@
 
 // Bid
 - (void)createBid:(NSNumber *)bidPrice
+        bidRangeLowPrice: (NSNumber *)bidRangeLowPrice
+        bidRangeHighPrice: (NSNumber *)bidRangeHighPrice
+        bidSuggestedPrice: (NSNumber *)bidSuggestedPrice
         pickupLat:(NSNumber *)pickupLat
         pickupLong:(NSNumber *)pickupLong
         pickupLoc:(NSString *)pickupLoc
