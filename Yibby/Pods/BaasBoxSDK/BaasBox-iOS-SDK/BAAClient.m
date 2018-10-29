@@ -294,7 +294,13 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                     email: (NSString *)email
                     phoneNumber: (NSString *)phoneNumber
                     password:(NSString *)password
+                    inviteCode:(NSString *)inviteCode
                     completion:(BAABooleanResultBlock)completionBlock {
+    
+    // inviteCode can be nil, in which case inviteCode key is removed from
+    // the dictionary. So, we set it separately than the rest of the parameters.
+//    [parameters setValue:inviteCode
+//                   forKey:@"inviteCode"];
 
     [self postPath:@"caber"
         parameters:@{
@@ -302,9 +308,10 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                      @"email" : email,
                      @"phoneNumber" : phoneNumber,
                      @"password": password,
+                     @"inviteCode": inviteCode ?: @"",
                      @"appcode" : self.appCode,
                      @"type" : type
-                    }
+                     }
            success:^(NSDictionary *responseObject) {
                
                NSString *token = responseObject[@"data"][@"X-BB-SESSION"];
@@ -399,21 +406,27 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
 }
 
 - (void)createBid:(NSNumber *)bidPrice
+        bidRangeLowPrice: (NSNumber *)bidRangeLowPrice
+        bidRangeHighPrice: (NSNumber *)bidRangeHighPrice
+        bidSuggestedPrice: (NSNumber *)bidSuggestedPrice
         pickupLat:(NSNumber *)pickupLat
-       pickupLong:(NSNumber *)pickupLong
+        pickupLong:(NSNumber *)pickupLong
         pickupLoc:(NSString *)pickupLoc
-       dropoffLat:(NSNumber *)dropoffLat
-      dropoffLong:(NSNumber *)dropoffLong
-       dropoffLoc:(NSString *)dropoffLoc
-paymentMethodToken:(NSString *)paymentMethodToken
-paymentMethodBrand:(NSString *)paymentMethodBrand
-paymentMethodLast4:(NSString *)paymentMethodLast4
+        dropoffLat:(NSNumber *)dropoffLat
+        dropoffLong:(NSNumber *)dropoffLong
+        dropoffLoc:(NSString *)dropoffLoc
+        paymentMethodToken:(NSString *)paymentMethodToken
+        paymentMethodBrand:(NSString *)paymentMethodBrand
+        paymentMethodLast4:(NSString *)paymentMethodLast4
         numPeople:(NSNumber *)numPeople
-       completion:(BAAObjectResultBlock)completionBlock {
+        completion:(BAAObjectResultBlock)completionBlock {
     
     [self postPath:@"bid"
         parameters:@{
                      @"bidPrice" : bidPrice,
+                     @"bidRangeLowPrice" : bidRangeLowPrice,
+                     @"bidRangeHighPrice" : bidRangeHighPrice,
+                     @"bidSuggestedPrice" : bidSuggestedPrice,
                      @"pickupLat": pickupLat,
                      @"pickupLong": pickupLong,
                      @"pickupLoc": pickupLoc,
