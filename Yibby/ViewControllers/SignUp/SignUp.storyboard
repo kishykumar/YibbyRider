@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-XT-wAP" customClass="YibbyButton1" customModule="Yibby" customModuleProvider="target">
-                                <rect key="frame" x="16" y="290.5" width="288" height="48"/>
+                                <rect key="frame" x="16" y="329.5" width="288" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9cH-XT-wAP" secondAttribute="height" multiplier="6" id="Gby-Rl-c9z"/>
                                 </constraints>
@@ -36,31 +36,42 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyt-Pk-j7d" userLabel="Container View">
-                                <rect key="frame" x="16" y="59.5" width="288" height="206"/>
+                                <rect key="frame" x="16" y="59.5" width="288" height="245"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cce-Xu-IKG" userLabel="CredentialsSV">
-                                        <rect key="frame" x="10" y="10" width="268" height="186"/>
+                                        <rect key="frame" x="10" y="10" width="268" height="225"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="John Smith" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rky-lM-Pjf">
-                                                <rect key="frame" x="0.0" y="0.0" width="268" height="39"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="268" height="37"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="925-521-4585" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AwM-xB-sas" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
-                                                <rect key="frame" x="0.0" y="49" width="268" height="39"/>
+                                                <rect key="frame" x="0.0" y="47" width="268" height="37"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="john.smith@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GI0-Ms-wLx">
-                                                <rect key="frame" x="0.0" y="98" width="268" height="39"/>
+                                                <rect key="frame" x="0.0" y="94" width="268" height="37"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CMV-q2-Lbd" customClass="PasswordTextField" customModule="PasswordTextField">
-                                                <rect key="frame" x="0.0" y="147" width="268" height="39"/>
+                                                <rect key="frame" x="0.0" y="141" width="268" height="37"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
+                                                        <color key="value" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="InviteCode (Optional)" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="J5u-5u-lg9" userLabel="InviteCode Outlet">
+                                                <rect key="frame" x="0.0" y="188" width="268" height="37"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
@@ -79,7 +90,7 @@
                                     <constraint firstItem="cce-Xu-IKG" firstAttribute="leading" secondItem="Uyt-Pk-j7d" secondAttribute="leading" constant="10" id="2fq-l0-Gzu"/>
                                     <constraint firstItem="cce-Xu-IKG" firstAttribute="top" secondItem="Uyt-Pk-j7d" secondAttribute="top" constant="10" id="dHJ-Tm-L96"/>
                                     <constraint firstAttribute="trailing" secondItem="cce-Xu-IKG" secondAttribute="trailing" constant="10" id="rTx-m0-Dkm"/>
-                                    <constraint firstAttribute="width" secondItem="Uyt-Pk-j7d" secondAttribute="height" multiplier="1.4" id="vfb-3C-ge3"/>
+                                    <constraint firstAttribute="width" secondItem="Uyt-Pk-j7d" secondAttribute="height" multiplier="1.4" constant="-55" id="vfb-3C-ge3"/>
                                     <constraint firstAttribute="bottom" secondItem="cce-Xu-IKG" secondAttribute="bottom" constant="10" id="wos-CA-AFN"/>
                                 </constraints>
                             </view>
@@ -90,7 +101,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5aB-27-7g9" userLabel="TermsStack">
-                                <rect key="frame" x="60" y="363" width="199.5" height="25"/>
+                                <rect key="frame" x="60" y="402.5" width="199.5" height="25"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-TS-zAQ" customClass="AIFlatSwitch" customModule="AIFlatSwitch">
                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -151,6 +162,7 @@
                     <connections>
                         <outlet property="emailAddressOutlet" destination="GI0-Ms-wLx" id="7ed-ey-QdZ"/>
                         <outlet property="errorLabelOutlet" destination="num-hm-WoR" id="uAH-HJ-gRr"/>
+                        <outlet property="inviteCodeOutlet" destination="J5u-5u-lg9" id="Pfh-dh-H43"/>
                         <outlet property="nameOutlet" destination="Rky-lM-Pjf" id="a9p-qn-w3G"/>
                         <outlet property="passwordOutlet" destination="CMV-q2-Lbd" id="cys-f0-yLp"/>
                         <outlet property="phoneNumberOutlet" destination="AwM-xB-sas" id="Ztp-87-ZFz"/>
