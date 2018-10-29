@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
-    fileprivate var isSandbox = true
+    fileprivate var isSandbox = false
     
     fileprivate var connectedToGCM = false
     fileprivate var subscribedToTopic = false
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
             ((self.isSandbox) ?
             ("http://test.yibbyapp.com") :
             //("http://3a15b3cb.ngrok.io") :
-            ("http://api.yibbyapp.com"))
+            ("https://api.yibbyapp.com"))
     }
 
     //fileprivate let BAASBOX_URL = "http://42f3eb3a.ngrok.io"

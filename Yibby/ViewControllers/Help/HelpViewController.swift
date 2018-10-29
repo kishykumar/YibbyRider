@@ -24,7 +24,7 @@ class HelpViewController: BaseYibbyViewController {
     @IBOutlet var lastTripPrice: UILabel!
 
     @IBOutlet weak var vehicleMakeModelLabelOutlet: UILabel!
-    @IBOutlet var appVersionLbl: UILabel!
+    @IBOutlet weak var appVersionLabel: UILabel!
     
     var lastRide: Ride?
 
@@ -75,6 +75,9 @@ class HelpViewController: BaseYibbyViewController {
         
         userImage.curvedViewWithBorder(20.0, borderColor: UIColor.white)
         containerViewUserImageOutlet.addShadow()
+        
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        appVersionLabel.text = "Yibby App Version \(appVersion ?? "Unknown")"
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,6 +92,14 @@ class HelpViewController: BaseYibbyViewController {
         if let ride = lastRide, let myDriver = ride.driver, let myVehicle = ride.vehicle {
             
             lastTripPrice.text = "$\(ride.bidPrice!)"
+            
+            if let fare = ride.bidPrice {
+                if let tip = ride.tip  {
+                    self.lastTripPrice.text = "$\(fare + tip)"
+                } else {
+                    self.lastTripPrice.text = "$\(fare)"
+                }
+            }
             
             if let rideISODateTime = ride.datetime, let rideDate = TimeUtil.getDateFromISOTime(rideISODateTime) {
                 let prettyDate = TimeUtil.prettyPrintDate1(rideDate)

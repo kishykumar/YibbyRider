@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -141,20 +141,14 @@
                                     <constraint firstItem="bYN-hE-bgb" firstAttribute="top" secondItem="KoC-MR-N6e" secondAttribute="top" constant="10" id="n2O-G3-QkU"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YibbY app version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bK-ms-E3d">
-                                <rect key="frame" x="26" y="437" width="156" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="PUS-YI-gMp"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yibby App v1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bK-ms-E3d">
+                                <rect key="frame" x="10" y="442" width="300" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.1764705882" green="0.70588235290000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0 @ 2018 Yibby" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNR-GP-jTQ">
-                                <rect key="frame" x="26" y="463" width="118" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="hhO-cy-aYN"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2018 Yibby Inc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNR-GP-jTQ">
+                                <rect key="frame" x="10" y="471" width="300" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -175,27 +169,29 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="XNR-GP-jTQ" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leading" constant="10" id="0Ml-uB-4cb"/>
                             <constraint firstItem="KoC-MR-N6e" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leading" constant="10" id="3Mp-xr-Qlp"/>
                             <constraint firstItem="KoC-MR-N6e" firstAttribute="top" secondItem="VNH-8x-WsY" secondAttribute="bottom" constant="33" id="Ct6-Bw-Egi"/>
                             <constraint firstItem="Ahv-Qy-TuH" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leading" constant="10" id="DlJ-eX-alF"/>
-                            <constraint firstItem="XNR-GP-jTQ" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leadingMargin" constant="10" id="EK9-gP-nBA"/>
                             <constraint firstAttribute="trailing" secondItem="Ahv-Qy-TuH" secondAttribute="trailing" constant="10" id="HNJ-y1-CbS"/>
                             <constraint firstItem="VNH-8x-WsY" firstAttribute="top" secondItem="Wrq-pn-c37" secondAttribute="bottom" constant="1" id="Ljm-cx-Lam"/>
                             <constraint firstItem="VNH-8x-WsY" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leadingMargin" constant="4" id="M2p-Bf-bNj"/>
                             <constraint firstItem="Ahv-Qy-TuH" firstAttribute="top" secondItem="OOg-0h-ipA" secondAttribute="bottom" constant="60" id="QpS-7M-PNU"/>
                             <constraint firstAttribute="trailing" secondItem="Wrq-pn-c37" secondAttribute="trailing" constant="20" id="Whi-Tb-aHD"/>
                             <constraint firstAttribute="trailing" secondItem="KoC-MR-N6e" secondAttribute="trailing" constant="10" id="Z3b-as-2kD"/>
-                            <constraint firstItem="5bK-ms-E3d" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leadingMargin" constant="10" id="kNG-gh-5Fe"/>
+                            <constraint firstAttribute="trailing" secondItem="5bK-ms-E3d" secondAttribute="trailing" constant="10" id="chF-qO-67z"/>
+                            <constraint firstItem="5bK-ms-E3d" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leading" constant="10" id="fyU-Vf-7Nn"/>
                             <constraint firstItem="Wrq-pn-c37" firstAttribute="leading" secondItem="cFx-Vt-Igt" secondAttribute="leading" constant="20" id="lq9-ct-x3u"/>
                             <constraint firstItem="Wrq-pn-c37" firstAttribute="top" secondItem="Ahv-Qy-TuH" secondAttribute="bottom" constant="33" id="naA-Qy-SgL"/>
+                            <constraint firstAttribute="trailing" secondItem="XNR-GP-jTQ" secondAttribute="trailing" constant="10" id="sXA-Tz-HdZ"/>
                             <constraint firstItem="XNR-GP-jTQ" firstAttribute="top" secondItem="5bK-ms-E3d" secondAttribute="bottom" constant="5" id="xj3-e2-t7C"/>
-                            <constraint firstItem="5bK-ms-E3d" firstAttribute="top" secondItem="KoC-MR-N6e" secondAttribute="bottom" constant="15" id="zWI-dq-u27"/>
+                            <constraint firstItem="5bK-ms-E3d" firstAttribute="top" secondItem="KoC-MR-N6e" secondAttribute="bottom" constant="20" id="zWI-dq-u27"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="VW" destination="Ahv-Qy-TuH" id="0yP-GX-qh7"/>
                         <outlet property="VW1" destination="KoC-MR-N6e" id="kMA-j2-HBs"/>
-                        <outlet property="appVersionLbl" destination="XNR-GP-jTQ" id="i8v-w2-jpF"/>
+                        <outlet property="appVersionLabel" destination="5bK-ms-E3d" id="V0X-jV-P7W"/>
                         <outlet property="containerViewUserImageOutlet" destination="SJj-Wi-qTG" id="uhz-rW-Pvl"/>
                         <outlet property="lastTripPrice" destination="P4f-Sr-ggS" id="HS3-P4-VoY"/>
                         <outlet property="lastTripTime" destination="cwX-gL-06e" id="Xlq-u0-ZPs"/>
