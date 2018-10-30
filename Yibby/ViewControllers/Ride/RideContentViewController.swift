@@ -12,12 +12,14 @@ import CocoaLumberjack
 import GoogleMaps
 import ISHPullUp
 import ActionSheetPicker_3_0
+import Spring
 
 class RideContentViewController: BaseYibbyViewController {
 
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     @IBOutlet weak var nextButtonOutlet: YibbyButton1!
+    @IBOutlet weak var driverEtaLabel: SpringLabel!
     
     weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
@@ -86,7 +88,6 @@ class RideContentViewController: BaseYibbyViewController {
                 setDropoffMarker(self.bid.dropoffLocation!)
                 driverMarkerStatus = DriverStateDescription.rideStarted
                 break
-                
             }
             
             if let driverLoc = ride.driverLocation?.coordinate() {
@@ -363,8 +364,8 @@ class RideContentViewController: BaseYibbyViewController {
                                             completionBlock: { (etaSeconds, distanceMeters) -> Void in
                                               
                 // TODO: Show the ETA on the UI
-                
-                
+                let etaMinutes = Float(etaSeconds/60)
+                self.driverEtaLabel.text = "Driver ETA: \(etaMinutes)"
                 self.lastETAUpdateTime = Date()
             })
             
