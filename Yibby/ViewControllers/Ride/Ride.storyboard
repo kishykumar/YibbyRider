@@ -58,8 +58,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.33835299693554755" green="1" blue="0.96876954454940178" alpha="0.18074324324324326" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh7-BJ-27S" userLabel="DriverEtaView" customClass="YBBorderedUIView" customModule="YibbyPartner" customModuleProvider="target">
+                                <rect key="frame" x="100" y="85" width="185" height="32"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Driver ETA: 20 min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32t-sV-6Cp" userLabel="DriverEtaLabel" customClass="SpringLabel" customModule="Spring">
+                                        <rect key="frame" x="18" y="5" width="150" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="ZXQ-Ri-95m"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKt-f5-OP4" userLabel="NextButton" customClass="YibbyButton1">
-                                <rect key="frame" x="236.5" y="40" width="122.5" height="35"/>
+                                <rect key="frame" x="236" y="40" width="123" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MKt-f5-OP4" secondAttribute="height" multiplier="3.5" id="afh-7o-aaB"/>
@@ -77,13 +99,17 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8JB-uI-IY8" secondAttribute="trailing" id="9Tl-eR-GVR"/>
                             <constraint firstItem="8JB-uI-IY8" firstAttribute="top" secondItem="hvx-XL-7F0" secondAttribute="top" id="DQn-JD-Evk"/>
+                            <constraint firstItem="xh7-BJ-27S" firstAttribute="top" secondItem="hvx-XL-7F0" secondAttribute="topMargin" constant="65" id="Jtu-Lk-CiI"/>
+                            <constraint firstItem="xh7-BJ-27S" firstAttribute="centerX" secondItem="8JB-uI-IY8" secondAttribute="centerX" constant="5" id="Y5h-zZ-F2R"/>
                             <constraint firstItem="Np1-e7-hWT" firstAttribute="top" secondItem="8JB-uI-IY8" secondAttribute="bottom" id="mHw-ym-tQh"/>
                             <constraint firstItem="MKt-f5-OP4" firstAttribute="top" secondItem="eRH-ra-mtl" secondAttribute="bottom" constant="20" id="oSl-We-ZHq"/>
                             <constraint firstItem="8JB-uI-IY8" firstAttribute="leading" secondItem="hvx-XL-7F0" secondAttribute="leading" id="pNE-cz-2vT"/>
+                            <constraint firstItem="xh7-BJ-27S" firstAttribute="width" secondItem="8JB-uI-IY8" secondAttribute="height" multiplier="147:667" constant="38" id="rPt-sZ-sEZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MKt-f5-OP4" secondAttribute="trailing" id="sgc-3G-l9b"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="driverEtaLabel" destination="32t-sV-6Cp" id="3hs-S4-ms6"/>
                         <outlet property="gmsMapViewOutlet" destination="8JB-uI-IY8" id="vp3-F7-ioC"/>
                         <outlet property="nextButtonOutlet" destination="MKt-f5-OP4" id="4Ec-9J-sct"/>
                         <segue destination="t7j-6R-BXU" kind="unwind" identifier="unwindToMainViewControllerFromRideContentController" unwindAction="unwindToMainViewController:" id="hyL-4R-WRd"/>
@@ -92,7 +118,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bj-nD-jg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="t7j-6R-BXU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-6018.3999999999996" y="1203.1484257871066"/>
+            <point key="canvasLocation" x="-5988" y="1193"/>
         </scene>
         <!--Ride Bottom View Controller-->
         <scene sceneID="WYv-gw-sC0">
