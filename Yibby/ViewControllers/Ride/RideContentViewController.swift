@@ -364,8 +364,8 @@ class RideContentViewController: BaseYibbyViewController {
                                             completionBlock: { (etaSeconds, distanceMeters) -> Void in
                                               
                 // TODO: Show the ETA on the UI
-                let etaMinutes = Float(etaSeconds/60)
-                self.driverEtaLabel.text = "Driver ETA: \(etaMinutes)"
+                let etaMinutes = Int(etaSeconds/60)
+                self.driverEtaLabel.text = "Driver ETA: \(etaMinutes) mins"
                 self.lastETAUpdateTime = Date()
             })
             
