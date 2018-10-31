@@ -58,12 +58,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.33835299693554755" green="1" blue="0.96876954454940178" alpha="0.18074324324324326" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh7-BJ-27S" userLabel="DriverEtaView" customClass="YBBorderedUIView" customModule="YibbyPartner" customModuleProvider="target">
-                                <rect key="frame" x="100" y="85" width="185" height="32"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh7-BJ-27S" userLabel="DriverEtaView" customClass="YBBorderedUIView" customModule="Yibby" customModuleProvider="target">
+                                <rect key="frame" x="87" y="85" width="201" height="32"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Driver ETA: 20 min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32t-sV-6Cp" userLabel="DriverEtaLabel" customClass="SpringLabel" customModule="Spring">
-                                        <rect key="frame" x="18" y="5" width="150" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver ETA: 20 min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32t-sV-6Cp" userLabel="DriverEtaLabel" customClass="SpringLabel" customModule="Spring">
+                                        <rect key="frame" x="0.0" y="0.0" width="201" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,7 +71,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="32t-sV-6Cp" secondAttribute="trailing" id="Lnm-5r-p6S"/>
                                     <constraint firstAttribute="height" constant="32" id="ZXQ-Ri-95m"/>
+                                    <constraint firstAttribute="bottom" secondItem="32t-sV-6Cp" secondAttribute="bottom" id="kac-0A-dns"/>
+                                    <constraint firstItem="32t-sV-6Cp" firstAttribute="leading" secondItem="xh7-BJ-27S" secondAttribute="leading" id="loB-Me-HCO"/>
+                                    <constraint firstItem="32t-sV-6Cp" firstAttribute="top" secondItem="xh7-BJ-27S" secondAttribute="top" id="uY1-qg-0gr"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -100,11 +103,11 @@
                             <constraint firstAttribute="trailing" secondItem="8JB-uI-IY8" secondAttribute="trailing" id="9Tl-eR-GVR"/>
                             <constraint firstItem="8JB-uI-IY8" firstAttribute="top" secondItem="hvx-XL-7F0" secondAttribute="top" id="DQn-JD-Evk"/>
                             <constraint firstItem="xh7-BJ-27S" firstAttribute="top" secondItem="hvx-XL-7F0" secondAttribute="topMargin" constant="65" id="Jtu-Lk-CiI"/>
-                            <constraint firstItem="xh7-BJ-27S" firstAttribute="centerX" secondItem="8JB-uI-IY8" secondAttribute="centerX" constant="5" id="Y5h-zZ-F2R"/>
+                            <constraint firstItem="xh7-BJ-27S" firstAttribute="centerX" secondItem="8JB-uI-IY8" secondAttribute="centerX" id="Y5h-zZ-F2R"/>
                             <constraint firstItem="Np1-e7-hWT" firstAttribute="top" secondItem="8JB-uI-IY8" secondAttribute="bottom" id="mHw-ym-tQh"/>
                             <constraint firstItem="MKt-f5-OP4" firstAttribute="top" secondItem="eRH-ra-mtl" secondAttribute="bottom" constant="20" id="oSl-We-ZHq"/>
                             <constraint firstItem="8JB-uI-IY8" firstAttribute="leading" secondItem="hvx-XL-7F0" secondAttribute="leading" id="pNE-cz-2vT"/>
-                            <constraint firstItem="xh7-BJ-27S" firstAttribute="width" secondItem="8JB-uI-IY8" secondAttribute="height" multiplier="147:667" constant="38" id="rPt-sZ-sEZ"/>
+                            <constraint firstItem="xh7-BJ-27S" firstAttribute="width" secondItem="8JB-uI-IY8" secondAttribute="height" multiplier="147:667" constant="54" id="rPt-sZ-sEZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MKt-f5-OP4" secondAttribute="trailing" id="sgc-3G-l9b"/>
                         </constraints>
                     </view>
@@ -118,7 +121,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bj-nD-jg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="t7j-6R-BXU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5988" y="1193"/>
+            <point key="canvasLocation" x="-5999" y="1157"/>
         </scene>
         <!--Ride Bottom View Controller-->
         <scene sceneID="WYv-gw-sC0">
@@ -483,7 +486,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WH7-oh-wkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qly-3G-mwC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5271" y="1185"/>
+            <point key="canvasLocation" x="-5324" y="1128"/>
         </scene>
         <!--Driver InfoVC-->
         <scene sceneID="oYl-re-zMP">

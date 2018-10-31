@@ -153,6 +153,28 @@ class SignupViewController: BaseYibbyViewController,
         // Dispose of any resources that can be recreated.
     }
     
+    //keyboards shows
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveTextField(textField: textField, moveDistance: -170, up: true)
+    }
+    //keyboard hides
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveTextField(textField: textField, moveDistance: -170, up: false)
+    }
+    
+    @objc func moveTextField(textField: UITextField, moveDistance: Int, up: Bool){
+        if textField == passwordOutlet || textField == inviteCodeOutlet {
+            let moveDuration = 0.3
+            let movement:CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+            UIView.beginAnimations("animateTextField", context: nil)
+            UIView.setAnimationBeginsFromCurrentState(true)
+            UIView.setAnimationDuration(moveDuration)
+            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+            UIView.commitAnimations()
+        }
+
+    }
+    
     // MARK: - ValidationDelegate Methods
     
     func validationSuccessful() {
@@ -359,9 +381,12 @@ class SignupViewController: BaseYibbyViewController,
 
         } else if textField == passwordOutlet {
             
-            passwordOutlet.resignFirstResponder()
+            inviteCodeOutlet.becomeFirstResponder()
             return false
             
+        } else if textField == inviteCodeOutlet {
+             inviteCodeOutlet.resignFirstResponder()
+            return false
         }
         
         return true
