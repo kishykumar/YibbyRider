@@ -273,9 +273,7 @@ class SignupViewController: BaseYibbyViewController,
   
     // BaasBox create user
     
-    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String) {
-        
-        let inviteCode: String? = nil
+    func createUser(_ usernamei: String, emaili: String, phoneNumberi: String, passwordi: String, inviteCodei: String?) {
         
         WebInterface.makeWebRequestAndHandleError(
             self,
@@ -285,7 +283,7 @@ class SignupViewController: BaseYibbyViewController,
 
             let client: BAAClient = BAAClient.shared()
             
-                client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, inviteCode: inviteCode, completion:{(success, error) -> Void in
+                client.createCaber(BAASBOX_RIDER_STRING, name: usernamei, email: emaili, phoneNumber: phoneNumberi, password: passwordi, inviteCode: inviteCodei, completion:{(success, error) -> Void in
                     
                 if (success || self.testMode) {
                     DDLogVerbose("Success signing up: \(success)")
@@ -359,9 +357,13 @@ class SignupViewController: BaseYibbyViewController,
 
         } else if textField == passwordOutlet {
             
-            passwordOutlet.resignFirstResponder()
+            inviteCodeOutlet.becomeFirstResponder()
             return false
             
+        } else if textField == inviteCodeOutlet {
+            
+            inviteCodeOutlet.resignFirstResponder()
+            return false
         }
         
         return true
@@ -398,7 +400,8 @@ class SignupViewController: BaseYibbyViewController,
         self.signupButtonOutlet.isUserInteractionEnabled = false
         
         self.createUser(self.nameOutlet.text!, emaili: self.emailAddressOutlet.text!,
-                        phoneNumberi: self.formattedPhoneNumber!, passwordi: self.passwordOutlet.text!)
+                        phoneNumberi: self.formattedPhoneNumber!, passwordi: self.passwordOutlet.text!,
+                        inviteCodei: self.inviteCodeOutlet.text)
     }
     
     func viewController(_ viewController: (UIViewController & AKFViewController)!, didFailWithError error: Error!) {

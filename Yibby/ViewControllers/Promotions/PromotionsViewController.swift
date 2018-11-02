@@ -18,25 +18,26 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
     @IBOutlet weak var inviteCodeLabel: UILabel!
     @IBOutlet var VW1: UIView!
     //@IBOutlet var accessContactsBtn: UIButton!
-    @IBOutlet weak var shareIcon: UILabel!
     
+    let EMAIL_BODY: String = "Referrer details: <Your name> <Your phone number> \n - is referring my friend - \n\n Friend details: <Your friend's name> <Your friend's phone number> \n\n Yibby will make $5 payment to you via Venmo once your friend takes a ride with us. \n\n Please provide your venmo id: <Referrer venmo id>"
     
-    let EMAIL_BODY:String = "Referrer details: <Your name> <Your phone number> \n - is referring my friend - \n\n Friend details: <Your friend's name> <Your friend's phone number> \n\n Yibby will make $5 payment to you via Venmo once your friend takes a ride with us. \n\n Please provide your venmo id: <Referrer venmo id>"
-    let YIBBY_LINK:String = "https://www.google.co.in/"
+    let YIBBY_LINK: String = "https://www.google.co.in/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         // Do any additional setup after loading the view.
     }
+    
     private func setupUI() {
         setupBackButton()
 
         VW1.layer.borderColor = UIColor.borderColor().cgColor
         VW1.layer.borderWidth = 1.0
         VW1.layer.cornerRadius = 7
-        inviteCodeLabel.text = "67FA89"
-        shareIcon.setFAText(prefixText: "", icon: FAType.FAShareAltSquare, postfixText: "", size: 30, iconSize: 35)
+        
+        let profile = YBClient.sharedInstance().profile!
+        inviteCodeLabel.text = profile.referralCode?.uppercased()
         
 //        accessContactsBtn.layer.borderColor = UIColor.borderColor().cgColor
 //        accessContactsBtn.layer.borderWidth = 1.0
@@ -55,15 +56,15 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
         emailAddressTF.borderStyle = UITextBorderStyle.none
         emailAddressTF.layer.addSublayer(bottomLine1)*/
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onshareIconClick(_ sender: UITapGestureRecognizer) {
+    @IBAction func onReferClick(_ sender: YibbyButton1) {
         shareInviteCode()
     }
-    
 
     @IBAction func onInfoClick(_ sender: UIButton) {
         
@@ -79,14 +80,16 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
         
     }
     
-    
-    //yibby referall via email
-    func sendEmail(){
-        if !MFMailComposeViewController.canSendMail(){
+    // Yibby referral via email
+    // NOT USED TODAY!
+    func sendReferralEmail() {
+        
+        if !MFMailComposeViewController.canSendMail() {
             DDLogVerbose("Mail services are not available")
             ToastUtil.displayToastOnVC(self, title: "Mail account not configured", body: "Mail Services are not available. Please configure a mail account to send Referrals", theme: .warning, presentationStyle: .center, duration: .seconds(seconds: 5), windowLevel: UIWindowLevelNormal)
             return
         }
+        
         let composeVc = MFMailComposeViewController()
         composeVc.mailComposeDelegate = self
         composeVc.setToRecipients(["support@yibby.zohodesk.com"])
@@ -100,18 +103,18 @@ class PromotionsViewController: BaseYibbyViewController, MFMailComposeViewContro
     }
     
     func shareInviteCode() {
-        if let inviteCode = inviteCodeLabel.text {
-            let text = "Your invite code is \(inviteCode.capitalized)\n\nDownload Yibby here\n"
-            if let appLink = NSURL(string:YIBBY_LINK) {
-                let objectsToShare = [text,appLink] as [Any]
-                let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-                self.present(activityViewController, animated: true, completion: nil)
-            }
+        
+        let profile = YBClient.sharedInstance().profile!
+        let rc: String = profile.referralCode!.uppercased()
+        let msg = "Your invite code is \(rc)\n\nDownload Yibby here\n"
+        
+        if let appLink = NSURL(string: YIBBY_LINK) {
+            let objectsToShare = [msg, appLink] as [Any]
+            let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
         }
     }
 
-    
-    
     /*
      // MARK: - Navigation
      

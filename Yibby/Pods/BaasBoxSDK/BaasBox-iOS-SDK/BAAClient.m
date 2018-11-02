@@ -297,11 +297,6 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                     inviteCode:(NSString *)inviteCode
                     completion:(BAABooleanResultBlock)completionBlock {
     
-    // inviteCode can be nil, in which case inviteCode key is removed from
-    // the dictionary. So, we set it separately than the rest of the parameters.
-//    [parameters setValue:inviteCode
-//                   forKey:@"inviteCode"];
-
     [self postPath:@"caber"
         parameters:@{
                      @"name" : name,
@@ -311,7 +306,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                      @"inviteCode": inviteCode ?: @"",
                      @"appcode" : self.appCode,
                      @"type" : type
-                     }
+                    }
            success:^(NSDictionary *responseObject) {
                
                NSString *token = responseObject[@"data"][@"X-BB-SESSION"];
