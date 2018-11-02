@@ -182,7 +182,6 @@
 		12346DC520A206F900810CA4 /* CardFieldsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12346D9220A206F900810CA4 /* CardFieldsView.xib */; };
 		12346DC620A206F900810CA4 /* CardFieldsView+CardInfoTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12346D9320A206F900810CA4 /* CardFieldsView+CardInfoTextFieldDelegate.swift */; };
 		12346DC720A206F900810CA4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12346D9520A206F900810CA4 /* Media.xcassets */; };
-		12346DC820A206F900810CA4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12346D9620A206F900810CA4 /* Info.plist */; };
 		123524941C894661004307EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 123524921C894660004307EE /* GoogleService-Info.plist */; };
 		123D41751D63011500475614 /* TypedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D41741D63011500475614 /* TypedNotifications.swift */; };
 		1240D3F8205A3CFF006A336A /* DirectionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240D3F7205A3CFF006A336A /* DirectionsService.swift */; };
@@ -1794,7 +1793,6 @@
 				12A4B1261F4EC27100B53054 /* Drive.storyboard in Resources */,
 				12085F5E1F213B0F00DBC91F /* Ride.storyboard in Resources */,
 				1201B7FC1D250D8400A7EEAF /* Login.storyboard in Resources */,
-				12346DC820A206F900810CA4 /* Info.plist in Resources */,
 				1201B7F61D25010500A7EEAF /* Destination.storyboard in Resources */,
 				1201B7F41D2500EA00A7EEAF /* Payment.storyboard in Resources */,
 				1201B78D1D23B0B900A7EEAF /* Main.storyboard in Resources */,
@@ -1847,7 +1845,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 2398a3e4bff596394b13cf60fa880f4297f56425 7a040c161b72d9611e9163b4c56944640e0c1c978a3eb18ff5de805bbe3c9687";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 2398a3e4bff596394b13cf60fa880f4297f56425 7a040c161b72d9611e9163b4c56944640e0c1c978a3eb18ff5de805bbe3c9687\n";
 		};
 		632842A4F4DD5124AA6962C4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1933,6 +1931,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1989,6 +1988,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2055,6 +2055,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -2115,6 +2116,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",

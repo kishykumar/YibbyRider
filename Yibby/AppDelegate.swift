@@ -23,6 +23,7 @@ import Instabug
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 
 
 // TODO:
@@ -42,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // MARK: - Properties
     var window: UIWindow?
 
-    fileprivate var isSandbox = false
+    fileprivate var isSandbox = true
     
     fileprivate var connectedToGCM = false
     fileprivate var subscribedToTopic = false
@@ -65,8 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     fileprivate var BAASBOX_URL: String {
         return
             ((self.isSandbox) ?
-            ("http://test.yibbyapp.com") :
-            //("http://3a15b3cb.ngrok.io") :
+            //("http://test.yibbyapp.com") :
+            ("http://3c68197b.ngrok.io") :
             ("https://api.yibbyapp.com"))
     }
 
@@ -125,6 +126,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // Init Google signIn
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().clientID = GOOGLE_CLIENT_ID
+        
+        // Init Firebase
+        FirebaseApp.configure()
+        
         // NOTE: Setup Crashlytics the last
         Fabric.with([Crashlytics.self])
         //Fabric.sharedSDK().debug = true

@@ -26,9 +26,6 @@ class ReferFriendsInformationViewController: UIViewController {
     
     private func setupUI() {
         setupBackButton()
-        inviteDescriptionTextView.layer.borderColor = UIColor.borderColor().cgColor
-        inviteDescriptionTextView.layer.borderWidth = 1.0
-        inviteDescriptionTextView.layer.cornerRadius = 7
     }
     
 
