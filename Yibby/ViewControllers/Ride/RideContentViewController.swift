@@ -19,7 +19,8 @@ class RideContentViewController: BaseYibbyViewController {
     // MARK: - Properties
     @IBOutlet weak var gmsMapViewOutlet: GMSMapView!
     @IBOutlet weak var nextButtonOutlet: YibbyButton1!
-    @IBOutlet weak var driverEtaLabel: SpringLabel!
+
+    @IBOutlet weak var driverEtaLabel: UILabel!
     
     weak var pullUpController: RideViewController? // weak reference to not create a strong reference cycle
     
