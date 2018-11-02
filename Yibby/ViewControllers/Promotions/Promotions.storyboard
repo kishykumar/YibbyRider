@@ -240,10 +240,10 @@
                                 <color key="textColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLp-lF-QUy">
-                                <rect key="frame" x="10" y="95" width="300" height="463"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLp-lF-QUy">
+                                <rect key="frame" x="10" y="105" width="300" height="328"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">When friends sign up with your invite code, their first ride will be free. Once a friend has ridden with Uber, your next ride in any city that shares your signup city's national currency will be free. 
+                                <mutableString key="text">When friends sign up with your invite code, their first ride will be free. Once a friend has ridden, your next ride in any city that shares your signup city's national currency will be free. 
 
 You can share your code by tapping Invite Friends and selecting one of the options available. These include text, email, sharing on social media or copying your personal invite code. 
 
@@ -254,13 +254,13 @@ Personal invite codes should only be used for personal and non-commercial purpos
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="yLp-lF-QUy" secondAttribute="trailing" constant="-6" id="67R-NX-R3o"/>
+                            <constraint firstItem="yLp-lF-QUy" firstAttribute="top" secondItem="JAI-CJ-VMN" secondAttribute="bottom" constant="20" id="Hn7-6T-YOC"/>
+                            <constraint firstItem="yLp-lF-QUy" firstAttribute="leading" secondItem="aHt-1I-mqq" secondAttribute="leading" constant="10" id="NmJ-Sk-q94"/>
                             <constraint firstItem="JAI-CJ-VMN" firstAttribute="top" secondItem="vH8-8c-odK" secondAttribute="bottom" constant="35" id="O53-Ve-hOc"/>
+                            <constraint firstAttribute="trailing" secondItem="yLp-lF-QUy" secondAttribute="trailing" constant="10" id="XgD-dH-e38"/>
                             <constraint firstItem="JAI-CJ-VMN" firstAttribute="leading" secondItem="aHt-1I-mqq" secondAttribute="leading" constant="10" id="aB4-ZA-D8G"/>
-                            <constraint firstItem="5kb-6A-ReS" firstAttribute="top" secondItem="yLp-lF-QUy" secondAttribute="bottom" constant="10" id="b0p-ge-Pyq"/>
+                            <constraint firstItem="5kb-6A-ReS" firstAttribute="top" secondItem="yLp-lF-QUy" secondAttribute="bottom" constant="135" id="b0p-ge-Pyq"/>
                             <constraint firstAttribute="trailing" secondItem="JAI-CJ-VMN" secondAttribute="trailing" constant="10" id="cF0-HR-adL"/>
-                            <constraint firstItem="yLp-lF-QUy" firstAttribute="top" secondItem="JAI-CJ-VMN" secondAttribute="bottom" constant="10" id="fAG-Qg-Twa"/>
-                            <constraint firstItem="yLp-lF-QUy" firstAttribute="leading" secondItem="aHt-1I-mqq" secondAttribute="leadingMargin" constant="-6" id="tJS-En-Yj6"/>
                         </constraints>
                     </view>
                     <connections>
